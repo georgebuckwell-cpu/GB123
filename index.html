@@ -3,15 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TBOS Group — Enterprise Tech. Local Business Prices.</title>
+<title>TBOS Technology Solutions — Enterprise Tech. Local Business Prices.</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 /* ─── RESET & BASE ─────────────────────────────────────────────────────────── */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --lime:#c8f564;
-  --blue:#4a6cf7;
+  --teal:#2B8E8E;
+  --navy:#0f2a5e;
   --dark:#0a0a0a;
   --dark2:#111111;
   --dark3:#161616;
@@ -51,10 +51,10 @@ img{max-width:100%}
   display:inline-block;
   width:20px;
   height:1px;
-  background:var(--lime);
+  background:var(--teal);
 }
 .gradient-text{
-  background:linear-gradient(135deg,#fff 0%,var(--lime) 100%);
+  background:linear-gradient(135deg,#fff 30%,#5bc8c8 100%);
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
   background-clip:text;
@@ -95,11 +95,11 @@ body::before{
 }
 .nav-mark{
   width:36px;height:36px;
-  background:var(--lime);
+  background:var(--teal);
   border-radius:8px;
   display:flex;align-items:center;justify-content:center;
 }
-.nav-mark span{font-size:0.7rem;font-weight:900;color:#0a0a0a;letter-spacing:-0.5px}
+.nav-mark span{font-size:0.7rem;font-weight:900;color:#fff;letter-spacing:-0.5px}
 .nav-wordmark{font-size:0.95rem;font-weight:700;letter-spacing:2px;text-transform:uppercase}
 .nav-links{
   display:flex;align-items:center;gap:2rem;
@@ -107,8 +107,8 @@ body::before{
 .nav-links a{font-size:0.85rem;color:var(--muted);font-weight:500;transition:color 0.2s}
 .nav-links a:hover{color:#fff}
 .nav-cta{
-  background:var(--lime);
-  color:#0a0a0a;
+  background:var(--teal);
+  color:#fff;
   padding:8px 20px;
   border-radius:100px;
   font-size:0.85rem;
@@ -132,7 +132,7 @@ body::before{
 .hero-glow{
   position:absolute;
   width:800px;height:800px;
-  background:radial-gradient(circle,rgba(200,245,100,0.12) 0%,transparent 70%);
+  background:radial-gradient(circle,rgba(43,142,142,0.12) 0%,transparent 70%);
   top:50%;left:50%;
   transform:translate(-50%,-50%);
   pointer-events:none;
@@ -140,7 +140,7 @@ body::before{
 .hero-glow-blue{
   position:absolute;
   width:500px;height:500px;
-  background:radial-gradient(circle,rgba(74,108,247,0.1) 0%,transparent 70%);
+  background:radial-gradient(circle,rgba(15,42,94,0.35) 0%,transparent 70%);
   top:20%;right:10%;
   pointer-events:none;
 }
@@ -157,9 +157,9 @@ body::before{
   display:inline-flex;
   align-items:center;
   gap:8px;
-  background:rgba(200,245,100,0.08);
-  border:1px solid rgba(200,245,100,0.2);
-  color:var(--lime);
+  background:rgba(43,142,142,0.08);
+  border:1px solid rgba(43,142,142,0.2);
+  color:var(--teal);
   padding:7px 16px;
   border-radius:100px;
   font-size:0.78rem;
@@ -171,7 +171,7 @@ body::before{
 }
 .hero-badge-dot{
   width:6px;height:6px;
-  background:var(--lime);
+  background:var(--teal);
   border-radius:50%;
   animation:pulse 2s ease-in-out infinite;
 }
@@ -206,19 +206,19 @@ body::before{
   display:inline-flex;
   align-items:center;
   gap:8px;
-  background:var(--lime);
-  color:#0a0a0a;
+  background:var(--teal);
+  color:#fff;
   padding:14px 32px;
   border-radius:100px;
   font-size:0.95rem;
   font-weight:800;
   letter-spacing:-0.3px;
   transition:transform 0.2s,box-shadow 0.2s;
-  box-shadow:0 0 40px rgba(200,245,100,0.25);
+  box-shadow:0 0 40px rgba(43,142,142,0.25);
 }
 .btn-primary:hover{
   transform:translateY(-2px);
-  box-shadow:0 0 60px rgba(200,245,100,0.4);
+  box-shadow:0 0 60px rgba(43,142,142,0.4);
 }
 .btn-secondary{
   display:inline-flex;
@@ -267,7 +267,7 @@ body::before{
   line-height:1;
   margin-bottom:0.2rem;
 }
-.stat-num span{color:var(--lime)}
+.stat-num span{color:var(--teal)}
 .stat-label{font-size:0.72rem;color:var(--muted);font-weight:500;letter-spacing:0.5px}
 
 /* ─── SECTION WRAPPER ───────────────────────────────────────────────────────── */
@@ -307,15 +307,15 @@ body::before{
   content:'';
   position:absolute;
   inset:0;
-  background:radial-gradient(circle at 50% 0%,rgba(200,245,100,0.05) 0%,transparent 60%);
+  background:radial-gradient(circle at 50% 0%,rgba(43,142,142,0.05) 0%,transparent 60%);
   pointer-events:none;
 }
 .price-card:hover{
-  border-color:rgba(200,245,100,0.3);
+  border-color:rgba(43,142,142,0.3);
   transform:translateY(-4px);
 }
 .price-card.featured{
-  background:var(--lime);
+  background:var(--teal);
   border-color:transparent;
 }
 .price-card.featured::before{
@@ -329,7 +329,7 @@ body::before{
   color:var(--muted);
   margin-bottom:1.2rem;
 }
-.price-card.featured .price-tag{color:rgba(0,0,0,0.5)}
+.price-card.featured .price-tag{color:rgba(255,255,255,0.65)}
 .price-amount{
   font-size:3.5rem;
   font-weight:900;
@@ -338,28 +338,28 @@ body::before{
   color:#fff;
   margin-bottom:0.25rem;
 }
-.price-card.featured .price-amount{color:#0a0a0a}
+.price-card.featured .price-amount{color:#fff}
 .price-amount sup{font-size:1.5rem;letter-spacing:0;font-weight:600;vertical-align:super;line-height:0}
 .price-note{font-size:0.85rem;color:var(--muted);margin-bottom:1.75rem}
-.price-card.featured .price-note{color:rgba(0,0,0,0.55)}
+.price-card.featured .price-note{color:rgba(255,255,255,0.65)}
 .price-divider{height:1px;background:var(--border);margin-bottom:1.5rem}
-.price-card.featured .price-divider{background:rgba(0,0,0,0.12)}
+.price-card.featured .price-divider{background:rgba(255,255,255,0.15)}
 .price-features{list-style:none;font-size:0.88rem;line-height:2.1;color:var(--muted)}
-.price-card.featured .price-features{color:rgba(0,0,0,0.65)}
+.price-card.featured .price-features{color:rgba(255,255,255,0.8)}
 .price-features li{display:flex;align-items:center;gap:10px}
 .price-features li::before{
   content:'';
   width:16px;height:16px;min-width:16px;
-  background:rgba(200,245,100,0.15);
+  background:rgba(43,142,142,0.15);
   border-radius:50%;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='%23c8f564' d='M6.5 11.5L3 8l1.4-1.4 2.1 2.1 5.1-5.1L13 5z'/%3E%3C/svg%3E");
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='%232B8E8E' d='M6.5 11.5L3 8l1.4-1.4 2.1 2.1 5.1-5.1L13 5z'/%3E%3C/svg%3E");
   background-repeat:no-repeat;
   background-position:center;
   flex-shrink:0;
 }
 .price-card.featured .price-features li::before{
-  background-color:rgba(0,0,0,0.1);
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='%230a0a0a' d='M6.5 11.5L3 8l1.4-1.4 2.1 2.1 5.1-5.1L13 5z'/%3E%3C/svg%3E");
+  background-color:rgba(255,255,255,0.15);
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='%23ffffff' d='M6.5 11.5L3 8l1.4-1.4 2.1 2.1 5.1-5.1L13 5z'/%3E%3C/svg%3E");
 }
 .savings-banner{
   border-radius:16px;
@@ -377,7 +377,7 @@ body::before{
 .savings-banner::before{
   content:'';
   position:absolute;left:0;top:0;bottom:0;width:3px;
-  background:var(--lime);
+  background:var(--teal);
 }
 .savings-text{font-size:0.95rem;color:var(--muted)}
 .savings-highlight{
@@ -385,9 +385,9 @@ body::before{
 }
 .savings-old{font-size:1.6rem;font-weight:800;color:rgba(255,255,255,0.2);text-decoration:line-through;letter-spacing:-1px}
 .savings-new{
-  background:rgba(200,245,100,0.1);
-  border:1px solid rgba(200,245,100,0.2);
-  color:var(--lime);
+  background:rgba(43,142,142,0.1);
+  border:1px solid rgba(43,142,142,0.2);
+  color:var(--teal);
   padding:6px 16px;
   border-radius:100px;
   font-size:0.9rem;
@@ -414,21 +414,21 @@ body::before{
   content:'';
   position:absolute;
   inset:0;
-  background:linear-gradient(135deg,rgba(200,245,100,0.03) 0%,transparent 50%);
+  background:linear-gradient(135deg,rgba(43,142,142,0.03) 0%,transparent 50%);
   pointer-events:none;
   opacity:0;
   transition:opacity 0.3s;
 }
-.why-card:hover{border-color:rgba(200,245,100,0.2)}
+.why-card:hover{border-color:rgba(43,142,142,0.2)}
 .why-card:hover::after{opacity:1}
 .why-icon{
   width:44px;height:44px;
-  background:rgba(200,245,100,0.1);
+  background:rgba(43,142,142,0.1);
   border-radius:12px;
   display:flex;align-items:center;justify-content:center;
   font-size:1.2rem;
   margin-bottom:1.2rem;
-  border:1px solid rgba(200,245,100,0.15);
+  border:1px solid rgba(43,142,142,0.15);
 }
 .why-card h3{font-size:1rem;font-weight:700;margin-bottom:0.4rem;color:#fff}
 .why-card p{font-size:0.875rem;color:var(--muted);line-height:1.7}
@@ -454,7 +454,7 @@ body::before{
   position:absolute;
   top:0;left:0;right:0;
   height:2px;
-  background:linear-gradient(90deg,var(--lime),transparent);
+  background:linear-gradient(90deg,var(--teal),transparent);
   opacity:0;
   transition:opacity 0.3s;
 }
@@ -469,9 +469,9 @@ body::before{
 }
 .step-badge{
   display:inline-block;
-  background:rgba(200,245,100,0.08);
-  border:1px solid rgba(200,245,100,0.15);
-  color:var(--lime);
+  background:rgba(43,142,142,0.08);
+  border:1px solid rgba(43,142,142,0.15);
+  color:var(--teal);
   font-size:0.68rem;
   font-weight:700;
   letter-spacing:1.5px;
@@ -500,9 +500,9 @@ body::before{
 }
 .fee-card:hover{transform:translateY(-4px);border-color:var(--border-hover)}
 .fee-card.featured{
-  background:linear-gradient(135deg,var(--dark3) 0%,rgba(200,245,100,0.06) 100%);
-  border-color:rgba(200,245,100,0.25);
-  box-shadow:0 0 60px rgba(200,245,100,0.08);
+  background:linear-gradient(135deg,var(--dark3) 0%,rgba(43,142,142,0.06) 100%);
+  border-color:rgba(43,142,142,0.25);
+  box-shadow:0 0 60px rgba(43,142,142,0.08);
 }
 .fee-amount-big{
   font-size:3rem;
@@ -513,8 +513,8 @@ body::before{
   margin-bottom:0.2rem;
 }
 .fee-amount-big sup{font-size:1.3rem;letter-spacing:0;font-weight:600;vertical-align:super;line-height:0}
-.fee-card.featured .fee-amount-big{color:var(--lime)}
-.fee-card.featured .fee-amount-big sup{color:var(--lime)}
+.fee-card.featured .fee-amount-big{color:var(--teal)}
+.fee-card.featured .fee-amount-big sup{color:var(--teal)}
 .fee-period{font-size:0.75rem;color:var(--muted);margin-bottom:0.75rem}
 .fee-name{font-size:0.95rem;font-weight:700;color:#fff;margin-bottom:0.4rem}
 .fee-desc{font-size:0.82rem;color:var(--muted);line-height:1.6}
@@ -543,7 +543,7 @@ body::before{
   overflow:hidden;
   transition:border-color 0.3s;
 }
-.team-card:hover{border-color:rgba(200,245,100,0.2)}
+.team-card:hover{border-color:rgba(43,142,142,0.2)}
 .team-card-head{
   padding:1.75rem 2rem 1.5rem;
   border-bottom:1px solid var(--border);
@@ -554,7 +554,7 @@ body::before{
   font-weight:700;
   letter-spacing:2px;
   text-transform:uppercase;
-  color:var(--lime);
+  color:var(--teal);
   margin-bottom:0.4rem;
 }
 .team-title{font-size:1.05rem;font-weight:700;color:#fff}
@@ -563,7 +563,7 @@ body::before{
 .team-card-body ul li{display:flex;align-items:flex-start;gap:10px}
 .team-card-body ul li::before{
   content:'→';
-  color:var(--blue);
+  color:var(--navy);
   font-weight:700;
   flex-shrink:0;
   margin-top:2px;
@@ -597,9 +597,9 @@ body::before{
   display:inline-flex;
   align-items:center;
   gap:8px;
-  background:rgba(74,108,247,0.08);
-  border:1px solid rgba(74,108,247,0.2);
-  color:var(--blue);
+  background:rgba(15,42,94,0.08);
+  border:1px solid rgba(15,42,94,0.2);
+  color:var(--navy);
   font-size:0.72rem;
   font-weight:700;
   letter-spacing:1px;
@@ -637,7 +637,7 @@ body::before{
   transition:border-color 0.3s,transform 0.3s;
 }
 .build-card:hover{
-  border-color:rgba(200,245,100,0.2);
+  border-color:rgba(43,142,142,0.2);
   transform:translateY(-4px);
 }
 .build-card-num{
@@ -651,15 +651,15 @@ body::before{
 }
 .build-icon{
   width:48px;height:48px;
-  background:rgba(200,245,100,0.08);
+  background:rgba(43,142,142,0.08);
   border-radius:14px;
   display:flex;align-items:center;justify-content:center;
   font-size:1.4rem;
   margin-bottom:1.5rem;
-  border:1px solid rgba(200,245,100,0.1);
+  border:1px solid rgba(43,142,142,0.1);
 }
 .build-card h3{font-size:1.1rem;font-weight:700;color:#fff;margin-bottom:0.3rem}
-.build-sub{font-size:0.75rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--lime);margin-bottom:0.75rem}
+.build-sub{font-size:0.75rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--teal);margin-bottom:0.75rem}
 .build-card p{font-size:0.875rem;color:var(--muted);line-height:1.7}
 
 /* ─── LOCATIONS ─────────────────────────────────────────────────────────────── */
@@ -695,14 +695,14 @@ body::before{
 .cta-glow-left{
   position:absolute;
   width:600px;height:600px;
-  background:radial-gradient(circle,rgba(200,245,100,0.12) 0%,transparent 70%);
+  background:radial-gradient(circle,rgba(43,142,142,0.12) 0%,transparent 70%);
   bottom:-200px;left:-100px;
   pointer-events:none;
 }
 .cta-glow-right{
   position:absolute;
   width:400px;height:400px;
-  background:radial-gradient(circle,rgba(74,108,247,0.1) 0%,transparent 70%);
+  background:radial-gradient(circle,rgba(15,42,94,0.35) 0%,transparent 70%);
   top:-100px;right:-50px;
   pointer-events:none;
 }
@@ -811,7 +811,7 @@ body::before{
 <nav class="nav">
   <div class="nav-logo">
     <div class="nav-mark"><span>TB</span></div>
-    <span class="nav-wordmark">TBOS Group</span>
+    <span class="nav-wordmark">TBOS Technology Solutions</span>
   </div>
   <div class="nav-links">
     <a href="#pricing">Pricing</a>
@@ -1120,7 +1120,7 @@ body::before{
             <li>Delivered Board &amp; Project Steering Committee financial updates</li>
             <li>Bugatti Rimac · Jan 2023 – Nov 2025</li>
           </ul>
-          <div class="award-pill" style="background:rgba(200,245,100,0.06);border-color:rgba(200,245,100,0.15);color:var(--lime)">Bugatti Rimac · Zagreb</div>
+          <div class="award-pill" style="background:rgba(43,142,142,0.06);border-color:rgba(43,142,142,0.15);color:var(--teal)">Bugatti Rimac · Zagreb</div>
         </div>
       </div>
 
@@ -1203,7 +1203,7 @@ body::before{
       <div class="loc-pill"><span class="loc-flag">🇺🇸</span> United States</div>
       <div class="loc-pill"><span class="loc-flag">🇿🇦</span> South Africa</div>
       <div class="loc-pill"><span class="loc-flag">🇪🇺</span> European Union</div>
-      <div class="loc-pill" style="border-color:rgba(200,245,100,0.2);color:var(--lime)">
+      <div class="loc-pill" style="border-color:rgba(43,142,142,0.2);color:var(--teal)">
         <span class="hero-badge-dot"></span> Now expanding Europe
       </div>
     </div>
@@ -1236,14 +1236,14 @@ body::before{
   <div class="footer-inner">
     <div class="footer-logo">
       <div class="nav-mark"><span>TB</span></div>
-      <span style="font-size:0.85rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.4)">TBOS Group</span>
+      <span style="font-size:0.85rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.4)">TBOS Technology Solutions</span>
     </div>
     <div class="footer-text">
-      © 2025 TBOS Group Ltd &nbsp;·&nbsp; Company No. 17051204 &nbsp;·&nbsp; Web &amp; Digital Solutions<br>
+      © 2025 TBOS Technology Solutions Ltd &nbsp;·&nbsp; Company No. 17051204 &nbsp;·&nbsp; Web &amp; Digital Solutions<br>
       Private Healthcare &nbsp;·&nbsp; Workforce Solutions &nbsp;·&nbsp; Local Businesses
     </div>
     <div class="footer-links">
-      <a href="#">www.tbosgroup.co.uk</a>
+      <a href="#">www.tbostechnology.co.uk</a>
       <a href="#">UK &nbsp;·&nbsp; US &nbsp;·&nbsp; South Africa &nbsp;·&nbsp; EU</a>
     </div>
   </div>
