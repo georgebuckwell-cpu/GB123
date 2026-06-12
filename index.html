@@ -756,6 +756,24 @@ a{color:inherit;text-decoration:none}
 .mobile-cta-btn:hover{background:var(--teal-light)}
 @media(max-width:900px){.mobile-cta-bar{display:block}}
 
+/* ── BUILD CARD IMAGES ───────────────────────────────────────────────────── */
+.build-img{
+  width:100%;aspect-ratio:4/3;border-radius:10px;
+  overflow:hidden;margin-bottom:1.5rem;position:relative;
+  border:1px solid var(--bdr);
+}
+.build-img img{
+  width:100%;height:100%;object-fit:cover;display:block;
+  transition:transform .5s var(--ease),filter .5s;
+  filter:saturate(.85) brightness(.85);
+}
+.build-card:hover .build-img img{transform:scale(1.04);filter:saturate(1) brightness(1)}
+.build-img::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(180deg,transparent 50%,rgba(7,13,13,.7) 100%);
+  pointer-events:none;
+}
+
 /* ── DIVIDER ─────────────────────────────────────────────────────────────── */
 .divider{border:none;border-top:1px solid var(--bdr);margin:0}
 
@@ -1164,6 +1182,9 @@ a{color:inherit;text-decoration:none}
   <div class="build-grid stagger">
     <div class="build-card">
       <div class="build-num">01</div>
+      <div class="build-img">
+        <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3F2RAQvUnJFZWbBdXd63U7JAnWB/hf_20260612_144433_ba3a6365-dd3a-4782-91bd-4e8cc6be6ee8_min.webp" alt="Business website design" loading="lazy">
+      </div>
       <div class="build-icon">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
       </div>
@@ -1173,6 +1194,9 @@ a{color:inherit;text-decoration:none}
     </div>
     <div class="build-card">
       <div class="build-num">02</div>
+      <div class="build-img">
+        <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3F2RAQvUnJFZWbBdXd63U7JAnWB/hf_20260612_144457_9586bfd2-56d6-4c17-882e-de9a79fe567e_min.webp" alt="CRM platform dashboard" loading="lazy">
+      </div>
       <div class="build-icon">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
       </div>
@@ -1182,6 +1206,9 @@ a{color:inherit;text-decoration:none}
     </div>
     <div class="build-card">
       <div class="build-num">03</div>
+      <div class="build-img">
+        <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3F2RAQvUnJFZWbBdXd63U7JAnWB/hf_20260612_144524_cdc2ed39-451f-4fbc-87af-c042e1c89da0_min.webp" alt="Healthcare workforce platform" loading="lazy">
+      </div>
       <div class="build-icon">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
       </div>
@@ -1191,6 +1218,9 @@ a{color:inherit;text-decoration:none}
     </div>
     <div class="build-card">
       <div class="build-num">04</div>
+      <div class="build-img">
+        <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3F2RAQvUnJFZWbBdXd63U7JAnWB/hf_20260612_144543_18f3cfbf-6de6-482a-bcd5-e21d11da5c31_min.webp" alt="Digital traffic and growth" loading="lazy">
+      </div>
       <div class="build-icon">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
       </div>
