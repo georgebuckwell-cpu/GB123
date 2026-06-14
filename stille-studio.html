@@ -1,0 +1,1598 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stille Studio | Yoga Amsterdam</title>
+<meta name="description" content="Stille Studio — een intieme yogastudio in Amsterdam. Vind rust, kracht en balans in ons zorgvuldig ontworpen sanctuarium.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,300;0,400;0,500;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --forest:   #1E2D2A;
+    --deep:     #2A3D38;
+    --sage:     #7A9E8E;
+    --mist:     #B8CCBF;
+    --blush:    #D4A99A;
+    --petal:    #EDD9C8;
+    --cream:    #F7F3EE;
+    --ivory:    #FDFAF6;
+    --white:    #FFFFFF;
+    --sand:     #E8DDD0;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--ivory);
+    color: var(--forest);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 0 6%;
+    height: 76px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: background 0.5s, box-shadow 0.5s;
+  }
+  nav.scrolled {
+    background: rgba(253,250,246,0.95);
+    backdrop-filter: blur(14px);
+    box-shadow: 0 1px 0 rgba(30,45,42,0.07);
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.4rem;
+    font-weight: 400;
+    font-style: italic;
+    color: var(--white);
+    text-decoration: none;
+    letter-spacing: 0.02em;
+    transition: color 0.5s;
+  }
+  nav.scrolled .nav-logo { color: var(--forest); }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 2.8rem;
+    list-style: none;
+  }
+  .nav-links a {
+    font-size: 0.78rem;
+    font-weight: 400;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: rgba(255,255,255,0.8);
+    transition: color 0.3s;
+  }
+  nav.scrolled .nav-links a { color: var(--deep); }
+  .nav-links a:hover { color: var(--blush); }
+  nav.scrolled .nav-links a:hover { color: var(--sage); }
+
+  .nav-book {
+    font-size: 0.75rem !important;
+    font-weight: 500 !important;
+    letter-spacing: 0.12em !important;
+    text-transform: uppercase !important;
+    color: var(--forest) !important;
+    background: var(--petal);
+    padding: 0.55rem 1.5rem;
+    border-radius: 100px;
+    transition: background 0.3s !important;
+  }
+  .nav-book:hover { background: var(--blush) !important; color: var(--white) !important; }
+
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+  .hamburger span { display: block; width: 24px; height: 1.5px; background: white; transition: background 0.5s; }
+  nav.scrolled .hamburger span { background: var(--forest); }
+
+  /* ── HERO ── */
+  #hero {
+    height: 100vh;
+    min-height: 660px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(180deg, rgba(30,45,42,0.55) 0%, rgba(30,45,42,0.3) 50%, rgba(30,45,42,0.7) 100%),
+      url('https://images.unsplash.com/photo-1545205597-3d9d02c29597?w=1800&q=80') center/cover no-repeat;
+  }
+  .hero-bg::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 30%;
+    background: linear-gradient(to bottom, transparent, var(--ivory));
+  }
+  .hero-content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    max-width: 720px;
+    padding: 0 2rem;
+  }
+  .hero-pill {
+    display: inline-block;
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.25);
+    color: rgba(255,255,255,0.85);
+    font-size: 0.68rem;
+    font-weight: 400;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    padding: 0.4rem 1.2rem;
+    border-radius: 100px;
+    margin-bottom: 1.8rem;
+    backdrop-filter: blur(4px);
+  }
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3.2rem, 8vw, 6rem);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--white);
+    line-height: 1.06;
+    margin-bottom: 1.6rem;
+    letter-spacing: -0.01em;
+  }
+  .hero-sub {
+    font-size: 1rem;
+    font-weight: 300;
+    color: rgba(255,255,255,0.72);
+    line-height: 1.8;
+    max-width: 480px;
+    margin: 0 auto 2.8rem;
+  }
+  .hero-btns {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .btn-sage {
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    background: var(--sage);
+    color: white;
+    padding: 0.95rem 2.4rem;
+    border-radius: 100px;
+    transition: background 0.3s, transform 0.2s;
+  }
+  .btn-sage:hover { background: var(--deep); transform: translateY(-2px); }
+  .btn-ghost {
+    font-size: 0.78rem;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 1px solid rgba(255,255,255,0.45);
+    color: rgba(255,255,255,0.9);
+    padding: 0.95rem 2.4rem;
+    border-radius: 100px;
+    transition: background 0.3s, border-color 0.3s;
+  }
+  .btn-ghost:hover { background: rgba(255,255,255,0.1); border-color: white; }
+
+  /* floating leaves */
+  .leaf {
+    position: absolute;
+    opacity: 0.18;
+    pointer-events: none;
+  }
+  .leaf-1 { top: 15%; left: 5%; width: 180px; animation: sway 8s ease-in-out infinite; }
+  .leaf-2 { top: 20%; right: 6%; width: 120px; animation: sway 10s ease-in-out infinite reverse; }
+  @keyframes sway {
+    0%,100% { transform: rotate(-6deg); }
+    50%      { transform: rotate(6deg) translateY(-10px); }
+  }
+
+  .scroll-line {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6rem;
+    color: rgba(255,255,255,0.45);
+    font-size: 0.62rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+  .scroll-line::after {
+    content: '';
+    width: 1px; height: 48px;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.5), transparent);
+    animation: drop 2s ease-in-out infinite;
+  }
+  @keyframes drop {
+    0%,100% { opacity:0; transform: scaleY(0); transform-origin: top; }
+    50%      { opacity:1; transform: scaleY(1); transform-origin: top; }
+  }
+
+  /* ── MARQUEE ── */
+  .marquee-wrap {
+    background: var(--forest);
+    padding: 1.1rem 0;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .marquee-track {
+    display: inline-block;
+    animation: marquee 22s linear infinite;
+  }
+  .marquee-track span {
+    font-size: 0.7rem;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.45);
+    padding: 0 2.5rem;
+  }
+  .marquee-track span.dot {
+    color: var(--sage);
+  }
+  @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+  /* ── SECTIONS ── */
+  section { padding: 7rem 6%; }
+
+  .label {
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--sage);
+    margin-bottom: 1rem;
+  }
+  .h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.2rem, 4vw, 3.2rem);
+    font-weight: 400;
+    line-height: 1.18;
+    color: var(--forest);
+  }
+  .h2 em { font-style: italic; color: var(--sage); }
+
+  /* ── INTRO ── */
+  #intro {
+    background: var(--ivory);
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+  .intro-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: center;
+  }
+  .intro-text { }
+  .intro-text p {
+    font-size: 1rem;
+    font-weight: 300;
+    line-height: 1.9;
+    color: #4A5E58;
+    margin-top: 1.5rem;
+  }
+  .intro-text p + p { margin-top: 1rem; }
+  .intro-divider { width: 40px; height: 1px; background: var(--sage); margin: 2rem 0; }
+  .intro-stat-row {
+    display: flex;
+    gap: 2.5rem;
+    margin-top: 2rem;
+  }
+  .intro-stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.6rem;
+    font-weight: 300;
+    color: var(--forest);
+    line-height: 1;
+    margin-bottom: 0.2rem;
+  }
+  .intro-stat-label {
+    font-size: 0.72rem;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--sage);
+  }
+  .intro-imgs {
+    position: relative;
+    height: 520px;
+  }
+  .intro-img-main {
+    position: absolute;
+    right: 0; top: 0;
+    width: 78%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 4px;
+    display: block;
+  }
+  .intro-img-small {
+    position: absolute;
+    left: 0; bottom: 3rem;
+    width: 48%;
+    height: 55%;
+    object-fit: cover;
+    border-radius: 4px;
+    display: block;
+    box-shadow: 0 20px 60px rgba(30,45,42,0.2);
+    border: 5px solid var(--ivory);
+  }
+  .intro-badge {
+    position: absolute;
+    top: 2rem; left: 0;
+    background: var(--petal);
+    border-radius: 4px;
+    padding: 1rem 1.2rem;
+    text-align: center;
+  }
+  .intro-badge strong {
+    display: block;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    font-weight: 400;
+    color: var(--forest);
+    line-height: 1;
+  }
+  .intro-badge span {
+    font-size: 0.62rem;
+    font-weight: 400;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: #8A6E62;
+  }
+
+  /* ── CLASSES ── */
+  #classes { background: var(--cream); }
+  .classes-inner { max-width: 1200px; margin: 0 auto; }
+  .classes-head {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: end;
+    margin-bottom: 4rem;
+  }
+  .classes-head p {
+    font-size: 0.95rem;
+    font-weight: 300;
+    line-height: 1.85;
+    color: #4A5E58;
+  }
+  .classes-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+  .class-card {
+    background: var(--ivory);
+    border-radius: 6px;
+    overflow: hidden;
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+  }
+  .class-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 24px 60px rgba(30,45,42,0.1);
+  }
+  .class-img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    display: block;
+  }
+  .class-body { padding: 1.8rem; }
+  .class-tag {
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--sage);
+    margin-bottom: 0.6rem;
+  }
+  .class-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    font-weight: 400;
+    color: var(--forest);
+    margin-bottom: 0.6rem;
+  }
+  .class-desc {
+    font-size: 0.85rem;
+    font-weight: 300;
+    line-height: 1.75;
+    color: #4A5E58;
+    margin-bottom: 1.2rem;
+  }
+  .class-meta {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .class-chip {
+    font-size: 0.68rem;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    color: #4A5E58;
+    background: var(--sand);
+    padding: 0.28rem 0.75rem;
+    border-radius: 100px;
+  }
+
+  /* ── EXPERIENCE ── */
+  #experience {
+    background: var(--forest);
+    color: white;
+    position: relative;
+    overflow: hidden;
+  }
+  #experience::before {
+    content: '';
+    position: absolute;
+    top: -80px; right: -80px;
+    width: 500px; height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(122,158,142,0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .experience-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 5rem;
+    align-items: center;
+  }
+  .experience-text .label { color: var(--mist); }
+  .experience-text .h2 { color: white; }
+  .experience-text .h2 em { color: var(--mist); }
+  .experience-text p {
+    font-size: 0.95rem;
+    font-weight: 300;
+    line-height: 1.9;
+    color: rgba(255,255,255,0.6);
+    margin-top: 1.5rem;
+    max-width: 420px;
+  }
+  .pillars {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.2rem;
+    margin-top: 2.5rem;
+  }
+  .pillar {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 6px;
+    padding: 1.4rem 1.2rem;
+    transition: background 0.3s;
+  }
+  .pillar:hover { background: rgba(255,255,255,0.07); }
+  .pillar-icon {
+    font-size: 1.5rem;
+    margin-bottom: 0.6rem;
+  }
+  .pillar h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    font-weight: 400;
+    color: white;
+    margin-bottom: 0.35rem;
+  }
+  .pillar p {
+    font-size: 0.8rem !important;
+    font-weight: 300 !important;
+    color: rgba(255,255,255,0.45) !important;
+    line-height: 1.6 !important;
+    margin-top: 0 !important;
+  }
+  .experience-img-wrap { position: relative; }
+  .experience-img {
+    width: 100%;
+    aspect-ratio: 3/4;
+    object-fit: cover;
+    border-radius: 6px;
+    display: block;
+  }
+  .experience-img-tag {
+    position: absolute;
+    bottom: 2rem;
+    right: -1.5rem;
+    background: var(--petal);
+    padding: 1.2rem 1.5rem;
+    border-radius: 6px;
+  }
+  .experience-img-tag p {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.05rem;
+    font-weight: 400;
+    font-style: italic;
+    color: var(--forest);
+    margin: 0 !important;
+    line-height: 1.4;
+  }
+  .experience-img-tag span {
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #8A6E62;
+  }
+
+  /* ── SCHEDULE / PRICING ── */
+  #pricing { background: var(--ivory); }
+  .pricing-inner { max-width: 1100px; margin: 0 auto; }
+  .pricing-head { text-align: center; margin-bottom: 4rem; }
+  .pricing-head p {
+    font-size: 0.95rem;
+    font-weight: 300;
+    line-height: 1.8;
+    color: #4A5E58;
+    max-width: 500px;
+    margin: 1rem auto 0;
+  }
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+  .price-card {
+    background: var(--white);
+    border-radius: 8px;
+    padding: 2.5rem 2rem;
+    border: 1px solid var(--sand);
+    position: relative;
+    transition: box-shadow 0.3s, transform 0.3s;
+    text-align: center;
+  }
+  .price-card:hover {
+    box-shadow: 0 16px 50px rgba(30,45,42,0.09);
+    transform: translateY(-4px);
+  }
+  .price-card.featured {
+    background: var(--forest);
+    border-color: var(--forest);
+  }
+  .price-badge {
+    position: absolute;
+    top: -12px; left: 50%; transform: translateX(-50%);
+    background: var(--sage);
+    color: white;
+    font-size: 0.62rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    padding: 0.25rem 1rem;
+    border-radius: 100px;
+    white-space: nowrap;
+  }
+  .price-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: var(--forest);
+    margin-bottom: 0.4rem;
+  }
+  .price-card.featured .price-name { color: white; }
+  .price-sub {
+    font-size: 0.75rem;
+    font-weight: 300;
+    color: var(--sage);
+    letter-spacing: 0.08em;
+    margin-bottom: 1.8rem;
+  }
+  .price-card.featured .price-sub { color: var(--mist); }
+  .price-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    font-weight: 300;
+    color: var(--forest);
+    line-height: 1;
+  }
+  .price-card.featured .price-num { color: white; }
+  .price-num sup { font-size: 1.2rem; font-weight: 400; vertical-align: top; margin-top: 0.5rem; }
+  .price-period {
+    font-size: 0.75rem;
+    color: #8A9E96;
+    margin-bottom: 2rem;
+    margin-top: 0.2rem;
+  }
+  .price-card.featured .price-period { color: var(--mist); }
+  .price-features {
+    list-style: none;
+    margin-bottom: 2rem;
+    text-align: left;
+  }
+  .price-features li {
+    font-size: 0.85rem;
+    font-weight: 300;
+    color: #4A5E58;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--sand);
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+  }
+  .price-card.featured .price-features li { color: rgba(255,255,255,0.65); border-color: rgba(255,255,255,0.08); }
+  .price-features li::before {
+    content: '';
+    width: 16px; height: 16px;
+    flex-shrink: 0;
+    background: var(--sage);
+    border-radius: 50%;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2.5'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E");
+    background-size: 10px;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  .btn-book {
+    display: block;
+    width: 100%;
+    text-align: center;
+    text-decoration: none;
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.85rem;
+    border-radius: 100px;
+    background: var(--cream);
+    color: var(--forest);
+    transition: background 0.3s, color 0.3s;
+  }
+  .btn-book:hover { background: var(--sage); color: white; }
+  .price-card.featured .btn-book {
+    background: var(--sage);
+    color: white;
+  }
+  .price-card.featured .btn-book:hover { background: var(--mist); color: var(--forest); }
+
+  /* ── TESTIMONIALS ── */
+  #testimonials { background: var(--cream); }
+  .testimonials-inner { max-width: 900px; margin: 0 auto; }
+  .testimonials-head { text-align: center; margin-bottom: 3.5rem; }
+  .testi-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+  .testi-card {
+    background: var(--white);
+    border-radius: 8px;
+    padding: 2rem 1.8rem;
+    border: 1px solid var(--sand);
+  }
+  .testi-stars {
+    color: var(--blush);
+    font-size: 0.85rem;
+    letter-spacing: 0.1em;
+    margin-bottom: 1rem;
+  }
+  .testi-quote {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    font-weight: 400;
+    font-style: italic;
+    line-height: 1.65;
+    color: var(--forest);
+    margin-bottom: 1.5rem;
+  }
+  .testi-author strong {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--forest);
+  }
+  .testi-author span {
+    font-size: 0.72rem;
+    color: var(--sage);
+    letter-spacing: 0.06em;
+  }
+
+  /* ── SCHEDULE STRIP ── */
+  #schedule { background: var(--forest); padding: 5rem 6%; }
+  .schedule-inner { max-width: 1100px; margin: 0 auto; }
+  .schedule-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 2.5rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  .schedule-head .label { color: var(--mist); }
+  .schedule-head .h2 { color: white; }
+  .schedule-head .h2 em { color: var(--mist); }
+  .schedule-link {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--mist);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(184,204,191,0.4);
+    padding-bottom: 0.1rem;
+    transition: color 0.3s, border-color 0.3s;
+  }
+  .schedule-link:hover { color: white; border-color: white; }
+  .schedule-table { width: 100%; border-collapse: collapse; }
+  .schedule-table th {
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.35);
+    text-align: left;
+    padding: 0.8rem 1rem;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+  }
+  .schedule-table td {
+    font-size: 0.88rem;
+    font-weight: 300;
+    color: rgba(255,255,255,0.7);
+    padding: 1.1rem 1rem;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+  }
+  .schedule-table tr:hover td { background: rgba(255,255,255,0.03); color: white; }
+  .schedule-table td:first-child { color: rgba(255,255,255,0.4); font-size: 0.78rem; }
+  .sched-name { font-family: 'Playfair Display', serif; font-size: 1rem !important; font-style: italic; color: white !important; }
+  .sched-level {
+    display: inline-block;
+    font-size: 0.62rem !important;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.6rem;
+    border-radius: 100px;
+    color: var(--mist) !important;
+    background: rgba(122,158,142,0.15);
+  }
+
+  /* ── CONTACT ── */
+  #contact { background: var(--ivory); }
+  .contact-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    gap: 5rem;
+    align-items: start;
+  }
+  .contact-left { }
+  .contact-left p {
+    font-size: 0.95rem;
+    font-weight: 300;
+    line-height: 1.85;
+    color: #4A5E58;
+    margin: 1.5rem 0 2.5rem;
+  }
+  .contact-items { display: flex; flex-direction: column; gap: 1.3rem; }
+  .contact-item { display: flex; gap: 1rem; align-items: flex-start; }
+  .contact-item-icon {
+    width: 42px; height: 42px;
+    background: var(--petal);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: var(--forest);
+    margin-top: 0.1rem;
+  }
+  .contact-item-text strong {
+    display: block;
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--forest);
+    margin-bottom: 0.2rem;
+  }
+  .contact-item-text a,
+  .contact-item-text span {
+    font-size: 0.92rem;
+    font-weight: 300;
+    color: #4A5E58;
+    text-decoration: none;
+  }
+  .contact-item-text a:hover { color: var(--sage); }
+  .contact-form-wrap {
+    background: var(--white);
+    border-radius: 10px;
+    padding: 3rem;
+    box-shadow: 0 12px 50px rgba(30,45,42,0.07);
+  }
+  .contact-form-wrap h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.7rem;
+    font-weight: 400;
+    font-style: italic;
+    color: var(--forest);
+    margin-bottom: 0.3rem;
+  }
+  .contact-form-wrap > p {
+    font-size: 0.83rem;
+    color: var(--sage);
+    margin-bottom: 2rem;
+  }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .form-group { margin-bottom: 1rem; }
+  .form-group label {
+    display: block;
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #6A8A80;
+    margin-bottom: 0.45rem;
+  }
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    background: var(--cream);
+    border: 1px solid var(--sand);
+    border-radius: 6px;
+    padding: 0.78rem 1rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 300;
+    color: var(--forest);
+    outline: none;
+    transition: border-color 0.3s, background 0.3s;
+    appearance: none;
+  }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    border-color: var(--sage);
+    background: white;
+  }
+  .form-group textarea { resize: vertical; min-height: 110px; }
+  .form-submit {
+    width: 100%;
+    background: var(--forest);
+    color: white;
+    border: none;
+    padding: 1rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 100px;
+    margin-top: 0.5rem;
+    transition: background 0.3s;
+  }
+  .form-submit:hover { background: var(--sage); }
+  .form-success {
+    display: none;
+    text-align: center;
+    padding: 3rem 1rem;
+  }
+  .form-success .success-icon {
+    width: 52px; height: 52px;
+    background: var(--petal);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.2rem;
+    color: var(--forest);
+  }
+  .form-success h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 400;
+    font-style: italic;
+    color: var(--forest);
+    margin-bottom: 0.5rem;
+  }
+  .form-success p { font-size: 0.88rem; color: #4A5E58; font-weight: 300; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--forest);
+    padding: 4rem 6% 2.5rem;
+  }
+  .footer-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 2rem;
+    padding-bottom: 3rem;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    margin-bottom: 2rem;
+  }
+  .footer-brand { max-width: 280px; }
+  .footer-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    font-weight: 400;
+    font-style: italic;
+    color: var(--petal);
+    margin-bottom: 0.8rem;
+  }
+  .footer-brand p {
+    font-size: 0.83rem;
+    font-weight: 300;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.38);
+  }
+  .footer-links h5 {
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--mist);
+    margin-bottom: 1.2rem;
+  }
+  .footer-links ul { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; }
+  .footer-links a {
+    font-size: 0.85rem;
+    font-weight: 300;
+    color: rgba(255,255,255,0.38);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  .footer-links a:hover { color: var(--petal); }
+  footer .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  footer .footer-bottom p {
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.22);
+  }
+
+  /* ── REVEAL ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(22px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible { opacity: 1; transform: none; }
+  .d1 { transition-delay: 0.1s; }
+  .d2 { transition-delay: 0.2s; }
+  .d3 { transition-delay: 0.3s; }
+  .d4 { transition-delay: 0.4s; }
+
+  /* ── MOBILE ── */
+  @media (max-width: 960px) {
+    section { padding: 5rem 5%; }
+    .intro-inner { grid-template-columns: 1fr; gap: 3rem; }
+    .intro-imgs { height: 400px; }
+    .classes-head { grid-template-columns: 1fr; }
+    .classes-grid { grid-template-columns: 1fr 1fr; }
+    .experience-inner { grid-template-columns: 1fr; }
+    .experience-img-wrap { display: none; }
+    .pillars { grid-template-columns: 1fr 1fr; }
+    .pricing-grid { grid-template-columns: 1fr; max-width: 380px; margin: 0 auto; }
+    .testi-grid { grid-template-columns: 1fr; }
+    .contact-inner { grid-template-columns: 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+    .footer-top { flex-direction: column; }
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+    .schedule-table thead { display: none; }
+    .schedule-table td { display: block; padding: 0.4rem 0.8rem; }
+    .schedule-table tr { display: block; padding: 0.8rem; border-bottom: 1px solid rgba(255,255,255,0.05); }
+    .schedule-table tr:first-child { display: none; }
+  }
+  @media (max-width: 580px) {
+    .classes-grid { grid-template-columns: 1fr; }
+    .pillars { grid-template-columns: 1fr; }
+    .intro-stat-row { gap: 1.5rem; }
+    .contact-form-wrap { padding: 1.8rem; }
+  }
+
+  /* MOBILE NAV */
+  .mobile-nav {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: var(--forest);
+    z-index: 200;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+  }
+  .mobile-nav.open { display: flex; }
+  .mobile-nav a {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    font-weight: 300;
+    font-style: italic;
+    color: rgba(255,255,255,0.85);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  .mobile-nav a:hover { color: var(--petal); }
+  .mobile-close {
+    position: absolute;
+    top: 1.5rem; right: 5%;
+    background: none;
+    border: none;
+    color: rgba(255,255,255,0.6);
+    font-size: 2rem;
+    cursor: pointer;
+    line-height: 1;
+  }
+</style>
+</head>
+<body>
+
+<!-- MOBILE NAV -->
+<div class="mobile-nav" id="mobileNav">
+  <button class="mobile-close" onclick="closeMobileNav()">&times;</button>
+  <a href="#intro" onclick="closeMobileNav()">Over Ons</a>
+  <a href="#classes" onclick="closeMobileNav()">Lessen</a>
+  <a href="#schedule" onclick="closeMobileNav()">Rooster</a>
+  <a href="#pricing" onclick="closeMobileNav()">Tarieven</a>
+  <a href="#contact" onclick="closeMobileNav()">Contact</a>
+</div>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">Stille Studio</a>
+  <ul class="nav-links">
+    <li><a href="#intro">Over Ons</a></li>
+    <li><a href="#classes">Lessen</a></li>
+    <li><a href="#schedule">Rooster</a></li>
+    <li><a href="#pricing">Tarieven</a></li>
+    <li><a href="#contact" class="nav-book">Les Boeken</a></li>
+  </ul>
+  <div class="hamburger" onclick="openMobileNav()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+
+  <!-- Decorative leaf SVGs -->
+  <svg class="leaf leaf-1" viewBox="0 0 200 260" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M100 10 C20 60 10 160 100 250 C190 160 180 60 100 10Z" fill="white"/>
+    <line x1="100" y1="10" x2="100" y2="250" stroke="rgba(255,255,255,0.4)" stroke-width="1"/>
+  </svg>
+  <svg class="leaf leaf-2" viewBox="0 0 200 260" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M100 10 C20 60 10 160 100 250 C190 160 180 60 100 10Z" fill="white"/>
+  </svg>
+
+  <div class="hero-content">
+    <div class="hero-pill">Yoga Studio · Amsterdam</div>
+    <h1 class="hero-title">Vind je<br>stille kern</h1>
+    <p class="hero-sub">Een intiem sanctuarium voor beweging, meditatie en bewuste rust — midden in Amsterdam.</p>
+    <div class="hero-btns">
+      <a href="#contact" class="btn-sage">Proefles Boeken</a>
+      <a href="#classes" class="btn-ghost">Ontdek Lessen</a>
+    </div>
+  </div>
+  <div class="scroll-line">Ontdek</div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span>Hatha Yoga</span><span class="dot">✦</span>
+    <span>Vinyasa Flow</span><span class="dot">✦</span>
+    <span>Yin Yoga</span><span class="dot">✦</span>
+    <span>Meditatie</span><span class="dot">✦</span>
+    <span>Restoratieve Yoga</span><span class="dot">✦</span>
+    <span>Pranayama</span><span class="dot">✦</span>
+    <span>Amsterdam</span><span class="dot">✦</span>
+    <span>Hatha Yoga</span><span class="dot">✦</span>
+    <span>Vinyasa Flow</span><span class="dot">✦</span>
+    <span>Yin Yoga</span><span class="dot">✦</span>
+    <span>Meditatie</span><span class="dot">✦</span>
+    <span>Restoratieve Yoga</span><span class="dot">✦</span>
+    <span>Pranayama</span><span class="dot">✦</span>
+    <span>Amsterdam</span><span class="dot">✦</span>
+  </div>
+</div>
+
+<!-- INTRO / ABOUT -->
+<section id="intro">
+  <div class="intro-inner">
+    <div class="intro-text">
+      <div class="label reveal">Over Stille Studio</div>
+      <h2 class="h2 reveal d1">Een plek om<br><em>thuis te komen</em></h2>
+      <div class="intro-divider reveal d2"></div>
+      <p class="reveal d2">Stille Studio is opgericht vanuit een diepe overtuiging: iedereen verdient een plek waar ze kunnen vertragen, ademen en zichzelf terugvinden. Onze studio in Amsterdam biedt kleine groepen, persoonlijke aandacht en een warme gemeenschap.</p>
+      <p class="reveal d3">Van dynamische Vinyasa flows tot herstellende Yin-sessies — wij bieden lessen voor elk niveau en elke behoefte. Beginners zijn net zo welkom als gevorderde beoefenaars.</p>
+      <div class="intro-stat-row">
+        <div class="reveal d2">
+          <div class="intro-stat-num">8+</div>
+          <div class="intro-stat-label">Jaar Studio</div>
+        </div>
+        <div class="reveal d3">
+          <div class="intro-stat-num">12</div>
+          <div class="intro-stat-label">Les/Week</div>
+        </div>
+        <div class="reveal d4">
+          <div class="intro-stat-num">Max 10</div>
+          <div class="intro-stat-label">Per Klas</div>
+        </div>
+      </div>
+    </div>
+    <div class="intro-imgs reveal d2">
+      <img
+        src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=800&q=80"
+        alt="Yoga Amsterdam"
+        class="intro-img-main"
+      >
+      <img
+        src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=500&q=80"
+        alt="Meditatie"
+        class="intro-img-small"
+      >
+      <div class="intro-badge">
+        <strong>❤</strong>
+        <span>Met Hart<br>voor Yoga</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CLASSES -->
+<section id="classes">
+  <div class="classes-inner">
+    <div class="classes-head">
+      <div>
+        <div class="label reveal">Ons Aanbod</div>
+        <h2 class="h2 reveal d1">Onze <em>Lessen</em></h2>
+      </div>
+      <p class="reveal d2">Elke les is zorgvuldig samengesteld voor een specifiek doel — of je nu energie zoekt, ontspanning wilt of dieper wilt gaan in je beoefening.</p>
+    </div>
+    <div class="classes-grid">
+
+      <div class="class-card reveal">
+        <img src="https://images.unsplash.com/photo-1599901860904-17e6ed7083a0?w=600&q=80" alt="Vinyasa" class="class-img">
+        <div class="class-body">
+          <div class="class-tag">Populairste les</div>
+          <h3 class="class-name">Vinyasa Flow</h3>
+          <p class="class-desc">Een vloeiende, dynamische les waarbij beweging en ademhaling één worden. Bouw kracht, flexibiliteit en focus.</p>
+          <div class="class-meta">
+            <span class="class-chip">60 min</span>
+            <span class="class-chip">Alle niveaus</span>
+            <span class="class-chip">Ma / Wo / Vr</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="class-card reveal d1">
+        <img src="https://images.unsplash.com/photo-1588286840104-8957b019727f?w=600&q=80" alt="Yin Yoga" class="class-img">
+        <div class="class-body">
+          <div class="class-tag">Diep herstel</div>
+          <h3 class="class-name">Yin & Meditatie</h3>
+          <p class="class-desc">Langzame, diepe houdingen gecombineerd met geleide meditatie. Ideaal voor wie wil loslaten en innerlijk rust zoekt.</p>
+          <div class="class-meta">
+            <span class="class-chip">75 min</span>
+            <span class="class-chip">Beginner ok</span>
+            <span class="class-chip">Di / Do / Za</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="class-card reveal d2">
+        <img src="https://images.unsplash.com/photo-1575052814086-f385e2e2ad1b?w=600&q=80" alt="Hatha" class="class-img">
+        <div class="class-body">
+          <div class="class-tag">Klassiek</div>
+          <h3 class="class-name">Hatha Yoga</h3>
+          <p class="class-desc">De basis van yoga. Bewuste houdingen, ademwerk en aandacht. Perfecte les voor beginners en als verdieping voor gevorderden.</p>
+          <div class="class-meta">
+            <span class="class-chip">60 min</span>
+            <span class="class-chip">Beginners</span>
+            <span class="class-chip">Zo ochtend</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="experience-inner">
+    <div class="experience-text">
+      <div class="label reveal">De Stille Ervaring</div>
+      <h2 class="h2 reveal d1">Meer dan yoga —<br><em>een levenswijze</em></h2>
+      <p class="reveal d2">Bij Stille Studio geloven we in de kracht van kleine groepen, persoonlijke begeleiding en een ruimte die voelt als een thuis. Geen grote massa, geen haast — alleen jij en je beoefening.</p>
+      <div class="pillars">
+        <div class="pillar reveal d1">
+          <div class="pillar-icon">🌿</div>
+          <h4>Kleine Groepen</h4>
+          <p>Maximaal 10 mensen per les voor echte persoonlijke aandacht.</p>
+        </div>
+        <div class="pillar reveal d2">
+          <div class="pillar-icon">🕯️</div>
+          <h4>Sfeervolle Ruimte</h4>
+          <p>Zorgvuldig ontworpen interieur met natuurlijk licht en rustgevende elementen.</p>
+        </div>
+        <div class="pillar reveal d3">
+          <div class="pillar-icon">🧘</div>
+          <h4>Gecertificeerd</h4>
+          <p>Al onze instructeurs zijn RYT-500 gecertificeerd met jarenlange ervaring.</p>
+        </div>
+        <div class="pillar reveal d4">
+          <div class="pillar-icon">🌸</div>
+          <h4>Warme Community</h4>
+          <p>Een gastvrije, inclusieve gemeenschap van gelijkgestemde mensen.</p>
+        </div>
+      </div>
+    </div>
+    <div class="experience-img-wrap reveal d2">
+      <img
+        src="https://images.unsplash.com/photo-1518611012118-696072aa579a?w=700&q=80"
+        alt="Yoga studio Amsterdam"
+        class="experience-img"
+      >
+      <div class="experience-img-tag">
+        <p>"Rust begint<br>van binnenuit"</p>
+        <span>Stille Studio · Amsterdam</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SCHEDULE -->
+<section id="schedule">
+  <div class="schedule-inner">
+    <div class="schedule-head">
+      <div>
+        <div class="label">Weekrooster</div>
+        <h2 class="h2">Deze week <em>bij ons</em></h2>
+      </div>
+      <a href="#contact" class="schedule-link">Alle lessen bekijken →</a>
+    </div>
+    <table class="schedule-table">
+      <thead>
+        <tr>
+          <th>Dag & Tijd</th>
+          <th>Les</th>
+          <th>Instructeur</th>
+          <th>Niveau</th>
+          <th>Duur</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Ma 07:30</td>
+          <td class="sched-name">Ochtend Vinyasa</td>
+          <td>Sarah K.</td>
+          <td><span class="sched-level">Alle niveaus</span></td>
+          <td>60 min</td>
+        </tr>
+        <tr>
+          <td>Di 12:00</td>
+          <td class="sched-name">Lunchpauze Hatha</td>
+          <td>Tom V.</td>
+          <td><span class="sched-level">Beginner</span></td>
+          <td>45 min</td>
+        </tr>
+        <tr>
+          <td>Wo 18:30</td>
+          <td class="sched-name">Avond Vinyasa</td>
+          <td>Sarah K.</td>
+          <td><span class="sched-level">Gevorderd</span></td>
+          <td>60 min</td>
+        </tr>
+        <tr>
+          <td>Do 20:00</td>
+          <td class="sched-name">Yin & Meditatie</td>
+          <td>Lena M.</td>
+          <td><span class="sched-level">Alle niveaus</span></td>
+          <td>75 min</td>
+        </tr>
+        <tr>
+          <td>Vr 07:30</td>
+          <td class="sched-name">Ochtend Vinyasa</td>
+          <td>Tom V.</td>
+          <td><span class="sched-level">Alle niveaus</span></td>
+          <td>60 min</td>
+        </tr>
+        <tr>
+          <td>Za 09:00</td>
+          <td class="sched-name">Weekend Yin</td>
+          <td>Lena M.</td>
+          <td><span class="sched-level">Beginner</span></td>
+          <td>75 min</td>
+        </tr>
+        <tr>
+          <td>Zo 10:00</td>
+          <td class="sched-name">Hatha Zondag</td>
+          <td>Sarah K.</td>
+          <td><span class="sched-level">Alle niveaus</span></td>
+          <td>90 min</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing">
+  <div class="pricing-inner">
+    <div class="pricing-head">
+      <div class="label reveal">Tarieven</div>
+      <h2 class="h2 reveal d1">Kies jouw <em>abonnement</em></h2>
+      <p class="reveal d2">Flexibele opties voor elke beoefenaar. Geen verborgen kosten, geen verplichting — begin wanneer jij wilt.</p>
+    </div>
+    <div class="pricing-grid">
+
+      <div class="price-card reveal">
+        <div class="price-name">Losse Les</div>
+        <div class="price-sub">Geen abonnement</div>
+        <div class="price-num"><sup>€</sup>20</div>
+        <div class="price-period">per les</div>
+        <ul class="price-features">
+          <li>Toegang tot alle lessen</li>
+          <li>Matten & materiaal inbegrepen</li>
+          <li>Gratis thee na de les</li>
+          <li>Geen verplichting</li>
+        </ul>
+        <a href="#contact" class="btn-book">Boek een Les</a>
+      </div>
+
+      <div class="price-card featured reveal d1">
+        <div class="price-badge">Meest Gekozen</div>
+        <div class="price-name">Maandabonnement</div>
+        <div class="price-sub">Onbeperkt yoga</div>
+        <div class="price-num"><sup>€</sup>85</div>
+        <div class="price-period">per maand</div>
+        <ul class="price-features">
+          <li>Onbeperkte lessen</li>
+          <li>Prioriteit reserveren</li>
+          <li>Matten & materiaal inbegrepen</li>
+          <li>Gratis workshoptoegang</li>
+        </ul>
+        <a href="#contact" class="btn-book">Start Nu</a>
+      </div>
+
+      <div class="price-card reveal d2">
+        <div class="price-name">Strippenkaart</div>
+        <div class="price-sub">10 lessen · 3 maanden geldig</div>
+        <div class="price-num"><sup>€</sup>170</div>
+        <div class="price-period">10 lessen (€17/les)</div>
+        <ul class="price-features">
+          <li>Toegang tot alle lessen</li>
+          <li>3 maanden geldig</li>
+          <li>Matten & materiaal inbegrepen</li>
+          <li>Gratis thee na de les</li>
+        </ul>
+        <a href="#contact" class="btn-book">Kaart Kopen</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="testimonials-inner">
+    <div class="testimonials-head">
+      <div class="label reveal">Ervaringen</div>
+      <h2 class="h2 reveal d1">Wat onze <em>community</em> zegt</h2>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card reveal">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">Stille Studio is mijn wekelijkse retraite. De kleine groepen, de prachtige ruimte en de aandacht van de instructeurs maken het echt bijzonder.</p>
+        <div class="testi-author">
+          <strong>Anna de Boer</strong>
+          <span>Lid sinds 2022</span>
+        </div>
+      </div>
+      <div class="testi-card reveal d1">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">Als absolute beginner was ik nerveus, maar ik voelde me meteen welkom. De Hatha lessen van Tom zijn perfect om rustig te beginnen.</p>
+        <div class="testi-author">
+          <strong>Joris Mulder</strong>
+          <span>Beginner · 4 maanden</span>
+        </div>
+      </div>
+      <div class="testi-card reveal d2">
+        <div class="testi-stars">★★★★★</div>
+        <p class="testi-quote">De Yin &amp; Meditatie sessie op donderdag is mijn absolute favoriet. Lena heeft een gave om je echt te laten loslaten. Onmisbaar in mijn week.</p>
+        <div class="testi-author">
+          <strong>Fleur van Dam</strong>
+          <span>Maandabonnement</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-inner">
+    <div class="contact-left">
+      <div class="label reveal">Contact & Locatie</div>
+      <h2 class="h2 reveal d1">Kom <em>kennismaken</em></h2>
+      <p class="reveal d2">Wil je een proefles boeken, een vraag stellen of meer informatie? We horen graag van je. De eerste proefles is altijd gratis.</p>
+      <div class="contact-items">
+        <div class="contact-item reveal d2">
+          <div class="contact-item-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.51 10.5a19.79 19.79 0 01-3.07-8.67A2 2 0 013.44 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.91 7.91a16 16 0 006.29 6.29l.91-.91a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          </div>
+          <div class="contact-item-text">
+            <strong>Telefoon</strong>
+            <a href="tel:+31657539158">+31 6 57539158</a>
+          </div>
+        </div>
+        <div class="contact-item reveal d3">
+          <div class="contact-item-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div class="contact-item-text">
+            <strong>Studio Adres</strong>
+            <span>Hoogoorddreef<br>Amsterdam</span>
+          </div>
+        </div>
+        <div class="contact-item reveal d4">
+          <div class="contact-item-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <div class="contact-item-text">
+            <strong>Openingstijden</strong>
+            <span>Ma – Vr: 07:00 – 21:00<br>Za – Zo: 08:30 – 17:00</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-form-wrap reveal d1">
+      <h3>Schrijf je in</h3>
+      <p>Jouw eerste proefles is gratis. Geen verplichtingen.</p>
+      <form id="contactForm" onsubmit="handleSubmit(event)">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Voornaam</label>
+            <input type="text" placeholder="Emma" required>
+          </div>
+          <div class="form-group">
+            <label>Achternaam</label>
+            <input type="text" placeholder="Jansen" required>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Telefoon</label>
+            <input type="tel" placeholder="+31 6 ...">
+          </div>
+          <div class="form-group">
+            <label>E-mail</label>
+            <input type="email" placeholder="jij@email.nl" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Interesseert je</label>
+          <select>
+            <option value="">Kies een les...</option>
+            <option>Vinyasa Flow</option>
+            <option>Yin & Meditatie</option>
+            <option>Hatha Yoga</option>
+            <option>Proefles (gratis)</option>
+            <option>Privéles</option>
+            <option>Informatie abonnement</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Ervaring met yoga</label>
+          <select>
+            <option>Nog nooit yoga gedaan</option>
+            <option>Beginner (0-6 maanden)</option>
+            <option>Gemiddeld (6 maanden – 2 jaar)</option>
+            <option>Gevorderd (2+ jaar)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Bericht (optioneel)</label>
+          <textarea placeholder="Stel gerust een vraag of vertel iets over jezelf..."></textarea>
+        </div>
+        <button type="submit" class="form-submit">Verstuur & Boek Proefles</button>
+      </form>
+      <div class="form-success" id="formSuccess">
+        <div class="success-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <h4>Welkom bij Stille Studio</h4>
+        <p>We nemen binnen 24 uur contact met je op om je proefles in te plannen.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="footer-logo">Stille Studio</div>
+      <p>Een intiem yogasanctum in het hart van Amsterdam — voor wie zoekt naar rust, kracht en verbinding.</p>
+    </div>
+    <div class="footer-links">
+      <h5>Studio</h5>
+      <ul>
+        <li><a href="#intro">Over Ons</a></li>
+        <li><a href="#classes">Lessen</a></li>
+        <li><a href="#schedule">Rooster</a></li>
+        <li><a href="#pricing">Tarieven</a></li>
+      </ul>
+    </div>
+    <div class="footer-links">
+      <h5>Contact</h5>
+      <ul>
+        <li><a href="tel:+31657539158">+31 6 57539158</a></li>
+        <li><a href="#contact">Stuur een Bericht</a></li>
+        <li><a href="#contact">Proefles Boeken</a></li>
+      </ul>
+    </div>
+    <div class="footer-links">
+      <h5>Volg Ons</h5>
+      <ul>
+        <li><a href="#">Instagram</a></li>
+        <li><a href="#">Facebook</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2024 Stille Studio Amsterdam. Alle rechten voorbehouden.</p>
+    <p>Yoga Studio · Hoogoorddreef · Amsterdam</p>
+  </div>
+</footer>
+
+<script>
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  function openMobileNav() { document.getElementById('mobileNav').classList.add('open'); }
+  function closeMobileNav() { document.getElementById('mobileNav').classList.remove('open'); }
+
+  const revealEls = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+  }, { threshold: 0.1 });
+  revealEls.forEach(el => obs.observe(el));
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    document.getElementById('contactForm').style.display = 'none';
+    document.getElementById('formSuccess').style.display = 'block';
+  }
+</script>
+</body>
+</html>
