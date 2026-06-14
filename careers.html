@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sales Advisor — Careers at Vela Sync</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300&display=swap" rel="stylesheet">
+<style>
+:root{
+  --teal:#2B8E8E;
+  --teal-l:#3aaeae;
+  --teal-ll:#5fd0d0;
+  --teal-g:rgba(43,142,142,.18);
+  --teal-gs:rgba(43,142,142,.08);
+  --bg:#050a0a;
+  --s0:#0a1212;
+  --s1:#0f1a1a;
+  --s2:#152222;
+  --s3:#1c2e2e;
+  --ink:#eef7f7;
+  --ink-2:rgba(238,247,247,.58);
+  --ink-3:rgba(238,247,247,.32);
+  --ink-4:rgba(238,247,247,.14);
+  --hr:rgba(43,142,142,.12);
+  --hr-m:rgba(43,142,142,.24);
+  --hr-s:rgba(43,142,142,.48);
+  --ease:cubic-bezier(.32,.72,0,1);
+  --spring:cubic-bezier(.34,1.56,.64,1);
+}
+
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms !important;transition-duration:.01ms !important}
+  .up{opacity:1 !important;transform:none !important;filter:none !important}
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  font-family:'Plus Jakarta Sans',system-ui,sans-serif;
+  background:var(--bg);color:var(--ink);
+  line-height:1.6;overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer}
+::selection{background:rgba(43,142,142,.3);color:#fff}
+::-webkit-scrollbar{width:3px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--hr-s);border-radius:2px}
+:focus-visible{outline:2px solid var(--teal-l);outline-offset:3px}
+
+/* PROGRESS */
+#prog{position:fixed;top:0;left:0;height:1.5px;width:0;z-index:999;background:linear-gradient(90deg,var(--teal),var(--teal-ll));box-shadow:0 0 10px var(--teal-g)}
+
+/* NOISE */
+body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:998;opacity:.022;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:180px 180px}
+
+/* NAV */
+.nav-wrap{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;justify-content:center;padding:18px 1.5rem;pointer-events:none;transition:padding .4s var(--ease)}
+.nav-wrap.scrolled{padding:10px 1.5rem}
+.nav{
+  pointer-events:all;
+  display:flex;align-items:center;gap:0;
+  background:rgba(5,10,10,.72);
+  backdrop-filter:blur(28px) saturate(160%);-webkit-backdrop-filter:blur(28px) saturate(160%);
+  border:1px solid var(--hr-m);border-radius:100px;
+  padding:8px 8px 8px 20px;
+  box-shadow:0 8px 40px rgba(0,0,0,.5),0 0 0 1px var(--hr),inset 0 1px 0 rgba(255,255,255,.04);
+  transition:background .4s,box-shadow .4s,border-color .4s;
+  max-width:860px;width:100%;
+}
+.nav-wrap.scrolled .nav{background:rgba(5,10,10,.92);border-color:var(--hr-s)}
+.nav-logo{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.nm{width:30px;height:30px;background:var(--teal);border-radius:8px;display:flex;align-items:center;justify-content:center;box-shadow:0 0 16px rgba(43,142,142,.35)}
+.nm span{font-size:.6rem;font-weight:900;color:#fff;letter-spacing:-.5px}
+.nw{font-size:.75rem;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;opacity:.85}
+.nav-links{display:flex;align-items:center;gap:.25rem;margin-left:auto;margin-right:.5rem}
+.nav-links a{font-size:.75rem;font-weight:500;color:var(--ink-2);padding:6px 12px;border-radius:100px;transition:color .15s,background .15s}
+.nav-links a:hover{color:var(--ink);background:rgba(255,255,255,.06)}
+.ncta{
+  background:var(--teal);color:#fff;
+  font-size:.78rem;font-weight:700;
+  padding:9px 20px;border-radius:100px;
+  transition:background .15s,transform .15s,box-shadow .15s;
+  white-space:nowrap;flex-shrink:0;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.15);
+}
+.ncta:hover{background:var(--teal-l);transform:translateY(-1px);box-shadow:0 0 24px var(--teal-g),inset 0 1px 0 rgba(255,255,255,.2)}
+@media(max-width:560px){.nw{display:none}}
+
+/* HERO */
+.hero{
+  min-height:52vh;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;text-align:center;
+  padding:140px clamp(1.25rem,5vw,3rem) 80px;
+  position:relative;overflow:hidden;
+}
+.hero-bg{
+  position:absolute;inset:0;pointer-events:none;
+  background:
+    radial-gradient(ellipse 130% 70% at 50% -10%,rgba(43,142,142,.14) 0%,transparent 60%),
+    radial-gradient(ellipse 50% 40% at 15% 70%,rgba(43,142,142,.05) 0%,transparent 50%);
+}
+.hero-grid{
+  position:absolute;inset:0;pointer-events:none;
+  background-image:linear-gradient(rgba(43,142,142,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(43,142,142,.03) 1px,transparent 1px);
+  background-size:80px 80px;
+  mask-image:radial-gradient(ellipse 90% 75% at 50% 38%,black 15%,transparent 100%);
+}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:10px;
+  border:1px solid var(--hr-m);border-radius:100px;
+  padding:7px 16px 7px 10px;
+  background:rgba(43,142,142,.07);
+  font-size:.68rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--teal-l);
+  margin-bottom:2rem;position:relative;z-index:2;
+}
+.edot{width:6px;height:6px;border-radius:50%;background:var(--teal);flex-shrink:0;animation:bk 2.4s ease-in-out infinite;box-shadow:0 0 10px rgba(43,142,142,.7)}
+@keyframes bk{0%,100%{opacity:1;box-shadow:0 0 10px rgba(43,142,142,.7)}50%{opacity:.25;box-shadow:none}}
+.hero h1{
+  font-size:clamp(2.8rem,7vw,6rem);font-weight:800;
+  line-height:.95;letter-spacing:-3.5px;
+  max-width:900px;width:100%;
+  position:relative;z-index:2;margin-bottom:1.6rem;
+}
+.grd{
+  background:linear-gradient(125deg,#d8f5f5 5%,var(--teal-l) 45%,var(--teal-ll) 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.hero-sub{
+  font-size:clamp(.95rem,2vw,1.1rem);color:var(--ink-2);
+  max-width:520px;margin:0 auto 2.5rem;
+  font-weight:300;line-height:1.85;position:relative;z-index:2;
+}
+.meta-pills{display:flex;flex-wrap:wrap;gap:.75rem;justify-content:center;position:relative;z-index:2;margin-bottom:2rem}
+.mpill{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(43,142,142,.08);border:1px solid var(--hr-m);
+  color:var(--ink-2);font-size:.78rem;font-weight:500;
+  padding:7px 16px;border-radius:100px;
+}
+.mpill svg{flex-shrink:0;color:var(--teal)}
+
+/* LAYOUT */
+.sec{max-width:900px;margin:0 auto;padding:80px clamp(1.25rem,4vw,2.5rem)}
+@media(max-width:640px){.sec{padding:56px 1.25rem}}
+
+/* DIVIDER */
+.div{border:none;border-top:1px solid var(--hr)}
+
+/* TAG */
+.tag{
+  display:inline-flex;align-items:center;gap:8px;
+  border:1px solid var(--hr-m);border-radius:100px;
+  padding:5px 14px;background:rgba(43,142,142,.06);
+  font-size:.62rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--teal-l);
+  margin-bottom:1.1rem;
+}
+.tag::before{content:'';width:16px;height:1px;background:linear-gradient(90deg,var(--teal),var(--teal-ll))}
+.h2{font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:800;letter-spacing:-1.5px;line-height:1.08;margin-bottom:1rem}
+.sub{font-size:.9rem;color:var(--ink-2);max-width:580px;line-height:1.85;margin-bottom:2.5rem;font-weight:400}
+
+/* INTRO CARD */
+.intro-card{
+  background:var(--s1);border:1px solid var(--hr-m);
+  border-left:3px solid var(--teal);
+  border-radius:0 16px 16px 0;
+  padding:28px 32px;margin-bottom:52px;
+  font-size:.95rem;color:var(--ink-2);line-height:1.85;
+}
+.intro-card strong{color:var(--teal-l)}
+
+/* PROCESS STEPS */
+.process{display:flex;flex-direction:column;gap:0;position:relative;padding-left:40px}
+.process::before{content:'';position:absolute;left:15px;top:24px;bottom:24px;width:1px;background:var(--hr-m)}
+.step{position:relative;padding:0 0 32px 28px}
+.step:last-child{padding-bottom:0}
+.step-dot{position:absolute;left:-25px;top:5px;width:20px;height:20px;background:var(--teal);border-radius:50%;border:3px solid var(--bg);box-shadow:0 0 0 2px var(--teal)}
+.step-title{font-weight:700;font-size:.93rem;color:var(--ink);margin-bottom:5px}
+.step p{font-size:.855rem;color:var(--ink-2);line-height:1.78;margin-bottom:0}
+
+/* LISTS */
+.duty-list,.req-list{list-style:none;display:flex;flex-direction:column;gap:10px}
+.duty-list li,.req-list li{display:flex;align-items:flex-start;gap:12px;font-size:.875rem;color:var(--ink-2);line-height:1.7}
+.duty-list li::before{content:'';display:block;width:6px;height:6px;border-radius:50%;background:var(--teal);flex-shrink:0;margin-top:8px}
+.req-list li svg{flex-shrink:0;margin-top:3px;color:var(--teal)}
+
+/* TWO COL GRID */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+@media(max-width:600px){.two-col{grid-template-columns:1fr}}
+
+/* PERK CARDS */
+.perk-card{
+  border-radius:20px;background:rgba(255,255,255,.03);border:1px solid var(--hr);padding:1.5px;
+  transition:border-color .3s,transform .25s var(--ease);
+}
+.perk-card:hover{border-color:var(--hr-m);transform:translateY(-3px)}
+.perk-in{border-radius:calc(20px - 1.5px);background:var(--s1);padding:1.5rem 1.6rem;box-shadow:inset 0 1px 0 rgba(255,255,255,.05)}
+.perk-icon{font-size:20px;margin-bottom:8px}
+.perk-in h4{font-size:.875rem;font-weight:700;color:var(--ink);margin-bottom:4px}
+.perk-in p{font-size:.82rem;color:var(--ink-2);line-height:1.65}
+
+/* HIGHLIGHT BOX */
+.highlight{
+  background:var(--s2);border:1px solid var(--hr-m);border-radius:16px;
+  padding:1.5rem 2rem;margin:1.5rem 0;
+  display:flex;align-items:flex-start;gap:16px;
+}
+.highlight svg{flex-shrink:0;color:var(--teal);margin-top:2px}
+.highlight p{font-size:.875rem;color:var(--ink-2);line-height:1.75}
+.highlight strong{color:var(--ink)}
+
+/* CTA BLOCK */
+.cta-block{
+  background:var(--s0);border:1px solid var(--hr-m);border-radius:24px;
+  padding:52px 40px;text-align:center;position:relative;overflow:hidden;
+}
+.cta-block::before{content:'';position:absolute;top:-80px;right:-80px;width:280px;height:280px;background:radial-gradient(circle,rgba(43,142,142,.12) 0%,transparent 70%);border-radius:50%;pointer-events:none}
+.cta-block::after{content:'';position:absolute;bottom:-60px;left:-60px;width:200px;height:200px;background:radial-gradient(circle,rgba(43,142,142,.08) 0%,transparent 70%);border-radius:50%;pointer-events:none}
+.cta-block h2{font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:800;letter-spacing:-1.5px;color:var(--ink);margin-bottom:.8rem;position:relative}
+.cta-block p{font-size:.9rem;color:var(--ink-2);margin-bottom:2rem;max-width:420px;margin-left:auto;margin-right:auto;line-height:1.8;position:relative}
+.btn{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:14px 28px;border-radius:100px;
+  font-size:.9rem;font-weight:700;letter-spacing:-.2px;
+  transition:transform .2s var(--ease),box-shadow .2s var(--ease),background .15s;
+  cursor:pointer;position:relative;
+}
+.btn-p{background:var(--teal);color:#fff;box-shadow:0 0 36px rgba(43,142,142,.3),inset 0 1px 0 rgba(255,255,255,.18)}
+.btn-p:hover{background:var(--teal-l);transform:translateY(-2px);box-shadow:0 0 56px rgba(43,142,142,.5)}
+.bic{width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:transform .2s var(--spring)}
+.btn:hover .bic{transform:translateX(2px)}
+
+/* FOOTER */
+.footer{background:var(--bg);border-top:1px solid var(--hr);padding:40px clamp(1.25rem,3vw,2rem)}
+.footer-in{max-width:900px;margin:0 auto;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:2rem}
+.flogo{display:flex;align-items:center;gap:10px}
+.fw{font-size:.75rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--ink-3)}
+.fctr{text-align:center;font-size:.72rem;color:var(--ink-3);line-height:2}
+.flinks{display:flex;justify-content:flex-end;gap:1.75rem;flex-wrap:wrap}
+.flinks a{font-size:.72rem;color:var(--ink-3);transition:color .15s}
+.flinks a:hover{color:var(--ink-2)}
+@media(max-width:640px){.footer-in{grid-template-columns:1fr;text-align:center}.flogo{justify-content:center}.flinks{justify-content:center}}
+
+/* REVEAL */
+.up{opacity:0;transform:translateY(24px);filter:blur(3px);transition:opacity .7s var(--ease),transform .7s var(--ease),filter .7s var(--ease)}
+.up.in{opacity:1;transform:none;filter:none}
+.stag>*{opacity:0;transform:translateY(18px);transition:opacity .6s var(--ease),transform .6s var(--ease)}
+.stag.in>*{opacity:1;transform:none}
+.stag.in>*:nth-child(1){transition-delay:.04s}
+.stag.in>*:nth-child(2){transition-delay:.1s}
+.stag.in>*:nth-child(3){transition-delay:.16s}
+.stag.in>*:nth-child(4){transition-delay:.22s}
+.stag.in>*:nth-child(5){transition-delay:.28s}
+.stag.in>*:nth-child(6){transition-delay:.34s}
+</style>
+</head>
+<body>
+
+<div id="prog" role="progressbar" aria-hidden="true"></div>
+
+<!-- NAV -->
+<div class="nav-wrap" id="nwrap">
+  <nav class="nav" aria-label="Main navigation">
+    <div class="nav-logo">
+      <div class="nm" aria-hidden="true"><span>VS</span></div>
+      <span class="nw">Vela Sync</span>
+    </div>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="index.html#pricing">Pricing</a>
+      <a href="index.html#why">Why us</a>
+      <a href="index.html#team">Team</a>
+    </div>
+    <a href="mailto:careers@velasync.com" class="ncta">Apply now</a>
+  </nav>
+</div>
+
+<main id="main">
+
+<!-- HERO -->
+<section class="hero" aria-labelledby="h1">
+  <div class="hero-bg" aria-hidden="true"></div>
+  <div class="hero-grid" aria-hidden="true"></div>
+
+  <div class="hero-eyebrow">
+    <span class="edot" aria-hidden="true"></span>
+    Open Position · Sales
+  </div>
+
+  <h1 id="h1">Sales <span class="grd">Advisor</span></h1>
+
+  <p class="hero-sub">Join the team helping small businesses get online — fast. Your instinct, your persistence, your earnings.</p>
+
+  <div class="meta-pills">
+    <span class="mpill">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      Full-Time
+    </span>
+    <span class="mpill">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      Remote / Field
+    </span>
+    <span class="mpill">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="1.5" y="3.5" width="21" height="17" rx="2"/><polyline points="1.5 7 12 13 22.5 7"/></svg>
+      careers@velasync.com
+    </span>
+    <span class="mpill">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+      Commission-Only · Uncapped
+    </span>
+  </div>
+</section>
+
+<hr class="div">
+
+<!-- INTRO -->
+<section aria-labelledby="introh">
+<div class="sec">
+  <div class="up">
+    <div class="intro-card">
+      At <strong>Vela Sync</strong>, we help small and growing businesses get online quickly with professionally designed websites. As a Sales Advisor, you'll be the first voice a potential customer hears — and the reason they say yes. This is a high-impact, people-first role where your instinct, warmth, and persistence directly determine your success.
+    </div>
+
+    <div class="tag" aria-hidden="true">Overview</div>
+    <h2 class="h2" id="introh">About the Role</h2>
+    <p class="sub">You'll work a curated lead list provided by Vela Sync, reaching out to business owners who are ready to take the next step online. Armed with a proven calling script and your own natural sales intuition, your job is to guide each lead through a confident, consultative conversation — and close with a website solution they're excited about.</p>
+
+    <p style="font-size:.875rem;color:var(--ink-2);line-height:1.8;margin-bottom:0">You won't be cold-calling in the dark. Every lead is pre-qualified, and you'll have all the tools you need from day one: the list, the script, and a blank website template to share with prospects so they can immediately visualise their future site.</p>
+  </div>
+</div>
+</section>
+
+<hr class="div">
+
+<!-- PROCESS -->
+<section aria-labelledby="proch">
+<div class="sec">
+  <div class="up">
+    <div class="tag" aria-hidden="true">How You'll Work</div>
+    <h2 class="h2" id="proch">Your Day-to-Day Process</h2>
+  </div>
+  <div class="process up">
+    <div class="step">
+      <div class="step-dot" aria-hidden="true"></div>
+      <div class="step-title">Work the Lead List</div>
+      <p>Each day you'll receive an up-to-date lead list from Vela Sync — real business owners who have already shown interest. No manual prospecting required.</p>
+    </div>
+    <div class="step">
+      <div class="step-dot" aria-hidden="true"></div>
+      <div class="step-title">Make the Call</div>
+      <p>Use the Vela Sync calling script as your foundation. It's there to keep you on track, but your tone, timing, and personality are what turn a script into a genuine conversation.</p>
+    </div>
+    <div class="step">
+      <div class="step-dot" aria-hidden="true"></div>
+      <div class="step-title">Sell with Confidence</div>
+      <p>Listen to the lead's needs, overcome objections naturally, and present the Vela Sync website package as the clear solution. You're not pushing a product — you're solving a real problem.</p>
+    </div>
+    <div class="step">
+      <div class="step-dot" aria-hidden="true"></div>
+      <div class="step-title">Share the Template</div>
+      <p>Once a lead is ready to move forward, provide them with the blank website template Vela Sync has prepared. This gives them an immediate, tangible next step — and keeps momentum high.</p>
+    </div>
+    <div class="step">
+      <div class="step-dot" aria-hidden="true"></div>
+      <div class="step-title">Log &amp; Follow Up</div>
+      <p>Record call outcomes accurately and follow up on warm leads. Consistent pipeline management is what separates good months from great ones.</p>
+    </div>
+    <div class="step">
+      <div class="step-dot" aria-hidden="true"></div>
+      <div class="step-title">Chase Payment</div>
+      <p>Once a customer's website has been fully built and delivered, you'll follow up to ensure payment is collected. This means reaching out promptly, handling any queries professionally, and escalating where necessary — closing the loop on every sale you've made.</p>
+    </div>
+  </div>
+</div>
+</section>
+
+<hr class="div">
+
+<!-- RESPONSIBILITIES -->
+<section aria-labelledby="rh">
+<div class="sec">
+  <div class="up">
+    <div class="tag" aria-hidden="true">The Job</div>
+    <h2 class="h2" id="rh">Key Responsibilities</h2>
+  </div>
+
+  <div class="highlight up">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+    <p><strong>Minimum targets:</strong> 500 calls per week · 5 sales per week minimum. Every sale beyond that is yours to keep building on.</p>
+  </div>
+
+  <ul class="duty-list up">
+    <li>Contact prospects from the Vela Sync lead list in a timely, organised manner</li>
+    <li>Deliver engaging, consultative sales calls using the provided script as a guide</li>
+    <li>Adapt your approach based on the lead's tone, industry, and specific needs</li>
+    <li>Present Vela Sync's website offering clearly and compellingly</li>
+    <li>Provide prospects with the blank website template at the appropriate point in the conversation</li>
+    <li>Handle objections professionally and with empathy</li>
+    <li>Accurately record call notes, outcomes, and follow-up actions</li>
+    <li>Chase outstanding payments from customers who have received their completed website build</li>
+    <li>Handle payment queries professionally and escalate unresolved cases where appropriate</li>
+    <li>Communicate any lead list feedback or market insights to the team</li>
+  </ul>
+</div>
+</section>
+
+<hr class="div">
+
+<!-- REQUIREMENTS -->
+<section aria-labelledby="reqh">
+<div class="sec">
+  <div class="up">
+    <div class="tag" aria-hidden="true">What We're Looking For</div>
+    <h2 class="h2" id="reqh">Requirements &amp; Skills</h2>
+  </div>
+  <ul class="req-list up">
+    <li>
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+      Proven experience in a phone-based or direct sales role
+    </li>
+    <li>
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+      Strong verbal communication — clear, confident, and personable
+    </li>
+    <li>
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+      Natural sales instinct with the ability to read a conversation and adapt
+    </li>
+    <li>
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+      Comfortable working with a script while still sounding human and unscripted
+    </li>
+    <li>
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+      High level of self-motivation and the discipline to manage your own call targets
+    </li>
+    <li>
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+      Organised approach to pipeline and follow-up management
+    </li>
+    <li>
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+      Basic digital literacy — comfortable sharing and explaining a website template
+    </li>
+    <li>
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+      A genuine interest in helping small businesses grow online
+    </li>
+    <li>
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+      Resilience — you understand that rejection is part of the process, not the end of it
+    </li>
+  </ul>
+
+  <div style="margin-top:2.5rem" class="up">
+    <div class="tag" aria-hidden="true">Bonus Points</div>
+    <h2 class="h2" style="font-size:clamp(1.5rem,3vw,2.2rem)">Nice to Have</h2>
+    <ul class="req-list" style="margin-top:1rem">
+      <li>
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+        Background in web, digital, or tech product sales
+      </li>
+      <li>
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+        Experience selling to SMEs or sole traders
+      </li>
+      <li>
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+        Familiarity with CRM systems and call-logging tools
+      </li>
+      <li>
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+        A second language — our lead lists span diverse business communities
+      </li>
+    </ul>
+  </div>
+</div>
+</section>
+
+<hr class="div">
+
+<!-- BENEFITS -->
+<section aria-labelledby="benfh">
+<div class="sec">
+  <div class="up">
+    <div class="tag" aria-hidden="true">What You Get</div>
+    <h2 class="h2" id="benfh">Benefits &amp; Culture</h2>
+    <p class="sub">No base salary — just uncapped earning potential tied directly to your performance. The more you close, the more you earn.</p>
+  </div>
+  <div class="two-col stag">
+    <div class="perk-card">
+      <div class="perk-in">
+        <div class="perk-icon">💷</div>
+        <h4>Commission-Only — Uncapped Earnings</h4>
+        <p>Your income is entirely in your hands. No ceiling. The harder you work, the more you earn.</p>
+      </div>
+    </div>
+    <div class="perk-card">
+      <div class="perk-in">
+        <div class="perk-icon">📋</div>
+        <h4>Ready-to-Go Leads</h4>
+        <p>No cold prospecting. Walk in and start calling a qualified list from day one.</p>
+      </div>
+    </div>
+    <div class="perk-card">
+      <div class="perk-in">
+        <div class="perk-icon">🌐</div>
+        <h4>A Product That Sells Itself</h4>
+        <p>You're offering something tangible and visual — a website template prospects can see immediately.</p>
+      </div>
+    </div>
+    <div class="perk-card">
+      <div class="perk-in">
+        <div class="perk-icon">📈</div>
+        <h4>Real Growth Potential</h4>
+        <p>Top performers at Vela Sync move into senior and team lead positions quickly.</p>
+      </div>
+    </div>
+    <div class="perk-card">
+      <div class="perk-in">
+        <div class="perk-icon">🤝</div>
+        <h4>Supportive Team</h4>
+        <p>Script, training, and peer support from a team that wants you to win.</p>
+      </div>
+    </div>
+    <div class="perk-card">
+      <div class="perk-in">
+        <div class="perk-icon">🕐</div>
+        <h4>Flexible Working</h4>
+        <p>We care about results, not clock-watching. Manage your time, hit your numbers.</p>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<hr class="div">
+
+<!-- CTA -->
+<section aria-labelledby="ctah">
+<div class="sec">
+  <div class="cta-block up">
+    <div class="tag" style="justify-content:center;margin-bottom:1.25rem" aria-hidden="true">Apply now</div>
+    <h2 id="ctah">Ready to Start <span class="grd">Selling?</span></h2>
+    <p>Send your CV and a short note about why you're the right fit for Vela Sync. We move fast.</p>
+    <a href="mailto:careers@velasync.com" class="btn btn-p">
+      Apply — careers@velasync.com
+      <span class="bic" aria-hidden="true">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </span>
+    </a>
+  </div>
+</div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="footer-in">
+    <div class="flogo"><div class="nm" aria-hidden="true"><span>VS</span></div><span class="fw">Vela Sync</span></div>
+    <div class="fctr">&copy; 2026 Vela Sync Ltd &nbsp;&middot;&nbsp; Co. No. 17051204<br>Helping businesses get online, one conversation at a time.</div>
+    <nav class="flinks" aria-label="Footer links"><a href="index.html">Back to main site</a><a href="mailto:careers@velasync.com">careers@velasync.com</a></nav>
+  </div>
+</footer>
+
+<script>
+// PROGRESS
+const prog=document.getElementById('prog');
+window.addEventListener('scroll',()=>{
+  prog.style.width=Math.min((window.scrollY/(document.body.scrollHeight-window.innerHeight))*100,100)+'%';
+},{passive:true});
+
+// NAV SCROLL
+const nw=document.getElementById('nwrap');
+window.addEventListener('scroll',()=>nw.classList.toggle('scrolled',window.scrollY>60),{passive:true});
+
+// REVEALS
+if(!window.matchMedia('(prefers-reduced-motion:reduce)').matches){
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target);}});
+  },{threshold:.08,rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.up,.stag').forEach(el=>obs.observe(el));
+}else{
+  document.querySelectorAll('.up,.stag').forEach(el=>el.classList.add('in'));
+}
+</script>
+</body>
+</html>
