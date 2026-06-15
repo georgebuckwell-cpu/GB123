@@ -52,14 +52,14 @@ a { color: var(--teal-l); text-decoration: none; }
   background-image: url('https://images.unsplash.com/photo-1497366216548-37526070297c?w=1600&q=80');
   background-size: cover;
   background-position: center 30%;
-  filter: brightness(.35) saturate(.6);
+  filter: brightness(.55) saturate(.9);
 }
 .cover-overlay {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(0deg, rgba(5,10,10,1) 0%, rgba(5,10,10,.55) 50%, rgba(5,10,10,.2) 100%),
-    radial-gradient(ellipse 120% 80% at 50% 100%, rgba(43,142,142,.2) 0%, transparent 60%);
+    linear-gradient(0deg, rgba(5,10,10,1) 0%, rgba(5,10,10,.4) 45%, rgba(5,10,10,.05) 100%),
+    radial-gradient(ellipse 120% 80% at 50% 100%, rgba(43,142,142,.25) 0%, transparent 60%);
 }
 .cover-grid {
   position: absolute;
@@ -235,7 +235,7 @@ section + section { border-top: 1px solid var(--hr); }
   aspect-ratio: 4/3;
   position: relative;
 }
-.intro-img-wrap img { width:100%; height:100%; object-fit:cover; filter:saturate(.85) brightness(.82); }
+.intro-img-wrap img { width:100%; height:100%; object-fit:cover; filter:saturate(1.05) brightness(.88); }
 .intro-img-wrap::after {
   content:'';
   position:absolute; inset:0;
@@ -310,7 +310,7 @@ section + section { border-top: 1px solid var(--hr); }
   margin-bottom: 1.25rem;
   position: relative;
 }
-.step-img img { width:100%; height:100%; object-fit:cover; filter:saturate(.8) brightness(.8); }
+.step-img img { width:100%; height:100%; object-fit:cover; filter:saturate(1.08) brightness(.9); }
 .step-img::after {
   content:'';
   position:absolute; inset:0;
@@ -697,8 +697,8 @@ footer {
   border: 1px solid var(--hr);
   position: relative;
 }
-.svc-img img { width:100%; height:100%; object-fit:cover; filter:saturate(.75) brightness(.78); transition:transform .6s, filter .6s; }
-.svc:hover .svc-img img { transform:scale(1.05); filter:saturate(1) brightness(.88); }
+.svc-img img { width:100%; height:100%; object-fit:cover; filter:saturate(1.05) brightness(.88); transition:transform .6s, filter .6s; }
+.svc:hover .svc-img img { transform:scale(1.05); filter:saturate(1.15) brightness(.95); }
 .svc-img::after {
   content:''; position:absolute; inset:0;
   background:linear-gradient(180deg, transparent 40%, rgba(5,10,10,.7) 100%);
@@ -920,7 +920,7 @@ footer {
         <h3>Marketing Launch</h3>
         <p>If you've chosen our Website + Marketing Launch package, this is where the growth engine fires up. Our marketing team is briefed at the point of launch and hands you a live traffic strategy and growth roadmap on day one — turning your new site into a client acquisition machine from the moment it goes public.</p>
         <div class="step-img">
-          <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=900&q=80" alt="Marketing strategy and growth" loading="lazy">
+          <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=900&q=80" alt="Marketing strategy and growth" loading="lazy">
         </div>
         <div class="step-delivers">
           <div class="step-delivers-title">Marketing launch deliverables</div>
@@ -953,7 +953,7 @@ footer {
         <div class="pkg-popular">Most popular</div>
         <div class="pkg-tier">Website — Full Build</div>
         <div class="pkg-price"><sup>£</sup>450</div>
-        <div class="pkg-note">One-off &nbsp;·&nbsp; Live within 24 hours</div>
+        <div class="pkg-note">One-off setup &nbsp;·&nbsp; then £50/month</div>
         <div class="pkg-divider"></div>
         <ul class="pkg-list">
           <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Professional, mobile-responsive design</li>
@@ -968,9 +968,9 @@ footer {
 
     <div class="pkg">
       <div class="pkg-in">
-        <div class="pkg-tier">Website + Marketing Launch</div>
+        <div class="pkg-tier">Website + SEO &amp; Marketing Launch</div>
         <div class="pkg-price"><sup>£</sup>650</div>
-        <div class="pkg-note">Everything in the build, plus launch momentum</div>
+        <div class="pkg-note">One-off setup &nbsp;·&nbsp; then £100/month all-in</div>
         <div class="pkg-divider"></div>
         <ul class="pkg-list">
           <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Full build package included</li>
@@ -1020,7 +1020,7 @@ footer {
     <tbody>
       <tr>
         <td>Build cost</td>
-        <td class="yes">£450</td>
+        <td class="yes">£450 – £650 (one-off)</td>
         <td class="vs">£2,000 – £8,000+</td>
         <td>£0 – £30/mo</td>
       </tr>
@@ -1050,14 +1050,14 @@ footer {
       </tr>
       <tr>
         <td>Ongoing monthly support</td>
-        <td class="yes">From £100/mo (all-in)</td>
+        <td class="yes">£50/mo (maintenance)</td>
         <td class="vs">£150 – £300+/mo</td>
         <td class="no">None</td>
       </tr>
       <tr>
-        <td>SEO optimisation</td>
-        <td class="yes">£50/mo</td>
-        <td class="vs">£200+/mo</td>
+        <td>SEO + full marketing</td>
+        <td class="yes">£100/mo (all-in)</td>
+        <td class="vs">£300+/mo</td>
         <td class="no">Basic / manual</td>
       </tr>
       <tr>
@@ -1082,12 +1082,12 @@ footer {
 <div class="page">
   <div class="tag">After launch</div>
   <h2 class="h2">We don't build it<br><span class="grd">and disappear.</span></h2>
-  <p class="section-intro">Most agencies hand over a site and vanish. We stay with you — maintaining, improving and actively growing your digital presence month after month.</p>
+  <p class="section-intro">Most agencies hand over a site and vanish. We stay with you — maintaining, improving and actively growing your digital presence month after month. Ongoing support starts at £50/month, with everything included for £100/month. No lock-in, cancel any time.</p>
 
   <div class="support-grid">
     <div class="sc">
       <div class="sc-in">
-        <div class="sc-price"><sup>£</sup>45</div>
+        <div class="sc-price"><sup>£</sup>50</div>
         <div class="sc-period">per month</div>
         <div class="sc-name">Standard Package</div>
         <div class="sc-desc">Site maintenance, uptime monitoring and active traffic driving. We keep your site running and growing.</div>
@@ -1128,7 +1128,7 @@ footer {
       <div class="svc-in">
         <div class="svc-num">01</div>
         <div class="svc-img">
-          <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3F2RAQvUnJFZWbBdXd63U7JAnWB/hf_20260612_144433_ba3a6365-dd3a-4782-91bd-4e8cc6be6ee8_min.webp" alt="Modern business website design" loading="lazy">
+          <img src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=900&q=80" alt="Modern business website design" loading="lazy">
         </div>
         <div class="svc-sub">From £450 · Live in 24 hours</div>
         <h3>Business Websites</h3>
@@ -1139,7 +1139,7 @@ footer {
       <div class="svc-in">
         <div class="svc-num">02</div>
         <div class="svc-img">
-          <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3F2RAQvUnJFZWbBdXd63U7JAnWB/hf_20260612_144457_9586bfd2-56d6-4c17-882e-de9a79fe567e_min.webp" alt="CRM platform dashboard" loading="lazy">
+          <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=900&q=80" alt="CRM platform dashboard" loading="lazy">
         </div>
         <div class="svc-sub">Custom · Scalable · Compliant</div>
         <h3>CRM Platforms</h3>
@@ -1150,7 +1150,7 @@ footer {
       <div class="svc-in">
         <div class="svc-num">03</div>
         <div class="svc-img">
-          <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3F2RAQvUnJFZWbBdXd63U7JAnWB/hf_20260612_144524_cdc2ed39-451f-4fbc-87af-c042e1c89da0_min.webp" alt="Healthcare workforce platform" loading="lazy">
+          <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=900&q=80" alt="Healthcare workforce platform" loading="lazy">
         </div>
         <div class="svc-sub">End-to-end · Recruitment platforms</div>
         <h3>Workforce Solutions</h3>
@@ -1161,7 +1161,7 @@ footer {
       <div class="svc-in">
         <div class="svc-num">04</div>
         <div class="svc-img">
-          <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3F2RAQvUnJFZWbBdXd63U7JAnWB/hf_20260612_144543_18f3cfbf-6de6-482a-bcd5-e21d11da5c31_min.webp" alt="Digital traffic and growth" loading="lazy">
+          <img src="https://images.unsplash.com/photo-1533750349088-cd871a92f312?w=900&q=80" alt="Digital traffic and growth" loading="lazy">
         </div>
         <div class="svc-sub">Built to scale your client base</div>
         <h3>Traffic &amp; Growth</h3>
@@ -1314,7 +1314,7 @@ footer {
       <div class="cpill">From £450</div>
       <div class="cpill">Live in 24 hours</div>
       <div class="cpill">Instalments available</div>
-      <div class="cpill">£100/month all-in</div>
+      <div class="cpill">£50–£100/month ongoing</div>
     </div>
     <a href="mailto:hello@velasync.com" class="btn btn-p">
       Book your free call
