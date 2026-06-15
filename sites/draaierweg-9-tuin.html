@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Draaierweg 9, Tuin | Area Amsterdam</title>
+<meta name="description" content="Draaierweg 9, Tuin — Natuur midden in de stad. Gevestigd in Amsterdam.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --c1:#142014;--c2:#203320;--c3:#4A8C4A;--c4:#7ABF7A;--c5:#EAF3EA;--c6:#F4FBF4;
+  --fh:'Playfair Display', serif;--fb:'DM Sans', sans-serif;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--fb);background:var(--c6);color:var(--c1);overflow-x:hidden}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 6%;height:72px;display:flex;align-items:center;justify-content:space-between;transition:background .4s,box-shadow .4s}
+nav.s{background:rgba(253,252,250,.96);backdrop-filter:blur(12px);box-shadow:0 1px 0 rgba(0,0,0,.07)}
+.nl{font-family:var(--fh);font-size:1.2rem;font-weight:400;color:rgba(255,255,255,.95);text-decoration:none;transition:color .4s;letter-spacing:.02em}
+nav.s .nl{color:var(--c1)}
+.nlinks{display:flex;gap:2.4rem;list-style:none}
+.nlinks a{font-size:.75rem;font-weight:500;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;color:rgba(255,255,255,.75);transition:color .3s}
+nav.s .nlinks a{color:var(--c2)}
+.nlinks a:hover,.nlinks a:hover{color:var(--c3)}
+.ncta{background:var(--c3)!important;color:var(--c1)!important;padding:.5rem 1.4rem!important;border-radius:100px!important;font-weight:600!important}
+.ncta:hover{background:var(--c4)!important}
+.hbg{display:none;flex-direction:column;gap:5px;cursor:pointer}
+.hbg span{display:block;width:24px;height:1.5px;background:white;transition:background .4s}
+nav.s .hbg span{background:var(--c1)}
+
+/* HERO */
+#hero{height:100vh;min-height:600px;position:relative;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden}
+.hbg-img{position:absolute;inset:0;background:linear-gradient(160deg,rgba(0,0,0,.65) 0%,rgba(0,0,0,.35) 60%),url('https://images.unsplash.com/photo-photo-1500964757637-c85e8a162429?w=1800&q=80') center/cover no-repeat}
+.hbg-img::after{content:'';position:absolute;bottom:0;left:0;right:0;height:28%;background:linear-gradient(to bottom,transparent,var(--c6))}
+.hc{position:relative;z-index:1;max-width:740px;padding:0 1.5rem}
+.hpill{display:inline-block;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);color:rgba(255,255,255,.8);font-size:.66rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;padding:.38rem 1.2rem;border-radius:100px;margin-bottom:1.6rem;backdrop-filter:blur(4px)}
+.htitle{font-family:var(--fh);font-size:clamp(2.8rem,7vw,5.2rem);font-weight:400;color:white;line-height:1.08;margin-bottom:1.4rem;letter-spacing:-.01em}
+.hsub{font-size:.97rem;font-weight:300;color:rgba(255,255,255,.72);line-height:1.8;max-width:500px;margin:0 auto 2.6rem}
+.hbtns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.btn-p{font-size:.76rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;background:var(--c3);color:white;padding:.88rem 2.2rem;border-radius:100px;transition:background .3s,transform .2s}
+.btn-p:hover{background:var(--c4);transform:translateY(-2px)}
+.btn-g{font-size:.76rem;font-weight:400;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;border:1px solid rgba(255,255,255,.45);color:rgba(255,255,255,.9);padding:.88rem 2.2rem;border-radius:100px;transition:background .3s,border-color .3s}
+.btn-g:hover{background:rgba(255,255,255,.1);border-color:white}
+.sl{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);z-index:1;display:flex;flex-direction:column;align-items:center;gap:.6rem;color:rgba(255,255,255,.4);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase}
+.sl::after{content:'';width:1px;height:44px;background:linear-gradient(to bottom,rgba(255,255,255,.45),transparent);animation:drop 2s ease-in-out infinite}
+@keyframes drop{0%,100%{opacity:0;transform:scaleY(0);transform-origin:top}50%{opacity:1;transform:scaleY(1);transform-origin:top}}
+
+/* SECTIONS */
+section{padding:6rem 6%}
+.lbl{font-size:.66rem;font-weight:500;letter-spacing:.24em;text-transform:uppercase;color:var(--c3);margin-bottom:.9rem}
+.h2{font-family:var(--fh);font-size:clamp(2rem,4vw,3rem);font-weight:400;line-height:1.18;color:var(--c1)}
+.h2 em{font-style:italic;color:var(--c3)}
+
+/* ABOUT */
+#about{background:var(--c6)}
+.about-in{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+.aimg-wrap{position:relative}
+.aimg{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:6px;display:block}
+.aimg-accent{position:absolute;bottom:-1.2rem;right:-1.2rem;width:55%;aspect-ratio:1;background:var(--c3);border-radius:6px;z-index:-1;opacity:.25}
+.atext p{font-size:.95rem;font-weight:300;line-height:1.9;color:var(--c2);margin-top:1.4rem}
+.adiv{width:40px;height:2px;background:var(--c3);margin:1.8rem 0}
+.atag{font-family:var(--fh);font-size:1.7rem;font-weight:400;font-style:italic;color:var(--c1);margin-top:1.4rem}
+.atag small{display:block;font-family:var(--fb);font-size:.68rem;font-style:normal;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--c3);margin-top:.2rem}
+
+/* SERVICES */
+#services{background:var(--c5)}
+.srv-in{max-width:1200px;margin:0 auto}
+.srv-head{margin-bottom:3.5rem}
+.srv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.srv-card{background:var(--c6);border-radius:6px;padding:2.4rem 2rem;border:1px solid rgba(0,0,0,.05);position:relative;overflow:hidden;transition:transform .3s,box-shadow .3s}
+.srv-card::after{content:'';position:absolute;bottom:0;left:0;width:100%;height:3px;background:var(--c3);transform:scaleX(0);transform-origin:left;transition:transform .4s ease}
+.srv-card:hover{transform:translateY(-4px);box-shadow:0 16px 48px rgba(0,0,0,.08)}
+.srv-card:hover::after{transform:scaleX(1)}
+.srv-num{position:absolute;top:1.5rem;right:1.5rem;font-family:var(--fh);font-size:4.5rem;font-weight:400;color:rgba(0,0,0,.04);line-height:1;user-select:none}
+.srv-name{font-family:var(--fh);font-size:1.3rem;font-weight:400;color:var(--c1);margin-bottom:.6rem}
+.srv-desc{font-size:.85rem;font-weight:300;line-height:1.78;color:var(--c2)}
+
+/* USP */
+#usp{background:var(--c1)}
+.usp-in{max-width:1200px;margin:0 auto}
+.usp-in .lbl{color:rgba(255,255,255,.5)}
+.usp-in .h2{color:white}
+.usp-in .h2 em{color:var(--c4)}
+.usp-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem;margin-top:3rem}
+.usp-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:6px;padding:1.8rem 1.5rem;transition:background .3s}
+.usp-card:hover{background:rgba(255,255,255,.08)}
+.usp-icon{font-size:1.8rem;margin-bottom:.8rem}
+.usp-title{font-family:var(--fh);font-size:1.1rem;font-weight:400;color:white;margin-bottom:.35rem}
+.usp-desc{font-size:.82rem;font-weight:300;line-height:1.7;color:rgba(255,255,255,.5)}
+
+/* CONTACT */
+#contact{background:var(--c6)}
+.con-in{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1.1fr;gap:5rem;align-items:start}
+.con-left p{font-size:.93rem;font-weight:300;line-height:1.85;color:var(--c2);margin:1.4rem 0 2.4rem}
+.cdet{display:flex;flex-direction:column;gap:1.2rem}
+.citem{display:flex;gap:.9rem;align-items:center}
+.cicon{width:40px;height:40px;background:var(--c3);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:white;font-size:.9rem}
+.ctext strong{display:block;font-size:.66rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--c1);margin-bottom:.15rem}
+.ctext a,.ctext span{font-size:.9rem;font-weight:300;color:var(--c2);text-decoration:none}
+.ctext a:hover{color:var(--c3)}
+.cform{background:white;border-radius:10px;padding:2.6rem;box-shadow:0 12px 48px rgba(0,0,0,.07)}
+.cform h3{font-family:var(--fh);font-size:1.6rem;font-weight:400;font-style:italic;color:var(--c1);margin-bottom:.25rem}
+.cform > p{font-size:.8rem;color:var(--c3);margin-bottom:1.8rem}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:.9rem}
+.fg{margin-bottom:.9rem}
+.fg label{display:block;font-size:.66rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--c2);margin-bottom:.4rem}
+.fg input,.fg select,.fg textarea{width:100%;background:var(--c5);border:1px solid rgba(0,0,0,.08);border-radius:6px;padding:.72rem .9rem;font-family:var(--fb);font-size:.88rem;font-weight:300;color:var(--c1);outline:none;transition:border-color .3s;appearance:none}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--c3);background:white}
+.fg textarea{resize:vertical;min-height:100px}
+.fsub{width:100%;background:var(--c1);color:white;border:none;padding:.9rem;font-family:var(--fb);font-size:.76rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;border-radius:100px;margin-top:.4rem;transition:background .3s}
+.fsub:hover{background:var(--c3)}
+.fsuccess{display:none;text-align:center;padding:2.5rem 1rem}
+.fsuccess .si{width:48px;height:48px;background:var(--c5);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;font-size:1.4rem}
+.fsuccess h4{font-family:var(--fh);font-size:1.4rem;font-weight:400;font-style:italic;color:var(--c1);margin-bottom:.4rem}
+.fsuccess p{font-size:.85rem;color:var(--c2);font-weight:300}
+
+/* FOOTER */
+footer{background:var(--c1);padding:3rem 6%}
+.ft{display:flex;justify-content:space-between;flex-wrap:wrap;gap:2rem;padding-bottom:2rem;border-bottom:1px solid rgba(255,255,255,.07);margin-bottom:1.8rem}
+.flogo{font-family:var(--fh);font-size:1.3rem;font-weight:400;color:var(--c4);margin-bottom:.6rem}
+.fbt p,.fbt a{font-size:.75rem;color:rgba(255,255,255,.35);text-decoration:none}
+.fbt a:hover{color:var(--c4)}
+.flinks h5{font-size:.62rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:1rem}
+.flinks ul{list-style:none;display:flex;flex-direction:column;gap:.6rem}
+.flinks a{font-size:.82rem;font-weight:300;color:rgba(255,255,255,.35);text-decoration:none;transition:color .3s}
+.flinks a:hover{color:var(--c4)}
+.fb{display:flex;justify-content:space-between;flex-wrap:wrap;gap:.4rem}
+.fb p{font-size:.72rem;color:rgba(255,255,255,.2)}
+
+/* REVEAL */
+.rv{opacity:0;transform:translateY(20px);transition:opacity .65s ease,transform .65s ease}
+.rv.vis{opacity:1;transform:none}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}.d4{transition-delay:.4s}
+
+/* MOBILE */
+@media(max-width:900px){
+  section{padding:4.5rem 5%}
+  .about-in,.con-in{grid-template-columns:1fr;gap:3rem}
+  .srv-grid{grid-template-columns:1fr}
+  .usp-grid{grid-template-columns:1fr 1fr}
+  .nlinks{display:none}
+  .hbg{display:flex}
+  .frow{grid-template-columns:1fr}
+  .ft{flex-direction:column}
+  .cform{padding:1.8rem}
+}
+@media(max-width:540px){
+  .usp-grid{grid-template-columns:1fr}
+}
+
+/* MOBILE NAV */
+.mnav{display:none;position:fixed;inset:0;background:var(--c1);z-index:200;flex-direction:column;align-items:center;justify-content:center;gap:1.8rem}
+.mnav.open{display:flex}
+.mnav a{font-family:var(--fh);font-size:2rem;font-weight:400;font-style:italic;color:rgba(255,255,255,.85);text-decoration:none;transition:color .3s}
+.mnav a:hover{color:var(--c4)}
+.mclose{position:absolute;top:1.5rem;right:5%;background:none;border:none;color:rgba(255,255,255,.5);font-size:2rem;cursor:pointer;line-height:1}
+</style>
+</head>
+<body>
+
+<div class="mnav" id="mn">
+  <button class="mclose" onclick="document.getElementById('mn').classList.remove('open')">&times;</button>
+  <a href="#about" onclick="document.getElementById('mn').classList.remove('open')">Over Ons</a>
+  <a href="#services" onclick="document.getElementById('mn').classList.remove('open')">Diensten</a>
+  <a href="#contact" onclick="document.getElementById('mn').classList.remove('open')">Contact</a>
+</div>
+
+<nav id="nb">
+  <a href="#" class="nl">Draaierweg 9, Tuin</a>
+  <ul class="nlinks">
+    <li><a href="#about">Over Ons</a></li>
+    <li><a href="#services">Diensten</a></li>
+    <li><a href="#usp">Waarom Wij</a></li>
+    <li><a href="#contact" class="ncta">Contact</a></li>
+  </ul>
+  <div class="hbg" onclick="document.getElementById('mn').classList.add('open')">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<section id="hero">
+  <div class="hbg-img"></div>
+  <div class="hc">
+    <div class="hpill">Area · Amsterdam</div>
+    <h1 class="htitle">Draaierweg 9, Tuin</h1>
+    <p class="hsub">Natuur midden in de stad. Een groene oase in Amsterdam waar mensen tot rust komen, spelen en de natuur beleven.</p>
+    <div class="hbtns">
+      <a href="#contact" class="btn-p">Neem Contact Op</a>
+      <a href="#services" class="btn-g">Onze Diensten</a>
+    </div>
+  </div>
+  <div class="sl">Ontdek</div>
+</section>
+
+<section id="about">
+  <div class="about-in">
+    <div class="aimg-wrap rv">
+      <img src="https://images.unsplash.com/photo-photo-1441974231531-c6227db76b6e?w=800&q=80" alt="Draaierweg 9, Tuin" class="aimg">
+      <div class="aimg-accent"></div>
+    </div>
+    <div class="atext">
+      <div class="lbl rv">Over Ons</div>
+      <h2 class="h2 rv d1">Draaierweg 9, Tuin<br><em>in Amsterdam</em></h2>
+      <div class="adiv rv d2"></div>
+      <p class="rv d2">Welkom bij Draaierweg 9, Tuin. Wij zijn een professionele area gevestigd in Amsterdam, gespecialiseerd in het leveren van hoogwaardige diensten met aandacht voor kwaliteit en klanttevredenheid.</p>
+      <p class="rv d3">Met jarenlange ervaring in ons vakgebied staan wij voor vakmanschap, betrouwbaarheid en een persoonlijke aanpak. Wij behandelen elk project met de zorg en aandacht die het verdient — groot of klein.</p>
+      <div class="atag rv d4">
+        Draaierweg 9, Tuin
+        <small>Area · Amsterdam</small>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="services">
+  <div class="srv-in">
+    <div class="srv-head">
+      <div class="lbl rv">Wat Wij Doen</div>
+      <h2 class="h2 rv d1">Onze <em>Diensten</em></h2>
+    </div>
+    <div class="srv-grid">
+      <div class="srv-card rv">
+        <span class="srv-num">01</span>
+        <h3 class="srv-name">Recreatie</h3>
+        <p class="srv-desc">Ruimte voor sport, spel, picknick en ontspanning in het groen.</p>
+      </div>
+      <div class="srv-card rv d1">
+        <span class="srv-num">02</span>
+        <h3 class="srv-name">Evenementen</h3>
+        <p class="srv-desc">De perfecte buitenlocatie voor festivals, markten en bijeenkomsten.</p>
+      </div>
+      <div class="srv-card rv d2">
+        <span class="srv-num">03</span>
+        <h3 class="srv-name">Natuur &amp; Educatie</h3>
+        <p class="srv-desc">Ontdek de flora en fauna in een unieke stedelijke omgeving.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="usp">
+  <div class="usp-in">
+    <div class="lbl rv">Waarom Kiezen Voor Ons</div>
+    <h2 class="h2 rv d1">Kwaliteit die je<br><em>kunt vertrouwen</em></h2>
+    <div class="usp-grid">
+      <div class="usp-card rv d1">
+        <div class="usp-icon">🌳</div>
+        <div class="usp-title">Groen Paradijs</div>
+        <div class="usp-desc">Een uniek stukje natuur binnen de stadsgrenzen.</div>
+      </div>
+      <div class="usp-card rv d2">
+        <div class="usp-icon">🐦</div>
+        <div class="usp-title">Biodiversiteit</div>
+        <div class="usp-desc">Rijk ecosysteem met bijzondere plant- en diersoorten.</div>
+      </div>
+      <div class="usp-card rv d3">
+        <div class="usp-icon">♿</div>
+        <div class="usp-title">Toegankelijk</div>
+        <div class="usp-desc">Toegankelijk voor iedereen, het hele jaar door.</div>
+      </div>
+      <div class="usp-card rv d4">
+        <div class="usp-icon">🆓</div>
+        <div class="usp-title">Vrij Toegankelijk</div>
+        <div class="usp-desc">Altijd open en gratis te bezoeken.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="con-in">
+    <div class="con-left">
+      <div class="lbl rv">Contact</div>
+      <h2 class="h2 rv d1">Laten we<br><em>kennismaken</em></h2>
+      <p class="rv d2">Heeft u een vraag of wilt u een vrijblijvende offerte? Neem gerust contact op — wij reageren binnen 24 uur.</p>
+      <div class="cdet">
+        <div class="citem rv d2">
+          <div class="cicon">📞</div>
+          <div class="ctext">
+            <strong>Telefoon</strong>
+            <a href="#">Bel voor info</a>
+          </div>
+        </div>
+        <div class="citem rv d3">
+          <div class="cicon">📍</div>
+          <div class="ctext">
+            <strong>Adres</strong>
+            <span>Draaierweg 9<br>Amsterdam</span>
+          </div>
+        </div>
+        <div class="citem rv d4">
+          <div class="cicon">🕐</div>
+          <div class="ctext">
+            <strong>Bereikbaar</strong>
+            <span>Ma – Vr: 08:00 – 18:00</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="cform rv d1">
+      <h3>Stuur een bericht</h3>
+      <p>Wij nemen zo snel mogelijk contact met u op.</p>
+      <form onsubmit="this.style.display='none';document.getElementById('fs').style.display='block';return false">
+        <div class="frow">
+          <div class="fg"><label>Voornaam</label><input type="text" placeholder="Jan" required></div>
+          <div class="fg"><label>Achternaam</label><input type="text" placeholder="De Vries" required></div>
+        </div>
+        <div class="frow">
+          <div class="fg"><label>Telefoon</label><input type="tel" placeholder="+31 6 ..."></div>
+          <div class="fg"><label>E-mail</label><input type="email" placeholder="u@voorbeeld.nl" required></div>
+        </div>
+        <div class="fg"><label>Bericht</label><textarea placeholder="Hoe kunnen wij u helpen?"></textarea></div>
+        <button type="submit" class="fsub">Verstuur Bericht</button>
+      </form>
+      <div class="fsuccess" id="fs">
+        <div class="si">✓</div>
+        <h4>Bedankt voor uw bericht!</h4>
+        <p>Wij nemen binnen 24 uur contact met u op.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="ft">
+    <div class="fbt">
+      <div class="flogo">Draaierweg 9, Tuin</div>
+      <p>Area · Amsterdam</p>
+      <p style="margin-top:.4rem"><a href="#">Bel voor info</a></p>
+    </div>
+    <div class="flinks">
+      <h5>Navigatie</h5>
+      <ul>
+        <li><a href="#about">Over Ons</a></li>
+        <li><a href="#services">Diensten</a></li>
+        <li><a href="#usp">Waarom Wij</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+    <div class="flinks">
+      <h5>Contact</h5>
+      <ul>
+        <li><a href="#">Bel voor info</a></li>
+        <li><a href="#contact">Stuur een bericht</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="fb">
+    <p>© 2024 Draaierweg 9, Tuin. Alle rechten voorbehouden.</p>
+    <p>Area · Amsterdam</p>
+  </div>
+</footer>
+
+<script>
+const nb=document.getElementById('nb');
+window.addEventListener('scroll',()=>nb.classList.toggle('s',scrollY>60));
+const rvs=document.querySelectorAll('.rv');
+const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');obs.unobserve(e.target)}});},{{"threshold":0.1}});
+rvs.forEach(e=>obs.observe(e));
+</script>
+</body>
+</html>
