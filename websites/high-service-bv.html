@@ -3,263 +3,467 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>High service bv — Amsterdam</title>
-<meta name="description" content="High service bv — Professional freight and logistics services operating across the Netherlands and Europe.">
+<title>High service bv | Trucking company Amsterdam</title>
+<meta name="description" content="High service bv — Professional freight and logistics services operating across the Netherlands and Europe. Your cargo, delivered safely and on schedule.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  :root {
-    --primary: #212529;
-    --accent: #ff6b35;
-    --primary-text: #ffffff;
-  }
-  html { scroll-behavior: smooth; }
-  body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background: #f8f9fa; color: #1a1a1a; }
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --primary:#1c1917;
+  --accent:#f97316;
+  --accent2:#fb923c;
+  --bg:#f8f8f6;
+  --card:#ffffff;
+  --text:#111111;
+  --muted:#6b7280;
+  --border:#e5e7eb;
+  --radius:16px;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
 
-  /* NAV */
-  nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    background: rgba(0,0,0,0.85); backdrop-filter: blur(12px);
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 0 5%; height: 64px;
-  }
-  .nav-brand { color: #fff; font-weight: 700; font-size: 1.1rem; letter-spacing: -0.3px; }
-  .nav-cta {
-    background: var(--accent); color: #fff; border: none; border-radius: 6px;
-    padding: 8px 20px; font-size: 0.9rem; font-weight: 600; cursor: pointer;
-    text-decoration: none; transition: opacity 0.2s;
-  }
-  .nav-cta:hover { opacity: 0.85; }
+/* ── NAV ── */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 6%;height:68px;
+  background:rgba(255,255,255,0.92);backdrop-filter:blur(16px);
+  border-bottom:1px solid rgba(0,0,0,0.06);
+  transition:box-shadow 0.3s;
+}
+.nav.scrolled{box-shadow:0 4px 24px rgba(0,0,0,0.08)}
+.nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none}
+.nav-monogram{
+  width:38px;height:38px;border-radius:10px;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  color:#fff;font-weight:800;font-size:0.85rem;
+  display:flex;align-items:center;justify-content:center;letter-spacing:0.5px;
+  flex-shrink:0;
+}
+.nav-name{font-weight:700;font-size:0.95rem;color:var(--text);line-height:1.2;max-width:220px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.nav-cat{font-size:0.72rem;color:var(--muted);font-weight:500;display:block}
+.nav-cta{
+  background:var(--accent);color:#fff;
+  padding:10px 22px;border-radius:8px;font-size:0.875rem;font-weight:700;
+  text-decoration:none;transition:opacity 0.2s,transform 0.15s;white-space:nowrap;
+}
+.nav-cta:hover{opacity:0.9;transform:translateY(-1px)}
 
-  /* HERO */
-  .hero {
-    min-height: 100vh;
-    background: linear-gradient(135deg, var(--primary) 0%, color-mix(in srgb, var(--primary) 70%, #000) 100%);
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
-    text-align: center; padding: 100px 5% 80px;
-    position: relative; overflow: hidden;
-  }
-  .hero::before {
-    content: '';
-    position: absolute; inset: 0;
-    background: radial-gradient(ellipse 80% 60% at 50% 50%, color-mix(in srgb, var(--accent) 15%, transparent), transparent);
-  }
-  .hero-icon { font-size: 4rem; margin-bottom: 16px; position: relative; }
-  .hero-badge {
-    background: color-mix(in srgb, var(--accent) 20%, transparent);
-    border: 1px solid color-mix(in srgb, var(--accent) 40%, transparent);
-    color: var(--accent); border-radius: 999px;
-    padding: 6px 18px; font-size: 0.8rem; font-weight: 600; letter-spacing: 1px;
-    text-transform: uppercase; margin-bottom: 24px; display: inline-block;
-    position: relative;
-  }
-  .hero h1 {
-    font-size: clamp(2.2rem, 5vw, 3.8rem); font-weight: 800; color: #fff;
-    line-height: 1.1; letter-spacing: -1px; margin-bottom: 12px;
-    position: relative;
-  }
-  .hero-tagline {
-    font-size: clamp(1rem, 2vw, 1.35rem); color: rgba(255,255,255,0.7);
-    max-width: 600px; line-height: 1.6; margin-bottom: 32px;
-    position: relative;
-  }
-  .rating-badge { display: inline-flex; align-items: center; gap: 10px; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); border-radius: 999px; padding: 8px 20px; margin-bottom: 28px; color: #fff; font-size: 0.9rem; position: relative; }
-  .stars { color: var(--accent); font-size: 1rem; letter-spacing: 1px; }
-  .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; position: relative; }
-  .btn-primary {
-    background: var(--accent); color: #fff; border: none; border-radius: 8px;
-    padding: 14px 32px; font-size: 1rem; font-weight: 700; cursor: pointer;
-    text-decoration: none; transition: transform 0.15s, box-shadow 0.15s;
-    box-shadow: 0 4px 20px color-mix(in srgb, var(--accent) 40%, transparent);
-  }
-  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 28px color-mix(in srgb, var(--accent) 50%, transparent); }
-  .btn-secondary {
-    background: transparent; color: #fff; border: 2px solid rgba(255,255,255,0.4);
-    border-radius: 8px; padding: 14px 32px; font-size: 1rem; font-weight: 600;
-    cursor: pointer; text-decoration: none; transition: border-color 0.2s, background 0.2s;
-  }
-  .btn-secondary:hover { border-color: #fff; background: rgba(255,255,255,0.08); }
+/* ── HERO ── */
+.hero{
+  min-height:100vh;
+  background:var(--primary);
+  position:relative;overflow:hidden;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:100px 6% 80px;
+}
+.hero-glow{
+  position:absolute;inset:0;pointer-events:none;
+  background:
+    radial-gradient(ellipse 70% 55% at 20% 20%,color-mix(in srgb,var(--accent) 18%,transparent),transparent),
+    radial-gradient(ellipse 60% 50% at 80% 80%,color-mix(in srgb,var(--accent2) 12%,transparent),transparent);
+}
+.hero-grid{
+  position:absolute;inset:0;opacity:0.04;pointer-events:none;
+  background-image:linear-gradient(rgba(255,255,255,0.8) 1px,transparent 1px),
+                   linear-gradient(90deg,rgba(255,255,255,0.8) 1px,transparent 1px);
+  background-size:40px 40px;
+}
+.hero-content{position:relative;max-width:780px;}
+.hero-pill{
+  display:inline-flex;align-items:center;gap:8px;
+  background:color-mix(in srgb,var(--accent) 18%,transparent);
+  border:1px solid color-mix(in srgb,var(--accent) 35%,transparent);
+  color:color-mix(in srgb,var(--accent) 90%,#fff);
+  border-radius:999px;padding:6px 18px;
+  font-size:0.78rem;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;
+  margin-bottom:28px;
+}
+.hero-pill-dot{width:7px;height:7px;border-radius:50%;background:var(--accent);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+.hero h1{
+  font-size:clamp(2.6rem,6vw,4.2rem);font-weight:900;
+  color:#fff;line-height:1.05;letter-spacing:-1.5px;
+  margin-bottom:8px;
+}
+.hero h1 em{font-style:normal;color:var(--accent)}
+.hero-sub{
+  font-size:clamp(1rem,2.2vw,1.25rem);color:rgba(255,255,255,0.65);
+  max-width:580px;margin:0 auto 36px;line-height:1.7;font-weight:400;
+}
+.hero-rating{
+  display:inline-flex;align-items:center;gap:10px;
+  background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);
+  border-radius:999px;padding:8px 20px;
+  color:rgba(255,255,255,0.8);font-size:0.875rem;margin-bottom:32px;
+}
+.hero-stars{color:var(--accent);letter-spacing:2px;font-size:1rem}
+.hero-actions{display:flex;gap:14px;flex-wrap:wrap;justify-content:center}
+.btn-primary{
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  color:#fff;padding:15px 36px;border-radius:10px;font-size:1rem;font-weight:700;
+  text-decoration:none;border:none;cursor:pointer;
+  box-shadow:0 4px 24px color-mix(in srgb,var(--accent) 45%,transparent);
+  transition:transform 0.15s,box-shadow 0.15s;display:inline-block;
+}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 32px color-mix(in srgb,var(--accent) 55%,transparent)}
+.btn-ghost{
+  color:#fff;padding:15px 36px;border-radius:10px;font-size:1rem;font-weight:600;
+  text-decoration:none;border:2px solid rgba(255,255,255,0.3);
+  transition:border-color 0.2s,background 0.2s;display:inline-block;
+}
+.btn-ghost:hover{border-color:rgba(255,255,255,0.7);background:rgba(255,255,255,0.06)}
 
-  /* STATS BAR */
-  .stats-bar {
-    background: var(--accent); padding: 20px 5%;
-    display: flex; justify-content: center; gap: 60px; flex-wrap: wrap;
-  }
-  .stat { text-align: center; color: #fff; }
-  .stat-num { font-size: 1.6rem; font-weight: 800; display: block; }
-  .stat-label { font-size: 0.78rem; opacity: 0.85; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; }
+/* ── TRUST BAR ── */
+.trust-bar{
+  background:#fff;border-bottom:1px solid var(--border);
+  padding:18px 6%;display:flex;align-items:center;justify-content:center;
+  gap:32px;flex-wrap:wrap;
+}
+.trust-badge{
+  display:flex;align-items:center;gap:8px;
+  font-size:0.82rem;font-weight:600;color:#374151;
+}
+.trust-check{
+  width:22px;height:22px;border-radius:50%;
+  background:color-mix(in srgb,var(--accent) 15%,transparent);
+  color:var(--accent);font-size:0.7rem;font-weight:800;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
 
-  /* SECTIONS */
-  section { padding: 80px 5%; max-width: 1200px; margin: 0 auto; }
-  .section-label {
-    color: var(--accent); font-size: 0.8rem; font-weight: 700;
-    text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px;
-  }
-  h2 { font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 800; line-height: 1.15; letter-spacing: -0.5px; }
-  .section-intro { font-size: 1.1rem; color: #555; line-height: 1.7; margin-top: 14px; max-width: 620px; }
+/* ── SECTIONS ── */
+.section{padding:96px 6%;max-width:1200px;margin:0 auto}
+.section-tag{
+  display:inline-block;
+  color:var(--accent);font-size:0.75rem;font-weight:700;
+  letter-spacing:2px;text-transform:uppercase;margin-bottom:14px;
+}
+.section-title{font-size:clamp(1.9rem,4vw,2.8rem);font-weight:800;letter-spacing:-0.5px;line-height:1.15;}
+.section-title span{color:var(--accent)}
+.section-lead{color:var(--muted);font-size:1.05rem;line-height:1.75;margin-top:16px;max-width:580px;}
 
-  /* SERVICES */
-  .services-grid {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 16px; margin-top: 40px;
-  }
-  .service-card {
-    background: #fff; border-radius: 12px; padding: 20px 24px;
-    display: flex; align-items: center; gap: 14px;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.06); border: 1px solid #f0f0f0;
-    font-weight: 600; font-size: 0.95rem; transition: transform 0.15s, box-shadow 0.15s;
-  }
-  .service-card:hover { transform: translateY(-3px); box-shadow: 0 6px 24px rgba(0,0,0,0.1); }
-  .check {
-    width: 32px; height: 32px; border-radius: 50%;
-    background: color-mix(in srgb, var(--accent) 15%, transparent);
-    color: var(--accent); display: flex; align-items: center; justify-content: center;
-    font-weight: 800; flex-shrink: 0;
-  }
+/* ── SERVICES ── */
+.svc-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:20px;margin-top:48px;
+}
+.svc-card{
+  background:var(--card);border-radius:var(--radius);padding:28px 24px;
+  border:1px solid var(--border);
+  transition:transform 0.2s,box-shadow 0.2s,border-color 0.2s;
+}
+.svc-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,0.09);border-color:var(--accent)}
+.svc-icon{
+  font-size:1.8rem;margin-bottom:14px;
+  display:inline-flex;align-items:center;justify-content:center;
+  width:52px;height:52px;border-radius:12px;
+  background:color-mix(in srgb,var(--accent) 12%,transparent);
+}
+.svc-card h3{font-size:1rem;font-weight:700;margin-bottom:8px;}
+.svc-card p{font-size:0.875rem;color:var(--muted);line-height:1.6;}
 
-  /* WHY US */
-  .why-section { background: var(--primary); border-radius: 24px; padding: 60px; margin: 0 5% 80px; }
-  .why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 32px; margin-top: 36px; }
-  .why-card { text-align: center; color: var(--primary-text); }
-  .why-icon { font-size: 2.2rem; margin-bottom: 12px; }
-  .why-title { font-weight: 700; font-size: 1rem; margin-bottom: 6px; color: #fff; }
-  .why-desc { font-size: 0.875rem; opacity: 0.65; color: #fff; line-height: 1.5; }
-  .why-section h2 { color: #fff; }
-  .why-section .section-label { color: var(--accent); }
+/* ── PROCESS ── */
+.process-section{background:var(--primary);padding:96px 6%;}
+.process-inner{max-width:1200px;margin:0 auto;}
+.process-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:32px;margin-top:56px;
+}
+.step{position:relative;}
+.step-num{
+  font-size:3rem;font-weight:900;
+  color:rgba(255,255,255,0.06);
+  line-height:1;margin-bottom:-8px;
+  font-variant-numeric:tabular-nums;
+}
+.step-icon{
+  font-size:1.6rem;margin-bottom:14px;
+  width:52px;height:52px;border-radius:14px;
+  background:color-mix(in srgb,var(--accent) 20%,transparent);
+  border:1px solid color-mix(in srgb,var(--accent) 35%,transparent);
+  display:flex;align-items:center;justify-content:center;
+}
+.step h3{font-size:1.05rem;font-weight:700;color:#fff;margin-bottom:10px;}
+.step p{font-size:0.875rem;color:rgba(255,255,255,0.55);line-height:1.65;}
+.process-section .section-tag{color:var(--accent);}
+.process-section .section-title{color:#fff;}
 
-  /* CONTACT */
-  .contact-section {
-    background: #fff; border-radius: 24px; padding: 60px;
-    margin: 0 5% 80px; box-shadow: 0 4px 32px rgba(0,0,0,0.07);
-    display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center;
-  }
-  .contact-info h2 { margin-bottom: 20px; }
-  .contact-detail { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 16px; font-size: 0.95rem; color: #444; }
-  .contact-icon { font-size: 1.2rem; flex-shrink: 0; margin-top: 2px; }
-  .cta-btn {
-    display: inline-block; background: var(--accent); color: #fff;
-    padding: 14px 32px; border-radius: 8px; font-size: 1rem; font-weight: 700;
-    text-decoration: none; margin-top: 8px;
-    box-shadow: 0 4px 20px color-mix(in srgb, var(--accent) 40%, transparent);
-    transition: transform 0.15s;
-  }
-  .cta-btn:hover { transform: translateY(-2px); }
-  .cta-btn.no-phone { opacity: 0.7; cursor: default; }
-  .map-link { display: inline-block; margin-top: 12px; color: var(--accent); text-decoration: none; font-weight: 600; font-size: 0.9rem; }
-  .map-link:hover { text-decoration: underline; }
-  .contact-visual {
-    background: linear-gradient(135deg, var(--primary), color-mix(in srgb, var(--primary) 70%, #000));
-    border-radius: 16px; padding: 40px; color: #fff; text-align: center;
-  }
-  .contact-visual .big-icon { font-size: 5rem; margin-bottom: 16px; }
-  .contact-visual p { opacity: 0.75; font-size: 0.95rem; line-height: 1.6; }
+/* ── TESTIMONIALS ── */
+.testi-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:20px;margin-top:48px;
+}
+.testi-card{
+  background:var(--card);border-radius:var(--radius);padding:28px;
+  border:1px solid var(--border);
+}
+.testi-stars{color:var(--accent);letter-spacing:2px;font-size:1.1rem;margin-bottom:14px;}
+.testi-text{font-size:0.95rem;line-height:1.75;color:#374151;margin-bottom:20px;font-style:italic;}
+.testi-author{display:flex;align-items:center;gap:12px;}
+.testi-avatar{
+  width:40px;height:40px;border-radius:50%;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  color:#fff;font-weight:700;font-size:0.85rem;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+.testi-author strong{font-size:0.9rem;display:block;}
+.testi-author span{font-size:0.78rem;color:var(--muted);}
 
-  /* FOOTER */
-  footer {
-    background: #111; color: rgba(255,255,255,0.5);
-    text-align: center; padding: 30px 5%; font-size: 0.85rem;
-  }
-  footer strong { color: rgba(255,255,255,0.8); }
+/* ── CONTACT ── */
+.contact-section{
+  background:linear-gradient(135deg,var(--primary),color-mix(in srgb,var(--primary) 80%,#000));
+  padding:96px 6%;
+}
+.contact-inner{
+  max-width:1100px;margin:0 auto;
+  display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;
+}
+.contact-info .section-title{color:#fff}
+.contact-info .section-tag{color:var(--accent)}
+.contact-lead{color:rgba(255,255,255,0.65);margin:16px 0 32px;font-size:1.05rem;line-height:1.75;}
+.contact-detail{
+  display:flex;align-items:flex-start;gap:14px;
+  background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);
+  border-radius:12px;padding:16px 20px;margin-bottom:14px;color:#fff;
+}
+.contact-detail-icon{font-size:1.3rem;flex-shrink:0;margin-top:1px;}
+.contact-detail-label{font-size:0.72rem;color:rgba(255,255,255,0.5);font-weight:600;text-transform:uppercase;letter-spacing:0.8px;}
+.contact-detail-value{font-size:0.95rem;font-weight:600;margin-top:2px;}
+.contact-btns{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px;}
+.btn-outline{
+  color:#fff;padding:13px 28px;border-radius:10px;font-size:0.9rem;font-weight:600;
+  text-decoration:none;border:2px solid rgba(255,255,255,0.3);
+  transition:border-color 0.2s;display:inline-block;
+}
+.btn-outline:hover{border-color:rgba(255,255,255,0.7)}
+.contact-card{
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.12);
+  border-radius:24px;padding:48px 36px;text-align:center;
+}
+.contact-monogram{
+  width:80px;height:80px;border-radius:20px;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  color:#fff;font-weight:800;font-size:1.8rem;
+  display:flex;align-items:center;justify-content:center;
+  margin:0 auto 20px;letter-spacing:1px;
+}
+.contact-card-name{color:#fff;font-size:1.3rem;font-weight:700;margin-bottom:6px;}
+.contact-card-cat{color:rgba(255,255,255,0.5);font-size:0.85rem;margin-bottom:20px;}
+.contact-card-desc{color:rgba(255,255,255,0.6);font-size:0.875rem;line-height:1.7;}
 
-  @media (max-width: 700px) {
-    .contact-section { grid-template-columns: 1fr; }
-    .why-section, .contact-section { padding: 36px 24px; border-radius: 16px; }
-    .stats-bar { gap: 28px; }
-  }
+/* ── FOOTER ── */
+footer{
+  background:#0a0a0a;padding:32px 6%;
+  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;
+}
+.footer-brand{display:flex;align-items:center;gap:10px;}
+.footer-monogram{
+  width:32px;height:32px;border-radius:8px;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  color:#fff;font-weight:800;font-size:0.75rem;
+  display:flex;align-items:center;justify-content:center;
+}
+.footer-name{color:rgba(255,255,255,0.7);font-size:0.875rem;font-weight:600;}
+.footer-meta{color:rgba(255,255,255,0.35);font-size:0.8rem;}
+
+/* ── ANIMATIONS ── */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity 0.6s ease,transform 0.6s ease;}
+.reveal.visible{opacity:1;transform:none;}
+
+@media(max-width:768px){
+  .contact-inner{grid-template-columns:1fr;gap:40px;}
+  .contact-card{display:none;}
+  .nav-cta{display:none;}
+  .trust-bar{gap:16px;}
+  footer{flex-direction:column;text-align:center;}
+}
 </style>
 </head>
 <body>
 
-<nav>
-  <span class="nav-brand">🚛 High service bv</span>
-  <a href="#contact" class="nav-cta">Get in Touch</a>
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <a href="#" class="nav-logo">
+    <div class="nav-monogram">HS</div>
+    <div>
+      <div class="nav-name">High service bv</div>
+      <span class="nav-cat">Trucking company · Amsterdam</span>
+    </div>
+  </a>
+  <a href="#contact" class="nav-cta">Get a Free Quote</a>
 </nav>
 
+<!-- HERO -->
 <section class="hero">
-  <div class="hero-icon">🚛</div>
-  <div class="hero-badge">Trucking company</div>
-  <h1>High service bv</h1>
-  <p class="hero-tagline">Reliable Transport. On Time. Every Time.</p>
-  
-        <div class="rating-badge">
-            <span class="stars">★★★★★</span>
-            <span class="rating-text">5 / 5 &nbsp;·&nbsp; 1 reviews</span>
+  <div class="hero-glow"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-pill">
+      <span class="hero-pill-dot"></span>
+      🚛 Trucking company · Amsterdam
+    </div>
+    <h1>Reliable Transport.<br><em>On Time. Every Time.</em></h1>
+    <p class="hero-sub">Professional freight and logistics services operating across the Netherlands and Europe. Your cargo, delivered safely and on schedule.</p>
+    <div class="hero-rating">
+          <span class="hero-stars">★★★★★</span>
+          <span>5 out of 5 &nbsp;·&nbsp; 1 reviews on Google</span>
         </div>
-  <div class="hero-actions">
-    <a href="#contact" class="btn-primary">Get a Free Quote</a>
-    <a href="#services" class="btn-secondary">Our Services</a>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">Get a Free Quote</a>
+      <a href="#services" class="btn-ghost">See Our Services</a>
+    </div>
   </div>
 </section>
 
-<div class="stats-bar">
-  <div class="stat"><span class="stat-num">10+</span><span class="stat-label">Years Experience</span></div>
-  <div class="stat"><span class="stat-num">500+</span><span class="stat-label">Projects Completed</span></div>
-  <div class="stat"><span class="stat-num">100%</span><span class="stat-label">Satisfaction Guarantee</span></div>
-  <div class="stat"><span class="stat-num">Amsterdam</span><span class="stat-label">Based & Trusted</span></div>
+<!-- TRUST BAR -->
+<div class="trust-bar">
+  <div class="trust-badge"><span class="trust-check">✓</span>GPS Tracked</div><div class="trust-badge"><span class="trust-check">✓</span>Fully Insured</div><div class="trust-badge"><span class="trust-check">✓</span>EU-Wide Coverage</div><div class="trust-badge"><span class="trust-check">✓</span>Same-day Available</div>
 </div>
 
-<section id="services">
-  <p class="section-label">What We Offer</p>
-  <h2>Our Services</h2>
-  <p class="section-intro">Professional freight and logistics services operating across the Netherlands and Europe.</p>
-  <div class="services-grid">
-    <div class="service-card"><span class="check">✓</span><span>Freight Transport</span></div>
-<div class="service-card"><span class="check">✓</span><span>Same-day Delivery</span></div>
-<div class="service-card"><span class="check">✓</span><span>Pallet &amp; Bulk Loads</span></div>
-<div class="service-card"><span class="check">✓</span><span>Temperature Controlled</span></div>
-<div class="service-card"><span class="check">✓</span><span>Cross-border Logistics</span></div>
-  </div>
-</section>
-
-<div class="why-section">
-  <p class="section-label">Why Choose Us</p>
-  <h2>The High Difference</h2>
-  <div class="why-grid">
-    <div class="why-card">
-      <div class="why-icon">🏆</div>
-      <div class="why-title">Quality First</div>
-      <div class="why-desc">We never cut corners. Every job is done to the highest standard.</div>
-    </div>
-    <div class="why-card">
-      <div class="why-icon">⏱️</div>
-      <div class="why-title">On Time, Every Time</div>
-      <div class="why-desc">We respect your time and always deliver on schedule.</div>
-    </div>
-    <div class="why-card">
-      <div class="why-icon">💬</div>
-      <div class="why-title">Clear Communication</div>
-      <div class="why-desc">No surprises. We keep you informed at every step.</div>
-    </div>
-    <div class="why-card">
-      <div class="why-icon">💰</div>
-      <div class="why-title">Fair Pricing</div>
-      <div class="why-desc">Transparent quotes with no hidden costs. Great value guaranteed.</div>
-    </div>
+<!-- SERVICES -->
+<div class="section reveal" id="services">
+  <p class="section-tag">What We Do</p>
+  <h2 class="section-title">Our <span>Services</span></h2>
+  <p class="section-lead">Professional freight and logistics services operating across the Netherlands and Europe. Your cargo, delivered safely and on schedule.</p>
+  <div class="svc-grid">
+    
+        <div class="svc-card">
+          <div class="svc-icon">📦</div>
+          <h3>Freight Transport</h3>
+          <p>Full and part loads across the Netherlands and Europe.</p>
+        </div>
+        <div class="svc-card">
+          <div class="svc-icon">🏃</div>
+          <h3>Same-day Delivery</h3>
+          <p>Urgent collections and deliveries for time-critical freight.</p>
+        </div>
+        <div class="svc-card">
+          <div class="svc-icon">🎯</div>
+          <h3>Pallet &amp; Bulk Loads</h3>
+          <p>Efficient handling of palletised and bulk cargo.</p>
+        </div>
+        <div class="svc-card">
+          <div class="svc-icon">❄️</div>
+          <h3>Temperature Controlled</h3>
+          <p>Refrigerated transport for sensitive goods.</p>
+        </div>
+        <div class="svc-card">
+          <div class="svc-icon">🌍</div>
+          <h3>Cross-border Logistics</h3>
+          <p>Customs-cleared international transport solutions.</p>
+        </div>
   </div>
 </div>
 
-<section id="contact">
-  <div class="contact-section" style="max-width:100%;margin:0;padding:60px;">
-    <div class="contact-info">
-      <p class="section-label">Get in Touch</p>
-      <h2>Let's Talk About Your Project</h2>
-      <p style="color:#555;line-height:1.7;margin:14px 0 24px;">Ready to get started? Contact us today for a free, no-obligation quote. We'd love to hear from you.</p>
-      <div class='contact-detail'><span class='contact-icon'>📞</span><div><strong>Phone</strong><br>+31 6 41278975</div></div>
-      <div class='contact-detail'><span class='contact-icon'>📍</span><div><strong>Address</strong><br>Zekeringstraat 17a, Amsterdam, Netherlands</div></div>
-      <a href="tel:+31 6 41278975" class="cta-btn">+31 6 41278975</a>
-      <a href="https://www.google.com/maps/search/?api=1&amp;query=High%20service%20bv&amp;query_place_id=ChIJ9SMrnX0JxkcRf7JHuVGFAo0" target="_blank" class="map-link">📍 View on Google Maps</a>
-    </div>
-    <div class="contact-visual">
-      <div class="big-icon">🚛</div>
-      <h3 style="font-size:1.4rem;margin-bottom:10px;">High service bv</h3>
-      <p>Professional freight and logistics services operating across the Netherlands and Europe.</p>
+<!-- PROCESS -->
+<div class="process-section">
+  <div class="process-inner reveal">
+    <p class="section-tag">How It Works</p>
+    <h2 class="section-title" style="color:#fff;">Simple. <span>Straightforward.</span> Sorted.</h2>
+    <div class="process-grid">
+      
+        <div class="step">
+          <div class="step-num">01</div>
+          <div class="step-icon">📞</div>
+          <h3>Book Collection</h3>
+          <p>Call or book online and we&#x27;ll confirm your slot.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">02</div>
+          <div class="step-icon">📋</div>
+          <h3>Collection &amp; Manifest</h3>
+          <p>We collect on time with full documentation.</p>
+        </div>
+        <div class="step">
+          <div class="step-num">03</div>
+          <div class="step-icon">🚛</div>
+          <h3>Tracked Delivery</h3>
+          <p>Real-time tracking until your freight reaches its destination.</p>
+        </div>
     </div>
   </div>
-</section>
+</div>
 
+<!-- TESTIMONIALS -->
+<div class="section reveal">
+  <p class="section-tag">What Clients Say</p>
+  <h2 class="section-title">Trusted by <span>Amsterdam</span></h2>
+  <p class="section-lead">Don't just take our word for it — here's what our customers say about working with us.</p>
+  <div class="testi-grid">
+    
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-text">"Consistently on time and always professional. Our top carrier."</p>
+          <div class="testi-author">
+            <div class="testi-avatar">LM</div>
+            <div><strong>Logistics Manager</strong><br><span>Amsterdam</span></div>
+          </div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-text">"Handled our urgent cross-border delivery perfectly. Very impressed."</p>
+          <div class="testi-author">
+            <div class="testi-avatar">OD</div>
+            <div><strong>Operations Director</strong><br><span>Rotterdam</span></div>
+          </div>
+        </div>
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-text">"Reliable, careful and great communication throughout."</p>
+          <div class="testi-author">
+            <div class="testi-avatar">WM</div>
+            <div><strong>Warehouse Manager</strong><br><span>Noord</span></div>
+          </div>
+        </div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<div class="contact-section" id="contact">
+  <div class="contact-inner">
+    <div class="contact-info reveal">
+      <p class="section-tag">Get in Touch</p>
+      <h2 class="section-title">Ready to Get<br><span>Started?</span></h2>
+      <p class="contact-lead">Contact us today for a free, no-obligation quote. We typically respond within a few hours.</p>
+      <div class='contact-detail'><div class='contact-detail-icon'>📞</div><div><div class='contact-detail-label'>Phone</div><div class='contact-detail-value'>+31 6 41278975</div></div></div>
+      <div class='contact-detail'><div class='contact-detail-icon'>📍</div><div><div class='contact-detail-label'>Address</div><div class='contact-detail-value'>Zekeringstraat 17a, Amsterdam, Netherlands</div></div></div>
+      <div class="contact-btns">
+        <a href="tel:+31 6 41278975" class="btn-primary">📞 +31 6 41278975</a>
+        <a href="https://www.google.com/maps/search/?api=1&amp;query=High%20service%20bv&amp;query_place_id=ChIJ9SMrnX0JxkcRf7JHuVGFAo0" target="_blank" class="btn-outline">📍 View on Google Maps</a>
+      </div>
+    </div>
+    <div class="contact-card reveal">
+      <div class="contact-monogram">HS</div>
+      <div class="contact-card-name">High service bv</div>
+      <div class="contact-card-cat">Trucking company · Amsterdam</div>
+      <div class="contact-card-desc">Professional freight and logistics services operating across the Netherlands and Europe. Your cargo, delivered safely and on schedule.</div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
 <footer>
-  <strong>High service bv</strong> &nbsp;·&nbsp; Amsterdam, Netherlands &nbsp;·&nbsp;
-  Trucking company &nbsp;·&nbsp; © 2025
+  <div class="footer-brand">
+    <div class="footer-monogram">HS</div>
+    <span class="footer-name">High service bv</span>
+  </div>
+  <span class="footer-meta">Trucking company · Amsterdam, Netherlands · © 2025</span>
 </footer>
+
+<script>
+// Nav scroll shadow
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 20), {passive:true});
+
+// Scroll reveal
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+}, {threshold:0.12});
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
 
 </body>
 </html>
