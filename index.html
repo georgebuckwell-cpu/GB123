@@ -117,6 +117,15 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:998;op
 @keyframes floaty{0%,100%{transform:translateY(0) rotate(-3deg)}50%{transform:translateY(-18px) rotate(3deg)}}
 @media(max-width:1180px){.fi5,.fi6{display:none}}
 @media(max-width:1080px){.hero-floats{display:none}}
+/* FIXED TOP-LEFT BRAND */
+.brand-fixed{position:fixed;top:20px;left:24px;z-index:450;display:flex;align-items:center;gap:11px;padding:8px 18px 8px 8px;border-radius:100px;background:rgba(5,10,10,.55);backdrop-filter:blur(20px) saturate(160%);-webkit-backdrop-filter:blur(20px) saturate(160%);border:1px solid var(--hr-m);box-shadow:0 8px 30px rgba(0,0,0,.4);transition:background .3s,border-color .3s,transform .3s}
+.brand-fixed:hover{border-color:var(--hr-s);background:rgba(5,10,10,.72);transform:translateY(-1px)}
+.brand-fixed .bm{width:34px;height:34px;border-radius:9px;background:var(--teal);display:flex;align-items:center;justify-content:center;box-shadow:0 0 18px rgba(43,142,142,.4)}
+.brand-fixed .bm .vsmark{width:21px;height:21px}
+.brand-fixed .bw{font-size:.78rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--ink)}
+@media(max-width:1360px){.brand-fixed{display:none}}
+/* HERO BACKGROUND PHOTO */
+.hero-photo{position:absolute;inset:0;z-index:0;background-image:url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1600&q=80');background-size:cover;background-position:center;opacity:.2;filter:saturate(.85) brightness(.95);mask-image:radial-gradient(ellipse 100% 90% at 50% 30%,#000 30%,transparent 85%);-webkit-mask-image:radial-gradient(ellipse 100% 90% at 50% 30%,#000 30%,transparent 85%)}
 .hero-eyebrow{display:inline-flex;align-items:center;gap:10px;border:1px solid var(--hr-m);border-radius:100px;padding:7px 16px 7px 10px;background:rgba(43,142,142,.07);font-size:.68rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--teal-l);margin-bottom:2.5rem;position:relative;z-index:2;overflow:hidden}
 .hero-eyebrow::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(43,142,142,.12) 50%,transparent);transform:translateX(-100%);animation:sh 4s ease-in-out infinite}
 @keyframes sh{0%{transform:translateX(-100%)}60%,100%{transform:translateX(100%)}}
@@ -190,7 +199,7 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:998;op
 .bento-img{position:absolute;inset:0;z-index:0;overflow:hidden}
 .bento-img img{width:100%;height:100%;object-fit:cover;filter:saturate(.8) brightness(.5);transition:transform .7s var(--ease),filter .7s}
 .card-shell:hover .bento-img img{transform:scale(1.06);filter:saturate(1) brightness(.6)}
-.bento-img::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,10,10,.35) 0%,rgba(5,10,10,.82) 100%)}
+.bento-img::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,10,10,.5) 0%,rgba(5,10,10,.66) 40%,rgba(5,10,10,.88) 100%)}
 .has-img .card-inner{background:var(--s2)}
 .has-img .card-inner>*:not(.bento-img){position:relative;z-index:2}
 .card-ico{width:44px;height:44px;border-radius:12px;background:rgba(43,142,142,.1);border:1px solid var(--hr-m);display:flex;align-items:center;justify-content:center;color:var(--teal);margin-bottom:1.25rem;transition:background .2s,box-shadow .2s,transform .22s var(--spring)}
@@ -407,6 +416,11 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:998;op
 <div id="load" aria-hidden="true"><div class="lm"><svg class="vsmark"><use href="#vs-mark"/></svg></div><div class="lb"></div></div>
 
 <!-- NAV -->
+<a class="brand-fixed" href="#main" aria-label="Vela Sync — home">
+  <span class="bm" aria-hidden="true"><svg class="vsmark"><use href="#vs-mark"/></svg></span>
+  <span class="bw">Vela Sync</span>
+</a>
+
 <div class="nav-wrap" id="nwrap">
   <nav class="nav" aria-label="Main navigation">
     <div class="nav-logo">
@@ -455,6 +469,7 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:998;op
 
 <!-- HERO -->
 <section class="hero" aria-labelledby="h1">
+  <div class="hero-photo" aria-hidden="true"></div>
   <div class="hero-bg" aria-hidden="true"></div>
   <div class="hero-grid" aria-hidden="true"></div>
   <div class="hero-floats" aria-hidden="true">
@@ -521,7 +536,7 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:998;op
       <h3 data-i18n="why.a.h">Live in 24 hours — with continued support on changes</h3>
       <p data-i18n="why.a.p">Fast, efficient delivery from brief to live. Your site goes live within 24 hours, with our team on hand for ongoing changes and updates — no waiting weeks, no disappearing after handover.</p>
     </div></div>
-    <div class="card-shell bc-b"><div class="card-inner">
+    <div class="card-shell bc-b has-img"><div class="card-inner"><div class="bento-img" aria-hidden="true"><img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=900&q=80" alt="" loading="lazy" width="900" height="600"></div>
       <div class="card-ico" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg></div>
       <h3 data-i18n="why.b.h">Award-winning team</h3>
       <p data-i18n="why.b.p">Multiple industry awards. Enterprise pedigree on your side.</p>
@@ -532,17 +547,17 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:998;op
       <h3 data-i18n="why.c.h">We drive traffic</h3>
       <p data-i18n="why.c.p">Our platform has handled up to 250,000 simultaneous users. We apply that same growth engineering to your business — turning your new site into a client acquisition engine from day one.</p>
     </div></div>
-    <div class="card-shell bc-d"><div class="card-inner">
+    <div class="card-shell bc-d has-img"><div class="card-inner"><div class="bento-img" aria-hidden="true"><img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=900&q=80" alt="" loading="lazy" width="900" height="600"></div>
       <div class="card-ico" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
       <h3 data-i18n="why.d.h">Proven in regulated sectors</h3>
       <p data-i18n="why.d.p">Private healthcare and workforce solutions. Right first time.</p>
     </div></div>
-    <div class="card-shell bc-e"><div class="card-inner">
+    <div class="card-shell bc-e has-img"><div class="card-inner"><div class="bento-img" aria-hidden="true"><img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=900&q=80" alt="" loading="lazy" width="900" height="600"></div>
       <div class="card-ico" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="2" x2="9" y2="4"/><line x1="15" y1="2" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="22"/><line x1="15" y1="20" x2="15" y2="22"/><line x1="2" y1="9" x2="4" y2="9"/><line x1="2" y1="15" x2="4" y2="15"/><line x1="20" y1="9" x2="22" y2="9"/><line x1="20" y1="15" x2="22" y2="15"/></svg></div>
       <h3 data-i18n="why.e.h">ML-backed strategy</h3>
       <p data-i18n="why.e.p">Our CEO holds highly advanced qualifications in Machine Learning. Growth engineered with data.</p>
     </div></div>
-    <div class="card-shell bc-f"><div class="card-inner">
+    <div class="card-shell bc-f has-img"><div class="card-inner"><div class="bento-img" aria-hidden="true"><img src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=900&q=80" alt="" loading="lazy" width="900" height="600"></div>
       <div class="card-ico" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
       <h3 data-i18n="why.f.h">Starter site included</h3>
       <p data-i18n="why.f.p">Every prospect sees their site before they sign. Zero barriers to yes.</p>
