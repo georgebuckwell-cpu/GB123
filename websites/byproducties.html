@@ -25,18 +25,27 @@ body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--t
 .nav-cta:hover{opacity:.88;transform:translateY(-1px)}
 
 /* HERO */
-.hero{min-height:100vh;background:#0c0a09;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:100px 5% 80px;position:relative;overflow:hidden}
+.hero{min-height:100vh;background:var(--p);display:flex;flex-direction:column;justify-content:center;padding:100px 5% 80px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 70% at 75% 50%,color-mix(in srgb,var(--a) 15%,transparent),transparent 70%);pointer-events:none}
 .hero-noise{position:absolute;inset:0;pointer-events:none;opacity:.03;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:200px}
-.hero-content{position:relative;max-width:820px}
+.hero-inner{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;max-width:1160px;margin:0 auto;width:100%;position:relative}
+.hero-content{text-align:left}
+.hero-illustration{display:flex;align-items:center;justify-content:center}
+.hero-illustration svg{filter:drop-shadow(0 20px 60px rgba(0,0,0,0.3))}
 .hero-pill{display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);border-radius:999px;padding:6px 18px;font-size:.75rem;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:rgba(255,255,255,.9);margin-bottom:28px;backdrop-filter:blur(8px)}
 .pill-dot{width:7px;height:7px;border-radius:50%;background:var(--a);animation:pulse 2s infinite}
 @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)}}
-.hero h1{font-size:clamp(2.8rem,6.5vw,4.8rem);font-weight:900;color:#fff;line-height:1.02;letter-spacing:-2px;margin-bottom:10px;text-shadow:0 2px 20px rgba(0,0,0,.3)}
+.hero h1{font-size:clamp(2.4rem,5.5vw,4.2rem);font-weight:900;color:#fff;line-height:1.02;letter-spacing:-2px;margin-bottom:10px;text-shadow:0 2px 20px rgba(0,0,0,.3)}
 .hero h1 em{font-style:normal;color:var(--a);}
-.hero-sub{font-size:clamp(.95rem,2vw,1.2rem);color:rgba(255,255,255,.68);max-width:560px;margin:0 auto 32px;font-weight:400;line-height:1.75}
+.hero-sub{font-size:clamp(.9rem,1.8vw,1.1rem);color:rgba(255,255,255,.68);max-width:500px;margin:0 0 32px;font-weight:400;line-height:1.75}
 .hero-rating{display:inline-flex;align-items:center;gap:10px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);border-radius:999px;padding:8px 20px;color:rgba(255,255,255,.85);font-size:.85rem;margin-bottom:30px;backdrop-filter:blur(8px)}
 .hero-stars{color:var(--a);letter-spacing:2px}
-.hero-btns{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap;justify-content:flex-start}
+/* NUMBERS */
+.numbers-section{background:var(--a);padding:56px 0}
+.numbers-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;text-align:center}
+.number-val{font-size:clamp(1.8rem,4vw,2.8rem);font-weight:900;color:#fff;line-height:1}
+.number-label{font-size:.75rem;color:rgba(255,255,255,.75);font-weight:600;margin-top:6px;text-transform:uppercase;letter-spacing:1px}
 .btn-primary{background:linear-gradient(135deg,var(--a),var(--a2));color:#fff;padding:15px 36px;border-radius:10px;font-size:1rem;font-weight:700;text-decoration:none;border:none;cursor:pointer;box-shadow:0 4px 24px color-mix(in srgb,var(--a) 45%,transparent);transition:transform .15s,box-shadow .15s;display:inline-block}
 .btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 36px color-mix(in srgb,var(--a) 55%,transparent)}
 .btn-ghost{color:#fff;padding:15px 36px;border-radius:10px;font-size:1rem;font-weight:600;text-decoration:none;border:2px solid rgba(255,255,255,.3);transition:border-color .2s,background .2s;display:inline-block}
@@ -59,14 +68,7 @@ body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--t
 .svc-card h3{font-size:.95rem;font-weight:700;margin-bottom:8px;line-height:1.3}
 .svc-card p{font-size:.85rem;color:var(--sub);line-height:1.6}
 
-/* GALLERY */
-.gallery-section{background:var(--p);padding:96px 0}
-.gallery-inner{max-width:1160px;margin:0 auto;padding:0 5%}
-.gallery-section .section-tag{color:var(--a)}
-.gallery-section .section-title{color:#fff}
-.gal-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:48px}
-.gal-card{border-radius:var(--r);background-size:cover;background-position:center;aspect-ratio:4/3;transition:transform .25s,box-shadow .25s;overflow:hidden}
-.gal-card:hover{transform:scale(1.02);box-shadow:0 20px 50px rgba(0,0,0,.3)}
+
 
 /* PROCESS */
 .process-section{padding:96px 0;background:var(--p)}
@@ -132,7 +134,9 @@ footer{background:#0a0a0a;padding:28px 5%;display:flex;align-items:center;justif
 @media(max-width:768px){
   .contact-grid{grid-template-columns:1fr}
   .contact-card{display:none}
-  .gal-grid{grid-template-columns:1fr}
+  .hero-inner{grid-template-columns:1fr}
+  .hero-illustration{display:none}
+  .numbers-grid{grid-template-columns:repeat(2,1fr)}
   .nav-cta{padding:8px 14px;font-size:.8rem}
   footer{flex-direction:column;text-align:center}
 }
@@ -148,19 +152,36 @@ footer{background:#0a0a0a;padding:28px 5%;display:flex;align-items:center;justif
       <span class="nav-cat">Photography studio · Amsterdam</span>
     </div>
   </a>
-  <a href="#contact" class="nav-cta">Free Quote →</a>
+  <a href="#contact" class="nav-cta">Gratis Offerte →</a>
 </nav>
 
 <section class="hero">
   <div class="hero-noise"></div>
-  <div class="hero-content">
-    <div class="hero-pill"><span class="pill-dot"></span>📸 Photography studio · Amsterdam</div>
-    <h1>Creative Photography<br><em>Studio in Amsterdam</em></h1>
-    <p class="hero-sub">A fully equipped, professionally lit studio for portraits, fashion, products and creative projects. Everything you need to create stunning imagery.</p>
-    
-    <div class="hero-btns">
-      <a href="tel:+31 6 51193533" class="btn-primary">📞 Call Us</a>
-      <a href="#services" class="btn-ghost">See Our Services</a>
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-pill"><span class="pill-dot"></span>📸 Photography studio · Amsterdam</div>
+      <h1>Creative Photography<br><em>Studio in Amsterdam</em></h1>
+      <p class="hero-sub">A fully equipped, professionally lit studio for portraits, fashion, products and creative projects. Everything you need to create stunning imagery.</p>
+      
+      <div class="hero-btns">
+        <a href="tel:+31 6 51193533" class="btn-primary">📞 Bel Ons</a>
+        <a href="#services" class="btn-ghost">Onze Diensten</a>
+      </div>
+    </div>
+    <div class="hero-illustration">
+      <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+  <rect x="60" y="100" width="280" height="170" fill="rgba(255,255,255,0.12)" rx="16"/>
+  <rect x="130" y="70" width="100" height="40" fill="rgba(255,255,255,0.12)" rx="10"/>
+  <circle cx="145" cy="70" r="14" fill="#d97706" opacity="0.8"/>
+  <circle cx="200" cy="188" r="72" fill="rgba(0,0,0,0.25)"/>
+  <circle cx="200" cy="188" r="72" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="10"/>
+  <circle cx="200" cy="188" r="52" fill="rgba(0,0,0,0.3)"/>
+  <circle cx="200" cy="188" r="52" fill="none" stroke="#d97706" stroke-width="3" opacity="0.6"/>
+  <circle cx="200" cy="188" r="32" fill="rgba(0,0,0,0.4)"/>
+  <circle cx="185" cy="174" r="10" fill="rgba(255,255,255,0.12)"/>
+  <rect x="310" y="110" width="24" height="16" fill="#d97706" rx="4" opacity="0.7"/>
+  <circle cx="100" cy="118" r="16" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.2)" stroke-width="2"/>
+</svg>
     </div>
   </div>
 </section>
@@ -169,28 +190,38 @@ footer{background:#0a0a0a;padding:28px 5%;display:flex;align-items:center;justif
 
 <div class="services-section">
   <div class="wrap reveal">
-    <p class="section-tag">What We Do</p>
-    <h2 class="section-title">Our <span>Services</span></h2>
+    <p class="section-tag">Wat Wij Doen</p>
+    <h2 class="section-title">Onze <span>Diensten</span></h2>
     <p class="section-lead">A fully equipped, professionally lit studio for portraits, fashion, products and creative projects. Everything you need to create stunning imagery.</p>
     <div class="svc-grid" id="services"><div class="svc-card"><div class="svc-icon">🏢</div><h3>Studio Hire</h3><p>Hire our fully equipped studio by the hour or day.</p></div><div class="svc-card"><div class="svc-icon">👤</div><h3>Portrait Sessions</h3><p>Relaxed, flattering portrait photography for everyone.</p></div><div class="svc-card"><div class="svc-icon">👗</div><h3>Fashion &amp; Editorial</h3><p>High-end fashion and editorial photography.</p></div><div class="svc-card"><div class="svc-icon">📦</div><h3>Product Photography</h3><p>Clean, commercial product images for every platform.</p></div><div class="svc-card"><div class="svc-icon">🎬</div><h3>Video Shoots</h3><p>Professional video production in our versatile studio space.</p></div></div>
   </div>
 </div>
 
 
+<div class="numbers-section">
+  <div class="wrap">
+    <div class="numbers-grid">
+      <div class="number-card"><div class="number-val">10+</div><div class="number-label">Jaar Ervaring</div></div>
+      <div class="number-card"><div class="number-val">500+</div><div class="number-label">Projecten Voltooid</div></div>
+      <div class="number-card"><div class="number-val">100%</div><div class="number-label">Klanttevredenheid</div></div>
+      <div class="number-card"><div class="number-val">Amsterdam</div><div class="number-label">Gevestigd &amp; Vertrouwd</div></div>
+    </div>
+  </div>
+</div>
 
 <div class="process-section">
   <div class="wrap reveal">
-    <p class="section-tag">How It Works</p>
-    <h2 class="section-title">Simple. <span>Straightforward.</span> Sorted.</h2>
+    <p class="section-tag">Hoe Het Werkt</p>
+    <h2 class="section-title">Eenvoudig. <span>Transparant.</span> Geregeld.</h2>
     <div class="process-grid"><div class="step"><div class="step-num">01</div><div class="step-icon">📅</div><h3>Book Your Session</h3><p>Choose your date and session type — we&#x27;ll handle the rest.</p></div><div class="step"><div class="step-num">02</div><div class="step-icon">💡</div><h3>Studio Setup</h3><p>We prep the lighting, backdrops and equipment for your vision.</p></div><div class="step"><div class="step-num">03</div><div class="step-icon">🖼️</div><h3>Delivered &amp; Edited</h3><p>Professionally edited images delivered within 5 working days.</p></div></div>
   </div>
 </div>
 
 <div class="testi-section">
   <div class="wrap reveal">
-    <p class="section-tag">Client Reviews</p>
-    <h2 class="section-title">Trusted by <span>Amsterdam</span></h2>
-    <p class="section-lead">Don't just take our word for it — here's what our customers say.</p>
+    <p class="section-tag">Klantbeoordelingen</p>
+    <h2 class="section-title">Vertrouwd door <span>Amsterdam</span></h2>
+    <p class="section-lead">Niet alleen ons woord — dit zeggen onze klanten.</p>
     <div class="testi-grid"><div class="testi-card"><div class="testi-stars">★★★★★</div><p class="testi-text">"The best studio in Amsterdam. Perfect light, great team."</p><div class="testi-author"><div class="testi-avatar">ZM</div><div><strong>Zara M.</strong><span>Fashion brand</span></div></div></div><div class="testi-card"><div class="testi-stars">★★★★★</div><p class="testi-text">"Our product photos are transformed. Sales up 40% since the shoot."</p><div class="testi-author"><div class="testi-avatar">TH</div><div><strong>Tim H.</strong><span>E-commerce</span></div></div></div><div class="testi-card"><div class="testi-stars">★★★★★</div><p class="testi-text">"So professional and the results are stunning every time."</p><div class="testi-author"><div class="testi-avatar">NP</div><div><strong>Nina P.</strong><span>Model</span></div></div></div></div>
   </div>
 </div>
@@ -199,11 +230,11 @@ footer{background:#0a0a0a;padding:28px 5%;display:flex;align-items:center;justif
   <div class="wrap">
     <div class="contact-grid">
       <div class="reveal">
-        <p class="section-tag">Get in Touch</p>
-        <h2 class="section-title">Ready to Get<br><span>Started?</span></h2>
-        <p class="contact-lead">Contact us today for a free, no-obligation quote. We typically respond within a few hours.</p>
-        <div class='cdetail'><div class='cdetail-icon'>📞</div><div><div class='cdetail-label'>Phone</div><div class='cdetail-val'>+31 6 51193533</div></div></div><div class='cdetail'><div class='cdetail-icon'>📍</div><div><div class='cdetail-label'>Address</div><div class='cdetail-val'>Amsterdam, Netherlands</div></div></div>
-        <div class="contact-btns"><a href="tel:+31 6 51193533" class="btn-primary">📞 Call Us</a><a href="https://www.google.com/maps/search/?api=1&amp;query=BYproducties&amp;query_place_id=ChIJ_cpmHqIPxkcRe56kewDUNOQ" target="_blank" class="btn-outline">📍 View on Maps</a></div>
+        <p class="section-tag">Neem Contact Op</p>
+        <h2 class="section-title">Klaar om te<br><span>Beginnen?</span></h2>
+        <p class="contact-lead">Neem vandaag contact op voor een vrijblijvende offerte. Wij reageren doorgaans binnen enkele uren.</p>
+        <div class='cdetail'><div class='cdetail-icon'>📞</div><div><div class='cdetail-label'>Telefoon</div><div class='cdetail-val'>+31 6 51193533</div></div></div><div class='cdetail'><div class='cdetail-icon'>📍</div><div><div class='cdetail-label'>Adres</div><div class='cdetail-val'>Amsterdam, Netherlands</div></div></div>
+        <div class="contact-btns"><a href="tel:+31 6 51193533" class="btn-primary">📞 Bel Ons</a><a href="https://www.google.com/maps/search/?api=1&amp;query=BYproducties&amp;query_place_id=ChIJ_cpmHqIPxkcRe56kewDUNOQ" target="_blank" class="btn-outline">📍 Bekijk op Maps</a></div>
       </div>
       <div class="contact-card reveal">
         <div class="card-mono">BY</div>
