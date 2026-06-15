@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vela Sync — Full Process Flow</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300&display=swap" rel="stylesheet">
+<style>
+:root {
+  --teal:#2B8E8E; --teal-l:#3aaeae; --teal-ll:#5fd0d0;
+  --teal-g:rgba(43,142,142,.14); --teal-gs:rgba(43,142,142,.06);
+  --bg:#050a0a; --s0:#0a1212; --s1:#0f1a1a; --s2:#152222; --s3:#1c2e2e;
+  --ink:#eef7f7; --ink-2:rgba(238,247,247,.6); --ink-3:rgba(238,247,247,.32); --ink-4:rgba(238,247,247,.14);
+  --hr:rgba(43,142,142,.12); --hr-m:rgba(43,142,142,.25); --hr-s:rgba(43,142,142,.5);
+  --red:rgba(239,68,68,1); --red-g:rgba(239,68,68,.1); --red-b:rgba(239,68,68,.25);
+  --amber:#f59e0b; --amber-g:rgba(245,158,11,.1); --amber-b:rgba(245,158,11,.25);
+  --green:#22c55e; --green-g:rgba(34,197,94,.1); --green-b:rgba(34,197,94,.25);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;scroll-behavior:smooth}
+body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%}
+
+/* ── COVER ─────────────────────────────────────────── */
+.cover{
+  min-height:100vh;position:relative;overflow:hidden;
+  display:flex;flex-direction:column;justify-content:center;align-items:flex-start;
+  padding:80px clamp(1.5rem,6vw,5rem);
+}
+.cover-bg{
+  position:absolute;inset:0;
+  background-image:url('https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=1600&q=85');
+  background-size:cover;background-position:center 40%;
+  filter:brightness(.5) saturate(.75);
+}
+.cover-overlay{
+  position:absolute;inset:0;
+  background:
+    linear-gradient(90deg,rgba(5,10,10,.97) 0%,rgba(5,10,10,.75) 55%,rgba(5,10,10,.1) 100%),
+    radial-gradient(ellipse 80% 100% at 0% 50%,rgba(43,142,142,.18) 0%,transparent 60%);
+}
+.cover-grid{
+  position:absolute;inset:0;pointer-events:none;
+  background-image:linear-gradient(rgba(43,142,142,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(43,142,142,.025) 1px,transparent 1px);
+  background-size:72px 72px;
+}
+.cover-content{position:relative;z-index:2;max-width:680px}
+.cover-logo{display:flex;align-items:center;gap:12px;margin-bottom:3rem}
+.lm{width:46px;height:46px;background:var(--teal);border-radius:13px;display:flex;align-items:center;justify-content:center;box-shadow:0 0 28px rgba(43,142,142,.45)}
+.lm span{font-size:.72rem;font-weight:900;color:#fff;letter-spacing:-.5px}
+.lname{font-size:.8rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--ink);opacity:.9}
+.cover-eyebrow{
+  display:inline-flex;align-items:center;gap:10px;
+  border:1px solid var(--hr-m);border-radius:100px;
+  padding:7px 18px 7px 12px;background:rgba(43,142,142,.08);
+  font-size:.65rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--teal-l);
+  margin-bottom:2rem;
+}
+.edot{width:7px;height:7px;border-radius:50%;background:var(--teal-l);box-shadow:0 0 10px rgba(43,142,142,.8)}
+.cover h1{font-size:clamp(2.8rem,6vw,5.5rem);font-weight:800;letter-spacing:-3px;line-height:.95;margin-bottom:1.5rem}
+.grd{background:linear-gradient(125deg,#d8f5f5 5%,var(--teal-l) 45%,var(--teal-ll) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.cover-sub{font-size:1rem;color:var(--ink-2);line-height:1.85;max-width:480px;margin-bottom:3rem;font-weight:300}
+.cover-stats{display:flex;gap:2.5rem;flex-wrap:wrap}
+.cs{display:flex;flex-direction:column;gap:3px}
+.cs-val{font-size:2rem;font-weight:800;letter-spacing:-1.5px;color:var(--teal-l);line-height:1}
+.cs-lbl{font-size:.65rem;text-transform:uppercase;letter-spacing:1px;color:var(--ink-3);font-weight:600}
+.cdiv{width:1px;height:36px;background:var(--hr-m);align-self:center}
+
+/* ── STAGE HEADER ──────────────────────────────────── */
+.stage-header{
+  position:relative;overflow:hidden;
+  background:var(--s0);
+  padding:clamp(2.5rem,5vw,4rem) clamp(1.5rem,6vw,5rem);
+  border-top:1px solid var(--hr);border-bottom:1px solid var(--hr);
+}
+.stage-header::before{
+  content:'';position:absolute;left:0;top:0;bottom:0;width:4px;
+  background:linear-gradient(180deg,var(--teal),var(--teal-ll));
+}
+.sh-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:auto 1fr;gap:2rem;align-items:center}
+.sh-num{
+  font-size:clamp(5rem,10vw,9rem);font-weight:800;letter-spacing:-6px;
+  color:rgba(43,142,142,.1);line-height:1;flex-shrink:0;
+  transition:color .3s;
+}
+.sh-text .overtag{
+  display:inline-flex;align-items:center;gap:8px;
+  border:1px solid var(--hr-m);border-radius:100px;
+  padding:4px 14px;background:var(--teal-gs);
+  font-size:.6rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--teal-l);
+  margin-bottom:.9rem;
+}
+.sh-text h2{font-size:clamp(1.8rem,3.5vw,3rem);font-weight:800;letter-spacing:-1.5px;line-height:1.05;margin-bottom:.6rem}
+.sh-text p{font-size:.9rem;color:var(--ink-2);max-width:620px;line-height:1.8}
+@media(max-width:640px){.sh-inner{grid-template-columns:1fr}.sh-num{display:none}}
+
+/* ── SECTION BODY ──────────────────────────────────── */
+.sec-body{max-width:1100px;margin:0 auto;padding:clamp(2.5rem,5vw,4rem) clamp(1.5rem,6vw,5rem)}
+
+/* ── FLOW CONNECTOR ────────────────────────────────── */
+.flow-connector{
+  display:flex;flex-direction:column;align-items:center;
+  padding:2rem 0;position:relative;z-index:1;
+}
+.fc-line{width:1.5px;height:60px;background:linear-gradient(180deg,var(--hr-s),var(--hr));flex-shrink:0}
+.fc-pill{
+  display:flex;align-items:center;gap:8px;
+  background:var(--s2);border:1px solid var(--hr-m);
+  border-radius:100px;padding:6px 18px;
+  font-size:.62rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--teal-l);
+  margin:0;
+}
+.fc-line-2{width:1.5px;height:60px;background:linear-gradient(180deg,var(--hr),var(--hr-s));flex-shrink:0}
+
+/* ── CARD GRID ─────────────────────────────────────── */
+.card-grid{display:grid;gap:1.25rem}
+.card-grid.cols-2{grid-template-columns:repeat(2,1fr)}
+.card-grid.cols-3{grid-template-columns:repeat(3,1fr)}
+.card-grid.cols-4{grid-template-columns:repeat(4,1fr)}
+@media(max-width:900px){.card-grid.cols-4{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:760px){.card-grid.cols-2,.card-grid.cols-3,.card-grid.cols-4{grid-template-columns:1fr}}
+
+/* ── BASE CARD ─────────────────────────────────────── */
+.card{
+  border-radius:20px;background:rgba(255,255,255,.025);
+  border:1px solid var(--hr);padding:1.5px;
+  transition:border-color .3s,transform .3s;
+}
+.card:hover{border-color:var(--hr-m);transform:translateY(-3px)}
+.card-in{border-radius:calc(20px - 1.5px);background:var(--s1);padding:1.75rem;height:100%;position:relative;overflow:hidden;box-shadow:inset 0 1px 0 rgba(255,255,255,.04)}
+.card.accent{border-color:var(--hr-m)}
+.card.accent .card-in{background:var(--s2)}
+.card-ico{
+  width:42px;height:42px;border-radius:11px;
+  background:rgba(43,142,142,.09);border:1px solid var(--hr-m);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--teal);margin-bottom:1.25rem;font-size:1.1rem;
+  transition:background .2s,transform .2s;
+}
+.card:hover .card-ico{background:rgba(43,142,142,.17);transform:scale(1.07)}
+.card-num-bg{
+  position:absolute;top:.75rem;right:1rem;
+  font-size:3.5rem;font-weight:800;letter-spacing:-2px;
+  color:rgba(43,142,142,.07);line-height:1;
+  transition:color .3s;pointer-events:none;
+}
+.card:hover .card-num-bg{color:rgba(43,142,142,.13)}
+.card h3{font-size:.95rem;font-weight:700;color:var(--ink);margin-bottom:.5rem;line-height:1.4}
+.card p,.card-body{font-size:.845rem;color:var(--ink-2);line-height:1.8}
+.card-tag{
+  display:inline-block;
+  background:var(--teal-gs);border:1px solid var(--hr-m);
+  color:var(--teal-l);font-size:.58rem;font-weight:700;
+  letter-spacing:1.5px;text-transform:uppercase;
+  padding:3px 10px;border-radius:100px;margin-bottom:.75rem;
+}
+
+/* ── QUESTION CARD ─────────────────────────────────── */
+.q-card{
+  border-radius:18px;background:rgba(255,255,255,.02);
+  border:1px solid var(--hr);border-left:3px solid var(--teal);
+  padding:1.4rem 1.6rem;
+  transition:border-color .25s,transform .25s;
+}
+.q-card:hover{border-color:var(--hr-m);border-left-color:var(--teal-l);transform:translateX(4px)}
+.q-label{font-size:.58rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--teal);margin-bottom:.5rem}
+.q-text{font-size:.95rem;font-weight:700;color:var(--ink);margin-bottom:.5rem;font-style:italic;line-height:1.5}
+.q-why{font-size:.8rem;color:var(--ink-3);line-height:1.7}
+
+/* ── SCRIPT BLOCK ──────────────────────────────────── */
+.script{
+  background:rgba(43,142,142,.06);border:1px solid rgba(43,142,142,.2);
+  border-radius:14px;padding:1.25rem 1.5rem;
+  font-size:.875rem;color:var(--ink-2);line-height:1.85;font-style:italic;
+  position:relative;overflow:hidden;
+}
+.script::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(180deg,var(--teal),var(--teal-ll))}
+.script strong{color:var(--ink);font-style:normal}
+.script-label{font-size:.58rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--teal);margin-bottom:.6rem;display:block}
+
+/* ── OBJECTION CARD ────────────────────────────────── */
+.obj{
+  border-radius:18px;background:rgba(255,255,255,.02);
+  border:1px solid var(--hr);padding:1.4rem 1.6rem;
+  transition:border-color .25s,transform .25s;
+}
+.obj:hover{border-color:var(--hr-m);transform:translateY(-3px)}
+.obj-q{font-size:.82rem;font-weight:700;color:var(--ink-3);margin-bottom:.65rem;display:flex;align-items:flex-start;gap:.5rem}
+.obj-q::before{content:'"';color:var(--teal);font-size:1.2rem;line-height:1;flex-shrink:0;margin-top:-2px}
+.obj-a{font-size:.83rem;color:var(--ink-2);line-height:1.75}
+.obj-a em{color:var(--teal-l);font-style:normal;font-weight:700}
+
+/* ── CLOSE CARD ────────────────────────────────────── */
+.close-card{
+  border-radius:20px;padding:1.5px;
+  background:rgba(255,255,255,.025);border:1px solid var(--hr-m);
+  transition:border-color .3s,transform .3s;
+}
+.close-card:hover{border-color:var(--hr-s);transform:translateY(-3px)}
+.close-in{
+  border-radius:calc(20px - 1.5px);background:var(--s2);padding:1.75rem;
+  position:relative;overflow:hidden;
+}
+.close-in::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 50% at 50% -5%,rgba(43,142,142,.1) 0%,transparent 60%);pointer-events:none}
+.close-type{font-size:.58rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--teal-l);margin-bottom:.75rem;display:flex;align-items:center;gap:.5rem}
+.close-type::before{content:'';width:20px;height:1px;background:linear-gradient(90deg,var(--teal),transparent)}
+.close-line{font-size:.88rem;color:var(--ink);font-style:italic;font-weight:500;line-height:1.75;margin-bottom:.75rem}
+.close-note{font-size:.75rem;color:var(--ink-3);line-height:1.65;border-top:1px solid var(--hr);padding-top:.65rem;margin-top:.5rem}
+
+/* ── RULE CARD ─────────────────────────────────────── */
+.rule{display:flex;gap:1rem;align-items:flex-start;padding:1.1rem 1.25rem;background:rgba(255,255,255,.02);border:1px solid var(--hr);border-radius:14px;transition:border-color .2s,transform .2s}
+.rule:hover{border-color:var(--hr-m);transform:translateX(3px)}
+.rule-ico{width:36px;height:36px;background:rgba(43,142,142,.1);border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0}
+.rule-body h4{font-size:.855rem;font-weight:700;color:var(--ink);margin-bottom:.25rem}
+.rule-body p{font-size:.8rem;color:var(--ink-2);line-height:1.65}
+
+/* ── WARNING BLOCK ─────────────────────────────────── */
+.warn{
+  background:var(--red-g);border:1px solid var(--red-b);
+  border-radius:12px;padding:1rem 1.25rem;
+  font-size:.845rem;color:var(--ink-2);line-height:1.7;
+  display:flex;align-items:flex-start;gap:.75rem;
+}
+.warn-icon{font-size:1rem;flex-shrink:0;margin-top:1px}
+.warn strong{color:#f87171}
+
+/* ── TIP BLOCK ─────────────────────────────────────── */
+.tip{
+  background:var(--amber-g);border:1px solid var(--amber-b);
+  border-radius:12px;padding:1rem 1.25rem;
+  font-size:.845rem;color:var(--ink-2);line-height:1.7;
+  display:flex;align-items:flex-start;gap:.75rem;
+}
+.tip-icon{font-size:1rem;flex-shrink:0;margin-top:1px}
+.tip strong{color:var(--amber)}
+
+/* ── SUCCESS BLOCK ─────────────────────────────────── */
+.success{
+  background:var(--green-g);border:1px solid var(--green-b);
+  border-radius:12px;padding:1rem 1.25rem;
+  font-size:.845rem;color:var(--ink-2);line-height:1.7;
+  display:flex;align-items:flex-start;gap:.75rem;
+}
+.success-icon{font-size:1rem;flex-shrink:0;margin-top:1px}
+.success strong{color:var(--green)}
+
+/* ── PHASE TIMELINE ────────────────────────────────── */
+.phase-strip{
+  display:flex;align-items:stretch;gap:0;overflow-x:auto;
+  padding-bottom:1rem;
+  -webkit-overflow-scrolling:touch;
+}
+.ph{
+  display:flex;flex-direction:column;align-items:center;
+  flex:1;min-width:140px;position:relative;
+}
+.ph-circle{
+  width:44px;height:44px;border-radius:50%;
+  background:var(--s2);border:2px solid var(--hr-s);
+  display:flex;align-items:center;justify-content:center;
+  font-size:.75rem;font-weight:800;color:var(--teal-l);
+  z-index:1;flex-shrink:0;
+}
+.ph-label{font-size:.68rem;font-weight:700;color:var(--ink-3);text-align:center;margin-top:.6rem;letter-spacing:.3px;line-height:1.4;max-width:110px}
+.ph-connector{
+  position:absolute;top:22px;left:50%;right:-50%;
+  height:2px;background:linear-gradient(90deg,var(--hr-s),var(--hr));
+  z-index:0;
+}
+.ph:last-child .ph-connector{display:none}
+
+/* ── PAYMENT STEP ──────────────────────────────────── */
+.pay-step{
+  display:grid;grid-template-columns:56px 1fr;gap:1.25rem;
+  align-items:flex-start;padding:1.5rem;
+  background:rgba(255,255,255,.02);border:1px solid var(--hr);
+  border-radius:16px;margin-bottom:.875rem;
+  transition:border-color .25s,transform .25s;
+}
+.pay-step:hover{border-color:var(--hr-m);transform:translateX(4px)}
+.pay-step:last-child{margin-bottom:0}
+.pay-num{
+  width:44px;height:44px;border-radius:50%;
+  background:var(--s2);border:1.5px solid var(--hr-s);
+  display:flex;align-items:center;justify-content:center;
+  font-size:.8rem;font-weight:800;color:var(--teal-l);flex-shrink:0;
+}
+.pay-body h4{font-size:.92rem;font-weight:700;color:var(--ink);margin-bottom:.35rem}
+.pay-body p{font-size:.83rem;color:var(--ink-2);line-height:1.75}
+.pay-tag{
+  display:inline-block;background:var(--teal-gs);border:1px solid var(--hr-m);
+  color:var(--teal-l);font-size:.55rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;
+  padding:2px 9px;border-radius:100px;margin-bottom:.4rem;
+}
+
+/* ── PHRASE PILLS ──────────────────────────────────── */
+.pills{display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1rem}
+.pill{background:rgba(43,142,142,.08);border:1px solid var(--hr-m);padding:5px 14px;border-radius:100px;font-size:.75rem;color:var(--teal-l);font-weight:600;transition:background .2s,border-color .2s}
+.pill:hover{background:rgba(43,142,142,.15);border-color:var(--hr-s)}
+
+/* ── STATS ROW ─────────────────────────────────────── */
+.stats-row{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:1.25rem;
+  padding:0 clamp(1.5rem,6vw,5rem) 0;
+  max-width:1100px;margin:0 auto;
+}
+@media(max-width:760px){.stats-row{grid-template-columns:repeat(2,1fr)}}
+.stat-c{
+  border-radius:18px;background:var(--s1);border:1px solid var(--hr);
+  padding:1.4rem 1.5rem;text-align:center;
+  transition:border-color .25s,transform .25s;
+}
+.stat-c:hover{border-color:var(--hr-m);transform:translateY(-3px)}
+.stat-val{font-size:2.2rem;font-weight:800;letter-spacing:-1.5px;color:var(--teal-l);line-height:1;margin-bottom:.25rem}
+.stat-lbl{font-size:.68rem;color:var(--ink-3);text-transform:uppercase;letter-spacing:.8px;font-weight:600;line-height:1.4}
+
+/* ── DIVIDER ───────────────────────────────────────── */
+.div-line{border:none;border-top:1px solid var(--hr);margin:0}
+
+/* ── TWO-COL LAYOUT ────────────────────────────────── */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+@media(max-width:760px){.two-col{grid-template-columns:1fr}}
+
+/* ── FOOTER ────────────────────────────────────────── */
+.doc-footer{
+  background:var(--bg);border-top:1px solid var(--hr);
+  padding:3rem clamp(1.5rem,6vw,5rem);
+  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.5rem;
+  max-width:100%;
+}
+.doc-footer-inner{max-width:1100px;margin:0 auto;width:100%;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem}
+.flogo{display:flex;align-items:center;gap:10px}
+.flogotxt{font-size:.72rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--ink-3)}
+.fcopy{font-size:.7rem;color:var(--ink-3);text-align:center;line-height:1.9}
+.flinks{display:flex;gap:1.5rem;flex-wrap:wrap;justify-content:flex-end}
+.flinks a{font-size:.7rem;color:var(--ink-3);text-decoration:none;transition:color .15s}
+.flinks a:hover{color:var(--ink-2)}
+
+/* ── SPACER ────────────────────────────────────────── */
+.gap{height:2.5rem}
+.gap-sm{height:1.25rem}
+.gap-xs{height:.875rem}
+</style>
+</head>
+<body>
+
+<!-- ══ COVER ════════════════════════════════════════════════════════ -->
+<section class="cover">
+  <div class="cover-bg"></div>
+  <div class="cover-overlay"></div>
+  <div class="cover-grid"></div>
+  <div class="cover-content">
+    <div class="cover-logo">
+      <div class="lm"><span>VS</span></div>
+      <span class="lname">Vela Sync</span>
+    </div>
+    <div class="cover-eyebrow">
+      <div class="edot"></div>
+      Internal Operations — Confidential
+    </div>
+    <h1>The Complete<br><span class="grd">Sales Process.</span></h1>
+    <p class="cover-sub">Every stage from onboarding a new advisor to closing the deal and collecting payment — one system, zero ambiguity. Master this and you close every room you walk into.</p>
+    <div class="cover-stats">
+      <div class="cs">
+        <div class="cs-val">6</div>
+        <div class="cs-lbl">Process stages</div>
+      </div>
+      <div class="cdiv"></div>
+      <div class="cs">
+        <div class="cs-val">£450</div>
+        <div class="cs-lbl">Entry package</div>
+      </div>
+      <div class="cdiv"></div>
+      <div class="cs">
+        <div class="cs-val">24h</div>
+        <div class="cs-lbl">Live after close</div>
+      </div>
+      <div class="cdiv"></div>
+      <div class="cs">
+        <div class="cs-val">77%</div>
+        <div class="cs-lbl">SMEs without a web strategy</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ PIPELINE OVERVIEW ════════════════════════════════════════════ -->
+<div style="background:var(--s0);border-top:1px solid var(--hr);border-bottom:1px solid var(--hr);padding:2.5rem clamp(1.5rem,6vw,5rem)">
+  <div style="max-width:1100px;margin:0 auto">
+    <div style="font-size:.6rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--teal-l);margin-bottom:1.5rem">Full pipeline at a glance</div>
+    <div class="phase-strip">
+      <div class="ph">
+        <div class="ph-connector"></div>
+        <div class="ph-circle">01</div>
+        <div class="ph-label">Advisor Onboarding</div>
+      </div>
+      <div class="ph">
+        <div class="ph-connector"></div>
+        <div class="ph-circle">02</div>
+        <div class="ph-label">Pre-Meeting Research</div>
+      </div>
+      <div class="ph">
+        <div class="ph-connector"></div>
+        <div class="ph-circle">03</div>
+        <div class="ph-label">Discovery Call</div>
+      </div>
+      <div class="ph">
+        <div class="ph-connector"></div>
+        <div class="ph-circle">04</div>
+        <div class="ph-label">Reveal &amp; Pitch</div>
+      </div>
+      <div class="ph">
+        <div class="ph-connector"></div>
+        <div class="ph-circle">05</div>
+        <div class="ph-label">Objection &amp; Close</div>
+      </div>
+      <div class="ph">
+        <div class="ph-connector"></div>
+        <div class="ph-circle">06</div>
+        <div class="ph-label">Post-Close &amp; Payment</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div style="background:var(--s0);padding:2.5rem clamp(1.5rem,6vw,5rem)">
+  <div class="stats-row" style="padding:0">
+    <div class="stat-c"><div class="stat-val">£450</div><div class="stat-lbl">Entry build vs £2,000+ avg agency</div></div>
+    <div class="stat-c"><div class="stat-val">24h</div><div class="stat-lbl">From signed to live — same day</div></div>
+    <div class="stat-c"><div class="stat-val">£100</div><div class="stat-lbl">All-in monthly — maintenance + SEO + marketing</div></div>
+    <div class="stat-c"><div class="stat-val">500+</div><div class="stat-lbl">Outbound calls per week target per advisor</div></div>
+  </div>
+</div>
+
+<hr class="div-line">
+
+<!-- ══ STAGE 01 — ONBOARDING ════════════════════════════════════════ -->
+<div class="stage-header">
+  <div class="sh-inner">
+    <div class="sh-num">01</div>
+    <div class="sh-text">
+      <div class="overtag">Foundation</div>
+      <h2>Advisor <span class="grd">Onboarding</span></h2>
+      <p>Before you pick up the phone, you need to know the product, the pitch and the process cold. This stage equips a new advisor with everything required to represent Vela Sync at the highest level from day one.</p>
+    </div>
+  </div>
+</div>
+<div class="sec-body">
+  <div class="card-grid cols-3">
+    <div class="card accent">
+      <div class="card-in">
+        <div class="card-ico">🎓</div>
+        <div class="card-tag">Know the product</div>
+        <h3>Product Mastery</h3>
+        <p>Understand every package, every price, every feature inside out. Know what £450 buys, what £650 adds, and what £50/month and £100/month delivers. If you can't explain the value in one sentence, you're not ready.</p>
+      </div>
+    </div>
+    <div class="card accent">
+      <div class="card-in">
+        <div class="card-ico">🔧</div>
+        <div class="card-tag">Know the tools</div>
+        <h3>Tools &amp; Assets</h3>
+        <p>You will be given: a pre-qualified lead list, access to a draft site demo, scripts and objection guides, and CRM access to log every call and follow-up. Use all of them. Every time.</p>
+      </div>
+    </div>
+    <div class="card accent">
+      <div class="card-in">
+        <div class="card-ico">📞</div>
+        <div class="card-tag">Know the numbers</div>
+        <h3>Targets &amp; KPIs</h3>
+        <p>Minimum <strong style="color:var(--ink)">500 outbound calls per week</strong>. Minimum <strong style="color:var(--ink)">5 closed sales per week</strong>. These are floors, not ceilings. Top performers consistently exceed them.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="gap-sm"></div>
+
+  <div style="font-size:.6rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--teal-l);margin-bottom:1rem">The six rules — memorise these before you speak to anyone</div>
+  <div class="card-grid cols-2">
+    <div class="rule"><div class="rule-ico">🎯</div><div class="rule-body"><h4>You are the expert. Act like it.</h4><p>Never seek approval. You are diagnosing a business problem, not selling a product. Confidence is not optional.</p></div></div>
+    <div class="rule"><div class="rule-ico">🔇</div><div class="rule-body"><h4>Silence is a weapon.</h4><p>After every powerful question or close — stop talking. Whoever speaks first after the silence, loses.</p></div></div>
+    <div class="rule"><div class="rule-ico">🩺</div><div class="rule-body"><h4>Diagnose before you prescribe.</h4><p>A doctor doesn't hand out pills before asking about symptoms. Ask before you pitch. Always. Without exception.</p></div></div>
+    <div class="rule"><div class="rule-ico">📊</div><div class="rule-body"><h4>Speak in outcomes, not features.</h4><p>They don't care about animations or mobile-responsiveness. They care about customers walking through the door.</p></div></div>
+    <div class="rule"><div class="rule-ico">🏦</div><div class="rule-body"><h4>Frame everything as ROI.</h4><p>Every price point is an investment. Every day of delay is revenue walking to a competitor. Make them feel the cost of inaction.</p></div></div>
+    <div class="rule"><div class="rule-ico">🪝</div><div class="rule-body"><h4>Show, don't tell.</h4><p>Open the draft site silently. Let them see it before you say a word. Their reaction is your opening. Let them sell themselves.</p></div></div>
+  </div>
+</div>
+
+<hr class="div-line">
+
+<!-- ══ STAGE 02 — PRE-MEETING ═══════════════════════════════════════ -->
+<div class="stage-header">
+  <div class="sh-inner">
+    <div class="sh-num">02</div>
+    <div class="sh-text">
+      <div class="overtag">Preparation</div>
+      <h2>Pre-Meeting <span class="grd">Research</span></h2>
+      <p>You should never walk into a meeting blind. Spend 10 minutes before every meeting researching the prospect. When you walk in knowing their problem before they've said a word — you own the room.</p>
+    </div>
+  </div>
+</div>
+<div class="sec-body">
+  <div class="card-grid cols-4">
+    <div class="card">
+      <div class="card-in">
+        <div class="card-num-bg">1</div>
+        <div class="card-ico">🔍</div>
+        <h3>Google them</h3>
+        <p>Search their business name. What comes up? Do they even appear? Where do they rank? Note everything.</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-in">
+        <div class="card-num-bg">2</div>
+        <div class="card-ico">🌐</div>
+        <h3>Check their site</h3>
+        <p>If they have one, assess honestly. Is it mobile-friendly? Fast? Does it convert? Or is it a liability?</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-in">
+        <div class="card-num-bg">3</div>
+        <div class="card-ico">⭐</div>
+        <h3>Google Maps rating</h3>
+        <p>Check their reviews. Low score = reputation problem you can solve. No reviews = visibility problem you can solve.</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-in">
+        <div class="card-num-bg">4</div>
+        <div class="card-ico">⚔️</div>
+        <h3>Competitor audit</h3>
+        <p>Find their top 3 local competitors and check their online presence. You'll use this to create urgency in the room.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="gap-sm"></div>
+  <div class="script">
+    <span class="script-label">Opening line — use this to walk in with authority</span>
+    "I had a look at your business before coming in today. <strong>I noticed a few things I wanted to talk to you about</strong> — but first, tell me how business has been. Are you getting as many new customers as you want?"
+  </div>
+  <div class="gap-xs"></div>
+  <div class="warn">
+    <div class="warn-icon">⛔</div>
+    <div><strong>Never open with the product.</strong> If the first thing out of your mouth is "Vela Sync," you've already lost the frame. Open with their world, not yours. The product comes third — after their pain, after their vision.</div>
+  </div>
+</div>
+
+<hr class="div-line">
+
+<!-- ══ STAGE 03 — DISCOVERY ═════════════════════════════════════════ -->
+<div class="stage-header">
+  <div class="sh-inner">
+    <div class="sh-num">03</div>
+    <div class="sh-text">
+      <div class="overtag">Qualification</div>
+      <h2>The Discovery <span class="grd">Questions</span></h2>
+      <p>Six questions, asked in sequence. Listen deeply. Take notes visibly — it shows respect and creates pressure to answer fully. Never interrupt. Let them finish. Pause before you respond. Their answers give you everything you need to close.</p>
+    </div>
+  </div>
+</div>
+<div class="sec-body">
+  <div class="card-grid" style="grid-template-columns:1fr;gap:1rem">
+    <div class="q-card">
+      <div class="q-label">Question 1 — Current State</div>
+      <div class="q-text">"When a potential customer Googles you right now — what do they find?"</div>
+      <div class="q-why">Forces them to confront their digital reality. If the answer is "not much" or "I'm not sure" — you've just opened the wound. Silence after this question is golden. If they have a site, move to question 2 and probe for performance.</div>
+    </div>
+    <div class="q-card">
+      <div class="q-label">Question 2 — Awareness</div>
+      <div class="q-text">"How are most of your customers finding you at the moment?"</div>
+      <div class="q-why">Exposes over-reliance on referrals or word-of-mouth. Most SMEs are one slow season away from a serious problem. This surfaces it gently, without accusation. When they say "word of mouth," you nod and note it — you'll use it in the pitch.</div>
+    </div>
+    <div class="q-card">
+      <div class="q-label">Question 3 — Competition</div>
+      <div class="q-text">"Have you looked at what your top three competitors are doing online recently? What did you notice?"</div>
+      <div class="q-why">Creates competitive anxiety. Even if they say "they're not great either," you've planted the seed. If competitors are strong, it creates urgency immediately. You already know the answer from your research — this is about making them say it out loud.</div>
+    </div>
+    <div class="q-card">
+      <div class="q-label">Question 4 — Revenue Impact</div>
+      <div class="q-text">"If I told you that 76% of people research a business online before they ever make contact — what does that mean for customers you're currently missing?"</div>
+      <div class="q-why">Data-led question that forces them to calculate lost revenue in their own head. You are not telling them they're losing customers — they are telling themselves. This is the most important distinction in the entire process.</div>
+    </div>
+    <div class="q-card">
+      <div class="q-label">Question 5 — Previous Experience</div>
+      <div class="q-text">"Have you ever tried to get a website built before? What happened?"</div>
+      <div class="q-why">Most prospects have a war story — overpriced, took too long, delivered nothing, disappeared after handover. This positions Vela Sync as the antidote before you've mentioned it once. Listen to the full story. Don't rush this answer.</div>
+    </div>
+    <div class="q-card" style="border-left-color:var(--teal-ll);background:rgba(43,142,142,.04)">
+      <div class="q-label">Question 6 — Future Vision (most powerful)</div>
+      <div class="q-text">"If your digital presence was exactly where you wanted it — what would that look like for the business? What would change?"</div>
+      <div class="q-why">The most powerful question in the entire sequence. Gets them to paint their own success picture out loud. You are selling them their own dream — not your product. Write down their exact words and use them in your pitch moments later.</div>
+    </div>
+  </div>
+
+  <div class="gap-sm"></div>
+  <div class="tip">
+    <div class="tip-icon">💡</div>
+    <div><strong>The summarise technique</strong> — After all six questions, feed their answers back to them verbatim before you show anything. "So if I've understood you correctly..." This validates their concerns, confirms you were listening, and amplifies the pain before you solve it. Never skip this step.</div>
+  </div>
+</div>
+
+<hr class="div-line">
+
+<!-- ══ STAGE 04 — REVEAL & PITCH ════════════════════════════════════ -->
+<div class="stage-header">
+  <div class="sh-inner">
+    <div class="sh-num">04</div>
+    <div class="sh-text">
+      <div class="overtag">Presentation</div>
+      <h2>The Reveal <span class="grd">&amp; Pitch</span></h2>
+      <p>You've earned the right to present. Bridge their pain to your solution with precision. Show the draft site silently. Anchor to the market rate. Then land the price. The emotional sale is made here — everything after this is logistics.</p>
+    </div>
+  </div>
+</div>
+<div class="sec-body">
+
+  <div class="card-grid cols-3" style="margin-bottom:1.25rem">
+    <div class="card accent">
+      <div class="card-in">
+        <div class="card-ico">🔗</div>
+        <div class="card-tag">Step 1</div>
+        <h3>Bridge the pain</h3>
+        <p>Summarise their answers back to them in one concise statement before showing anything. Make them feel heard — and remind them why this matters — before you reveal the solution.</p>
+      </div>
+    </div>
+    <div class="card accent">
+      <div class="card-in">
+        <div class="card-ico">👁️</div>
+        <div class="card-tag">Step 2</div>
+        <h3>The silent show</h3>
+        <p>Open the draft site. Say nothing. Scroll slowly. The moment they lean in, say "that looks good" or ask a question — that's your pivot. The sale is made emotionally in this moment.</p>
+      </div>
+    </div>
+    <div class="card accent">
+      <div class="card-in">
+        <div class="card-ico">⚖️</div>
+        <div class="card-tag">Step 3</div>
+        <h3>Anchor high, land low</h3>
+        <p>Never open with £450. First anchor to the industry standard — £2,000 minimum. Then reveal your number. The contrast does the selling. The gap is your most powerful tool.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="script">
+    <span class="script-label">Pain bridge — say this before showing the site</span>
+    "So if I've understood you correctly — right now you're relying heavily on word-of-mouth, your current online presence isn't doing the work it should be, and you've either been burned before or never had the right solution in front of you. Is that fair?"
+  </div>
+  <div class="gap-xs"></div>
+  <div class="script">
+    <span class="script-label">Before you open the site</span>
+    "What I'm going to show you is what we've already built for businesses like yours. <strong>Don't think about the price yet. Just tell me what you think.</strong>"
+  </div>
+  <div class="gap-xs"></div>
+  <div class="script">
+    <span class="script-label">After they've seen the site — team credential statement</span>
+    "This is a first draft — it's not personalised to you yet. <strong>But this is the calibre of what you'd own.</strong> Our full team — award-winning engineers, Machine Learning strategists, a CIMA-qualified finance lead — built this. The same team that's delivered for global banks, enterprise healthcare systems, and platforms handling a quarter of a million simultaneous users. We're bringing that to your business at a fraction of what anyone else would charge."
+  </div>
+  <div class="gap-xs"></div>
+  <div class="script">
+    <span class="script-label">The price reveal — anchor then land</span>
+    "A website of this quality from a traditional agency — you're looking at £2,000 minimum. Usually more. Weeks of back and forth. Revisions that drag on. And then they disappear after handover. <strong>We charge £450. And you're live within 24 hours.</strong> Not a week. Not a month. Tomorrow."
+  </div>
+  <div class="gap-xs"></div>
+  <div class="script">
+    <span class="script-label">Introduce the monthly — make it feel trivial</span>
+    "And that's just the start. Unlike every other agency, we don't build and disappear. For <strong>£100 a month</strong> — that's three coffees a week — we maintain your site, actively drive traffic to it, and handle your SEO and digital marketing. <strong>Cancel any time. No contract. No lock-in.</strong>"
+  </div>
+
+  <div class="gap-sm"></div>
+  <div class="two-col">
+    <div class="card" style="background:none;border-color:var(--green-b)">
+      <div class="card-in" style="background:var(--green-g)">
+        <div class="card-tag" style="background:rgba(34,197,94,.1);border-color:var(--green-b);color:var(--green)">Strong buying signals</div>
+        <h3 style="color:var(--green)">When you see these — move to close</h3>
+        <ul style="font-size:.83rem;color:var(--ink-2);line-height:2.2;list-style:none;margin-top:.5rem">
+          <li>✅ &nbsp;"That looks really good"</li>
+          <li>✅ &nbsp;They lean in toward the screen</li>
+          <li>✅ &nbsp;They start asking logistics questions</li>
+          <li>✅ &nbsp;"Can you do it in our colours?"</li>
+          <li>✅ &nbsp;They look at a colleague for approval</li>
+          <li>✅ &nbsp;They ask about the timeline</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card" style="background:none;border-color:var(--amber-b)">
+      <div class="card-in" style="background:var(--amber-g)">
+        <div class="card-tag" style="background:rgba(245,158,11,.1);border-color:var(--amber-b);color:var(--amber)">Proceed with caution</div>
+        <h3 style="color:var(--amber)">When you see these — dig deeper</h3>
+        <ul style="font-size:.83rem;color:var(--ink-2);line-height:2.2;list-style:none;margin-top:.5rem">
+          <li>⚠️ &nbsp;Arms crossed, leaning back</li>
+          <li>⚠️ &nbsp;Checking their phone</li>
+          <li>⚠️ &nbsp;"We'd need to talk to our accountant"</li>
+          <li>⚠️ &nbsp;"We'll think about it"</li>
+          <li>⚠️ &nbsp;Long silences with no engagement</li>
+          <li>⚠️ &nbsp;Repeated glances at the door</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="div-line">
+
+<!-- ══ STAGE 05 — OBJECTION & CLOSE ════════════════════════════════ -->
+<div class="stage-header">
+  <div class="sh-inner">
+    <div class="sh-num">05</div>
+    <div class="sh-text">
+      <div class="overtag">Conversion</div>
+      <h2>Objection Handling <span class="grd">&amp; The Close</span></h2>
+      <p>Every objection is a question in disguise. Never argue, never defend. Acknowledge, reframe, advance. Then choose the right close technique for the room. The close is not a moment — it's the direction you've been steering toward since question one.</p>
+    </div>
+  </div>
+</div>
+<div class="sec-body">
+  <div style="font-size:.6rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--teal-l);margin-bottom:1rem">Objection responses — acknowledge, reframe, advance</div>
+  <div class="card-grid cols-2">
+    <div class="obj">
+      <div class="obj-q">We already have a website.</div>
+      <div class="obj-a">"I appreciate that. Can I ask — when did you last check how it ranks on Google? And is it actively bringing in new enquiries, or is it more of a digital brochure? Because there's a significant difference between <em>having a website</em> and <em>having a website that works for you.</em>"</div>
+    </div>
+    <div class="obj">
+      <div class="obj-q">£450 seems too cheap — is the quality really there?</div>
+      <div class="obj-a">"You've just seen it. That's the quality. The reason we can price this way is our team's efficiency — enterprise engineers who've delivered for global banks and Fortune 500 companies. You're not paying for overhead and account managers. <em>You're paying for the output. Nothing else.</em>"</div>
+    </div>
+    <div class="obj">
+      <div class="obj-q">We need to think about it.</div>
+      <div class="obj-a">"I completely respect that. Can I ask what specifically you'd be thinking through? In my experience, when someone needs to think, there's usually one specific thing holding them back. <em>What is it for you?</em>" [Stop. Say nothing. Let them name the real objection.]</div>
+    </div>
+    <div class="obj">
+      <div class="obj-q">We don't have time for this right now.</div>
+      <div class="obj-a">"That's exactly why this works for you. We need 30 minutes from you — one call. Our team does everything else. <em>You review and approve. You're live the next day.</em> The question isn't whether you have time for this. It's whether you can afford another month without it."</div>
+    </div>
+    <div class="obj">
+      <div class="obj-q">We had a bad experience with an agency before.</div>
+      <div class="obj-a">"Tell me what happened." [Listen fully, don't interrupt.] "That's exactly the problem with the traditional agency model. We built Vela Sync specifically because of that gap. <em>No hidden fees. No disappearing. No excuses.</em> Live in 24 hours — or we haven't done our job."</div>
+    </div>
+    <div class="obj">
+      <div class="obj-q">We don't have content or photos ready.</div>
+      <div class="obj-a">"That's not a barrier. We've done this hundreds of times. Our team will guide you on exactly what's needed and work with whatever you have. We've launched full sites with less than you'd think. <em>The content gap is our problem to solve — not yours.</em>"</div>
+    </div>
+    <div class="obj">
+      <div class="obj-q">We want to get a few quotes first.</div>
+      <div class="obj-a">"Of course — and I'd encourage it. When you do, here's what you'll find: equivalent quality elsewhere starts at £2,000+, takes 4–6 weeks, and comes with £150–300/month maintenance. <em>Come back to us with any quote you receive. We'll match the value and beat the price. Every time.</em>"</div>
+    </div>
+    <div class="obj">
+      <div class="obj-q">We're not sure about the monthly fees.</div>
+      <div class="obj-a">"Every site needs maintenance, security and traffic driving. The question is whether you pay a professional to do it for £50 a month, or ignore it and let your site degrade and disappear from Google. <em>£50 a month is insurance on a £450 asset. It's the easiest decision in this conversation.</em>"</div>
+    </div>
+  </div>
+
+  <div class="gap"></div>
+
+  <div style="font-size:.6rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--teal-l);margin-bottom:1rem">Close techniques — read the room, rotate, never rely on one</div>
+  <div class="card-grid" style="gap:1rem">
+    <div class="close-card">
+      <div class="close-in">
+        <div class="close-type">The Assumptive Close</div>
+        <div class="close-line">"So based on everything you've told me — the reliance on referrals, the gaps in your online presence, and what you said you want the business to look like — the full build makes the most sense for where you want to go. Let me get the brief started. What's the domain name you're using, or would you like a new one?"</div>
+        <div class="close-note">Assumes the sale. Moves directly to logistics. Removes the yes/no moment entirely. Most people follow the assumptive lead naturally.</div>
+      </div>
+    </div>
+    <div class="close-card">
+      <div class="close-in">
+        <div class="close-type">The Investment Frame Close</div>
+        <div class="close-line">"Let me put this in perspective. If this site brings you one extra customer a month — just one — what's that worth to your business?" [Let them answer.] "So we're talking about a £450 investment that pays for itself the first time it works. And we actively drive traffic to it from day one. This isn't a cost. It's a decision about how quickly you want to grow."</div>
+        <div class="close-note">Repositions price as ROI. Forces them to calculate their own justification for saying yes. Extremely effective with analytical decision-makers.</div>
+      </div>
+    </div>
+    <div class="close-card">
+      <div class="close-in">
+        <div class="close-type">The Urgency Close</div>
+        <div class="close-line">"While we're sitting here, someone in your area is searching for exactly what you offer. Right now. The question is whether they find you — or your competitor. Every day without a strong digital presence is a day you're handing business to someone else. We can have you live by this time tomorrow. What's stopping us doing that today?"</div>
+        <div class="close-note">Creates genuine, non-manufactured urgency. Then silence. Do not speak first. Whoever breaks the silence first loses this close.</div>
+      </div>
+    </div>
+    <div class="close-card">
+      <div class="close-in">
+        <div class="close-type">The Option Close</div>
+        <div class="close-line">"Based on what you've shared, I'd recommend either the full build at £450 — which gives you everything we've discussed live within 24 hours — or the build plus marketing launch at £650, which means our marketing team is working on your traffic from day one. Which of those two feels like the right starting point?"</div>
+        <div class="close-note">Removes the yes/no binary. Both options are a yes. Let them choose which one they want. Never offer a third option here.</div>
+      </div>
+    </div>
+    <div class="close-card">
+      <div class="close-in">
+        <div class="close-type">The Instalment Close — for price-sensitive prospects</div>
+        <div class="close-line">"I understand cash flow matters — especially for a growing business. That's why we offer instalments. You get the full site live tomorrow, and we work out a payment schedule that suits you. The investment doesn't need to hit you all at once. So there really isn't a financial reason not to move forward today."</div>
+        <div class="close-note">Removes the last financial barrier. If they still hesitate after this, the real objection is something else — go back to discovery and find it.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="gap-sm"></div>
+  <div style="font-size:.6rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--teal-l);margin-bottom:1rem">Power phrases — weave these naturally throughout every call</div>
+  <div class="pills">
+    <span class="pill">"What that means for your business is..."</span>
+    <span class="pill">"In our experience..."</span>
+    <span class="pill">"The businesses that grow fastest are..."</span>
+    <span class="pill">"Let me ask you something..."</span>
+    <span class="pill">"That's a fair point — here's the reality..."</span>
+    <span class="pill">"What I'm hearing is..."</span>
+    <span class="pill">"The question isn't whether — it's when."</span>
+    <span class="pill">"Most of our clients said the same thing before they saw the results."</span>
+    <span class="pill">"This isn't a cost. It's a decision."</span>
+    <span class="pill">"Every day you wait is a day your competitor doesn't."</span>
+    <span class="pill">"Based on what you've told me..."</span>
+    <span class="pill">"I want to be straight with you..."</span>
+  </div>
+</div>
+
+<hr class="div-line">
+
+<!-- ══ STAGE 06 — POST-CLOSE & PAYMENT ═════════════════════════════ -->
+<div class="stage-header">
+  <div class="sh-inner">
+    <div class="sh-num">06</div>
+    <div class="sh-text">
+      <div class="overtag">Completion</div>
+      <h2>Post-Close, Onboarding <span class="grd">&amp; Payment</span></h2>
+      <p>The close is not the finish line. You need to protect the sale, trigger the delivery process, issue the invoice, and — where needed — chase payment professionally and relentlessly. This stage is where deals either go live or fall apart.</p>
+    </div>
+  </div>
+</div>
+<div class="sec-body">
+
+  <div style="font-size:.6rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--teal-l);margin-bottom:1rem">Immediately after they say yes</div>
+  <div class="script">
+    <span class="script-label">Reinforce the decision — say this the moment they commit</span>
+    "Excellent decision. Let me tell you exactly what happens next. We'll schedule a 30-minute brief call with our design team — today if possible. They'll gather everything they need. By tomorrow, you'll have a personalised, live website. <strong>This is the last time you'll wonder whether customers can find you online.</strong>"
+  </div>
+
+  <div class="gap-sm"></div>
+  <div style="font-size:.6rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--teal-l);margin-bottom:1rem">Client delivery process</div>
+  <div class="pay-step">
+    <div class="pay-num">A</div>
+    <div class="pay-body">
+      <div class="pay-tag">Immediately on close</div>
+      <h4>Log the sale &amp; notify the build team</h4>
+      <p>Record the sale in CRM with full client details, package selected, and any instalment terms agreed. Notify the design team immediately. The 24-hour clock starts now.</p>
+    </div>
+  </div>
+  <div class="pay-step">
+    <div class="pay-num">B</div>
+    <div class="pay-body">
+      <div class="pay-tag">Same day</div>
+      <h4>Brief call with design team</h4>
+      <p>30-minute call booked between the client and the design team. Brand colours, fonts, images, copy, domain details and any specific requirements are captured. No guesswork. No assumptions.</p>
+    </div>
+  </div>
+  <div class="pay-step">
+    <div class="pay-num">C</div>
+    <div class="pay-body">
+      <div class="pay-tag">Within 24 hours</div>
+      <h4>Site built, reviewed &amp; handed over</h4>
+      <p>Design and build complete. Client receives a review link. Revisions made in real time. Once approved, the site goes live. Domain activated or transferred. Full access credentials handed over.</p>
+    </div>
+  </div>
+
+  <div class="gap"></div>
+  <div style="font-size:.6rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--teal-l);margin-bottom:1rem">Payment collection process</div>
+
+  <div class="pay-step">
+    <div class="pay-num">1</div>
+    <div class="pay-body">
+      <div class="pay-tag">At point of close</div>
+      <h4>Issue the invoice immediately</h4>
+      <p>Invoice to be issued on the day of close — not the day of delivery. Include the agreed package (£450 or £650), any instalment schedule, and the first month's support fee if applicable. Make it easy to pay: include bank transfer details and a payment link where possible.</p>
+    </div>
+  </div>
+  <div class="pay-step">
+    <div class="pay-num">2</div>
+    <div class="pay-body">
+      <div class="pay-tag">Payment due — standard</div>
+      <h4>Full payment on or before delivery</h4>
+      <p>Standard terms: full payment expected before or on the day the site goes live. The site is not handed over — and access credentials are not transferred — until payment is confirmed or the first instalment is received.</p>
+    </div>
+  </div>
+  <div class="pay-step">
+    <div class="pay-num">3</div>
+    <div class="pay-body">
+      <div class="pay-tag">Instalment clients</div>
+      <h4>First instalment at close, remainder on agreed schedule</h4>
+      <p>For instalment clients, collect the first payment immediately — at the meeting or same day. Remaining payments fall on agreed dates. Document the schedule clearly in writing and send to the client on the day. Verbal agreements fade — written ones don't.</p>
+    </div>
+  </div>
+  <div class="pay-step">
+    <div class="pay-num">4</div>
+    <div class="pay-body">
+      <div class="pay-tag">If payment is late — Day 1</div>
+      <h4>Friendly reminder within 24 hours of due date</h4>
+      <p>A professional, warm message — not chasing, confirming. "Just checking the invoice from [date] is convenient for payment today — here are the details again for ease." Keep the tone collaborative, not adversarial. Most late payments at this stage are oversight, not intent.</p>
+    </div>
+  </div>
+  <div class="pay-step">
+    <div class="pay-num">5</div>
+    <div class="pay-body">
+      <div class="pay-tag">If no response — Day 3</div>
+      <h4>Direct follow-up call</h4>
+      <p>Call the client directly. Keep it warm and professional: "I wanted to make sure everything is on track — we noticed the invoice is still outstanding and wanted to check it hadn't been missed." Offer to resend the invoice, confirm bank details, or adjust the instalment if needed. Always give them an easy path to yes.</p>
+    </div>
+  </div>
+  <div class="pay-step">
+    <div class="pay-num">6</div>
+    <div class="pay-body">
+      <div class="pay-tag">If still unresolved — Day 7</div>
+      <h4>Formal notice</h4>
+      <p>Formal written notice confirming the outstanding balance, the original agreed terms, and a final payment deadline of 48 hours. Confirm that continued non-payment will be escalated. This stage is rare — most clients resolve at step 4 or 5. Professionalism throughout protects the relationship and the reputation.</p>
+    </div>
+  </div>
+
+  <div class="gap-sm"></div>
+  <div class="card-grid cols-3">
+    <div class="card" style="border-color:var(--green-b)">
+      <div class="card-in" style="background:var(--green-g)">
+        <div class="card-ico" style="background:rgba(34,197,94,.12);border-color:var(--green-b);color:var(--green)">✅</div>
+        <h3 style="color:var(--green)">Always do</h3>
+        <ul style="font-size:.83rem;color:var(--ink-2);line-height:2.1;list-style:none;margin-top:.5rem">
+          <li>Issue invoice same day as close</li>
+          <li>Confirm payment terms in writing</li>
+          <li>Lock in a brief call before you leave</li>
+          <li>Stay warm and professional at all times</li>
+          <li>Log every interaction in CRM</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card" style="border-color:var(--red-b)">
+      <div class="card-in" style="background:var(--red-g)">
+        <div class="card-ico" style="background:rgba(239,68,68,.12);border-color:var(--red-b);color:var(--red)">⛔</div>
+        <h3 style="color:#f87171">Never do</h3>
+        <ul style="font-size:.83rem;color:var(--ink-2);line-height:2.1;list-style:none;margin-top:.5rem">
+          <li>Hand over site access before payment</li>
+          <li>Leave without a defined next step</li>
+          <li>Accept "call me when you're ready"</li>
+          <li>Chase payment aggressively in public</li>
+          <li>Agree to verbal-only instalment terms</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card" style="border-color:var(--amber-b)">
+      <div class="card-in" style="background:var(--amber-g)">
+        <div class="card-ico" style="background:rgba(245,158,11,.12);border-color:var(--amber-b);color:var(--amber)">⚠️</div>
+        <h3 style="color:var(--amber)">If they don't close today</h3>
+        <p style="font-size:.83rem;color:var(--ink-2);line-height:1.8;margin-top:.5rem">Never leave with "I'll think about it." Lock in a specific follow-up time — a date and hour — before you leave the room. Send the draft site link that evening. Vague next steps die. Specific ones live.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="gap-sm"></div>
+  <div class="script">
+    <span class="script-label">If they don't close today — leave with this</span>
+    "I completely respect that you want to take some time. Here's what I'd suggest — I'll send you the draft site link tonight so you can see it on your own screen. Can we speak <strong>Thursday at 10am</strong>? By then you'll have seen it properly and we can answer any remaining questions and get moving."
+  </div>
+  <div class="gap-xs"></div>
+  <div class="warn">
+    <div class="warn-icon">⛔</div>
+    <div><strong>Never say "call me when you're ready."</strong> That is not a next step. That is the end of the deal. Always lock a specific date and time before you leave the room. Write it in front of them. Send a calendar invite the moment you're back in the car.</div>
+  </div>
+
+  <div class="gap"></div>
+  <div class="success">
+    <div class="success-icon">🚀</div>
+    <div><strong>The goal:</strong> Client signed, invoice issued, brief call booked, build underway — all within the same business day. 24 hours later, they have a live website. That is the Vela Sync standard. That is what you're selling, and it's exactly what you deliver.</div>
+  </div>
+</div>
+
+<hr class="div-line">
+
+<!-- ══ FOOTER ════════════════════════════════════════════════════════ -->
+<footer class="doc-footer">
+  <div class="doc-footer-inner">
+    <div class="flogo">
+      <div class="lm"><span>VS</span></div>
+      <span class="flogotxt">Vela Sync</span>
+    </div>
+    <div class="fcopy">© 2026 Vela Sync Ltd &nbsp;·&nbsp; Co. No. 17051204<br>Internal Sales Playbook — Confidential — Not for Distribution</div>
+    <nav class="flinks">
+      <a href="#">www.velasync.com</a>
+      <a href="#">hello@velasync.com</a>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
