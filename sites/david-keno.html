@@ -16,11 +16,12 @@
   --fh:'Cormorant Garamond', serif;--fb:'Inter', sans-serif;
 }
 html{scroll-behavior:smooth}
-body{font-family:var(--fb);background:var(--bg);color:var(--dark);overflow-x:hidden}
+body{font-family:var(--fb);background:var(--bg);color:var(--dark)}
+.wrap{overflow-x:hidden;width:100%}
 
 /* ── NAV ── */
 nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 5%;height:74px;display:flex;align-items:center;justify-content:space-between;transition:background .45s,box-shadow .45s}
-nav.sc{background:rgba(253,252,250,.96);backdrop-filter:blur(14px);box-shadow:0 1px 0 rgba(0,0,0,.07)}
+nav.sc{background:rgba(253,252,250,.96);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);box-shadow:0 1px 0 rgba(0,0,0,.07)}
 .nlogo{font-family:var(--fh);font-size:1.25rem;font-weight:400;font-style:italic;color:white;text-decoration:none;transition:color .45s;letter-spacing:.02em}
 nav.sc .nlogo{color:var(--dark)}
 .nlinks{display:flex;align-items:center;gap:2.5rem;list-style:none}
@@ -34,11 +35,11 @@ nav.sc .nlinks a{color:var(--mid)}
 nav.sc .hbg span{background:var(--dark)}
 
 /* ── HERO ── */
-#hero{height:100vh;min-height:640px;position:relative;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden}
+#hero{height:100vh;height:100svh;min-height:560px;position:relative;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden}
 .hbg-img{position:absolute;inset:0;background:linear-gradient(160deg,rgba(0,0,0,.62) 0%,rgba(0,0,0,.32) 55%,rgba(0,0,0,.55) 100%),url('https://images.unsplash.com/photo-1562259949-e8e7689d7828?w=1800&q=80') center/cover no-repeat}
 .hbg-img::after{content:'';position:absolute;bottom:0;left:0;right:0;height:30%;background:linear-gradient(to bottom,transparent,var(--bg))}
 .hc{position:relative;z-index:1;max-width:760px;padding:0 1.5rem}
-.heyebrow{display:inline-block;font-size:.68rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.8);background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);padding:.38rem 1.2rem;border-radius:100px;margin-bottom:1.6rem;backdrop-filter:blur(4px)}
+.heyebrow{display:inline-block;font-size:.68rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.8);background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);padding:.38rem 1.2rem;border-radius:100px;margin-bottom:1.6rem;-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}
 .htitle{font-family:var(--fh);font-size:clamp(3rem,7.5vw,5.6rem);font-weight:400;font-style:italic;color:white;line-height:1.07;margin-bottom:1.5rem;letter-spacing:-.01em}
 .hsub{font-size:1rem;font-weight:300;color:rgba(255,255,255,.72);line-height:1.82;max-width:520px;margin:0 auto 2.8rem}
 .hbtns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
@@ -60,8 +61,8 @@ nav.sc .hbg span{background:var(--dark)}
 #about{background:var(--bg);padding:7rem 5%}
 .about-in{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
 .aimg-wrap{position:relative}
-.aimg-main{width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:4px;display:block}
-.aimg-small{position:absolute;bottom:-2rem;right:-2rem;width:52%;aspect-ratio:4/3;object-fit:cover;border-radius:4px;border:5px solid var(--bg);box-shadow:0 16px 48px rgba(0,0,0,.18)}
+.aimg-main{width:100%;height:480px;aspect-ratio:4/5;object-fit:cover;border-radius:4px;display:block}
+.aimg-small{position:absolute;bottom:-2rem;right:-2rem;width:52%;height:200px;aspect-ratio:4/3;object-fit:cover;border-radius:4px;border:5px solid var(--bg);box-shadow:0 16px 48px rgba(0,0,0,.18)}
 .aimg-badge{position:absolute;top:2rem;left:-1.5rem;background:var(--acc);color:white;padding:1.1rem 1.3rem;border-radius:4px;text-align:center}
 .aimg-badge strong{display:block;font-family:var(--fh);font-size:2.2rem;font-weight:400;font-style:italic;line-height:1;margin-bottom:.15rem}
 .aimg-badge span{font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.75)}
@@ -83,7 +84,7 @@ nav.sc .hbg span{background:var(--dark)}
 .srv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
 .srv-card{background:var(--bg);border-radius:6px;overflow:hidden;transition:transform .35s,box-shadow .35s}
 .srv-card:hover{transform:translateY(-6px);box-shadow:0 20px 56px rgba(0,0,0,.1)}
-.srv-img{width:100%;height:210px;object-fit:cover;display:block}
+.srv-img{width:100%;height:210px;min-height:160px;object-fit:cover;display:block;background:var(--light)}
 .srv-body{padding:1.8rem 1.6rem}
 .srv-num{font-size:.62rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--acc);margin-bottom:.5rem}
 .srv-name{font-family:var(--fh);font-size:1.3rem;font-weight:400;color:var(--dark);margin-bottom:.6rem}
@@ -119,7 +120,7 @@ nav.sc .hbg span{background:var(--dark)}
 .wi-title{font-family:var(--fh);font-size:1.1rem;font-weight:400;color:white;margin-bottom:.28rem}
 .wi-desc{font-size:.84rem;font-weight:300;line-height:1.72;color:rgba(255,255,255,.5)}
 .why-img-wrap{position:relative}
-.why-img{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:4px;display:block}
+.why-img{width:100%;height:480px;aspect-ratio:3/4;object-fit:cover;border-radius:4px;display:block;background:var(--mid)}
 .why-badge{position:absolute;bottom:2rem;left:-2rem;background:var(--acc);padding:1.2rem 1.6rem;border-radius:4px}
 .why-badge p{font-family:var(--fh);font-size:1.2rem;font-style:italic;color:white;line-height:1.35;margin-bottom:.15rem}
 .why-badge span{font-size:.62rem;font-weight:500;letter-spacing:.13em;text-transform:uppercase;color:rgba(255,255,255,.7)}
@@ -181,27 +182,40 @@ footer{background:var(--dark);padding:4rem 5% 2.5rem}
 
 /* ── MOBILE ── */
 @media(max-width:960px){
-  #about,#services,#portfolio,#why,#testimonials,#contact{padding:5rem 5%}
-  .about-in,.why-in,.con-in{grid-template-columns:1fr;gap:3rem}
+  #about,#services,#portfolio,#why,#testimonials,#contact{padding:4.5rem 5%}
+  .stats-bar{padding:2.5rem 5%}
+  .about-in,.why-in,.con-in{grid-template-columns:1fr;gap:2.5rem}
   .srv-grid,.testi-grid{grid-template-columns:1fr 1fr}
-  .stats-grid{grid-template-columns:repeat(2,1fr)}
+  .stats-grid{grid-template-columns:repeat(2,1fr);gap:1.5rem}
   .aimg-small{display:none}
   .why-img-wrap{display:none}
   .nlinks{display:none}
   .hbg{display:flex}
-  .port-grid{grid-template-columns:1fr 1fr;grid-template-rows:repeat(3,200px)}
-  .pi:nth-child(n){grid-column:span 1}
-  .pi:nth-child(1){grid-column:span 2}
+  .port-grid{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:repeat(3,180px);gap:8px}
+  .pi:nth-child(n){grid-column:span 1!important}
+  .pi:nth-child(1){grid-column:span 2!important}
   .frow{grid-template-columns:1fr}
-  .cform{padding:1.8rem}
-  .ft{flex-direction:column}
+  .cform{padding:1.6rem}
+  .ft{flex-direction:column;gap:1.5rem}
+  .htitle{font-size:clamp(2.2rem,10vw,3.5rem)}
+  .hsub{font-size:.88rem}
+  .aimg-main{height:320px}
+  .why-img{height:320px}
 }
 @media(max-width:560px){
+  #about,#services,#portfolio,#why,#testimonials,#contact{padding:3.5rem 4%}
   .srv-grid,.testi-grid{grid-template-columns:1fr}
-  .stats-grid{grid-template-columns:1fr 1fr}
-  .port-grid{grid-template-columns:1fr;grid-template-rows:none}
-  .pi{height:200px}
-  .pi:nth-child(n){grid-column:span 1}
+  .stats-grid{grid-template-columns:1fr 1fr;gap:1rem}
+  .sn{font-size:2.2rem}
+  .port-grid{grid-template-columns:1fr!important;grid-template-rows:none!important;display:flex;flex-direction:column;gap:8px}
+  .pi{height:200px!important}
+  .pi:nth-child(n){display:block}
+  .hbtns{flex-direction:column;align-items:center}
+  .btn-a,.btn-b{width:100%;text-align:center;padding:.85rem 1.5rem}
+  .cform{padding:1.2rem}
+  nav{padding:0 4%}
+  #about,#services,#portfolio,#why,#testimonials,#contact{padding:3rem 4%}
+  .stats-bar{padding:2rem 4%}
 }
 
 /* MOBILE NAV */
@@ -214,6 +228,7 @@ footer{background:var(--dark);padding:4rem 5% 2.5rem}
 </head>
 <body>
 
+<div class="wrap">
 <div class="mnav" id="mn">
   <button class="mclose" onclick="document.getElementById('mn').classList.remove('open')">&times;</button>
   <a href="#about"        onclick="document.getElementById('mn').classList.remove('open')">Over Ons</a>
@@ -261,8 +276,8 @@ footer{background:var(--dark);padding:4rem 5% 2.5rem}
 <section id="about">
   <div class="about-in">
     <div class="aimg-wrap rv">
-      <img src="https://images.unsplash.com/photo-1589939705384-5185137a7f0f?w=800&q=80" alt="David Keno" class="aimg-main">
-      <img src="https://images.unsplash.com/photo-1562259949-e8e7689d7828?w=500&q=80" alt="David Keno" class="aimg-small">
+      <img src="https://images.unsplash.com/photo-1589939705384-5185137a7f0f?w=800&q=80" alt="David Keno" class="aimg-main" loading="lazy" onerror="this.style.background='var(--light)';this.removeAttribute('src')">
+      <img src="https://images.unsplash.com/photo-1562259949-e8e7689d7828?w=500&q=80" alt="David Keno" class="aimg-small" loading="lazy" onerror="this.style.display='none'">
       <div class="aimg-badge">
         <strong>✦</strong>
         <span>Amsterdam</span>
@@ -291,7 +306,7 @@ footer{background:var(--dark);padding:4rem 5% 2.5rem}
     </div>
     <div class="srv-grid">
       <div class="srv-card rv">
-        <img src="https://images.unsplash.com/photo-1589939705384-5185137a7f0f?w=600&q=80" alt="Binnenschilderwerk" class="srv-img">
+        <img src="https://images.unsplash.com/photo-1589939705384-5185137a7f0f?w=600&q=80" alt="Binnenschilderwerk" class="srv-img" loading="lazy" onerror="this.style.background='var(--light)';this.removeAttribute('src')">
         <div class="srv-body">
           <div class="srv-num">01</div>
           <h3 class="srv-name">Binnenschilderwerk</h3>
@@ -299,7 +314,7 @@ footer{background:var(--dark);padding:4rem 5% 2.5rem}
         </div>
       </div>
       <div class="srv-card rv d1">
-        <img src="https://images.unsplash.com/photo-1562259949-e8e7689d7828?w=600&q=80" alt="Buitenschilderwerk" class="srv-img">
+        <img src="https://images.unsplash.com/photo-1562259949-e8e7689d7828?w=600&q=80" alt="Buitenschilderwerk" class="srv-img" loading="lazy" onerror="this.style.background='var(--light)';this.removeAttribute('src')">
         <div class="srv-body">
           <div class="srv-num">02</div>
           <h3 class="srv-name">Buitenschilderwerk</h3>
@@ -307,7 +322,7 @@ footer{background:var(--dark);padding:4rem 5% 2.5rem}
         </div>
       </div>
       <div class="srv-card rv d2">
-        <img src="https://images.unsplash.com/photo-1513694153872-9a621a9f5d85?w=600&q=80" alt="Behangen &amp; Spuitwerk" class="srv-img">
+        <img src="https://images.unsplash.com/photo-1513694153872-9a621a9f5d85?w=600&q=80" alt="Behangen &amp; Spuitwerk" class="srv-img" loading="lazy" onerror="this.style.background='var(--light)';this.removeAttribute('src')">
         <div class="srv-body">
           <div class="srv-num">03</div>
           <h3 class="srv-name">Behangen &amp; Spuitwerk</h3>
@@ -327,23 +342,23 @@ footer{background:var(--dark);padding:4rem 5% 2.5rem}
     </div>
     <div class="port-grid">
       <div class="pi rv">
-        <img src="https://images.unsplash.com/photo-1589939705384-5185137a7f0f?w=900&q=80" alt="Woonkamer Renovatie">
+        <img src="https://images.unsplash.com/photo-1589939705384-5185137a7f0f?w=900&q=80" alt="Woonkamer Renovatie" loading="lazy" onerror="this.style.background='var(--mid)';this.removeAttribute('src')">
         <div class="pi-ov"><div class="pi-cap"><p>Interieur</p><h4>Woonkamer Renovatie</h4></div></div>
       </div>
       <div class="pi rv d1">
-        <img src="https://images.unsplash.com/photo-1562259949-e8e7689d7828?w=700&q=80" alt="Gevelrenovatie">
+        <img src="https://images.unsplash.com/photo-1562259949-e8e7689d7828?w=700&q=80" alt="Gevelrenovatie" loading="lazy" onerror="this.style.background='var(--mid)';this.removeAttribute('src')">
         <div class="pi-ov"><div class="pi-cap"><p>Exterieur</p><h4>Gevelrenovatie</h4></div></div>
       </div>
       <div class="pi rv">
-        <img src="https://images.unsplash.com/photo-1513694153872-9a621a9f5d85?w=600&q=80" alt="Moderne Afwerking">
+        <img src="https://images.unsplash.com/photo-1513694153872-9a621a9f5d85?w=600&q=80" alt="Moderne Afwerking" loading="lazy" onerror="this.style.background='var(--mid)';this.removeAttribute('src')">
         <div class="pi-ov"><div class="pi-cap"><p>Spuitwerk</p><h4>Moderne Afwerking</h4></div></div>
       </div>
       <div class="pi rv d1">
-        <img src="https://images.unsplash.com/photo-1589939705384-5185137a7f0f?w=700&q=80" alt="Klassiek Interieur">
+        <img src="https://images.unsplash.com/photo-1589939705384-5185137a7f0f?w=700&q=80" alt="Klassiek Interieur" loading="lazy" onerror="this.style.background='var(--mid)';this.removeAttribute('src')">
         <div class="pi-ov"><div class="pi-cap"><p>Behang</p><h4>Klassiek Interieur</h4></div></div>
       </div>
       <div class="pi rv d2">
-        <img src="https://images.unsplash.com/photo-1562259949-e8e7689d7828?w=500&q=80" alt="Buitenafwerking">
+        <img src="https://images.unsplash.com/photo-1562259949-e8e7689d7828?w=500&q=80" alt="Buitenafwerking" loading="lazy" onerror="this.style.background='var(--mid)';this.removeAttribute('src')">
         <div class="pi-ov"><div class="pi-cap"><p>Kozijnen</p><h4>Buitenafwerking</h4></div></div>
       </div>
     </div>
@@ -364,7 +379,7 @@ footer{background:var(--dark);padding:4rem 5% 2.5rem}
       </div>
     </div>
     <div class="why-img-wrap rv d2">
-      <img src="https://images.unsplash.com/photo-1589939705384-5185137a7f0f?w=700&q=80" alt="David Keno" class="why-img">
+      <img src="https://images.unsplash.com/photo-1589939705384-5185137a7f0f?w=700&q=80" alt="David Keno" class="why-img" loading="lazy" onerror="this.style.background='var(--mid)';this.removeAttribute('src')">
       <div class="why-badge">
         <p>David Keno</p>
         <span>Painter · Amsterdam</span>
@@ -425,7 +440,7 @@ footer{background:var(--dark);padding:4rem 5% 2.5rem}
     <div class="cform rv d1">
       <h3>Stuur een bericht</h3>
       <p>Wij nemen zo snel mogelijk contact met u op.</p>
-      <form id="cf" onsubmit="document.getElementById('cf').style.display='none';document.getElementById('fs').style.display='block';return false">
+      <form id="cf" onsubmit="this.style.display='none';document.getElementById('fs').style.display='block';return false">
         <div class="frow">
           <div class="fg"><label>Voornaam</label><input type="text" placeholder="Jan" required></div>
           <div class="fg"><label>Achternaam</label><input type="text" placeholder="De Vries" required></div>
@@ -477,12 +492,19 @@ footer{background:var(--dark);padding:4rem 5% 2.5rem}
 </footer>
 
 <script>
-const nb = document.getElementById('nb');
-window.addEventListener('scroll', () => nb.classList.toggle('sc', scrollY > 60));
-const obs = new IntersectionObserver(es => {
-  es.forEach(el => { if (el.isIntersecting) { el.target.classList.add('vis'); obs.unobserve(el.target); } });
-}, { threshold: 0.1 });
-document.querySelectorAll('.rv').forEach(el => obs.observe(el));
+var nb = document.getElementById('nb');
+window.addEventListener('scroll', function(){
+  nb.classList.toggle('sc', (window.scrollY || window.pageYOffset) > 60);
+}, {passive:true});
+if ('IntersectionObserver' in window) {
+  var obs = new IntersectionObserver(function(es){
+    es.forEach(function(el){ if(el.isIntersecting){ el.target.classList.add('vis'); obs.unobserve(el.target); } });
+  }, {threshold:0.08});
+  document.querySelectorAll('.rv').forEach(function(el){ obs.observe(el); });
+} else {
+  document.querySelectorAll('.rv').forEach(function(el){ el.classList.add('vis'); });
+}
 </script>
+</div><!-- /wrap -->
 </body>
 </html>
