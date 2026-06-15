@@ -99,6 +99,24 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:998;op
 .hero{min-height:100dvh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:140px clamp(1.25rem,5vw,3rem) 80px;position:relative;overflow:hidden}
 .hero-bg{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 130% 70% at 50% -10%,rgba(43,142,142,.16) 0%,transparent 60%),radial-gradient(ellipse 70% 50% at 82% 85%,rgba(15,42,94,.22) 0%,transparent 55%),radial-gradient(ellipse 50% 40% at 15% 70%,rgba(43,142,142,.07) 0%,transparent 50%)}
 .hero-grid{position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(rgba(43,142,142,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(43,142,142,.03) 1px,transparent 1px);background-size:80px 80px;mask-image:radial-gradient(ellipse 90% 75% at 50% 38%,black 15%,transparent 100%)}
+/* LOGO MARK */
+.vsmark{display:block;color:#fff}
+.nm .vsmark{width:18px;height:18px}
+.lm .vsmark{width:28px;height:28px}
+.flogo .nm .vsmark{width:18px;height:18px}
+/* HERO FLOATING ICONS */
+.hero-floats{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden}
+.float-ic{position:absolute;width:54px;height:54px;border-radius:16px;display:flex;align-items:center;justify-content:center;background:rgba(43,142,142,.08);border:1px solid var(--hr-m);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:0 10px 30px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,255,255,.07);color:var(--teal-l);animation:floaty 7s var(--ease) infinite}
+.float-ic svg{width:24px;height:24px}
+.fi1{top:19%;left:6.5%;animation-delay:-.4s}
+.fi2{top:24%;right:7.5%;animation-duration:8.4s;animation-delay:-2.1s}
+.fi3{top:58%;left:10%;animation-duration:7.8s;animation-delay:-3.4s}
+.fi4{top:62%;right:9%;animation-duration:9s;animation-delay:-1.2s}
+.fi5{top:41%;left:3%;animation-duration:8s;animation-delay:-4.6s}
+.fi6{top:45%;right:3%;animation-duration:8.8s;animation-delay:-5.3s}
+@keyframes floaty{0%,100%{transform:translateY(0) rotate(-3deg)}50%{transform:translateY(-18px) rotate(3deg)}}
+@media(max-width:1180px){.fi5,.fi6{display:none}}
+@media(max-width:1080px){.hero-floats{display:none}}
 .hero-eyebrow{display:inline-flex;align-items:center;gap:10px;border:1px solid var(--hr-m);border-radius:100px;padding:7px 16px 7px 10px;background:rgba(43,142,142,.07);font-size:.68rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--teal-l);margin-bottom:2.5rem;position:relative;z-index:2;overflow:hidden}
 .hero-eyebrow::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(43,142,142,.12) 50%,transparent);transform:translateX(-100%);animation:sh 4s ease-in-out infinite}
 @keyframes sh{0%{transform:translateX(-100%)}60%,100%{transform:translateX(100%)}}
@@ -385,13 +403,14 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:998;op
 
 <a href="#main" class="skip" data-i18n="skip">Skip to main content</a>
 <div id="prog" role="progressbar" aria-hidden="true"></div>
-<div id="load" aria-hidden="true"><div class="lm"><span>VS</span></div><div class="lb"></div></div>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><symbol id="vs-mark" viewBox="0 0 32 32"><path fill="currentColor" d="M14.4 5 14.4 18.6 6.4 18.6 Z"/><path fill="currentColor" d="M16.6 2.8 16.6 18.6 25.8 18.6 Z"/><path fill="currentColor" d="M4 20.4 H28 C26.3 25.4 23.3 27.2 19.4 27.2 H12.6 C8.7 27.2 5.7 25.4 4 20.4 Z"/><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" d="M4 30 C8.5 27.2 11 31.4 15.5 29.6 S23.5 31.6 28 29"/></symbol></svg>
+<div id="load" aria-hidden="true"><div class="lm"><svg class="vsmark"><use href="#vs-mark"/></svg></div><div class="lb"></div></div>
 
 <!-- NAV -->
 <div class="nav-wrap" id="nwrap">
   <nav class="nav" aria-label="Main navigation">
     <div class="nav-logo">
-      <div class="nm" aria-hidden="true"><span>VS</span></div>
+      <div class="nm" aria-hidden="true"><svg class="vsmark"><use href="#vs-mark"/></svg></div>
       <span class="nw">Vela Sync</span>
     </div>
     <div class="nav-links">
@@ -438,6 +457,14 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:998;op
 <section class="hero" aria-labelledby="h1">
   <div class="hero-bg" aria-hidden="true"></div>
   <div class="hero-grid" aria-hidden="true"></div>
+  <div class="hero-floats" aria-hidden="true">
+    <span class="float-ic fi1" title="Live in 24 hours"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></span>
+    <span class="float-ic fi2" title="Expanding across Europe"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></span>
+    <span class="float-ic fi3" title="We drive traffic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg></span>
+    <span class="float-ic fi4" title="Local prices"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41 13.42 20.58a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg></span>
+    <span class="float-ic fi5" title="Enterprise-grade & secure"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
+    <span class="float-ic fi6" title="Award-winning team"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg></span>
+  </div>
   <div class="hero-eyebrow"><span class="edot" aria-hidden="true"></span><span data-i18n="hero.eyebrow">Now expanding across Europe</span></div>
   <h1 id="h1" data-i18n="hero.h1">Enterprise tech.<br><span class="grd">Local prices.</span></h1>
   <p class="hero-sub" data-i18n="hero.sub">Award-winning engineers. Machine Learning strategy. Websites live in 24 hours with continued support on changes — at a fraction of what agencies charge.</p>
@@ -875,7 +902,7 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:998;op
 <!-- FOOTER -->
 <footer class="footer">
   <div class="footer-in">
-    <div class="flogo"><div class="nm" aria-hidden="true"><span>VS</span></div><span class="fw">Vela Sync</span></div>
+    <div class="flogo"><div class="nm" aria-hidden="true"><svg class="vsmark"><use href="#vs-mark"/></svg></div><span class="fw">Vela Sync</span></div>
     <div class="fctr"><span data-i18n="footer.l1">© 2026 Vela Sync Ltd · Co. No. 17051204</span><br><span data-i18n="footer.l2">Web &amp; Digital Solutions · Private Healthcare · Workforce Solutions</span></div>
     <nav class="flinks" aria-label="Footer links"><a href="#">www.velasync.com</a><a href="#">UK · US · ZA · EU</a></nav>
   </div>
