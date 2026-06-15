@@ -169,6 +169,12 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:998;op
 .bc-a .card-inner::before{content:'';position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 80% 60% at 30% 20%,rgba(43,142,142,.1) 0%,transparent 60%)}
 .big-num{font-size:clamp(5rem,10vw,9rem);font-weight:800;letter-spacing:-6px;line-height:1;color:rgba(43,142,142,.12);position:absolute;top:.75rem;right:1.25rem;transition:color .3s}
 .card-shell:hover .big-num{color:rgba(43,142,142,.2)}
+.bento-img{position:absolute;inset:0;z-index:0;overflow:hidden}
+.bento-img img{width:100%;height:100%;object-fit:cover;filter:saturate(.8) brightness(.5);transition:transform .7s var(--ease),filter .7s}
+.card-shell:hover .bento-img img{transform:scale(1.06);filter:saturate(1) brightness(.6)}
+.bento-img::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,10,10,.35) 0%,rgba(5,10,10,.82) 100%)}
+.has-img .card-inner{background:var(--s2)}
+.has-img .card-inner>*:not(.bento-img){position:relative;z-index:2}
 .card-ico{width:44px;height:44px;border-radius:12px;background:rgba(43,142,142,.1);border:1px solid var(--hr-m);display:flex;align-items:center;justify-content:center;color:var(--teal);margin-bottom:1.25rem;transition:background .2s,box-shadow .2s,transform .22s var(--spring)}
 .card-shell:hover .card-ico{background:rgba(43,142,142,.18);box-shadow:0 0 18px rgba(43,142,142,.15);transform:scale(1.07)}
 .card-inner h3{font-size:1rem;font-weight:700;color:var(--ink);margin-bottom:.4rem;line-height:1.4}
@@ -481,7 +487,8 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:998;op
     <p class="sub" data-i18n="why.sub">Enterprise-grade digital expertise brought to local businesses — the same team that has built platforms for the most demanding, regulated industries in the world.</p>
   </div>
   <div class="bento stag">
-    <div class="card-shell bc-a"><div class="card-inner">
+    <div class="card-shell bc-a has-img"><div class="card-inner">
+      <div class="bento-img" aria-hidden="true"><img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=1100&q=80" alt="" loading="lazy" width="1100" height="620"></div>
       <div class="big-num" aria-hidden="true">24h</div>
       <div class="card-ico" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
       <h3 data-i18n="why.a.h">Live in 24 hours — with continued support on changes</h3>
@@ -492,7 +499,8 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:998;op
       <h3 data-i18n="why.b.h">Award-winning team</h3>
       <p data-i18n="why.b.p">Multiple industry awards. Enterprise pedigree on your side.</p>
     </div></div>
-    <div class="card-shell bc-c"><div class="card-inner">
+    <div class="card-shell bc-c has-img"><div class="card-inner">
+      <div class="bento-img" aria-hidden="true"><img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=900&q=80" alt="" loading="lazy" width="900" height="600"></div>
       <div class="card-ico" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg></div>
       <h3 data-i18n="why.c.h">We drive traffic</h3>
       <p data-i18n="why.c.p">Our platform has handled up to 250,000 simultaneous users. We apply that same growth engineering to your business — turning your new site into a client acquisition engine from day one.</p>
