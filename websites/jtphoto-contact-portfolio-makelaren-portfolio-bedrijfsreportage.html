@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JTPHOTO Contact Portfolio Makelaren Portfolio Bedrijfsreportage — Amsterdam</title>
+<meta name="description" content="JTPHOTO Contact Portfolio Makelaren Portfolio Bedrijfsreportage — Capturing your most important moments with skill and artistry.">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --primary: #111111;
+    --accent: #e0c080;
+    --primary-text: #ffffff;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background: #f8f9fa; color: #1a1a1a; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(0,0,0,0.85); backdrop-filter: blur(12px);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 5%; height: 64px;
+  }
+  .nav-brand { color: #fff; font-weight: 700; font-size: 1.1rem; letter-spacing: -0.3px; }
+  .nav-cta {
+    background: var(--accent); color: #fff; border: none; border-radius: 6px;
+    padding: 8px 20px; font-size: 0.9rem; font-weight: 600; cursor: pointer;
+    text-decoration: none; transition: opacity 0.2s;
+  }
+  .nav-cta:hover { opacity: 0.85; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    background: linear-gradient(135deg, var(--primary) 0%, color-mix(in srgb, var(--primary) 70%, #000) 100%);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center; padding: 100px 5% 80px;
+    position: relative; overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 80% 60% at 50% 50%, color-mix(in srgb, var(--accent) 15%, transparent), transparent);
+  }
+  .hero-icon { font-size: 4rem; margin-bottom: 16px; position: relative; }
+  .hero-badge {
+    background: color-mix(in srgb, var(--accent) 20%, transparent);
+    border: 1px solid color-mix(in srgb, var(--accent) 40%, transparent);
+    color: var(--accent); border-radius: 999px;
+    padding: 6px 18px; font-size: 0.8rem; font-weight: 600; letter-spacing: 1px;
+    text-transform: uppercase; margin-bottom: 24px; display: inline-block;
+    position: relative;
+  }
+  .hero h1 {
+    font-size: clamp(2.2rem, 5vw, 3.8rem); font-weight: 800; color: #fff;
+    line-height: 1.1; letter-spacing: -1px; margin-bottom: 12px;
+    position: relative;
+  }
+  .hero-tagline {
+    font-size: clamp(1rem, 2vw, 1.35rem); color: rgba(255,255,255,0.7);
+    max-width: 600px; line-height: 1.6; margin-bottom: 32px;
+    position: relative;
+  }
+  
+  .stars { color: var(--accent); font-size: 1rem; letter-spacing: 1px; }
+  .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; position: relative; }
+  .btn-primary {
+    background: var(--accent); color: #fff; border: none; border-radius: 8px;
+    padding: 14px 32px; font-size: 1rem; font-weight: 700; cursor: pointer;
+    text-decoration: none; transition: transform 0.15s, box-shadow 0.15s;
+    box-shadow: 0 4px 20px color-mix(in srgb, var(--accent) 40%, transparent);
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 28px color-mix(in srgb, var(--accent) 50%, transparent); }
+  .btn-secondary {
+    background: transparent; color: #fff; border: 2px solid rgba(255,255,255,0.4);
+    border-radius: 8px; padding: 14px 32px; font-size: 1rem; font-weight: 600;
+    cursor: pointer; text-decoration: none; transition: border-color 0.2s, background 0.2s;
+  }
+  .btn-secondary:hover { border-color: #fff; background: rgba(255,255,255,0.08); }
+
+  /* STATS BAR */
+  .stats-bar {
+    background: var(--accent); padding: 20px 5%;
+    display: flex; justify-content: center; gap: 60px; flex-wrap: wrap;
+  }
+  .stat { text-align: center; color: #fff; }
+  .stat-num { font-size: 1.6rem; font-weight: 800; display: block; }
+  .stat-label { font-size: 0.78rem; opacity: 0.85; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px; }
+
+  /* SECTIONS */
+  section { padding: 80px 5%; max-width: 1200px; margin: 0 auto; }
+  .section-label {
+    color: var(--accent); font-size: 0.8rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 2px; margin-bottom: 10px;
+  }
+  h2 { font-size: clamp(1.8rem, 3.5vw, 2.8rem); font-weight: 800; line-height: 1.15; letter-spacing: -0.5px; }
+  .section-intro { font-size: 1.1rem; color: #555; line-height: 1.7; margin-top: 14px; max-width: 620px; }
+
+  /* SERVICES */
+  .services-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px; margin-top: 40px;
+  }
+  .service-card {
+    background: #fff; border-radius: 12px; padding: 20px 24px;
+    display: flex; align-items: center; gap: 14px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06); border: 1px solid #f0f0f0;
+    font-weight: 600; font-size: 0.95rem; transition: transform 0.15s, box-shadow 0.15s;
+  }
+  .service-card:hover { transform: translateY(-3px); box-shadow: 0 6px 24px rgba(0,0,0,0.1); }
+  .check {
+    width: 32px; height: 32px; border-radius: 50%;
+    background: color-mix(in srgb, var(--accent) 15%, transparent);
+    color: var(--accent); display: flex; align-items: center; justify-content: center;
+    font-weight: 800; flex-shrink: 0;
+  }
+
+  /* WHY US */
+  .why-section { background: var(--primary); border-radius: 24px; padding: 60px; margin: 0 5% 80px; }
+  .why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 32px; margin-top: 36px; }
+  .why-card { text-align: center; color: var(--primary-text); }
+  .why-icon { font-size: 2.2rem; margin-bottom: 12px; }
+  .why-title { font-weight: 700; font-size: 1rem; margin-bottom: 6px; color: #fff; }
+  .why-desc { font-size: 0.875rem; opacity: 0.65; color: #fff; line-height: 1.5; }
+  .why-section h2 { color: #fff; }
+  .why-section .section-label { color: var(--accent); }
+
+  /* CONTACT */
+  .contact-section {
+    background: #fff; border-radius: 24px; padding: 60px;
+    margin: 0 5% 80px; box-shadow: 0 4px 32px rgba(0,0,0,0.07);
+    display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center;
+  }
+  .contact-info h2 { margin-bottom: 20px; }
+  .contact-detail { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 16px; font-size: 0.95rem; color: #444; }
+  .contact-icon { font-size: 1.2rem; flex-shrink: 0; margin-top: 2px; }
+  .cta-btn {
+    display: inline-block; background: var(--accent); color: #fff;
+    padding: 14px 32px; border-radius: 8px; font-size: 1rem; font-weight: 700;
+    text-decoration: none; margin-top: 8px;
+    box-shadow: 0 4px 20px color-mix(in srgb, var(--accent) 40%, transparent);
+    transition: transform 0.15s;
+  }
+  .cta-btn:hover { transform: translateY(-2px); }
+  .cta-btn.no-phone { opacity: 0.7; cursor: default; }
+  .map-link { display: inline-block; margin-top: 12px; color: var(--accent); text-decoration: none; font-weight: 600; font-size: 0.9rem; }
+  .map-link:hover { text-decoration: underline; }
+  .contact-visual {
+    background: linear-gradient(135deg, var(--primary), color-mix(in srgb, var(--primary) 70%, #000));
+    border-radius: 16px; padding: 40px; color: #fff; text-align: center;
+  }
+  .contact-visual .big-icon { font-size: 5rem; margin-bottom: 16px; }
+  .contact-visual p { opacity: 0.75; font-size: 0.95rem; line-height: 1.6; }
+
+  /* FOOTER */
+  footer {
+    background: #111; color: rgba(255,255,255,0.5);
+    text-align: center; padding: 30px 5%; font-size: 0.85rem;
+  }
+  footer strong { color: rgba(255,255,255,0.8); }
+
+  @media (max-width: 700px) {
+    .contact-section { grid-template-columns: 1fr; }
+    .why-section, .contact-section { padding: 36px 24px; border-radius: 16px; }
+    .stats-bar { gap: 28px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-brand">📸 JTPHOTO Contact Portfolio Makelaren Portfolio Bedrijfsreportage</span>
+  <a href="#contact" class="nav-cta">Get in Touch</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-icon">📸</div>
+  <div class="hero-badge">Photography service</div>
+  <h1>JTPHOTO Contact Portfolio Makelaren Portfolio Bedrijfsreportage</h1>
+  <p class="hero-tagline">Professional Photography Services in Amsterdam</p>
+  
+  <div class="hero-actions">
+    <a href="#contact" class="btn-primary">Get a Free Quote</a>
+    <a href="#services" class="btn-secondary">Our Services</a>
+  </div>
+</section>
+
+<div class="stats-bar">
+  <div class="stat"><span class="stat-num">10+</span><span class="stat-label">Years Experience</span></div>
+  <div class="stat"><span class="stat-num">500+</span><span class="stat-label">Projects Completed</span></div>
+  <div class="stat"><span class="stat-num">100%</span><span class="stat-label">Satisfaction Guarantee</span></div>
+  <div class="stat"><span class="stat-num">Amsterdam</span><span class="stat-label">Based & Trusted</span></div>
+</div>
+
+<section id="services">
+  <p class="section-label">What We Offer</p>
+  <h2>Our Services</h2>
+  <p class="section-intro">Capturing your most important moments with skill and artistry.</p>
+  <div class="services-grid">
+    <div class="service-card"><span class="check">✓</span><span>Event Photography</span></div>
+<div class="service-card"><span class="check">✓</span><span>Portrait Sessions</span></div>
+<div class="service-card"><span class="check">✓</span><span>Documentary</span></div>
+<div class="service-card"><span class="check">✓</span><span>Editing &amp; Retouching</span></div>
+<div class="service-card"><span class="check">✓</span><span>Print Services</span></div>
+  </div>
+</section>
+
+<div class="why-section">
+  <p class="section-label">Why Choose Us</p>
+  <h2>The JTPHOTO Difference</h2>
+  <div class="why-grid">
+    <div class="why-card">
+      <div class="why-icon">🏆</div>
+      <div class="why-title">Quality First</div>
+      <div class="why-desc">We never cut corners. Every job is done to the highest standard.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">⏱️</div>
+      <div class="why-title">On Time, Every Time</div>
+      <div class="why-desc">We respect your time and always deliver on schedule.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">💬</div>
+      <div class="why-title">Clear Communication</div>
+      <div class="why-desc">No surprises. We keep you informed at every step.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">💰</div>
+      <div class="why-title">Fair Pricing</div>
+      <div class="why-desc">Transparent quotes with no hidden costs. Great value guaranteed.</div>
+    </div>
+  </div>
+</div>
+
+<section id="contact">
+  <div class="contact-section" style="max-width:100%;margin:0;padding:60px;">
+    <div class="contact-info">
+      <p class="section-label">Get in Touch</p>
+      <h2>Let's Talk About Your Project</h2>
+      <p style="color:#555;line-height:1.7;margin:14px 0 24px;">Ready to get started? Contact us today for a free, no-obligation quote. We'd love to hear from you.</p>
+      <div class='contact-detail'><span class='contact-icon'>📞</span><div><strong>Phone</strong><br>+31 6 26684416</div></div>
+      <div class='contact-detail'><span class='contact-icon'>📍</span><div><strong>Address</strong><br>Tilanusstraat, Amsterdam, Netherlands</div></div>
+      <a href="tel:+31 6 26684416" class="cta-btn">+31 6 26684416</a>
+      <a href="https://www.google.com/maps/search/?api=1&amp;query=JTPHOTO%20Contact%20Portfolio%20Makelaren%20Portfolio%20Bedrijfsreportage&amp;query_place_id=ChIJn97AbZwJxkcRl8ywq6F-MPY" target="_blank" class="map-link">📍 View on Google Maps</a>
+    </div>
+    <div class="contact-visual">
+      <div class="big-icon">📸</div>
+      <h3 style="font-size:1.4rem;margin-bottom:10px;">JTPHOTO Contact Portfolio Makelaren Portfolio Bedrijfsreportage</h3>
+      <p>Capturing your most important moments with skill and artistry.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <strong>JTPHOTO Contact Portfolio Makelaren Portfolio Bedrijfsreportage</strong> &nbsp;·&nbsp; Amsterdam, Netherlands &nbsp;·&nbsp;
+  Photography service &nbsp;·&nbsp; © 2025
+</footer>
+
+</body>
+</html>
