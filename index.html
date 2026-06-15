@@ -529,7 +529,7 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:998;op
     <div class="pc feat"><div class="pc-in">
       <div class="feat-tag" data-i18n="pricing.popular">Most popular</div>
       <div class="ptag" data-i18n="pricing.p1.tier">Website — Full Build</div>
-      <div class="pamt"><sup>£</sup>450</div>
+      <div class="pamt" data-i18n="price.amt1"><sup>£</sup>450</div>
       <div class="pnote" data-i18n="pricing.p1.note">One-off · Live within 24 hours</div>
       <div class="pdiv"></div>
       <ul class="plist">
@@ -543,7 +543,7 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:998;op
     </div></div>
     <div class="pc"><div class="pc-in">
       <div class="ptag" data-i18n="pricing.p2.tier">Website + Marketing Launch</div>
-      <div class="pamt"><sup>£</sup>650</div>
+      <div class="pamt" data-i18n="price.amt2"><sup>£</sup>650</div>
       <div class="pnote" data-i18n="pricing.p2.note">Everything in the build, plus launch momentum</div>
       <div class="pdiv"></div>
       <ul class="plist">
@@ -569,7 +569,7 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:998;op
   </div>
   <div class="save-bar up">
     <div class="save-txt" data-i18n="save.txt">The average agency charges for the same work</div>
-    <div class="save-row"><div class="save-old">£2,000+</div><div class="save-pill" data-i18n="save.pill">Save up to £1,550 with Vela Sync</div></div>
+    <div class="save-row"><div class="save-old" data-i18n="save.old">£2,000+</div><div class="save-pill" data-i18n="save.pill">Save up to £1,550 with Vela Sync</div></div>
   </div>
 </div>
 </section>
@@ -611,13 +611,13 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:998;op
         <th data-i18n="compare.th4">DIY Builder (e.g. Wix)</th>
       </tr></thead>
       <tbody>
-        <tr><td data-i18n="cmp.r1.a">Build cost</td><td class="yes">£450 – £650</td><td class="vs">£2,000 – £8,000+</td><td>£0 – £30/mo</td></tr>
+        <tr><td data-i18n="cmp.r1.a">Build cost</td><td class="yes" data-i18n="cmp.r1.b">£450 – £650</td><td class="vs" data-i18n="cmp.r1.c">£2,000 – £8,000+</td><td data-i18n="cmp.r1.d">£0 – £30/mo</td></tr>
         <tr><td data-i18n="cmp.r2.a">Time to live</td><td class="yes">24h</td><td class="no" data-i18n="cmp.r2.c">4 – 12 weeks</td><td data-i18n="cmp.selfmanaged">Self-managed</td></tr>
         <tr><td data-i18n="cmp.r3.a">Custom design (not a template)</td><td class="yes" data-i18n="cmp.inc">✓ Included</td><td data-i18n="cmp.inc">✓ Included</td><td class="no" data-i18n="cmp.r3.d">✗ Template only</td></tr>
         <tr><td data-i18n="cmp.r4.a">1:1 strategy call</td><td class="yes" data-i18n="cmp.r4.b">✓ Every client</td><td data-i18n="cmp.r4.c">Sometimes</td><td class="no" data-i18n="cmp.none">✗ None</td></tr>
         <tr><td data-i18n="cmp.r5.a">Domain setup / transfer</td><td class="yes" data-i18n="cmp.inc">✓ Included</td><td class="vs" data-i18n="cmp.r5.c">Often extra cost</td><td data-i18n="cmp.selfmanaged">Self-managed</td></tr>
-        <tr><td data-i18n="cmp.r6.a">Ongoing monthly support</td><td class="yes" data-i18n="cmp.r6.b">£50/mo (maintenance)</td><td class="vs">£150 – £300+/mo</td><td class="no" data-i18n="cmp.r6.d">None</td></tr>
-        <tr><td data-i18n="cmp.r7.a">SEO + full marketing</td><td class="yes" data-i18n="cmp.r7.b">£100/mo (all-in)</td><td class="vs">£300+/mo</td><td class="no" data-i18n="cmp.r7.d">Basic / manual</td></tr>
+        <tr><td data-i18n="cmp.r6.a">Ongoing monthly support</td><td class="yes" data-i18n="cmp.r6.b">£50/mo (maintenance)</td><td class="vs" data-i18n="cmp.r6.c">£150 – £300+/mo</td><td class="no" data-i18n="cmp.r6.d">None</td></tr>
+        <tr><td data-i18n="cmp.r7.a">SEO + full marketing</td><td class="yes" data-i18n="cmp.r7.b">£100/mo (all-in)</td><td class="vs" data-i18n="cmp.r7.c">£300+/mo</td><td class="no" data-i18n="cmp.r7.d">Basic / manual</td></tr>
         <tr><td data-i18n="cmp.r8.a">ML-backed growth strategy</td><td class="yes" data-i18n="cmp.inc">✓ Included</td><td class="no" data-i18n="cmp.r8.c">✗ Rarely offered</td><td class="no" data-i18n="cmp.r8.d">✗ Not available</td></tr>
         <tr><td data-i18n="cmp.r9.a">Enterprise engineering pedigree</td><td class="yes" data-i18n="cmp.r9.b">✓ Core team</td><td data-i18n="cmp.r9.c">Varies widely</td><td class="no" data-i18n="cmp.none">✗ None</td></tr>
       </tbody>
@@ -637,9 +637,9 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:998;op
     <p class="sub" data-i18n="fees.sub">Other agencies charge £150–£300/month to maintain a site. We maintain yours, drive traffic to it and improve your rankings. No lock-in, cancel any time.</p>
   </div>
   <div class="fees-grid stag">
-    <div class="fc2"><div class="fc2-in"><div class="fbig"><sup>£</sup>50</div><div class="fper" data-i18n="fees.permonth">per month</div><div class="fname" data-i18n="fee1.name">Standard Package</div><div class="fdesc" data-i18n="fee1.desc">Site maintenance, uptime monitoring and active traffic driving</div><div class="fvs" data-i18n="fee1.vs">Industry avg: £150+/mo</div></div></div>
-    <div class="fc2"><div class="fc2-in"><div class="fbig"><sup>£</sup>50</div><div class="fper" data-i18n="fees.permonth">per month</div><div class="fname" data-i18n="fee2.name">SEO Improvement</div><div class="fdesc" data-i18n="fee2.desc">Ongoing search engine optimisation to grow your organic rankings month by month</div><div class="fvs" data-i18n="fee2.vs">Industry avg: £200+/mo</div></div></div>
-    <div class="fc2 feat2"><div class="fc2-in"><div class="fbig"><sup>£</sup>100</div><div class="fper" data-i18n="fees.permonthall">per month — everything</div><div class="fname" data-i18n="fee3.name">Marketing Pack</div><div class="fdesc" data-i18n="fee3.desc">Maintenance, active traffic driving, SEO and digital marketing combined. Cancel any time, no lock-in.</div><div class="fvs" data-i18n="fee3.vs">Industry avg: £300+/mo</div></div></div>
+    <div class="fc2"><div class="fc2-in"><div class="fbig" data-i18n="fee.amt1"><sup>£</sup>50</div><div class="fper" data-i18n="fees.permonth">per month</div><div class="fname" data-i18n="fee1.name">Standard Package</div><div class="fdesc" data-i18n="fee1.desc">Site maintenance, uptime monitoring and active traffic driving</div><div class="fvs" data-i18n="fee1.vs">Industry avg: £150+/mo</div></div></div>
+    <div class="fc2"><div class="fc2-in"><div class="fbig" data-i18n="fee.amt2"><sup>£</sup>50</div><div class="fper" data-i18n="fees.permonth">per month</div><div class="fname" data-i18n="fee2.name">SEO Improvement</div><div class="fdesc" data-i18n="fee2.desc">Ongoing search engine optimisation to grow your organic rankings month by month</div><div class="fvs" data-i18n="fee2.vs">Industry avg: £200+/mo</div></div></div>
+    <div class="fc2 feat2"><div class="fc2-in"><div class="fbig" data-i18n="fee.amt3"><sup>£</sup>100</div><div class="fper" data-i18n="fees.permonthall">per month — everything</div><div class="fname" data-i18n="fee3.name">Marketing Pack</div><div class="fdesc" data-i18n="fee3.desc">Maintenance, active traffic driving, SEO and digital marketing combined. Cancel any time, no lock-in.</div><div class="fvs" data-i18n="fee3.vs">Industry avg: £300+/mo</div></div></div>
   </div>
 </div>
 </section>
@@ -885,6 +885,7 @@ const LANG_META={en:{flag:'🇬🇧',code:'EN'},nl:{flag:'🇳🇱',code:'NL'},f
 const SUPPORTED=['en','nl','fr','de','es'];
 const I18N={};
 I18N.en={
+"price.amt1":"<sup>£</sup>450","price.amt2":"<sup>£</sup>650","fee.amt1":"<sup>£</sup>50","fee.amt2":"<sup>£</sup>50","fee.amt3":"<sup>£</sup>100","save.old":"£2,000+","cmp.r1.b":"£450 – £650","cmp.r1.c":"£2,000 – £8,000+","cmp.r1.d":"£0 – £30/mo","cmp.r6.c":"£150 – £300+/mo","cmp.r7.c":"£300+/mo",
 "meta.title":"Vela Sync — Enterprise Tech. Local Business Prices.",
 "meta.desc":"Award-winning engineers and ML strategy. Professional websites live in 24 hours with ongoing support — at a fraction of agency prices.",
 "skip":"Skip to main content",
@@ -989,6 +990,7 @@ I18N.en={
 "mbar.info":"Websites from <strong>£450</strong> · Live in 24h","mbar.btn":"Book free call →"
 };
 I18N.nl={
+"price.amt1":"<sup>€</sup>499","price.amt2":"<sup>€</sup>699","fee.amt1":"<sup>€</sup>59","fee.amt2":"<sup>€</sup>59","fee.amt3":"<sup>€</sup>99","save.old":"€2.300+","cmp.r1.b":"€499 – €699","cmp.r1.c":"€2.300 – €9.000+","cmp.r1.d":"€0 – €35/mo","cmp.r6.c":"€175 – €349+/mo","cmp.r7.c":"€349+/mo",
 "meta.title":"Vela Sync — Enterprisetechnologie. Lokale prijzen.",
 "meta.desc":"Bekroonde engineers en ML-strategie. Professionele websites binnen 24 uur live met doorlopende ondersteuning — voor een fractie van de prijs van een bureau.",
 "skip":"Ga naar hoofdinhoud",
@@ -1018,14 +1020,14 @@ I18N.nl={
 "pricing.p2.tier":"Website + Marketinglancering","pricing.p2.note":"Alles uit de bouw, plus lanceermomentum",
 "pricing.p3.tier":"Flexibel betalen","pricing.p3.amt":"Termijnen","pricing.p3.note":"Betaal in termijnen. Geen drempels.",
 "feat.responsive":"Professioneel, mobielvriendelijk ontwerp","feat.call":"1-op-1 gesprek met directie- of designteam","feat.personalised":"Volledig afgestemd op jouw merk","feat.domain":"Domeinactivatie of -overdracht","feat.sameday":"Dezelfde dag opgeleverd","feat.instalments":"Betaling in termijnen mogelijk",
-"feat.fullbuild":"Volledig bouwpakket inbegrepen","feat.briefed":"Marketingteam gebriefd bij lancering","feat.traffic":"Verkeersstrategie vanaf dag één","feat.roadmap":"Groeiroadmap overgedragen","feat.save":"Bespaar tot £1.550 t.o.v. gemiddeld bureau",
+"feat.fullbuild":"Volledig bouwpakket inbegrepen","feat.briefed":"Marketingteam gebriefd bij lancering","feat.traffic":"Verkeersstrategie vanaf dag één","feat.roadmap":"Groeiroadmap overgedragen","feat.save":"Bespaar tot €1.800 t.o.v. gemiddeld bureau",
 "feat.split":"Gespreide betaling mogelijk","feat.schedule":"Vooraf afgesproken schema","feat.fullservice":"Volledige service vanaf dag één","feat.nocompromise":"Geen concessies aan kwaliteit",
-"save.txt":"Een gemiddeld bureau rekent voor hetzelfde werk","save.pill":"Bespaar tot £1.550 met Vela Sync",
+"save.txt":"Een gemiddeld bureau rekent voor hetzelfde werk","save.pill":"Bespaar tot €1.800 met Vela Sync",
 "process.tag":"Proces","process.h2":"Van aanvraag tot live<br><span class=\"grd\">in 24 uur.</span>",
 "step1.badge":"30 minuten","step1.h":"Kennismakingsgesprek","step1.p":"We bespreken je merk, doelen en visie in een gericht gesprek van 30 minuten. Ons team werkt snel — alles wat nodig is om live te gaan staat klaar zodra jij dat bent.",
 "step2.badge":"Zelfde dag","step2.h":"Ontwerp & bouw","step2.p":"Ons team personaliseert je site en regelt je domein — nieuw of overgedragen — en maakt alles productieklaar.",
 "step3.badge":"Binnen 24 uur","step3.h":"Jij beoordeelt & keurt goed","step3.p":"Mobielvriendelijk, SEO-klaar, prestatie-geoptimaliseerd. Jij beoordeelt en keurt goed voordat er iets online gaat.",
-"step4.badge":"£650-pakket","step4.h":"Marketinglancering","step4.p":"Upgrade en we briefen ons marketingteam bij de lancering — met een live verkeersstrategie en groeiroadmap vanaf dag één.",
+"step4.badge":"€699-pakket","step4.h":"Marketinglancering","step4.p":"Upgrade en we briefen ons marketingteam bij de lancering — met een live verkeersstrategie en groeiroadmap vanaf dag één.",
 "compare.tag":"Waardevergelijking","compare.h2":"Hoe wij ons verhouden<br><span class=\"grd\">tot de alternatieven.</span>",
 "compare.sub":"De cijfers spreken voor zich. Vela Sync levert enterprise-resultaat voor een fractie van wat traditionele bureaus rekenen — met snellere oplevering en doorlopende ondersteuning inbegrepen.",
 "compare.th1":"Wat je krijgt","compare.th2":"Vela Sync","compare.th3":"Gemiddeld bureau","compare.th4":"Doe-het-zelf (bijv. Wix)",
@@ -1034,16 +1036,16 @@ I18N.nl={
 "cmp.r3.a":"Maatwerkontwerp (geen template)","cmp.r3.d":"✗ Alleen template",
 "cmp.r4.a":"1-op-1 strategiegesprek","cmp.r4.b":"✓ Elke klant","cmp.r4.c":"Soms",
 "cmp.r5.a":"Domein instellen / overdragen","cmp.r5.c":"Vaak extra kosten",
-"cmp.r6.a":"Doorlopende maandelijkse ondersteuning","cmp.r6.b":"£50/mnd (onderhoud)","cmp.r6.d":"Geen",
-"cmp.r7.a":"SEO + volledige marketing","cmp.r7.b":"£100/mnd (alles-in)","cmp.r7.d":"Basis / handmatig",
+"cmp.r6.a":"Doorlopende maandelijkse ondersteuning","cmp.r6.b":"€59/mnd (onderhoud)","cmp.r6.d":"Geen",
+"cmp.r7.a":"SEO + volledige marketing","cmp.r7.b":"€99/mnd (alles-in)","cmp.r7.d":"Basis / handmatig",
 "cmp.r8.a":"ML-gedreven groeistrategie","cmp.r8.c":"✗ Zelden geboden","cmp.r8.d":"✗ Niet beschikbaar",
 "cmp.r9.a":"Enterprise-engineeringervaring","cmp.r9.b":"✓ Kernteam","cmp.r9.c":"Sterk wisselend",
 "fees.tag":"Doorlopende ondersteuning","fees.h2":"Wij bouwen het niet<br><span class=\"grd\">om dan te verdwijnen.</span>",
-"fees.sub":"Andere bureaus rekenen £150–£300 per maand voor onderhoud. Wij onderhouden jouw site, sturen er verkeer naartoe en verbeteren je posities. Geen contractduur, altijd opzegbaar.",
+"fees.sub":"Andere bureaus rekenen €175–€349 per maand voor onderhoud. Wij onderhouden jouw site, sturen er verkeer naartoe en verbeteren je posities. Geen contractduur, altijd opzegbaar.",
 "fees.permonth":"per maand","fees.permonthall":"per maand — alles",
-"fee1.name":"Standaardpakket","fee1.desc":"Onderhoud, uptimemonitoring en actief verkeer genereren","fee1.vs":"Branchegemiddelde: £150+/mnd",
-"fee2.name":"SEO-verbetering","fee2.desc":"Doorlopende zoekmachineoptimalisatie om je organische posities maand na maand te laten groeien","fee2.vs":"Branchegemiddelde: £200+/mnd",
-"fee3.name":"Marketingpakket","fee3.desc":"Onderhoud, actief verkeer, SEO en digitale marketing gecombineerd. Altijd opzegbaar, geen contractduur.","fee3.vs":"Branchegemiddelde: £300+/mnd",
+"fee1.name":"Standaardpakket","fee1.desc":"Onderhoud, uptimemonitoring en actief verkeer genereren","fee1.vs":"Branchegemiddelde: €175+/mnd",
+"fee2.name":"SEO-verbetering","fee2.desc":"Doorlopende zoekmachineoptimalisatie om je organische posities maand na maand te laten groeien","fee2.vs":"Branchegemiddelde: €239+/mnd",
+"fee3.name":"Marketingpakket","fee3.desc":"Onderhoud, actief verkeer, SEO en digitale marketing gecombineerd. Altijd opzegbaar, geen contractduur.","fee3.vs":"Branchegemiddelde: €349+/mnd",
 "guarantee.tag":"Onze belofte","guarantee.h2":"Waarom klanten<br>ervoor kiezen <span class=\"grd\">om te blijven.</span>",
 "guarantee.p":"We bouwden Vela Sync rond één principe: de relatie eindigt niet bij de oplevering. Van dag één tot maand twaalf en verder zijn we je technologiepartner — niet alleen je websitebouwer.",
 "gp1.h":"Binnen 24 uur live, gegarandeerd","gp1.p":"Je site gaat live binnen één werkdag — geen uitzonderingen, geen smoesjes.",
@@ -1063,7 +1065,7 @@ I18N.nl={
 "partner1.badge":"Compliancepartner","partner1.desc":"Groepscompliance-administratie voor alle Vela Sync-entiteiten. ICAEW-geregistreerd met dubbele softwarecertificeringen.","partner1.c1":"ICAEW-geregistreerd","partner1.c2":"Xero Gold Champion","partner1.c3":"Sage-gecertificeerd",
 "partner2.badge":"Wereldwijd netwerk","partner2.desc":"Lid van een van 's werelds toonaangevende verenigingen van onafhankelijke accountants- en adviesbureaus.",
 "services.tag":"Onze diensten","services.h2":"Wij bouwen niet zomaar websites.<br><span class=\"grd\">Wij bouwen digitale bedrijven.</span>",
-"svc1.sub":"Vanaf £450 · Binnen 24 uur live","svc1.h":"Bedrijfswebsites","svc1.p":"Professionele, snelle, mobile-first sites gebouwd om bezoekers in klanten om te zetten. Volledig gepersonaliseerd en binnen een dag opgeleverd.",
+"svc1.sub":"Vanaf €499 · Binnen 24 uur live","svc1.h":"Bedrijfswebsites","svc1.p":"Professionele, snelle, mobile-first sites gebouwd om bezoekers in klanten om te zetten. Volledig gepersonaliseerd en binnen een dag opgeleverd.",
 "svc2.sub":"Maatwerk · Schaalbaar · Compliant","svc2.h":"CRM-platforms","svc2.p":"CRM-oplossingen op maat voor de private zorg en personeelsoplossingen. Enterprisekwaliteit voor een fractie van de kosten.",
 "svc3.sub":"End-to-end · Wervingsplatforms","svc3.h":"Personeelsoplossingen","svc3.p":"Gebouwd voor uitzendwerk en private zorg waar betrouwbaarheid geen optie is. Ontworpen om complexiteit op volume aan te kunnen.",
 "svc4.sub":"Gebouwd om je klantenbestand te laten groeien","svc4.h":"Verkeer & groei","svc4.p":"We stimuleren actief klantengroei via SEO, content en digitale marketing — met dezelfde strategieën die 250.000 gelijktijdige gebruikers aankonden om jouw bedrijf te laten groeien, niet alleen je verkeer.",
@@ -1075,7 +1077,7 @@ I18N.nl={
 "hire.role.h":"Roloverzicht","hire.role.p":"Sales Advisor op commissiebasis — remote of in het veld, fulltime. Je verkoopt Vela Syncs website- en digitale pakketten rechtstreeks aan mkb-ondernemers in het VK. Vooraf gekwalificeerde leads vanaf dag één.",
 "hire.do.h":"Wat je gaat doen","hire.do.p":"Maak minimaal 500 uitgaande gesprekken per week vanuit onze vooraf gekwalificeerde leadlijst en sluit minimaal 5 verkopen per week. Presenteer en sluit Vela Sync-pakketten — websitebouw, maandelijkse ondersteuning, marketingpakketten — rechtstreeks bij mkb-beslissers.",
 "hire.req.h":"Vereisten","hire.req.p":"Aantoonbare ervaring in uitgaande of B2B-verkoop. Vol zelfvertrouwen aan de telefoon met ondernemers. Zelfgemotiveerd en resultaatgericht. Comfortabel zelfstandig werkend in een remote- of veldomgeving. Ervaring in digitale of websiteverkoop is een pré — geen vereiste.",
-"hire.comp.h":"Beloning","hire.comp.p":"100% commissie — ongelimiteerd verdienpotentieel. Concurrerende tarieven per gesloten verkoop. Topverkopers richten op £2.000–£4.000+/maand. Vooraf gekwalificeerde leads geleverd; geen koude acquisitie nodig.",
+"hire.comp.h":"Beloning","hire.comp.p":"100% commissie — ongelimiteerd verdienpotentieel. Concurrerende tarieven per gesloten verkoop. Topverkopers richten op €2.300–€4.700+/maand. Vooraf gekwalificeerde leads geleverd; geen koude acquisitie nodig.",
 "hire.duties.h":"Belangrijkste verantwoordelijkheden",
 "duty.1":"Benader prospects van de Vela Sync-leadlijst op een tijdige, georganiseerde manier","duty.2":"Voer boeiende, adviserende verkoopgesprekken met het aangereikte script als leidraad","duty.3":"Pas je aanpak aan op de toon, branche en specifieke behoeften van de lead","duty.4":"Presenteer Vela Syncs website-aanbod helder en overtuigend","duty.5":"Ga professioneel en met empathie om met bezwaren","duty.6":"Leg gespreksnotities, uitkomsten en opvolgacties nauwkeurig vast","duty.7":"Voltooi minimaal 500 gesprekken per week, met een minimumdoel van 5 verkopen","duty.8":"Volg openstaande betalingen op zodra de website van een klant is opgeleverd",
 "hire.perks.h":"Voordelen & cultuur",
@@ -1088,11 +1090,12 @@ I18N.nl={
 "hire.apply.txt":"Klaar om te solliciteren? Stuur je cv en een korte motivatie waarom jij de juiste persoon bent.","hire.apply.btn":"Solliciteer nu · careers@velasync.com",
 "cta.tag":"Aan de slag","cta.h2":"Klaar om te lanceren?<br><span class=\"grd\">Laten we vandaag praten.</span>",
 "cta.p":"Een gesprek van 30 minuten is genoeg om van nul naar live te gaan. We bespreken je visie en hebben je website binnen 24 uur online.",
-"cpill.1":"Vanaf £450","cpill.2":"Binnen 24 uur live","cpill.3":"Termijnen mogelijk","cpill.4":"£100/maand alles-in","cta.btn":"Plan je gratis gesprek",
+"cpill.1":"Vanaf €499","cpill.2":"Binnen 24 uur live","cpill.3":"Termijnen mogelijk","cpill.4":"€99/maand alles-in","cta.btn":"Plan je gratis gesprek",
 "footer.l1":"© 2026 Vela Sync Ltd · Bedrijfsnr. 17051204","footer.l2":"Web- & digitale oplossingen · Private zorg · Personeelsoplossingen",
-"mbar.info":"Websites vanaf <strong>£450</strong> · Binnen 24u live","mbar.btn":"Plan gratis gesprek →"
+"mbar.info":"Websites vanaf <strong>€499</strong> · Binnen 24u live","mbar.btn":"Plan gratis gesprek →"
 };
 I18N.fr={
+"price.amt1":"<sup>€</sup>499","price.amt2":"<sup>€</sup>699","fee.amt1":"<sup>€</sup>59","fee.amt2":"<sup>€</sup>59","fee.amt3":"<sup>€</sup>99","save.old":"€2.300+","cmp.r1.b":"€499 – €699","cmp.r1.c":"€2.300 – €9.000+","cmp.r1.d":"€0 – €35/mo","cmp.r6.c":"€175 – €349+/mo","cmp.r7.c":"€349+/mo",
 "meta.title":"Vela Sync — Technologie d'entreprise. Prix local.",
 "meta.desc":"Ingénieurs primés et stratégie ML. Sites web en ligne en 24 heures avec un accompagnement continu — pour une fraction du prix d'une agence.",
 "skip":"Aller au contenu principal",
@@ -1122,14 +1125,14 @@ I18N.fr={
 "pricing.p2.tier":"Site web + Lancement marketing","pricing.p2.note":"Tout de la création, plus l'élan du lancement",
 "pricing.p3.tier":"Paiements flexibles","pricing.p3.amt":"Échelonné","pricing.p3.note":"Payez dans le temps. Sans obstacle.",
 "feat.responsive":"Design professionnel et adapté au mobile","feat.call":"Appel individuel avec la direction ou l'équipe design","feat.personalised":"Entièrement personnalisé à votre marque","feat.domain":"Activation ou transfert de domaine","feat.sameday":"Livré le jour même","feat.instalments":"Paiement échelonné possible",
-"feat.fullbuild":"Forfait de création complet inclus","feat.briefed":"Équipe marketing briefée au lancement","feat.traffic":"Stratégie de trafic dès le premier jour","feat.roadmap":"Feuille de route de croissance remise","feat.save":"Économisez jusqu'à 1 550 £ vs agence moyenne",
+"feat.fullbuild":"Forfait de création complet inclus","feat.briefed":"Équipe marketing briefée au lancement","feat.traffic":"Stratégie de trafic dès le premier jour","feat.roadmap":"Feuille de route de croissance remise","feat.save":"Économisez jusqu'à 1 800 € vs agence moyenne",
 "feat.split":"Paiement fractionné possible","feat.schedule":"Échéancier convenu à l'avance","feat.fullservice":"Service complet dès le premier jour","feat.nocompromise":"Aucun compromis sur la qualité",
-"save.txt":"Une agence moyenne facture pour le même travail","save.pill":"Économisez jusqu'à 1 550 £ avec Vela Sync",
+"save.txt":"Une agence moyenne facture pour le même travail","save.pill":"Économisez jusqu'à 1 800 € avec Vela Sync",
 "process.tag":"Processus","process.h2":"De la demande à la mise en ligne<br><span class=\"grd\">en 24 heures.</span>",
 "step1.badge":"30 minutes","step1.h":"Appel de découverte","step1.p":"Nous discutons de votre marque, vos objectifs et votre vision lors d'un appel ciblé de 30 minutes. Notre équipe travaille vite — tout ce qu'il faut pour la mise en ligne est prêt dès que vous l'êtes.",
 "step2.badge":"Le jour même","step2.h":"Conception & création","step2.p":"Notre équipe personnalise votre site et configure votre domaine — nouveau ou transféré — pour que tout soit prêt à la production.",
 "step3.badge":"Sous 24 heures","step3.h":"Vous vérifiez & approuvez","step3.p":"Adapté au mobile, prêt pour le SEO, optimisé pour la performance. Vous vérifiez et approuvez avant toute mise en ligne.",
-"step4.badge":"Forfait 650 £","step4.h":"Lancement marketing","step4.p":"Passez à l'offre supérieure et nous briefons notre équipe marketing au lancement — avec une stratégie de trafic en direct et une feuille de route de croissance dès le premier jour.",
+"step4.badge":"Forfait 699 €","step4.h":"Lancement marketing","step4.p":"Passez à l'offre supérieure et nous briefons notre équipe marketing au lancement — avec une stratégie de trafic en direct et une feuille de route de croissance dès le premier jour.",
 "compare.tag":"Comparaison de valeur","compare.h2":"Comment nous nous situons<br><span class=\"grd\">face aux alternatives.</span>",
 "compare.sub":"Les chiffres parlent d'eux-mêmes. Vela Sync livre une qualité d'entreprise pour une fraction du tarif des agences traditionnelles — avec des délais plus courts et un accompagnement continu inclus.",
 "compare.th1":"Ce que vous obtenez","compare.th2":"Vela Sync","compare.th3":"Agence classique","compare.th4":"Outil DIY (ex. Wix)",
@@ -1138,16 +1141,16 @@ I18N.fr={
 "cmp.r3.a":"Design sur mesure (pas un modèle)","cmp.r3.d":"✗ Modèle uniquement",
 "cmp.r4.a":"Appel stratégique individuel","cmp.r4.b":"✓ Chaque client","cmp.r4.c":"Parfois",
 "cmp.r5.a":"Configuration / transfert de domaine","cmp.r5.c":"Souvent en supplément",
-"cmp.r6.a":"Accompagnement mensuel continu","cmp.r6.b":"50 £/mois (maintenance)","cmp.r6.d":"Aucun",
-"cmp.r7.a":"SEO + marketing complet","cmp.r7.b":"100 £/mois (tout compris)","cmp.r7.d":"Basique / manuel",
+"cmp.r6.a":"Accompagnement mensuel continu","cmp.r6.b":"59 €/mois (maintenance)","cmp.r6.d":"Aucun",
+"cmp.r7.a":"SEO + marketing complet","cmp.r7.b":"99 €/mois (tout compris)","cmp.r7.d":"Basique / manuel",
 "cmp.r8.a":"Stratégie de croissance ML","cmp.r8.c":"✗ Rarement proposé","cmp.r8.d":"✗ Indisponible",
 "cmp.r9.a":"Pedigree d'ingénierie d'entreprise","cmp.r9.b":"✓ Équipe centrale","cmp.r9.c":"Très variable",
 "fees.tag":"Accompagnement continu","fees.h2":"On ne le crée pas<br><span class=\"grd\">pour ensuite disparaître.</span>",
-"fees.sub":"D'autres agences facturent 150 à 300 £/mois pour maintenir un site. Nous maintenons le vôtre, y générons du trafic et améliorons votre classement. Sans engagement, résiliable à tout moment.",
+"fees.sub":"D'autres agences facturent 175 à 349 €/mois pour maintenir un site. Nous maintenons le vôtre, y générons du trafic et améliorons votre classement. Sans engagement, résiliable à tout moment.",
 "fees.permonth":"par mois","fees.permonthall":"par mois — tout compris",
-"fee1.name":"Forfait Standard","fee1.desc":"Maintenance du site, surveillance de la disponibilité et génération active de trafic","fee1.vs":"Moyenne du secteur : 150+ £/mois",
-"fee2.name":"Amélioration SEO","fee2.desc":"Optimisation continue pour le référencement afin de faire grimper votre classement organique mois après mois","fee2.vs":"Moyenne du secteur : 200+ £/mois",
-"fee3.name":"Pack Marketing","fee3.desc":"Maintenance, génération active de trafic, SEO et marketing numérique combinés. Résiliable à tout moment, sans engagement.","fee3.vs":"Moyenne du secteur : 300+ £/mois",
+"fee1.name":"Forfait Standard","fee1.desc":"Maintenance du site, surveillance de la disponibilité et génération active de trafic","fee1.vs":"Moyenne du secteur : 175+ €/mois",
+"fee2.name":"Amélioration SEO","fee2.desc":"Optimisation continue pour le référencement afin de faire grimper votre classement organique mois après mois","fee2.vs":"Moyenne du secteur : 239+ €/mois",
+"fee3.name":"Pack Marketing","fee3.desc":"Maintenance, génération active de trafic, SEO et marketing numérique combinés. Résiliable à tout moment, sans engagement.","fee3.vs":"Moyenne du secteur : 349+ €/mois",
 "guarantee.tag":"Notre promesse","guarantee.h2":"Pourquoi nos clients<br>choisissent de <span class=\"grd\">rester.</span>",
 "guarantee.p":"Nous avons bâti Vela Sync autour d'un seul principe : la relation ne s'arrête pas à la livraison. Du premier jour au douzième mois et au-delà, nous sommes votre partenaire technologique — pas seulement votre créateur de site.",
 "gp1.h":"En ligne en 24 heures, garanti","gp1.p":"Votre site est en ligne en un jour ouvré — sans exception, sans excuse.",
@@ -1167,7 +1170,7 @@ I18N.fr={
 "partner1.badge":"Partenaire conformité","partner1.desc":"Comptabilité de conformité de groupe pour toutes les entités Vela Sync. Inscrit à l'ICAEW avec une double certification logicielle.","partner1.c1":"Inscrit à l'ICAEW","partner1.c2":"Xero Gold Champion","partner1.c3":"Certifié Sage",
 "partner2.badge":"Réseau mondial","partner2.desc":"Membre de l'une des principales associations mondiales de cabinets indépendants de comptabilité et de conseil.",
 "services.tag":"Nos services","services.h2":"Nous ne créons pas que des sites.<br><span class=\"grd\">Nous créons des entreprises numériques.</span>",
-"svc1.sub":"À partir de 450 £ · En ligne en 24 heures","svc1.h":"Sites d'entreprise","svc1.p":"Des sites professionnels, rapides et mobile-first conçus pour convertir les visiteurs en clients. Entièrement personnalisés et livrés en une journée.",
+"svc1.sub":"À partir de 499 € · En ligne en 24 heures","svc1.h":"Sites d'entreprise","svc1.p":"Des sites professionnels, rapides et mobile-first conçus pour convertir les visiteurs en clients. Entièrement personnalisés et livrés en une journée.",
 "svc2.sub":"Sur mesure · Évolutif · Conforme","svc2.h":"Plateformes CRM","svc2.p":"Des solutions CRM sur mesure conçues pour la santé privée et les solutions de main-d'œuvre. Qualité d'entreprise pour une fraction du coût.",
 "svc3.sub":"De bout en bout · Plateformes de recrutement","svc3.h":"Solutions de main-d'œuvre","svc3.p":"Conçues pour l'intérim et la santé privée où la fiabilité n'est pas optionnelle. Pensées pour gérer la complexité à grande échelle.",
 "svc4.sub":"Conçu pour développer votre clientèle","svc4.h":"Trafic & croissance","svc4.p":"Nous stimulons activement la croissance client via le SEO, le contenu et le marketing numérique — en appliquant les mêmes stratégies qui ont géré 250 000 utilisateurs simultanés pour développer votre entreprise, pas seulement votre trafic.",
@@ -1179,7 +1182,7 @@ I18N.fr={
 "hire.role.h":"Aperçu du poste","hire.role.p":"Conseiller commercial à la commission — à distance ou sur le terrain, temps plein. Vous vendez les offres web et numériques de Vela Sync directement aux dirigeants de PME au Royaume-Uni. Prospects pré-qualifiés dès le premier jour.",
 "hire.do.h":"Ce que vous ferez","hire.do.p":"Passez au minimum 500 appels sortants par semaine depuis notre liste de prospects pré-qualifiés et concluez au moins 5 ventes par semaine. Présentez et concluez les offres Vela Sync — création de sites, support mensuel, packs marketing — directement auprès des décideurs de PME.",
 "hire.req.h":"Profil recherché","hire.req.p":"Expérience confirmée en vente sortante ou B2B. À l'aise au téléphone avec les dirigeants. Autonome et orienté résultats. À l'aise pour travailler de façon indépendante à distance ou sur le terrain. Une expérience en vente numérique ou web est un plus — pas une obligation.",
-"hire.comp.h":"Rémunération","hire.comp.p":"100 % de commission — potentiel de gains non plafonné. Taux compétitifs par vente conclue. Les meilleurs visent 2 000 à 4 000 £+/mois. Prospects pré-qualifiés fournis ; aucune prospection à froid requise.",
+"hire.comp.h":"Rémunération","hire.comp.p":"100 % de commission — potentiel de gains non plafonné. Taux compétitifs par vente conclue. Les meilleurs visent 2 300 à 4 700 €+/mois. Prospects pré-qualifiés fournis ; aucune prospection à froid requise.",
 "hire.duties.h":"Responsabilités clés",
 "duty.1":"Contacter les prospects de la liste Vela Sync de façon rapide et organisée","duty.2":"Mener des appels de vente engageants et consultatifs en utilisant le script fourni comme guide","duty.3":"Adapter votre approche selon le ton, le secteur et les besoins spécifiques du prospect","duty.4":"Présenter l'offre web de Vela Sync de manière claire et convaincante","duty.5":"Gérer les objections avec professionnalisme et empathie","duty.6":"Consigner avec précision les notes d'appel, les résultats et les actions de suivi","duty.7":"Réaliser au minimum 500 appels par semaine, avec un objectif minimum de 5 ventes","duty.8":"Relancer les paiements en attente une fois le site du client livré",
 "hire.perks.h":"Avantages & culture",
@@ -1192,11 +1195,12 @@ I18N.fr={
 "hire.apply.txt":"Prêt à postuler ? Envoyez votre CV et un court mot expliquant pourquoi vous êtes le bon profil.","hire.apply.btn":"Postuler · careers@velasync.com",
 "cta.tag":"Commencer","cta.h2":"Prêt à lancer ?<br><span class=\"grd\">Parlons-en aujourd'hui.</span>",
 "cta.p":"Un appel de 30 minutes suffit pour passer de zéro à en ligne. Nous discutons de votre vision et mettons votre site en ligne en 24 heures.",
-"cpill.1":"À partir de 450 £","cpill.2":"En ligne en 24 heures","cpill.3":"Paiement échelonné possible","cpill.4":"100 £/mois tout compris","cta.btn":"Réservez votre appel gratuit",
+"cpill.1":"À partir de 499 €","cpill.2":"En ligne en 24 heures","cpill.3":"Paiement échelonné possible","cpill.4":"99 €/mois tout compris","cta.btn":"Réservez votre appel gratuit",
 "footer.l1":"© 2026 Vela Sync Ltd · N° de société 17051204","footer.l2":"Solutions web & numériques · Santé privée · Solutions de main-d'œuvre",
-"mbar.info":"Sites à partir de <strong>450 £</strong> · En ligne en 24h","mbar.btn":"Appel gratuit →"
+"mbar.info":"Sites à partir de <strong>499 €</strong> · En ligne en 24h","mbar.btn":"Appel gratuit →"
 };
 I18N.de={
+"price.amt1":"<sup>€</sup>499","price.amt2":"<sup>€</sup>699","fee.amt1":"<sup>€</sup>59","fee.amt2":"<sup>€</sup>59","fee.amt3":"<sup>€</sup>99","save.old":"€2.300+","cmp.r1.b":"€499 – €699","cmp.r1.c":"€2.300 – €9.000+","cmp.r1.d":"€0 – €35/mo","cmp.r6.c":"€175 – €349+/mo","cmp.r7.c":"€349+/mo",
 "meta.title":"Vela Sync — Enterprise-Technologie. Lokale Preise.",
 "meta.desc":"Preisgekrönte Ingenieure und ML-Strategie. Websites in 24 Stunden live mit laufender Betreuung — zu einem Bruchteil der Agenturpreise.",
 "skip":"Zum Hauptinhalt springen",
@@ -1226,14 +1230,14 @@ I18N.de={
 "pricing.p2.tier":"Website + Marketing-Launch","pricing.p2.note":"Alles aus dem Bau, plus Launch-Schwung",
 "pricing.p3.tier":"Flexible Zahlung","pricing.p3.amt":"Raten","pricing.p3.note":"Zahlen Sie über die Zeit. Ohne Hürden.",
 "feat.responsive":"Professionelles, mobiloptimiertes Design","feat.call":"1:1-Gespräch mit Geschäftsführung oder Designteam","feat.personalised":"Vollständig an Ihre Marke angepasst","feat.domain":"Domain-Aktivierung oder -Transfer","feat.sameday":"Am selben Tag übergeben","feat.instalments":"Ratenzahlung möglich",
-"feat.fullbuild":"Komplettpaket inklusive","feat.briefed":"Marketingteam beim Launch gebrieft","feat.traffic":"Traffic-Strategie ab Tag eins","feat.roadmap":"Wachstums-Roadmap übergeben","feat.save":"Bis zu 1.550 £ gegenüber Agenturschnitt sparen",
+"feat.fullbuild":"Komplettpaket inklusive","feat.briefed":"Marketingteam beim Launch gebrieft","feat.traffic":"Traffic-Strategie ab Tag eins","feat.roadmap":"Wachstums-Roadmap übergeben","feat.save":"Bis zu 1.800 € gegenüber Agenturschnitt sparen",
 "feat.split":"Geteilte Zahlung möglich","feat.schedule":"Vorab vereinbarter Zahlplan","feat.fullservice":"Voller Service ab Tag eins","feat.nocompromise":"Keine Kompromisse bei der Qualität",
-"save.txt":"Eine durchschnittliche Agentur verlangt für dieselbe Arbeit","save.pill":"Bis zu 1.550 £ mit Vela Sync sparen",
+"save.txt":"Eine durchschnittliche Agentur verlangt für dieselbe Arbeit","save.pill":"Bis zu 1.800 € mit Vela Sync sparen",
 "process.tag":"Ablauf","process.h2":"Von der Anfrage bis live<br><span class=\"grd\">in 24 Stunden.</span>",
 "step1.badge":"30 Minuten","step1.h":"Kennenlerngespräch","step1.p":"Wir besprechen Ihre Marke, Ziele und Vision in einem fokussierten 30-minütigen Gespräch. Unser Team arbeitet schnell — alles für den Livegang ist bereit, sobald Sie es sind.",
 "step2.badge":"Am selben Tag","step2.h":"Design & Bau","step2.p":"Unser Team personalisiert Ihre Seite und richtet Ihre Domain ein — neu oder übertragen — und macht alles produktionsreif.",
 "step3.badge":"Innerhalb von 24 Stunden","step3.h":"Sie prüfen & geben frei","step3.p":"Mobiloptimiert, SEO-bereit, performance-optimiert. Sie prüfen und geben frei, bevor etwas online geht.",
-"step4.badge":"650-£-Paket","step4.h":"Marketing-Launch","step4.p":"Upgraden Sie, und wir briefen unser Marketingteam zum Launch — mit einer Live-Traffic-Strategie und Wachstums-Roadmap ab Tag eins.",
+"step4.badge":"699-€-Paket","step4.h":"Marketing-Launch","step4.p":"Upgraden Sie, und wir briefen unser Marketingteam zum Launch — mit einer Live-Traffic-Strategie und Wachstums-Roadmap ab Tag eins.",
 "compare.tag":"Wertvergleich","compare.h2":"Wie wir abschneiden<br><span class=\"grd\">gegenüber den Alternativen.</span>",
 "compare.sub":"Die Zahlen sprechen für sich. Vela Sync liefert Enterprise-Qualität zu einem Bruchteil dessen, was traditionelle Agenturen verlangen — mit schnellerer Umsetzung und inklusive laufender Betreuung.",
 "compare.th1":"Was Sie bekommen","compare.th2":"Vela Sync","compare.th3":"Typische Agentur","compare.th4":"DIY-Baukasten (z. B. Wix)",
@@ -1242,16 +1246,16 @@ I18N.de={
 "cmp.r3.a":"Individuelles Design (keine Vorlage)","cmp.r3.d":"✗ Nur Vorlage",
 "cmp.r4.a":"1:1-Strategiegespräch","cmp.r4.b":"✓ Jeder Kunde","cmp.r4.c":"Manchmal",
 "cmp.r5.a":"Domain-Einrichtung / -Transfer","cmp.r5.c":"Oft Zusatzkosten",
-"cmp.r6.a":"Laufende monatliche Betreuung","cmp.r6.b":"50 £/Mon. (Wartung)","cmp.r6.d":"Keine",
-"cmp.r7.a":"SEO + komplettes Marketing","cmp.r7.b":"100 £/Mon. (alles inklusive)","cmp.r7.d":"Basis / manuell",
+"cmp.r6.a":"Laufende monatliche Betreuung","cmp.r6.b":"59 €/Mon. (Wartung)","cmp.r6.d":"Keine",
+"cmp.r7.a":"SEO + komplettes Marketing","cmp.r7.b":"99 €/Mon. (alles inklusive)","cmp.r7.d":"Basis / manuell",
 "cmp.r8.a":"ML-gestützte Wachstumsstrategie","cmp.r8.c":"✗ Selten angeboten","cmp.r8.d":"✗ Nicht verfügbar",
 "cmp.r9.a":"Enterprise-Engineering-Erfahrung","cmp.r9.b":"✓ Kernteam","cmp.r9.c":"Stark unterschiedlich",
 "fees.tag":"Laufende Betreuung","fees.h2":"Wir bauen sie nicht<br><span class=\"grd\">und verschwinden dann.</span>",
-"fees.sub":"Andere Agenturen verlangen 150–300 £/Monat für die Pflege einer Seite. Wir pflegen Ihre, bringen Traffic darauf und verbessern Ihr Ranking. Keine Bindung, jederzeit kündbar.",
+"fees.sub":"Andere Agenturen verlangen 175–349 €/Monat für die Pflege einer Seite. Wir pflegen Ihre, bringen Traffic darauf und verbessern Ihr Ranking. Keine Bindung, jederzeit kündbar.",
 "fees.permonth":"pro Monat","fees.permonthall":"pro Monat — alles",
-"fee1.name":"Standardpaket","fee1.desc":"Seitenwartung, Uptime-Überwachung und aktive Traffic-Generierung","fee1.vs":"Branchenschnitt: 150+ £/Mon.",
-"fee2.name":"SEO-Verbesserung","fee2.desc":"Laufende Suchmaschinenoptimierung, um Ihr organisches Ranking Monat für Monat zu steigern","fee2.vs":"Branchenschnitt: 200+ £/Mon.",
-"fee3.name":"Marketing-Paket","fee3.desc":"Wartung, aktive Traffic-Generierung, SEO und digitales Marketing kombiniert. Jederzeit kündbar, keine Bindung.","fee3.vs":"Branchenschnitt: 300+ £/Mon.",
+"fee1.name":"Standardpaket","fee1.desc":"Seitenwartung, Uptime-Überwachung und aktive Traffic-Generierung","fee1.vs":"Branchenschnitt: 175+ €/Mon.",
+"fee2.name":"SEO-Verbesserung","fee2.desc":"Laufende Suchmaschinenoptimierung, um Ihr organisches Ranking Monat für Monat zu steigern","fee2.vs":"Branchenschnitt: 239+ €/Mon.",
+"fee3.name":"Marketing-Paket","fee3.desc":"Wartung, aktive Traffic-Generierung, SEO und digitales Marketing kombiniert. Jederzeit kündbar, keine Bindung.","fee3.vs":"Branchenschnitt: 349+ €/Mon.",
 "guarantee.tag":"Unser Versprechen","guarantee.h2":"Warum Kunden<br>sich entscheiden, <span class=\"grd\">zu bleiben.</span>",
 "guarantee.p":"Wir haben Vela Sync um ein einziges Prinzip herum aufgebaut: Die Beziehung endet nicht mit der Übergabe. Von Tag eins bis Monat zwölf und darüber hinaus sind wir Ihr Technologiepartner — nicht nur Ihr Website-Bauer.",
 "gp1.h":"In 24 Stunden live, garantiert","gp1.p":"Ihre Seite geht innerhalb eines Werktags live — ohne Ausnahmen, ohne Ausreden.",
@@ -1271,7 +1275,7 @@ I18N.de={
 "partner1.badge":"Compliance-Partner","partner1.desc":"Konzern-Compliance-Buchhaltung für alle Vela-Sync-Einheiten. ICAEW-registriert mit doppelter Softwarezertifizierung.","partner1.c1":"ICAEW-registriert","partner1.c2":"Xero Gold Champion","partner1.c3":"Sage-zertifiziert",
 "partner2.badge":"Globales Netzwerk","partner2.desc":"Mitglied eines der weltweit führenden Verbände unabhängiger Wirtschaftsprüfungs- und Beratungsfirmen.",
 "services.tag":"Unsere Leistungen","services.h2":"Wir bauen nicht nur Websites.<br><span class=\"grd\">Wir bauen digitale Unternehmen.</span>",
-"svc1.sub":"Ab 450 £ · In 24 Stunden live","svc1.h":"Unternehmenswebsites","svc1.p":"Professionelle, schnelle, mobile-first Seiten, gebaut, um Besucher in Kunden zu verwandeln. Vollständig personalisiert und an einem Tag übergeben.",
+"svc1.sub":"Ab 499 € · In 24 Stunden live","svc1.h":"Unternehmenswebsites","svc1.p":"Professionelle, schnelle, mobile-first Seiten, gebaut, um Besucher in Kunden zu verwandeln. Vollständig personalisiert und an einem Tag übergeben.",
 "svc2.sub":"Individuell · Skalierbar · Konform","svc2.h":"CRM-Plattformen","svc2.p":"Maßgeschneiderte CRM-Lösungen für die private Gesundheitsversorgung und Personallösungen. Enterprise-Qualität zu einem Bruchteil der Kosten.",
 "svc3.sub":"End-to-End · Recruiting-Plattformen","svc3.h":"Personallösungen","svc3.p":"Gebaut für Zeitarbeit und private Gesundheitsversorgung, wo Zuverlässigkeit keine Option ist. Konzipiert, um Komplexität in großem Umfang zu bewältigen.",
 "svc4.sub":"Gebaut, um Ihren Kundenstamm zu skalieren","svc4.h":"Traffic & Wachstum","svc4.p":"Wir treiben aktiv Kundenwachstum durch SEO, Content und digitales Marketing — mit denselben Strategien, die 250.000 gleichzeitige Nutzer bewältigt haben, um Ihr Unternehmen wachsen zu lassen, nicht nur Ihren Traffic.",
@@ -1283,7 +1287,7 @@ I18N.de={
 "hire.role.h":"Rollenübersicht","hire.role.p":"Vertriebsberater auf Provisionsbasis — ortsunabhängig oder im Außendienst, Vollzeit. Sie verkaufen die Website- und Digitalpakete von Vela Sync direkt an KMU-Inhaber im Vereinigten Königreich. Vorqualifizierte Leads ab Tag eins.",
 "hire.do.h":"Ihre Aufgaben","hire.do.p":"Führen Sie mindestens 500 Ausgangsanrufe pro Woche aus unserer vorqualifizierten Lead-Liste und schließen Sie mindestens 5 Verkäufe pro Woche ab. Präsentieren und schließen Sie Vela-Sync-Pakete — Website-Builds, monatliche Betreuung, Marketing-Pakete — direkt bei KMU-Entscheidern.",
 "hire.req.h":"Anforderungen","hire.req.p":"Nachweisliche Erfolge im Outbound- oder B2B-Vertrieb. Sicher am Telefon mit Unternehmern. Eigenmotiviert und ergebnisorientiert. Komfortabel beim eigenständigen Arbeiten im Remote- oder Außendienst. Erfahrung im Digital- oder Website-Vertrieb ist ein Plus — keine Voraussetzung.",
-"hire.comp.h":"Vergütung","hire.comp.p":"100 % Provision — unbegrenztes Verdienstpotenzial. Wettbewerbsfähige Sätze pro Abschluss. Top-Performer zielen auf 2.000–4.000 £+/Monat. Vorqualifizierte Leads bereitgestellt; keine Kaltakquise nötig.",
+"hire.comp.h":"Vergütung","hire.comp.p":"100 % Provision — unbegrenztes Verdienstpotenzial. Wettbewerbsfähige Sätze pro Abschluss. Top-Performer zielen auf 2.300–4.700 €+/Monat. Vorqualifizierte Leads bereitgestellt; keine Kaltakquise nötig.",
 "hire.duties.h":"Hauptverantwortlichkeiten",
 "duty.1":"Interessenten aus der Vela-Sync-Lead-Liste zeitnah und organisiert kontaktieren","duty.2":"Ansprechende, beratende Verkaufsgespräche mit dem bereitgestellten Skript als Leitfaden führen","duty.3":"Ihren Ansatz an Ton, Branche und spezifische Bedürfnisse des Leads anpassen","duty.4":"Das Website-Angebot von Vela Sync klar und überzeugend präsentieren","duty.5":"Einwände professionell und mit Empathie behandeln","duty.6":"Gesprächsnotizen, Ergebnisse und Folgemaßnahmen exakt erfassen","duty.7":"Mindestens 500 Anrufe pro Woche absolvieren, mit einem Mindestziel von 5 Verkäufen","duty.8":"Offene Zahlungen nachverfolgen, sobald die Website eines Kunden geliefert wurde",
 "hire.perks.h":"Vorteile & Kultur",
@@ -1296,11 +1300,12 @@ I18N.de={
 "hire.apply.txt":"Bereit, sich zu bewerben? Senden Sie Ihren Lebenslauf und ein paar Zeilen, warum Sie passen.","hire.apply.btn":"Jetzt bewerben · careers@velasync.com",
 "cta.tag":"Loslegen","cta.h2":"Bereit für den Launch?<br><span class=\"grd\">Sprechen wir heute.</span>",
 "cta.p":"Ein 30-minütiges Gespräch genügt, um von null auf live zu gehen. Wir besprechen Ihre Vision und bringen Ihre Website in 24 Stunden online.",
-"cpill.1":"Ab 450 £","cpill.2":"In 24 Stunden live","cpill.3":"Ratenzahlung möglich","cpill.4":"100 £/Monat alles inklusive","cta.btn":"Kostenloses Gespräch buchen",
+"cpill.1":"Ab 499 €","cpill.2":"In 24 Stunden live","cpill.3":"Ratenzahlung möglich","cpill.4":"99 €/Monat alles inklusive","cta.btn":"Kostenloses Gespräch buchen",
 "footer.l1":"© 2026 Vela Sync Ltd · Reg.-Nr. 17051204","footer.l2":"Web- & Digitallösungen · Private Gesundheitsversorgung · Personallösungen",
-"mbar.info":"Websites ab <strong>450 £</strong> · In 24 Std. live","mbar.btn":"Gratis-Gespräch →"
+"mbar.info":"Websites ab <strong>499 €</strong> · In 24 Std. live","mbar.btn":"Gratis-Gespräch →"
 };
 I18N.es={
+"price.amt1":"<sup>€</sup>499","price.amt2":"<sup>€</sup>699","fee.amt1":"<sup>€</sup>59","fee.amt2":"<sup>€</sup>59","fee.amt3":"<sup>€</sup>99","save.old":"€2.300+","cmp.r1.b":"€499 – €699","cmp.r1.c":"€2.300 – €9.000+","cmp.r1.d":"€0 – €35/mo","cmp.r6.c":"€175 – €349+/mo","cmp.r7.c":"€349+/mo",
 "meta.title":"Vela Sync — Tecnología de empresa. Precios locales.",
 "meta.desc":"Ingenieros premiados y estrategia de ML. Webs en línea en 24 horas con soporte continuo — por una fracción del precio de una agencia.",
 "skip":"Saltar al contenido principal",
@@ -1330,14 +1335,14 @@ I18N.es={
 "pricing.p2.tier":"Web + Lanzamiento de marketing","pricing.p2.note":"Todo lo de la construcción, más el impulso del lanzamiento",
 "pricing.p3.tier":"Pagos flexibles","pricing.p3.amt":"A plazos","pricing.p3.note":"Paga a lo largo del tiempo. Sin barreras.",
 "feat.responsive":"Diseño profesional y adaptado a móvil","feat.call":"Llamada individual con dirección o equipo de diseño","feat.personalised":"Totalmente personalizado a tu marca","feat.domain":"Activación o transferencia de dominio","feat.sameday":"Entregado el mismo día","feat.instalments":"Pago a plazos disponible",
-"feat.fullbuild":"Paquete de construcción completo incluido","feat.briefed":"Equipo de marketing informado en el lanzamiento","feat.traffic":"Estrategia de tráfico desde el primer día","feat.roadmap":"Hoja de ruta de crecimiento entregada","feat.save":"Ahorra hasta 1.550 £ frente a la agencia media",
+"feat.fullbuild":"Paquete de construcción completo incluido","feat.briefed":"Equipo de marketing informado en el lanzamiento","feat.traffic":"Estrategia de tráfico desde el primer día","feat.roadmap":"Hoja de ruta de crecimiento entregada","feat.save":"Ahorra hasta 1.800 € frente a la agencia media",
 "feat.split":"Pago fraccionado disponible","feat.schedule":"Calendario acordado por adelantado","feat.fullservice":"Servicio completo desde el primer día","feat.nocompromise":"Sin concesiones en la calidad",
-"save.txt":"Una agencia media cobra por el mismo trabajo","save.pill":"Ahorra hasta 1.550 £ con Vela Sync",
+"save.txt":"Una agencia media cobra por el mismo trabajo","save.pill":"Ahorra hasta 1.800 € con Vela Sync",
 "process.tag":"Proceso","process.h2":"De la consulta a en línea<br><span class=\"grd\">en 24 horas.</span>",
 "step1.badge":"30 minutos","step1.h":"Llamada de descubrimiento","step1.p":"Hablamos de tu marca, objetivos y visión en una llamada enfocada de 30 minutos. Nuestro equipo trabaja rápido — todo lo necesario para publicar está listo en cuanto tú lo estés.",
 "step2.badge":"El mismo día","step2.h":"Diseño y construcción","step2.p":"Nuestro equipo personaliza tu web y configura tu dominio — nuevo o transferido — dejándolo todo listo para producción.",
 "step3.badge":"En 24 horas","step3.h":"Revisas y apruebas","step3.p":"Adaptada a móvil, lista para SEO, optimizada en rendimiento. Revisas y apruebas antes de que nada se publique.",
-"step4.badge":"Paquete de 650 £","step4.h":"Lanzamiento de marketing","step4.p":"Mejora tu plan e informamos a nuestro equipo de marketing en el lanzamiento — con una estrategia de tráfico activa y una hoja de ruta de crecimiento desde el primer día.",
+"step4.badge":"Paquete de 699 €","step4.h":"Lanzamiento de marketing","step4.p":"Mejora tu plan e informamos a nuestro equipo de marketing en el lanzamiento — con una estrategia de tráfico activa y una hoja de ruta de crecimiento desde el primer día.",
 "compare.tag":"Comparativa de valor","compare.h2":"Cómo nos comparamos<br><span class=\"grd\">con las alternativas.</span>",
 "compare.sub":"Los números hablan por sí solos. Vela Sync entrega resultados de nivel empresarial por una fracción de lo que cobran las agencias tradicionales — con plazos más rápidos y soporte continuo incluido.",
 "compare.th1":"Lo que obtienes","compare.th2":"Vela Sync","compare.th3":"Agencia típica","compare.th4":"Creador DIY (p. ej. Wix)",
@@ -1346,16 +1351,16 @@ I18N.es={
 "cmp.r3.a":"Diseño a medida (no una plantilla)","cmp.r3.d":"✗ Solo plantilla",
 "cmp.r4.a":"Llamada estratégica individual","cmp.r4.b":"✓ Cada cliente","cmp.r4.c":"A veces",
 "cmp.r5.a":"Configuración / transferencia de dominio","cmp.r5.c":"A menudo con coste extra",
-"cmp.r6.a":"Soporte mensual continuo","cmp.r6.b":"50 £/mes (mantenimiento)","cmp.r6.d":"Ninguno",
-"cmp.r7.a":"SEO + marketing completo","cmp.r7.b":"100 £/mes (todo incluido)","cmp.r7.d":"Básico / manual",
+"cmp.r6.a":"Soporte mensual continuo","cmp.r6.b":"59 €/mes (mantenimiento)","cmp.r6.d":"Ninguno",
+"cmp.r7.a":"SEO + marketing completo","cmp.r7.b":"99 €/mes (todo incluido)","cmp.r7.d":"Básico / manual",
 "cmp.r8.a":"Estrategia de crecimiento con ML","cmp.r8.c":"✗ Rara vez se ofrece","cmp.r8.d":"✗ No disponible",
 "cmp.r9.a":"Trayectoria de ingeniería empresarial","cmp.r9.b":"✓ Equipo principal","cmp.r9.c":"Muy variable",
 "fees.tag":"Soporte continuo","fees.h2":"No la construimos<br><span class=\"grd\">para luego desaparecer.</span>",
-"fees.sub":"Otras agencias cobran 150–300 £/mes por mantener una web. Nosotros mantenemos la tuya, le generamos tráfico y mejoramos tu posicionamiento. Sin permanencia, cancela cuando quieras.",
+"fees.sub":"Otras agencias cobran 175–349 €/mes por mantener una web. Nosotros mantenemos la tuya, le generamos tráfico y mejoramos tu posicionamiento. Sin permanencia, cancela cuando quieras.",
 "fees.permonth":"al mes","fees.permonthall":"al mes — todo incluido",
-"fee1.name":"Paquete Estándar","fee1.desc":"Mantenimiento del sitio, monitorización de disponibilidad y generación activa de tráfico","fee1.vs":"Media del sector: 150+ £/mes",
-"fee2.name":"Mejora SEO","fee2.desc":"Optimización continua para buscadores para hacer crecer tu posicionamiento orgánico mes a mes","fee2.vs":"Media del sector: 200+ £/mes",
-"fee3.name":"Pack de Marketing","fee3.desc":"Mantenimiento, generación activa de tráfico, SEO y marketing digital combinados. Cancela cuando quieras, sin permanencia.","fee3.vs":"Media del sector: 300+ £/mes",
+"fee1.name":"Paquete Estándar","fee1.desc":"Mantenimiento del sitio, monitorización de disponibilidad y generación activa de tráfico","fee1.vs":"Media del sector: 175+ €/mes",
+"fee2.name":"Mejora SEO","fee2.desc":"Optimización continua para buscadores para hacer crecer tu posicionamiento orgánico mes a mes","fee2.vs":"Media del sector: 239+ €/mes",
+"fee3.name":"Pack de Marketing","fee3.desc":"Mantenimiento, generación activa de tráfico, SEO y marketing digital combinados. Cancela cuando quieras, sin permanencia.","fee3.vs":"Media del sector: 349+ €/mes",
 "guarantee.tag":"Nuestra promesa","guarantee.h2":"Por qué los clientes<br>eligen <span class=\"grd\">quedarse.</span>",
 "guarantee.p":"Construimos Vela Sync en torno a un único principio: la relación no termina con la entrega. Desde el primer día hasta el mes doce y más allá, somos tu socio tecnológico — no solo quien crea tu web.",
 "gp1.h":"En línea en 24 horas, garantizado","gp1.p":"Tu web se publica en un día laborable — sin excepciones, sin excusas.",
@@ -1375,7 +1380,7 @@ I18N.es={
 "partner1.badge":"Socio de cumplimiento","partner1.desc":"Contabilidad de cumplimiento de grupo para todas las entidades de Vela Sync. Registrado en ICAEW con doble certificación de software.","partner1.c1":"Registrado en ICAEW","partner1.c2":"Xero Gold Champion","partner1.c3":"Certificado Sage",
 "partner2.badge":"Red global","partner2.desc":"Miembro de una de las principales asociaciones mundiales de firmas independientes de contabilidad y asesoría.",
 "services.tag":"Nuestros servicios","services.h2":"No solo creamos webs.<br><span class=\"grd\">Creamos negocios digitales.</span>",
-"svc1.sub":"Desde 450 £ · En línea en 24 horas","svc1.h":"Webs de empresa","svc1.p":"Sitios profesionales, rápidos y mobile-first creados para convertir visitantes en clientes. Totalmente personalizados y entregados en un día.",
+"svc1.sub":"Desde 499 € · En línea en 24 horas","svc1.h":"Webs de empresa","svc1.p":"Sitios profesionales, rápidos y mobile-first creados para convertir visitantes en clientes. Totalmente personalizados y entregados en un día.",
 "svc2.sub":"A medida · Escalable · Conforme","svc2.h":"Plataformas CRM","svc2.p":"Soluciones CRM a medida creadas para la sanidad privada y soluciones de personal. Calidad de empresa por una fracción del coste.",
 "svc3.sub":"De principio a fin · Plataformas de selección","svc3.h":"Soluciones de personal","svc3.p":"Creadas para la dotación de personal y la sanidad privada donde la fiabilidad no es opcional. Diseñadas para gestionar la complejidad a gran escala.",
 "svc4.sub":"Diseñado para escalar tu cartera de clientes","svc4.h":"Tráfico y crecimiento","svc4.p":"Impulsamos activamente el crecimiento de clientes mediante SEO, contenido y marketing digital — aplicando las mismas estrategias que han gestionado 250.000 usuarios simultáneos para hacer crecer tu negocio, no solo tu tráfico.",
@@ -1387,7 +1392,7 @@ I18N.es={
 "hire.role.h":"Resumen del puesto","hire.role.p":"Asesor de ventas solo a comisión — remoto o de campo, jornada completa. Venderás los paquetes web y digitales de Vela Sync directamente a propietarios de pymes en el Reino Unido. Contactos precualificados desde el primer día.",
 "hire.do.h":"Qué harás","hire.do.p":"Realiza un mínimo de 500 llamadas salientes por semana desde nuestra lista de contactos precualificados y cierra un mínimo de 5 ventas por semana. Presenta y cierra los paquetes de Vela Sync — creación de webs, soporte mensual, packs de marketing — directamente con responsables de pymes.",
 "hire.req.h":"Requisitos","hire.req.p":"Trayectoria probada en ventas salientes o B2B. Seguridad al teléfono con empresarios. Automotivado y orientado a resultados. Cómodo trabajando de forma independiente en un entorno remoto o de campo. La experiencia en ventas digitales o de webs es un plus — no es imprescindible.",
-"hire.comp.h":"Retribución","hire.comp.p":"100 % a comisión — potencial de ingresos sin límite. Tarifas competitivas por venta cerrada. Los mejores apuntan a 2.000–4.000 £+/mes. Contactos precualificados proporcionados; sin captación en frío.",
+"hire.comp.h":"Retribución","hire.comp.p":"100 % a comisión — potencial de ingresos sin límite. Tarifas competitivas por venta cerrada. Los mejores apuntan a 2.300–4.700 €+/mes. Contactos precualificados proporcionados; sin captación en frío.",
 "hire.duties.h":"Responsabilidades clave",
 "duty.1":"Contactar a los prospectos de la lista de Vela Sync de forma puntual y organizada","duty.2":"Realizar llamadas de venta atractivas y consultivas usando el guion proporcionado como guía","duty.3":"Adaptar tu enfoque según el tono, el sector y las necesidades específicas del contacto","duty.4":"Presentar la oferta web de Vela Sync de forma clara y convincente","duty.5":"Gestionar las objeciones con profesionalidad y empatía","duty.6":"Registrar con precisión las notas de llamada, los resultados y las acciones de seguimiento","duty.7":"Completar un mínimo de 500 llamadas por semana, con un objetivo mínimo de 5 ventas","duty.8":"Reclamar los pagos pendientes una vez entregada la web del cliente",
 "hire.perks.h":"Ventajas y cultura",
@@ -1400,9 +1405,9 @@ I18N.es={
 "hire.apply.txt":"¿Listo para postular? Envía tu CV y una breve nota sobre por qué encajas.","hire.apply.btn":"Postula ahora · careers@velasync.com",
 "cta.tag":"Empieza","cta.h2":"¿Listo para lanzar?<br><span class=\"grd\">Hablemos hoy.</span>",
 "cta.p":"Una llamada de 30 minutos es todo lo que hace falta para pasar de cero a en línea. Hablamos de tu visión y tenemos tu web lista en 24 horas.",
-"cpill.1":"Desde 450 £","cpill.2":"En línea en 24 horas","cpill.3":"Pago a plazos disponible","cpill.4":"100 £/mes todo incluido","cta.btn":"Reserva tu llamada gratuita",
+"cpill.1":"Desde 499 €","cpill.2":"En línea en 24 horas","cpill.3":"Pago a plazos disponible","cpill.4":"99 €/mes todo incluido","cta.btn":"Reserva tu llamada gratuita",
 "footer.l1":"© 2026 Vela Sync Ltd · N.º de sociedad 17051204","footer.l2":"Soluciones web y digitales · Sanidad privada · Soluciones de personal",
-"mbar.info":"Webs desde <strong>450 £</strong> · En línea en 24h","mbar.btn":"Llamada gratis →"
+"mbar.info":"Webs desde <strong>499 €</strong> · En línea en 24h","mbar.btn":"Llamada gratis →"
 };
 
 function detectLang(){
