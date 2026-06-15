@@ -337,6 +337,16 @@ img{display:block;max-width:100%}
 .flinks a{font-size:.7rem;color:var(--ink-3);text-decoration:none;transition:color .15s}
 .flinks a:hover{color:var(--ink-2)}
 
+/* ── RESPONSIVE SCHEDULE ───────────────────────────── */
+@media(max-width:900px){
+  [style*="grid-template-columns:repeat(5,1fr)"]{grid-template-columns:repeat(2,1fr) !important}
+  [style*="grid-template-columns:repeat(4,1fr)"]{grid-template-columns:repeat(2,1fr) !important}
+}
+@media(max-width:560px){
+  [style*="grid-template-columns:repeat(5,1fr)"]{grid-template-columns:1fr !important}
+  [style*="grid-template-columns:repeat(4,1fr)"]{grid-template-columns:1fr !important}
+}
+
 /* ── SPACER ────────────────────────────────────────── */
 .gap{height:2.5rem}
 .gap-sm{height:1.25rem}
@@ -363,7 +373,7 @@ img{display:block;max-width:100%}
     <p class="cover-sub">Every stage from onboarding a new advisor to closing the deal and collecting payment — one system, zero ambiguity. Master this and you close every room you walk into.</p>
     <div class="cover-stats">
       <div class="cs">
-        <div class="cs-val">7</div>
+        <div class="cs-val">8</div>
         <div class="cs-lbl">Process stages</div>
       </div>
       <div class="cdiv"></div>
@@ -394,6 +404,11 @@ img{display:block;max-width:100%}
         <div class="ph-connector"></div>
         <div class="ph-circle">01</div>
         <div class="ph-label">Advisor Onboarding</div>
+      </div>
+      <div class="ph">
+        <div class="ph-connector"></div>
+        <div class="ph-circle" style="background:rgba(43,142,142,.18);border-color:var(--teal-l);color:var(--teal-ll);font-size:.6rem">📅</div>
+        <div class="ph-label">Weekly Cadence</div>
       </div>
       <div class="ph">
         <div class="ph-connector"></div>
@@ -490,6 +505,288 @@ img{display:block;max-width:100%}
     <div class="rule"><div class="rule-ico">🏦</div><div class="rule-body"><h4>Frame everything as ROI.</h4><p>Every price point is an investment. Every day of delay is revenue walking to a competitor. Make them feel the cost of inaction.</p></div></div>
     <div class="rule"><div class="rule-ico">🪝</div><div class="rule-body"><h4>Show, don't tell.</h4><p>Open the draft site silently. Let them see it before you say a word. Their reaction is your opening. Let them sell themselves.</p></div></div>
   </div>
+</div>
+
+<hr class="div-line">
+
+<!-- ══ TEAM CADENCE & SCHEDULE ══════════════════════════════════════ -->
+<div class="stage-header">
+  <div class="sh-inner">
+    <div class="sh-num" style="color:rgba(43,142,142,.15)">📅</div>
+    <div class="sh-text">
+      <div class="overtag">Team Cadence</div>
+      <h2>Weekly Schedule <span class="grd">&amp; Rhythm</span></h2>
+      <p>Every advisor operates within a consistent weekly rhythm — structured check-ins, KPI reviews and alignment sessions that keep performance sharp, challenges addressed early, and the team moving in one direction. This is the operating cadence. Know it, own it, show up for it.</p>
+    </div>
+  </div>
+</div>
+<div class="sec-body">
+
+  <!-- WEEKLY CALENDAR VIEW -->
+  <div style="font-size:.6rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--teal-l);margin-bottom:1rem">Weekly rhythm at a glance</div>
+  <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:.875rem;margin-bottom:2rem">
+
+    <!-- Monday -->
+    <div style="border-radius:20px;padding:1.5px;background:linear-gradient(145deg,var(--teal),rgba(43,142,142,.35));grid-column:span 1">
+      <div style="border-radius:calc(20px - 1.5px);background:var(--s2);padding:1.5rem;height:100%;position:relative;overflow:hidden">
+        <div style="position:absolute;inset:0;background:radial-gradient(ellipse 80% 50% at 50% -10%,rgba(43,142,142,.12) 0%,transparent 60%);pointer-events:none"></div>
+        <div style="font-size:.58rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--teal-l);margin-bottom:.5rem;position:relative;z-index:1">Monday</div>
+        <div style="display:flex;flex-direction:column;gap:.75rem;position:relative;z-index:1">
+          <div style="background:rgba(43,142,142,.12);border:1px solid rgba(43,142,142,.25);border-radius:10px;padding:.75rem">
+            <div style="font-size:.62rem;font-weight:700;color:var(--teal-l);margin-bottom:.3rem">11:00 AM CET</div>
+            <div style="font-size:.8rem;font-weight:700;color:var(--ink);margin-bottom:.25rem">Diary Alignment</div>
+            <div style="font-size:.72rem;color:var(--ink-2);line-height:1.55">Week plan set, priorities confirmed, blockers surfaced early</div>
+          </div>
+          <div style="background:rgba(43,142,142,.08);border:1px solid var(--hr-m);border-radius:10px;padding:.75rem">
+            <div style="font-size:.62rem;font-weight:700;color:var(--teal-l);margin-bottom:.3rem">5:00 PM CET</div>
+            <div style="font-size:.8rem;font-weight:700;color:var(--ink);margin-bottom:.25rem">KPI Review</div>
+            <div style="font-size:.72rem;color:var(--ink-2);line-height:1.55">1 hour deep-dive into previous week's performance metrics</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tuesday -->
+    <div style="border-radius:20px;background:rgba(255,255,255,.025);border:1px solid var(--hr)">
+      <div style="border-radius:20px;background:var(--s1);padding:1.5rem;height:100%">
+        <div style="font-size:.58rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--ink-3);margin-bottom:.5rem">Tuesday</div>
+        <div style="background:rgba(43,142,142,.06);border:1px solid var(--hr);border-radius:10px;padding:.75rem;margin-bottom:.75rem">
+          <div style="font-size:.62rem;font-weight:700;color:var(--teal-l);margin-bottom:.3rem">5:00 PM CET</div>
+          <div style="font-size:.8rem;font-weight:700;color:var(--ink);margin-bottom:.25rem">Daily Touch Point</div>
+          <div style="font-size:.72rem;color:var(--ink-2);line-height:1.55">Day review — wins, blockers, pipeline update</div>
+        </div>
+        <div style="font-size:.72rem;color:var(--ink-3);font-style:italic;line-height:1.55">Full sales day — minimum 500 outbound calls on target</div>
+      </div>
+    </div>
+
+    <!-- Wednesday -->
+    <div style="border-radius:20px;background:rgba(255,255,255,.025);border:1px solid var(--hr)">
+      <div style="border-radius:20px;background:var(--s1);padding:1.5rem;height:100%">
+        <div style="font-size:.58rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--ink-3);margin-bottom:.5rem">Wednesday</div>
+        <div style="background:rgba(43,142,142,.06);border:1px solid var(--hr);border-radius:10px;padding:.75rem;margin-bottom:.75rem">
+          <div style="font-size:.62rem;font-weight:700;color:var(--teal-l);margin-bottom:.3rem">5:00 PM CET</div>
+          <div style="font-size:.8rem;font-weight:700;color:var(--ink);margin-bottom:.25rem">Daily Touch Point</div>
+          <div style="font-size:.72rem;color:var(--ink-2);line-height:1.55">Day review — wins, blockers, pipeline update</div>
+        </div>
+        <div style="font-size:.72rem;color:var(--ink-3);font-style:italic;line-height:1.55">Full sales day — mid-week pipeline health check</div>
+      </div>
+    </div>
+
+    <!-- Thursday -->
+    <div style="border-radius:20px;padding:1.5px;background:linear-gradient(145deg,rgba(43,142,142,.5),rgba(43,142,142,.15))">
+      <div style="border-radius:calc(20px - 1.5px);background:var(--s1);padding:1.5rem;height:100%">
+        <div style="font-size:.58rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--teal-l);margin-bottom:.5rem">Thursday</div>
+        <div style="display:flex;flex-direction:column;gap:.75rem">
+          <div style="background:rgba(43,142,142,.06);border:1px solid var(--hr);border-radius:10px;padding:.75rem">
+            <div style="font-size:.62rem;font-weight:700;color:var(--teal-l);margin-bottom:.3rem">5:00 PM CET</div>
+            <div style="font-size:.8rem;font-weight:700;color:var(--ink);margin-bottom:.25rem">Weekly Forward Planning</div>
+            <div style="font-size:.72rem;color:var(--ink-2);line-height:1.55">Share diary for following week · Align on plan · WTD review · Challenge debrief</div>
+          </div>
+          <div style="background:rgba(43,142,142,.06);border:1px solid var(--hr);border-radius:10px;padding:.75rem">
+            <div style="font-size:.62rem;font-weight:700;color:var(--teal-l);margin-bottom:.3rem">5:00 PM CET</div>
+            <div style="font-size:.8rem;font-weight:700;color:var(--ink);margin-bottom:.25rem">Daily Touch Point</div>
+            <div style="font-size:.72rem;color:var(--ink-2);line-height:1.55">Day review — wins, blockers, pipeline update</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Friday -->
+    <div style="border-radius:20px;background:rgba(255,255,255,.025);border:1px solid var(--hr)">
+      <div style="border-radius:20px;background:var(--s1);padding:1.5rem;height:100%">
+        <div style="font-size:.58rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--ink-3);margin-bottom:.5rem">Friday</div>
+        <div style="background:rgba(43,142,142,.06);border:1px solid var(--hr);border-radius:10px;padding:.75rem;margin-bottom:.75rem">
+          <div style="font-size:.62rem;font-weight:700;color:var(--teal-l);margin-bottom:.3rem">5:00 PM CET</div>
+          <div style="font-size:.8rem;font-weight:700;color:var(--ink);margin-bottom:.25rem">Daily Touch Point</div>
+          <div style="font-size:.72rem;color:var(--ink-2);line-height:1.55">End-of-week round-up, pipeline confirmed for Monday</div>
+        </div>
+        <div style="font-size:.72rem;color:var(--ink-3);font-style:italic;line-height:1.55">Full sales day — close the week strong, 5 closes minimum</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Recurring cadence cards -->
+  <div style="font-size:.6rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--teal-l);margin-bottom:1rem">Recurring commitments — beyond the weekly rhythm</div>
+  <div class="card-grid cols-3" style="margin-bottom:1.5rem">
+
+    <div style="border-radius:20px;padding:1.5px;background:rgba(255,255,255,.025);border:1px solid var(--hr-m);transition:border-color .3s,transform .3s">
+      <div style="border-radius:calc(20px - 1.5px);background:var(--s1);padding:1.75rem;height:100%;position:relative;overflow:hidden">
+        <div style="position:absolute;top:.75rem;right:1rem;font-size:3rem;font-weight:800;letter-spacing:-2px;color:rgba(43,142,142,.06);line-height:1">24/7</div>
+        <div class="card-ico">🔴</div>
+        <div class="card-tag">Always on</div>
+        <h3>MD Direct Line</h3>
+        <p>The Managing Director is available 24/7 for touch points when required. If you're stuck on an objection, mid-deal and need support, or dealing with a complex client situation — reach out directly. No hierarchy, no delay.</p>
+      </div>
+    </div>
+
+    <div style="border-radius:20px;padding:1.5px;background:rgba(255,255,255,.025);border:1px solid var(--hr-m);transition:border-color .3s,transform .3s">
+      <div style="border-radius:calc(20px - 1.5px);background:var(--s1);padding:1.75rem;height:100%;position:relative;overflow:hidden">
+        <div style="position:absolute;top:.75rem;right:1rem;font-size:3rem;font-weight:800;letter-spacing:-2px;color:rgba(43,142,142,.06);line-height:1">2W</div>
+        <div class="card-ico">🎯</div>
+        <div class="card-tag">Every two weeks</div>
+        <h3>Bi-Weekly 1:1s</h3>
+        <p>Structured one-to-one sessions to review personal objectives, pipeline health, development areas and any blockers to performance. These are yours — come prepared with your numbers, your wins and your challenges.</p>
+      </div>
+    </div>
+
+    <div style="border-radius:20px;padding:1.5px;background:rgba(255,255,255,.025);border:1px solid var(--hr-m);transition:border-color .3s,transform .3s">
+      <div style="border-radius:calc(20px - 1.5px);background:var(--s1);padding:1.75rem;height:100%;position:relative;overflow:hidden">
+        <div style="position:absolute;top:.75rem;right:1rem;font-size:3rem;font-weight:800;letter-spacing:-2px;color:rgba(43,142,142,.06);line-height:1">1Y</div>
+        <div class="card-ico">📋</div>
+        <div class="card-tag">Annual</div>
+        <h3>Personal Development Plan</h3>
+        <p>Annual PDP review to set and assess long-term development goals, career progression and skill building. A formal commitment to every advisor's professional growth — not just their sales numbers.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- KPI Framework -->
+  <div style="font-size:.6rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--teal-l);margin-bottom:1rem">KPI framework — what gets measured, gets managed</div>
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:1.5rem">
+
+    <div style="border-radius:16px;background:var(--s1);border:1px solid var(--hr);padding:1.25rem;transition:border-color .25s,transform .25s">
+      <div style="width:36px;height:36px;background:rgba(43,142,142,.1);border:1px solid var(--hr-m);border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:.9rem;margin-bottom:.875rem">📞</div>
+      <div style="font-size:.58rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--teal-l);margin-bottom:.35rem">Core KPI</div>
+      <div style="font-size:.9rem;font-weight:700;color:var(--ink);margin-bottom:.3rem">Outbound Calls</div>
+      <div style="font-size:.78rem;color:var(--teal-l);font-weight:700;margin-bottom:.3rem">Target: 500+/week</div>
+      <div style="font-size:.75rem;color:var(--ink-2);line-height:1.6">Total dials made from the lead list per week. The non-negotiable foundation — volume drives everything else.</div>
+    </div>
+
+    <div style="border-radius:16px;background:var(--s1);border:1px solid var(--hr);padding:1.25rem;transition:border-color .25s,transform .25s">
+      <div style="width:36px;height:36px;background:rgba(43,142,142,.1);border:1px solid var(--hr-m);border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:.9rem;margin-bottom:.875rem">📈</div>
+      <div style="font-size:.58rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--teal-l);margin-bottom:.35rem">Core KPI</div>
+      <div style="font-size:.9rem;font-weight:700;color:var(--ink);margin-bottom:.3rem">Conversion Rate</div>
+      <div style="font-size:.78rem;color:var(--teal-l);font-weight:700;margin-bottom:.3rem">Target: 5+ closes/week</div>
+      <div style="font-size:.75rem;color:var(--ink-2);line-height:1.6">Closes as a percentage of calls reached. Tracks pitch quality, objection handling and close technique effectiveness.</div>
+    </div>
+
+    <div style="border-radius:16px;background:var(--s1);border:1px solid var(--hr);padding:1.25rem;transition:border-color .25s,transform .25s">
+      <div style="width:36px;height:36px;background:rgba(43,142,142,.1);border:1px solid var(--hr-m);border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:.9rem;margin-bottom:.875rem">⏱️</div>
+      <div style="font-size:.58rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--teal-l);margin-bottom:.35rem">Core KPI</div>
+      <div style="font-size:.9rem;font-weight:700;color:var(--ink);margin-bottom:.3rem">Time on the Phone</div>
+      <div style="font-size:.78rem;color:var(--teal-l);font-weight:700;margin-bottom:.3rem">Target: maximise daily</div>
+      <div style="font-size:.75rem;color:var(--ink-2);line-height:1.6">Total talk time per day. Identifies productivity gaps — low talk time on high call volume means too many hang-ups or voicemails.</div>
+    </div>
+
+    <div style="border-radius:16px;background:var(--s1);border:1px solid var(--hr);padding:1.25rem;transition:border-color .25s,transform .25s">
+      <div style="width:36px;height:36px;background:rgba(43,142,142,.1);border:1px solid var(--hr-m);border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:.9rem;margin-bottom:.875rem">💰</div>
+      <div style="font-size:.58rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--teal-l);margin-bottom:.35rem">Revenue KPI</div>
+      <div style="font-size:.9rem;font-weight:700;color:var(--ink);margin-bottom:.3rem">Revenue Generated</div>
+      <div style="font-size:.78rem;color:var(--teal-l);font-weight:700;margin-bottom:.3rem">Weekly &amp; monthly</div>
+      <div style="font-size:.75rem;color:var(--ink-2);line-height:1.6">Total value of closed deals — setup fees plus first month's recurring. Tracked weekly and month-to-date.</div>
+    </div>
+
+    <div style="border-radius:16px;background:var(--s1);border:1px solid var(--hr);padding:1.25rem;transition:border-color .25s,transform .25s">
+      <div style="width:36px;height:36px;background:rgba(43,142,142,.1);border:1px solid var(--hr-m);border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:.9rem;margin-bottom:.875rem">🏷️</div>
+      <div style="font-size:.58rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--teal-l);margin-bottom:.35rem">Revenue KPI</div>
+      <div style="font-size:.9rem;font-weight:700;color:var(--ink);margin-bottom:.3rem">Average Deal Value</div>
+      <div style="font-size:.78rem;color:var(--teal-l);font-weight:700;margin-bottom:.3rem">£450 – £650 target</div>
+      <div style="font-size:.75rem;color:var(--ink-2);line-height:1.6">Average setup fee per close. Tracks upsell performance — are advisors moving clients to the £650 SEO package or staying at entry level?</div>
+    </div>
+
+    <div style="border-radius:16px;background:var(--s1);border:1px solid var(--hr);padding:1.25rem;transition:border-color .25s,transform .25s">
+      <div style="width:36px;height:36px;background:rgba(43,142,142,.1);border:1px solid var(--hr-m);border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:.9rem;margin-bottom:.875rem">🔄</div>
+      <div style="font-size:.58rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--teal-l);margin-bottom:.35rem">Pipeline KPI</div>
+      <div style="font-size:.9rem;font-weight:700;color:var(--ink);margin-bottom:.3rem">Follow-Up Rate</div>
+      <div style="font-size:.78rem;color:var(--teal-l);font-weight:700;margin-bottom:.3rem">100% of warm leads</div>
+      <div style="font-size:.75rem;color:var(--ink-2);line-height:1.6">Percentage of warm or "thinking about it" prospects followed up with a specific booked call. No warm lead should go cold without a logged follow-up.</div>
+    </div>
+
+    <div style="border-radius:16px;background:var(--s1);border:1px solid var(--hr);padding:1.25rem;transition:border-color .25s,transform .25s">
+      <div style="width:36px;height:36px;background:rgba(43,142,142,.1);border:1px solid var(--hr-m);border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:.9rem;margin-bottom:.875rem">📊</div>
+      <div style="font-size:.58rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--teal-l);margin-bottom:.35rem">Pipeline KPI</div>
+      <div style="font-size:.9rem;font-weight:700;color:var(--ink);margin-bottom:.3rem">Pipeline Value (WTD)</div>
+      <div style="font-size:.78rem;color:var(--teal-l);font-weight:700;margin-bottom:.3rem">Reviewed Thursday</div>
+      <div style="font-size:.75rem;color:var(--ink-2);line-height:1.6">Total value of active, warm opportunities in the pipeline week-to-date. Identifies whether the close target for the week is reachable.</div>
+    </div>
+
+    <div style="border-radius:16px;background:var(--s1);border:1px solid var(--hr);padding:1.25rem;transition:border-color .25s,transform .25s">
+      <div style="width:36px;height:36px;background:rgba(43,142,142,.1);border:1px solid var(--hr-m);border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:.9rem;margin-bottom:.875rem">🔁</div>
+      <div style="font-size:.58rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--teal-l);margin-bottom:.35rem">Retention KPI</div>
+      <div style="font-size:.9rem;font-weight:700;color:var(--ink);margin-bottom:.3rem">Monthly Retention Rate</div>
+      <div style="font-size:.78rem;color:var(--teal-l);font-weight:700;margin-bottom:.3rem">Target: maximise</div>
+      <div style="font-size:.75rem;color:var(--ink-2);line-height:1.6">Percentage of closed clients still on a monthly support plan 30 and 60 days after going live. High retention validates the value being delivered post-close.</div>
+    </div>
+
+  </div>
+
+  <!-- Daily touch point detail -->
+  <div style="font-size:.6rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--teal-l);margin-bottom:1rem">What to bring to every daily 5pm touch point</div>
+  <div class="card-grid cols-2" style="margin-bottom:1.5rem">
+    <div class="rule" style="align-items:flex-start">
+      <div class="rule-ico">✅</div>
+      <div class="rule-body">
+        <h4>Your numbers for the day</h4>
+        <p>Total calls made, total talk time, number of meetings booked, number of closes, and any deals in follow-up. Have these ready — not estimated.</p>
+      </div>
+    </div>
+    <div class="rule" style="align-items:flex-start">
+      <div class="rule-ico">🚧</div>
+      <div class="rule-body">
+        <h4>Blockers &amp; challenges</h4>
+        <p>Any objections you struggled with, leads that went cold unexpectedly, or situations you'd handle differently. This is where we get better — bring the problems, not just the wins.</p>
+      </div>
+    </div>
+    <div class="rule" style="align-items:flex-start">
+      <div class="rule-ico">🔥</div>
+      <div class="rule-body">
+        <h4>Warm pipeline update</h4>
+        <p>Any leads that are close, booked for a follow-up call or in the final stage. These get flagged so the MD can offer support if needed before they go cold.</p>
+      </div>
+    </div>
+    <div class="rule" style="align-items:flex-start">
+      <div class="rule-ico">📅</div>
+      <div class="rule-body">
+        <h4>Plan for tomorrow</h4>
+        <p>What your focus is for the next day — any specific call-backs booked, presentations planned, or areas you're targeting. Tomorrow starts in tonight's touch point.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Thursday session detail -->
+  <div style="font-size:.6rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--teal-l);margin-bottom:1rem">Thursday 5pm — weekly forward planning agenda</div>
+  <div style="display:flex;flex-direction:column;gap:.75rem;margin-bottom:1.5rem">
+    <div class="pay-step" style="margin-bottom:0">
+      <div class="pay-num" style="font-size:.75rem">01</div>
+      <div class="pay-body">
+        <div class="pay-tag">Diary &amp; Calendar</div>
+        <h4>Share diary for the following week</h4>
+        <p>Every advisor shares their diary for the coming week — booked follow-ups, any absences, personal commitments that affect availability. Full visibility, no surprises on Monday morning.</p>
+      </div>
+    </div>
+    <div class="pay-step" style="margin-bottom:0">
+      <div class="pay-num" style="font-size:.75rem">02</div>
+      <div class="pay-body">
+        <div class="pay-tag">Performance Review</div>
+        <h4>Week-to-date performance review</h4>
+        <p>Full WTD KPI review — calls, talk time, conversion rate, revenue, pipeline value. How does it compare to target? What's the gap? Is the week still saveable, or do we adjust strategy?</p>
+      </div>
+    </div>
+    <div class="pay-step" style="margin-bottom:0">
+      <div class="pay-num" style="font-size:.75rem">03</div>
+      <div class="pay-body">
+        <div class="pay-tag">Planning</div>
+        <h4>Align on the following week's plan</h4>
+        <p>Targets confirmed for next week. Any specific campaigns, lead batches or verticals to focus on. Approach adjusted based on what's working this week — not reset from scratch.</p>
+      </div>
+    </div>
+    <div class="pay-step" style="margin-bottom:0">
+      <div class="pay-num" style="font-size:.75rem">04</div>
+      <div class="pay-body">
+        <div class="pay-tag">Challenges</div>
+        <h4>Tackle outstanding challenges</h4>
+        <p>Any deals that stalled, objections that landed badly, or patterns in rejection this week. We diagnose, reframe and prepare. Every challenge discussed becomes a close next week.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="success">
+    <div class="success-icon">🎯</div>
+    <div><strong>The standard:</strong> Advisors who show up to every touch point prepared, who are honest about their blockers and who use the Thursday session to genuinely plan — consistently outperform those who treat these sessions as admin. The cadence is the competitive advantage. Use it.</div>
+  </div>
+
 </div>
 
 <hr class="div-line">
