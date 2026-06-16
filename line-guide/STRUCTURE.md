@@ -49,7 +49,7 @@ Line Guide
 ├── /for-suppliers ───────── supplier value + pricing + onboard   [BUILT]
 │
 ├── MARKETING
-│   ├── /how-it-works ────── deeper explainer (buyer + supplier)
+│   ├── /how-it-works ────── deeper explainer (buyer + supplier)     [BUILT → how-it-works.html]
 │   ├── /pricing ─────────── standalone supplier pricing + compare   [BUILT → pricing.html]
 │   ├── /use-cases ───────── packing / palletising / filling / …    [BUILT → use-cases.html]
 │   ├── /use-cases/:slug ─── single application landing (SEO)        [BUILT → use-case.html?u=]
@@ -110,10 +110,12 @@ benefits grid → CTA. Drives to the live matcher on home.
 Sections: subhero (with stats) → why-list grid → **pricing tiers** →
 onboarding timeline → founding-member CTA.
 
-### 3.4 How It Works `/how-it-works` *(roadmap)*
-Deeper than the home tabs: annotated diagram of the matching algorithm,
-worked example, "what makes a good brief", supplier verification process.
-**Goal:** build trust through transparency; reduce support load.
+### 3.4 How It Works `/how-it-works` — *BUILT (`how-it-works.html`)*
+Deep-dive: the two-sided model, full buyer journey, full supplier journey,
+the **matching algorithm** with its weighting (and the tier-≠-trust rule),
+a **worked example** (one brief → three scored results with breakdowns),
+verification & trust, and an FAQ. **Goal:** build trust through transparency;
+reduce support load. Nav "How it works" across the site points here.
 
 ### 3.5 Pricing `/pricing` — *BUILT (`pricing.html` + `pricing.js`)*
 - **Billing toggle** — Monthly ↔ Annual (annual = 2 months free); animated
@@ -148,10 +150,13 @@ worked example, "what makes a good brief", supplier verification process.
 **Goal:** organic acquisition (one indexable page per high-intent search) that
 feeds straight into the brief builder and directory.
 
-> **SEO note:** content is data-driven and currently client-rendered for
-> maintainability. For production, pre-render each `use-case` to static HTML
-> from `usecases.js` at build time (e.g. a small SSG step) so titles, meta and
-> body are in the initial HTML payload.
+> **SEO — pre-render DONE.** `build-usecases.js` (run `node build-usecases.js`)
+> reads `usecases.js` + `data.js` and emits a fully static
+> `use-case-<slug>.html` per application — title, meta description, canonical
+> and full body baked into the initial HTML payload. The index grid and
+> related-application links point to these static pages; the dynamic
+> `use-case.html?u=` remains as a fallback. Re-run the script after editing
+> the content data.
 
 ### 3.7 Supplier Directory `/suppliers` + `/suppliers/:slug` — *BUILT*
 - **`suppliers.html`** — browsable directory with live **search**, **application

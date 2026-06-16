@@ -26,7 +26,7 @@
   const grid = $('#ucGrid');
   if (grid) {
     grid.innerHTML = UC.map((u, i) => `
-      <a class="case" href="use-case.html?u=${u.slug}" style="animation:wzIn .4s var(--ease-out) ${Math.min(i*60,360)}ms both;text-decoration:none">
+      <a class="case" href="use-case-${u.slug}.html" style="animation:wzIn .4s var(--ease-out) ${Math.min(i*60,360)}ms both;text-decoration:none">
         <span class="case-tag">${u.facts.budget}</span>
         <div class="case-ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">${u.icon}</svg></div>
         <h4>${u.name}</h4>
@@ -62,7 +62,7 @@
 
   const relCases = u.related.map(rc => {
     const x = UC.find(y => y.case === rc); if (!x) return '';
-    return `<a class="chip" href="use-case.html?u=${x.slug}" style="text-decoration:none">${x.name}</a>`;
+    return `<a class="chip" href="use-case-${x.slug}.html" style="text-decoration:none">${x.name}</a>`;
   }).join('');
 
   root.innerHTML = `
