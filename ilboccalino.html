@@ -1000,6 +1000,118 @@ footer {
   letter-spacing: 0.05em;
 }
 
+/* ── RESERVATION CTA BANNER ────────────────────────────────────── */
+#reserve-cta {
+  background: var(--charcoal);
+  padding: 80px 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+#reserve-cta::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(ellipse at 50% 50%, rgba(184,151,90,0.1) 0%, transparent 70%);
+}
+#reserve-cta .rct-inner { position: relative; z-index: 1; }
+#reserve-cta h2 {
+  font-size: clamp(32px, 5vw, 56px);
+  color: var(--cream);
+  margin-bottom: 16px;
+}
+#reserve-cta h2 em { color: var(--gold); font-style: italic; }
+#reserve-cta p {
+  font-size: 18px;
+  color: rgba(250,246,239,0.55);
+  margin-bottom: 40px;
+  font-family: 'Cormorant Garamond', serif;
+}
+#reserve-cta .rct-line {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+}
+#reserve-cta .rct-chip {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(250,246,239,0.4);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+#reserve-cta .rct-chip::before { content: '✦'; color: var(--gold); font-size: 8px; }
+#reserve-cta .rct-actions { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
+
+/* ── LANGUAGE SWITCHER ──────────────────────────────────────────── */
+.lang-switcher {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.lang-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.75);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px 10px;
+  border-radius: 2px;
+  transition: color 0.3s;
+}
+.lang-btn svg { width: 14px; height: 14px; flex-shrink: 0; }
+.lang-btn .lang-caret { width: 8px; height: 8px; transition: transform 0.2s; }
+nav.scrolled .lang-btn { color: var(--warm-gray); }
+.lang-btn:hover, nav.scrolled .lang-btn:hover { color: var(--gold); }
+.lang-dropdown {
+  display: none;
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  box-shadow: 0 12px 48px rgba(28,25,23,0.15);
+  min-width: 170px;
+  z-index: 300;
+  overflow: hidden;
+}
+.lang-dropdown.open { display: block; }
+.lang-option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 12px 16px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  color: var(--warm-gray);
+  cursor: pointer;
+  transition: background 0.2s;
+  border: none;
+  background: none;
+  width: 100%;
+  text-align: left;
+}
+.lang-option:hover { background: var(--cream); color: var(--charcoal); }
+.lang-option.active { color: var(--gold); font-weight: 600; }
+.lang-option .check { color: var(--gold); font-size: 12px; }
+
 /* ── ORNAMENT ──────────────────────────────────────────────────── */
 .ornament {
   text-align: center;
@@ -1087,14 +1199,29 @@ footer {
     <div class="nav-inner">
       <a href="#hero" class="nav-logo">Il Boccalino</a>
       <ul class="nav-links">
-        <li><a href="#intro">Story</a></li>
-        <li><a href="#menu">Menu</a></li>
-        <li><a href="#experience">Experience</a></li>
-        <li><a href="#wine">Wine</a></li>
-        <li><a href="#reviews">Reviews</a></li>
-        <li><a href="#location">Find Us</a></li>
+        <li><a href="#intro" data-i18n="nav_story">Story</a></li>
+        <li><a href="#menu" data-i18n="nav_menu">Menu</a></li>
+        <li><a href="#experience" data-i18n="nav_experience">Experience</a></li>
+        <li><a href="#wine" data-i18n="nav_wine">Wine</a></li>
+        <li><a href="#reviews" data-i18n="nav_reviews">Reviews</a></li>
+        <li><a href="#location" data-i18n="nav_find">Find Us</a></li>
       </ul>
-      <a href="#reservation" class="nav-reserve">Reserve a Table</a>
+      <div class="lang-switcher">
+        <button class="lang-btn" id="langBtn" aria-label="Change language">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg>
+          <span id="langLabel">EN</span>
+          <svg class="lang-caret" viewBox="0 0 10 6" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1 1l4 4 4-4"/></svg>
+        </button>
+        <div class="lang-dropdown" id="langDropdown">
+          <button class="lang-option active" data-lang="en">🇬🇧 English <span class="check">✓</span></button>
+          <button class="lang-option" data-lang="it">🇮🇹 Italiano</button>
+          <button class="lang-option" data-lang="es">🇪🇸 Español</button>
+          <button class="lang-option" data-lang="fr">🇫🇷 Français</button>
+          <button class="lang-option" data-lang="de">🇩🇪 Deutsch</button>
+          <button class="lang-option" data-lang="nl">🇳🇱 Nederlands</button>
+        </div>
+      </div>
+      <a href="#reservation" class="nav-reserve" data-i18n="nav_reserve">Reserve a Table</a>
       <button class="hamburger" id="hamburger" aria-label="Menu">
         <span></span><span></span><span></span>
       </button>
@@ -1105,35 +1232,35 @@ footer {
 <!-- MOBILE MENU -->
 <div class="mobile-menu" id="mobileMenu">
   <button class="mobile-close" id="mobileClose">✕</button>
-  <a href="#intro" class="mobile-link">Our Story</a>
-  <a href="#menu" class="mobile-link">The Menu</a>
-  <a href="#experience" class="mobile-link">Experience</a>
-  <a href="#wine" class="mobile-link">Wine</a>
-  <a href="#reviews" class="mobile-link">Reviews</a>
-  <a href="#location" class="mobile-link">Find Us</a>
-  <a href="#reservation" class="mobile-link btn btn-gold">Reserve a Table</a>
+  <a href="#intro" class="mobile-link" data-i18n="mob_story">Our Story</a>
+  <a href="#menu" class="mobile-link" data-i18n="mob_menu">The Menu</a>
+  <a href="#experience" class="mobile-link" data-i18n="nav_experience">Experience</a>
+  <a href="#wine" class="mobile-link" data-i18n="nav_wine">Wine</a>
+  <a href="#reviews" class="mobile-link" data-i18n="nav_reviews">Reviews</a>
+  <a href="#location" class="mobile-link" data-i18n="nav_find">Find Us</a>
+  <a href="#reservation" class="mobile-link btn btn-gold" data-i18n="nav_reserve">Reserve a Table</a>
 </div>
 
 <!-- HERO -->
 <section id="hero">
   <div class="hero-bg"></div>
   <div class="hero-content">
-    <p class="hero-eyebrow">Amsterdam · Since 1995</p>
+    <p class="hero-eyebrow" data-i18n="hero_eyebrow">Amsterdam · Since 1995</p>
     <h1 class="hero-title">Il Boccalino</h1>
-    <p class="hero-subtitle">Cucina Italiana Autentica</p>
+    <p class="hero-subtitle" data-i18n="hero_subtitle">Cucina Italiana Autentica</p>
     <div class="hero-divider">
       <span></span>
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2C8 2 5 5 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-4-3-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
       <span></span>
     </div>
     <div class="hero-actions">
-      <a href="#reservation" class="btn btn-gold">Reserve Your Table</a>
-      <a href="#menu" class="btn btn-outline" style="color:#fff;border-color:rgba(255,255,255,0.55)">View the Menu</a>
+      <a href="#reservation" class="btn btn-gold" data-i18n="hero_cta1">Reserve Your Table</a>
+      <a href="#menu" class="btn btn-outline" style="color:#fff;border-color:rgba(255,255,255,0.55)" data-i18n="hero_cta2">View the Menu</a>
     </div>
   </div>
   <div class="hero-scroll">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
-    <span>Scroll</span>
+    <span data-i18n="hero_scroll">Scroll</span>
   </div>
 </section>
 
@@ -1149,14 +1276,14 @@ footer {
         </div>
       </div>
       <div class="intro-text fade-up">
-        <div class="section-label left">Our Story</div>
-        <h2>A corner of <em>Italy</em> in the heart of Amsterdam</h2>
-        <p>Nestled on the Utrechtsestraat, Il Boccalino has been welcoming guests with the warmth and passion of true Italian hospitality since 1995. Every dish is prepared with seasonal ingredients sourced directly from trusted Italian producers.</p>
-        <p>Our kitchen tells the story of Italy's regions — from the rich ragùs of Bologna to the delicate seafood of the Amalfi Coast. Sit back, breathe in the aroma of fresh herbs and wood-fire, and let Italy come to you.</p>
+        <div class="section-label left" data-i18n="intro_label">Our Story</div>
+        <h2 data-i18n="intro_h2">A corner of <em>Italy</em> in the heart of Amsterdam</h2>
+        <p data-i18n="intro_p1">Nestled on the Utrechtsestraat, Il Boccalino has been welcoming guests with the warmth and passion of true Italian hospitality since 1995. Every dish is prepared with seasonal ingredients sourced directly from trusted Italian producers.</p>
+        <p data-i18n="intro_p2">Our kitchen tells the story of Italy's regions — from the rich ragùs of Bologna to the delicate seafood of the Amalfi Coast. Sit back, breathe in the aroma of fresh herbs and wood-fire, and let Italy come to you.</p>
         <div class="intro-stats">
           <div class="stat fade-up">
             <strong>30+</strong>
-            <span>Years of Tradition</span>
+            <span data-i18n="stat_years">Years of Tradition</span>
           </div>
           <div class="stat fade-up">
             <strong>1,905</strong>
@@ -1176,16 +1303,16 @@ footer {
 <section id="menu">
   <div class="container">
     <div class="menu-header fade-up">
-      <div class="section-label">La Cucina</div>
-      <h2>The Menu</h2>
-      <p>Crafted daily with the finest seasonal produce and authentic Italian recipes passed through generations.</p>
+      <div class="section-label" data-i18n="menu_label">La Cucina</div>
+      <h2 data-i18n="menu_h2">The Menu</h2>
+      <p data-i18n="menu_sub">Crafted daily with the finest seasonal produce and authentic Italian recipes passed through generations.</p>
     </div>
 
     <div class="menu-tabs">
-      <button class="menu-tab active" data-tab="antipasti">Antipasti</button>
-      <button class="menu-tab" data-tab="primi">Primi Piatti</button>
-      <button class="menu-tab" data-tab="secondi">Secondi</button>
-      <button class="menu-tab" data-tab="dolci">Dolci</button>
+      <button class="menu-tab active" data-tab="antipasti" data-i18n="tab_antipasti">Antipasti</button>
+      <button class="menu-tab" data-tab="primi" data-i18n="tab_primi">Primi Piatti</button>
+      <button class="menu-tab" data-tab="secondi" data-i18n="tab_secondi">Secondi</button>
+      <button class="menu-tab" data-tab="dolci" data-i18n="tab_dolci">Dolci</button>
     </div>
 
     <!-- ANTIPASTI -->
@@ -1486,8 +1613,8 @@ footer {
     </div>
 
     <div class="menu-footer">
-      <p>All dishes may contain allergens. Please inform your server of any dietary requirements.<br>Prices include VAT. Service not included.</p>
-      <a href="#reservation" class="btn btn-gold">Reserve Your Table</a>
+      <p data-i18n="menu_allergen">All dishes may contain allergens. Please inform your server of any dietary requirements.<br>Prices include VAT. Service not included.</p>
+      <a href="#reservation" class="btn btn-gold" data-i18n="hero_cta1">Reserve Your Table</a>
     </div>
   </div>
 </section>
@@ -1507,18 +1634,18 @@ footer {
       </div>
     </div>
     <div class="experience-text">
-      <div class="section-label left">The Experience</div>
-      <h2>More than a meal — <em>a memory</em></h2>
-      <p>Step through our doors and the noise of Amsterdam fades. Candlelight, warm terracotta tones, the gentle murmur of Italian — Il Boccalino wraps you in an atmosphere that feels like a family trattoria in Tuscany.</p>
-      <p>Whether you're celebrating a milestone or simply savouring a mid-week escape, our team is devoted to making your evening exceptional.</p>
+      <div class="section-label left" data-i18n="exp_label">The Experience</div>
+      <h2 data-i18n="exp_h2">More than a meal — <em>a memory</em></h2>
+      <p data-i18n="exp_p1">Step through our doors and the noise of Amsterdam fades. Candlelight, warm terracotta tones, the gentle murmur of Italian — Il Boccalino wraps you in an atmosphere that feels like a family trattoria in Tuscany.</p>
+      <p data-i18n="exp_p2">Whether you're celebrating a milestone or simply savouring a mid-week escape, our team is devoted to making your evening exceptional.</p>
       <div class="experience-features">
         <div class="experience-feature fade-up">
           <div class="feature-icon">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
           </div>
           <div class="feature-text">
-            <strong>4.5 Stars — 1,905 Reviews</strong>
-            <span>Consistently rated one of Amsterdam's finest Italian restaurants</span>
+            <strong data-i18n="feat1_title">4.5 Stars — 1,905 Reviews</strong>
+            <span data-i18n="feat1_sub">Consistently rated one of Amsterdam's finest Italian restaurants</span>
           </div>
         </div>
         <div class="experience-feature fade-up">
@@ -1526,8 +1653,8 @@ footer {
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
           </div>
           <div class="feature-text">
-            <strong>Private Dining Available</strong>
-            <span>Exclusive spaces for celebrations, corporate dinners, and special occasions</span>
+            <strong data-i18n="feat2_title">Private Dining Available</strong>
+            <span data-i18n="feat2_sub">Exclusive spaces for celebrations, corporate dinners, and special occasions</span>
           </div>
         </div>
         <div class="experience-feature fade-up">
@@ -1535,8 +1662,8 @@ footer {
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
           </div>
           <div class="feature-text">
-            <strong>Open Until Midnight</strong>
-            <span>Perfect for a late evening dinner — Amsterdam's most welcoming hours</span>
+            <strong data-i18n="feat3_title">Open Until Midnight</strong>
+            <span data-i18n="feat3_sub">Perfect for a late evening dinner — Amsterdam's most welcoming hours</span>
           </div>
         </div>
       </div>
@@ -1549,9 +1676,9 @@ footer {
   <div class="container">
     <div class="wine-inner">
       <div class="wine-text fade-up">
-        <div class="section-label left" style="color:rgba(255,255,255,0.5)">La Cantina</div>
-        <h2>A cellar worth exploring</h2>
-        <p>Our wine list is a love letter to the Italian peninsula. From the volcanic slopes of Etna to the hills of Barolo, every bottle is chosen to complement our kitchen — and to be enjoyed slowly.</p>
+        <div class="section-label left" style="color:rgba(255,255,255,0.5)" data-i18n="wine_label">La Cantina</div>
+        <h2 data-i18n="wine_h2">A cellar worth exploring</h2>
+        <p data-i18n="wine_p">Our wine list is a love letter to the Italian peninsula. From the volcanic slopes of Etna to the hills of Barolo, every bottle is chosen to complement our kitchen — and to be enjoyed slowly.</p>
         <ul class="wine-list">
           <li>
             <div>
@@ -1598,14 +1725,32 @@ footer {
   </div>
 </section>
 
+<!-- RESERVATION CTA BANNER -->
+<section id="reserve-cta">
+  <div class="container rct-inner">
+    <h2><span data-i18n="rct_h2">Ready to join us?</span> <em data-i18n="rct_h2b">Book your table tonight.</em></h2>
+    <p data-i18n="rct_sub">We welcome guests for dinner Monday–Friday from 17:00, and all day Saturday–Sunday from noon. Reservations are required.</p>
+    <div class="rct-line">
+      <span class="rct-chip" data-i18n="rct_chip1">Reservations Required</span>
+      <span class="rct-chip" data-i18n="rct_chip2">Vegan Options Available</span>
+      <span class="rct-chip" data-i18n="rct_chip3">Wi-Fi Included</span>
+      <span class="rct-chip" data-i18n="rct_chip4">Private Dining</span>
+    </div>
+    <div class="rct-actions">
+      <a href="#reservation" class="btn btn-gold" data-i18n="hero_cta1">Reserve Your Table</a>
+      <a href="tel:+31628079879" class="btn btn-outline" style="color:var(--gold-light);border-color:rgba(184,151,90,0.5)" data-i18n="rct_call">Call Us Directly</a>
+    </div>
+  </div>
+</section>
+
 <!-- RESERVATION -->
 <section id="reservation">
   <div class="container">
     <div class="reservation-grid">
       <div class="reservation-info fade-up">
-        <div class="section-label left">Prenotazioni</div>
-        <h2>Join us for an <em>unforgettable</em> evening</h2>
-        <p>Reservations are strongly recommended, especially on weekends. We welcome walk-ins at the bar whenever space allows. Private dining enquiries are warmly welcomed.</p>
+        <div class="section-label left" data-i18n="res_label">Prenotazioni</div>
+        <h2 data-i18n="res_h2">Join us for an <em>unforgettable</em> evening</h2>
+        <p data-i18n="res_p">Reservations are strongly recommended, especially on weekends. We welcome walk-ins at the bar whenever space allows. Private dining enquiries are warmly welcomed.</p>
         <div class="info-blocks">
           <div class="info-block">
             <div class="info-block-icon">
@@ -1650,35 +1795,35 @@ footer {
         </div>
       </div>
       <div class="reservation-form fade-up">
-        <h3>Reserve Your Table</h3>
+        <h3 data-i18n="form_title">Reserve Your Table</h3>
         <form id="reserveForm" onsubmit="handleReservation(event)">
           <div class="form-row">
             <div class="form-group">
-              <label for="fname">First Name</label>
-              <input type="text" id="fname" placeholder="Maria" required>
+              <label for="fname" data-i18n="form_fname">First Name</label>
+              <input type="text" id="fname" placeholder="Maria" data-i18n-ph="ph_fname" required>
             </div>
             <div class="form-group">
-              <label for="lname">Last Name</label>
-              <input type="text" id="lname" placeholder="Rossi" required>
+              <label for="lname" data-i18n="form_lname">Last Name</label>
+              <input type="text" id="lname" placeholder="Rossi" data-i18n-ph="ph_lname" required>
             </div>
           </div>
           <div class="form-group">
-            <label for="email">Email Address</label>
+            <label for="email" data-i18n="form_email">Email Address</label>
             <input type="email" id="email" placeholder="maria@example.com" required>
           </div>
           <div class="form-group">
-            <label for="phone">Phone Number</label>
+            <label for="phone" data-i18n="form_phone">Phone Number</label>
             <input type="tel" id="phone" placeholder="+31 6 ...">
           </div>
           <div class="form-row">
             <div class="form-group">
-              <label for="date">Preferred Date</label>
+              <label for="date" data-i18n="form_date">Preferred Date</label>
               <input type="date" id="date" required>
             </div>
             <div class="form-group">
-              <label for="time">Preferred Time</label>
+              <label for="time" data-i18n="form_time">Preferred Time</label>
               <select id="time" required>
-                <option value="">Select time</option>
+                <option value="" data-i18n="form_sel_time">Select time</option>
                 <option>17:00</option><option>17:30</option>
                 <option>18:00</option><option>18:30</option>
                 <option>19:00</option><option>19:30</option>
@@ -1689,9 +1834,9 @@ footer {
             </div>
           </div>
           <div class="form-group">
-            <label for="guests">Number of Guests</label>
+            <label for="guests" data-i18n="form_guests">Number of Guests</label>
             <select id="guests" required>
-              <option value="">Select guests</option>
+              <option value="" data-i18n="form_sel_guests">Select guests</option>
               <option>1 guest</option><option>2 guests</option>
               <option>3 guests</option><option>4 guests</option>
               <option>5 guests</option><option>6 guests</option>
@@ -1700,15 +1845,15 @@ footer {
             </select>
           </div>
           <div class="form-group">
-            <label for="notes">Special Requests</label>
-            <textarea id="notes" placeholder="Dietary requirements, allergies, occasion, seating preference…"></textarea>
+            <label for="notes" data-i18n="form_notes">Special Requests</label>
+            <textarea id="notes" placeholder="Dietary requirements, allergies, occasion, seating preference…" data-i18n-ph="ph_notes"></textarea>
           </div>
-          <button type="submit" class="btn btn-gold form-submit">Confirm Reservation</button>
+          <button type="submit" class="btn btn-gold form-submit" data-i18n="form_submit">Confirm Reservation</button>
         </form>
         <div id="formSuccess" style="display:none;text-align:center;padding:40px 0;">
           <div style="font-size:48px;margin-bottom:16px">🍝</div>
-          <h3 style="color:var(--charcoal);margin-bottom:12px">Grazie mille!</h3>
-          <p style="color:var(--warm-gray);font-size:16px">Your reservation request has been received. We'll confirm by email within 2 hours.</p>
+          <h3 style="color:var(--charcoal);margin-bottom:12px" data-i18n="form_thanks">Grazie mille!</h3>
+          <p style="color:var(--warm-gray);font-size:16px" data-i18n="form_thanks_sub">Your reservation request has been received. We'll confirm by email within 2 hours.</p>
         </div>
       </div>
     </div>
@@ -1719,7 +1864,7 @@ footer {
 <section id="reviews">
   <div class="container">
     <div class="reviews-header fade-up">
-      <div class="section-label">What Our Guests Say</div>
+      <div class="section-label" data-i18n="rev_label">What Our Guests Say</div>
       <div class="stars">
         <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
         <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
@@ -1727,8 +1872,8 @@ footer {
         <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
         <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
       </div>
-      <h2>4.5 Stars · 1,905 Reviews</h2>
-      <p>A beloved Amsterdam institution — rated consistently outstanding on Google.</p>
+      <h2 data-i18n="rev_h2">4.5 Stars · 1,905 Reviews</h2>
+      <p data-i18n="rev_sub">A beloved Amsterdam institution — rated consistently outstanding on Google.</p>
     </div>
   </div>
   <div style="overflow:hidden;padding:8px 0 48px;">
@@ -1921,7 +2066,7 @@ footer {
     </iframe>
   </div>
   <div class="location-info">
-    <h2>Find Us</h2>
+    <h2 data-i18n="loc_h2">Find Us</h2>
     <div class="location-details">
       <div class="location-detail">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
@@ -1969,7 +2114,7 @@ footer {
     <div class="footer-inner">
       <div class="footer-brand">
         <h3>Il Boccalino</h3>
-        <p>Authentic Italian cuisine on the Utrechtsestraat since 1995. A place where every meal feels like coming home — wherever home may be.</p>
+        <p data-i18n="footer_brand">Authentic Italian cuisine on the Utrechtsestraat since 1995. A place where every meal feels like coming home — wherever home may be.</p>
         <div class="social-links">
           <a href="#" class="social-link" aria-label="Instagram">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
@@ -1983,7 +2128,7 @@ footer {
         </div>
       </div>
       <div class="footer-col">
-        <h4>Navigate</h4>
+        <h4 data-i18n="footer_nav">Navigate</h4>
         <ul>
           <li><a href="#intro">Our Story</a></li>
           <li><a href="#menu">The Menu</a></li>
@@ -1994,7 +2139,7 @@ footer {
         </ul>
       </div>
       <div class="footer-col">
-        <h4>Visit</h4>
+        <h4 data-i18n="footer_visit">Visit</h4>
         <ul>
           <li><a href="tel:+31628079879">+31 6 28079879</a></li>
           <li><a href="#">Utrechtsestraat 133</a></li>
@@ -2013,6 +2158,294 @@ footer {
 </footer>
 
 <script>
+/* ── TRANSLATIONS ───────────────────────────────────────── */
+const T = {
+  en: {
+    nav_story:'Story', nav_menu:'Menu', nav_experience:'Experience', nav_wine:'Wine',
+    nav_reviews:'Reviews', nav_find:'Find Us', nav_reserve:'Reserve a Table',
+    mob_story:'Our Story', mob_menu:'The Menu',
+    hero_eyebrow:'Amsterdam · Since 1995', hero_subtitle:'Authentic Italian Cuisine',
+    hero_cta1:'Reserve Your Table', hero_cta2:'View the Menu', hero_scroll:'Scroll',
+    intro_label:'Our Story',
+    intro_h2:'A corner of <em>Italy</em> in the heart of Amsterdam',
+    intro_p1:'Nestled on the Utrechtsestraat, Il Boccalino has been welcoming guests with the warmth and passion of true Italian hospitality since 1995. Every dish is prepared with seasonal ingredients sourced directly from trusted Italian producers.',
+    intro_p2:'Our kitchen tells the story of Italy\'s regions — from the rich ragùs of Bologna to the delicate seafood of the Amalfi Coast. Sit back, breathe in the aroma of fresh herbs and wood-fire, and let Italy come to you.',
+    stat_years:'Years of Tradition',
+    menu_label:'La Cucina', menu_h2:'The Menu',
+    menu_sub:'Crafted daily with the finest seasonal produce and authentic Italian recipes passed through generations.',
+    tab_antipasti:'Antipasti', tab_primi:'Primi Piatti', tab_secondi:'Secondi', tab_dolci:'Desserts',
+    menu_allergen:'All dishes may contain allergens. Please inform your server of any dietary requirements. Prices include VAT. Service not included.',
+    exp_label:'The Experience', exp_h2:'More than a meal — <em>a memory</em>',
+    exp_p1:'Step through our doors and the noise of Amsterdam fades. Candlelight, warm terracotta tones, the gentle murmur of Italian — Il Boccalino wraps you in an atmosphere that feels like a family trattoria in Tuscany.',
+    exp_p2:'Whether you\'re celebrating a milestone or simply savouring a mid-week escape, our team is devoted to making your evening exceptional.',
+    feat1_title:'4.5 Stars — 1,905 Reviews', feat1_sub:'Consistently rated one of Amsterdam\'s finest Italian restaurants',
+    feat2_title:'Private Dining Available', feat2_sub:'Exclusive spaces for celebrations, corporate dinners, and special occasions',
+    feat3_title:'Open Until Midnight', feat3_sub:'Perfect for a late evening dinner — Amsterdam\'s most welcoming hours',
+    wine_label:'La Cantina', wine_h2:'A cellar worth exploring',
+    wine_p:'Our wine list is a love letter to the Italian peninsula. From the volcanic slopes of Etna to the hills of Barolo, every bottle is chosen to complement our kitchen — and to be enjoyed slowly.',
+    rct_h2:'Ready to join us?', rct_h2b:'Book your table tonight.',
+    rct_sub:'We welcome guests for dinner Monday–Friday from 17:00, and all day Saturday–Sunday from noon. Reservations are required.',
+    rct_chip1:'Reservations Required', rct_chip2:'Vegan Options Available', rct_chip3:'Wi-Fi Included', rct_chip4:'Private Dining',
+    rct_call:'Call Us Directly',
+    res_label:'Prenotazioni', res_h2:'Join us for an <em>unforgettable</em> evening',
+    res_p:'Reservations are strongly recommended, especially on weekends. We welcome walk-ins at the bar whenever space allows. Private dining enquiries are warmly welcomed.',
+    form_title:'Reserve Your Table', form_fname:'First Name', form_lname:'Last Name',
+    form_email:'Email Address', form_phone:'Phone Number', form_date:'Preferred Date',
+    form_time:'Preferred Time', form_sel_time:'Select time', form_guests:'Number of Guests',
+    form_sel_guests:'Select guests', form_notes:'Special Requests', form_submit:'Confirm Reservation',
+    form_thanks:'Grazie mille!', form_thanks_sub:'Your reservation request has been received. We\'ll confirm by email within 2 hours.',
+    ph_fname:'Maria', ph_lname:'Rossi', ph_notes:'Dietary requirements, allergies, occasion, seating preference…',
+    rev_label:'What Our Guests Say', rev_h2:'4.5 Stars · 1,905 Reviews',
+    rev_sub:'A beloved Amsterdam institution — rated consistently outstanding on Google.',
+    loc_h2:'Find Us',
+    footer_brand:'Authentic Italian cuisine on the Utrechtsestraat since 1995. A place where every meal feels like coming home — wherever home may be.',
+    footer_nav:'Navigate', footer_visit:'Visit',
+  },
+  it: {
+    nav_story:'La Nostra Storia', nav_menu:'Menu', nav_experience:'Esperienza', nav_wine:'Vini',
+    nav_reviews:'Recensioni', nav_find:'Dove Siamo', nav_reserve:'Prenota un Tavolo',
+    mob_story:'La Nostra Storia', mob_menu:'Il Menu',
+    hero_eyebrow:'Amsterdam · Dal 1995', hero_subtitle:'Cucina Italiana Autentica',
+    hero_cta1:'Prenota il Tuo Tavolo', hero_cta2:'Vedi il Menu', hero_scroll:'Scorri',
+    intro_label:'La Nostra Storia',
+    intro_h2:'Un angolo d\'<em>Italia</em> nel cuore di Amsterdam',
+    intro_p1:'Situato sull\'Utrechtsestraat, Il Boccalino accoglie gli ospiti con il calore e la passione della vera ospitalità italiana dal 1995. Ogni piatto è preparato con ingredienti stagionali provenienti direttamente da produttori italiani di fiducia.',
+    intro_p2:'La nostra cucina racconta la storia delle regioni italiane — dai ricchi ragù di Bologna ai delicati frutti di mare della Costiera Amalfitana. Siediti, assapora l\'aroma di erbe fresche e legno ardente, e lascia che l\'Italia venga da te.',
+    stat_years:'Anni di Tradizione',
+    menu_label:'La Cucina', menu_h2:'Il Menu',
+    menu_sub:'Preparato ogni giorno con i migliori prodotti stagionali e le autentiche ricette italiane tramandate di generazione in generazione.',
+    tab_antipasti:'Antipasti', tab_primi:'Primi Piatti', tab_secondi:'Secondi', tab_dolci:'Dolci',
+    menu_allergen:'Tutti i piatti possono contenere allergeni. Si prega di informare il proprio cameriere di eventuali esigenze alimentari. I prezzi sono IVA inclusa. Servizio non incluso.',
+    exp_label:'L\'Esperienza', exp_h2:'Più di un pasto — <em>un ricordo</em>',
+    exp_p1:'Varcate le nostre porte, il rumore di Amsterdam svanisce. Candele, caldi toni terracotta, il sommesso mormorio italiano — Il Boccalino vi avvolge in un\'atmosfera che ricorda una trattoria di famiglia in Toscana.',
+    exp_p2:'Che stiate festeggiando un traguardo o semplicemente godendovi una pausa a metà settimana, il nostro team è dedicato a rendere la vostra serata eccezionale.',
+    feat1_title:'4,5 Stelle — 1.905 Recensioni', feat1_sub:'Costantemente valutato come uno dei migliori ristoranti italiani di Amsterdam',
+    feat2_title:'Sala Privata Disponibile', feat2_sub:'Spazi esclusivi per celebrazioni, cene aziendali e occasioni speciali',
+    feat3_title:'Aperto Fino a Mezzanotte', feat3_sub:'Perfetto per una cena serale — gli orari più accoglienti di Amsterdam',
+    wine_label:'La Cantina', wine_h2:'Una cantina da esplorare',
+    wine_p:'La nostra carta dei vini è una lettera d\'amore alla penisola italiana. Dai pendii vulcanici dell\'Etna alle colline del Barolo, ogni bottiglia è scelta per accompagnare la nostra cucina — e per essere gustata lentamente.',
+    rct_h2:'Pronti a unirvi a noi?', rct_h2b:'Prenotate il vostro tavolo stasera.',
+    rct_sub:'Accogliamo gli ospiti per cena dal lunedì al venerdì dalle 17:00 e tutto il giorno sabato e domenica dal mezzogiorno. La prenotazione è obbligatoria.',
+    rct_chip1:'Prenotazione Obbligatoria', rct_chip2:'Opzioni Vegane Disponibili', rct_chip3:'Wi-Fi Incluso', rct_chip4:'Sala Privata',
+    rct_call:'Chiamaci Direttamente',
+    res_label:'Prenotazioni', res_h2:'Unisciti a noi per una serata <em>indimenticabile</em>',
+    res_p:'Le prenotazioni sono fortemente consigliate, soprattutto nel fine settimana. Accettiamo i walk-in al bar quando c\'è spazio disponibile. Le richieste per la sala privata sono ben accette.',
+    form_title:'Prenota il Tuo Tavolo', form_fname:'Nome', form_lname:'Cognome',
+    form_email:'Indirizzo Email', form_phone:'Numero di Telefono', form_date:'Data Preferita',
+    form_time:'Orario Preferito', form_sel_time:'Seleziona orario', form_guests:'Numero di Ospiti',
+    form_sel_guests:'Seleziona ospiti', form_notes:'Richieste Speciali', form_submit:'Conferma Prenotazione',
+    form_thanks:'Grazie mille!', form_thanks_sub:'La tua richiesta di prenotazione è stata ricevuta. Confermeremo via email entro 2 ore.',
+    ph_fname:'Maria', ph_lname:'Rossi', ph_notes:'Esigenze alimentari, allergie, occasione, preferenza del posto…',
+    rev_label:'Cosa Dicono i Nostri Ospiti', rev_h2:'4,5 Stelle · 1.905 Recensioni',
+    rev_sub:'Una storica istituzione di Amsterdam — costantemente valutata eccellente su Google.',
+    loc_h2:'Dove Siamo',
+    footer_brand:'Cucina italiana autentica sull\'Utrechtsestraat dal 1995. Un luogo dove ogni pasto ti fa sentire a casa — ovunque tu sia.',
+    footer_nav:'Naviga', footer_visit:'Visita',
+  },
+  es: {
+    nav_story:'Historia', nav_menu:'Menú', nav_experience:'Experiencia', nav_wine:'Vinos',
+    nav_reviews:'Opiniones', nav_find:'Cómo Llegar', nav_reserve:'Reservar una Mesa',
+    mob_story:'Nuestra Historia', mob_menu:'El Menú',
+    hero_eyebrow:'Ámsterdam · Desde 1995', hero_subtitle:'Cocina Italiana Auténtica',
+    hero_cta1:'Reserva Tu Mesa', hero_cta2:'Ver el Menú', hero_scroll:'Deslizar',
+    intro_label:'Nuestra Historia',
+    intro_h2:'Un rincón de <em>Italia</em> en el corazón de Ámsterdam',
+    intro_p1:'Ubicado en el Utrechtsestraat, Il Boccalino lleva desde 1995 dando la bienvenida a sus huéspedes con la calidez y la pasión de la auténtica hospitalidad italiana. Cada plato se elabora con ingredientes de temporada procedentes directamente de productores italianos de confianza.',
+    intro_p2:'Nuestra cocina cuenta la historia de las regiones de Italia — desde los ricos ragùs de Bolonia hasta el delicado marisco de la Costa Amalfitana. Siéntate, respira el aroma de las hierbas frescas y la leña, y deja que Italia venga a ti.',
+    stat_years:'Años de Tradición',
+    menu_label:'La Cocina', menu_h2:'El Menú',
+    menu_sub:'Elaborado cada día con los mejores productos de temporada y las auténticas recetas italianas transmitidas de generación en generación.',
+    tab_antipasti:'Entrantes', tab_primi:'Primeros Platos', tab_secondi:'Segundos', tab_dolci:'Postres',
+    menu_allergen:'Todos los platos pueden contener alérgenos. Informe a su camarero de cualquier necesidad alimentaria. Los precios incluyen IVA. Servicio no incluido.',
+    exp_label:'La Experiencia', exp_h2:'Más que una comida — <em>un recuerdo</em>',
+    exp_p1:'Al cruzar nuestras puertas, el ruido de Ámsterdam desaparece. Velas, cálidos tonos terracota, el suave murmullo del italiano — Il Boccalino te envuelve en una atmósfera que parece una trattoria familiar en la Toscana.',
+    exp_p2:'Ya sea para celebrar un hito o simplemente para disfrutar de un descanso a mediados de semana, nuestro equipo está dedicado a hacer que tu velada sea excepcional.',
+    feat1_title:'4,5 Estrellas — 1.905 Opiniones', feat1_sub:'Consistentemente valorado como uno de los mejores restaurantes italianos de Ámsterdam',
+    feat2_title:'Sala Privada Disponible', feat2_sub:'Espacios exclusivos para celebraciones, cenas de empresa y ocasiones especiales',
+    feat3_title:'Abierto Hasta Medianoche', feat3_sub:'Perfecto para una cena tardía — los horarios más acogedores de Ámsterdam',
+    wine_label:'La Bodega', wine_h2:'Una bodega que merece ser explorada',
+    wine_p:'Nuestra carta de vinos es una carta de amor a la península italiana. Desde las laderas volcánicas del Etna hasta las colinas del Barolo, cada botella se elige para complementar nuestra cocina — y para disfrutarla despacio.',
+    rct_h2:'¿Listos para unirse a nosotros?', rct_h2b:'Reserve su mesa esta noche.',
+    rct_sub:'Recibimos a los comensales de lunes a viernes desde las 17:00 y durante todo el día los sábados y domingos desde el mediodía. Se requiere reserva.',
+    rct_chip1:'Reserva Obligatoria', rct_chip2:'Opciones Veganas Disponibles', rct_chip3:'Wi-Fi Incluido', rct_chip4:'Sala Privada',
+    rct_call:'Llámenos Directamente',
+    res_label:'Reservas', res_h2:'Únase a nosotros para una velada <em>inolvidable</em>',
+    res_p:'Se recomienda encarecidamente reservar, especialmente los fines de semana. Admitimos sin reserva en la barra siempre que haya espacio. Las consultas sobre sala privada son bienvenidas.',
+    form_title:'Reserve Su Mesa', form_fname:'Nombre', form_lname:'Apellido',
+    form_email:'Correo Electrónico', form_phone:'Número de Teléfono', form_date:'Fecha Preferida',
+    form_time:'Hora Preferida', form_sel_time:'Seleccionar hora', form_guests:'Número de Comensales',
+    form_sel_guests:'Seleccionar comensales', form_notes:'Peticiones Especiales', form_submit:'Confirmar Reserva',
+    form_thanks:'¡Grazie mille!', form_thanks_sub:'Su solicitud de reserva ha sido recibida. Le confirmaremos por correo electrónico en 2 horas.',
+    ph_fname:'María', ph_lname:'García', ph_notes:'Requisitos dietéticos, alergias, ocasión, preferencia de asiento…',
+    rev_label:'Lo Que Dicen Nuestros Clientes', rev_h2:'4,5 Estrellas · 1.905 Opiniones',
+    rev_sub:'Una querida institución de Ámsterdam — constantemente valorada como excelente en Google.',
+    loc_h2:'Cómo Llegar',
+    footer_brand:'Cocina italiana auténtica en el Utrechtsestraat desde 1995. Un lugar donde cada comida se siente como volver a casa — dondequiera que estés.',
+    footer_nav:'Navegar', footer_visit:'Visitar',
+  },
+  fr: {
+    nav_story:'Notre Histoire', nav_menu:'Menu', nav_experience:'Expérience', nav_wine:'Vins',
+    nav_reviews:'Avis', nav_find:'Nous Trouver', nav_reserve:'Réserver une Table',
+    mob_story:'Notre Histoire', mob_menu:'Le Menu',
+    hero_eyebrow:'Amsterdam · Depuis 1995', hero_subtitle:'Cuisine Italienne Authentique',
+    hero_cta1:'Réservez Votre Table', hero_cta2:'Voir le Menu', hero_scroll:'Défiler',
+    intro_label:'Notre Histoire',
+    intro_h2:'Un coin d\'<em>Italie</em> au cœur d\'Amsterdam',
+    intro_p1:'Niché sur l\'Utrechtsestraat, Il Boccalino accueille ses hôtes avec la chaleur et la passion de la véritable hospitalité italienne depuis 1995. Chaque plat est préparé avec des ingrédients de saison provenant directement de producteurs italiens de confiance.',
+    intro_p2:'Notre cuisine raconte l\'histoire des régions d\'Italie — des riches ragùs de Bologne aux délicieux fruits de mer de la côte amalfitaine. Asseyez-vous, respirez l\'arôme des herbes fraîches et du bois, et laissez l\'Italie venir à vous.',
+    stat_years:'Ans de Tradition',
+    menu_label:'La Cuisine', menu_h2:'Le Menu',
+    menu_sub:'Préparé chaque jour avec les meilleurs produits de saison et les authentiques recettes italiennes transmises de génération en génération.',
+    tab_antipasti:'Antipasti', tab_primi:'Premiers Plats', tab_secondi:'Plats Principaux', tab_dolci:'Desserts',
+    menu_allergen:'Tous les plats peuvent contenir des allergènes. Veuillez informer votre serveur de vos besoins alimentaires. Les prix incluent la TVA. Service non compris.',
+    exp_label:'L\'Expérience', exp_h2:'Plus qu\'un repas — <em>un souvenir</em>',
+    exp_p1:'Franchissez nos portes et le bruit d\'Amsterdam s\'efface. Bougies, chauds tons terre cuite, le doux murmure de l\'italien — Il Boccalino vous enveloppe dans une atmosphère qui ressemble à une trattoria familiale en Toscane.',
+    exp_p2:'Que vous fêtiez un événement important ou que vous profitiez simplement d\'une pause en milieu de semaine, notre équipe est dévouée à rendre votre soirée exceptionnelle.',
+    feat1_title:'4,5 Étoiles — 1 905 Avis', feat1_sub:'Constamment classé parmi les meilleurs restaurants italiens d\'Amsterdam',
+    feat2_title:'Salle Privée Disponible', feat2_sub:'Espaces exclusifs pour célébrations, dîners d\'affaires et occasions spéciales',
+    feat3_title:'Ouvert Jusqu\'à Minuit', feat3_sub:'Parfait pour un dîner tardif — les horaires les plus accueillants d\'Amsterdam',
+    wine_label:'La Cave', wine_h2:'Une cave qui mérite d\'être explorée',
+    wine_p:'Notre carte des vins est une lettre d\'amour à la péninsule italienne. Des pentes volcaniques de l\'Etna aux collines du Barolo, chaque bouteille est choisie pour accompagner notre cuisine — et pour être dégustée lentement.',
+    rct_h2:'Prêts à nous rejoindre ?', rct_h2b:'Réservez votre table ce soir.',
+    rct_sub:'Nous accueillons les convives pour le dîner du lundi au vendredi à partir de 17h00, et toute la journée le samedi et le dimanche à partir de midi. La réservation est obligatoire.',
+    rct_chip1:'Réservation Obligatoire', rct_chip2:'Options Véganes Disponibles', rct_chip3:'Wi-Fi Inclus', rct_chip4:'Salle Privée',
+    rct_call:'Appelez-Nous Directement',
+    res_label:'Réservations', res_h2:'Rejoignez-nous pour une soirée <em>inoubliable</em>',
+    res_p:'Les réservations sont fortement recommandées, surtout le week-end. Nous accueillons les clients sans réservation au bar dans la mesure du possible. Les demandes de salle privée sont les bienvenues.',
+    form_title:'Réservez Votre Table', form_fname:'Prénom', form_lname:'Nom',
+    form_email:'Adresse E-mail', form_phone:'Numéro de Téléphone', form_date:'Date Souhaitée',
+    form_time:'Heure Souhaitée', form_sel_time:'Sélectionner l\'heure', form_guests:'Nombre de Convives',
+    form_sel_guests:'Sélectionner les convives', form_notes:'Demandes Spéciales', form_submit:'Confirmer la Réservation',
+    form_thanks:'Grazie mille !', form_thanks_sub:'Votre demande de réservation a été reçue. Nous vous confirmerons par e-mail dans les 2 heures.',
+    ph_fname:'Marie', ph_lname:'Dupont', ph_notes:'Régimes alimentaires, allergies, occasion, préférence de siège…',
+    rev_label:'Ce Que Disent Nos Hôtes', rev_h2:'4,5 Étoiles · 1 905 Avis',
+    rev_sub:'Une institution bien-aimée d\'Amsterdam — constamment notée comme excellente sur Google.',
+    loc_h2:'Nous Trouver',
+    footer_brand:'Cuisine italienne authentique sur l\'Utrechtsestraat depuis 1995. Un endroit où chaque repas ressemble à un retour à la maison — où que vous soyez.',
+    footer_nav:'Navigation', footer_visit:'Visiter',
+  },
+  de: {
+    nav_story:'Geschichte', nav_menu:'Speisekarte', nav_experience:'Erlebnis', nav_wine:'Weine',
+    nav_reviews:'Bewertungen', nav_find:'Anfahrt', nav_reserve:'Tisch Reservieren',
+    mob_story:'Unsere Geschichte', mob_menu:'Die Speisekarte',
+    hero_eyebrow:'Amsterdam · Seit 1995', hero_subtitle:'Authentische Italienische Küche',
+    hero_cta1:'Tisch Reservieren', hero_cta2:'Speisekarte ansehen', hero_scroll:'Scrollen',
+    intro_label:'Unsere Geschichte',
+    intro_h2:'Ein Stück <em>Italien</em> im Herzen von Amsterdam',
+    intro_p1:'Das Il Boccalino liegt am Utrechtsestraat und empfängt seit 1995 Gäste mit der Wärme und Leidenschaft echter italienischer Gastfreundschaft. Jedes Gericht wird mit saisonalen Zutaten zubereitet, die direkt von vertrauenswürdigen italienischen Erzeugern stammen.',
+    intro_p2:'Unsere Küche erzählt die Geschichte der italienischen Regionen — von den reichhaltigen Ragùs aus Bologna bis hin zu den zarten Meeresfrüchten der Amalfiküste. Lehnen Sie sich zurück, atmen Sie den Duft frischer Kräuter und Holzfeuer ein und lassen Sie sich nach Italien entführen.',
+    stat_years:'Jahre Tradition',
+    menu_label:'Die Küche', menu_h2:'Die Speisekarte',
+    menu_sub:'Täglich zubereitet mit den feinsten Saisonprodukten und authentischen italienischen Rezepten, die seit Generationen weitergegeben werden.',
+    tab_antipasti:'Vorspeisen', tab_primi:'Erste Gänge', tab_secondi:'Hauptgerichte', tab_dolci:'Desserts',
+    menu_allergen:'Alle Speisen können Allergene enthalten. Bitte informieren Sie Ihren Kellner über etwaige Ernährungsbedürfnisse. Preise inkl. MwSt. Service nicht inbegriffen.',
+    exp_label:'Das Erlebnis', exp_h2:'Mehr als ein Essen — <em>eine Erinnerung</em>',
+    exp_p1:'Treten Sie durch unsere Türen und der Lärm Amsterdams verblasst. Kerzenlicht, warme Terrakotta-Töne, das leise Murmeln des Italienischen — Il Boccalino hüllt Sie in eine Atmosphäre ein, die sich wie ein Familienrestaurant in der Toskana anfühlt.',
+    exp_p2:'Ob Sie einen Meilenstein feiern oder einfach eine Auszeit unter der Woche genießen möchten, unser Team ist bestrebt, Ihren Abend außergewöhnlich zu gestalten.',
+    feat1_title:'4,5 Sterne — 1.905 Bewertungen', feat1_sub:'Konstant als eines der besten italienischen Restaurants Amsterdams bewertet',
+    feat2_title:'Privatspeisesaal Verfügbar', feat2_sub:'Exklusive Räumlichkeiten für Feiern, Geschäftsessen und besondere Anlässe',
+    feat3_title:'Geöffnet bis Mitternacht', feat3_sub:'Perfekt für ein spätes Abendessen — Amsterdams gastfreundlichste Öffnungszeiten',
+    wine_label:'Der Weinkeller', wine_h2:'Ein Weinkeller, den es zu entdecken gilt',
+    wine_p:'Unsere Weinkarte ist ein Liebesbrief an die Italienische Halbinsel. Von den Vulkanhängen des Ätna bis zu den Hügeln des Barolo wird jede Flasche ausgewählt, um unsere Küche zu ergänzen — und langsam genossen zu werden.',
+    rct_h2:'Bereit, uns zu besuchen?', rct_h2b:'Reservieren Sie Ihren Tisch heute Abend.',
+    rct_sub:'Wir empfangen Gäste zum Abendessen von Montag bis Freitag ab 17:00 Uhr und samstags und sonntags ganztägig ab 12:00 Uhr. Eine Reservierung ist erforderlich.',
+    rct_chip1:'Reservierung Erforderlich', rct_chip2:'Vegane Optionen Verfügbar', rct_chip3:'WLAN Inklusive', rct_chip4:'Privatraum',
+    rct_call:'Rufen Sie Uns An',
+    res_label:'Reservierungen', res_h2:'Besuchen Sie uns für einen <em>unvergesslichen</em> Abend',
+    res_p:'Reservierungen werden dringend empfohlen, insbesondere am Wochenende. Wir begrüßen Walk-ins an der Bar, wenn Platz verfügbar ist. Anfragen für den Privatspeisesaal sind herzlich willkommen.',
+    form_title:'Tisch Reservieren', form_fname:'Vorname', form_lname:'Nachname',
+    form_email:'E-Mail-Adresse', form_phone:'Telefonnummer', form_date:'Gewünschtes Datum',
+    form_time:'Gewünschte Uhrzeit', form_sel_time:'Uhrzeit wählen', form_guests:'Anzahl der Gäste',
+    form_sel_guests:'Gäste wählen', form_notes:'Besondere Wünsche', form_submit:'Reservierung Bestätigen',
+    form_thanks:'Grazie mille!', form_thanks_sub:'Ihre Reservierungsanfrage ist eingegangen. Wir werden innerhalb von 2 Stunden per E-Mail bestätigen.',
+    ph_fname:'Maria', ph_lname:'Müller', ph_notes:'Ernährungsanforderungen, Allergien, Anlass, Sitzplatzpräferenz…',
+    rev_label:'Was Unsere Gäste Sagen', rev_h2:'4,5 Sterne · 1.905 Bewertungen',
+    rev_sub:'Eine geliebte Amsterdamer Institution — auf Google durchgehend mit hervorragend bewertet.',
+    loc_h2:'Anfahrt',
+    footer_brand:'Authentische italienische Küche am Utrechtsestraat seit 1995. Ein Ort, an dem sich jede Mahlzeit wie ein Nachhausekommen anfühlt — wo auch immer das sein mag.',
+    footer_nav:'Navigation', footer_visit:'Besuchen',
+  },
+  nl: {
+    nav_story:'Ons Verhaal', nav_menu:'Menu', nav_experience:'Beleving', nav_wine:'Wijnen',
+    nav_reviews:'Recensies', nav_find:'Vind Ons', nav_reserve:'Tafel Reserveren',
+    mob_story:'Ons Verhaal', mob_menu:'Het Menu',
+    hero_eyebrow:'Amsterdam · Sinds 1995', hero_subtitle:'Authentieke Italiaanse Keuken',
+    hero_cta1:'Reserveer Uw Tafel', hero_cta2:'Bekijk het Menu', hero_scroll:'Scroll',
+    intro_label:'Ons Verhaal',
+    intro_h2:'Een hoekje van <em>Italië</em> in het hart van Amsterdam',
+    intro_p1:'Gelegen aan de Utrechtsestraat verwelkomt Il Boccalino gasten al sinds 1995 met de warmte en passie van echte Italiaanse gastvrijheid. Elk gerecht wordt bereid met seizoensgebonden ingrediënten afkomstig van vertrouwde Italiaanse producenten.',
+    intro_p2:'Onze keuken vertelt het verhaal van de Italiaanse regio\'s — van de rijke ragùs uit Bologna tot de delicate zeevruchten van de Amalfikust. Leun achterover, adem de geur van verse kruiden en houtsvuur in, en laat Italië naar jou toe komen.',
+    stat_years:'Jaar Traditie',
+    menu_label:'De Keuken', menu_h2:'Het Menu',
+    menu_sub:'Dagelijks bereid met de beste seizoensproducten en authentieke Italiaanse recepten die van generatie op generatie zijn doorgegeven.',
+    tab_antipasti:'Antipasti', tab_primi:'Eerste Gangen', tab_secondi:'Hoofdgerechten', tab_dolci:'Desserts',
+    menu_allergen:'Alle gerechten kunnen allergenen bevatten. Informeer uw bediening over eventuele dieetwensen. Prijzen zijn inclusief btw. Bediening niet inbegrepen.',
+    exp_label:'De Beleving', exp_h2:'Meer dan een maaltijd — <em>een herinnering</em>',
+    exp_p1:'Stap door onze deuren en het lawaai van Amsterdam vervaagt. Kaarslicht, warme terracottakleuren, het zachte gemompel van het Italiaans — Il Boccalino hult u in een sfeer die aanvoelt als een familiaire trattoria in Toscane.',
+    exp_p2:'Of u nu een mijlpaal viert of gewoon geniet van een doordeweekse ontsnapping, ons team is toegewijd om uw avond uitzonderlijk te maken.',
+    feat1_title:'4,5 Sterren — 1.905 Recensies', feat1_sub:'Consequent beoordeeld als een van de beste Italiaanse restaurants van Amsterdam',
+    feat2_title:'Privézaal Beschikbaar', feat2_sub:'Exclusieve ruimtes voor feesten, zakelijke diners en speciale gelegenheden',
+    feat3_title:'Open Tot Middernacht', feat3_sub:'Perfect voor een laat diner — Amsterdam\'s meest gastvrije openingstijden',
+    wine_label:'De Wijnkelder', wine_h2:'Een kelder die het waard is te verkennen',
+    wine_p:'Onze wijnkaart is een liefdesbrief aan het Italiaanse schiereiland. Van de vulkanische hellingen van de Etna tot de heuvels van Barolo, elke fles is gekozen om onze keuken te complementeren — en langzaam van te genieten.',
+    rct_h2:'Klaar om bij ons aan te schuiven?', rct_h2b:'Reserveer uw tafel vanavond.',
+    rct_sub:'Wij verwelkomen gasten voor het diner van maandag t/m vrijdag vanaf 17:00 uur, en de hele dag op zaterdag en zondag vanaf 12:00 uur. Reservering is vereist.',
+    rct_chip1:'Reservering Vereist', rct_chip2:'Veganistische Opties Beschikbaar', rct_chip3:'Wi-Fi Inbegrepen', rct_chip4:'Privézaal',
+    rct_call:'Bel Ons Rechtstreeks',
+    res_label:'Reserveringen', res_h2:'Sluit u aan voor een <em>onvergetelijke</em> avond',
+    res_p:'Reserveren wordt sterk aanbevolen, vooral in het weekend. Wij verwelkomen walk-ins aan de bar wanneer er ruimte is. Vragen over privédiners zijn van harte welkom.',
+    form_title:'Reserveer Uw Tafel', form_fname:'Voornaam', form_lname:'Achternaam',
+    form_email:'E-mailadres', form_phone:'Telefoonnummer', form_date:'Gewenste Datum',
+    form_time:'Gewenste Tijd', form_sel_time:'Selecteer tijd', form_guests:'Aantal Gasten',
+    form_sel_guests:'Selecteer gasten', form_notes:'Speciale Verzoeken', form_submit:'Reservering Bevestigen',
+    form_thanks:'Grazie mille!', form_thanks_sub:'Uw reserveringsverzoek is ontvangen. We bevestigen binnen 2 uur per e-mail.',
+    ph_fname:'Maria', ph_lname:'de Vries', ph_notes:'Dieetwensen, allergieën, gelegenheid, zitplaatsvoorkeur…',
+    rev_label:'Wat Onze Gasten Zeggen', rev_h2:'4,5 Sterren · 1.905 Recensies',
+    rev_sub:'Een geliefde Amsterdamse instelling — consequent uitstekend beoordeeld op Google.',
+    loc_h2:'Vind Ons',
+    footer_brand:'Authentieke Italiaanse keuken aan de Utrechtsestraat sinds 1995. Een plek waar elke maaltijd voelt als thuiskomen — waar thuis ook mag zijn.',
+    footer_nav:'Navigeer', footer_visit:'Bezoek',
+  }
+};
+
+let currentLang = localStorage.getItem('ib_lang') || 'en';
+
+function applyLang(lang) {
+  const d = T[lang];
+  if (!d) return;
+  currentLang = lang;
+  localStorage.setItem('ib_lang', lang);
+
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.dataset.i18n;
+    if (d[key] !== undefined) el.innerHTML = d[key];
+  });
+  document.querySelectorAll('[data-i18n-ph]').forEach(el => {
+    const key = el.dataset.i18nPh;
+    if (d[key] !== undefined) el.placeholder = d[key];
+  });
+
+  const labels = { en:'EN', it:'IT', es:'ES', fr:'FR', de:'DE', nl:'NL' };
+  document.getElementById('langLabel').textContent = labels[lang];
+  document.querySelectorAll('.lang-option').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.lang === lang);
+    const check = btn.querySelector('.check');
+    if (check) check.remove();
+    if (btn.dataset.lang === lang) btn.insertAdjacentHTML('beforeend', '<span class="check">✓</span>');
+  });
+
+  document.documentElement.lang = lang;
+}
+
+/* ── LANGUAGE PICKER ────────────────────────────────────── */
+const langBtn = document.getElementById('langBtn');
+const langDropdown = document.getElementById('langDropdown');
+langBtn.addEventListener('click', e => { e.stopPropagation(); langDropdown.classList.toggle('open'); });
+document.addEventListener('click', () => langDropdown.classList.remove('open'));
+document.querySelectorAll('.lang-option').forEach(btn => {
+  btn.addEventListener('click', () => { applyLang(btn.dataset.lang); langDropdown.classList.remove('open'); });
+});
+
 /* ── NAV SCROLL ─────────────────────────────────────────── */
 const navbar = document.getElementById('navbar');
 window.addEventListener('scroll', () => {
@@ -2057,6 +2490,9 @@ if (dateInput) {
   const today = new Date().toISOString().split('T')[0];
   dateInput.setAttribute('min', today);
 }
+
+/* ── INIT LANGUAGE ──────────────────────────────────────── */
+applyLang(currentLang);
 </script>
 </body>
 </html>
