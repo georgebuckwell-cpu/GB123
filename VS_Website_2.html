@@ -186,9 +186,11 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:998;op
 /* BENTO */
 .bento{display:grid;grid-template-columns:repeat(12,1fr);grid-auto-rows:minmax(160px,auto);gap:1.25rem;grid-auto-flow:dense}
 .bc-a{grid-column:span 8;grid-row:span 2}
-.bc-b,.bc-c,.bc-d,.bc-e,.bc-f{grid-column:span 4;grid-row:span 1}
-@media(max-width:900px){.bento{grid-template-columns:1fr 1fr;grid-auto-rows:auto}.bc-a,.bc-b,.bc-c,.bc-d,.bc-e,.bc-f{grid-column:span 1;grid-row:span 1}.bc-a{grid-column:span 2}}
-@media(max-width:540px){.bento{grid-template-columns:1fr}.bc-a{grid-column:span 1}}
+.bc-b,.bc-c,.bc-e{grid-column:span 4;grid-row:span 1}
+.bc-d{grid-column:span 8;grid-row:span 1}
+.bc-f{grid-column:span 12;grid-row:span 1}
+@media(max-width:900px){.bento{grid-template-columns:1fr 1fr;grid-auto-rows:auto}.bc-b,.bc-c,.bc-d,.bc-e{grid-column:span 1;grid-row:span 1}.bc-a,.bc-f{grid-column:span 2;grid-row:span 1}}
+@media(max-width:540px){.bento{grid-template-columns:1fr}.bc-a,.bc-d,.bc-f{grid-column:span 1}}
 .card-shell{border-radius:24px;background:rgba(255,255,255,.03);border:1px solid var(--hr);padding:1.5px;transition:border-color .3s}
 .card-shell:hover{border-color:var(--hr-m)}
 .card-inner{border-radius:calc(24px - 1.5px);background:var(--s1);padding:2rem;height:100%;box-shadow:inset 0 1px 0 rgba(255,255,255,.05);transition:background .3s;display:flex;flex-direction:column;position:relative;overflow:hidden}
@@ -485,7 +487,7 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:998;op
   </div>
   <div class="hero-eyebrow"><span class="edot" aria-hidden="true"></span><span data-i18n="hero.eyebrow">Now expanding across Europe</span></div>
   <h1 id="h1" data-i18n="hero.h1">Enterprise tech.<br><span class="grd">Local prices.</span></h1>
-  <p class="hero-sub" data-i18n="hero.sub">Award-winning engineers and machine-learning strategy. Your site goes live in 24 hours, backed by ongoing support, at a fraction of agency prices.</p>
+  <p class="hero-sub" data-i18n="hero.sub">Award-winning engineers and ML strategy. Your site goes live in 24 hours, with ongoing support, at agency-beating prices.</p>
   <div class="hero-btns">
     <a href="#cta" class="btn btn-p btn-lg"><span data-i18n="hero.cta1">Book your free call</span><span class="bic" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></a>
     <a href="#pricing" class="btn btn-g btn-lg"><span data-i18n="hero.cta2">See pricing</span><span class="bic bic-dk" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></a>
@@ -936,7 +938,7 @@ I18N.en={
 "nav.why":"Why us","nav.pricing":"Pricing","nav.process":"Process","nav.compare":"Compare","nav.team":"Team","nav.services":"Services","nav.hiring":"Hiring","nav.book":"Book a call","nav.bookarrow":"Book your free call →",
 "hero.eyebrow":"Now expanding across Europe",
 "hero.h1":"Enterprise tech.<br><span class=\"grd\">Local prices.</span>",
-"hero.sub":"Award-winning engineers and machine-learning strategy. Your site goes live in 24 hours, backed by ongoing support, at a fraction of agency prices.",
+"hero.sub":"Award-winning engineers and ML strategy. Your site goes live in 24 hours, with ongoing support, at agency-beating prices.",
 "hero.cta1":"Book your free call","hero.cta2":"See pricing",
 "trust.awards":"3× Industry Awards","trust.live":"Live in 24 hours","trust.users":"250k simultaneous users","trust.quality":"Enterprise-grade quality","trust.experience":"17+ years cumulative tech experience","trust.ml":"ML-backed strategy",
 "stats.l1":"Simultaneous users our platform has handled","stats.l2":"Search ranking improvement on live platforms","stats.l3":"Capital investment managed by our finance team","stats.l4":"Continents we operate across",
