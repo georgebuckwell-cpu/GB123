@@ -3,792 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TBOS Technology Solutions — Enterprise Tech. Local Business Prices.</title>
+<title>VelaSync — Enterprise Tech. Local Prices.</title>
+<meta name="description" content="VelaSync builds high-performance websites, custom CRMs and automated tools for growing businesses. Award-winning engineers. Live in 24 hours. From £400.">
+<link rel="icon" href="assets/img/logo.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-<style>
-/* ── TOKENS ──────────────────────────────────────────────────────────────── */
-:root{
-  --teal:#2B8E8E;
-  --teal-light:#38b0b0;
-  --teal-dim:rgba(43,142,142,.55);
-  --teal-glow:rgba(43,142,142,.22);
-  --navy:#0f2a5e;
-  --navy-glow:rgba(15,42,94,.5);
-
-  /* Teal-tinted backgrounds — brand immersion */
-  --bg:    #070d0d;
-  --bg-1:  #0b1515;
-  --bg-2:  #0f1b1b;
-  --bg-3:  #131f1f;
-  --surf:  #172424;
-  --surf-2:#1d2e2e;
-
-  --text:  #eef6f6;
-  --sub:   rgba(238,246,246,.55);
-  --dim:   rgba(238,246,246,.3);
-
-  --bdr:   rgba(43,142,142,.13);
-  --bdr-m: rgba(43,142,142,.25);
-  --bdr-s: rgba(43,142,142,.45);
-
-  --sh-md: 0 4px 20px rgba(0,0,0,.45),0 1px 4px rgba(0,0,0,.3);
-  --sh-lg: 0 12px 48px rgba(0,0,0,.55),0 4px 12px rgba(0,0,0,.3);
-  --sh-glow:0 0 48px var(--teal-glow);
-
-  --r:16px;--r-lg:22px;--r-xl:28px;
-  --ease:cubic-bezier(.4,0,.2,1);
-}
-
-/* ── RESET ───────────────────────────────────────────────────────────────── */
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;font-size:16px}
-body{
-  font-family:'Inter',sans-serif;
-  background:var(--bg);
-  color:var(--text);
-  line-height:1.7;
-  -webkit-font-smoothing:antialiased;
-  text-rendering:optimizeLegibility;
-  overflow-x:hidden;
-}
-a{color:inherit;text-decoration:none}
-::selection{background:rgba(43,142,142,.3);color:#fff}
-::-webkit-scrollbar{width:5px}
-::-webkit-scrollbar-track{background:var(--bg)}
-::-webkit-scrollbar-thumb{background:var(--teal-dim);border-radius:3px}
-::-webkit-scrollbar-thumb:hover{background:var(--teal)}
-
-/* ── PROGRESS BAR ────────────────────────────────────────────────────────── */
-#progress{
-  position:fixed;top:0;left:0;height:2px;width:0%;
-  background:linear-gradient(90deg,var(--teal),var(--teal-light));
-  z-index:9999;transition:width .1s linear;
-}
-
-/* ── CURSOR GLOW (desktop) ───────────────────────────────────────────────── */
-.cursor-glow{
-  position:fixed;width:600px;height:600px;
-  border-radius:50%;pointer-events:none;z-index:0;
-  background:radial-gradient(circle,rgba(43,142,142,.06) 0%,transparent 70%);
-  transform:translate(-50%,-50%);
-  transition:left .12s var(--ease),top .12s var(--ease);
-}
-@media(max-width:1024px){.cursor-glow{display:none}}
-
-/* ── PAGE LOADER ─────────────────────────────────────────────────────────── */
-#loader{
-  position:fixed;inset:0;background:var(--bg);z-index:10000;
-  display:flex;align-items:center;justify-content:center;
-  transition:opacity .5s var(--ease),visibility .5s;
-}
-#loader.out{opacity:0;visibility:hidden}
-.loader-mark{
-  width:44px;height:44px;background:var(--teal);border-radius:12px;
-  display:flex;align-items:center;justify-content:center;
-  animation:loader-pulse 1s var(--ease) infinite alternate;
-}
-.loader-mark span{font-size:.75rem;font-weight:900;color:#fff;letter-spacing:-.5px}
-@keyframes loader-pulse{from{opacity:.5;transform:scale(.9)}to{opacity:1;transform:scale(1)}}
-
-/* ── NAV ─────────────────────────────────────────────────────────────────── */
-.nav{
-  position:fixed;top:0;left:0;right:0;z-index:200;
-  height:64px;padding:0 2rem;
-  display:flex;align-items:center;justify-content:space-between;
-  background:rgba(7,13,13,.75);
-  backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);
-  border-bottom:1px solid var(--bdr);
-  transition:background .3s;
-}
-.nav.scrolled{background:rgba(7,13,13,.95)}
-.nav-left{display:flex;align-items:center;gap:12px}
-.nav-mark{
-  width:36px;height:36px;background:var(--teal);border-radius:9px;
-  display:flex;align-items:center;justify-content:center;flex-shrink:0;
-}
-.nav-mark span{font-size:.7rem;font-weight:900;color:#fff;letter-spacing:-.5px}
-.nav-wordmark{font-size:.88rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--text)}
-.nav-links{display:flex;align-items:center;gap:2rem}
-.nav-links a{
-  font-size:.83rem;color:var(--sub);font-weight:500;
-  transition:color .15s;position:relative;
-}
-.nav-links a::after{
-  content:'';position:absolute;bottom:-4px;left:0;right:0;height:1px;
-  background:var(--teal);transform:scaleX(0);transform-origin:left;
-  transition:transform .2s var(--ease);
-}
-.nav-links a:hover{color:var(--text)}
-.nav-links a:hover::after{transform:scaleX(1)}
-.nav-right{display:flex;align-items:center;gap:1rem}
-.nav-cta{
-  background:var(--teal);color:#fff;
-  padding:8px 20px;border-radius:100px;
-  font-size:.83rem;font-weight:700;
-  transition:background .15s,transform .15s,box-shadow .15s;
-}
-.nav-cta:hover{background:var(--teal-light);transform:translateY(-1px);box-shadow:var(--sh-glow)}
-.nav-cta:active{transform:scale(.97)}
-.hamburger{
-  display:none;width:40px;height:40px;border:1px solid var(--bdr-m);
-  border-radius:10px;background:var(--surf);
-  align-items:center;justify-content:center;cursor:pointer;
-  flex-direction:column;gap:5px;transition:border-color .2s;
-}
-.hamburger:hover{border-color:var(--bdr-s)}
-.hamburger span{
-  display:block;width:18px;height:1.5px;background:var(--text);
-  transition:transform .25s var(--ease),opacity .25s;
-}
-.hamburger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
-.hamburger.open span:nth-child(2){opacity:0}
-.hamburger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
-@media(max-width:900px){
-  .nav-links,.nav-right .nav-cta{display:none}
-  .hamburger{display:flex}
-}
-
-/* ── MOBILE MENU ─────────────────────────────────────────────────────────── */
-.mobile-menu{
-  position:fixed;inset:64px 0 0;z-index:190;
-  background:rgba(7,13,13,.97);backdrop-filter:blur(24px);
-  display:flex;flex-direction:column;gap:0;
-  transform:translateY(-8px);opacity:0;visibility:hidden;
-  transition:transform .25s var(--ease),opacity .25s,visibility .25s;
-  padding:2rem 1.5rem;
-  border-top:1px solid var(--bdr);
-}
-.mobile-menu.open{transform:none;opacity:1;visibility:visible}
-.mobile-menu a{
-  padding:1rem 0;font-size:1.1rem;font-weight:600;color:var(--sub);
-  border-bottom:1px solid var(--bdr);
-  transition:color .15s;
-}
-.mobile-menu a:hover{color:var(--text)}
-.mobile-menu a:last-child{border-bottom:none}
-.mobile-menu-cta{
-  margin-top:1.5rem;
-  background:var(--teal);color:#fff !important;
-  padding:14px 24px !important;border-radius:100px;
-  text-align:center;font-weight:700 !important;
-  border:none !important;
-}
-
-/* ── SECTION WRAPPER ─────────────────────────────────────────────────────── */
-.section{max-width:1120px;margin:0 auto;padding:100px 2rem}
-@media(max-width:640px){.section{padding:72px 1.25rem}}
-
-/* ── LABELS ──────────────────────────────────────────────────────────────── */
-.label{
-  display:inline-flex;align-items:center;gap:8px;
-  font-size:.68rem;font-weight:700;letter-spacing:3px;
-  text-transform:uppercase;color:var(--teal);margin-bottom:.75rem;
-}
-.label::before{content:'';width:18px;height:1px;background:var(--teal)}
-
-/* ── SECTION TITLE ───────────────────────────────────────────────────────── */
-.section-title{
-  font-size:clamp(2rem,4vw,3rem);font-weight:900;
-  letter-spacing:-1.5px;line-height:1.08;color:var(--text);
-  margin-bottom:1.25rem;
-}
-.gt{
-  background:linear-gradient(135deg,#fff 20%,var(--teal-light) 100%);
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
-}
-.section-sub{
-  font-size:.98rem;color:var(--sub);max-width:540px;
-  line-height:1.8;margin-bottom:3rem;
-}
-
-/* ── HERO ────────────────────────────────────────────────────────────────── */
-.hero{
-  min-height:100svh;
-  display:flex;flex-direction:column;
-  align-items:center;justify-content:center;
-  text-align:center;
-  padding:120px 2rem 80px;
-  position:relative;overflow:hidden;
-  background:radial-gradient(ellipse 100% 60% at 50% -5%,rgba(43,142,142,.13) 0%,transparent 65%);
-}
-.hero-grid{
-  position:absolute;inset:0;pointer-events:none;
-  background-image:
-    linear-gradient(rgba(43,142,142,.04) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(43,142,142,.04) 1px,transparent 1px);
-  background-size:64px 64px;
-  mask-image:radial-gradient(ellipse 80% 70% at 50% 40%,black 30%,transparent 100%);
-}
-.hero-glow-navy{
-  position:absolute;width:500px;height:500px;
-  background:radial-gradient(circle,rgba(15,42,94,.45) 0%,transparent 70%);
-  top:10%;right:5%;pointer-events:none;
-}
-
-/* Floating proof cards — desktop only */
-.float-card{
-  position:absolute;z-index:2;
-  background:var(--surf);border:1px solid var(--bdr-m);
-  border-radius:var(--r);padding:1.1rem 1.4rem;
-  box-shadow:var(--sh-lg),0 0 0 1px var(--bdr);
-  text-align:left;
-  backdrop-filter:blur(12px);
-}
-.float-card.left{
-  left:3%;top:38%;
-  animation:float-l 5s ease-in-out infinite;
-}
-.float-card.right{
-  right:3%;top:45%;
-  animation:float-r 5.5s ease-in-out infinite;
-}
-@keyframes float-l{0%,100%{transform:translateY(0) rotate(-1.5deg)}50%{transform:translateY(-14px) rotate(-1.5deg)}}
-@keyframes float-r{0%,100%{transform:translateY(-8px) rotate(1.5deg)}50%{transform:translateY(6px) rotate(1.5deg)}}
-.fc-label{font-size:.65rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--teal);margin-bottom:.5rem}
-.fc-val{font-size:1rem;font-weight:700;color:var(--text);margin-bottom:.2rem}
-.fc-sub{font-size:.78rem;color:var(--sub)}
-.fc-row{display:flex;align-items:center;gap:8px;margin-top:.6rem}
-.fc-dot{width:8px;height:8px;border-radius:50%;background:var(--teal);flex-shrink:0}
-.fc-item{font-size:.8rem;color:var(--sub)}
-@media(max-width:1200px){.float-card{display:none}}
-
-/* Hero badge */
-.hero-badge{
-  display:inline-flex;align-items:center;gap:8px;
-  background:rgba(43,142,142,.07);border:1px solid var(--bdr-m);
-  color:var(--teal-light);padding:6px 16px;border-radius:100px;
-  font-size:.75rem;font-weight:600;letter-spacing:.8px;text-transform:uppercase;
-  margin-bottom:1.75rem;position:relative;z-index:3;overflow:hidden;
-}
-.hero-badge::before{
-  content:'';position:absolute;inset:0;
-  background:linear-gradient(90deg,transparent 0%,rgba(43,142,142,.15) 50%,transparent 100%);
-  transform:translateX(-100%);animation:shimmer 3s ease-in-out infinite;
-}
-@keyframes shimmer{0%{transform:translateX(-100%)}60%,100%{transform:translateX(100%)}}
-.badge-dot{width:6px;height:6px;border-radius:50%;background:var(--teal);animation:blink 2s ease-in-out infinite}
-@keyframes blink{0%,100%{opacity:1}50%{opacity:.35}}
-
-.hero h1{
-  font-size:clamp(3.2rem,8vw,7rem);font-weight:900;
-  line-height:.97;letter-spacing:-3.5px;
-  max-width:960px;position:relative;z-index:3;
-  margin-bottom:1.5rem;
-}
-.hero-sub{
-  font-size:clamp(1rem,1.8vw,1.18rem);color:var(--sub);
-  max-width:520px;margin:0 auto 2.5rem;
-  font-weight:300;line-height:1.8;position:relative;z-index:3;
-}
-.hero-actions{
-  display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;
-  position:relative;z-index:3;margin-bottom:4rem;
-}
-
-/* ── BUTTONS ─────────────────────────────────────────────────────────────── */
-.btn{
-  display:inline-flex;align-items:center;gap:8px;
-  padding:13px 28px;border-radius:100px;
-  font-size:.9rem;font-weight:700;letter-spacing:-.2px;
-  transition:transform .15s var(--ease),box-shadow .15s var(--ease),background .15s;
-  cursor:pointer;
-}
-.btn:active{transform:scale(.97) !important}
-.btn-primary{
-  background:var(--teal);color:#fff;
-  box-shadow:0 0 32px rgba(43,142,142,.25);
-}
-.btn-primary:hover{
-  background:var(--teal-light);transform:translateY(-2px);
-  box-shadow:0 0 52px rgba(43,142,142,.4);
-}
-.btn-ghost{
-  background:rgba(255,255,255,.05);border:1px solid var(--bdr-m);color:var(--text);
-  backdrop-filter:blur(8px);
-}
-.btn-ghost:hover{background:rgba(255,255,255,.09);border-color:var(--bdr-s);transform:translateY(-2px)}
-.btn-lg{padding:15px 36px;font-size:.98rem}
-
-/* ── STATS BAR ───────────────────────────────────────────────────────────── */
-.stats-bar{
-  position:relative;z-index:3;
-  display:flex;width:100%;max-width:860px;
-  border:1px solid var(--bdr-m);border-radius:20px;
-  overflow:hidden;background:rgba(23,36,36,.6);
-  backdrop-filter:blur(20px);box-shadow:var(--sh-md);
-}
-.stat{
-  flex:1;padding:1.25rem 1rem;text-align:center;
-  border-right:1px solid var(--bdr);
-  transition:background .2s;
-}
-.stat:last-child{border-right:none}
-.stat:hover{background:rgba(43,142,142,.05)}
-.stat-num{
-  font-size:1.7rem;font-weight:900;letter-spacing:-1px;
-  color:var(--text);line-height:1;margin-bottom:.2rem;
-}
-.stat-num em{color:var(--teal);font-style:normal}
-.stat-lbl{font-size:.68rem;color:var(--sub);font-weight:500;letter-spacing:.3px}
-
-@media(max-width:640px){
-  .stats-bar{
-    display:grid;grid-template-columns:1fr 1fr;border-radius:16px;
-  }
-  .stat{border-right:1px solid var(--bdr);border-bottom:1px solid var(--bdr)}
-  .stat:nth-child(2n){border-right:none}
-  .stat:nth-last-child(-n+2){border-bottom:none}
-  .stat:last-child:nth-child(odd){grid-column:span 2}
-}
-
-/* ── PRICING ─────────────────────────────────────────────────────────────── */
-.pricing-wrap{background:var(--bg-1)}
-
-.price-grid{
-  display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;
-  margin-bottom:1.75rem;
-}
-
-/* Mobile: horizontal snap scroll */
-@media(max-width:860px){
-  .price-grid{
-    display:flex;overflow-x:auto;scroll-snap-type:x mandatory;
-    gap:1rem;padding-bottom:1rem;
-    scroll-padding:0 1.25rem;
-    -webkit-overflow-scrolling:touch;
-  }
-  .price-grid::-webkit-scrollbar{height:3px}
-  .price-grid::-webkit-scrollbar-thumb{background:var(--bdr-s);border-radius:2px}
-  .price-card{min-width:280px;scroll-snap-align:start;flex-shrink:0}
-}
-@media(max-width:640px){
-  .price-grid{margin:0 -1.25rem;padding:0 1.25rem 1rem}
-  .price-card{min-width:76vw}
-}
-
-.price-card{
-  border-radius:var(--r-xl);padding:2rem;
-  background:var(--surf);border:1px solid var(--bdr);
-  position:relative;overflow:hidden;
-  transition:border-color .25s,transform .25s,box-shadow .25s;
-  box-shadow:var(--sh-md);
-}
-.price-card:hover{
-  border-color:var(--bdr-m);
-  transform:translateY(-5px);
-  box-shadow:var(--sh-lg);
-}
-/* Gradient border for featured card */
-.price-card.featured{
-  background:var(--surf-2);
-  border:1px solid transparent;
-  background-clip:padding-box;
-}
-.price-card.featured::before{
-  content:'';position:absolute;inset:-1px;
-  border-radius:calc(var(--r-xl) + 1px);
-  background:linear-gradient(135deg,var(--teal),rgba(43,142,142,.35) 50%,var(--teal-light));
-  z-index:-1;
-}
-.price-card.featured::after{
-  content:'';position:absolute;inset:0;
-  background:radial-gradient(circle at 50% -10%,rgba(43,142,142,.12) 0%,transparent 60%);
-  pointer-events:none;
-}
-.featured-tag{
-  position:absolute;top:1.25rem;right:1.25rem;
-  background:var(--teal);color:#fff;
-  font-size:.65rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;
-  padding:4px 10px;border-radius:100px;
-}
-.price-tag{
-  font-size:.65rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;
-  color:var(--teal);margin-bottom:1.25rem;
-}
-.price-amount{
-  font-size:3.5rem;font-weight:900;letter-spacing:-3px;
-  color:var(--text);line-height:1;margin-bottom:.2rem;
-}
-.price-amount sup{font-size:1.4rem;letter-spacing:0;font-weight:600;vertical-align:super;line-height:0}
-.price-note{font-size:.83rem;color:var(--sub);margin-bottom:1.75rem}
-.price-divider{height:1px;background:var(--bdr);margin-bottom:1.5rem}
-.price-features{list-style:none;font-size:.875rem;color:var(--sub);line-height:2.1}
-.price-features li{display:flex;align-items:flex-start;gap:10px}
-.price-features li svg{flex-shrink:0;margin-top:5px;color:var(--teal)}
-
-.savings-banner{
-  border-radius:var(--r);background:var(--surf);
-  border:1px solid var(--bdr);padding:1.4rem 2rem;
-  display:flex;align-items:center;justify-content:space-between;
-  flex-wrap:wrap;gap:1rem;position:relative;overflow:hidden;
-}
-.savings-banner::before{
-  content:'';position:absolute;left:0;top:0;bottom:0;width:3px;
-  background:linear-gradient(180deg,var(--teal),var(--teal-light));
-}
-.savings-text{font-size:.9rem;color:var(--sub)}
-.savings-row{display:flex;align-items:center;gap:1.25rem;flex-wrap:wrap}
-.savings-old{font-size:1.5rem;font-weight:800;color:var(--dim);text-decoration:line-through;letter-spacing:-1px}
-.savings-pill{
-  background:rgba(43,142,142,.1);border:1px solid var(--bdr-m);
-  color:var(--teal-light);padding:6px 14px;border-radius:100px;
-  font-size:.82rem;font-weight:700;
-}
-
-/* ── WHY US ──────────────────────────────────────────────────────────────── */
-.why-wrap{background:var(--bg)}
-.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
-@media(max-width:900px){.why-grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:500px){.why-grid{grid-template-columns:1fr}}
-
-.why-card{
-  border-radius:var(--r-lg);padding:1.75rem;
-  background:var(--surf);border:1px solid var(--bdr);
-  transition:border-color .25s,transform .25s,box-shadow .25s;
-  position:relative;overflow:hidden;
-}
-.why-card::after{
-  content:'';position:absolute;inset:0;
-  background:linear-gradient(135deg,rgba(43,142,142,.04) 0%,transparent 60%);
-  opacity:0;transition:opacity .3s;pointer-events:none;
-}
-.why-card:hover{border-color:var(--bdr-m);transform:translateY(-4px);box-shadow:var(--sh-md)}
-.why-card:hover::after{opacity:1}
-.why-icon{
-  width:44px;height:44px;
-  background:rgba(43,142,142,.1);border:1px solid var(--bdr-m);
-  border-radius:12px;display:flex;align-items:center;justify-content:center;
-  color:var(--teal);margin-bottom:1.2rem;
-  transition:background .2s,border-color .2s;
-}
-.why-card:hover .why-icon{background:rgba(43,142,142,.18);border-color:var(--bdr-s)}
-.why-card h3{font-size:1rem;font-weight:700;color:var(--text);margin-bottom:.4rem}
-.why-card p{font-size:.865rem;color:var(--sub);line-height:1.75}
-
-/* ── PROCESS ─────────────────────────────────────────────────────────────── */
-.process-wrap{background:var(--bg-1)}
-
-/* Desktop: horizontal timeline */
-.process-timeline{
-  position:relative;
-  display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;
-  padding-top:0;
-}
-/* Connecting line */
-.process-timeline::before{
-  content:'';position:absolute;
-  top:20px;
-  left:calc(12.5% );
-  right:calc(12.5% );
-  height:1px;
-  background:linear-gradient(90deg,transparent,var(--bdr-s) 20%,var(--bdr-s) 80%,transparent);
-  pointer-events:none;
-}
-.proc-step{
-  display:flex;flex-direction:column;align-items:center;text-align:center;
-}
-.proc-circle{
-  width:40px;height:40px;border-radius:50%;
-  background:var(--surf-2);border:1px solid var(--bdr-s);
-  display:flex;align-items:center;justify-content:center;
-  font-size:.8rem;font-weight:800;color:var(--teal);
-  margin-bottom:1.5rem;position:relative;z-index:1;
-  transition:background .25s,border-color .25s,box-shadow .25s;
-  flex-shrink:0;
-}
-.proc-step:hover .proc-circle{
-  background:var(--teal);color:#fff;border-color:var(--teal);
-  box-shadow:0 0 24px var(--teal-glow);
-}
-.proc-badge{
-  display:inline-block;
-  background:rgba(43,142,142,.08);border:1px solid var(--bdr);
-  color:var(--teal);font-size:.62rem;font-weight:700;letter-spacing:1.5px;
-  text-transform:uppercase;padding:3px 10px;border-radius:100px;margin-bottom:.6rem;
-}
-.proc-step h3{font-size:.95rem;font-weight:700;color:var(--text);margin-bottom:.4rem}
-.proc-step p{font-size:.83rem;color:var(--sub);line-height:1.7}
-
-/* Mobile: vertical */
-@media(max-width:860px){
-  .process-timeline{
-    grid-template-columns:1fr;gap:0;
-    padding-left:2.5rem;padding-top:0;
-  }
-  .process-timeline::before{
-    top:20px;bottom:20px;left:20px;right:auto;
-    width:1px;height:auto;
-  }
-  .proc-step{
-    align-items:flex-start;text-align:left;
-    padding:0 0 2.5rem 1.5rem;position:relative;
-  }
-  .proc-step:last-child{padding-bottom:0}
-  .proc-circle{
-    position:absolute;left:0;top:0;
-    transform:translateX(-50%) translateX(-1px);
-    margin-bottom:0;width:36px;height:36px;
-  }
-}
-
-/* ── FEES ────────────────────────────────────────────────────────────────── */
-.fees-wrap{background:var(--bg)}
-.fees-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem}
-@media(max-width:860px){.fees-grid{grid-template-columns:1fr}}
-
-.fee-card{
-  border-radius:var(--r-lg);padding:2rem;
-  background:var(--surf);border:1px solid var(--bdr);
-  text-align:center;
-  transition:transform .25s,border-color .25s,box-shadow .25s;
-}
-.fee-card:hover{transform:translateY(-4px);border-color:var(--bdr-m);box-shadow:var(--sh-md)}
-.fee-card.featured{
-  background:var(--surf-2);
-  border-color:var(--bdr-m);
-  box-shadow:0 0 48px rgba(43,142,142,.1);
-}
-.fee-big{
-  font-size:3rem;font-weight:900;letter-spacing:-2px;
-  color:var(--text);line-height:1;margin-bottom:.2rem;
-}
-.fee-big sup{font-size:1.2rem;letter-spacing:0;font-weight:600;vertical-align:super;line-height:0}
-.fee-card.featured .fee-big{color:var(--teal-light)}
-.fee-card.featured sup{color:var(--teal-light)}
-.fee-period{font-size:.75rem;color:var(--sub);margin-bottom:.8rem}
-.fee-name{font-size:.95rem;font-weight:700;color:var(--text);margin-bottom:.4rem}
-.fee-desc{font-size:.83rem;color:var(--sub);line-height:1.65}
-.fee-vs{
-  display:inline-block;margin-top:1rem;
-  background:rgba(255,255,255,.03);border:1px solid var(--bdr);
-  padding:4px 12px;border-radius:100px;font-size:.7rem;color:var(--dim);
-}
-
-/* ── TEAM ────────────────────────────────────────────────────────────────── */
-.team-wrap{background:var(--bg-1)}
-.team-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem}
-@media(max-width:740px){.team-grid{grid-template-columns:1fr}}
-
-.team-card{
-  border-radius:var(--r-xl);border:1px solid var(--bdr);
-  background:var(--surf);overflow:hidden;
-  transition:border-color .25s,box-shadow .25s;
-  box-shadow:var(--sh-md);
-}
-.team-card:hover{border-color:var(--bdr-m);box-shadow:var(--sh-lg)}
-.team-card-head{
-  padding:1.75rem 2rem 1.5rem;
-  background:linear-gradient(135deg,rgba(43,142,142,.06) 0%,transparent 70%);
-  border-bottom:1px solid var(--bdr);
-}
-.team-role{
-  font-size:.65rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;
-  color:var(--teal);margin-bottom:.45rem;
-}
-.team-title{font-size:1rem;font-weight:700;color:var(--text);line-height:1.4}
-.team-body{padding:1.5rem 2rem}
-.team-body ul{list-style:none;font-size:.865rem;color:var(--sub);line-height:2.1}
-.team-body li{display:flex;align-items:flex-start;gap:10px}
-.team-body li svg{flex-shrink:0;margin-top:5px;color:var(--navy);color:var(--teal-dim)}
-.award-pill{
-  display:inline-flex;align-items:center;gap:6px;
-  background:rgba(255,193,7,.07);border:1px solid rgba(255,193,7,.18);
-  color:#fbbf24;font-size:.73rem;font-weight:600;
-  padding:5px 12px;border-radius:100px;margin-top:1rem;
-}
-
-.partner-row{
-  display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;
-  grid-column:span 2;
-}
-@media(max-width:740px){
-  .partner-row{grid-column:span 1;grid-template-columns:1fr}
-}
-.partner-card{
-  border-radius:var(--r-lg);border:1px solid var(--bdr);
-  background:var(--surf);padding:1.75rem;
-  transition:border-color .25s;
-}
-.partner-card:hover{border-color:var(--bdr-m)}
-.partner-badge{
-  display:inline-flex;align-items:center;gap:6px;
-  background:rgba(15,42,94,.2);border:1px solid rgba(15,42,94,.5);
-  color:#93b4f0;font-size:.65rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;
-  padding:4px 12px;border-radius:100px;margin-bottom:.75rem;
-}
-.partner-name{font-size:1rem;font-weight:700;color:var(--text);margin-bottom:.4rem}
-.partner-desc{font-size:.865rem;color:var(--sub);line-height:1.7}
-.tag-row{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1rem}
-.tag{
-  background:rgba(255,255,255,.04);border:1px solid var(--bdr);
-  padding:4px 11px;border-radius:100px;font-size:.7rem;color:var(--sub);
-}
-
-/* ── WHAT WE BUILD ───────────────────────────────────────────────────────── */
-.build-wrap{background:var(--bg)}
-.build-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem}
-@media(max-width:640px){.build-grid{grid-template-columns:1fr}}
-
-.build-card{
-  border-radius:var(--r-xl);padding:2.5rem;
-  background:var(--surf);border:1px solid var(--bdr);
-  position:relative;overflow:hidden;
-  transition:border-color .25s,transform .25s,box-shadow .25s;
-  box-shadow:var(--sh-md);
-}
-.build-card:hover{border-color:var(--bdr-m);transform:translateY(-5px);box-shadow:var(--sh-lg)}
-.build-num{
-  position:absolute;top:2rem;right:2rem;
-  font-size:3.5rem;font-weight:900;letter-spacing:-3px;
-  color:rgba(43,142,142,.06);line-height:1;
-}
-.build-icon{
-  width:48px;height:48px;
-  background:rgba(43,142,142,.09);border:1px solid var(--bdr-m);
-  border-radius:14px;display:flex;align-items:center;justify-content:center;
-  color:var(--teal);margin-bottom:1.5rem;
-  transition:background .2s;
-}
-.build-card:hover .build-icon{background:rgba(43,142,142,.16)}
-.build-sub{
-  font-size:.68rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;
-  color:var(--teal);margin-bottom:.6rem;
-}
-.build-card h3{font-size:1.1rem;font-weight:700;color:var(--text);margin-bottom:.5rem}
-.build-card p{font-size:.875rem;color:var(--sub);line-height:1.75}
-
-/* ── LOCATIONS ───────────────────────────────────────────────────────────── */
-.locs-wrap{background:var(--bg-1)}
-.loc-row{display:flex;flex-wrap:wrap;gap:.875rem;margin-top:2rem}
-.loc-pill{
-  display:flex;align-items:center;gap:8px;
-  background:var(--surf);border:1px solid var(--bdr);
-  padding:10px 20px;border-radius:100px;
-  font-size:.875rem;font-weight:500;color:var(--text);
-  transition:border-color .2s,transform .15s;
-}
-.loc-pill:hover{border-color:var(--bdr-m);transform:translateY(-2px)}
-.loc-flag{font-size:1.05rem}
-
-/* ── CTA ─────────────────────────────────────────────────────────────────── */
-.cta-wrap{
-  background:var(--bg);
-  position:relative;overflow:hidden;
-}
-.cta-glow-l{
-  position:absolute;width:700px;height:700px;
-  background:radial-gradient(circle,rgba(43,142,142,.11) 0%,transparent 70%);
-  bottom:-250px;left:-150px;pointer-events:none;
-}
-.cta-glow-r{
-  position:absolute;width:500px;height:500px;
-  background:radial-gradient(circle,var(--navy-glow) 0%,transparent 70%);
-  top:-100px;right:-100px;pointer-events:none;
-}
-.cta-inner{
-  max-width:720px;margin:0 auto;
-  padding:120px 2rem;text-align:center;
-  position:relative;z-index:1;
-}
-.cta-inner h2{
-  font-size:clamp(2.5rem,5.5vw,4.5rem);font-weight:900;
-  letter-spacing:-2.5px;line-height:1;
-  color:var(--text);margin:1rem 0 1.25rem;
-}
-.cta-inner p{
-  font-size:1.05rem;color:var(--sub);line-height:1.8;
-  margin-bottom:2.5rem;max-width:480px;margin-left:auto;margin-right:auto;
-}
-.cta-pills{display:flex;flex-wrap:wrap;gap:.75rem;justify-content:center;margin-bottom:2.75rem}
-.cta-pill{
-  background:rgba(255,255,255,.04);border:1px solid var(--bdr);
-  padding:7px 16px;border-radius:100px;font-size:.82rem;color:var(--sub);
-}
-@media(max-width:640px){.cta-inner{padding:80px 1.25rem}}
-
-/* ── FOOTER ──────────────────────────────────────────────────────────────── */
-.footer{
-  background:var(--bg);border-top:1px solid var(--bdr);
-  padding:40px 2rem;
-}
-.footer-inner{
-  max-width:1120px;margin:0 auto;
-  display:grid;grid-template-columns:1fr auto 1fr;
-  align-items:center;gap:2rem;
-}
-.footer-logo{display:flex;align-items:center;gap:10px}
-.footer-wordmark{font-size:.8rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--dim)}
-.footer-center{text-align:center;font-size:.75rem;color:var(--dim);line-height:1.9}
-.footer-links{
-  display:flex;justify-content:flex-end;gap:1.5rem;flex-wrap:wrap;
-}
-.footer-links a{font-size:.75rem;color:var(--dim);transition:color .15s}
-.footer-links a:hover{color:var(--sub)}
-@media(max-width:640px){
-  .footer-inner{grid-template-columns:1fr;text-align:center}
-  .footer-logo{justify-content:center}
-  .footer-links{justify-content:center}
-}
-
-/* ── MOBILE STICKY CTA ───────────────────────────────────────────────────── */
-.mobile-cta-bar{
-  display:none;
-  position:fixed;bottom:0;left:0;right:0;z-index:180;
-  padding:.875rem 1.25rem calc(.875rem + env(safe-area-inset-bottom));
-  background:rgba(7,13,13,.92);backdrop-filter:blur(20px);
-  border-top:1px solid var(--bdr);
-  transform:translateY(100%);transition:transform .35s var(--ease);
-}
-.mobile-cta-bar.visible{transform:none}
-.mobile-cta-inner{
-  display:flex;align-items:center;justify-content:space-between;gap:1rem;
-  max-width:480px;margin:0 auto;
-}
-.mobile-cta-info{font-size:.8rem;color:var(--sub);font-weight:500}
-.mobile-cta-info strong{color:var(--teal);font-weight:700}
-.mobile-cta-btn{
-  background:var(--teal);color:#fff;
-  padding:10px 20px;border-radius:100px;
-  font-size:.85rem;font-weight:700;white-space:nowrap;
-  flex-shrink:0;transition:background .15s;
-}
-.mobile-cta-btn:hover{background:var(--teal-light)}
-@media(max-width:900px){.mobile-cta-bar{display:block}}
-
-/* ── BUILD CARD IMAGES ───────────────────────────────────────────────────── */
-.build-img{
-  width:100%;aspect-ratio:4/3;border-radius:10px;
-  overflow:hidden;margin-bottom:1.5rem;position:relative;
-  border:1px solid var(--bdr);
-}
-.build-img img{
-  width:100%;height:100%;object-fit:cover;display:block;
-  transition:transform .5s var(--ease),filter .5s;
-  filter:saturate(.85) brightness(.85);
-}
-.build-card:hover .build-img img{transform:scale(1.04);filter:saturate(1) brightness(1)}
-.build-img::after{
-  content:'';position:absolute;inset:0;
-  background:linear-gradient(180deg,transparent 50%,rgba(7,13,13,.7) 100%);
-  pointer-events:none;
-}
-
-/* ── DIVIDER ─────────────────────────────────────────────────────────────── */
-.divider{border:none;border-top:1px solid var(--bdr);margin:0}
-
-/* ── REVEAL ──────────────────────────────────────────────────────────────── */
-.reveal{opacity:0;transform:translateY(22px);transition:opacity .65s var(--ease),transform .65s var(--ease)}
-.reveal.in{opacity:1;transform:none}
-.stagger > *{opacity:0;transform:translateY(18px);transition:opacity .55s var(--ease),transform .55s var(--ease)}
-.stagger.in > *{opacity:1;transform:none}
-.stagger.in > *:nth-child(1){transition-delay:.05s}
-.stagger.in > *:nth-child(2){transition-delay:.13s}
-.stagger.in > *:nth-child(3){transition-delay:.21s}
-.stagger.in > *:nth-child(4){transition-delay:.29s}
-.stagger.in > *:nth-child(5){transition-delay:.37s}
-.stagger.in > *:nth-child(6){transition-delay:.45s}
-</style>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/styles.css">
 </head>
 <body>
 
@@ -796,47 +17,40 @@ a{color:inherit;text-decoration:none}
 <div class="cursor-glow" id="cursorGlow"></div>
 
 <!-- LOADER -->
-<div id="loader">
-  <div class="loader-mark"><span>TS</span></div>
-</div>
+<div id="loader"><img class="loader-mark" src="assets/img/logo.svg" alt="VelaSync"></div>
 
 <!-- NAV -->
 <nav class="nav" id="nav">
-  <div class="nav-left">
-    <div class="nav-mark"><span>TS</span></div>
-    <span class="nav-wordmark">TBOS Technology Solutions</span>
-  </div>
+  <a class="nav-left" href="index.html">
+    <img class="nav-mark" src="assets/img/logo.svg" alt="VelaSync logo">
+    <span class="nav-word"><b>VelaSync</b><span>Technology Solutions</span></span>
+  </a>
   <div class="nav-links">
-    <a href="#pricing">Pricing</a>
-    <a href="#why">Why us</a>
-    <a href="#process">Process</a>
-    <a href="#team">Team</a>
-    <a href="#build">Services</a>
+    <a href="services.html">Services</a>
+    <a href="packages.html">Packages</a>
+    <a href="work.html">Work</a>
+    <a href="team.html">Team</a>
+    <a href="contact.html">Contact</a>
   </div>
-  <div class="nav-right">
-    <a href="#cta" class="nav-cta btn">Book a free call →</a>
-  </div>
-  <div class="hamburger" id="hamburger" role="button" aria-label="Menu">
-    <span></span><span></span><span></span>
-  </div>
+  <a href="contact.html" class="nav-cta">Book a free call →</a>
+  <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
 </nav>
 
 <!-- MOBILE MENU -->
 <div class="mobile-menu" id="mobileMenu">
-  <a href="#pricing" class="mm-link">Pricing</a>
-  <a href="#why" class="mm-link">Why us</a>
-  <a href="#process" class="mm-link">Process</a>
-  <a href="#team" class="mm-link">Team</a>
-  <a href="#build" class="mm-link">Services</a>
-  <a href="#cta" class="mobile-menu-cta mm-link">Book a free call →</a>
+  <a href="services.html">Services</a>
+  <a href="packages.html">Packages</a>
+  <a href="work.html">Work</a>
+  <a href="team.html">Team</a>
+  <a href="contact.html">Contact</a>
+  <a href="contact.html" class="mobile-menu-cta">Book a free call →</a>
 </div>
 
-<!-- ═══ HERO ═══════════════════════════════════════════════════════════════ -->
-<section class="hero">
-  <div class="hero-grid"></div>
-  <div class="hero-glow-navy"></div>
+<!-- ═══ HERO ═══ -->
+<section class="hero tall">
+  <div class="grid-bg"></div>
+  <div class="glow-navy"></div>
 
-  <!-- Floating proof cards (desktop) -->
   <div class="float-card left">
     <div class="fc-label">Our team</div>
     <div class="fc-val">Award-winning engineers</div>
@@ -845,398 +59,151 @@ a{color:inherit;text-decoration:none}
     <div class="fc-row"><div class="fc-dot"></div><span class="fc-item">8+ years enterprise delivery</span></div>
   </div>
   <div class="float-card right">
-    <div class="fc-label">Pricing</div>
+    <div class="fc-label">Scaling packages</div>
     <div class="fc-val">From £400 one-off</div>
-    <div class="fc-sub">vs £2,000+ agency average</div>
+    <div class="fc-sub">+ £50/mo · cancel anytime</div>
     <div class="fc-row"><div class="fc-dot"></div><span class="fc-item">Live in 24 hours</span></div>
-    <div class="fc-row"><div class="fc-dot"></div><span class="fc-item">£65/mo all-in support</span></div>
+    <div class="fc-row"><div class="fc-dot"></div><span class="fc-item">SEO + marketing tier available</span></div>
   </div>
 
-  <div class="hero-badge">
-    <span class="badge-dot"></span>
-    Now expanding across Europe
-  </div>
-
-  <h1>Enterprise tech.<br><span class="gt">Local prices.</span></h1>
-
-  <p class="hero-sub">
-    Award-winning engineers. Machine Learning strategy. Websites live in 24 hours — at a fraction of what agencies charge.
-  </p>
-
-  <div class="hero-actions">
-    <a href="#cta" class="btn btn-primary btn-lg">
-      Book your free call
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-    </a>
-    <a href="#pricing" class="btn btn-ghost btn-lg">See pricing</a>
+  <div class="hero-inner">
+    <span class="badge"><span class="badge-dot"></span> Now expanding across Europe</span>
+    <h1>Enterprise tech.<br><span class="gt">Local prices.</span></h1>
+    <p class="hero-sub">We design websites, custom CRMs and automated tools that scale with your business — built by award-winning engineers, live in 24 hours, at a fraction of agency cost.</p>
+    <div class="hero-actions">
+      <a href="packages.html" class="btn btn-primary btn-lg">Explore packages <svg class="icon-r" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+      <a href="work.html" class="btn btn-ghost btn-lg">See our work</a>
+    </div>
   </div>
 
   <div class="stats-bar">
     <div class="stat"><div class="stat-num">£<em data-target="400">400</em></div><div class="stat-lbl">Websites from</div></div>
     <div class="stat"><div class="stat-num"><em data-target="24">24</em>h</div><div class="stat-lbl">Live in</div></div>
     <div class="stat"><div class="stat-num"><em>250k</em></div><div class="stat-lbl">Users driven</div></div>
-    <div class="stat"><div class="stat-num"><em>3</em>×</div><div class="stat-lbl">Industry awards</div></div>
-    <div class="stat"><div class="stat-num">£<em data-target="65">65</em></div><div class="stat-lbl">Monthly support</div></div>
+    <div class="stat"><div class="stat-num"><em data-target="3">3</em>×</div><div class="stat-lbl">Industry awards</div></div>
+    <div class="stat"><div class="stat-num">£<em data-target="50">50</em></div><div class="stat-lbl">Monthly from</div></div>
   </div>
 </section>
 
 <hr class="divider">
 
-<!-- ═══ PRICING ════════════════════════════════════════════════════════════ -->
-<section class="pricing-wrap" id="pricing">
-<div class="section">
+<!-- ═══ SERVICES PREVIEW ═══ -->
+<section class="section">
   <div class="reveal">
-    <div class="label">Pricing</div>
-    <h2 class="section-title">The most competitive<br><span class="gt">pricing in the market.</span></h2>
+    <div class="label">What we build</div>
+    <h2 class="section-title">Not just websites.<br><span class="gt">Digital businesses.</span></h2>
+    <p class="section-sub">Four core disciplines, one team. From your first landing page to the automated systems that run your operation.</p>
   </div>
-
-  <div class="price-grid stagger">
-    <!-- Featured -->
-    <div class="price-card featured">
-      <div class="featured-tag">Most popular</div>
-      <div class="price-tag">Website — Full Build</div>
-      <div class="price-amount"><sup>£</sup>400</div>
-      <div class="price-note">One-off · Live within 24 hours</div>
-      <div class="price-divider"></div>
-      <ul class="price-features">
-        <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Professional, mobile-responsive design</li>
-        <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>1:1 call with exec or design team</li>
-        <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Fully personalised to your brand</li>
-        <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Domain activation or transfer</li>
-        <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Handed over the same day</li>
-        <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Instalments available</li>
-      </ul>
-    </div>
-
-    <div class="price-card">
-      <div class="price-tag">Website + Marketing Launch</div>
-      <div class="price-amount"><sup>£</sup>600</div>
-      <div class="price-note">Everything in the build, plus launch momentum</div>
-      <div class="price-divider"></div>
-      <ul class="price-features">
-        <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Full build package included</li>
-        <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Marketing team briefed at launch</li>
-        <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Traffic strategy from day one</li>
-        <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Growth roadmap handed over</li>
-        <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Save up to £1,600 vs agency avg</li>
-      </ul>
-    </div>
-
-    <div class="price-card">
-      <div class="price-tag">Flexible Payments</div>
-      <div class="price-amount" style="font-size:2.6rem;letter-spacing:-1.5px">Instalments</div>
-      <div class="price-note">Pay over time. No barriers.</div>
-      <div class="price-divider"></div>
-      <ul class="price-features">
-        <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Split payments available</li>
-        <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Agreed schedule upfront</li>
-        <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Full service from day one</li>
-        <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Zero compromise on quality</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="savings-banner reveal">
-    <div class="savings-text">The average agency charges for the same work</div>
-    <div class="savings-row">
-      <div class="savings-old">£2,000+</div>
-      <div class="savings-pill">Save up to £1,600 with TBOS</div>
-    </div>
-  </div>
-</div>
-</section>
-
-<hr class="divider">
-
-<!-- ═══ WHY US ══════════════════════════════════════════════════════════════ -->
-<section class="why-wrap" id="why">
-<div class="section">
-  <div class="reveal">
-    <div class="label">Why TBOS</div>
-    <h2 class="section-title">Not just cheaper.<br><span class="gt">Genuinely better.</span></h2>
-    <p class="section-sub">Enterprise-grade digital expertise brought to local businesses — the same team that has built platforms for the most demanding, regulated industries in the world.</p>
-  </div>
-  <div class="why-grid stagger">
-    <div class="why-card">
-      <div class="why-icon">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-      </div>
-      <h3>Live in 24 hours</h3>
-      <p>We have a draft ready. One call and we personalise it to you. Your site is live the same day — not in six weeks.</p>
-    </div>
-    <div class="why-card">
-      <div class="why-icon">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg>
-      </div>
-      <h3>Award-winning team</h3>
-      <p>Multiple industry awards for technical excellence. Platforms built for hundreds of global enterprise clients.</p>
-    </div>
-    <div class="why-card">
-      <div class="why-icon">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
-      </div>
-      <h3>We drive traffic</h3>
-      <p>Our marketer has driven up to 250,000 simultaneous users to a single site. That expertise is on your side from day one.</p>
-    </div>
-    <div class="why-card">
-      <div class="why-icon">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-      </div>
-      <h3>Proven in demanding sectors</h3>
-      <p>We build for private healthcare and workforce solutions — where the tech must be right first time, under real regulatory scrutiny.</p>
-    </div>
-    <div class="why-card">
-      <div class="why-icon">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="2" x2="9" y2="4"/><line x1="15" y1="2" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="22"/><line x1="15" y1="20" x2="15" y2="22"/><line x1="2" y1="9" x2="4" y2="9"/><line x1="2" y1="15" x2="4" y2="15"/><line x1="20" y1="9" x2="22" y2="9"/><line x1="20" y1="15" x2="22" y2="15"/></svg>
-      </div>
-      <h3>ML-backed strategy</h3>
-      <p>Our CEO holds highly advanced qualifications in Machine Learning. Your growth strategy is engineered with data, not guesswork.</p>
-    </div>
-    <div class="why-card">
-      <div class="why-icon">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-      </div>
-      <h3>Starter site included</h3>
-      <p>Every prospect sees their site before they sign — removing every barrier to yes. Real output from the very first conversation.</p>
-    </div>
-  </div>
-</div>
-</section>
-
-<hr class="divider">
-
-<!-- ═══ PROCESS ════════════════════════════════════════════════════════════ -->
-<section class="process-wrap" id="process">
-<div class="section">
-  <div class="reveal">
-    <div class="label">Process</div>
-    <h2 class="section-title">From enquiry to live<br><span class="gt">in 24 hours.</span></h2>
-  </div>
-  <div class="process-timeline stagger">
-    <div class="proc-step">
-      <div class="proc-circle">01</div>
-      <div class="proc-badge">30 minutes</div>
-      <h3>Discovery call</h3>
-      <p>We discuss your brand, goals and vision. We already have a draft ready — this call is purely about personalising it to you.</p>
-    </div>
-    <div class="proc-step">
-      <div class="proc-circle">02</div>
-      <div class="proc-badge">Same day</div>
-      <h3>Design & build</h3>
-      <p>Our team personalises your site and sets up your domain — new or transferred — getting everything production-ready.</p>
-    </div>
-    <div class="proc-step">
-      <div class="proc-circle">03</div>
-      <div class="proc-badge">Within 24 hours</div>
-      <h3>You review & approve</h3>
-      <p>Mobile-responsive, SEO-ready, performance-optimised. You review and approve before anything goes public.</p>
-    </div>
-    <div class="proc-step">
-      <div class="proc-circle">04</div>
-      <div class="proc-badge">£600 package</div>
-      <h3>Marketing launch</h3>
-      <p>Upgrade and we brief our marketing team at launch — handing you a live traffic strategy and growth roadmap from day one.</p>
-    </div>
-  </div>
-</div>
-</section>
-
-<hr class="divider">
-
-<!-- ═══ FEES ═════════════════════════════════════════════════════════════════ -->
-<section class="fees-wrap">
-<div class="section">
-  <div class="reveal">
-    <div class="label">Ongoing support</div>
-    <h2 class="section-title">We don't build it<br><span class="gt">and disappear.</span></h2>
-    <p class="section-sub">Other agencies charge £150–£300/month to maintain a site. We maintain yours, drive traffic to it and improve your rankings — for less than a round of drinks.</p>
-  </div>
-  <div class="fees-grid stagger">
-    <div class="fee-card">
-      <div class="fee-big"><sup>£</sup>50</div>
-      <div class="fee-period">per month</div>
-      <div class="fee-name">Maintenance + Traffic</div>
-      <div class="fee-desc">Site maintenance, uptime monitoring and active traffic driving</div>
-      <div class="fee-vs">Industry avg: £150+/mo</div>
-    </div>
-    <div class="fee-card">
-      <div class="fee-big"><sup>£</sup>15</div>
-      <div class="fee-period">per month</div>
-      <div class="fee-name">SEO Improvement</div>
-      <div class="fee-desc">Ongoing search engine optimisation to grow your organic rankings month by month</div>
-      <div class="fee-vs">Industry avg: £200+/mo</div>
-    </div>
-    <div class="fee-card featured">
-      <div class="fee-big"><sup>£</sup>65</div>
-      <div class="fee-period">per month — everything</div>
-      <div class="fee-name">Full Support Bundle</div>
-      <div class="fee-desc">Maintenance, active traffic driving and SEO combined. Cancel any time, no lock-in.</div>
-      <div class="fee-vs">Industry avg: £300+/mo</div>
-    </div>
-  </div>
-</div>
-</section>
-
-<hr class="divider">
-
-<!-- ═══ TEAM ══════════════════════════════════════════════════════════════════ -->
-<section class="team-wrap" id="team">
-<div class="section">
-  <div class="reveal">
-    <div class="label">The team behind it</div>
-    <h2 class="section-title">Enterprise pedigree.<br><span class="gt">Local business focus.</span></h2>
-    <p class="section-sub">Engineers and strategists who've delivered at the highest level in financial services, healthcare and global enterprise — brought directly to your business.</p>
-  </div>
-  <div class="team-grid stagger">
-    <div class="team-card">
-      <div class="team-card-head">
-        <div class="team-role">Chief Executive</div>
-        <div class="team-title">Machine Learning Specialist &amp; Digital Growth Strategist</div>
-      </div>
-      <div class="team-body">
-        <ul>
-          <li><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>Highly advanced qualifications in Machine Learning</li>
-          <li><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>Designed CRM &amp; workforce platform for private healthcare</li>
-          <li><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>Founded &amp; runs an active digital marketing agency</li>
-          <li><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>Experienced in scaling brands via data-driven digital strategy</li>
-        </ul>
-      </div>
-    </div>
-    <div class="team-card">
-      <div class="team-card-head">
-        <div class="team-role">Lead Engineer — Platforms</div>
-        <div class="team-title">8+ Years Enterprise-Scale Platform Delivery</div>
-      </div>
-      <div class="team-body">
-        <ul>
-          <li><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>Built developer portals for hundreds of global enterprise clients</li>
-          <li><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>Architected global API bridge between a major bank &amp; e-commerce platform</li>
-          <li><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>Led teams of 5+ engineers across concurrent high-stakes projects</li>
-          <li><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>Delivered 36% improvement in search rankings on live platforms</li>
-        </ul>
-        <div class="award-pill">🏆 3× Industry Awards — Engineering Excellence</div>
-      </div>
-    </div>
-    <div class="team-card">
-      <div class="team-card-head">
-        <div class="team-role">Technical Lead — Engineering</div>
-        <div class="team-title">Award-Winning Engineer in Financial Services</div>
-      </div>
-      <div class="team-body">
-        <ul>
-          <li><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>Led event-driven architecture on a business-critical legacy platform</li>
-          <li><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>Presented to board-level stakeholders — CEOs, CIOs &amp; COOs</li>
-          <li><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>Drove modernisation of regulated, customer-facing transaction systems</li>
-        </ul>
-        <div class="award-pill">🏆 Group Technology Engineering Excellence Award 2025</div>
-      </div>
-    </div>
-    <div class="team-card">
-      <div class="team-card-head">
-        <div class="team-role">Finance &amp; Accounts Manager</div>
-        <div class="team-title">CIMA Qualified Management Accountant</div>
-      </div>
-      <div class="team-body">
-        <ul>
-          <li><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>Vehicle Controller — Bugatti Tourbillon (Bugatti Rimac, Zagreb)</li>
-          <li><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>Managed €500m+ development investment business case</li>
-          <li><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>Delivered Board &amp; Project Steering Committee financial updates</li>
-        </ul>
-        <div class="award-pill" style="background:rgba(43,142,142,.08);border-color:rgba(43,142,142,.2);color:var(--teal-light)">Bugatti Rimac · Zagreb · 2023–2025</div>
-      </div>
-    </div>
-
-    <div class="partner-row">
-      <div class="partner-card">
-        <div class="partner-badge">Compliance Partner</div>
-        <div class="partner-name">Afford Bond — Chartered Accountants</div>
-        <div class="partner-desc">Group compliance accounting across all TBOS entities. ICAEW registered with dual software certifications.</div>
-        <div class="tag-row">
-          <span class="tag">ICAEW Registered</span>
-          <span class="tag">Xero Gold Champion</span>
-          <span class="tag">Sage Certified</span>
-        </div>
-      </div>
-      <div class="partner-card">
-        <div class="partner-badge">Global Network</div>
-        <div class="partner-name">LEA Global — 100 Countries · 200 Firms</div>
-        <div class="partner-desc">Member of one of the world's leading associations of independent accounting and advisory firms.</div>
-        <div class="tag-row">
-          <span class="tag">Nantwich</span><span class="tag">Wilmslow</span><span class="tag">Manchester</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-</section>
-
-<hr class="divider">
-
-<!-- ═══ WHAT WE BUILD ══════════════════════════════════════════════════════ -->
-<section class="build-wrap" id="build">
-<div class="section">
-  <div class="reveal">
-    <div class="label">Our services</div>
-    <h2 class="section-title">We don't just build websites.<br><span class="gt">We build digital businesses.</span></h2>
-  </div>
-  <div class="build-grid stagger">
-    <div class="build-card">
-      <div class="build-num">01</div>
-      <div class="build-img">
-        <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3F2RAQvUnJFZWbBdXd63U7JAnWB/hf_20260612_144433_ba3a6365-dd3a-4782-91bd-4e8cc6be6ee8_min.webp" alt="Business website design" loading="lazy">
-      </div>
-      <div class="build-icon">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-      </div>
-      <div class="build-sub">From £400 · Live in 24 hours</div>
+  <div class="grid-4 stagger">
+    <div class="card">
+      <div class="card-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
       <h3>Business websites</h3>
-      <p>Professional, fast, mobile-first sites built to convert visitors into customers. Fully personalised and handed over in a day.</p>
+      <p>Fast, mobile-first sites engineered to convert — personalised and handed over in a day.</p>
     </div>
-    <div class="build-card">
-      <div class="build-num">02</div>
-      <div class="build-img">
-        <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3F2RAQvUnJFZWbBdXd63U7JAnWB/hf_20260612_144457_9586bfd2-56d6-4c17-882e-de9a79fe567e_min.webp" alt="CRM platform dashboard" loading="lazy">
-      </div>
-      <div class="build-icon">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-      </div>
-      <div class="build-sub">Custom · Scalable · Compliant</div>
-      <h3>CRM platforms</h3>
-      <p>Custom CRM solutions built for private healthcare and workforce solutions via our sister company. Enterprise-grade at a fraction of the cost.</p>
+    <div class="card">
+      <div class="card-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
+      <h3>Custom CRMs</h3>
+      <p>Scalable, compliant CRM platforms built for healthcare and workforce operations.</p>
     </div>
-    <div class="build-card">
-      <div class="build-num">03</div>
-      <div class="build-img">
-        <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3F2RAQvUnJFZWbBdXd63U7JAnWB/hf_20260612_144524_cdc2ed39-451f-4fbc-87af-c042e1c89da0_min.webp" alt="Healthcare workforce platform" loading="lazy">
-      </div>
-      <div class="build-icon">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-      </div>
-      <div class="build-sub">End-to-end · Recruitment platforms</div>
-      <h3>Workforce solutions</h3>
-      <p>Built for staffing and private healthcare industries where reliability isn't optional. Systems designed to handle complexity at volume.</p>
+    <div class="card">
+      <div class="card-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/></svg></div>
+      <h3>Automated tools</h3>
+      <p>Workflow automation, dashboards and integrations that remove manual work.</p>
     </div>
-    <div class="build-card">
-      <div class="build-num">04</div>
-      <div class="build-img">
-        <img src="https://d8j0ntlcm91z4.cloudfront.net/user_3F2RAQvUnJFZWbBdXd63U7JAnWB/hf_20260612_144543_18f3cfbf-6de6-482a-bcd5-e21d11da5c31_min.webp" alt="Digital traffic and growth" loading="lazy">
-      </div>
-      <div class="build-icon">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
-      </div>
-      <div class="build-sub">Up to 250,000 simultaneous users</div>
-      <h3>Traffic &amp; growth</h3>
-      <p>We actively drive traffic through SEO, content and digital marketing — turning your website into a growth engine, not just a brochure.</p>
+    <div class="card">
+      <div class="card-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg></div>
+      <h3>Traffic & growth</h3>
+      <p>SEO, content and data-driven marketing that turn your site into a growth engine.</p>
     </div>
   </div>
-</div>
+  <div class="reveal" style="margin-top:2rem"><a href="services.html" class="btn btn-ghost">View all services <svg class="icon-r" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></div>
 </section>
 
 <hr class="divider">
 
-<!-- ═══ LOCATIONS ══════════════════════════════════════════════════════════ -->
-<section class="locs-wrap">
-<div class="section">
+<!-- ═══ PROCESS TIMELINE (interactive) ═══ -->
+<section class="section" style="background:var(--bg-1)">
+  <div class="reveal center">
+    <div class="label">How it works</div>
+    <h2 class="section-title">From enquiry to live<br><span class="gt">in 24 hours.</span></h2>
+    <p class="section-sub">A process engineered for speed without cutting corners. Watch the line fill as you scroll.</p>
+  </div>
+  <div class="timeline">
+    <div class="fill"></div>
+    <div class="tl-step"><div class="tl-dot">01</div><div class="tl-badge">30 minutes</div><h3>Discovery call</h3><p>We learn your brand, goals and vision. A working draft is already prepared — this call personalises it.</p></div>
+    <div class="tl-step"><div class="tl-dot">02</div><div class="tl-badge">Same day</div><h3>Design & build</h3><p>We tailor the design, wire up your content and configure your domain — new or transferred.</p></div>
+    <div class="tl-step"><div class="tl-dot">03</div><div class="tl-badge">Within 24h</div><h3>Review & approve</h3><p>Mobile-responsive, SEO-ready and performance-optimised. You sign off before anything goes public.</p></div>
+    <div class="tl-step"><div class="tl-dot">04</div><div class="tl-badge">Ongoing</div><h3>Scale & grow</h3><p>We maintain, monitor and drive traffic — adding SEO and automation as you grow.</p></div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ═══ WHY US ═══ -->
+<section class="section">
+  <div class="reveal">
+    <div class="label">Why VelaSync</div>
+    <h2 class="section-title">Not just cheaper.<br><span class="gt">Genuinely better.</span></h2>
+    <p class="section-sub">Enterprise-grade expertise brought to growing businesses — the same team that builds platforms for the world's most demanding, regulated industries.</p>
+  </div>
+  <div class="grid-3 stagger">
+    <div class="card"><div class="card-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div><h3>Live in 24 hours</h3><p>We start from a ready draft. One call to personalise it, and your site is live the same day — not in six weeks.</p></div>
+    <div class="card"><div class="card-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg></div><h3>Award-winning team</h3><p>Multiple industry awards for technical excellence. Platforms delivered for hundreds of global enterprise clients.</p></div>
+    <div class="card"><div class="card-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg></div><h3>We drive traffic</h3><p>Our marketer has driven up to 250,000 simultaneous users to a single site. That firepower is on your side from day one.</p></div>
+    <div class="card"><div class="card-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><h3>Proven in hard sectors</h3><p>We build for private healthcare and workforce solutions — where the tech must be right first time, under real scrutiny.</p></div>
+    <div class="card"><div class="card-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="2" x2="9" y2="4"/><line x1="15" y1="2" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="22"/><line x1="15" y1="20" x2="15" y2="22"/><line x1="2" y1="9" x2="4" y2="9"/><line x1="2" y1="15" x2="4" y2="15"/><line x1="20" y1="9" x2="22" y2="9"/><line x1="20" y1="15" x2="22" y2="15"/></svg></div><h3>ML-backed strategy</h3><p>Our CEO holds advanced Machine Learning qualifications. Your growth strategy is engineered with data, not guesswork.</p></div>
+    <div class="card"><div class="card-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg></div><h3>Starter site included</h3><p>Every prospect sees their site before they sign — real output from the very first conversation. Zero risk.</p></div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ═══ PACKAGES PREVIEW ═══ -->
+<section class="section" style="background:var(--bg-1)">
+  <div class="reveal center">
+    <div class="label">Scaling packages</div>
+    <h2 class="section-title">Start small.<br><span class="gt">Scale on your terms.</span></h2>
+    <p class="section-sub">Two clear tiers, transparent monthly support, and an interactive builder to price your exact setup.</p>
+  </div>
+  <div class="grid-2 stagger" style="max-width:760px;margin:0 auto">
+    <div class="price-card featured">
+      <div class="featured-tag">Starter</div>
+      <div class="price-tag">Website Package</div>
+      <div class="price-amount"><sup>£</sup>400</div>
+      <div class="price-note">One-off · live within 24 hours</div>
+      <div class="price-mo">+ £50/mo maintenance</div>
+      <div class="price-divider"></div>
+      <ul class="checks">
+        <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Professional, mobile-responsive build</li>
+        <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Domain setup + hosting</li>
+        <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Maintenance & uptime monitoring</li>
+      </ul>
+      <a href="packages.html" class="btn btn-primary">Choose Starter</a>
+    </div>
+    <div class="price-card">
+      <div class="price-tag">SEO & Growth Package</div>
+      <div class="price-amount"><sup>£</sup>650</div>
+      <div class="price-note">One-off · full marketing strategy included</div>
+      <div class="price-mo">+ £100/mo growth retainer</div>
+      <div class="price-divider"></div>
+      <ul class="checks">
+        <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Everything in Starter</li>
+        <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Full marketing & SEO strategy</li>
+        <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Monthly content + ranking growth</li>
+      </ul>
+      <a href="packages.html" class="btn btn-ghost">Choose Growth</a>
+    </div>
+  </div>
+  <div class="savings-banner reveal" style="max-width:760px;margin:1.75rem auto 0">
+    <div class="savings-text">The average agency charges for the same work</div>
+    <div class="savings-row"><div class="savings-old">£2,000+</div><div class="savings-pill">Save up to £1,600 with VelaSync</div></div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ═══ LOCATIONS ═══ -->
+<section class="section">
   <div class="reveal">
     <div class="label">Where we operate</div>
     <h2 class="section-title">Active across<br><span class="gt">four continents.</span></h2>
@@ -1246,149 +213,49 @@ a{color:inherit;text-decoration:none}
     <div class="loc-pill"><span class="loc-flag">🇺🇸</span> United States</div>
     <div class="loc-pill"><span class="loc-flag">🇿🇦</span> South Africa</div>
     <div class="loc-pill"><span class="loc-flag">🇪🇺</span> European Union</div>
-    <div class="loc-pill" style="border-color:var(--bdr-m);color:var(--teal-light)">
-      <span class="badge-dot" style="width:7px;height:7px"></span> Expanding Europe now
-    </div>
+    <div class="loc-pill" style="border-color:var(--bdr-m);color:var(--teal-light)"><span class="badge-dot" style="width:7px;height:7px"></span> Expanding Europe now</div>
   </div>
-</div>
 </section>
 
-<hr class="divider">
-
-<!-- ═══ CTA ════════════════════════════════════════════════════════════════ -->
-<section class="cta-wrap" id="cta">
-  <div class="cta-glow-l"></div>
-  <div class="cta-glow-r"></div>
+<!-- ═══ CTA ═══ -->
+<section class="cta-wrap">
+  <div class="cta-glow-l"></div><div class="cta-glow-r"></div>
   <div class="cta-inner reveal">
     <div class="label" style="justify-content:center">Get started</div>
     <h2>Ready to launch?<br><span class="gt">Let's talk today.</span></h2>
-    <p>A 30-minute call is all it takes to go from zero to live. We'll show you the draft, talk through your vision, and have your website up within 24 hours.</p>
+    <p>A 30-minute call is all it takes to go from zero to live. We'll show you the draft, talk through your vision, and have your site up within 24 hours.</p>
     <div class="cta-pills">
-      <div class="cta-pill">From £400</div>
-      <div class="cta-pill">Live in 24 hours</div>
-      <div class="cta-pill">Instalments available</div>
-      <div class="cta-pill">£65/month all-in</div>
+      <span class="pill">From £400</span><span class="pill">Live in 24 hours</span><span class="pill">Instalments available</span><span class="pill">From £50/month</span>
     </div>
-    <a href="mailto:hello@tbostechnology.co.uk" class="btn btn-primary btn-lg">
-      Book your free call
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-    </a>
+    <a href="contact.html" class="btn btn-primary btn-lg">Book your free call <svg class="icon-r" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
   </div>
 </section>
 
-<!-- ═══ FOOTER ════════════════════════════════════════════════════════════ -->
+<!-- ═══ FOOTER ═══ -->
 <footer class="footer">
-  <div class="footer-inner">
-    <div class="footer-logo">
-      <div class="nav-mark"><span>TS</span></div>
-      <span class="footer-wordmark">TBOS Technology Solutions</span>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="nav-left"><img class="nav-mark" src="assets/img/logo.svg" alt="VelaSync"><span class="nav-word"><b>VelaSync</b><span>Technology Solutions</span></span></div>
+      <p>Enterprise-grade websites, CRMs and automated tools — engineered for growing businesses, priced for the real world.</p>
     </div>
-    <div class="footer-center">
-      © 2025 TBOS Technology Solutions Ltd &nbsp;·&nbsp; Co. No. 17051204<br>
-      Web &amp; Digital Solutions &nbsp;·&nbsp; Private Healthcare &nbsp;·&nbsp; Workforce Solutions
-    </div>
-    <div class="footer-links">
-      <a href="#">www.tbostechnology.co.uk</a>
-      <a href="#">UK · US · ZA · EU</a>
-    </div>
+    <div class="footer-col"><h4>Company</h4><a href="services.html">Services</a><a href="work.html">Our work</a><a href="team.html">Team</a><a href="packages.html">Packages</a></div>
+    <div class="footer-col"><h4>Build with us</h4><a href="packages.html#builder">Package builder</a><a href="packages.html#calc">ROI calculator</a><a href="contact.html">Book a call</a><a href="contact.html#faq">FAQs</a></div>
+    <div class="footer-col"><h4>Reach us</h4><a href="mailto:hello@velasync.io">hello@velasync.io</a><a href="contact.html">Contact form</a><a href="#">UK · US · ZA · EU</a></div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 VelaSync Technology Solutions Ltd</span>
+    <span>Web & Digital · CRM Platforms · Automation · Growth</span>
   </div>
 </footer>
 
-<!-- Mobile sticky CTA -->
+<!-- MOBILE STICKY CTA -->
 <div class="mobile-cta-bar" id="mobileCta">
   <div class="mobile-cta-inner">
     <div class="mobile-cta-info">Websites from <strong>£400</strong> · Live in 24h</div>
-    <a href="#cta" class="mobile-cta-btn">Book free call →</a>
+    <a href="contact.html" class="mobile-cta-btn">Book free call →</a>
   </div>
 </div>
 
-<script>
-// ── LOADER ────────────────────────────────────────────────────────────────
-window.addEventListener('load', () => {
-  setTimeout(() => document.getElementById('loader').classList.add('out'), 300);
-});
-
-// ── CURSOR GLOW ───────────────────────────────────────────────────────────
-const glow = document.getElementById('cursorGlow');
-if (window.innerWidth > 1024) {
-  let ax = window.innerWidth / 2, ay = window.innerHeight / 2;
-  let cx = ax, cy = ay;
-  document.addEventListener('mousemove', e => { ax = e.clientX; ay = e.clientY; });
-  function animGlow() {
-    cx += (ax - cx) * 0.08;
-    cy += (ay - cy) * 0.08;
-    glow.style.left = cx + 'px';
-    glow.style.top = cy + 'px';
-    requestAnimationFrame(animGlow);
-  }
-  animGlow();
-}
-
-// ── NAV SCROLL ────────────────────────────────────────────────────────────
-const nav = document.getElementById('nav');
-window.addEventListener('scroll', () => {
-  nav.classList.toggle('scrolled', window.scrollY > 40);
-}, { passive: true });
-
-// ── SCROLL PROGRESS ───────────────────────────────────────────────────────
-const prog = document.getElementById('progress');
-window.addEventListener('scroll', () => {
-  const pct = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
-  prog.style.width = pct + '%';
-}, { passive: true });
-
-// ── HAMBURGER ─────────────────────────────────────────────────────────────
-const hbg = document.getElementById('hamburger');
-const mm  = document.getElementById('mobileMenu');
-hbg.addEventListener('click', () => {
-  hbg.classList.toggle('open');
-  mm.classList.toggle('open');
-  document.body.style.overflow = mm.classList.contains('open') ? 'hidden' : '';
-});
-document.querySelectorAll('.mm-link').forEach(a => a.addEventListener('click', () => {
-  hbg.classList.remove('open');
-  mm.classList.remove('open');
-  document.body.style.overflow = '';
-}));
-
-// ── MOBILE STICKY CTA ─────────────────────────────────────────────────────
-const mobileCta = document.getElementById('mobileCta');
-let lastSY = 0;
-window.addEventListener('scroll', () => {
-  const sy = window.scrollY;
-  mobileCta.classList.toggle('visible', sy > 500);
-  lastSY = sy;
-}, { passive: true });
-
-// ── REVEAL ON SCROLL ──────────────────────────────────────────────────────
-const revealObs = new IntersectionObserver(entries => {
-  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
-}, { threshold: 0.12, rootMargin: '0px 0px -30px 0px' });
-
-document.querySelectorAll('.reveal, .stagger').forEach(el => revealObs.observe(el));
-
-// ── COUNTER ANIMATION ─────────────────────────────────────────────────────
-function animCount(el, target, duration = 1800) {
-  let start = null;
-  const step = ts => {
-    if (!start) start = ts;
-    const p = Math.min((ts - start) / duration, 1);
-    const ease = 1 - Math.pow(1 - p, 3);
-    el.textContent = Math.round(ease * target).toLocaleString();
-    if (p < 1) requestAnimationFrame(step);
-    else el.textContent = target.toLocaleString();
-  };
-  requestAnimationFrame(step);
-}
-const counterObs = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      const t = parseInt(e.target.dataset.target);
-      if (!isNaN(t)) { animCount(e.target, t); counterObs.unobserve(e.target); }
-    }
-  });
-}, { threshold: 0.5 });
-document.querySelectorAll('[data-target]').forEach(el => counterObs.observe(el));
-</script>
+<script src="assets/js/main.js"></script>
 </body>
 </html>
