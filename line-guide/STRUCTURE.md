@@ -53,8 +53,8 @@ Line Guide
 │   ├── /pricing ─────────── standalone supplier pricing + compare
 │   ├── /use-cases ───────── packing / palletising / filling / …
 │   ├── /use-cases/:slug ─── single application landing (SEO)
-│   ├── /suppliers ───────── public directory (browse/search)
-│   ├── /suppliers/:slug ─── public supplier profile (SEO + proof)
+│   ├── /suppliers ───────── public directory (browse/search)       [BUILT → suppliers.html]
+│   ├── /suppliers/:slug ─── public supplier profile (SEO + proof)   [BUILT → supplier.html?s=]
 │   ├── /about ───────────── mission, team, story
 │   ├── /blog + /blog/:slug  content engine (SEO, authority)
 │   ├── /contact ─────────── sales / support / partnerships
@@ -126,10 +126,21 @@ inspection, manual-process, end-of-line). Each: problem, what to look for,
 typical budget/timeframe, "find suppliers for this" CTA → pre-filled brief.
 **Goal:** organic acquisition + funnel pre-fill.
 
-### 3.7 Supplier Directory `/suppliers` + `/suppliers/:slug` *(roadmap)*
-Browsable, filterable directory; rich public profiles (capabilities, ratings,
-case studies, verified badge). **Goal:** SEO, supplier vanity/lead value
-(a reason to keep paying), buyer browsing path.
+### 3.7 Supplier Directory `/suppliers` + `/suppliers/:slug` — *BUILT*
+- **`suppliers.html`** — browsable directory with live **search**, **application
+  filters**, **region** + **sort** (top-rated / most projects / tier / A–Z),
+  result count and empty state. Cards deep-link to profiles. Accepts
+  `?case=` to pre-filter from use-case landing pages.
+- **`supplier.html?s=slug`** — **dynamic** profile rendered from the shared
+  dataset: hero (verified, rating, tier, location), stat row (projects, lead
+  time, response, established), about, capabilities, applications/formats,
+  case studies, buyer reviews with rating summary, and an "at a glance"
+  sticky sidebar. Falls back gracefully for unknown slugs.
+- **`assets/data.js`** — single source of truth (8 seeded suppliers); the
+  directory, profile (and future pages) all read from it. Swap for an API later.
+
+**Goal:** SEO surface area, supplier lead/vanity value (a reason to keep
+paying), and a browsing path for buyers who prefer to explore.
 
 ### 3.8 About / Blog / Contact / Legal *(roadmap)*
 Standard trust & growth surfaces. Blog is the long-term SEO/authority engine.
