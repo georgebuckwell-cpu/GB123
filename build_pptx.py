@@ -284,41 +284,72 @@ stat_bar(s, [("Mon","Diary + KPI Review"),("Tue–Fri","5pm Daily Touch Point"),
 
 # ═══════════════════════════════════════════════════════════════════════════════
 # SLIDE 5 — PRE-MEETING RESEARCH
+# Layout (all y values from slide top, no overlaps):
+#   Header/divider  : 0.00 – 1.65
+#   4 step cards    : 1.78 – 4.38  (h=2.60)
+#   Script block    : 4.52 – 5.62  (h=1.10)
+#   Warning bar     : 5.76 – 6.50  (h=0.74)
 # ═══════════════════════════════════════════════════════════════════════════════
 s = prs.slides.add_slide(BLANK)
 bg(s)
 slide_header(s, "Stage 02 · Preparation", "Pre-Meeting Research",
              "10 minutes before every meeting. Walk in knowing their problem before they've said a word.")
 
-steps = [
-    ("🔍","01","Google Them","Search the business name. What comes up? Do they rank? Do they even appear?"),
-    ("🌐","02","Check Their Site","Is it mobile-friendly? Fast? Does it convert — or is it a liability?"),
-    ("⭐","03","Google Maps Rating","Low score = reputation problem. No reviews = visibility problem. You solve both."),
-    ("⚔️","04","Competitor Audit","Find their top 3 local competitors. Check their presence. Use it to create urgency."),
-]
-SW = 2.92
-for i, (ico, num, title, body) in enumerate(steps):
-    x = 0.45 + i*3.18
-    card(s, x, 1.82, SW, 2.75)
-    txt(s, ico,   x+0.2,  2.0,  0.58, 0.55, size=24)
-    txt(s, num,   x+SW-0.7, 2.02, 0.55, 0.38, size=18, bold=True,
-        colour=RGBColor(0x2B,0x8E,0x8E), align=PP_ALIGN.RIGHT)
-    txt(s, title, x+0.2,  2.58, SW-0.4, 0.38, size=12, bold=True, colour=INK)
-    txt(s, body,  x+0.2,  3.0,  SW-0.4, 1.45, size=9, colour=INK2)
+# Card geometry — 4 equal columns, 0.1" gap between each
+CW   = 2.98   # card width  → 4×2.98 + 3×0.13 = 12.31 total, centred with 0.51" margin
+CGAP = 0.12
+CY   = 1.78   # cards top
+CH   = 2.60   # cards height  → bottom = 4.38
 
-# Script block
-rect(s, 0.45, 4.72, 12.43, 1.22, S1)
-rect(s, 0.45, 4.72, 0.05, 1.22, TEAL)
-txt(s, "OPENING LINE", 0.62, 4.8, 3.0, 0.22, size=7, bold=True, colour=TEAL_L)
+steps = [
+    ("🔍", "01", "Google Them",
+     "Search the business. Do they appear at all? What comes up first — them or a competitor?"),
+    ("🌐", "02", "Check Their Site",
+     "Is it mobile-friendly? Fast? Does it actually convert — or is it a liability?"),
+    ("⭐", "03", "Google Maps Rating",
+     "Low score = reputation problem. No reviews = visibility problem. You solve both."),
+    ("⚔️", "04", "Competitor Audit",
+     "Find their top 3 local competitors. Check their online presence. You'll use this to create urgency."),
+]
+
+for i, (ico, num, title, body) in enumerate(steps):
+    x = 0.45 + i * (CW + CGAP)
+
+    # Card background + top accent
+    card(s, x, CY, CW, CH)
+
+    # Step number — small badge top-right inside card
+    rect(s, x + CW - 0.52, CY + 0.1, 0.38, 0.28, S3)
+    txt(s, num, x + CW - 0.52, CY + 0.1, 0.38, 0.28,
+        size=8, bold=True, colour=TEAL_L, align=PP_ALIGN.CENTER)
+
+    # Emoji icon — top-left
+    txt(s, ico, x + 0.15, CY + 0.1, 0.55, 0.52, size=24)
+
+    # Title
+    txt(s, title, x + 0.15, CY + 0.7, CW - 0.3, 0.36,
+        size=11.5, bold=True, colour=INK)
+
+    # Divider line inside card
+    rect(s, x + 0.15, CY + 1.1, CW - 0.3, 0.008, S3)
+
+    # Body text — starts well below title, fits within CH
+    txt(s, body, x + 0.15, CY + 1.2, CW - 0.3, 1.3,
+        size=9, colour=INK2)
+
+# Script block — starts 0.14" below cards (4.38 + 0.14 = 4.52)
+rect(s, 0.45, 4.52, 12.43, 1.10, S1)
+rect(s, 0.45, 4.52, 0.05, 1.10, TEAL)
+txt(s, "OPENING LINE", 0.62, 4.60, 3.0, 0.22, size=7, bold=True, colour=TEAL_L)
 txt(s, '"I had a look at your business before coming in today. I noticed a few things I wanted to talk about '
        '— but first, tell me how business has been. Are you getting as many new customers as you want?"',
-    0.62, 5.04, 12.0, 0.82, size=10, colour=INK2, italic=True)
+    0.62, 4.83, 12.0, 0.72, size=10, colour=INK2, italic=True)
 
-# Warning
-rect(s, 0.45, 6.06, 12.43, 0.82, RGBColor(0x22,0x08,0x08))
-rect(s, 0.45, 6.06, 0.05, 0.82, RED)
+# Warning — starts 0.14" below script block (4.52 + 1.10 + 0.14 = 5.76)
+rect(s, 0.45, 5.76, 12.43, 0.74, RGBColor(0x22, 0x08, 0x08))
+rect(s, 0.45, 5.76, 0.05, 0.74, RED)
 txt(s, "⛔  Never open with the product. Open with their world — not yours. The product comes third.",
-    0.62, 6.22, 12.0, 0.52, size=10, colour=RGBColor(0xF8,0x71,0x71))
+    0.62, 5.92, 12.0, 0.48, size=10, colour=RGBColor(0xF8, 0x71, 0x71))
 
 # ═══════════════════════════════════════════════════════════════════════════════
 # SLIDE 6 — DISCOVERY QUESTIONS
