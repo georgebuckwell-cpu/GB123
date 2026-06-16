@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — VelaSync</title>
+<meta name="description" content="Book a free 30-minute call with VelaSync. Tell us about your project and we'll have you live within 24 hours.">
+<link rel="icon" href="assets/img/logo.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+
+<div id="progress"></div>
+<div class="cursor-glow" id="cursorGlow"></div>
+<div id="loader"><img class="loader-mark" src="assets/img/logo.svg" alt="VelaSync"></div>
+
+<nav class="nav" id="nav">
+  <a class="nav-left" href="index.html">
+    <img class="nav-mark" src="assets/img/logo.svg" alt="VelaSync logo">
+    <span class="nav-word"><b>VelaSync</b><span>Technology Solutions</span></span>
+  </a>
+  <div class="nav-links">
+    <a href="services.html">Services</a>
+    <a href="packages.html">Packages</a>
+    <a href="work.html">Work</a>
+    <a href="team.html">Team</a>
+    <a href="contact.html" class="active">Contact</a>
+  </div>
+  <a href="contact.html" class="nav-cta">Book a free call →</a>
+  <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="services.html">Services</a>
+  <a href="packages.html">Packages</a>
+  <a href="work.html">Work</a>
+  <a href="team.html">Team</a>
+  <a href="contact.html" class="active">Contact</a>
+  <a href="contact.html" class="mobile-menu-cta">Book a free call →</a>
+</div>
+
+<!-- HERO -->
+<section class="hero page-hero">
+  <div class="grid-bg"></div><div class="glow-navy"></div>
+  <div class="hero-inner">
+    <span class="badge"><span class="badge-dot"></span> Free 30-minute call</span>
+    <h1>Let's build<br><span class="gt">something great.</span></h1>
+    <p class="hero-sub">Tell us about your project. We'll show you the draft, talk through your vision, and have you live within 24 hours.</p>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- CONTACT -->
+<section class="section">
+  <div class="contact-grid">
+    <!-- Form -->
+    <div class="reveal">
+      <div class="label">Send a message</div>
+      <h2 class="section-title" style="font-size:clamp(1.6rem,3.5vw,2.2rem)">Start your project</h2>
+      <div class="form-success" id="formSuccess">✓ Thanks — your message is in. We'll be in touch within one working day to book your call.</div>
+      <form id="contactForm" novalidate>
+        <div class="form-row">
+          <div class="field"><label for="cf-name">Your name</label><input id="cf-name" type="text" placeholder="Jane Smith" required></div>
+          <div class="field"><label for="cf-company">Company</label><input id="cf-company" type="text" placeholder="Acme Ltd"></div>
+        </div>
+        <div class="form-row">
+          <div class="field"><label for="cf-email">Email</label><input id="cf-email" type="email" placeholder="jane@acme.com" required></div>
+          <div class="field"><label for="cf-phone">Phone</label><input id="cf-phone" type="tel" placeholder="+44 …"></div>
+        </div>
+        <div class="field">
+          <label for="cf-package">Which package interests you?</label>
+          <select id="cf-package">
+            <option value="">Not sure yet — help me choose</option>
+            <option value="starter">Website Package — £400 + £50/mo</option>
+            <option value="growth">SEO & Growth — £650 + £100/mo</option>
+            <option value="custom">CRM & Automation — custom</option>
+          </select>
+        </div>
+        <div class="field"><label for="cf-msg">Tell us about your project</label><textarea id="cf-msg" placeholder="What are you looking to build, and by when?"></textarea></div>
+        <button type="submit" class="btn btn-primary btn-lg" style="width:100%;justify-content:center">Send & book my call <svg class="icon-r" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></button>
+        <p class="form-note">No payment taken now. We'll confirm everything on the call.</p>
+      </form>
+    </div>
+
+    <!-- Aside -->
+    <div class="contact-aside reveal">
+      <div class="card">
+        <div class="contact-info"><div class="ci-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 5L2 7"/></svg></div><div><b>hello@velasync.io</b><span>We reply within one working day</span></div></div>
+        <div class="contact-info"><div class="ci-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z"/></svg></div><div><b>Book a 30-min call</b><span>Free, no obligation</span></div></div>
+        <div class="contact-info"><div class="ci-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></div><div><b>UK · US · ZA · EU</b><span>Operating across four continents</span></div></div>
+      </div>
+      <div class="card">
+        <div class="label" style="margin-bottom:.6rem">Why book now</div>
+        <ul class="checks">
+          <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>See a real draft of your site, free</li>
+          <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Live within 24 hours of go-ahead</li>
+          <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>From £400 · instalments available</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- FAQ -->
+<section class="section" id="faq" style="background:var(--bg-1)">
+  <div class="reveal center">
+    <div class="label">Questions</div>
+    <h2 class="section-title">Frequently<br><span class="gt">asked.</span></h2>
+  </div>
+  <div class="reveal" style="max-width:760px;margin:0 auto">
+    <div class="faq-item"><button class="faq-q">How can you launch in 24 hours? <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button><div class="faq-a"><p>We prepare a working draft before your first call, so the call is about personalising it to your brand — not building from a blank page. Once you approve, we go live the same day.</p></div></div>
+    <div class="faq-item"><button class="faq-q">What's included in the monthly fee? <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button><div class="faq-a"><p>The £50/mo Maintenance plan covers hosting, backups, SSL, updates, uptime monitoring and small content edits. The £100/mo Growth retainer adds ongoing SEO, content campaigns and monthly reporting. Cancel anytime.</p></div></div>
+    <div class="faq-item"><button class="faq-q">Can I start on the Website package and add SEO later? <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button><div class="faq-a"><p>Absolutely — that's the whole idea. Start with the £400 Website package and layer on SEO, automation or a CRM whenever you're ready. Use the package builder to see how it all stacks up.</p></div></div>
+    <div class="faq-item"><button class="faq-q">Do you offer instalments? <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button><div class="faq-a"><p>Yes. We can split the one-off build cost over an agreed schedule so there's no barrier to getting started. We'll set this up on your call.</p></div></div>
+    <div class="faq-item"><button class="faq-q">Who actually builds my project? <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button><div class="faq-a"><p>Our senior, award-winning team — the same people who've delivered platforms for banks, healthcare and global enterprise. No outsourcing, no junior middle layer. Meet them on the Team page.</p></div></div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-wrap">
+  <div class="cta-glow-l"></div><div class="cta-glow-r"></div>
+  <div class="cta-inner reveal">
+    <div class="label" style="justify-content:center">Prefer email?</div>
+    <h2>Reach us<br><span class="gt">directly.</span></h2>
+    <p>Drop us a line and we'll get straight back to you to arrange your free call.</p>
+    <a href="mailto:hello@velasync.io" class="btn btn-primary btn-lg">hello@velasync.io <svg class="icon-r" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="nav-left"><img class="nav-mark" src="assets/img/logo.svg" alt="VelaSync"><span class="nav-word"><b>VelaSync</b><span>Technology Solutions</span></span></div>
+      <p>Enterprise-grade websites, CRMs and automated tools — engineered for growing businesses, priced for the real world.</p>
+    </div>
+    <div class="footer-col"><h4>Company</h4><a href="services.html">Services</a><a href="work.html">Our work</a><a href="team.html">Team</a><a href="packages.html">Packages</a></div>
+    <div class="footer-col"><h4>Build with us</h4><a href="packages.html#builder">Package builder</a><a href="packages.html#calc">ROI calculator</a><a href="contact.html">Book a call</a><a href="contact.html#faq">FAQs</a></div>
+    <div class="footer-col"><h4>Reach us</h4><a href="mailto:hello@velasync.io">hello@velasync.io</a><a href="contact.html">Contact form</a><a href="#">UK · US · ZA · EU</a></div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 VelaSync Technology Solutions Ltd</span>
+    <span>Web & Digital · CRM Platforms · Automation · Growth</span>
+  </div>
+</footer>
+
+<div class="mobile-cta-bar" id="mobileCta">
+  <div class="mobile-cta-inner">
+    <div class="mobile-cta-info">Free 30-min call · from <strong>£400</strong></div>
+    <a href="#contactForm" class="mobile-cta-btn">Get in touch →</a>
+  </div>
+</div>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>

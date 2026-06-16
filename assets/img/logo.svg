@@ -1,0 +1,18 @@
+<svg width="120" height="120" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="VelaSync">
+  <defs>
+    <linearGradient id="vs-teal" x1="20" y1="14" x2="100" y2="106" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#3aaeae"/>
+      <stop offset="1" stop-color="#2B8E8E"/>
+    </linearGradient>
+  </defs>
+  <!-- Left sail / V chevron -->
+  <path d="M26 16 L52 16 L60 78 L48 90 Z" fill="url(#vs-teal)"/>
+  <!-- Right sail / V chevron -->
+  <path d="M68 16 L94 16 L72 92 L60 78 Z" fill="url(#vs-teal)" opacity="0.92"/>
+  <!-- Inner white V stroke -->
+  <path d="M40 24 L58 70 L80 24" stroke="#eef7f7" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <!-- Navy hull accent -->
+  <path d="M30 58 L42 58 L36 80 Z" fill="#0f2a5e"/>
+  <!-- S / wave below -->
+  <path d="M30 98 C46 88, 74 108, 92 96" stroke="url(#vs-teal)" stroke-width="9" stroke-linecap="round" fill="none"/>
+</svg>
