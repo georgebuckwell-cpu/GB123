@@ -3,487 +3,290 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Shopping Star Supermarket</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <title>Shopping Star Super Market</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --midnight: #0D1B2A;
-      --midnight-mid: #162035;
-      --midnight-light: #1e2d45;
-      --gold: #F4C542;
-      --gold-dark: #d4a520;
-      --gold-pale: #fef3c7;
-      --white: #fff;
-      --text-dark: #1a1a1a;
-      --text-mid: #555;
-      --text-light: rgba(255,255,255,0.75);
+      --navy: #0D1B2A; --navy-mid: #152637; --navy-light: #1e3448;
+      --gold: #F4C542; --gold-dark: #c9a030;
+      --white: #FFFFFF; --off-white: #F8F9FA; --light: #EEF2F7; --text-muted: #6b7c93;
     }
     html { scroll-behavior: smooth; }
-    body { font-family: 'Inter', sans-serif; color: var(--text-dark); background: var(--midnight); }
-
+    body { font-family: 'Inter', sans-serif; color: var(--navy); background: var(--white); }
     nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(13,27,42,0.98); backdrop-filter: blur(10px);
       display: flex; align-items: center; justify-content: space-between;
-      padding: 0 5%; height: 76px;
-      background: rgba(13,27,42,0.97); backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(244,197,66,0.15);
+      padding: 0 5%; height: 72px;
+      box-shadow: 0 1px 0 rgba(244,197,66,0.15), 0 2px 30px rgba(0,0,0,0.5);
     }
-    .nav-logo {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.4rem; font-weight: 700; color: var(--gold);
-      text-decoration: none; display: flex; align-items: center; gap: 0.5rem;
-    }
-    .nav-star { color: var(--gold); font-size: 1rem; animation: spin 8s linear infinite; display: inline-block; }
-    @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+    .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.35rem; font-weight: 700; color: var(--white); display: flex; align-items: center; gap: 0.5rem; }
+    .nav-logo .star { color: var(--gold); }
     .nav-links { display: flex; gap: 2rem; list-style: none; }
-    .nav-links a {
-      color: var(--text-light); text-decoration: none;
-      font-size: 0.875rem; font-weight: 500; letter-spacing: 0.3px;
-      transition: color 0.2s;
-    }
+    .nav-links a { color: rgba(255,255,255,0.75); text-decoration: none; font-size: 0.88rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; transition: color 0.2s; }
     .nav-links a:hover { color: var(--gold); }
-    .lang-toggle {
-      background: var(--gold); color: var(--midnight);
-      border: none; padding: 0.45rem 1.1rem; border-radius: 4px;
-      font-family: 'Inter', sans-serif; font-size: 0.8rem; font-weight: 700;
-      cursor: pointer; letter-spacing: 0.5px; transition: background 0.2s, transform 0.15s;
-    }
-    .lang-toggle:hover { background: #ffe078; transform: scale(1.04); }
-
-    .hero {
-      height: 100vh; min-height: 600px; position: relative;
-      display: flex; align-items: center; justify-content: center; text-align: center;
-      background: url('https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
-    }
-    .hero::before {
-      content: ''; position: absolute; inset: 0;
-      background: linear-gradient(180deg, rgba(13,27,42,0.85) 0%, rgba(13,27,42,0.65) 50%, rgba(13,27,42,0.9) 100%);
-    }
-    .hero-stars {
-      position: absolute; inset: 0; pointer-events: none; overflow: hidden;
-    }
-    .star-dot {
-      position: absolute; width: 2px; height: 2px; background: var(--gold);
-      border-radius: 50%; animation: twinkle 3s ease-in-out infinite;
-    }
-    @keyframes twinkle { 0%,100%{opacity:0.2;} 50%{opacity:1;} }
-    .hero-content { position: relative; z-index: 1; padding: 0 1.5rem; max-width: 900px; }
-    .hero-crown { font-size: 2.5rem; margin-bottom: 1rem; filter: drop-shadow(0 0 20px rgba(244,197,66,0.6)); }
-    .hero-eyebrow {
-      display: inline-flex; align-items: center; gap: 0.6rem;
-      font-size: 0.72rem; font-weight: 700; letter-spacing: 3px; text-transform: uppercase;
-      color: var(--gold); margin-bottom: 1.5rem;
-    }
-    .hero-eyebrow::before, .hero-eyebrow::after { content: '★'; font-size: 0.6rem; }
-    .hero h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(2.4rem, 6vw, 4.5rem); font-weight: 700;
-      color: var(--white); line-height: 1.1; margin-bottom: 1.3rem;
-      text-shadow: 0 2px 30px rgba(0,0,0,0.5);
-    }
-    .hero h1 .gold { color: var(--gold); }
-    .hero p {
-      font-size: clamp(1rem, 2vw, 1.2rem); color: var(--text-light);
-      max-width: 580px; margin: 0 auto 2.5rem; line-height: 1.75;
-    }
-    .hero-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
-    .btn-gold {
-      display: inline-block; background: var(--gold);
-      color: var(--midnight); padding: 0.9rem 2.6rem;
-      border-radius: 4px; font-weight: 700; font-size: 0.95rem;
-      text-decoration: none; letter-spacing: 0.5px;
-      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
-      box-shadow: 0 4px 20px rgba(244,197,66,0.4);
-    }
-    .btn-gold:hover { background: #ffe078; transform: translateY(-2px); box-shadow: 0 8px 32px rgba(244,197,66,0.5); }
-    .btn-outline-gold {
-      display: inline-block; background: transparent;
-      color: var(--gold); padding: 0.9rem 2.6rem;
-      border: 2px solid var(--gold); border-radius: 4px;
-      font-weight: 600; font-size: 0.95rem; text-decoration: none;
-      transition: background 0.2s;
-    }
-    .btn-outline-gold:hover { background: rgba(244,197,66,0.1); }
-
-    section { padding: 100px 5%; }
-    .section-label {
-      font-size: 0.72rem; font-weight: 700; letter-spacing: 3px;
-      text-transform: uppercase; color: var(--gold);
-      margin-bottom: 0.8rem; display: block;
-    }
-    .section-title {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(1.9rem, 4vw, 3rem); font-weight: 700;
-      color: var(--white); line-height: 1.2; margin-bottom: 1.2rem;
-    }
-    .section-body { font-size: 1.05rem; color: var(--text-light); line-height: 1.8; max-width: 640px; }
-
-    /* ABOUT */
-    .about { background: var(--midnight-mid); }
-    .about-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; max-width: 1200px; margin: 0 auto; }
-    .about-image { position: relative; border-radius: 8px; overflow: hidden; }
-    .about-image::after {
-      content: ''; position: absolute; inset: 0;
-      background: linear-gradient(135deg, transparent 60%, rgba(244,197,66,0.15) 100%);
-      pointer-events: none;
-    }
-    .about-image img { width: 100%; height: 440px; object-fit: cover; display: block; transition: transform 0.5s; }
-    .about-image:hover img { transform: scale(1.04); }
-    .about-badge {
-      position: absolute; bottom: -1px; right: -1px;
-      background: var(--gold); color: var(--midnight);
-      font-family: 'Playfair Display', serif; font-weight: 700;
-      padding: 1.2rem 1.6rem; text-align: center; border-radius: 8px 0 0 0;
-    }
-    .about-badge .num { font-size: 2rem; line-height: 1; }
-    .about-badge .lbl { font-size: 0.7rem; font-family: 'Inter', sans-serif; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; }
-    .perks { display: flex; flex-direction: column; gap: 1.2rem; margin-top: 2rem; }
-    .perk { display: flex; gap: 1rem; align-items: flex-start; }
-    .perk-icon { width: 38px; height: 38px; background: rgba(244,197,66,0.15); border: 1px solid rgba(244,197,66,0.3); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; }
-    .perk-text h4 { font-weight: 600; color: var(--white); margin-bottom: 0.2rem; font-size: 0.9rem; }
-    .perk-text p { font-size: 0.85rem; color: var(--text-light); line-height: 1.5; }
-
-    /* PRODUCTS */
-    .products { background: var(--midnight); }
-    .products-header { max-width: 1200px; margin: 0 auto 4rem; }
-    .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; max-width: 1200px; margin: 0 auto; }
-    .card {
-      background: var(--midnight-mid); border-radius: 8px; overflow: hidden;
-      border: 1px solid rgba(244,197,66,0.1);
-      box-shadow: 0 4px 24px rgba(0,0,0,0.3);
-      transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
-    }
-    .card:hover { transform: translateY(-8px); box-shadow: 0 20px 50px rgba(244,197,66,0.1); border-color: rgba(244,197,66,0.4); }
-    .card-img { height: 200px; overflow: hidden; }
-    .card-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
-    .card:hover .card-img img { transform: scale(1.06); }
-    .card-body { padding: 1.8rem; }
-    .card-icon { font-size: 1.8rem; margin-bottom: 0.8rem; }
-    .card-title { font-family: 'Playfair Display', serif; font-size: 1.25rem; font-weight: 600; color: var(--gold); margin-bottom: 0.7rem; }
-    .card-text { font-size: 0.93rem; color: var(--text-light); line-height: 1.7; }
-
-    /* HOURS */
-    .hours { background: var(--midnight-light); }
-    .hours-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
-    .hours-table { width: 100%; border-collapse: collapse; margin-top: 1.5rem; }
-    .hours-table tr { border-bottom: 1px solid rgba(244,197,66,0.1); }
-    .hours-table tr:last-child { border-bottom: none; }
-    .hours-table td { padding: 0.9rem 0; color: var(--text-light); font-size: 0.95rem; }
-    .hours-table td:last-child { text-align: right; font-weight: 600; color: var(--gold); }
-    .hours-note { margin-top: 1.5rem; font-size: 0.84rem; color: rgba(255,255,255,0.4); font-style: italic; }
-    .hours-visual { border-radius: 8px; overflow: hidden; box-shadow: 0 16px 50px rgba(0,0,0,0.4); border: 1px solid rgba(244,197,66,0.15); }
-    .hours-visual img { width: 100%; height: 380px; object-fit: cover; display: block; }
-
-    /* CONTACT */
-    .contact { background: var(--midnight-mid); }
-    .contact-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; max-width: 1200px; margin: 0 auto; align-items: start; }
-    .contact-info { margin-top: 2rem; }
-    .contact-item { display: flex; gap: 1.2rem; align-items: flex-start; margin-bottom: 1.8rem; }
-    .contact-icon { width: 46px; height: 46px; background: rgba(244,197,66,0.15); border: 1px solid rgba(244,197,66,0.3); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0; }
-    .contact-detail h4 { font-weight: 600; color: var(--gold); margin-bottom: 0.2rem; font-size: 0.95rem; }
-    .contact-detail p { font-size: 0.9rem; color: var(--text-light); line-height: 1.5; }
-    .map-placeholder { height: 400px; border-radius: 8px; overflow: hidden; border: 1px solid rgba(244,197,66,0.2); }
-    .map-placeholder iframe { width: 100%; height: 100%; border: none; }
-
-    footer {
-      background: var(--midnight); color: var(--text-light);
-      text-align: center; padding: 4rem 5%;
-      border-top: 1px solid rgba(244,197,66,0.15);
-    }
-    .footer-logo { font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--gold); font-weight: 700; margin-bottom: 0.6rem; }
-    .footer-tagline { font-size: 0.9rem; margin-bottom: 1.5rem; color: rgba(255,255,255,0.5); }
-    .footer-stars { font-size: 1rem; color: var(--gold); letter-spacing: 0.5rem; margin-bottom: 1.5rem; }
-    .footer-copy { font-size: 0.8rem; color: rgba(255,255,255,0.3); }
-
+    .lang-btn { background: transparent; color: var(--gold); border: 1.5px solid var(--gold); padding: 0.4rem 1rem; border-radius: 4px; font-family: 'Inter', sans-serif; font-size: 0.8rem; font-weight: 700; cursor: pointer; letter-spacing: 0.08em; text-transform: uppercase; transition: background 0.2s, color 0.2s; }
+    .lang-btn:hover { background: var(--gold); color: var(--navy); }
     .el { display: none; }
     body.lang-el .en { display: none; }
     body.lang-el .el { display: block; }
-    span.el, span.en { display: inline; }
-    body.lang-el span.en { display: none; }
     body.lang-el span.el { display: inline; }
-
+    body.lang-el span.en { display: none; }
+    .hero {
+      height: 100vh; min-height: 640px;
+      background: url('https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+      display: flex; align-items: center; justify-content: center; text-align: center; position: relative;
+    }
+    .hero::before { content: ''; position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(13,27,42,0.78) 0%, rgba(13,27,42,0.9) 100%); }
+    .hero::after { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 50% 30%, rgba(244,197,66,0.07) 0%, transparent 65%); }
+    .hero-content { position: relative; z-index: 2; padding: 0 1.5rem; max-width: 900px; }
+    .hero-star-row { font-size: 1.5rem; color: var(--gold); letter-spacing: 0.5rem; margin-bottom: 1rem; opacity: 0.7; }
+    .hero-eyebrow { font-size: 0.8rem; font-weight: 600; letter-spacing: 0.3em; text-transform: uppercase; color: rgba(244,197,66,0.7); margin-bottom: 1.2rem; }
+    .hero-title { font-family: 'Playfair Display', serif; font-size: clamp(2.8rem, 6vw, 5.2rem); font-weight: 900; color: var(--white); line-height: 1.08; margin-bottom: 1.5rem; }
+    .hero-title .star-word { color: var(--gold); }
+    .hero-tagline { font-size: clamp(1.05rem, 2vw, 1.3rem); color: rgba(255,255,255,0.82); font-weight: 300; margin-bottom: 2.8rem; line-height: 1.7; }
+    .hero-cta { display: inline-block; background: var(--gold); color: var(--navy); padding: 1rem 3rem; border-radius: 4px; text-decoration: none; font-weight: 700; font-size: 0.9rem; letter-spacing: 0.12em; text-transform: uppercase; transition: background 0.2s, transform 0.2s; box-shadow: 0 4px 30px rgba(244,197,66,0.45); }
+    .hero-cta:hover { background: var(--gold-dark); transform: translateY(-2px); }
+    section { padding: 100px 5%; }
+    .section-label { font-size: 0.78rem; font-weight: 600; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold-dark); margin-bottom: 0.8rem; }
+    .section-title { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; color: var(--navy); margin-bottom: 1.5rem; line-height: 1.2; }
+    .section-title .highlight { color: var(--gold-dark); }
+    .section-divider { width: 60px; height: 4px; background: var(--gold); border-radius: 2px; margin-bottom: 2rem; }
+    .section-text { font-size: 1.05rem; color: var(--text-muted); line-height: 1.85; max-width: 680px; }
+    .about { background: var(--off-white); }
+    .about-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; max-width: 1200px; margin: 0 auto; }
+    .about-img { width: 100%; height: 460px; object-fit: cover; border-radius: 8px; box-shadow: 0 0 0 1px rgba(244,197,66,0.2), 0 30px 70px rgba(13,27,42,0.15); }
+    .features { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 2.5rem; }
+    .feature-item { display: flex; align-items: flex-start; gap: 0.7rem; }
+    .feature-icon { color: var(--gold); font-size: 1.1rem; margin-top: 2px; flex-shrink: 0; }
+    .feature-text { font-size: 0.9rem; color: var(--text-muted); line-height: 1.5; }
+    .feature-text strong { color: var(--navy); display: block; font-size: 0.95rem; }
+    .products { background: var(--navy); }
+    .products-inner { max-width: 1200px; margin: 0 auto; }
+    .products-header { margin-bottom: 4rem; }
+    .products .section-title { color: var(--white); }
+    .products .section-label { color: rgba(244,197,66,0.6); }
+    .cards-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+    .card { background: var(--navy-light); border: 1px solid rgba(244,197,66,0.12); border-radius: 10px; overflow: hidden; transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s; }
+    .card:hover { transform: translateY(-8px); box-shadow: 0 20px 50px rgba(0,0,0,0.3); border-color: rgba(244,197,66,0.4); }
+    .card-img { height: 220px; overflow: hidden; }
+    .card-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; filter: brightness(0.9); }
+    .card:hover .card-img img { transform: scale(1.06); filter: brightness(1); }
+    .card-body { padding: 1.8rem; }
+    .card-star { color: var(--gold); font-size: 1.1rem; margin-bottom: 0.6rem; }
+    .card-title { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700; color: var(--white); margin-bottom: 0.6rem; }
+    .card-text { font-size: 0.95rem; color: rgba(255,255,255,0.6); line-height: 1.7; }
+    .card-cta { display: inline-block; margin-top: 1.2rem; font-size: 0.82rem; font-weight: 600; color: var(--gold); letter-spacing: 0.08em; text-transform: uppercase; }
+    .hours { background: var(--light); }
+    .hours .section-title { color: var(--navy); }
+    .hours-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; margin-top: 2.5rem; }
+    .hours-card { background: var(--navy); border: 1px solid rgba(244,197,66,0.1); border-radius: 10px; padding: 1.8rem; text-align: center; transition: border-color 0.2s, transform 0.2s; }
+    .hours-card:hover { border-color: var(--gold); transform: translateY(-4px); }
+    .hours-day { font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.45); margin-bottom: 0.7rem; }
+    .hours-time { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; color: var(--gold); }
+    .contact { background: var(--white); }
+    .contact-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+    .contact-item { display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 2rem; }
+    .contact-icon { width: 48px; height: 48px; background: var(--navy); color: var(--gold); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0; }
+    .contact-label { font-size: 0.78rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold-dark); }
+    .contact-value { font-size: 1rem; color: var(--navy); margin-top: 0.25rem; line-height: 1.5; }
+    .contact-map { border-radius: 8px; height: 350px; background: var(--light); border: 1px solid rgba(13,27,42,0.08); display: flex; align-items: center; justify-content: center; color: var(--text-muted); font-size: 0.9rem; }
+    footer { background: var(--navy); color: rgba(255,255,255,0.45); text-align: center; padding: 2.5rem 5%; font-size: 0.9rem; }
+    footer strong { color: var(--gold); font-family: 'Playfair Display', serif; }
     @media (max-width: 900px) {
-      .about-inner, .hours-inner, .contact-inner { grid-template-columns: 1fr; gap: 2.5rem; }
-      .cards { grid-template-columns: 1fr; }
+      .about-inner, .contact-inner { grid-template-columns: 1fr; gap: 3rem; }
+      .cards-grid { grid-template-columns: 1fr; }
       .nav-links { display: none; }
+      .features { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
-
 <nav>
-  <a href="#" class="nav-logo"><span class="nav-star">★</span> Shopping Star</a>
+  <div class="nav-logo">
+    <span class="star">&#9733;</span>
+    Shopping Star
+    <span class="star">&#9733;</span>
+  </div>
   <ul class="nav-links">
     <li><a href="#about"><span class="en">About</span><span class="el">Σχετικά</span></a></li>
-    <li><a href="#products"><span class="en">Offers</span><span class="el">Προσφορές</span></a></li>
+    <li><a href="#products"><span class="en">Products</span><span class="el">Προϊόντα</span></a></li>
     <li><a href="#hours"><span class="en">Hours</span><span class="el">Ώρες</span></a></li>
     <li><a href="#contact"><span class="en">Contact</span><span class="el">Επικοινωνία</span></a></li>
   </ul>
-  <button class="lang-toggle" id="langBtn" onclick="toggleLang()">ΕΛ</button>
+  <button class="lang-btn" onclick="toggleLang(this)">ΕΛ</button>
 </nav>
-
-<section class="hero" id="home">
-  <div class="hero-stars" id="starsContainer"></div>
+<section class="hero">
   <div class="hero-content">
-    <div class="hero-crown">⭐</div>
-    <div class="hero-eyebrow">
-      <span class="en">Premium Supermarket · Greece</span>
-      <span class="el">Premium Σούπερ Μάρκετ · Ελλάδα</span>
-    </div>
-    <h1>
-      <span class="en">Shopping Star –<br>Reach for the <span class="gold">Best</span></span>
-      <span class="el">Shopping Star –<br>Φτάσε στο <span class="gold">Καλύτερο</span></span>
-    </h1>
-    <p>
-      <span class="en">Where quality meets aspiration. Discover a supermarket experience that redefines what everyday shopping can be — brilliant, indulgent, and unforgettable.</span>
-      <span class="el">Όπου η ποιότητα συναντά την φιλοδοξία. Ανακαλύψτε μια εμπειρία σούπερ μάρκετ που επαναπροσδιορίζει τι μπορεί να είναι η καθημερινή αγορά.</span>
-    </p>
-    <div class="hero-btns">
-      <a href="#products" class="btn-gold">
-        <span class="en">Explore Star Deals</span>
-        <span class="el">Ανακαλύψτε Star Προσφορές</span>
-      </a>
-      <a href="#about" class="btn-outline-gold">
-        <span class="en">Our Story</span>
-        <span class="el">Η Ιστορία μας</span>
-      </a>
-    </div>
+    <div class="hero-star-row">&#9733; &#10022; &#9733;</div>
+    <p class="hero-eyebrow en">Super Market</p>
+    <p class="hero-eyebrow el">Σούπερ Μάρκετ</p>
+    <h1 class="hero-title">Shopping <span class="star-word">Star</span></h1>
+    <p class="hero-tagline en">Reach for the Best</p>
+    <p class="hero-tagline el">Φτάσε στο Καλύτερο</p>
+    <a href="#products" class="hero-cta en">Explore Our Aisles</a>
+    <a href="#products" class="hero-cta el">Εξερευνήστε τα Ράφια μας</a>
   </div>
 </section>
-
 <section class="about" id="about">
   <div class="about-inner">
-    <div class="about-image">
-      <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=800&q=80" alt="Premium store" />
-      <div class="about-badge">
-        <div class="num">★ #1</div>
-        <div class="lbl en">In Greece</div>
-        <div class="lbl el">Στην Ελλάδα</div>
-      </div>
+    <div>
+      <img class="about-img" src="https://images.unsplash.com/photo-1604719312566-8912e9227c6a?auto=format&fit=crop&w=800&q=80" alt="Shopping Star interior" />
     </div>
     <div>
-      <span class="section-label en">Why Shopping Star</span>
-      <span class="section-label el">Γιατί Shopping Star</span>
-      <h2 class="section-title">
-        <span class="en">Born to Elevate Your Shopping</span>
-        <span class="el">Γεννημένο για να Αναβαθμίσει τις Αγορές σας</span>
-      </h2>
-      <p class="section-body">
-        <span class="en">Shopping Star was created for those who demand more — more quality, more choice, and more value. We've built a premium shopping experience that puts you, the customer, at the very centre of everything we do.</span>
-        <span class="el">Το Shopping Star δημιουργήθηκε για όσους απαιτούν περισσότερα — περισσότερη ποιότητα, περισσότερες επιλογές και μεγαλύτερη αξία. Έχουμε χτίσει μια premium εμπειρία αγορών που βάζει εσάς στο επίκεντρο.</span>
-      </p>
-      <div class="perks">
-        <div class="perk">
-          <div class="perk-icon">🏆</div>
-          <div class="perk-text">
-            <h4><span class="en">Award-Winning Quality</span><span class="el">Βραβευμένη Ποιότητα</span></h4>
-            <p><span class="en">Recognised as Greece's best supermarket experience 3 years running.</span><span class="el">Αναγνωρισμένο ως η καλύτερη εμπειρία σούπερ μάρκετ στην Ελλάδα για 3 συνεχόμενα χρόνια.</span></p>
-          </div>
+      <p class="section-label en">Our Mission</p>
+      <p class="section-label el">Η Αποστολή μας</p>
+      <h2 class="section-title en">Reaching for the <span class="highlight">Stars</span></h2>
+      <h2 class="section-title el">Φτάνοντας στα <span class="highlight">Αστέρια</span></h2>
+      <div class="section-divider"></div>
+      <p class="section-text en">Shopping Star was founded with one goal: to be the brightest shopping destination in the region. We bring you stellar quality produce, unbeatable selection, and service that shines as brightly as the name suggests.</p>
+      <p class="section-text el">Το Shopping Star ιδρύθηκε με έναν στόχο: να είναι ο πιο λαμπρός προορισμός αγορών στην περιοχή. Σας φέρνουμε αστρικής ποιότητας προϊόντα, απαράμιλλη επιλογή και εξυπηρέτηση που λάμπει.</p>
+      <div class="features">
+        <div class="feature-item">
+          <div class="feature-icon">&#9733;</div>
+          <div class="feature-text"><strong class="en">Premium Quality</strong><strong class="el">Premium Ποιότητα</strong><span class="en">Only the finest products</span><span class="el">Μόνο τα καλύτερα προϊόντα</span></div>
         </div>
-        <div class="perk">
-          <div class="perk-icon">💎</div>
-          <div class="perk-text">
-            <h4><span class="en">Star Loyalty Programme</span><span class="el">Πρόγραμμα Star Πιστότητας</span></h4>
-            <p><span class="en">Earn stars on every purchase and unlock exclusive rewards, early access, and personalised offers.</span><span class="el">Κερδίστε αστέρια σε κάθε αγορά και ξεκλειδώστε αποκλειστικές ανταμοιβές και εξατομικευμένες προσφορές.</span></p>
-          </div>
+        <div class="feature-item">
+          <div class="feature-icon">&#9733;</div>
+          <div class="feature-text"><strong class="en">Daily Fresh</strong><strong class="el">Καθημερινά Φρέσκα</strong><span class="en">Delivered every morning</span><span class="el">Παράδοση κάθε πρωί</span></div>
         </div>
-        <div class="perk">
-          <div class="perk-icon">🚀</div>
-          <div class="perk-text">
-            <h4><span class="en">Same-Day Delivery</span><span class="el">Παράδοση Αυθημερόν</span></h4>
-            <p><span class="en">Order by 2 pm and receive your shopping at home the same evening.</span><span class="el">Παραγγείλτε έως τις 2 μμ και λάβετε τα ψώνια σας στο σπίτι το ίδιο βράδυ.</span></p>
-          </div>
+        <div class="feature-item">
+          <div class="feature-icon">&#9733;</div>
+          <div class="feature-text"><strong class="en">Wide Selection</strong><strong class="el">Ευρεία Επιλογή</strong><span class="en">5000+ products stocked</span><span class="el">5000+ προϊόντα</span></div>
+        </div>
+        <div class="feature-item">
+          <div class="feature-icon">&#9733;</div>
+          <div class="feature-text"><strong class="en">Star Service</strong><strong class="el">Αστρική Εξυπηρέτηση</strong><span class="en">Friendly &amp; fast staff</span><span class="el">Φιλικό &amp; γρήγορο προσωπικό</span></div>
         </div>
       </div>
     </div>
   </div>
 </section>
-
 <section class="products" id="products">
-  <div class="products-header">
-    <span class="section-label en">Star Selection</span>
-    <span class="section-label el">Star Επιλογή</span>
-    <h2 class="section-title">
-      <span class="en">Our Finest Categories</span>
-      <span class="el">Οι Καλύτερες Κατηγορίες μας</span>
-    </h2>
-  </div>
-  <div class="cards">
-    <div class="card">
-      <div class="card-img">
-        <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=600&q=80" alt="Premium food" />
-      </div>
-      <div class="card-body">
-        <div class="card-icon">⭐</div>
-        <h3 class="card-title">
-          <span class="en">Star Premium Range</span>
-          <span class="el">Σειρά Star Premium</span>
-        </h3>
-        <p class="card-text">
-          <span class="en">Our own exclusive label — handpicked ingredients, elevated recipes, and packaging designed to impress.</span>
-          <span class="el">Η αποκλειστική μας ετικέτα — χειροπίαστα συστατικά, αναβαθμισμένες συνταγές και συσκευασία σχεδιασμένη να εντυπωσιάζει.</span>
-        </p>
-      </div>
+  <div class="products-inner">
+    <div class="products-header">
+      <p class="section-label en">What We Offer</p>
+      <p class="section-label el">Τι Προσφέρουμε</p>
+      <h2 class="section-title en">Three Star Departments</h2>
+      <h2 class="section-title el">Τρία Αστρικά Τμήματα</h2>
+      <div class="section-divider"></div>
     </div>
-    <div class="card">
-      <div class="card-img">
-        <img src="https://images.unsplash.com/photo-1467003909585-2f8a72700288?auto=format&fit=crop&w=600&q=80" alt="Gourmet" />
+    <div class="cards-grid">
+      <div class="card">
+        <div class="card-img"><img src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=600&q=80" alt="Fresh Produce" /></div>
+        <div class="card-body">
+          <div class="card-star">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <h3 class="card-title en">Star Fresh</h3>
+          <h3 class="card-title el">Αστρική Φρεσκάδα</h3>
+          <p class="card-text en">Our fresh produce department is a constellation of colour and flavour — seasonal, local, and delivered at peak ripeness.</p>
+          <p class="card-text el">Το τμήμα φρέσκων μας είναι ένας αστερισμός χρώματος και γεύσης — εποχιακό, τοπικό και παραδομένο στην κορυφή της ωριμότητας.</p>
+          <span class="card-cta en">&#9733; Explore</span>
+          <span class="card-cta el">&#9733; Εξερευνήστε</span>
+        </div>
       </div>
-      <div class="card-body">
-        <div class="card-icon">🌟</div>
-        <h3 class="card-title">
-          <span class="en">Gourmet & International</span>
-          <span class="el">Gourmet & Διεθνή</span>
-        </h3>
-        <p class="card-text">
-          <span class="en">A world of flavours under one roof — imported delicacies, international brands, and gourmet specialties.</span>
-          <span class="el">Ένας κόσμος γεύσεων κάτω από μία στέγη — εισαγόμενες λιχουδιές, διεθνείς μάρκες και gourmet ειδικότητες.</span>
-        </p>
+      <div class="card">
+        <div class="card-img"><img src="https://images.unsplash.com/photo-1534723452862-4c874018d66d?auto=format&fit=crop&w=600&q=80" alt="Grocery Selection" /></div>
+        <div class="card-body">
+          <div class="card-star">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <h3 class="card-title en">Galaxy of Groceries</h3>
+          <h3 class="card-title el">Γαλαξίας Παντοπωλείου</h3>
+          <p class="card-text en">Thousands of domestic and imported groceries orbiting a single location — for every taste, every budget, every occasion.</p>
+          <p class="card-text el">Χιλιάδες εγχώρια και εισαγόμενα προϊόντα σε μια τοποθεσία — για κάθε γεύση, κάθε προϋπολογισμό, κάθε περίσταση.</p>
+          <span class="card-cta en">&#9733; Explore</span>
+          <span class="card-cta el">&#9733; Εξερευνήστε</span>
+        </div>
       </div>
-    </div>
-    <div class="card">
-      <div class="card-img">
-        <img src="https://images.unsplash.com/photo-1560472355-536de3962603?auto=format&fit=crop&w=600&q=80" alt="Offers" />
-      </div>
-      <div class="card-body">
-        <div class="card-icon">💰</div>
-        <h3 class="card-title">
-          <span class="en">Weekly Star Offers</span>
-          <span class="el">Εβδομαδιαίες Star Προσφορές</span>
-        </h3>
-        <p class="card-text">
-          <span class="en">Premium products at unbeatable prices every week. Because reaching for the best shouldn't cost the earth.</span>
-          <span class="el">Premium προϊόντα σε ασυναγώνιστες τιμές κάθε εβδομάδα. Γιατί το καλύτερο δεν πρέπει να κοστίζει πολύ.</span>
-        </p>
+      <div class="card">
+        <div class="card-img"><img src="https://images.unsplash.com/photo-1607349913338-fca6f7fc42d0?auto=format&fit=crop&w=600&q=80" alt="Deli" /></div>
+        <div class="card-body">
+          <div class="card-star">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+          <h3 class="card-title en">Supernova Deli</h3>
+          <h3 class="card-title el">Deli Υπερκαινοφανούς</h3>
+          <p class="card-text en">Our deli and bakery explode with flavour — artisan cheeses, premium meats, and breads baked in-store every dawn.</p>
+          <p class="card-text el">Το ντελικατέσεν μας εκρήγνυται από γεύσεις — artisan τυριά, premium κρέατα και ψωμιά που ψήνονται κάθε αυγή.</p>
+          <span class="card-cta en">&#9733; Explore</span>
+          <span class="card-cta el">&#9733; Εξερευνήστε</span>
+        </div>
       </div>
     </div>
   </div>
 </section>
-
 <section class="hours" id="hours">
-  <div class="hours-inner">
-    <div>
-      <span class="section-label en">Store Hours</span>
-      <span class="section-label el">Ώρες Λειτουργίας</span>
-      <h2 class="section-title">
-        <span class="en">The Star Never Sleeps</span>
-        <span class="el">Το Αστέρι Δεν Κοιμάται</span>
-      </h2>
-      <table class="hours-table">
-        <tr>
-          <td><span class="en">Monday – Friday</span><span class="el">Δευτέρα – Παρασκευή</span></td>
-          <td>07:00 – 22:30</td>
-        </tr>
-        <tr>
-          <td><span class="en">Saturday</span><span class="el">Σάββατο</span></td>
-          <td>07:30 – 22:00</td>
-        </tr>
-        <tr>
-          <td><span class="en">Sunday</span><span class="el">Κυριακή</span></td>
-          <td>09:00 – 21:00</td>
-        </tr>
-        <tr>
-          <td><span class="en">Public Holidays</span><span class="el">Αργίες</span></td>
-          <td>10:00 – 19:00</td>
-        </tr>
-      </table>
-      <p class="hours-note">
-        <span class="en">* Online orders accepted 24/7 via our website and app.</span>
-        <span class="el">* Ηλεκτρονικές παραγγελίες δεκτές 24/7 μέσω ιστοσελίδας και εφαρμογής.</span>
-      </p>
-    </div>
-    <div class="hours-visual">
-      <img src="https://images.unsplash.com/photo-1604719312566-8912e9227c6a?auto=format&fit=crop&w=800&q=80" alt="Store night" />
+  <div style="max-width:1000px;margin:0 auto;">
+    <p class="section-label">&#9733; <span class="en">Opening Hours</span><span class="el">Ώρες Λειτουργίας</span></p>
+    <h2 class="section-title en">Stars Are Always Shining</h2>
+    <h2 class="section-title el">Τα Αστέρια Πάντα Λάμπουν</h2>
+    <div class="section-divider"></div>
+    <div class="hours-grid">
+      <div class="hours-card">
+        <div class="hours-day en">Monday – Friday</div>
+        <div class="hours-day el">Δευτέρα – Παρασκευή</div>
+        <div class="hours-time">08:00 – 21:30</div>
+      </div>
+      <div class="hours-card">
+        <div class="hours-day en">Saturday</div>
+        <div class="hours-day el">Σάββατο</div>
+        <div class="hours-time">08:00 – 21:00</div>
+      </div>
+      <div class="hours-card">
+        <div class="hours-day en">Sunday</div>
+        <div class="hours-day el">Κυριακή</div>
+        <div class="hours-time">09:00 – 19:00</div>
+      </div>
+      <div class="hours-card">
+        <div class="hours-day en">Public Holidays</div>
+        <div class="hours-day el">Αργίες</div>
+        <div class="hours-time">10:00 – 17:00</div>
+      </div>
     </div>
   </div>
 </section>
-
 <section class="contact" id="contact">
   <div class="contact-inner">
     <div>
-      <span class="section-label en">Find Us</span>
-      <span class="section-label el">Βρείτε μας</span>
-      <h2 class="section-title">
-        <span class="en">Your Star Location</span>
-        <span class="el">Η Star Τοποθεσία σας</span>
-      </h2>
-      <div class="contact-info">
-        <div class="contact-item">
-          <div class="contact-icon">📍</div>
-          <div class="contact-detail">
-            <h4><span class="en">Address</span><span class="el">Διεύθυνση</span></h4>
-            <p>Λεωφόρος Κηφισίας 37, Μαρούσι, Αθήνα 15123</p>
-          </div>
+      <p class="section-label en">Navigate to Us</p>
+      <p class="section-label el">Πλοηγηθείτε σε μας</p>
+      <h2 class="section-title en">Find Your <span class="highlight">Star</span></h2>
+      <h2 class="section-title el">Βρείτε το <span class="highlight">Αστέρι</span> σας</h2>
+      <div class="section-divider"></div>
+      <div class="contact-item">
+        <div class="contact-icon">&#128205;</div>
+        <div>
+          <div class="contact-label en">Address</div><div class="contact-label el">Διεύθυνση</div>
+          <div class="contact-value">Stellar Avenue 5, North District</div>
         </div>
-        <div class="contact-item">
-          <div class="contact-icon">📞</div>
-          <div class="contact-detail">
-            <h4><span class="en">Phone</span><span class="el">Τηλέφωνο</span></h4>
-            <p>+30 210 456 7890</p>
-          </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">&#128222;</div>
+        <div>
+          <div class="contact-label en">Phone</div><div class="contact-label el">Τηλέφωνο</div>
+          <div class="contact-value">+30 210 000 0005</div>
         </div>
-        <div class="contact-item">
-          <div class="contact-icon">✉️</div>
-          <div class="contact-detail">
-            <h4>Email</h4>
-            <p>star@shoppingstar.gr</p>
-          </div>
-        </div>
-        <div class="contact-item">
-          <div class="contact-icon">⭐</div>
-          <div class="contact-detail">
-            <h4><span class="en">Star Card</span><span class="el">Κάρτα Star</span></h4>
-            <p><span class="en">Pick up your free Star loyalty card in-store today.</span><span class="el">Πάρτε σήμερα τη δωρεάν κάρτα Star πιστότητας από το κατάστημα.</span></p>
-          </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">&#9993;</div>
+        <div>
+          <div class="contact-label en">Email</div><div class="contact-label el">Email</div>
+          <div class="contact-value">shine@shoppingstar.gr</div>
         </div>
       </div>
     </div>
-    <div class="map-placeholder">
-      <iframe
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3144.0!2d23.80!3d38.05!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2z!5e0!3m2!1sen!2sgr!4v1700000000000"
-        allowfullscreen="" loading="lazy"></iframe>
+    <div class="contact-map">
+      <span class="en">&#128205; Map Placeholder</span>
+      <span class="el">&#128205; Τοποθεσία Χάρτη</span>
     </div>
   </div>
 </section>
-
 <footer>
-  <div class="footer-logo">★ Shopping Star</div>
-  <p class="footer-tagline">
-    <span class="en">Reach for the Best</span>
-    <span class="el">Φτάσε στο Καλύτερο</span>
-  </p>
-  <div class="footer-stars">★ ★ ★ ★ ★</div>
-  <p class="footer-copy">
-    <span class="en">&copy; 2024 Shopping Star Supermarket. All rights reserved.</span>
-    <span class="el">&copy; 2024 Shopping Star Σούπερ Μάρκετ. Με επιφύλαξη παντός δικαιώματος.</span>
-  </p>
+  <p><strong>Shopping Star</strong> &#9733; &copy; 2024 &mdash; <span class="en">Reach for the Best, every single day.</span><span class="el">Φτάσε στο Καλύτερο, κάθε μέρα.</span></p>
 </footer>
-
 <script>
-  function toggleLang() {
-    const body = document.body;
-    const btn = document.getElementById('langBtn');
-    if (body.classList.contains('lang-el')) {
-      body.classList.remove('lang-el');
-      btn.textContent = 'ΕΛ';
-    } else {
-      body.classList.add('lang-el');
-      btn.textContent = 'EN';
-    }
-  }
-
-  // Twinkling stars in hero
-  const container = document.getElementById('starsContainer');
-  for (let i = 0; i < 60; i++) {
-    const star = document.createElement('div');
-    star.className = 'star-dot';
-    star.style.left = Math.random() * 100 + '%';
-    star.style.top = Math.random() * 100 + '%';
-    star.style.animationDelay = (Math.random() * 3) + 's';
-    star.style.animationDuration = (2 + Math.random() * 3) + 's';
-    star.style.width = star.style.height = (1 + Math.random() * 2) + 'px';
-    container.appendChild(star);
+  function toggleLang(btn) {
+    const isEl = document.body.classList.toggle('lang-el');
+    btn.textContent = isEl ? 'EN' : 'ΕΛ';
   }
 </script>
 </body>

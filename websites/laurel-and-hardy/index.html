@@ -3,861 +3,275 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Laurel &amp; Hardy Deli</title>
+  <title>Laurel &amp; Hardy – Fine Fresh Food</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <style>
-    *, *::before, *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --cream: #F5F0E8;
-      --brown: #3D2B1F;
-      --red: #C0392B;
-      --brown-light: #5a3e2e;
-      --cream-dark: #e8e0d0;
+      --cream: #F5F0E8; --brown: #3D2B1F; --brown-mid: #5c4033;
+      --red: #C0392B; --red-dark: #96281B;
+      --white: #FFFFFF; --light-cream: #FAF7F2; --text-muted: #7a6152;
     }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      font-family: 'Inter', sans-serif;
-      background-color: var(--cream);
-      color: var(--brown);
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='4' height='4'%3E%3Crect width='4' height='4' fill='%23F5F0E8'/%3E%3Ccircle cx='1' cy='1' r='0.5' fill='%23e0d8c8' opacity='0.4'/%3E%3Ccircle cx='3' cy='3' r='0.5' fill='%23e0d8c8' opacity='0.4'/%3E%3C/svg%3E");
-    }
-
-    /* ── LANGUAGE TOGGLE LOGIC ── */
-    body .lang-el { display: none; }
-    body.lang-el .lang-en { display: none; }
-    body.lang-el .lang-el { display: revert; }
-
-    /* ── STICKY NAV ── */
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; color: var(--brown); background: var(--white); }
     nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 1000;
-      background-color: var(--brown);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 2rem;
-      height: 64px;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.35);
-    }
-
-    .nav-logo {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.7rem;
-      font-weight: 900;
-      color: var(--cream);
-      letter-spacing: 0.04em;
-      text-decoration: none;
-      flex-shrink: 0;
-    }
-
-    .nav-logo span {
-      color: var(--red);
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 2rem;
-      list-style: none;
-      align-items: center;
-    }
-
-    .nav-links a {
-      color: var(--cream);
-      text-decoration: none;
-      font-size: 0.88rem;
-      font-weight: 500;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      transition: color 0.2s;
-      white-space: nowrap;
-    }
-
-    .nav-links a:hover {
-      color: var(--red);
-    }
-
-    .nav-right {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
-
-    #lang-btn {
-      background: transparent;
-      border: 2px solid var(--red);
-      color: var(--red);
-      font-family: 'Inter', sans-serif;
-      font-size: 0.78rem;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      padding: 0.3rem 0.75rem;
-      border-radius: 3px;
-      cursor: pointer;
-      transition: background 0.2s, color 0.2s;
-    }
-
-    #lang-btn:hover {
-      background: var(--red);
-      color: #fff;
-    }
-
-    .nav-hamburger {
-      display: none;
-      flex-direction: column;
-      gap: 5px;
-      cursor: pointer;
-      background: none;
-      border: none;
-      padding: 4px;
-    }
-
-    .nav-hamburger span {
-      display: block;
-      width: 24px;
-      height: 2px;
-      background: var(--cream);
-      border-radius: 2px;
-      transition: 0.3s;
-    }
-
-    /* ── HERO ── */
-    #hero {
-      position: relative;
-      height: 100vh;
-      min-height: 560px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      overflow: hidden;
-    }
-
-    .hero-bg {
-      position: absolute;
-      inset: 0;
-      background-image: url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1920&q=80');
-      background-size: cover;
-      background-position: center;
-      z-index: 0;
-    }
-
-    .hero-overlay {
-      position: absolute;
-      inset: 0;
-      background: rgba(61, 43, 31, 0.72);
-      z-index: 1;
-    }
-
-    .hero-content {
-      position: relative;
-      z-index: 2;
-      padding: 2rem;
-      max-width: 820px;
-    }
-
-    .hero-pretitle {
-      font-family: 'Inter', sans-serif;
-      font-size: 0.8rem;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--red);
-      margin-bottom: 1.2rem;
-      opacity: 0.9;
-    }
-
-    .hero-title {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(2.2rem, 5.5vw, 4rem);
-      font-weight: 900;
-      color: var(--cream);
-      line-height: 1.15;
-      margin-bottom: 1.4rem;
-      text-shadow: 0 2px 16px rgba(0,0,0,0.4);
-    }
-
-    .hero-subtitle {
-      font-size: clamp(1rem, 2vw, 1.2rem);
-      color: rgba(245, 240, 232, 0.88);
-      font-weight: 300;
-      line-height: 1.7;
-      margin-bottom: 2.5rem;
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .hero-cta {
-      display: inline-block;
-      border: 2px solid var(--cream);
-      color: var(--cream);
-      text-decoration: none;
-      font-family: 'Inter', sans-serif;
-      font-size: 0.9rem;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      padding: 0.85rem 2.2rem;
-      border-radius: 3px;
-      transition: background 0.25s, color 0.25s;
-    }
-
-    .hero-cta:hover {
-      background: var(--cream);
-      color: var(--brown);
-    }
-
-    /* ── SECTION COMMON ── */
-    section {
-      padding: 5rem 2rem;
-    }
-
-    .section-inner {
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-
-    .section-title {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(2rem, 4vw, 2.8rem);
-      font-weight: 700;
-      margin-bottom: 1rem;
-      text-align: center;
-    }
-
-    /* ── ABOUT ── */
-    #about {
-      background-color: var(--cream);
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='6' height='6'%3E%3Crect width='6' height='6' fill='%23F5F0E8'/%3E%3Ccircle cx='1' cy='1' r='0.6' fill='%23ddd5c2' opacity='0.35'/%3E%3Ccircle cx='4' cy='4' r='0.6' fill='%23ddd5c2' opacity='0.35'/%3E%3C/svg%3E");
-    }
-
-    #about .section-inner {
-      max-width: 760px;
-      text-align: center;
-    }
-
-    .about-divider {
-      border: none;
-      border-top: 2px solid var(--red);
-      width: 80px;
-      margin: 1.4rem auto;
-      position: relative;
-    }
-
-    .about-divider::before,
-    .about-divider::after {
-      content: '❧';
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      color: var(--red);
-      font-size: 1rem;
-      background: var(--cream);
-      padding: 0 6px;
-    }
-
-    .about-divider::before { left: 50%; transform: translateY(-50%) translateX(-50%); }
-
-    .about-quote-wrap {
-      position: relative;
-      margin: 2rem 0;
-      padding: 0 2.5rem;
-    }
-
-    .about-quote-wrap::before,
-    .about-quote-wrap::after {
-      font-family: 'Playfair Display', serif;
-      font-size: 5rem;
-      color: var(--red);
-      opacity: 0.25;
-      position: absolute;
-      line-height: 1;
-    }
-
-    .about-quote-wrap::before {
-      content: '\201C';
-      top: -0.5rem;
-      left: 0;
-    }
-
-    .about-quote-wrap::after {
-      content: '\201D';
-      bottom: -2rem;
-      right: 0;
-    }
-
-    .about-body {
-      font-size: 1.08rem;
-      line-height: 1.85;
-      color: var(--brown);
-    }
-
-    .about-tagline {
-      font-family: 'Playfair Display', serif;
-      font-style: italic;
-      font-size: 1.15rem;
-      color: var(--red);
-      margin-top: 1.8rem;
-    }
-
-    /* ── SERVICES ── */
-    #services {
-      background-color: #fff;
-    }
-
-    #services .section-title {
-      margin-bottom: 3rem;
-    }
-
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2rem;
-    }
-
-    .card {
-      background: var(--cream);
-      border-top: 5px solid var(--brown);
-      border-radius: 4px;
-      padding: 2.2rem 1.8rem;
-      box-shadow: 0 4px 18px rgba(61,43,31,0.1), 0 1px 4px rgba(61,43,31,0.08);
-      transition: transform 0.25s, box-shadow 0.25s;
-      position: relative;
-    }
-
-    .card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 10px 30px rgba(61,43,31,0.15);
-    }
-
-    .card-icon {
-      font-size: 2.5rem;
-      margin-bottom: 1.2rem;
-      display: block;
-    }
-
-    .card-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.35rem;
-      font-weight: 700;
-      color: var(--brown);
-      margin-bottom: 0.75rem;
-    }
-
-    .card-desc {
-      font-size: 0.95rem;
-      line-height: 1.75;
-      color: #5a4030;
-    }
-
-    .card::after {
-      content: '';
-      display: block;
-      width: 40px;
-      height: 2px;
-      background: var(--red);
-      margin-top: 1.5rem;
-    }
-
-    /* ── HOURS ── */
-    #hours {
-      background-color: var(--brown);
-      color: var(--cream);
-    }
-
-    #hours .section-title {
-      color: var(--cream);
-      margin-bottom: 0.5rem;
-    }
-
-    .hours-humor {
-      text-align: center;
-      font-style: italic;
-      color: rgba(245,240,232,0.6);
-      font-size: 0.95rem;
-      margin-bottom: 2.5rem;
-    }
-
-    .hours-table-wrap {
-      max-width: 480px;
-      margin: 0 auto;
-    }
-
-    .hours-table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 1rem;
-    }
-
-    .hours-table thead th {
-      font-family: 'Playfair Display', serif;
-      font-size: 0.78rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--red);
-      padding: 0.6rem 1rem;
-      text-align: left;
-      border-bottom: 1px solid rgba(245,240,232,0.15);
-    }
-
-    .hours-table tbody tr {
-      border-bottom: 1px solid rgba(245,240,232,0.08);
-      transition: background 0.15s;
-    }
-
-    .hours-table tbody tr:hover {
-      background: rgba(245,240,232,0.06);
-    }
-
-    .hours-table td {
-      padding: 0.9rem 1rem;
-      color: var(--cream);
-    }
-
-    .hours-table td:last-child {
-      text-align: right;
-      font-weight: 500;
-      color: rgba(245,240,232,0.85);
-    }
-
-    /* ── CONTACT ── */
-    #contact {
-      background-color: var(--cream);
-    }
-
-    #contact .section-title {
-      margin-bottom: 2.5rem;
-    }
-
-    .contact-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 1.5rem;
-      max-width: 860px;
-      margin: 0 auto;
-    }
-
-    .contact-block {
-      display: flex;
-      align-items: flex-start;
-      gap: 1rem;
-      background: #fff;
-      border-radius: 4px;
-      padding: 1.5rem;
-      box-shadow: 0 2px 10px rgba(61,43,31,0.07);
-      border-left: 4px solid var(--red);
-    }
-
-    .contact-icon {
-      font-size: 1.6rem;
-      flex-shrink: 0;
-      margin-top: 0.1rem;
-    }
-
-    .contact-label {
-      font-family: 'Playfair Display', serif;
-      font-size: 0.78rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--red);
-      margin-bottom: 0.3rem;
-    }
-
-    .contact-value {
-      font-size: 0.95rem;
-      line-height: 1.5;
-      color: var(--brown);
-      word-break: break-word;
-    }
-
-    .contact-value a {
-      color: var(--brown);
-      text-decoration: none;
-      border-bottom: 1px solid rgba(61,43,31,0.2);
-      transition: border-color 0.2s, color 0.2s;
-    }
-
-    .contact-value a:hover {
-      color: var(--red);
-      border-color: var(--red);
-    }
-
-    /* ── FOOTER ── */
-    footer {
-      background-color: var(--brown);
-      color: var(--cream);
-      text-align: center;
-      padding: 2.5rem 2rem;
-      border-top: 4px solid var(--red);
-    }
-
-    .footer-copy {
-      font-size: 0.9rem;
-      opacity: 0.8;
-      margin-bottom: 0.5rem;
-    }
-
-    .footer-tagline {
-      font-family: 'Playfair Display', serif;
-      font-style: italic;
-      font-size: 1rem;
-      color: rgba(245,240,232,0.5);
-    }
-
-    /* ── SERVICES LANG FIX ── */
-    .card .lang-el {
-      display: none;
-    }
-
-    body.lang-el .card .lang-en {
-      display: none;
-    }
-
-    body.lang-el .card .lang-el {
-      display: block;
-    }
-
-    /* ── MOBILE NAV ── */
-    @media (max-width: 768px) {
-      .nav-links {
-        display: none;
-        position: absolute;
-        top: 64px;
-        left: 0;
-        right: 0;
-        background: var(--brown);
-        flex-direction: column;
-        gap: 0;
-        padding: 1rem 0;
-        border-top: 1px solid rgba(245,240,232,0.12);
-        box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-      }
-
-      .nav-links.open {
-        display: flex;
-      }
-
-      .nav-links a {
-        padding: 0.9rem 2rem;
-        display: block;
-        width: 100%;
-      }
-
-      .nav-hamburger {
-        display: flex;
-      }
-
-      nav {
-        flex-wrap: wrap;
-      }
-
-      .hero-title {
-        font-size: clamp(1.8rem, 7vw, 2.8rem);
-      }
-    }
-
-    @media (max-width: 480px) {
-      section {
-        padding: 3.5rem 1.2rem;
-      }
-
-      .about-quote-wrap {
-        padding: 0 1.5rem;
-      }
+      position: sticky; top: 0; z-index: 100; background: var(--brown);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 5%; height: 72px; box-shadow: 0 2px 20px rgba(61,43,31,0.4);
+    }
+    .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.35rem; font-weight: 700; color: var(--cream); }
+    .nav-logo span { color: var(--red); font-style: italic; }
+    .nav-logo small { display: block; font-size: 0.65rem; font-weight: 300; letter-spacing: 0.25em; text-transform: uppercase; color: rgba(245,240,232,0.55); font-style: normal; margin-top: 1px; }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a { color: rgba(245,240,232,0.8); text-decoration: none; font-size: 0.88rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--red); }
+    .lang-btn { background: var(--red); color: var(--white); border: none; padding: 0.4rem 1rem; border-radius: 4px; font-family: 'Inter', sans-serif; font-size: 0.8rem; font-weight: 600; cursor: pointer; letter-spacing: 0.08em; text-transform: uppercase; transition: background 0.2s; }
+    .lang-btn:hover { background: var(--red-dark); }
+    .el { display: none; }
+    body.lang-el .en { display: none; }
+    body.lang-el .el { display: block; }
+    body.lang-el span.el { display: inline; }
+    body.lang-el span.en { display: none; }
+    .hero {
+      height: 100vh; min-height: 640px;
+      background: url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+      display: flex; align-items: center; justify-content: center; text-align: center; position: relative;
+    }
+    .hero::before { content: ''; position: absolute; inset: 0; background: linear-gradient(to bottom, rgba(61,43,31,0.7) 0%, rgba(61,43,31,0.82) 100%); }
+    .hero-content { position: relative; z-index: 1; padding: 0 1.5rem; max-width: 900px; }
+    .hero-duo { font-size: 3rem; margin-bottom: 0.5rem; }
+    .hero-kicker { font-size: 0.8rem; font-weight: 600; letter-spacing: 0.3em; text-transform: uppercase; color: var(--red); margin-bottom: 1rem; display: inline-block; }
+    .hero-title { font-family: 'Playfair Display', serif; font-size: clamp(2.8rem, 6vw, 5rem); font-weight: 900; color: var(--cream); line-height: 1.1; margin-bottom: 1rem; }
+    .hero-title em { color: var(--red); font-style: italic; }
+    .hero-tagline { font-size: clamp(1rem, 2vw, 1.25rem); color: rgba(245,240,232,0.85); font-weight: 300; margin-bottom: 0.6rem; line-height: 1.6; }
+    .hero-quip { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1rem; color: rgba(245,240,232,0.5); margin-bottom: 2.8rem; }
+    .hero-cta { display: inline-block; background: var(--red); color: var(--white); padding: 0.95rem 2.8rem; border-radius: 4px; text-decoration: none; font-weight: 600; font-size: 0.9rem; letter-spacing: 0.1em; text-transform: uppercase; transition: background 0.2s, transform 0.2s; box-shadow: 0 4px 20px rgba(192,57,43,0.5); }
+    .hero-cta:hover { background: var(--red-dark); transform: translateY(-2px); }
+    section { padding: 100px 5%; }
+    .section-label { font-size: 0.78rem; font-weight: 600; letter-spacing: 0.3em; text-transform: uppercase; color: var(--red); margin-bottom: 0.8rem; }
+    .section-title { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; color: var(--brown); margin-bottom: 1.5rem; line-height: 1.2; }
+    .section-title em { font-style: italic; color: var(--red); }
+    .section-divider { width: 60px; height: 4px; background: var(--red); border-radius: 2px; margin-bottom: 2rem; }
+    .section-text { font-size: 1.05rem; color: var(--text-muted); line-height: 1.85; max-width: 680px; }
+    .about { background: var(--light-cream); }
+    .about-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; max-width: 1200px; margin: 0 auto; }
+    .about-img { width: 100%; height: 460px; object-fit: cover; border-radius: 8px; box-shadow: 14px 14px 0 rgba(192,57,43,0.3); }
+    .fun-note { background: var(--cream); border-left: 4px solid var(--red); padding: 1.2rem 1.5rem; border-radius: 0 8px 8px 0; margin-top: 2rem; font-style: italic; color: var(--brown-mid); font-size: 0.95rem; line-height: 1.7; }
+    .products { background: var(--white); }
+    .products-inner { max-width: 1200px; margin: 0 auto; }
+    .products-header { margin-bottom: 4rem; }
+    .cards-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+    .card { border-radius: 10px; overflow: hidden; border: 1px solid rgba(61,43,31,0.08); transition: transform 0.3s, box-shadow 0.3s; background: var(--light-cream); }
+    .card:hover { transform: translateY(-8px); box-shadow: 0 22px 55px rgba(61,43,31,0.1); }
+    .card-img { height: 220px; overflow: hidden; }
+    .card-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+    .card:hover .card-img img { transform: scale(1.06); }
+    .card-body { padding: 1.8rem; }
+    .card-emoji { font-size: 1.8rem; margin-bottom: 0.6rem; }
+    .card-title { font-family: 'Playfair Display', serif; font-size: 1.25rem; font-weight: 700; color: var(--brown); margin-bottom: 0.6rem; }
+    .card-title em { font-style: italic; color: var(--red); }
+    .card-text { font-size: 0.95rem; color: var(--text-muted); line-height: 1.7; }
+    .card-wink { font-size: 0.82rem; color: var(--red); font-style: italic; margin-top: 0.8rem; }
+    .hours { background: var(--brown); color: var(--cream); }
+    .hours .section-title { color: var(--cream); }
+    .hours .section-label { color: rgba(245,240,232,0.5); }
+    .hours .section-divider { background: var(--red); }
+    .hours-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-top: 2.5rem; }
+    .hours-card { background: rgba(255,255,255,0.06); border: 1px solid rgba(245,240,232,0.1); border-radius: 8px; padding: 1.5rem; text-align: center; transition: background 0.2s, border-color 0.2s; }
+    .hours-card:hover { background: rgba(192,57,43,0.2); border-color: var(--red); }
+    .hours-day { font-size: 0.78rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(245,240,232,0.55); margin-bottom: 0.5rem; }
+    .hours-time { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; color: var(--cream); }
+    .contact { background: var(--light-cream); }
+    .contact-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+    .contact-item { display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 2rem; }
+    .contact-icon { width: 48px; height: 48px; background: var(--brown); color: var(--cream); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0; }
+    .contact-label { font-size: 0.78rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--red); }
+    .contact-value { font-size: 1rem; color: var(--brown); margin-top: 0.25rem; line-height: 1.5; }
+    .contact-map { border-radius: 8px; height: 350px; background: rgba(61,43,31,0.05); border: 1px solid rgba(61,43,31,0.1); display: flex; align-items: center; justify-content: center; color: var(--text-muted); font-size: 0.9rem; }
+    footer { background: var(--brown); color: rgba(245,240,232,0.5); text-align: center; padding: 2.5rem 5%; font-size: 0.9rem; }
+    footer strong { color: var(--cream); font-family: 'Playfair Display', serif; font-style: italic; }
+    .footer-quip { font-style: italic; font-size: 0.82rem; margin-top: 0.4rem; color: rgba(245,240,232,0.3); }
+    @media (max-width: 900px) {
+      .about-inner, .contact-inner { grid-template-columns: 1fr; gap: 3rem; }
+      .cards-grid { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
     }
   </style>
 </head>
 <body>
-
-  <!-- ── STICKY NAV ── -->
-  <nav>
-    <a href="#hero" class="nav-logo">L<span>&</span>H</a>
-
-    <ul class="nav-links" id="nav-links">
-      <li>
-        <a href="#about">
-          <span class="lang-en">Our Story</span>
-          <span class="lang-el">Η Ιστορία μας</span>
-        </a>
-      </li>
-      <li>
-        <a href="#services">
-          <span class="lang-en">Menu</span>
-          <span class="lang-el">Μενού</span>
-        </a>
-      </li>
-      <li>
-        <a href="#hours">
-          <span class="lang-en">Hours</span>
-          <span class="lang-el">Ώρες</span>
-        </a>
-      </li>
-      <li>
-        <a href="#contact">
-          <span class="lang-en">Contact</span>
-          <span class="lang-el">Επικοινωνία</span>
-        </a>
-      </li>
-    </ul>
-
-    <div class="nav-right">
-      <button id="lang-btn" aria-label="Toggle language">ΕΛ</button>
-      <button class="nav-hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
+<nav>
+  <div class="nav-logo">
+    Laurel <span>&amp;</span> Hardy
+    <small class="en">Fine Fresh Food</small>
+    <small class="el">Εκλεκτά Φρέσκα Τρόφιμα</small>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#about"><span class="en">About</span><span class="el">Σχετικά</span></a></li>
+    <li><a href="#products"><span class="en">Products</span><span class="el">Προϊόντα</span></a></li>
+    <li><a href="#hours"><span class="en">Hours</span><span class="el">Ώρες</span></a></li>
+    <li><a href="#contact"><span class="en">Contact</span><span class="el">Επικοινωνία</span></a></li>
+  </ul>
+  <button class="lang-btn" onclick="toggleLang(this)">ΕΛ</button>
+</nav>
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-duo">&#127913;&#129383;</div>
+    <div class="hero-kicker en">Est. with a smile</div>
+    <div class="hero-kicker el">Ιδρύθηκε με ένα χαμόγελο</div>
+    <h1 class="hero-title">Laurel <em>&amp;</em> Hardy</h1>
+    <p class="hero-tagline en">A Fine Mess of Fresh Food</p>
+    <p class="hero-tagline el">Μια Υπέροχη Γκάφα Φρέσκων Τροφίμων</p>
+    <p class="hero-quip en">"Well, here's another nice mess you've gotten me into..." — and it was delicious.</p>
+    <p class="hero-quip el">"Λοιπόν, με έχεις βάλει σε μια νέα ωραία μπελά..." — και ήταν υπέροχο.</p>
+    <a href="#products" class="hero-cta en">Step Right In</a>
+    <a href="#products" class="hero-cta el">Μπείτε Μέσα</a>
+  </div>
+</section>
+<section class="about" id="about">
+  <div class="about-inner">
+    <div>
+      <img class="about-img" src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=800&q=80" alt="Laurel and Hardy fine food" />
     </div>
-  </nav>
-
-  <!-- ── HERO ── -->
-  <section id="hero">
-    <div class="hero-bg"></div>
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-      <p class="hero-pretitle">Est. Since Forever &nbsp;·&nbsp; Μοναστηράκι, Αθήνα</p>
-
-      <h1 class="hero-title">
-        <span class="lang-en">Laurel &amp; Hardy – A Fine Mess of Fresh Food</span>
-        <span class="lang-el">Laurel &amp; Hardy – Μια Υπέροχη Γκάφα Φρέσκων Τροφίμων</span>
-      </h1>
-
-      <p class="hero-subtitle">
-        <span class="lang-en">Handpicked deli delights, artisan cheeses &amp; fresh sandwiches — with a smile.</span>
-        <span class="lang-el">Χειροποίητες λιχουδιές, artisan τυριά &amp; φρέσκα σάντουιτς — με ένα χαμόγελο.</span>
-      </p>
-
-      <a href="#services" class="hero-cta">
-        <span class="lang-en">Discover the Menu</span>
-        <span class="lang-el">Ανακαλύψτε το Μενού</span>
-      </a>
+    <div>
+      <p class="section-label en">Our Story</p>
+      <p class="section-label el">Η Ιστορία μας</p>
+      <h2 class="section-title en">Seriously <em>Good</em> Food.</h2>
+      <h2 class="section-title el">Σοβαρά <em>Καλό</em> Φαγητό.</h2>
+      <div class="section-divider"></div>
+      <p class="section-text en">Named after the greatest comedy duo in history, Laurel &amp; Hardy is anything but a joke when it comes to food quality. Fresh ingredients, big flavours, warm smiles — every single day.</p>
+      <p class="section-text el">Εμπνευσμένο από το μεγαλύτερο κωμικό δίδυμο της ιστορίας, το Laurel &amp; Hardy δεν αστειεύεται καθόλου όσον αφορά την ποιότητα. Φρέσκα υλικά, πλούσιες γεύσεις, ζεστά χαμόγελα — κάθε μέρα.</p>
+      <div class="fun-note en">"We may occasionally drop the pie, but we always bake another one." — The Management</div>
+      <div class="fun-note el">"Μπορεί να πέσει η πίτα μερικές φορές, αλλά πάντα φτιάχνουμε άλλη." — Η Διεύθυνση</div>
     </div>
-  </section>
-
-  <!-- ── ABOUT ── -->
-  <section id="about">
-    <div class="section-inner">
-      <h2 class="section-title">
-        <span class="lang-en">Our Story</span>
-        <span class="lang-el">Η Ιστορία μας</span>
-      </h2>
-
-      <hr class="about-divider" />
-
-      <div class="about-quote-wrap">
-        <p class="about-body">
-          <span class="lang-en">What do a bowler hat and a perfectly ripe tomato have in common? Both bring joy! At Laurel &amp; Hardy Deli, we celebrate the art of fine food with a smile. Our handpicked cheeses, cured meats, and fresh produce will have you coming back for more.</span>
-          <span class="lang-el">Τι κοινό έχει ένα μπολερό καπέλο με μια τέλεια ώριμη ντομάτα; Και τα δύο φέρνουν χαρά! Στο Laurel &amp; Hardy Deli, γιορτάζουμε την τέχνη της καλής τροφής με ένα χαμόγελο. Τα επιλεγμένα τυριά, αλλαντικά και φρέσκα προϊόντα μας θα σας κάνουν να επιστρέφετε ξανά και ξανά.</span>
-        </p>
+  </div>
+</section>
+<section class="products" id="products">
+  <div class="products-inner">
+    <div class="products-header">
+      <p class="section-label en">On the Menu</p>
+      <p class="section-label el">Στο Μενού</p>
+      <h2 class="section-title en">Three Acts of <em>Freshness</em></h2>
+      <h2 class="section-title el">Τρεις Πράξεις <em>Φρεσκάδας</em></h2>
+      <div class="section-divider"></div>
+    </div>
+    <div class="cards-grid">
+      <div class="card">
+        <div class="card-img"><img src="https://images.unsplash.com/photo-1498579150354-977475b7ea0b?auto=format&fit=crop&w=600&q=80" alt="Fresh Meats" /></div>
+        <div class="card-body">
+          <div class="card-emoji">&#129361;</div>
+          <h3 class="card-title en">The <em>Meaty</em> Counter</h3>
+          <h3 class="card-title el">Ο <em>Χοντρός</em> Πάγκος</h3>
+          <p class="card-text en">Premium cuts, house-marinated meats, and daily-fresh deli — big enough to satisfy even the most demanding appetite.</p>
+          <p class="card-text el">Premium κομμάτια, κρέατα μαριναρισμένα στο κατάστημα και φρέσκα αλλαντικά — αρκετά για κάθε όρεξη.</p>
+          <p class="card-wink en">Hardy approves. Laurel just ate his.</p>
+          <p class="card-wink el">Ο Hardy εγκρίνει. Ο Laurel απλώς το έφαγε.</p>
+        </div>
       </div>
-
-      <p class="about-tagline">
-        <span class="lang-en">Another fine mess... of delicious food.</span>
-        <span class="lang-el">Άλλη μια υπέροχη γκάφα... γεμάτη νόστιμο φαγητό.</span>
-      </p>
-    </div>
-  </section>
-
-  <!-- ── SERVICES ── -->
-  <section id="services">
-    <div class="section-inner">
-      <h2 class="section-title">
-        <span class="lang-en">What We Do Best</span>
-        <span class="lang-el">Τι Κάνουμε Καλύτερα</span>
-      </h2>
-
-      <div class="services-grid">
-
-        <div class="card">
-          <span class="card-icon">🧀</span>
-          <h3 class="card-title">
-            <span class="lang-en">Artisan Cheeses</span>
-            <span class="lang-el">Artisan Τυριά</span>
-          </h3>
-          <p class="card-desc">
-            <span class="lang-en">Cave-aged, hand-wrapped and lovingly selected from the finest Greek and European creameries.</span>
-            <span class="lang-el">Ωριμασμένα σε σπήλαιο, τυλιγμένα στο χέρι και επιλεγμένα με αγάπη από τα καλύτερα ελληνικά και ευρωπαϊκά τυροκομεία.</span>
-          </p>
+      <div class="card">
+        <div class="card-img"><img src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=600&q=80" alt="Fresh Produce" /></div>
+        <div class="card-body">
+          <div class="card-emoji">&#129367;</div>
+          <h3 class="card-title en">The <em>Skinny</em> Aisle</h3>
+          <h3 class="card-title el">Ο <em>Λεπτός</em> Διάδρομος</h3>
+          <p class="card-text en">The freshest fruits, vegetables, and salad leaves — locally sourced and delivered at dawn for peak flavour.</p>
+          <p class="card-text el">Τα πιο φρέσκα φρούτα, λαχανικά και φύλλα σαλάτας — τοπικά και παραδομένα χαράματα για κορυφαία γεύση.</p>
+          <p class="card-wink en">Laurel's favourite aisle. Obviously.</p>
+          <p class="card-wink el">Ο αγαπημένος διάδρομος του Laurel. Φυσικά.</p>
         </div>
-
-        <div class="card">
-          <span class="card-icon">🥩</span>
-          <h3 class="card-title">
-            <span class="lang-en">Cured Meats &amp; Charcuterie</span>
-            <span class="lang-el">Αλλαντικά</span>
-          </h3>
-          <p class="card-desc">
-            <span class="lang-en">Traditional Italian, Spanish and Greek cured meats, sliced fresh to order.</span>
-            <span class="lang-el">Παραδοσιακά ιταλικά, ισπανικά και ελληνικά αλλαντικά, φρεσκοκομμένα κατά παραγγελία.</span>
-          </p>
+      </div>
+      <div class="card">
+        <div class="card-img"><img src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=600&q=80" alt="Bakery" /></div>
+        <div class="card-body">
+          <div class="card-emoji">&#129360;</div>
+          <h3 class="card-title en">The Pie <em>Department</em></h3>
+          <h3 class="card-title el">Το Τμήμα <em>Πίτας</em></h3>
+          <p class="card-text en">Freshly baked breads, pies, and pastries every morning — because every great comedy needs a good pie scene.</p>
+          <p class="card-text el">Φρεσκοψημένα ψωμιά, πίτες και γλυκά κάθε πρωί — γιατί κάθε κωμωδία χρειάζεται μια καλή σκηνή με πίτα.</p>
+          <p class="card-wink en">Nobody gets hit with these. We promise.</p>
+          <p class="card-wink el">Κανείς δεν χτυπιέται με αυτές. Υποσχόμαστε.</p>
         </div>
-
-        <div class="card">
-          <span class="card-icon">🥪</span>
-          <h3 class="card-title">
-            <span class="lang-en">Fresh Deli Sandwiches</span>
-            <span class="lang-el">Φρέσκα Σάντουιτς</span>
-          </h3>
-          <p class="card-desc">
-            <span class="lang-en">Handmade daily with sourdough bread, seasonal fillings and house-made spreads.</span>
-            <span class="lang-el">Χειροποίητα καθημερινά με ψωμί προζυμιού, εποχιακές γεμίσεις και σπιτικές σάλτσες.</span>
-          </p>
-        </div>
-
       </div>
     </div>
-  </section>
-
-  <!-- ── HOURS ── -->
-  <section id="hours">
-    <div class="section-inner">
-      <h2 class="section-title">
-        <span class="lang-en">Opening Hours</span>
-        <span class="lang-el">Ώρες Λειτουργίας</span>
-      </h2>
-      <p class="hours-humor">
-        <span class="lang-en">We're always here... well, almost.</span>
-        <span class="lang-el">Είμαστε πάντα εδώ... σχεδόν.</span>
-      </p>
-
-      <div class="hours-table-wrap">
-        <table class="hours-table">
-          <thead>
-            <tr>
-              <th>
-                <span class="lang-en">Day</span>
-                <span class="lang-el">Ημέρα</span>
-              </th>
-              <th style="text-align:right;">
-                <span class="lang-en">Hours</span>
-                <span class="lang-el">Ώρες</span>
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>
-                <span class="lang-en">Monday – Friday</span>
-                <span class="lang-el">Δευτέρα – Παρασκευή</span>
-              </td>
-              <td>08:00 – 21:00</td>
-            </tr>
-            <tr>
-              <td>
-                <span class="lang-en">Saturday – Sunday</span>
-                <span class="lang-el">Σάββατο – Κυριακή</span>
-              </td>
-              <td>09:00 – 20:00</td>
-            </tr>
-          </tbody>
-        </table>
+  </div>
+</section>
+<section class="hours" id="hours">
+  <div style="max-width:1000px;margin:0 auto;">
+    <p class="section-label">&#127917; <span class="en">Opening Hours</span><span class="el">Ώρες Λειτουργίας</span></p>
+    <h2 class="section-title en">When the Curtain Rises</h2>
+    <h2 class="section-title el">Όταν Ανεβαίνει η Αυλαία</h2>
+    <div class="section-divider"></div>
+    <div class="hours-grid">
+      <div class="hours-card">
+        <div class="hours-day en">Monday – Friday</div>
+        <div class="hours-day el">Δευτέρα – Παρασκευή</div>
+        <div class="hours-time">08:00 – 21:00</div>
+      </div>
+      <div class="hours-card">
+        <div class="hours-day en">Saturday</div>
+        <div class="hours-day el">Σάββατο</div>
+        <div class="hours-time">08:30 – 20:30</div>
+      </div>
+      <div class="hours-card">
+        <div class="hours-day en">Sunday</div>
+        <div class="hours-day el">Κυριακή</div>
+        <div class="hours-time">09:00 – 18:00</div>
+      </div>
+      <div class="hours-card">
+        <div class="hours-day en">Public Holidays</div>
+        <div class="hours-day el">Αργίες</div>
+        <div class="hours-time">10:00 – 17:00</div>
       </div>
     </div>
-  </section>
-
-  <!-- ── CONTACT ── -->
-  <section id="contact">
-    <div class="section-inner">
-      <h2 class="section-title">
-        <span class="lang-en">Find Us</span>
-        <span class="lang-el">Βρείτε μας</span>
-      </h2>
-
-      <div class="contact-grid">
-
-        <div class="contact-block">
-          <div class="contact-icon">📍</div>
-          <div>
-            <p class="contact-label">
-              <span class="lang-en">Address</span>
-              <span class="lang-el">Διεύθυνση</span>
-            </p>
-            <p class="contact-value">Αδριανού 22, Μοναστηράκι<br>Αθήνα 105 55</p>
-          </div>
+  </div>
+</section>
+<section class="contact" id="contact">
+  <div class="contact-inner">
+    <div>
+      <p class="section-label en">Find Us</p>
+      <p class="section-label el">Βρείτε μας</p>
+      <h2 class="section-title en">Come Say <em>Hello</em></h2>
+      <h2 class="section-title el">Ελάτε να Πείτε <em>Γεια</em></h2>
+      <div class="section-divider"></div>
+      <div class="contact-item">
+        <div class="contact-icon">&#128205;</div>
+        <div>
+          <div class="contact-label en">Address</div><div class="contact-label el">Διεύθυνση</div>
+          <div class="contact-value">Comedy Corner 12, Old Town</div>
         </div>
-
-        <div class="contact-block">
-          <div class="contact-icon">📞</div>
-          <div>
-            <p class="contact-label">
-              <span class="lang-en">Phone</span>
-              <span class="lang-el">Τηλέφωνο</span>
-            </p>
-            <p class="contact-value"><a href="tel:+302104567890">+30 210 456 7890</a></p>
-          </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">&#128222;</div>
+        <div>
+          <div class="contact-label en">Phone</div><div class="contact-label el">Τηλέφωνο</div>
+          <div class="contact-value">+30 210 000 0004</div>
         </div>
-
-        <div class="contact-block">
-          <div class="contact-icon">✉️</div>
-          <div>
-            <p class="contact-label">
-              <span class="lang-en">Email</span>
-              <span class="lang-el">Email</span>
-            </p>
-            <p class="contact-value"><a href="mailto:hello@laurelhardy-deli.gr">hello@laurelhardy-deli.gr</a></p>
-          </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">&#9993;</div>
+        <div>
+          <div class="contact-label en">Email</div><div class="contact-label el">Email</div>
+          <div class="contact-value">hello@laurelandhardy.gr</div>
         </div>
-
       </div>
     </div>
-  </section>
-
-  <!-- ── FOOTER ── -->
-  <footer>
-    <p class="footer-copy">
-      <span class="lang-en">© 2025 Laurel &amp; Hardy Deli. All rights reserved.</span>
-      <span class="lang-el">© 2025 Laurel &amp; Hardy Deli. Όλα τα δικαιώματα κατοχυρωμένα.</span>
-    </p>
-    <p class="footer-tagline">Another fine mess...</p>
-  </footer>
-
-  <!-- ── JS ── -->
-  <script>
-    (function () {
-      var body = document.body;
-      var btn = document.getElementById('lang-btn');
-      var hamburger = document.getElementById('hamburger');
-      var navLinks = document.getElementById('nav-links');
-      var isGreek = false;
-
-      btn.addEventListener('click', function () {
-        isGreek = !isGreek;
-        if (isGreek) {
-          body.classList.add('lang-el');
-          btn.textContent = 'EN';
-        } else {
-          body.classList.remove('lang-el');
-          btn.textContent = 'ΕΛ';
-        }
-      });
-
-      hamburger.addEventListener('click', function () {
-        var open = navLinks.classList.toggle('open');
-        hamburger.setAttribute('aria-expanded', open ? 'true' : 'false');
-      });
-
-      // Close mobile nav on link click
-      navLinks.querySelectorAll('a').forEach(function (link) {
-        link.addEventListener('click', function () {
-          navLinks.classList.remove('open');
-          hamburger.setAttribute('aria-expanded', 'false');
-        });
-      });
-    })();
-  </script>
-
+    <div class="contact-map">
+      <span class="en">&#128205; Map Placeholder</span>
+      <span class="el">&#128205; Τοποθεσία Χάρτη</span>
+    </div>
+  </div>
+</section>
+<footer>
+  <p><strong>Laurel &amp; Hardy</strong> &copy; 2024 &mdash; <span class="en">Fine Fresh Food. No custard pies involved.</span><span class="el">Εκλεκτά Φρέσκα Τρόφιμα. Χωρίς πίτες κρέμας.</span></p>
+  <p class="footer-quip en">"Well, here's another nice meal you've gotten yourself into."</p>
+  <p class="footer-quip el">"Λοιπόν, ιδού ακόμα ένα υπέροχο γεύμα που ετοίμασες για τον εαυτό σου."</p>
+</footer>
+<script>
+  function toggleLang(btn) {
+    const isEl = document.body.classList.toggle('lang-el');
+    btn.textContent = isEl ? 'EN' : 'ΕΛ';
+  }
+</script>
 </body>
 </html>
