@@ -6,6 +6,7 @@
 <title data-i18n="meta.title">Vela Sync — Enterprise Tech. Local Business Prices.</title>
 <link rel="icon" type="image/png" href="assets/vs-logo.png">
 <link rel="apple-touch-icon" href="assets/vs-logo.png">
+<script>document.documentElement.classList.add('js')</script>
 <meta name="description" data-i18n="meta.desc" content="Award-winning engineers and ML strategy. Professional websites live in 24 hours with ongoing support, at a fraction of agency prices.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300&display=swap" rel="stylesheet">
@@ -425,6 +426,30 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:998;op
 /* Emil: press feedback on remaining pressable elements */
 .nav-links a,.lang-btn,.mb-btn{transition:color .15s,background .15s,border-color .15s,box-shadow .15s,transform .15s var(--ease)}
 .nav-links a:active,.lang-btn:active,.mb-btn:active{transform:scale(.97)}
+/* ===== Logo full integration (transparent mark) ===== */
+.vslogo{object-fit:contain;transform:none}
+.nm,.lm,.brand-fixed .bm{background:none;box-shadow:none;overflow:visible}
+.nm{width:34px;height:34px}
+.hero-mark{position:absolute;z-index:0;top:46%;left:50%;width:min(72vw,760px);transform:translate(-50%,-50%);opacity:.05;pointer-events:none;animation:markFloat 14s ease-in-out infinite}
+@keyframes markFloat{0%,100%{transform:translate(-50%,-50%) rotate(-1.5deg)}50%{transform:translate(-50%,-53%) rotate(1.5deg)}}
+@media(max-width:640px){.hero-mark{opacity:.04;width:92vw}}
+/* ===== Living gradient on headline accents ===== */
+.grd{background-size:220% 220%;animation:grdShift 9s ease-in-out infinite}
+@keyframes grdShift{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+/* ===== Hero entrance (js-gated; reduced-motion neutralised globally) ===== */
+.js .hero-eyebrow,.js .hero h1,.js .hero-sub,.js .hero-btns,.js .marquee-wrap{opacity:0}
+@keyframes heroRise{from{opacity:0;transform:translateY(24px);filter:blur(7px)}to{opacity:1;transform:none;filter:none}}
+.ready .hero-eyebrow{animation:heroRise .7s var(--ease) .05s both}
+.ready .hero h1{animation:heroRise .85s var(--ease) .14s both}
+.ready .hero-sub{animation:heroRise .85s var(--ease) .26s both}
+.ready .hero-btns{animation:heroRise .85s var(--ease) .38s both}
+.ready .marquee-wrap{animation:heroRise .85s var(--ease) .5s both}
+/* ===== Button shine sweep (fine pointers only) ===== */
+.ncta{position:relative;overflow:hidden}
+@media (hover:hover) and (pointer:fine){
+  .btn-p::after,.ncta::after{content:"";position:absolute;top:0;left:-20%;width:55%;height:100%;pointer-events:none;background:linear-gradient(105deg,transparent,rgba(255,255,255,.30),transparent);transform:translateX(-180%) skewX(-18deg);transition:transform .65s var(--ease)}
+  .btn-p:hover::after,.ncta:hover::after{transform:translateX(360%) skewX(-18deg)}
+}
 </style>
 </head>
 <body>
@@ -432,18 +457,18 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:998;op
 <a href="#main" class="skip" data-i18n="skip">Skip to main content</a>
 <div id="prog" role="progressbar" aria-hidden="true"></div>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><symbol id="vs-mark" viewBox="0 0 32 32"><path fill="currentColor" d="M14.4 5 14.4 18.6 6.4 18.6 Z"/><path fill="currentColor" d="M16.6 2.8 16.6 18.6 25.8 18.6 Z"/><path fill="currentColor" d="M4 20.4 H28 C26.3 25.4 23.3 27.2 19.4 27.2 H12.6 C8.7 27.2 5.7 25.4 4 20.4 Z"/><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" d="M4 30 C8.5 27.2 11 31.4 15.5 29.6 S23.5 31.6 28 29"/></symbol></svg>
-<div id="load" aria-hidden="true"><div class="lm"><img class="vslogo" src="assets/vs-logo.png" alt=""></div><div class="lb"></div></div>
+<div id="load" aria-hidden="true"><div class="lm"><img class="vslogo" src="assets/vs-mark.png" alt=""></div><div class="lb"></div></div>
 
 <!-- NAV -->
 <a class="brand-fixed" href="#main" aria-label="Vela Sync — home">
-  <span class="bm" aria-hidden="true"><img class="vslogo" src="assets/vs-logo.png" alt=""></span>
+  <span class="bm" aria-hidden="true"><img class="vslogo" src="assets/vs-mark.png" alt=""></span>
   <span class="bw">Vela Sync</span>
 </a>
 
 <div class="nav-wrap" id="nwrap">
   <nav class="nav" aria-label="Main navigation">
     <div class="nav-logo">
-      <div class="nm" aria-hidden="true"><img class="vslogo" src="assets/vs-logo.png" alt=""></div>
+      <div class="nm" aria-hidden="true"><img class="vslogo" src="assets/vs-mark.png" alt=""></div>
       <span class="nw">Vela Sync</span>
     </div>
     <div class="nav-links">
@@ -500,6 +525,7 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:998;op
     <span class="float-ic fi5" title="Enterprise-grade & secure"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
     <span class="float-ic fi6" title="Award-winning team"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg></span>
   </div>
+  <img class="hero-mark" src="assets/vs-mark.png" alt="" aria-hidden="true">
   <div class="hero-eyebrow"><span class="edot" aria-hidden="true"></span><span data-i18n="hero.eyebrow">Now expanding across Europe</span></div>
   <h1 id="h1" data-i18n="hero.h1">Enterprise tech.<br><span class="grd">Local prices.</span></h1>
   <p class="hero-sub" data-i18n="hero.sub">Award-winning engineers and ML strategy. Your site goes live in 24 hours, with ongoing support, at agency-beating prices.</p>
@@ -928,7 +954,7 @@ body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:998;op
 <!-- FOOTER -->
 <footer class="footer">
   <div class="footer-in">
-    <div class="flogo"><div class="nm" aria-hidden="true"><img class="vslogo" src="assets/vs-logo.png" alt=""></div><span class="fw">Vela Sync</span></div>
+    <div class="flogo"><div class="nm" aria-hidden="true"><img class="vslogo" src="assets/vs-mark.png" alt=""></div><span class="fw">Vela Sync</span></div>
     <div class="fctr"><span data-i18n="footer.l1">© 2026 Vela Sync Ltd · Co. No. 17051204</span><br><span data-i18n="footer.l2">Web &amp; Digital Solutions · Private Healthcare · Workforce Solutions</span></div>
     <nav class="flinks" aria-label="Footer links"><a href="#">www.velasync.com</a><a href="#">UK · US · ZA · EU</a></nav>
   </div>
@@ -1516,7 +1542,7 @@ document.addEventListener('DOMContentLoaded',()=>{
   document.querySelectorAll('.lang-opt').forEach(o=>o.addEventListener('click',e=>{e.stopPropagation();setLang(o.getAttribute('data-lang'));lw.classList.remove('open');lb.setAttribute('aria-expanded','false');}));
   document.addEventListener('keydown',e=>{if(e.key==='Escape'){lw.classList.remove('open');lb.setAttribute('aria-expanded','false');}});
 });
-window.addEventListener('load',()=>{setTimeout(()=>{const l=document.getElementById('load');l.classList.add('gone');l.addEventListener('transitionend',()=>l.remove(),{once:true});},260);});
+window.addEventListener('load',()=>{setTimeout(()=>{const l=document.getElementById('load');l.classList.add('gone');document.body.classList.add('ready');l.addEventListener('transitionend',()=>l.remove(),{once:true});},260);});
 const prog=document.getElementById('prog');
 window.addEventListener('scroll',()=>{prog.style.width=Math.min((window.scrollY/(document.body.scrollHeight-window.innerHeight))*100,100)+'%';},{passive:true});
 const nw=document.getElementById('nwrap');
@@ -1570,6 +1596,18 @@ if(!window.matchMedia('(prefers-reduced-motion:reduce)').matches){
   window.addEventListener('scroll',()=>{if(!raf)raf=requestAnimationFrame(update);},{passive:true});
   window.addEventListener('resize',()=>{if(!raf)raf=requestAnimationFrame(update);},{passive:true});
   update();
+})();
+/* ===== Magnetic primary buttons (fine pointers, motion on) ===== */
+(function(){
+  if(!window.matchMedia('(hover:hover) and (pointer:fine)').matches)return;
+  if(window.matchMedia('(prefers-reduced-motion:reduce)').matches)return;
+  document.querySelectorAll('.btn-p,.ncta').forEach(el=>{
+    el.addEventListener('pointermove',e=>{
+      const r=el.getBoundingClientRect();
+      el.style.transform='translate('+((e.clientX-r.left-r.width/2)*.18).toFixed(1)+'px,'+((e.clientY-r.top-r.height/2)*.3).toFixed(1)+'px)';
+    });
+    el.addEventListener('pointerleave',()=>{el.style.transform='';});
+  });
 })();
 </script>
 </body>
