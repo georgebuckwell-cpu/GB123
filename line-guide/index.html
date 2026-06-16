@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Line Guide — The new way to buy automation equipment</title>
+<meta name="description" content="Line Guide matches food & beverage manufacturers with the right automation suppliers. Describe your use case, budget and timeframe — get your top 3 matches in minutes.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+
+<!-- FX LAYERS -->
+<canvas id="fx-canvas"></canvas>
+<div id="progress"></div>
+<div class="cursor-glow" id="cursorGlow"></div>
+
+<!-- LOADER -->
+<div id="loader"><div class="loader-brand"><span>LG</span></div></div>
+
+<!-- ANNOUNCEMENT -->
+<div class="announce">
+  <span class="rocket">🚀</span> Launching soon
+  <span class="sep">|</span>
+  <a href="#waitlist">Join early access →</a>
+</div>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <div class="container">
+    <a href="index.html" class="brand">
+      <span class="brand-frame"><span>LG</span></span>
+      <span class="brand-word">Line<b>·</b>Guide</span>
+    </a>
+    <div class="nav-links">
+      <a href="#how">How it works</a>
+      <a href="#matcher">Matching</a>
+      <a href="for-buyers.html">For buyers</a>
+      <a href="for-suppliers.html">For suppliers</a>
+      <a href="#pricing">Pricing</a>
+    </div>
+    <div class="nav-right">
+      <a href="for-suppliers.html" class="link-quiet desktop-only">List your business</a>
+      <a href="#waitlist" class="btn btn-primary">Join early access
+        <svg class="arr" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#how">How it works</a>
+  <a href="#matcher">Matching</a>
+  <a href="for-buyers.html">For buyers</a>
+  <a href="for-suppliers.html">For suppliers</a>
+  <a href="#pricing">Pricing</a>
+  <a href="#waitlist" class="btn btn-primary btn-block">Join early access</a>
+</div>
+
+<main class="page">
+
+<!-- ═══ HERO ═══════════════════════════════════════════════════════════════ -->
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-scan"></div>
+
+  <div class="float-card l">
+    <div class="fc-label">Live brief</div>
+    <div class="fc-val">Packing automation</div>
+    <div class="fc-sub">£180k · 1–3 months · UK</div>
+    <div class="fc-stars">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 6.5 7 .9-5 4.9 1.2 7-6.2-3.4L5.8 21 7 14.3 2 9.4l7-.9z"/></svg>
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 6.5 7 .9-5 4.9 1.2 7-6.2-3.4L5.8 21 7 14.3 2 9.4l7-.9z"/></svg>
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 6.5 7 .9-5 4.9 1.2 7-6.2-3.4L5.8 21 7 14.3 2 9.4l7-.9z"/></svg>
+    </div>
+  </div>
+  <div class="float-card r">
+    <div class="fc-label">Top match</div>
+    <div class="fc-val">Meridian Robotics</div>
+    <div class="fc-sub">96% fit · verified supplier</div>
+    <div class="fc-stars">★ 4.9 rating</div>
+  </div>
+
+  <div class="container">
+    <div class="hero-inner">
+      <div class="hero-badge"><span class="pulse"></span> Built for food &amp; beverage manufacturing</div>
+      <h1 class="h-xl">The new way to buy<br><span class="gt">automation equipment.</span></h1>
+      <p class="hero-sub">Search. Compare. Connect. Tell us your use case, budget and timeframe — Line Guide matches you with the <strong style="color:var(--text)">top three suppliers</strong> built for your line, in minutes.</p>
+      <div class="hero-actions">
+        <a href="#matcher" class="btn btn-primary btn-lg">Find my suppliers
+          <svg class="arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+        <a href="for-suppliers.html" class="btn btn-ghost btn-lg">List your business</a>
+      </div>
+
+      <div class="statbar">
+        <div class="stat"><div class="stat-num"><em data-count="3">3</em></div><div class="stat-lbl">Best-fit matches</div></div>
+        <div class="stat"><div class="stat-num"><em data-count="200">200</em>+</div><div class="stat-lbl">Verified suppliers</div></div>
+        <div class="stat"><div class="stat-num"><em data-count="48">48</em>h</div><div class="stat-lbl">Avg. to first reply</div></div>
+        <div class="stat"><div class="stat-num">£<em data-count="0">0</em></div><div class="stat-lbl">For buyers, always</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ TRUST STRIP ════════════════════════════════════════════════════════ -->
+<section class="trust">
+  <div class="container">
+    <div class="trust-label">Specialists across the food &amp; beverage production floor</div>
+    <div class="trust-row reveal">
+      <span class="trust-tag"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/></svg> Primary packing</span>
+      <span class="trust-tag"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M12 3v18"/></svg> Case &amp; end-of-line</span>
+      <span class="trust-tag"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/></svg> Palletising</span>
+      <span class="trust-tag"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z"/><path d="M9 9h6v6H9z"/></svg> Filling &amp; dosing</span>
+      <span class="trust-tag"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg> Vision &amp; inspection</span>
+      <span class="trust-tag"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M2 12h20"/></svg> Manual process automation</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PILLARS ════════════════════════════════════════════════════════════ -->
+<section class="section" id="pillars">
+  <div class="container">
+    <div class="section-head center reveal">
+      <div class="eyebrow center">How Line Guide works</div>
+      <h2 class="h-lg">Three steps from <span class="gt">problem to partner.</span></h2>
+      <p class="lede center">No more cold-calling vendors or sifting through brochures. A guided path from describing your line to talking to the right people.</p>
+    </div>
+    <div class="pillars stagger">
+      <div class="pillar">
+        <span class="pillar-step">01</span>
+        <div class="pillar-ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></div>
+        <h3>Search</h3>
+        <p>Describe the application you need to automate. Find the right equipment and capability in minutes — not weeks of research.</p>
+      </div>
+      <div class="pillar">
+        <span class="pillar-step">02</span>
+        <div class="pillar-ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18"/><path d="M5 7l-3 6h6z"/><path d="M19 7l-3 6h6z"/><path d="M5 7h14"/><path d="M8 21h8"/></svg></div>
+        <h3>Compare</h3>
+        <p>See solutions side by side — ratings, fit score, capability and price band. Objective, transparent, weighted to your needs.</p>
+      </div>
+      <div class="pillar">
+        <span class="pillar-step">03</span>
+        <div class="pillar-ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <h3>Connect</h3>
+        <p>Get introduced to your top three suppliers, faster. Warm, qualified conversations — both sides ready to talk specifics.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ MATCHING ENGINE (interactive) ══════════════════════════════════════ -->
+<section class="section bg-1" id="matcher">
+  <div class="container">
+    <div class="section-head center reveal">
+      <div class="eyebrow center">Live matching engine</div>
+      <h2 class="h-lg">Try it. <span class="gt">Your top 3 in real time.</span></h2>
+      <p class="lede center">This is the heart of Line Guide. Set your brief and watch our fit algorithm rank suppliers by use-case match, verified ratings, budget alignment and delivery speed.</p>
+    </div>
+
+    <div class="matcher reveal">
+      <!-- FORM -->
+      <div class="matcher-form">
+        <div class="mf-title"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M6 12h12M10 18h4"/></svg> Your brief</div>
+
+        <div class="mf-group">
+          <label>What do you need to automate?</label>
+          <div class="chip-row">
+            <button class="chip sel" data-case="packing">Packing</button>
+            <button class="chip" data-case="palletising">Palletising</button>
+            <button class="chip" data-case="end-of-line">End-of-line</button>
+            <button class="chip" data-case="filling">Filling / dosing</button>
+            <button class="chip" data-case="inspection">Inspection</button>
+            <button class="chip" data-case="manual">Manual process</button>
+          </div>
+        </div>
+
+        <div class="mf-group">
+          <label>Budget</label>
+          <input type="range" class="mf-range" id="mBudget" min="0" max="100" value="50" style="--pct:50%">
+          <div class="mf-readout">
+            <div class="val" id="mBudgetOut">£<em>200k</em></div>
+            <div class="cap">capital available</div>
+          </div>
+        </div>
+
+        <div class="mf-group" style="margin-bottom:0">
+          <label>Timeframe</label>
+          <input type="range" class="mf-range" id="mTime" min="0" max="3" value="1" style="--pct:33%">
+          <div class="mf-readout">
+            <div class="val" id="mTimeOut" style="font-size:1.05rem">1–3 months</div>
+            <div class="cap">to install</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RESULTS -->
+      <div class="matcher-results">
+        <div class="mr-head">
+          <div class="mf-title" style="margin-bottom:0"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2.6 6.5L21 9l-5 4.5 1.5 6.5L12 16l-5.5 4 1.5-6.5L3 9l6.4-.5z"/></svg> Your top matches</div>
+          <div class="mr-count">ranked by fit</div>
+        </div>
+        <div id="matchResults"></div>
+        <div class="match-rerun"><span class="dotline"></span> recalculated live · weighted scoring <span class="dotline"></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ HOW IT WORKS — TABS ════════════════════════════════════════════════ -->
+<section class="section" id="how">
+  <div class="container">
+    <div class="section-head center reveal">
+      <div class="eyebrow center">The journey, end to end</div>
+      <h2 class="h-lg">One platform. <span class="gt">Two sides. Zero friction.</span></h2>
+    </div>
+
+    <div data-tabgroup class="center reveal">
+      <div class="tabs" data-tabs>
+        <div class="tab-pill"></div>
+        <button class="tab active" data-tab="buyers">I'm sourcing equipment</button>
+        <button class="tab" data-tab="suppliers">I'm a supplier</button>
+      </div>
+
+      <!-- BUYERS -->
+      <div class="tab-panel active" data-panel="buyers">
+        <div class="timeline stagger" style="text-align:left">
+          <div class="tstep"><div class="tdot">01</div><div class="tbody"><span class="tbadge">Minutes</span><h4>Describe your use case</h4><p>Tell us the application, line speed, product and constraints. Plain language — our model handles the rest.</p></div></div>
+          <div class="tstep"><div class="tdot">02</div><div class="tbody"><span class="tbadge">Set parameters</span><h4>Budget &amp; timeframe</h4><p>Add your capital range and install window so matches respect your real-world constraints.</p></div></div>
+          <div class="tstep"><div class="tdot">03</div><div class="tbody"><span class="tbadge">Instant</span><h4>Get your top 3</h4><p>The engine returns the three most suitable suppliers, each with a transparent fit score and rating.</p></div></div>
+          <div class="tstep"><div class="tdot">04</div><div class="tbody"><span class="tbadge">Free</span><h4>Connect &amp; compare</h4><p>Open warm conversations and compare proposals side by side. No fees, no obligation, ever.</p></div></div>
+        </div>
+      </div>
+
+      <!-- SUPPLIERS -->
+      <div class="tab-panel" data-panel="suppliers">
+        <div class="timeline stagger" style="text-align:left">
+          <div class="tstep"><div class="tdot">01</div><div class="tbody"><span class="tbadge">Onboard</span><h4>Build your profile</h4><p>Showcase capabilities, sectors, case studies and lead times. Get verified for a trusted badge.</p></div></div>
+          <div class="tstep"><div class="tdot">02</div><div class="tbody"><span class="tbadge">Choose tier</span><h4>Pick Basic, Premium or Ultra</h4><p>A simple monthly fee for visibility and lead flow. Scale up as your pipeline grows.</p></div></div>
+          <div class="tstep"><div class="tdot">03</div><div class="tbody"><span class="tbadge">Automatic</span><h4>Get matched to live briefs</h4><p>When a buyer's needs fit your strengths, you surface in their top three — qualified and ready.</p></div></div>
+          <div class="tstep"><div class="tdot">04</div><div class="tbody"><span class="tbadge">Grow</span><h4>Win work &amp; build rating</h4><p>Great delivery earns reviews that lift your ranking — a flywheel of better-fit, higher-intent leads.</p></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ USE CASES ══════════════════════════════════════════════════════════ -->
+<section class="section bg-1">
+  <div class="container">
+    <div class="section-head center reveal">
+      <div class="eyebrow center">Where Line Guide shines</div>
+      <h2 class="h-lg">Built for the <span class="gt">production floor.</span></h2>
+      <p class="lede center">From high-speed primary packing to retrofitting a manual station — match with suppliers who've solved your exact problem before.</p>
+    </div>
+    <div class="cases stagger">
+      <div class="case"><span class="case-tag">Most matched</span><div class="case-ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="8" width="18" height="12" rx="1"/><path d="M3 12h18M8 8V5h8v3"/></svg></div><h4>Packing automation</h4><p>Flow-wrap, cartoning, tray loading and bagging — speed and changeover flexibility for varied SKUs.</p></div>
+      <div class="case"><div class="case-ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 16V8a2 2 0 0 0-1-1.7l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.7l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></div><h4>Palletising</h4><p>Robotic and layer palletising for end-of-line throughput, mixed loads and tight footprints.</p></div>
+      <div class="case"><div class="case-ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2v6M12 8c-3 0-5 2-5 5v7h10v-7c0-3-2-5-5-5z"/></svg></div><h4>Filling &amp; dosing</h4><p>Liquid, powder and viscous filling with accuracy, hygiene and CIP-ready design.</p></div>
+      <div class="case"><div class="case-ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg></div><h4>Vision &amp; inspection</h4><p>Defect detection, label verification and check-weighing to protect quality and compliance.</p></div>
+      <div class="case"><div class="case-ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 9V5a3 3 0 0 0-6 0v4M5 9h14l1 11H4z"/></svg></div><h4>Manual process automation</h4><p>Retrofit a repetitive manual station with cobots and handling — fast ROI, easier hiring.</p></div>
+      <div class="case"><div class="case-ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 17l6-6-6-6M12 19h8"/></svg></div><h4>End-of-line &amp; conveying</h4><p>Accumulation, sortation and integration that ties the whole line together reliably.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PRICING (suppliers) ════════════════════════════════════════════════ -->
+<section class="section" id="pricing">
+  <div class="container">
+    <div class="section-head center reveal">
+      <div class="eyebrow center">For suppliers · monthly membership</div>
+      <h2 class="h-lg">List once. <span class="gt">Get matched continuously.</span></h2>
+      <p class="lede center">Buyers use Line Guide free. Suppliers choose a tier for visibility, lead flow and profile power. Cancel anytime — no lock-in.</p>
+    </div>
+
+    <div class="pricing stagger">
+      <!-- BASIC -->
+      <div class="tier">
+        <div class="tier-name">Basic</div>
+        <div class="tier-price"><sup>£</sup>149<span class="per">/mo</span></div>
+        <p class="tier-desc">Get discovered. A verified presence in the marketplace.</p>
+        <div class="tier-div"></div>
+        <ul class="tier-feats">
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Verified company profile</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Appear in relevant matches</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Up to 5 leads / month</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Ratings &amp; reviews</li>
+          <li class="off"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>Priority ranking boost</li>
+          <li class="off"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>Analytics &amp; account manager</li>
+        </ul>
+        <a href="for-suppliers.html" class="btn btn-ghost btn-block">Start with Basic</a>
+      </div>
+
+      <!-- PREMIUM (featured) -->
+      <div class="tier featured">
+        <div class="tier-tag">Most popular</div>
+        <div class="tier-name">Premium</div>
+        <div class="tier-price"><sup>£</sup>399<span class="per">/mo</span></div>
+        <p class="tier-desc">Lead the line. Higher visibility and richer profiles.</p>
+        <div class="tier-div"></div>
+        <ul class="tier-feats">
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Everything in Basic</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Priority ranking boost</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Unlimited leads</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Case studies &amp; rich media</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Performance analytics</li>
+          <li class="off"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>Dedicated account manager</li>
+        </ul>
+        <a href="for-suppliers.html" class="btn btn-primary btn-block">Choose Premium</a>
+      </div>
+
+      <!-- ULTRA -->
+      <div class="tier">
+        <div class="tier-name">Ultra</div>
+        <div class="tier-price"><sup>£</sup>899<span class="per">/mo</span></div>
+        <p class="tier-desc">Own your category. Maximum reach &amp; white-glove support.</p>
+        <div class="tier-div"></div>
+        <ul class="tier-feats">
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Everything in Premium</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Top-tier ranking priority</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Featured placement &amp; spotlight</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Dedicated account manager</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>API &amp; CRM lead sync</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Early access to new briefs</li>
+        </ul>
+        <a href="for-suppliers.html" class="btn btn-ghost btn-block">Go Ultra</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ WHY ════════════════════════════════════════════════════════════════ -->
+<section class="section bg-1">
+  <div class="container">
+    <div class="section-head center reveal">
+      <div class="eyebrow center">Why Line Guide</div>
+      <h2 class="h-lg">Fit beats <span class="gt">noise.</span></h2>
+    </div>
+    <div class="why stagger">
+      <div class="why-card"><div class="why-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M13 2L3 14h7l-1 8 10-12h-7z"/></svg></div><h4>Matched in minutes</h4><p>Skip weeks of research and cold outreach. Describe the problem, get your shortlist instantly.</p></div>
+      <div class="why-card"><div class="why-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2l9 4v6c0 5-3.8 9-9 10-5.2-1-9-5-9-10V6z"/><path d="M9 12l2 2 4-4"/></svg></div><h4>Verified &amp; rated</h4><p>Every supplier is verified and rated by real buyers — trust built into the ranking.</p></div>
+      <div class="why-card"><div class="why-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 3v18h18"/><path d="M7 14l4-4 3 3 5-6"/></svg></div><h4>Transparent fit scoring</h4><p>See exactly why a supplier ranks — use-case fit, rating, budget and timeframe, weighted.</p></div>
+      <div class="why-card"><div class="why-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div><h4>Faster decisions</h4><p>Compare three serious options side by side instead of chasing a dozen maybes.</p></div>
+      <div class="why-card"><div class="why-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 6L9 17l-5-5"/></svg></div><h4>Free for buyers</h4><p>Manufacturers never pay. Suppliers fund the platform through membership — incentives aligned.</p></div>
+      <div class="why-card"><div class="why-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/></svg></div><h4>Sector specialists</h4><p>Purpose-built for food &amp; beverage — the hygiene, throughput and compliance realities you live with.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ RATINGS / TRUST ════════════════════════════════════════════════════ -->
+<section class="section">
+  <div class="container">
+    <div class="ratings">
+      <div class="reveal">
+        <div class="eyebrow">Trust by design</div>
+        <h2 class="h-lg">Rankings you can <span class="gt">stand behind.</span></h2>
+        <p class="lede">Fit score blends the signals that actually predict a good project. No pay-to-win on quality — money buys visibility, never a fake rating.</p>
+        <a href="for-buyers.html" class="btn btn-ghost">How matching works
+          <svg class="arr" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+      <div class="rate-card reveal">
+        <div class="rate-row"><div class="rate-lbl">Use-case fit</div><div class="rate-bar-track"><div class="rate-bar" data-w="92"></div></div><div class="rate-val">45%</div></div>
+        <div class="rate-row"><div class="rate-lbl">Verified rating</div><div class="rate-bar-track"><div class="rate-bar" data-w="78"></div></div><div class="rate-val">25%</div></div>
+        <div class="rate-row"><div class="rate-lbl">Budget alignment</div><div class="rate-bar-track"><div class="rate-bar" data-w="62"></div></div><div class="rate-val">18%</div></div>
+        <div class="rate-row"><div class="rate-lbl">Delivery speed</div><div class="rate-bar-track"><div class="rate-bar" data-w="45"></div></div><div class="rate-val">12%</div></div>
+        <p class="mono-note" style="margin-top:1.2rem">// indicative weighting of the fit algorithm</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FAQ ════════════════════════════════════════════════════════════════ -->
+<section class="section bg-1">
+  <div class="container">
+    <div class="section-head center reveal">
+      <div class="eyebrow center">Questions</div>
+      <h2 class="h-lg">Good to <span class="gt">know.</span></h2>
+    </div>
+    <div class="faq reveal">
+      <div class="faq-item"><button class="faq-q">Is Line Guide really free for buyers?<span class="ico"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg></span></button><div class="faq-a"><p>Yes. Manufacturers sourcing equipment never pay a penny. The platform is funded by supplier memberships, so our only job for buyers is to surface the genuinely best-fit suppliers.</p></div></div>
+      <div class="faq-item"><button class="faq-q">How are the top three suppliers chosen?<span class="ico"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg></span></button><div class="faq-a"><p>A weighted fit score combines use-case match, verified buyer ratings, budget alignment and how your timeframe maps to a supplier's delivery speed. Membership tier affects visibility — never your rating or review history.</p></div></div>
+      <div class="faq-item"><button class="faq-q">What's the difference between Basic, Premium and Ultra?<span class="ico"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg></span></button><div class="faq-a"><p>All tiers get a verified profile and appear in relevant matches. Premium adds priority ranking, unlimited leads, rich media and analytics. Ultra adds featured placement, a dedicated account manager, API/CRM sync and early access to new briefs.</p></div></div>
+      <div class="faq-item"><button class="faq-q">Which industries do you cover?<span class="ico"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg></span></button><div class="faq-a"><p>We're launching focused on food &amp; beverage manufacturing — packing, palletising, filling, inspection and manual process automation — where matching specialists to applications matters most.</p></div></div>
+      <div class="faq-item"><button class="faq-q">Can I cancel my supplier membership anytime?<span class="ico"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg></span></button><div class="faq-a"><p>Absolutely. Monthly, no lock-in. Upgrade, downgrade or cancel whenever your pipeline needs change.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ CTA / WAITLIST ═════════════════════════════════════════════════════ -->
+<section class="cta" id="waitlist">
+  <div class="cta-glow"></div>
+  <div class="container">
+    <div class="cta-inner reveal">
+      <div class="eyebrow center">Launching soon</div>
+      <h2 class="h-lg">Join early access.<br><span class="gt">Be first on the line.</span></h2>
+      <p class="lede center">Buyers: get priority matching at launch. Suppliers: lock in founding-member rates. One email is all it takes.</p>
+      <form class="waitlist">
+        <input type="email" placeholder="you@company.com" aria-label="Email address">
+        <button type="submit" class="btn btn-primary">Get early access
+          <svg class="arr" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </button>
+      </form>
+      <div class="waitlist-ok"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span></span></div>
+      <div class="cta-pills">
+        <span class="cta-pill">Free for buyers</span>
+        <span class="cta-pill">Founding-member supplier rates</span>
+        <span class="cta-pill">No spam — launch updates only</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ═══ FOOTER ═════════════════════════════════════════════════════════════ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="index.html" class="brand">
+          <span class="brand-frame"><span>LG</span></span>
+          <span class="brand-word">Line<b>·</b>Guide</span>
+        </a>
+        <p>The new way to buy automation equipment. Search, compare and connect with the right suppliers — built for food &amp; beverage manufacturing.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Platform</h5>
+        <a href="#how">How it works</a>
+        <a href="#matcher">Matching engine</a>
+        <a href="#pricing">Pricing</a>
+        <a href="for-buyers.html">For buyers</a>
+        <a href="for-suppliers.html">For suppliers</a>
+      </div>
+      <div class="footer-col">
+        <h5>Company</h5>
+        <a href="#">About</a>
+        <a href="#">Careers</a>
+        <a href="#">Blog</a>
+        <a href="#waitlist">Contact</a>
+      </div>
+      <div class="footer-col">
+        <h5>Legal</h5>
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+        <a href="#">Cookies</a>
+        <a href="#">Supplier agreement</a>
+      </div>
+    </div>
+    <div class="footer-bot">
+      <div>© 2026 Line Guide. All rights reserved.</div>
+      <div class="footer-social">
+        <a href="#" aria-label="LinkedIn"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM10 9h3.8v1.7h.1c.5-1 1.8-2 3.7-2 4 0 4.7 2.6 4.7 6V21h-4v-5.3c0-1.3 0-2.9-1.8-2.9s-2 1.4-2 2.8V21h-4z"/></svg></a>
+        <a href="#" aria-label="X"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h3l-7 8 8 12h-6l-5-7-5 7H2l8-9L2 2h6l4 6z"/></svg></a>
+        <a href="#" aria-label="YouTube"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23 12s0-3.6-.5-5.3a2.7 2.7 0 0 0-1.9-1.9C18.9 4.3 12 4.3 12 4.3s-6.9 0-8.6.5A2.7 2.7 0 0 0 1.5 6.7C1 8.4 1 12 1 12s0 3.6.5 5.3a2.7 2.7 0 0 0 1.9 1.9c1.7.5 8.6.5 8.6.5s6.9 0 8.6-.5a2.7 2.7 0 0 0 1.9-1.9C23 15.6 23 12 23 12zM10 15.5v-7l6 3.5z"/></svg></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/app.js"></script>
+</body>
+</html>
