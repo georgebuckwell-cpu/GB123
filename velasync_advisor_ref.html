@@ -449,39 +449,54 @@
 
     <!-- NEW VS GEOMETRIC LOGO -->
     <svg width="172" height="52" viewBox="0 0 172 52" xmlns="http://www.w3.org/2000/svg">
-      <!-- Pill bg -->
+      <!-- Pill background -->
       <rect width="172" height="52" rx="11" fill="#06101A"/>
-      <!-- Teal border -->
       <rect x="0.8" y="0.8" width="170.4" height="50.4" rx="10.5" fill="none" stroke="#1E8C8C" stroke-width="1.5"/>
-      <!-- Subtle inner glow top -->
-      <rect x="1" y="1" width="170" height="16" rx="10" fill="url(#logoGlow)" opacity="0.3"/>
       <defs>
-        <linearGradient id="logoGlow" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stop-color="#3AAEAE" stop-opacity="0.4"/>
+        <linearGradient id="lgTop1" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#3AAEAE" stop-opacity="0.35"/>
           <stop offset="100%" stop-color="#3AAEAE" stop-opacity="0"/>
         </linearGradient>
       </defs>
+      <rect x="1" y="1" width="170" height="14" rx="10" fill="url(#lgTop1)"/>
 
-      <!-- VS GEOMETRIC ICON -->
-      <!-- Left arm of V — dark teal parallelogram -->
-      <polygon points="5,5 18,5 22,47 8,47" fill="#0C6868"/>
-      <!-- Right arm of V — medium teal parallelogram -->
-      <polygon points="24,5 40,5 37,47 23,47" fill="#1A9090"/>
-      <!-- White inner V edges — these form the visible V shape -->
-      <line x1="18" y1="5" x2="22" y2="47" stroke="white" stroke-width="2.2" opacity="0.92" stroke-linecap="round"/>
-      <line x1="24" y1="5" x2="23" y2="47" stroke="white" stroke-width="2.2" opacity="0.92" stroke-linecap="round"/>
-      <!-- Outer edge highlights -->
-      <line x1="5" y1="5" x2="8" y2="47" stroke="white" stroke-width="1" opacity="0.35" stroke-linecap="round"/>
-      <line x1="40" y1="5" x2="37" y2="47" stroke="white" stroke-width="1" opacity="0.35" stroke-linecap="round"/>
-      <!-- S hull curve at bottom -->
-      <path d="M7,49 Q14,44.5 22.5,47 Q31,49.5 39,45" fill="none" stroke="#29BABA" stroke-width="2.8" stroke-linecap="round"/>
+      <!-- VS MARK — icon zone x:4..46, y:3..49 -->
+      <!-- Background tint for icon area -->
+      <rect x="4" y="3" width="43" height="46" rx="4" fill="#050D18"/>
 
-      <!-- VELA SYNC wordmark -->
-      <text x="52" y="23" font-family="Helvetica Neue,Arial,sans-serif" font-weight="800" font-size="13" fill="#EEF7F7" letter-spacing="2.5">VELA SYNC</text>
-      <!-- URL -->
-      <text x="53" y="36" font-family="Helvetica Neue,Arial,sans-serif" font-weight="400" font-size="8" fill="#2AACAC" letter-spacing="0.8">velasync.co.uk</text>
-      <!-- Confidential -->
-      <text x="53" y="46" font-family="Helvetica Neue,Arial,sans-serif" font-weight="600" font-size="6.5" fill="#3A7A7A" letter-spacing="0.5">INTERNAL · CONFIDENTIAL</text>
+      <!-- RIGHT MAINSAIL: large teal quad, wide top-right, narrows to bottom-center -->
+      <polygon points="26,4 45,6 43,38 26,42" fill="#1E9C9C"/>
+      <!-- Dark navy shadow on left interior of mainsail -->
+      <polygon points="26,4 30,4 30,42 26,42" fill="#080F1A"/>
+
+      <!-- LEFT JIB SAIL: smaller teal triangle -->
+      <polygon points="7,12 24,4 26,42 16,42" fill="#178080"/>
+      <!-- Dark shadow outline right edge of jib -->
+      <polygon points="23,5 26,4 26,42 22,40" fill="#080F1A"/>
+
+      <!-- WHITE V STRIPES — the visible V letterform -->
+      <!-- Left arm of V: nearly vertical, slight left lean -->
+      <polygon points="24,4 29,4 28,42 22,42" fill="white"/>
+      <!-- Right arm of V: angled right from top -->
+      <polygon points="29,4 36,4 34,42 28,42" fill="white"/>
+      <!-- Thin navy gap between V arms at apex -->
+      <line x1="30" y1="4" x2="29" y2="42" stroke="#06101A" stroke-width="1.5"/>
+
+      <!-- S HULL — bold S-curve at bottom, teal with dark outline -->
+      <!-- Hull body -->
+      <path d="M7,43 Q10,40 18,43 Q26,46 30,43 Q38,38 44,42 Q47,44 44,47 Q38,51 30,47 Q22,43 18,47 Q10,51 6,47 Z"
+            fill="#1E9C9C"/>
+      <!-- Dark navy shadow outline below hull -->
+      <path d="M7,43 Q10,40 18,43 Q26,46 30,43 Q38,38 44,42"
+            fill="none" stroke="#080F1A" stroke-width="2" stroke-linecap="round"/>
+      <!-- Highlight top edge of hull -->
+      <path d="M8,44 Q14,41 20,44 Q27,47 31,44 Q38,40 43,43"
+            fill="none" stroke="rgba(94,206,206,0.5)" stroke-width="1" stroke-linecap="round"/>
+
+      <!-- WORDMARK -->
+      <text x="53" y="23" font-family="Helvetica Neue,Arial,sans-serif" font-weight="800" font-size="13" fill="#EEF7F7" letter-spacing="2.5">VELA SYNC</text>
+      <text x="54" y="36" font-family="Helvetica Neue,Arial,sans-serif" font-weight="400" font-size="8" fill="#2AACAC" letter-spacing="0.8">velasync.co.uk</text>
+      <text x="54" y="46" font-family="Helvetica Neue,Arial,sans-serif" font-weight="600" font-size="6.5" fill="#3A7A7A" letter-spacing="0.5">INTERNAL · CONFIDENTIAL</text>
     </svg>
   </div>
 
@@ -710,22 +725,29 @@
       <rect width="172" height="52" rx="11" fill="#06101A"/>
       <rect x="0.8" y="0.8" width="170.4" height="50.4" rx="10.5" fill="none" stroke="#1E8C8C" stroke-width="1.5"/>
       <defs>
-        <linearGradient id="logoGlow2" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stop-color="#3AAEAE" stop-opacity="0.4"/>
+        <linearGradient id="lgTop2" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#3AAEAE" stop-opacity="0.35"/>
           <stop offset="100%" stop-color="#3AAEAE" stop-opacity="0"/>
         </linearGradient>
       </defs>
-      <rect x="1" y="1" width="170" height="16" rx="10" fill="url(#logoGlow2)" opacity="0.3"/>
-      <polygon points="5,5 18,5 22,47 8,47" fill="#0C6868"/>
-      <polygon points="24,5 40,5 37,47 23,47" fill="#1A9090"/>
-      <line x1="18" y1="5" x2="22" y2="47" stroke="white" stroke-width="2.2" opacity="0.92" stroke-linecap="round"/>
-      <line x1="24" y1="5" x2="23" y2="47" stroke="white" stroke-width="2.2" opacity="0.92" stroke-linecap="round"/>
-      <line x1="5" y1="5" x2="8" y2="47" stroke="white" stroke-width="1" opacity="0.35" stroke-linecap="round"/>
-      <line x1="40" y1="5" x2="37" y2="47" stroke="white" stroke-width="1" opacity="0.35" stroke-linecap="round"/>
-      <path d="M7,49 Q14,44.5 22.5,47 Q31,49.5 39,45" fill="none" stroke="#29BABA" stroke-width="2.8" stroke-linecap="round"/>
-      <text x="52" y="23" font-family="Helvetica Neue,Arial,sans-serif" font-weight="800" font-size="13" fill="#EEF7F7" letter-spacing="2.5">VELA SYNC</text>
-      <text x="53" y="36" font-family="Helvetica Neue,Arial,sans-serif" font-weight="400" font-size="8" fill="#2AACAC" letter-spacing="0.8">velasync.co.uk</text>
-      <text x="53" y="46" font-family="Helvetica Neue,Arial,sans-serif" font-weight="600" font-size="6.5" fill="#3A7A7A" letter-spacing="0.5">INTERNAL · CONFIDENTIAL</text>
+      <rect x="1" y="1" width="170" height="14" rx="10" fill="url(#lgTop2)"/>
+      <rect x="4" y="3" width="43" height="46" rx="4" fill="#050D18"/>
+      <polygon points="26,4 45,6 43,38 26,42" fill="#1E9C9C"/>
+      <polygon points="26,4 30,4 30,42 26,42" fill="#080F1A"/>
+      <polygon points="7,12 24,4 26,42 16,42" fill="#178080"/>
+      <polygon points="23,5 26,4 26,42 22,40" fill="#080F1A"/>
+      <polygon points="24,4 29,4 28,42 22,42" fill="white"/>
+      <polygon points="29,4 36,4 34,42 28,42" fill="white"/>
+      <line x1="30" y1="4" x2="29" y2="42" stroke="#06101A" stroke-width="1.5"/>
+      <path d="M7,43 Q10,40 18,43 Q26,46 30,43 Q38,38 44,42 Q47,44 44,47 Q38,51 30,47 Q22,43 18,47 Q10,51 6,47 Z"
+            fill="#1E9C9C"/>
+      <path d="M7,43 Q10,40 18,43 Q26,46 30,43 Q38,38 44,42"
+            fill="none" stroke="#080F1A" stroke-width="2" stroke-linecap="round"/>
+      <path d="M8,44 Q14,41 20,44 Q27,47 31,44 Q38,40 43,43"
+            fill="none" stroke="rgba(94,206,206,0.5)" stroke-width="1" stroke-linecap="round"/>
+      <text x="53" y="23" font-family="Helvetica Neue,Arial,sans-serif" font-weight="800" font-size="13" fill="#EEF7F7" letter-spacing="2.5">VELA SYNC</text>
+      <text x="54" y="36" font-family="Helvetica Neue,Arial,sans-serif" font-weight="400" font-size="8" fill="#2AACAC" letter-spacing="0.8">velasync.co.uk</text>
+      <text x="54" y="46" font-family="Helvetica Neue,Arial,sans-serif" font-weight="600" font-size="6.5" fill="#3A7A7A" letter-spacing="0.5">INTERNAL · CONFIDENTIAL</text>
     </svg>
   </div>
 
