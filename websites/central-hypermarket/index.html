@@ -4,482 +4,254 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Central Hypermarket</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --red: #C0392B;
-      --red-light: #e74c3c;
-      --charcoal: #2C3E50;
-      --charcoal-dark: #1a252f;
-      --white: #fff;
-      --off-white: #F8F9FA;
-      --text-dark: #1a1a1a;
-      --text-mid: #555;
+      --red: #C0392B; --red-dark: #96281B;
+      --charcoal: #2C3E50; --white: #FFFFFF;
+      --off-white: #F8F8F8; --light-gray: #ECECEC; --text-muted: #666;
     }
     html { scroll-behavior: smooth; }
-    body { font-family: 'Inter', sans-serif; color: var(--text-dark); background: var(--off-white); }
-
+    body { font-family: 'Inter', sans-serif; color: var(--charcoal); background: var(--white); }
     nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(44,62,80,0.97); backdrop-filter: blur(8px);
       display: flex; align-items: center; justify-content: space-between;
-      padding: 0 5%; height: 72px;
-      background: rgba(44,62,80,0.97); backdrop-filter: blur(12px);
-      box-shadow: 0 2px 24px rgba(0,0,0,0.2);
+      padding: 0 5%; height: 70px;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.3);
     }
-    .nav-logo {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.4rem; font-weight: 700;
-      color: #fff; letter-spacing: 0.5px; text-decoration: none;
-    }
-    .nav-logo span { color: var(--red-light); }
+    .nav-logo { font-family: 'Playfair Display', serif; font-size: 1.4rem; font-weight: 700; color: var(--white); }
+    .nav-logo span { color: var(--red); }
     .nav-links { display: flex; gap: 2rem; list-style: none; }
-    .nav-links a {
-      color: rgba(255,255,255,0.8); text-decoration: none;
-      font-size: 0.875rem; font-weight: 500; letter-spacing: 0.3px;
-      transition: color 0.2s;
-    }
-    .nav-links a:hover { color: var(--red-light); }
-    .lang-toggle {
-      background: var(--red); color: #fff;
-      border: none; padding: 0.45rem 1.1rem; border-radius: 4px;
-      font-family: 'Inter', sans-serif; font-size: 0.8rem; font-weight: 600;
-      cursor: pointer; letter-spacing: 0.5px; transition: background 0.2s, transform 0.15s;
-    }
-    .lang-toggle:hover { background: var(--red-light); transform: scale(1.04); }
-
-    .hero {
-      height: 100vh; min-height: 600px; position: relative;
-      display: flex; align-items: center;
-      background: url('https://images.unsplash.com/photo-1604719312566-8912e9227c6a?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
-    }
-    .hero::before {
-      content: ''; position: absolute; inset: 0;
-      background: linear-gradient(100deg, rgba(44,62,80,0.88) 0%, rgba(192,57,43,0.3) 100%);
-    }
-    .hero-content { position: relative; z-index: 1; padding: 0 8%; max-width: 820px; }
-    .hero-badge {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      background: var(--red); color: #fff;
-      font-size: 0.72rem; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase;
-      padding: 0.4rem 1.2rem; border-radius: 3px; margin-bottom: 1.8rem;
-    }
-    .hero h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(2.4rem, 5.5vw, 4.2rem); font-weight: 700;
-      color: #fff; line-height: 1.12; margin-bottom: 1.3rem;
-      text-shadow: 0 2px 20px rgba(0,0,0,0.4);
-    }
-    .hero h1 em { color: #e8a0a0; font-style: normal; }
-    .hero p {
-      font-size: clamp(1rem, 2vw, 1.18rem); color: rgba(255,255,255,0.85);
-      max-width: 500px; margin-bottom: 2.5rem; line-height: 1.75;
-    }
-    .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
-    .btn-red {
-      display: inline-block; background: var(--red);
-      color: #fff; padding: 0.9rem 2.4rem;
-      border-radius: 4px; font-weight: 600; font-size: 0.95rem;
-      text-decoration: none; letter-spacing: 0.3px;
-      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
-      box-shadow: 0 4px 20px rgba(192,57,43,0.4);
-    }
-    .btn-red:hover { background: var(--red-light); transform: translateY(-2px); }
-    .btn-outline {
-      display: inline-block; background: transparent;
-      color: #fff; padding: 0.9rem 2.4rem;
-      border: 2px solid rgba(255,255,255,0.5); border-radius: 4px;
-      font-weight: 500; font-size: 0.95rem; text-decoration: none;
-      transition: border-color 0.2s, background 0.2s;
-    }
-    .btn-outline:hover { border-color: #fff; background: rgba(255,255,255,0.08); }
-
-    section { padding: 100px 5%; }
-    .section-label {
-      font-size: 0.72rem; font-weight: 700; letter-spacing: 3px;
-      text-transform: uppercase; color: var(--red);
-      margin-bottom: 0.8rem; display: block;
-    }
-    .section-title {
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(1.9rem, 4vw, 3rem); font-weight: 700;
-      color: var(--charcoal); line-height: 1.2; margin-bottom: 1.2rem;
-    }
-    .section-body { font-size: 1.05rem; color: var(--text-mid); line-height: 1.8; max-width: 640px; }
-
-    /* STATS BANNER */
-    .stats-banner {
-      background: var(--red); padding: 3rem 5%;
-      display: flex; justify-content: center; gap: 0;
-    }
-    .stat-item {
-      flex: 1; max-width: 220px; text-align: center;
-      padding: 0 2rem; border-right: 1px solid rgba(255,255,255,0.25);
-    }
-    .stat-item:last-child { border-right: none; }
-    .stat-num { font-family: 'Playfair Display', serif; font-size: 2.8rem; font-weight: 700; color: #fff; line-height: 1; }
-    .stat-lbl { font-size: 0.78rem; color: rgba(255,255,255,0.75); letter-spacing: 1.5px; text-transform: uppercase; margin-top: 0.4rem; }
-
-    /* ABOUT */
-    .about { background: #fff; }
-    .about-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; max-width: 1200px; margin: 0 auto; }
-    .about-image { border-radius: 4px; overflow: hidden; box-shadow: 0 24px 60px rgba(44,62,80,0.18); position: relative; }
-    .about-image::before {
-      content: ''; position: absolute; inset: -6px; border: 2px solid var(--red);
-      z-index: 0; border-radius: 6px; pointer-events: none;
-      transform: translate(8px, 8px);
-    }
-    .about-image img { width: 100%; height: 460px; object-fit: cover; display: block; position: relative; z-index: 1; transition: transform 0.5s; }
-    .about-image:hover img { transform: scale(1.03); }
-
-    /* PRODUCTS */
-    .products { background: var(--off-white); }
-    .products-header { max-width: 1200px; margin: 0 auto 4rem; }
-    .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; max-width: 1200px; margin: 0 auto; }
-    .card {
-      background: #fff; border-radius: 4px; overflow: hidden;
-      box-shadow: 0 2px 16px rgba(44,62,80,0.07);
-      transition: transform 0.3s, box-shadow 0.3s;
-      border-top: 4px solid var(--red);
-    }
-    .card:hover { transform: translateY(-8px); box-shadow: 0 16px 48px rgba(44,62,80,0.14); }
-    .card-img { height: 200px; overflow: hidden; }
-    .card-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
-    .card:hover .card-img img { transform: scale(1.06); }
-    .card-body { padding: 1.8rem; }
-    .card-icon { font-size: 1.8rem; margin-bottom: 0.8rem; }
-    .card-title { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 600; color: var(--charcoal); margin-bottom: 0.7rem; }
-    .card-text { font-size: 0.93rem; color: var(--text-mid); line-height: 1.7; }
-
-    /* HOURS */
-    .hours { background: var(--charcoal); }
-    .hours .section-title { color: #fff; }
-    .hours .section-label { color: #e8a0a0; }
-    .hours-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
-    .hours-table { width: 100%; border-collapse: collapse; margin-top: 1.5rem; }
-    .hours-table tr { border-bottom: 1px solid rgba(255,255,255,0.08); }
-    .hours-table tr:last-child { border-bottom: none; }
-    .hours-table td { padding: 0.9rem 0; color: rgba(255,255,255,0.8); font-size: 0.95rem; }
-    .hours-table td:last-child { text-align: right; font-weight: 600; color: #e8a0a0; }
-    .hours-note { margin-top: 1.5rem; font-size: 0.84rem; color: rgba(255,255,255,0.5); font-style: italic; }
-    .hours-visual { border-radius: 4px; overflow: hidden; box-shadow: 0 12px 40px rgba(0,0,0,0.4); }
-    .hours-visual img { width: 100%; height: 380px; object-fit: cover; display: block; }
-
-    /* CONTACT */
-    .contact { background: #fff; }
-    .contact-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; max-width: 1200px; margin: 0 auto; align-items: start; }
-    .contact-info { margin-top: 2rem; }
-    .contact-item { display: flex; gap: 1.2rem; align-items: flex-start; margin-bottom: 1.8rem; }
-    .contact-icon { width: 46px; height: 46px; background: var(--red); border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0; }
-    .contact-detail h4 { font-weight: 600; color: var(--charcoal); margin-bottom: 0.2rem; font-size: 0.95rem; }
-    .contact-detail p { font-size: 0.9rem; color: var(--text-mid); line-height: 1.5; }
-    .map-placeholder { height: 400px; border-radius: 4px; overflow: hidden; }
-    .map-placeholder iframe { width: 100%; height: 100%; border: none; }
-
-    footer {
-      background: var(--charcoal-dark); color: rgba(255,255,255,0.6);
-      padding: 4rem 5%; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 3rem;
-      max-width: 100%;
-    }
-    .footer-brand .footer-logo { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: #fff; font-weight: 700; margin-bottom: 0.7rem; }
-    .footer-brand .footer-logo span { color: var(--red-light); }
-    .footer-brand p { font-size: 0.88rem; line-height: 1.7; }
-    .footer-col h5 { color: #fff; font-size: 0.8rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 1rem; }
-    .footer-col ul { list-style: none; }
-    .footer-col ul li { margin-bottom: 0.6rem; font-size: 0.88rem; }
-    .footer-bottom { grid-column: 1/-1; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1.5rem; text-align: center; font-size: 0.8rem; color: rgba(255,255,255,0.35); }
-
+    .nav-links a { color: rgba(255,255,255,0.85); text-decoration: none; font-size: 0.88rem; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--red); }
+    .lang-btn { background: var(--red); color: var(--white); border: none; padding: 0.4rem 1rem; border-radius: 4px; font-family: 'Inter', sans-serif; font-size: 0.8rem; font-weight: 600; cursor: pointer; letter-spacing: 0.08em; text-transform: uppercase; transition: background 0.2s; }
+    .lang-btn:hover { background: var(--red-dark); }
     .el { display: none; }
     body.lang-el .en { display: none; }
     body.lang-el .el { display: block; }
-    span.el, span.en { display: inline; }
-    body.lang-el span.en { display: none; }
     body.lang-el span.el { display: inline; }
-
+    body.lang-el span.en { display: none; }
+    .hero {
+      height: 100vh; min-height: 600px;
+      background: url('https://images.unsplash.com/photo-1604719312566-8912e9227c6a?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+      display: flex; align-items: center; justify-content: center; text-align: center; position: relative;
+    }
+    .hero::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(44,62,80,0.82) 0%, rgba(192,57,43,0.55) 100%); }
+    .hero-content { position: relative; z-index: 1; padding: 0 1.5rem; max-width: 900px; }
+    .hero-eyebrow { font-size: 0.85rem; font-weight: 600; letter-spacing: 0.25em; text-transform: uppercase; color: rgba(255,255,255,0.7); margin-bottom: 1.2rem; }
+    .hero-title { font-family: 'Playfair Display', serif; font-size: clamp(2.8rem, 6vw, 5rem); font-weight: 900; color: var(--white); line-height: 1.1; margin-bottom: 1.5rem; }
+    .hero-title span { color: #e87567; }
+    .hero-tagline { font-size: clamp(1rem, 2vw, 1.3rem); color: rgba(255,255,255,0.88); font-weight: 300; margin-bottom: 2.5rem; line-height: 1.6; }
+    .hero-cta { display: inline-block; background: var(--red); color: var(--white); padding: 0.9rem 2.5rem; border-radius: 4px; text-decoration: none; font-weight: 600; font-size: 0.95rem; letter-spacing: 0.08em; text-transform: uppercase; transition: background 0.2s, transform 0.2s; box-shadow: 0 4px 20px rgba(192,57,43,0.5); }
+    .hero-cta:hover { background: var(--red-dark); transform: translateY(-2px); }
+    section { padding: 100px 5%; }
+    .section-label { font-size: 0.8rem; font-weight: 600; letter-spacing: 0.3em; text-transform: uppercase; color: var(--red); margin-bottom: 1rem; }
+    .section-title { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; color: var(--charcoal); margin-bottom: 1.5rem; line-height: 1.2; }
+    .section-divider { width: 60px; height: 4px; background: var(--red); border-radius: 2px; margin-bottom: 2rem; }
+    .section-text { font-size: 1.05rem; color: var(--text-muted); line-height: 1.8; max-width: 700px; }
+    .about { background: var(--off-white); }
+    .about-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; max-width: 1200px; margin: 0 auto; }
+    .about-img { width: 100%; height: 450px; object-fit: cover; border-radius: 6px; box-shadow: 20px 20px 0 var(--red); }
+    .products { background: var(--white); }
+    .products-inner { max-width: 1200px; margin: 0 auto; }
+    .products-header { text-align: center; margin-bottom: 4rem; }
+    .products-header .section-divider { margin: 0 auto 0; }
+    .cards-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+    .card { background: var(--white); border: 1px solid var(--light-gray); border-radius: 8px; overflow: hidden; transition: transform 0.3s, box-shadow 0.3s; }
+    .card:hover { transform: translateY(-8px); box-shadow: 0 20px 50px rgba(44,62,80,0.12); }
+    .card-img { height: 220px; overflow: hidden; }
+    .card-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+    .card:hover .card-img img { transform: scale(1.06); }
+    .card-body { padding: 1.8rem; }
+    .card-title { font-family: 'Playfair Display', serif; font-size: 1.25rem; font-weight: 700; color: var(--charcoal); margin-bottom: 0.6rem; }
+    .card-text { font-size: 0.95rem; color: var(--text-muted); line-height: 1.7; }
+    .card-tag { display: inline-block; margin-top: 1rem; background: rgba(192,57,43,0.1); color: var(--red); padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.8rem; font-weight: 600; }
+    .hours { background: var(--charcoal); color: var(--white); }
+    .hours .section-title { color: var(--white); }
+    .hours .section-label { color: rgba(255,255,255,0.5); }
+    .hours-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-top: 2.5rem; }
+    .hours-card { background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 1.5rem; text-align: center; transition: background 0.2s, border-color 0.2s; }
+    .hours-card:hover { background: rgba(192,57,43,0.2); border-color: var(--red); }
+    .hours-day { font-size: 0.8rem; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.6); margin-bottom: 0.5rem; }
+    .hours-time { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; color: var(--white); }
+    .hours-closed { font-size: 0.85rem; color: #e87567; font-weight: 500; }
+    .contact { background: var(--off-white); }
+    .contact-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+    .contact-item { display: flex; align-items: flex-start; gap: 1rem; margin-bottom: 2rem; }
+    .contact-icon { width: 48px; height: 48px; background: var(--red); color: var(--white); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0; }
+    .contact-label { font-size: 0.8rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--red); }
+    .contact-value { font-size: 1rem; color: var(--charcoal); margin-top: 0.2rem; line-height: 1.5; }
+    .contact-map { border-radius: 8px; height: 350px; background: var(--light-gray); display: flex; align-items: center; justify-content: center; color: var(--text-muted); font-size: 0.9rem; border: 1px solid var(--light-gray); }
+    footer { background: #1a252f; color: rgba(255,255,255,0.6); text-align: center; padding: 2.5rem 5%; font-size: 0.9rem; }
+    footer strong { color: var(--white); }
     @media (max-width: 900px) {
-      .about-inner, .hours-inner, .contact-inner { grid-template-columns: 1fr; gap: 2.5rem; }
-      .cards { grid-template-columns: 1fr; }
-      .stats-banner { flex-wrap: wrap; }
-      .stat-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.2); padding: 1rem; min-width: 50%; }
-      footer { grid-template-columns: 1fr; }
+      .about-inner, .contact-inner { grid-template-columns: 1fr; gap: 3rem; }
+      .cards-grid { grid-template-columns: 1fr; }
       .nav-links { display: none; }
     }
   </style>
 </head>
 <body>
-
 <nav>
-  <a href="#" class="nav-logo">Central <span>Hypermarket</span></a>
+  <div class="nav-logo"><span>Central</span> Hypermarket</div>
   <ul class="nav-links">
     <li><a href="#about"><span class="en">About</span><span class="el">Σχετικά</span></a></li>
-    <li><a href="#products"><span class="en">Departments</span><span class="el">Τμήματα</span></a></li>
+    <li><a href="#products"><span class="en">Products</span><span class="el">Προϊόντα</span></a></li>
     <li><a href="#hours"><span class="en">Hours</span><span class="el">Ώρες</span></a></li>
     <li><a href="#contact"><span class="en">Contact</span><span class="el">Επικοινωνία</span></a></li>
   </ul>
-  <button class="lang-toggle" id="langBtn" onclick="toggleLang()">ΕΛ</button>
+  <button class="lang-btn" onclick="toggleLang(this)">ΕΛ</button>
 </nav>
-
-<section class="hero" id="home">
+<section class="hero">
   <div class="hero-content">
-    <div class="hero-badge">
-      <span>★</span>
-      <span class="en">Premier Hypermarket · Athens</span>
-      <span class="el">Κορυφαίο Hypermarket · Αθήνα</span>
-    </div>
-    <h1>
-      <span class="en">Central Hypermarket –<br>The <em>Heart</em> of Your Shopping</span>
-      <span class="el">Central Hypermarket –<br>Η <em>Καρδιά</em> των Ψωνιών σας</span>
-    </h1>
-    <p>
-      <span class="en">Athens' most comprehensive shopping destination. Thousands of products, unbeatable prices, and a world-class experience — all in one central location.</span>
-      <span class="el">Ο πιο ολοκληρωμένος προορισμός αγορών της Αθήνας. Χιλιάδες προϊόντα, ασυναγώνιστες τιμές και εμπειρία παγκόσμιας κλάσης — όλα σε μία κεντρική τοποθεσία.</span>
-    </p>
-    <div class="hero-btns">
-      <a href="#products" class="btn-red">
-        <span class="en">Explore Departments</span>
-        <span class="el">Εξερεύνηση Τμημάτων</span>
-      </a>
-      <a href="#contact" class="btn-outline">
-        <span class="en">Get Directions</span>
-        <span class="el">Οδηγίες</span>
-      </a>
-    </div>
+    <p class="hero-eyebrow en">Welcome to</p>
+    <p class="hero-eyebrow el">Καλώς ορίσατε στο</p>
+    <h1 class="hero-title">Central <span>Hypermarket</span></h1>
+    <p class="hero-tagline en">The Heart of Your Shopping</p>
+    <p class="hero-tagline el">Η Καρδιά των Ψωνιών σας</p>
+    <a href="#products" class="hero-cta en">Explore Our Products</a>
+    <a href="#products" class="hero-cta el">Εξερευνήστε τα Προϊόντα μας</a>
   </div>
 </section>
-
-<div class="stats-banner">
-  <div class="stat-item">
-    <div class="stat-num">25,000+</div>
-    <div class="stat-lbl en">Products</div>
-    <div class="stat-lbl el">Προϊόντα</div>
-  </div>
-  <div class="stat-item">
-    <div class="stat-num">18</div>
-    <div class="stat-lbl en">Departments</div>
-    <div class="stat-lbl el">Τμήματα</div>
-  </div>
-  <div class="stat-item">
-    <div class="stat-num">5,000m²</div>
-    <div class="stat-lbl en">Floor Space</div>
-    <div class="stat-lbl el">Επιφάνεια</div>
-  </div>
-  <div class="stat-item">
-    <div class="stat-num">500+</div>
-    <div class="stat-lbl en">Parking Spaces</div>
-    <div class="stat-lbl el">Θέσεις Πάρκινγκ</div>
-  </div>
-</div>
-
 <section class="about" id="about">
   <div class="about-inner">
-    <div class="about-image">
-      <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=800&q=80" alt="Hypermarket interior" />
+    <div>
+      <img class="about-img" src="https://images.unsplash.com/photo-1578916171728-46686eac8d58?auto=format&fit=crop&w=800&q=80" alt="Inside Central Hypermarket" />
     </div>
     <div>
-      <span class="section-label en">Our Mission</span>
-      <span class="section-label el">Η Αποστολή μας</span>
-      <h2 class="section-title">
-        <span class="en">Athens' Premier One-Stop Shopping Destination</span>
-        <span class="el">Ο Κορυφαίος Προορισμός Αγορών της Αθήνας</span>
-      </h2>
-      <p class="section-body">
-        <span class="en">Central Hypermarket has served the heart of Athens for over 15 years, offering an unparalleled range of groceries, electronics, clothing, home goods, and more. Our commitment to quality and value has made us the city's most trusted retail destination.</span>
-        <span class="el">Το Central Hypermarket εξυπηρετεί την καρδιά της Αθήνας για πάνω από 15 χρόνια, προσφέροντας απαράμιλλη γκάμα τροφίμων, ηλεκτρονικών, ρούχων, οικιακών ειδών και άλλα. Η δέσμευσή μας στην ποιότητα και την αξία μας έχει κάνει τον πιο αξιόπιστο λιανεμπορικό προορισμό της πόλης.</span>
-      </p>
+      <p class="section-label en">Our Story</p>
+      <p class="section-label el">Η Ιστορία μας</p>
+      <h2 class="section-title en">More Than a Supermarket</h2>
+      <h2 class="section-title el">Περισσότερο από ένα Σούπερ Μάρκετ</h2>
+      <div class="section-divider"></div>
+      <p class="section-text en">Central Hypermarket has been the cornerstone of the local community for over 25 years. We stock thousands of products — from fresh produce and premium meats to international brands and household essentials — all under one roof, at prices that respect your budget.</p>
+      <p class="section-text el">Το Central Hypermarket αποτελεί τον ακρογωνιαίο λίθο της τοπικής κοινότητας για πάνω από 25 χρόνια. Διαθέτουμε χιλιάδες προϊόντα — από φρέσκα λαχανικά και κρέατα premium έως διεθνείς μάρκες και είδη σπιτιού — όλα κάτω από μία στέγη.</p>
     </div>
   </div>
 </section>
-
 <section class="products" id="products">
-  <div class="products-header">
-    <span class="section-label en">Our Departments</span>
-    <span class="section-label el">Τα Τμήματά μας</span>
-    <h2 class="section-title">
-      <span class="en">Everything Under One Roof</span>
-      <span class="el">Όλα Κάτω από Μία Στέγη</span>
-    </h2>
-  </div>
-  <div class="cards">
-    <div class="card">
-      <div class="card-img">
-        <img src="https://images.unsplash.com/photo-1488459716781-31db52582fe9?auto=format&fit=crop&w=600&q=80" alt="Fresh food" />
-      </div>
-      <div class="card-body">
-        <div class="card-icon">🛒</div>
-        <h3 class="card-title">
-          <span class="en">Fresh Food Hall</span>
-          <span class="el">Αίθουσα Φρέσκων Τροφίμων</span>
-        </h3>
-        <p class="card-text">
-          <span class="en">A vast selection of fresh produce, meat, seafood, deli, and bakery items — sourced daily and displayed at their finest.</span>
-          <span class="el">Τεράστια ποικιλία φρέσκων τροφίμων, κρέατος, θαλασσινών, αλλαντικών και αρτοσκευασμάτων — καθημερινά στην καλύτερή τους μορφή.</span>
-        </p>
-      </div>
+  <div class="products-inner">
+    <div class="products-header">
+      <p class="section-label en">What We Offer</p>
+      <p class="section-label el">Τι Προσφέρουμε</p>
+      <h2 class="section-title en">Our Key Departments</h2>
+      <h2 class="section-title el">Τα Κύρια Τμήματά μας</h2>
+      <div class="section-divider"></div>
     </div>
-    <div class="card">
-      <div class="card-img">
-        <img src="https://images.unsplash.com/photo-1491553895911-0055eca6402d?auto=format&fit=crop&w=600&q=80" alt="Electronics" />
+    <div class="cards-grid">
+      <div class="card">
+        <div class="card-img"><img src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=600&q=80" alt="Fresh Produce" /></div>
+        <div class="card-body">
+          <h3 class="card-title en">Fresh Produce</h3>
+          <h3 class="card-title el">Φρέσκα Προϊόντα</h3>
+          <p class="card-text en">Daily-delivered fruits, vegetables, and herbs sourced from trusted local farms and international suppliers.</p>
+          <p class="card-text el">Καθημερινά φρούτα, λαχανικά και μυρωδικά από αξιόπιστες τοπικές φάρμες και διεθνείς προμηθευτές.</p>
+          <span class="card-tag en">Farm Fresh</span>
+          <span class="card-tag el">Φρέσκο από Αγρόκτημα</span>
+        </div>
       </div>
-      <div class="card-body">
-        <div class="card-icon">📱</div>
-        <h3 class="card-title">
-          <span class="en">Electronics & Tech</span>
-          <span class="el">Ηλεκτρονικά & Τεχνολογία</span>
-        </h3>
-        <p class="card-text">
-          <span class="en">The latest smartphones, appliances, and gadgets at competitive prices. Expert staff ready to assist with any purchase.</span>
-          <span class="el">Τα νεότερα smartphones, οικιακές συσκευές και gadgets σε ανταγωνιστικές τιμές. Έμπειρο προσωπικό έτοιμο να σας βοηθήσει.</span>
-        </p>
+      <div class="card">
+        <div class="card-img"><img src="https://images.unsplash.com/photo-1534723452862-4c874018d66d?auto=format&fit=crop&w=600&q=80" alt="Grocery Aisles" /></div>
+        <div class="card-body">
+          <h3 class="card-title en">Grocery Aisles</h3>
+          <h3 class="card-title el">Αίθουσες Παντοπωλείου</h3>
+          <p class="card-text en">Thousands of branded and own-label products across every grocery category — all competitively priced.</p>
+          <p class="card-text el">Χιλιάδες προϊόντα γνωστών μαρκών και ιδιωτικής ετικέτας σε κάθε κατηγορία παντοπωλείου.</p>
+          <span class="card-tag en">Great Value</span>
+          <span class="card-tag el">Μεγάλη Αξία</span>
+        </div>
       </div>
-    </div>
-    <div class="card">
-      <div class="card-img">
-        <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=600&q=80" alt="Beauty" />
-      </div>
-      <div class="card-body">
-        <div class="card-icon">💄</div>
-        <h3 class="card-title">
-          <span class="en">Beauty & Wellness</span>
-          <span class="el">Ομορφιά & Ευεξία</span>
-        </h3>
-        <p class="card-text">
-          <span class="en">Premium beauty brands, skincare, health products, and wellness essentials — everything for a beautiful lifestyle.</span>
-          <span class="el">Premium μάρκες ομορφιάς, περιποίηση δέρματος, προϊόντα υγείας και βασικά είδη ευεξίας — όλα για ένα όμορφο τρόπο ζωής.</span>
-        </p>
+      <div class="card">
+        <div class="card-img"><img src="https://images.unsplash.com/photo-1607349913338-fca6f7fc42d0?auto=format&fit=crop&w=600&q=80" alt="Deli and Bakery" /></div>
+        <div class="card-body">
+          <h3 class="card-title en">Deli &amp; Bakery</h3>
+          <h3 class="card-title el">Αλλαντικά &amp; Αρτοποιείο</h3>
+          <p class="card-text en">Freshly baked breads, pastries, and a fine selection of deli meats and cheeses to delight your palate.</p>
+          <p class="card-text el">Φρεσκοψημένα ψωμιά, γλυκά και εκλεκτή επιλογή αλλαντικών και τυριών για να τέρψετε τον ουρανίσκο σας.</p>
+          <span class="card-tag en">Baked Daily</span>
+          <span class="card-tag el">Καθημερινό Ψήσιμο</span>
+        </div>
       </div>
     </div>
   </div>
 </section>
-
 <section class="hours" id="hours">
-  <div class="hours-inner">
-    <div>
-      <span class="section-label en">Store Hours</span>
-      <span class="section-label el">Ώρες Λειτουργίας</span>
-      <h2 class="section-title">
-        <span class="en">Open Late, 7 Days a Week</span>
-        <span class="el">Ανοιχτά Αργά, 7 Ημέρες την Εβδομάδα</span>
-      </h2>
-      <table class="hours-table">
-        <tr>
-          <td><span class="en">Monday – Friday</span><span class="el">Δευτέρα – Παρασκευή</span></td>
-          <td>07:30 – 22:00</td>
-        </tr>
-        <tr>
-          <td><span class="en">Saturday</span><span class="el">Σάββατο</span></td>
-          <td>08:00 – 22:00</td>
-        </tr>
-        <tr>
-          <td><span class="en">Sunday</span><span class="el">Κυριακή</span></td>
-          <td>09:00 – 21:00</td>
-        </tr>
-        <tr>
-          <td><span class="en">Public Holidays</span><span class="el">Αργίες</span></td>
-          <td>10:00 – 18:00</td>
-        </tr>
-      </table>
-      <p class="hours-note">
-        <span class="en">* Selected departments may close 30 minutes earlier. Service desk open during all trading hours.</span>
-        <span class="el">* Ορισμένα τμήματα ενδέχεται να κλείνουν 30 λεπτά νωρίτερα.</span>
-      </p>
-    </div>
-    <div class="hours-visual">
-      <img src="https://images.unsplash.com/photo-1578916171728-46686eac8d58?auto=format&fit=crop&w=800&q=80" alt="Store hours" />
+  <div style="max-width:1000px;margin:0 auto;">
+    <p class="section-label">&#128336; <span class="en">Opening Hours</span><span class="el">Ώρες Λειτουργίας</span></p>
+    <h2 class="section-title en">We're Here When You Need Us</h2>
+    <h2 class="section-title el">Είμαστε Εδώ Όταν μας Χρειάζεστε</h2>
+    <div class="hours-grid">
+      <div class="hours-card">
+        <div class="hours-day en">Monday – Friday</div>
+        <div class="hours-day el">Δευτέρα – Παρασκευή</div>
+        <div class="hours-time">08:00 – 21:00</div>
+      </div>
+      <div class="hours-card">
+        <div class="hours-day en">Saturday</div>
+        <div class="hours-day el">Σάββατο</div>
+        <div class="hours-time">08:00 – 20:00</div>
+      </div>
+      <div class="hours-card">
+        <div class="hours-day en">Sunday</div>
+        <div class="hours-day el">Κυριακή</div>
+        <div class="hours-time">09:00 – 18:00</div>
+      </div>
+      <div class="hours-card">
+        <div class="hours-day en">Public Holidays</div>
+        <div class="hours-day el">Αργίες</div>
+        <div class="hours-closed en">Please call ahead</div>
+        <div class="hours-closed el">Παρακαλώ τηλεφωνήστε</div>
+      </div>
     </div>
   </div>
 </section>
-
 <section class="contact" id="contact">
   <div class="contact-inner">
     <div>
-      <span class="section-label en">Location</span>
-      <span class="section-label el">Τοποθεσία</span>
-      <h2 class="section-title">
-        <span class="en">Right in the Heart of Athens</span>
-        <span class="el">Στην Καρδιά της Αθήνας</span>
-      </h2>
-      <div class="contact-info">
-        <div class="contact-item">
-          <div class="contact-icon">📍</div>
-          <div class="contact-detail">
-            <h4><span class="en">Address</span><span class="el">Διεύθυνση</span></h4>
-            <p>Λεωφόρος Αθηνών 210, Πειραιάς 18540</p>
-          </div>
+      <p class="section-label en">Get In Touch</p>
+      <p class="section-label el">Επικοινωνήστε μαζί μας</p>
+      <h2 class="section-title en">Visit Us Today</h2>
+      <h2 class="section-title el">Επισκεφθείτε μας Σήμερα</h2>
+      <div class="section-divider"></div>
+      <div class="contact-item">
+        <div class="contact-icon">&#128205;</div>
+        <div>
+          <div class="contact-label en">Address</div><div class="contact-label el">Διεύθυνση</div>
+          <div class="contact-value">Central Square 1, Town Centre</div>
         </div>
-        <div class="contact-item">
-          <div class="contact-icon">📞</div>
-          <div class="contact-detail">
-            <h4><span class="en">Phone</span><span class="el">Τηλέφωνο</span></h4>
-            <p>+30 210 987 6543</p>
-          </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">&#128222;</div>
+        <div>
+          <div class="contact-label en">Phone</div><div class="contact-label el">Τηλέφωνο</div>
+          <div class="contact-value">+30 210 000 0001</div>
         </div>
-        <div class="contact-item">
-          <div class="contact-icon">✉️</div>
-          <div class="contact-detail">
-            <h4>Email</h4>
-            <p>info@centralhypermarket.gr</p>
-          </div>
-        </div>
-        <div class="contact-item">
-          <div class="contact-icon">🅿️</div>
-          <div class="contact-detail">
-            <h4><span class="en">Parking</span><span class="el">Πάρκινγκ</span></h4>
-            <p><span class="en">500+ free spaces, 24/7 security</span><span class="el">500+ δωρεάν θέσεις, ασφάλεια 24/7</span></p>
-          </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">&#9993;</div>
+        <div>
+          <div class="contact-label en">Email</div><div class="contact-label el">Email</div>
+          <div class="contact-value">info@centralhypermarket.gr</div>
         </div>
       </div>
     </div>
-    <div class="map-placeholder">
-      <iframe
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3145.0!2d23.65!3d37.94!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2z!5e0!3m2!1sen!2sgr!4v1700000000000"
-        allowfullscreen="" loading="lazy"></iframe>
+    <div class="contact-map">
+      <span class="en">&#128205; Map Placeholder</span>
+      <span class="el">&#128205; Τοποθεσία Χάρτη</span>
     </div>
   </div>
 </section>
-
 <footer>
-  <div class="footer-brand">
-    <div class="footer-logo">Central <span>Hypermarket</span></div>
-    <p>
-      <span class="en">The heart of your shopping experience in Athens.</span>
-      <span class="el">Η καρδιά της εμπειρίας αγορών σας στην Αθήνα.</span>
-    </p>
-  </div>
-  <div class="footer-col">
-    <h5><span class="en">Quick Links</span><span class="el">Σύνδεσμοι</span></h5>
-    <ul>
-      <li><a href="#about" style="color:inherit;text-decoration:none;"><span class="en">About Us</span><span class="el">Σχετικά</span></a></li>
-      <li><a href="#products" style="color:inherit;text-decoration:none;"><span class="en">Departments</span><span class="el">Τμήματα</span></a></li>
-      <li><a href="#hours" style="color:inherit;text-decoration:none;"><span class="en">Hours</span><span class="el">Ώρες</span></a></li>
-      <li><a href="#contact" style="color:inherit;text-decoration:none;"><span class="en">Contact</span><span class="el">Επικοινωνία</span></a></li>
-    </ul>
-  </div>
-  <div class="footer-col">
-    <h5><span class="en">Services</span><span class="el">Υπηρεσίες</span></h5>
-    <ul>
-      <li><span class="en">Home Delivery</span><span class="el">Παράδοση στο Σπίτι</span></li>
-      <li><span class="en">Click & Collect</span><span class="el">Αγορά & Παραλαβή</span></li>
-      <li><span class="en">Loyalty Card</span><span class="el">Κάρτα Πιστότητας</span></li>
-      <li><span class="en">Gift Cards</span><span class="el">Δωροεπιταγές</span></li>
-    </ul>
-  </div>
-  <div class="footer-bottom">
-    <span class="en">&copy; 2024 Central Hypermarket. All rights reserved.</span>
-    <span class="el">&copy; 2024 Central Hypermarket. Με επιφύλαξη παντός δικαιώματος.</span>
-  </div>
+  <p><strong>Central Hypermarket</strong> &copy; 2024 &mdash; <span class="en">All rights reserved. Designed with pride.</span><span class="el">Όλα τα δικαιώματα διατηρούνται.</span></p>
 </footer>
-
 <script>
-  function toggleLang() {
-    const body = document.body;
-    const btn = document.getElementById('langBtn');
-    if (body.classList.contains('lang-el')) {
-      body.classList.remove('lang-el');
-      btn.textContent = 'ΕΛ';
-    } else {
-      body.classList.add('lang-el');
-      btn.textContent = 'EN';
-    }
+  function toggleLang(btn) {
+    const isEl = document.body.classList.toggle('lang-el');
+    btn.textContent = isEl ? 'EN' : 'ΕΛ';
   }
 </script>
 </body>

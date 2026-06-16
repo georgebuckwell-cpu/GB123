@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Discount Supermarket</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --yellow: #FFC107;
+      --yellow-dark: #e5ac00;
+      --yellow-pale: #fff9e6;
+      --black: #111;
+      --dark: #1a1a1a;
+      --dark-mid: #222;
+      --white: #fff;
+      --text-dark: #111;
+      --text-mid: #444;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; color: var(--text-dark); background: var(--white); }
+
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 5%; height: 72px;
+      background: var(--black);
+      box-shadow: 0 2px 0 var(--yellow);
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem; font-weight: 700; color: var(--yellow);
+      text-decoration: none; display: flex; align-items: center; gap: 0.7rem;
+    }
+    .nav-logo-badge {
+      background: var(--yellow); color: var(--black);
+      font-size: 0.65rem; font-weight: 800; letter-spacing: 1px; text-transform: uppercase;
+      padding: 0.25rem 0.6rem; border-radius: 3px; font-family: 'Inter', sans-serif;
+    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      color: rgba(255,255,255,0.8); text-decoration: none;
+      font-size: 0.875rem; font-weight: 500; letter-spacing: 0.3px;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--yellow); }
+    .lang-toggle {
+      background: var(--yellow); color: var(--black);
+      border: none; padding: 0.45rem 1.1rem; border-radius: 3px;
+      font-family: 'Inter', sans-serif; font-size: 0.8rem; font-weight: 800;
+      cursor: pointer; letter-spacing: 0.5px; transition: background 0.2s, transform 0.15s;
+    }
+    .lang-toggle:hover { background: #ffe07a; transform: scale(1.04); }
+
+    .hero {
+      height: 100vh; min-height: 600px; position: relative;
+      display: flex; align-items: center;
+      background: url('https://images.unsplash.com/photo-1534723452862-4c874018d66d?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+    }
+    .hero::before {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(110deg, rgba(17,17,17,0.92) 0%, rgba(17,17,17,0.70) 50%, rgba(17,17,17,0.4) 100%);
+    }
+    .hero-content { position: relative; z-index: 1; padding: 0 8%; max-width: 780px; }
+    .hero-tag {
+      display: inline-block; background: var(--yellow); color: var(--black);
+      font-size: 0.72rem; font-weight: 800; letter-spacing: 2px; text-transform: uppercase;
+      padding: 0.4rem 1.2rem; border-radius: 3px; margin-bottom: 1.8rem;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.4rem, 5.5vw, 4.4rem); font-weight: 700;
+      color: var(--white); line-height: 1.1; margin-bottom: 1.3rem;
+    }
+    .hero h1 .highlight { color: var(--yellow); }
+    .hero p {
+      font-size: clamp(1rem, 2vw, 1.18rem); color: rgba(255,255,255,0.82);
+      max-width: 520px; margin-bottom: 2.5rem; line-height: 1.75;
+    }
+    .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
+    .btn-yellow {
+      display: inline-block; background: var(--yellow);
+      color: var(--black); padding: 0.9rem 2.6rem;
+      border-radius: 3px; font-weight: 800; font-size: 0.95rem;
+      text-decoration: none; letter-spacing: 0.3px;
+      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 20px rgba(255,193,7,0.4);
+    }
+    .btn-yellow:hover { background: #ffe07a; transform: translateY(-2px); box-shadow: 0 8px 32px rgba(255,193,7,0.5); }
+    .hero-offer {
+      font-size: 0.88rem; color: var(--yellow);
+      font-weight: 600; letter-spacing: 0.5px;
+    }
+
+    /* TICKER */
+    .ticker {
+      background: var(--yellow); overflow: hidden; padding: 0.75rem 0;
+      white-space: nowrap;
+    }
+    .ticker-inner {
+      display: inline-flex; gap: 0; animation: ticker 25s linear infinite;
+    }
+    .ticker-item {
+      font-size: 0.82rem; font-weight: 700; letter-spacing: 1px;
+      text-transform: uppercase; color: var(--black);
+      padding: 0 2.5rem;
+    }
+    .ticker-sep { color: var(--black); opacity: 0.4; font-size: 0.7rem; padding: 0 0.5rem; }
+    @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+    section { padding: 100px 5%; }
+    .section-label {
+      font-size: 0.72rem; font-weight: 800; letter-spacing: 3px;
+      text-transform: uppercase; color: var(--yellow-dark);
+      margin-bottom: 0.8rem; display: block;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.9rem, 4vw, 3rem); font-weight: 700;
+      color: var(--black); line-height: 1.2; margin-bottom: 1.2rem;
+    }
+    .section-body { font-size: 1.05rem; color: var(--text-mid); line-height: 1.8; max-width: 640px; }
+
+    /* ABOUT */
+    .about { background: var(--white); }
+    .about-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; max-width: 1200px; margin: 0 auto; }
+    .about-image { border-radius: 4px; overflow: hidden; position: relative; box-shadow: 8px 8px 0 var(--yellow); }
+    .about-image img { width: 100%; height: 440px; object-fit: cover; display: block; transition: transform 0.5s; }
+    .about-image:hover img { transform: scale(1.03); }
+    .savings-strip {
+      display: flex; gap: 2rem; margin-top: 2.5rem;
+      padding: 1.5rem; background: var(--yellow-pale);
+      border-left: 4px solid var(--yellow); border-radius: 4px;
+    }
+    .saving { text-align: center; }
+    .saving-num { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 700; color: var(--black); }
+    .saving-lbl { font-size: 0.78rem; font-weight: 600; color: var(--text-mid); letter-spacing: 0.5px; text-transform: uppercase; margin-top: 0.2rem; }
+
+    /* PRODUCTS */
+    .products { background: var(--black); }
+    .products .section-title { color: var(--white); }
+    .products .section-label { color: var(--yellow); }
+    .products-header { max-width: 1200px; margin: 0 auto 4rem; }
+    .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; max-width: 1200px; margin: 0 auto; }
+    .card {
+      background: var(--dark-mid); border-radius: 4px; overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.06);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+      transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+      position: relative;
+    }
+    .card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+      background: var(--yellow); transform: scaleX(0); transform-origin: left;
+      transition: transform 0.3s; z-index: 1;
+    }
+    .card:hover { transform: translateY(-8px); box-shadow: 0 20px 50px rgba(0,0,0,0.5); border-color: rgba(255,193,7,0.2); }
+    .card:hover::before { transform: scaleX(1); }
+    .card-img { height: 200px; overflow: hidden; }
+    .card-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+    .card:hover .card-img img { transform: scale(1.06); }
+    .card-discount {
+      position: absolute; top: 12px; right: 12px;
+      background: var(--yellow); color: var(--black);
+      font-size: 0.75rem; font-weight: 800; padding: 0.3rem 0.7rem;
+      border-radius: 3px; letter-spacing: 0.5px; z-index: 2;
+    }
+    .card-body { padding: 1.8rem; }
+    .card-icon { font-size: 1.8rem; margin-bottom: 0.8rem; }
+    .card-title { font-family: 'Playfair Display', serif; font-size: 1.25rem; font-weight: 600; color: var(--yellow); margin-bottom: 0.7rem; }
+    .card-text { font-size: 0.93rem; color: rgba(255,255,255,0.65); line-height: 1.7; }
+
+    /* HOURS */
+    .hours { background: var(--yellow-pale); }
+    .hours-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+    .hours-table { width: 100%; border-collapse: collapse; margin-top: 1.5rem; }
+    .hours-table tr { border-bottom: 2px solid rgba(255,193,7,0.2); }
+    .hours-table tr:last-child { border-bottom: none; }
+    .hours-table td { padding: 0.9rem 0; color: var(--text-mid); font-size: 0.95rem; }
+    .hours-table td:first-child { font-weight: 600; color: var(--black); }
+    .hours-table td:last-child { text-align: right; font-weight: 800; color: var(--black); font-size: 1rem; }
+    .hours-note { margin-top: 1.5rem; font-size: 0.84rem; color: var(--text-mid); }
+    .hours-visual { border-radius: 4px; overflow: hidden; box-shadow: 8px 8px 0 var(--yellow); }
+    .hours-visual img { width: 100%; height: 380px; object-fit: cover; display: block; }
+
+    /* CONTACT */
+    .contact { background: var(--white); }
+    .contact-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; max-width: 1200px; margin: 0 auto; align-items: start; }
+    .contact-info { margin-top: 2rem; }
+    .contact-item { display: flex; gap: 1.2rem; align-items: flex-start; margin-bottom: 1.8rem; }
+    .contact-icon { width: 46px; height: 46px; background: var(--yellow); border-radius: 3px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0; }
+    .contact-detail h4 { font-weight: 700; color: var(--black); margin-bottom: 0.2rem; font-size: 0.95rem; }
+    .contact-detail p { font-size: 0.9rem; color: var(--text-mid); line-height: 1.5; }
+    .map-placeholder { height: 400px; border-radius: 4px; overflow: hidden; box-shadow: 6px 6px 0 var(--yellow); }
+    .map-placeholder iframe { width: 100%; height: 100%; border: none; }
+
+    footer {
+      background: var(--black); color: rgba(255,255,255,0.6);
+      padding: 3rem 5%;
+      border-top: 4px solid var(--yellow);
+    }
+    .footer-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1.5rem; }
+    .footer-logo { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--yellow); font-weight: 700; }
+    .footer-copy { font-size: 0.82rem; color: rgba(255,255,255,0.35); }
+    .footer-tagline { font-size: 0.88rem; color: rgba(255,255,255,0.5); }
+
+    .el { display: none; }
+    body.lang-el .en { display: none; }
+    body.lang-el .el { display: block; }
+    span.el, span.en { display: inline; }
+    body.lang-el span.en { display: none; }
+    body.lang-el span.el { display: inline; }
+
+    @media (max-width: 900px) {
+      .about-inner, .hours-inner, .contact-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+      .cards { grid-template-columns: 1fr; }
+      .footer-inner { flex-direction: column; text-align: center; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo">
+    <span class="nav-logo-badge">%</span> Discount Supermarket
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about"><span class="en">About</span><span class="el">Σχετικά</span></a></li>
+    <li><a href="#products"><span class="en">Deals</span><span class="el">Προσφορές</span></a></li>
+    <li><a href="#hours"><span class="en">Hours</span><span class="el">Ώρες</span></a></li>
+    <li><a href="#contact"><span class="en">Contact</span><span class="el">Επικοινωνία</span></a></li>
+  </ul>
+  <button class="lang-toggle" id="langBtn" onclick="toggleLang()">ΕΛ</button>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-content">
+    <div class="hero-tag">
+      <span class="en">🔥 Best Value in Greece</span>
+      <span class="el">🔥 Καλύτερη Τιμή στην Ελλάδα</span>
+    </div>
+    <h1>
+      <span class="en">Discount Supermarket –<br><span class="highlight">Big Savings,</span> Every Day</span>
+      <span class="el">Discount Supermarket –<br><span class="highlight">Μεγάλες Εκπτώσεις,</span> Κάθε Μέρα</span>
+    </h1>
+    <p>
+      <span class="en">No gimmicks, no small print — just the lowest prices on thousands of everyday essentials. Save more, live more.</span>
+      <span class="el">Χωρίς κόλπα, χωρίς μικρά γράμματα — μόνο οι χαμηλότερες τιμές σε χιλιάδες καθημερινά είδη. Εξοικονομήστε περισσότερα, ζήστε περισσότερα.</span>
+    </p>
+    <div class="hero-btns">
+      <a href="#products" class="btn-yellow">
+        <span class="en">View Today's Deals</span>
+        <span class="el">Δείτε Σημερινές Προσφορές</span>
+      </a>
+      <span class="hero-offer">
+        <span class="en">★ Up to 60% off selected lines</span>
+        <span class="el">★ Έως 60% έκπτωση σε επιλεγμένα είδη</span>
+      </span>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-inner">
+    <span class="ticker-item en">🔥 SPECIAL OFFERS THIS WEEK</span><span class="ticker-sep en"> ◆ </span>
+    <span class="ticker-item en">🛒 LOWEST PRICES GUARANTEED</span><span class="ticker-sep en"> ◆ </span>
+    <span class="ticker-item en">💰 UP TO 60% SAVINGS</span><span class="ticker-sep en"> ◆ </span>
+    <span class="ticker-item en">🚚 FREE DELIVERY OVER €50</span><span class="ticker-sep en"> ◆ </span>
+    <span class="ticker-item en">🎁 LOYALTY POINTS ON EVERY PURCHASE</span><span class="ticker-sep en"> ◆ </span>
+    <span class="ticker-item el">🔥 ΕΙΔΙΚΕΣ ΠΡΟΣΦΟΡΕΣ ΕΒΔΟΜΑΔΑΣ</span><span class="ticker-sep el"> ◆ </span>
+    <span class="ticker-item el">💰 ΕΩΣ 60% ΕΚΠΤΩΣΗ</span><span class="ticker-sep el"> ◆ </span>
+    <span class="ticker-item el">🚚 ΔΩΡΕΑΝ ΑΠΟΣΤΟΛΗ ΑΝΩ ΤΩΝ €50</span><span class="ticker-sep el"> ◆ </span>
+    <span class="ticker-item el">🎁 ΠΟΝΤΟΙ ΣΕ ΚΑΘΕ ΑΓΟΡΑ</span><span class="ticker-sep el"> ◆ </span>
+    <!-- Duplicate for seamless loop -->
+    <span class="ticker-item en">🔥 SPECIAL OFFERS THIS WEEK</span><span class="ticker-sep en"> ◆ </span>
+    <span class="ticker-item en">🛒 LOWEST PRICES GUARANTEED</span><span class="ticker-sep en"> ◆ </span>
+    <span class="ticker-item en">💰 UP TO 60% SAVINGS</span><span class="ticker-sep en"> ◆ </span>
+    <span class="ticker-item en">🚚 FREE DELIVERY OVER €50</span><span class="ticker-sep en"> ◆ </span>
+    <span class="ticker-item en">🎁 LOYALTY POINTS ON EVERY PURCHASE</span><span class="ticker-sep en"> ◆ </span>
+    <span class="ticker-item el">🔥 ΕΙΔΙΚΕΣ ΠΡΟΣΦΟΡΕΣ ΕΒΔΟΜΑΔΑΣ</span><span class="ticker-sep el"> ◆ </span>
+    <span class="ticker-item el">💰 ΕΩΣ 60% ΕΚΠΤΩΣΗ</span><span class="ticker-sep el"> ◆ </span>
+    <span class="ticker-item el">🚚 ΔΩΡΕΑΝ ΑΠΟΣΤΟΛΗ ΑΝΩ ΤΩΝ €50</span><span class="ticker-sep el"> ◆ </span>
+    <span class="ticker-item el">🎁 ΠΟΝΤΟΙ ΣΕ ΚΑΘΕ ΑΓΟΡΑ</span><span class="ticker-sep el"> ◆ </span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-inner">
+    <div class="about-image">
+      <img src="https://images.unsplash.com/photo-1506484381205-f7945653044d?auto=format&fit=crop&w=800&q=80" alt="Store" />
+    </div>
+    <div>
+      <span class="section-label en">The Discount Promise</span>
+      <span class="section-label el">Η Υπόσχεση Έκπτωσης</span>
+      <h2 class="section-title">
+        <span class="en">Saving You Money, Every Single Day</span>
+        <span class="el">Εξοικονομώντας σας Χρήματα, Κάθε Μέρα</span>
+      </h2>
+      <p class="section-body">
+        <span class="en">We founded Discount Supermarket on one unbreakable promise: you should never have to choose between quality and affordability. By working directly with suppliers and cutting out the middleman, we pass every saving directly to you.</span>
+        <span class="el">Ιδρύσαμε το Discount Supermarket πάνω σε μια απαραβίαστη υπόσχεση: δεν πρέπει ποτέ να επιλέγετε μεταξύ ποιότητας και προσιτής τιμής. Δουλεύοντας απευθείας με προμηθευτές, κάθε εξοικονόμηση περνάει στα χέρια σας.</span>
+      </p>
+      <div class="savings-strip">
+        <div class="saving">
+          <div class="saving-num">€12M+</div>
+          <div class="saving-lbl en">Saved by customers</div>
+          <div class="saving-lbl el">Εξοικονόμηση πελατών</div>
+        </div>
+        <div class="saving">
+          <div class="saving-num">8,000+</div>
+          <div class="saving-lbl en">Products in stock</div>
+          <div class="saving-lbl el">Προϊόντα σε απόθεμα</div>
+        </div>
+        <div class="saving">
+          <div class="saving-num">40%</div>
+          <div class="saving-lbl en">Avg. saving vs retail</div>
+          <div class="saving-lbl el">Μ.Ο. έκπτωσης</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section class="products" id="products">
+  <div class="products-header">
+    <span class="section-label en">Top Deals</span>
+    <span class="section-label el">Κορυφαίες Προσφορές</span>
+    <h2 class="section-title">
+      <span class="en">This Week's Best Savings</span>
+      <span class="el">Οι Καλύτερες Εκπτώσεις της Εβδομάδας</span>
+    </h2>
+  </div>
+  <div class="cards">
+    <div class="card">
+      <div class="card-img">
+        <img src="https://images.unsplash.com/photo-1488459716781-31db52582fe9?auto=format&fit=crop&w=600&q=80" alt="Fresh produce" />
+        <span class="card-discount">-40%</span>
+      </div>
+      <div class="card-body">
+        <div class="card-icon">🥕</div>
+        <h3 class="card-title">
+          <span class="en">Fresh Fruit &amp; Veg</span>
+          <span class="el">Φρέσκα Φρούτα &amp; Λαχανικά</span>
+        </h3>
+        <p class="card-text">
+          <span class="en">Fresh, quality produce at the lowest prices in town. Delivered daily from Greek farms — no compromise on freshness.</span>
+          <span class="el">Φρέσκα, ποιοτικά προϊόντα στις χαμηλότερες τιμές της πόλης. Καθημερινή παράδοση από ελληνικές φάρμες.</span>
+        </p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-img">
+        <img src="https://images.unsplash.com/photo-1574484284002-952d92a03a05?auto=format&fit=crop&w=600&q=80" alt="Pantry" />
+        <span class="card-discount">-30%</span>
+      </div>
+      <div class="card-body">
+        <div class="card-icon">🛍️</div>
+        <h3 class="card-title">
+          <span class="en">Pantry Essentials</span>
+          <span class="el">Βασικά Παντοπωλείου</span>
+        </h3>
+        <p class="card-text">
+          <span class="en">Pasta, rice, tinned goods, cooking oils, and everyday staples — all at prices that make a real difference to your weekly shop.</span>
+          <span class="el">Ζυμαρικά, ρύζι, κονσέρβες, μαγειρικά λάδια και βασικά είδη — σε τιμές που κάνουν πραγματική διαφορά.</span>
+        </p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-img">
+        <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?auto=format&fit=crop&w=600&q=80" alt="Household" />
+        <span class="card-discount">-50%</span>
+      </div>
+      <div class="card-body">
+        <div class="card-icon">🏠</div>
+        <h3 class="card-title">
+          <span class="en">Household &amp; Cleaning</span>
+          <span class="el">Οικιακά &amp; Καθαρισμός</span>
+        </h3>
+        <p class="card-text">
+          <span class="en">All the cleaning, laundry, and household products your home needs — at savings you can actually feel in your pocket.</span>
+          <span class="el">Όλα τα προϊόντα καθαρισμού, πλυντηρίου και οικιακής χρήσης — σε εκπτώσεις που θα νιώσετε στο πορτοφόλι σας.</span>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOURS -->
+<section class="hours" id="hours">
+  <div class="hours-inner">
+    <div>
+      <span class="section-label en">We're Open</span>
+      <span class="section-label el">Είμαστε Ανοιχτά</span>
+      <h2 class="section-title">
+        <span class="en">Long Hours, Low Prices</span>
+        <span class="el">Μακριές Ώρες, Χαμηλές Τιμές</span>
+      </h2>
+      <table class="hours-table">
+        <tr>
+          <td><span class="en">Monday – Friday</span><span class="el">Δευτέρα – Παρασκευή</span></td>
+          <td>07:30 – 21:30</td>
+        </tr>
+        <tr>
+          <td><span class="en">Saturday</span><span class="el">Σάββατο</span></td>
+          <td>08:00 – 21:00</td>
+        </tr>
+        <tr>
+          <td><span class="en">Sunday</span><span class="el">Κυριακή</span></td>
+          <td>09:00 – 20:00</td>
+        </tr>
+        <tr>
+          <td><span class="en">Public Holidays</span><span class="el">Αργίες</span></td>
+          <td>10:00 – 18:00</td>
+        </tr>
+      </table>
+      <p class="hours-note">
+        <span class="en">★ New special offers drop every Monday morning — be first in!</span>
+        <span class="el">★ Νέες ειδικές προσφορές κάθε Δευτέρα πρωί — ελάτε πρώτοι!</span>
+      </p>
+    </div>
+    <div class="hours-visual">
+      <img src="https://images.unsplash.com/photo-1578916171728-46686eac8d58?auto=format&fit=crop&w=800&q=80" alt="Store" />
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-inner">
+    <div>
+      <span class="section-label en">Come Save With Us</span>
+      <span class="section-label el">Ελάτε να Εξοικονομήσετε</span>
+      <h2 class="section-title">
+        <span class="en">Find Your Local Store</span>
+        <span class="el">Βρείτε το Τοπικό σας Κατάστημα</span>
+      </h2>
+      <div class="contact-info">
+        <div class="contact-item">
+          <div class="contact-icon">📍</div>
+          <div class="contact-detail">
+            <h4><span class="en">Address</span><span class="el">Διεύθυνση</span></h4>
+            <p>Λεωφόρος Συγγρού 157, Νέα Σμύρνη, Αθήνα 17122</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📞</div>
+          <div class="contact-detail">
+            <h4><span class="en">Phone</span><span class="el">Τηλέφωνο</span></h4>
+            <p>+30 210 654 3210</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">✉️</div>
+          <div class="contact-detail">
+            <h4>Email</h4>
+            <p>saves@discountsupermarket.gr</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">💳</div>
+          <div class="contact-detail">
+            <h4><span class="en">Discount Card</span><span class="el">Κάρτα Έκπτωσης</span></h4>
+            <p><span class="en">Free to sign up — instantly unlock member-only prices.</span><span class="el">Δωρεάν εγγραφή — ξεκλειδώστε αμέσως τιμές μόνο για μέλη.</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="map-placeholder">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3147.0!2d23.71!3d37.93!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2z!5e0!3m2!1sen!2sgr!4v1700000000000"
+        allowfullscreen="" loading="lazy"></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">% Discount Supermarket</div>
+    <div class="footer-tagline">
+      <span class="en">Big Savings, Every Day</span>
+      <span class="el">Μεγάλες Εκπτώσεις, Κάθε Μέρα</span>
+    </div>
+    <div class="footer-copy">
+      <span class="en">&copy; 2024 Discount Supermarket. All rights reserved.</span>
+      <span class="el">&copy; 2024 Discount Supermarket. Με επιφύλαξη παντός δικαιώματος.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  function toggleLang() {
+    const body = document.body;
+    const btn = document.getElementById('langBtn');
+    if (body.classList.contains('lang-el')) {
+      body.classList.remove('lang-el');
+      btn.textContent = 'ΕΛ';
+    } else {
+      body.classList.add('lang-el');
+      btn.textContent = 'EN';
+    }
+  }
+</script>
+</body>
+</html>
