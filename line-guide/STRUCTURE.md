@@ -50,7 +50,7 @@ Line Guide
 │
 ├── MARKETING
 │   ├── /how-it-works ────── deeper explainer (buyer + supplier)
-│   ├── /pricing ─────────── standalone supplier pricing + compare
+│   ├── /pricing ─────────── standalone supplier pricing + compare   [BUILT → pricing.html]
 │   ├── /use-cases ───────── packing / palletising / filling / …    [BUILT → use-cases.html]
 │   ├── /use-cases/:slug ─── single application landing (SEO)        [BUILT → use-case.html?u=]
 │   ├── /suppliers ───────── public directory (browse/search)       [BUILT → suppliers.html]
@@ -115,10 +115,20 @@ Deeper than the home tabs: annotated diagram of the matching algorithm,
 worked example, "what makes a good brief", supplier verification process.
 **Goal:** build trust through transparency; reduce support load.
 
-### 3.5 Pricing `/pricing` *(roadmap)*
-Standalone tier comparison **table** (feature × tier), annual toggle, ROI
-calculator ("one won project pays for X months"), pricing FAQ.
-**Goal:** close suppliers who need detail before committing.
+### 3.5 Pricing `/pricing` — *BUILT (`pricing.html` + `pricing.js`)*
+- **Billing toggle** — Monthly ↔ Annual (annual = 2 months free); animated
+  switch updates every tier card *and* the comparison-table headers live.
+- **Tier cards** — Basic / Premium / Ultra with featured middle.
+- **Full comparison table** — features grouped (visibility · leads · profile ·
+  insight) × the three tiers, with ticks/values, featured column highlight,
+  horizontally scrollable on mobile.
+- **Interactive ROI calculator** — sliders for average project value and wins
+  per month + tier selector → live "matched pipeline per £1", "membership as a
+  share of one project", and "projects/yr to break even". Honestly framed
+  (pipeline, not net profit) in the note.
+- **Pricing FAQ** + CTA.
+
+**Goal:** close suppliers who need detail and a business case before committing.
 
 ### 3.6 Use Cases `/use-cases` + `/use-cases/:slug` — *BUILT*
 - **`use-cases.html`** — index grid of all six applications (packing,
