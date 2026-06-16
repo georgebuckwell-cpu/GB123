@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Central Hypermarket</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --red: #C0392B;
+      --red-light: #e74c3c;
+      --charcoal: #2C3E50;
+      --charcoal-dark: #1a252f;
+      --white: #fff;
+      --off-white: #F8F9FA;
+      --text-dark: #1a1a1a;
+      --text-mid: #555;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; color: var(--text-dark); background: var(--off-white); }
+
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 5%; height: 72px;
+      background: rgba(44,62,80,0.97); backdrop-filter: blur(12px);
+      box-shadow: 0 2px 24px rgba(0,0,0,0.2);
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem; font-weight: 700;
+      color: #fff; letter-spacing: 0.5px; text-decoration: none;
+    }
+    .nav-logo span { color: var(--red-light); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      color: rgba(255,255,255,0.8); text-decoration: none;
+      font-size: 0.875rem; font-weight: 500; letter-spacing: 0.3px;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--red-light); }
+    .lang-toggle {
+      background: var(--red); color: #fff;
+      border: none; padding: 0.45rem 1.1rem; border-radius: 4px;
+      font-family: 'Inter', sans-serif; font-size: 0.8rem; font-weight: 600;
+      cursor: pointer; letter-spacing: 0.5px; transition: background 0.2s, transform 0.15s;
+    }
+    .lang-toggle:hover { background: var(--red-light); transform: scale(1.04); }
+
+    .hero {
+      height: 100vh; min-height: 600px; position: relative;
+      display: flex; align-items: center;
+      background: url('https://images.unsplash.com/photo-1604719312566-8912e9227c6a?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+    }
+    .hero::before {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(100deg, rgba(44,62,80,0.88) 0%, rgba(192,57,43,0.3) 100%);
+    }
+    .hero-content { position: relative; z-index: 1; padding: 0 8%; max-width: 820px; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: var(--red); color: #fff;
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase;
+      padding: 0.4rem 1.2rem; border-radius: 3px; margin-bottom: 1.8rem;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.4rem, 5.5vw, 4.2rem); font-weight: 700;
+      color: #fff; line-height: 1.12; margin-bottom: 1.3rem;
+      text-shadow: 0 2px 20px rgba(0,0,0,0.4);
+    }
+    .hero h1 em { color: #e8a0a0; font-style: normal; }
+    .hero p {
+      font-size: clamp(1rem, 2vw, 1.18rem); color: rgba(255,255,255,0.85);
+      max-width: 500px; margin-bottom: 2.5rem; line-height: 1.75;
+    }
+    .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-red {
+      display: inline-block; background: var(--red);
+      color: #fff; padding: 0.9rem 2.4rem;
+      border-radius: 4px; font-weight: 600; font-size: 0.95rem;
+      text-decoration: none; letter-spacing: 0.3px;
+      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 20px rgba(192,57,43,0.4);
+    }
+    .btn-red:hover { background: var(--red-light); transform: translateY(-2px); }
+    .btn-outline {
+      display: inline-block; background: transparent;
+      color: #fff; padding: 0.9rem 2.4rem;
+      border: 2px solid rgba(255,255,255,0.5); border-radius: 4px;
+      font-weight: 500; font-size: 0.95rem; text-decoration: none;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .btn-outline:hover { border-color: #fff; background: rgba(255,255,255,0.08); }
+
+    section { padding: 100px 5%; }
+    .section-label {
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 3px;
+      text-transform: uppercase; color: var(--red);
+      margin-bottom: 0.8rem; display: block;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.9rem, 4vw, 3rem); font-weight: 700;
+      color: var(--charcoal); line-height: 1.2; margin-bottom: 1.2rem;
+    }
+    .section-body { font-size: 1.05rem; color: var(--text-mid); line-height: 1.8; max-width: 640px; }
+
+    /* STATS BANNER */
+    .stats-banner {
+      background: var(--red); padding: 3rem 5%;
+      display: flex; justify-content: center; gap: 0;
+    }
+    .stat-item {
+      flex: 1; max-width: 220px; text-align: center;
+      padding: 0 2rem; border-right: 1px solid rgba(255,255,255,0.25);
+    }
+    .stat-item:last-child { border-right: none; }
+    .stat-num { font-family: 'Playfair Display', serif; font-size: 2.8rem; font-weight: 700; color: #fff; line-height: 1; }
+    .stat-lbl { font-size: 0.78rem; color: rgba(255,255,255,0.75); letter-spacing: 1.5px; text-transform: uppercase; margin-top: 0.4rem; }
+
+    /* ABOUT */
+    .about { background: #fff; }
+    .about-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; max-width: 1200px; margin: 0 auto; }
+    .about-image { border-radius: 4px; overflow: hidden; box-shadow: 0 24px 60px rgba(44,62,80,0.18); position: relative; }
+    .about-image::before {
+      content: ''; position: absolute; inset: -6px; border: 2px solid var(--red);
+      z-index: 0; border-radius: 6px; pointer-events: none;
+      transform: translate(8px, 8px);
+    }
+    .about-image img { width: 100%; height: 460px; object-fit: cover; display: block; position: relative; z-index: 1; transition: transform 0.5s; }
+    .about-image:hover img { transform: scale(1.03); }
+
+    /* PRODUCTS */
+    .products { background: var(--off-white); }
+    .products-header { max-width: 1200px; margin: 0 auto 4rem; }
+    .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; max-width: 1200px; margin: 0 auto; }
+    .card {
+      background: #fff; border-radius: 4px; overflow: hidden;
+      box-shadow: 0 2px 16px rgba(44,62,80,0.07);
+      transition: transform 0.3s, box-shadow 0.3s;
+      border-top: 4px solid var(--red);
+    }
+    .card:hover { transform: translateY(-8px); box-shadow: 0 16px 48px rgba(44,62,80,0.14); }
+    .card-img { height: 200px; overflow: hidden; }
+    .card-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+    .card:hover .card-img img { transform: scale(1.06); }
+    .card-body { padding: 1.8rem; }
+    .card-icon { font-size: 1.8rem; margin-bottom: 0.8rem; }
+    .card-title { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 600; color: var(--charcoal); margin-bottom: 0.7rem; }
+    .card-text { font-size: 0.93rem; color: var(--text-mid); line-height: 1.7; }
+
+    /* HOURS */
+    .hours { background: var(--charcoal); }
+    .hours .section-title { color: #fff; }
+    .hours .section-label { color: #e8a0a0; }
+    .hours-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+    .hours-table { width: 100%; border-collapse: collapse; margin-top: 1.5rem; }
+    .hours-table tr { border-bottom: 1px solid rgba(255,255,255,0.08); }
+    .hours-table tr:last-child { border-bottom: none; }
+    .hours-table td { padding: 0.9rem 0; color: rgba(255,255,255,0.8); font-size: 0.95rem; }
+    .hours-table td:last-child { text-align: right; font-weight: 600; color: #e8a0a0; }
+    .hours-note { margin-top: 1.5rem; font-size: 0.84rem; color: rgba(255,255,255,0.5); font-style: italic; }
+    .hours-visual { border-radius: 4px; overflow: hidden; box-shadow: 0 12px 40px rgba(0,0,0,0.4); }
+    .hours-visual img { width: 100%; height: 380px; object-fit: cover; display: block; }
+
+    /* CONTACT */
+    .contact { background: #fff; }
+    .contact-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; max-width: 1200px; margin: 0 auto; align-items: start; }
+    .contact-info { margin-top: 2rem; }
+    .contact-item { display: flex; gap: 1.2rem; align-items: flex-start; margin-bottom: 1.8rem; }
+    .contact-icon { width: 46px; height: 46px; background: var(--red); border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0; }
+    .contact-detail h4 { font-weight: 600; color: var(--charcoal); margin-bottom: 0.2rem; font-size: 0.95rem; }
+    .contact-detail p { font-size: 0.9rem; color: var(--text-mid); line-height: 1.5; }
+    .map-placeholder { height: 400px; border-radius: 4px; overflow: hidden; }
+    .map-placeholder iframe { width: 100%; height: 100%; border: none; }
+
+    footer {
+      background: var(--charcoal-dark); color: rgba(255,255,255,0.6);
+      padding: 4rem 5%; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 3rem;
+      max-width: 100%;
+    }
+    .footer-brand .footer-logo { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: #fff; font-weight: 700; margin-bottom: 0.7rem; }
+    .footer-brand .footer-logo span { color: var(--red-light); }
+    .footer-brand p { font-size: 0.88rem; line-height: 1.7; }
+    .footer-col h5 { color: #fff; font-size: 0.8rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 1rem; }
+    .footer-col ul { list-style: none; }
+    .footer-col ul li { margin-bottom: 0.6rem; font-size: 0.88rem; }
+    .footer-bottom { grid-column: 1/-1; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 1.5rem; text-align: center; font-size: 0.8rem; color: rgba(255,255,255,0.35); }
+
+    .el { display: none; }
+    body.lang-el .en { display: none; }
+    body.lang-el .el { display: block; }
+    span.el, span.en { display: inline; }
+    body.lang-el span.en { display: none; }
+    body.lang-el span.el { display: inline; }
+
+    @media (max-width: 900px) {
+      .about-inner, .hours-inner, .contact-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+      .cards { grid-template-columns: 1fr; }
+      .stats-banner { flex-wrap: wrap; }
+      .stat-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.2); padding: 1rem; min-width: 50%; }
+      footer { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo">Central <span>Hypermarket</span></a>
+  <ul class="nav-links">
+    <li><a href="#about"><span class="en">About</span><span class="el">Σχετικά</span></a></li>
+    <li><a href="#products"><span class="en">Departments</span><span class="el">Τμήματα</span></a></li>
+    <li><a href="#hours"><span class="en">Hours</span><span class="el">Ώρες</span></a></li>
+    <li><a href="#contact"><span class="en">Contact</span><span class="el">Επικοινωνία</span></a></li>
+  </ul>
+  <button class="lang-toggle" id="langBtn" onclick="toggleLang()">ΕΛ</button>
+</nav>
+
+<section class="hero" id="home">
+  <div class="hero-content">
+    <div class="hero-badge">
+      <span>★</span>
+      <span class="en">Premier Hypermarket · Athens</span>
+      <span class="el">Κορυφαίο Hypermarket · Αθήνα</span>
+    </div>
+    <h1>
+      <span class="en">Central Hypermarket –<br>The <em>Heart</em> of Your Shopping</span>
+      <span class="el">Central Hypermarket –<br>Η <em>Καρδιά</em> των Ψωνιών σας</span>
+    </h1>
+    <p>
+      <span class="en">Athens' most comprehensive shopping destination. Thousands of products, unbeatable prices, and a world-class experience — all in one central location.</span>
+      <span class="el">Ο πιο ολοκληρωμένος προορισμός αγορών της Αθήνας. Χιλιάδες προϊόντα, ασυναγώνιστες τιμές και εμπειρία παγκόσμιας κλάσης — όλα σε μία κεντρική τοποθεσία.</span>
+    </p>
+    <div class="hero-btns">
+      <a href="#products" class="btn-red">
+        <span class="en">Explore Departments</span>
+        <span class="el">Εξερεύνηση Τμημάτων</span>
+      </a>
+      <a href="#contact" class="btn-outline">
+        <span class="en">Get Directions</span>
+        <span class="el">Οδηγίες</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<div class="stats-banner">
+  <div class="stat-item">
+    <div class="stat-num">25,000+</div>
+    <div class="stat-lbl en">Products</div>
+    <div class="stat-lbl el">Προϊόντα</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">18</div>
+    <div class="stat-lbl en">Departments</div>
+    <div class="stat-lbl el">Τμήματα</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">5,000m²</div>
+    <div class="stat-lbl en">Floor Space</div>
+    <div class="stat-lbl el">Επιφάνεια</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">500+</div>
+    <div class="stat-lbl en">Parking Spaces</div>
+    <div class="stat-lbl el">Θέσεις Πάρκινγκ</div>
+  </div>
+</div>
+
+<section class="about" id="about">
+  <div class="about-inner">
+    <div class="about-image">
+      <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=800&q=80" alt="Hypermarket interior" />
+    </div>
+    <div>
+      <span class="section-label en">Our Mission</span>
+      <span class="section-label el">Η Αποστολή μας</span>
+      <h2 class="section-title">
+        <span class="en">Athens' Premier One-Stop Shopping Destination</span>
+        <span class="el">Ο Κορυφαίος Προορισμός Αγορών της Αθήνας</span>
+      </h2>
+      <p class="section-body">
+        <span class="en">Central Hypermarket has served the heart of Athens for over 15 years, offering an unparalleled range of groceries, electronics, clothing, home goods, and more. Our commitment to quality and value has made us the city's most trusted retail destination.</span>
+        <span class="el">Το Central Hypermarket εξυπηρετεί την καρδιά της Αθήνας για πάνω από 15 χρόνια, προσφέροντας απαράμιλλη γκάμα τροφίμων, ηλεκτρονικών, ρούχων, οικιακών ειδών και άλλα. Η δέσμευσή μας στην ποιότητα και την αξία μας έχει κάνει τον πιο αξιόπιστο λιανεμπορικό προορισμό της πόλης.</span>
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="products" id="products">
+  <div class="products-header">
+    <span class="section-label en">Our Departments</span>
+    <span class="section-label el">Τα Τμήματά μας</span>
+    <h2 class="section-title">
+      <span class="en">Everything Under One Roof</span>
+      <span class="el">Όλα Κάτω από Μία Στέγη</span>
+    </h2>
+  </div>
+  <div class="cards">
+    <div class="card">
+      <div class="card-img">
+        <img src="https://images.unsplash.com/photo-1488459716781-31db52582fe9?auto=format&fit=crop&w=600&q=80" alt="Fresh food" />
+      </div>
+      <div class="card-body">
+        <div class="card-icon">🛒</div>
+        <h3 class="card-title">
+          <span class="en">Fresh Food Hall</span>
+          <span class="el">Αίθουσα Φρέσκων Τροφίμων</span>
+        </h3>
+        <p class="card-text">
+          <span class="en">A vast selection of fresh produce, meat, seafood, deli, and bakery items — sourced daily and displayed at their finest.</span>
+          <span class="el">Τεράστια ποικιλία φρέσκων τροφίμων, κρέατος, θαλασσινών, αλλαντικών και αρτοσκευασμάτων — καθημερινά στην καλύτερή τους μορφή.</span>
+        </p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-img">
+        <img src="https://images.unsplash.com/photo-1491553895911-0055eca6402d?auto=format&fit=crop&w=600&q=80" alt="Electronics" />
+      </div>
+      <div class="card-body">
+        <div class="card-icon">📱</div>
+        <h3 class="card-title">
+          <span class="en">Electronics & Tech</span>
+          <span class="el">Ηλεκτρονικά & Τεχνολογία</span>
+        </h3>
+        <p class="card-text">
+          <span class="en">The latest smartphones, appliances, and gadgets at competitive prices. Expert staff ready to assist with any purchase.</span>
+          <span class="el">Τα νεότερα smartphones, οικιακές συσκευές και gadgets σε ανταγωνιστικές τιμές. Έμπειρο προσωπικό έτοιμο να σας βοηθήσει.</span>
+        </p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-img">
+        <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?auto=format&fit=crop&w=600&q=80" alt="Beauty" />
+      </div>
+      <div class="card-body">
+        <div class="card-icon">💄</div>
+        <h3 class="card-title">
+          <span class="en">Beauty & Wellness</span>
+          <span class="el">Ομορφιά & Ευεξία</span>
+        </h3>
+        <p class="card-text">
+          <span class="en">Premium beauty brands, skincare, health products, and wellness essentials — everything for a beautiful lifestyle.</span>
+          <span class="el">Premium μάρκες ομορφιάς, περιποίηση δέρματος, προϊόντα υγείας και βασικά είδη ευεξίας — όλα για ένα όμορφο τρόπο ζωής.</span>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hours" id="hours">
+  <div class="hours-inner">
+    <div>
+      <span class="section-label en">Store Hours</span>
+      <span class="section-label el">Ώρες Λειτουργίας</span>
+      <h2 class="section-title">
+        <span class="en">Open Late, 7 Days a Week</span>
+        <span class="el">Ανοιχτά Αργά, 7 Ημέρες την Εβδομάδα</span>
+      </h2>
+      <table class="hours-table">
+        <tr>
+          <td><span class="en">Monday – Friday</span><span class="el">Δευτέρα – Παρασκευή</span></td>
+          <td>07:30 – 22:00</td>
+        </tr>
+        <tr>
+          <td><span class="en">Saturday</span><span class="el">Σάββατο</span></td>
+          <td>08:00 – 22:00</td>
+        </tr>
+        <tr>
+          <td><span class="en">Sunday</span><span class="el">Κυριακή</span></td>
+          <td>09:00 – 21:00</td>
+        </tr>
+        <tr>
+          <td><span class="en">Public Holidays</span><span class="el">Αργίες</span></td>
+          <td>10:00 – 18:00</td>
+        </tr>
+      </table>
+      <p class="hours-note">
+        <span class="en">* Selected departments may close 30 minutes earlier. Service desk open during all trading hours.</span>
+        <span class="el">* Ορισμένα τμήματα ενδέχεται να κλείνουν 30 λεπτά νωρίτερα.</span>
+      </p>
+    </div>
+    <div class="hours-visual">
+      <img src="https://images.unsplash.com/photo-1578916171728-46686eac8d58?auto=format&fit=crop&w=800&q=80" alt="Store hours" />
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="contact-inner">
+    <div>
+      <span class="section-label en">Location</span>
+      <span class="section-label el">Τοποθεσία</span>
+      <h2 class="section-title">
+        <span class="en">Right in the Heart of Athens</span>
+        <span class="el">Στην Καρδιά της Αθήνας</span>
+      </h2>
+      <div class="contact-info">
+        <div class="contact-item">
+          <div class="contact-icon">📍</div>
+          <div class="contact-detail">
+            <h4><span class="en">Address</span><span class="el">Διεύθυνση</span></h4>
+            <p>Λεωφόρος Αθηνών 210, Πειραιάς 18540</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📞</div>
+          <div class="contact-detail">
+            <h4><span class="en">Phone</span><span class="el">Τηλέφωνο</span></h4>
+            <p>+30 210 987 6543</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">✉️</div>
+          <div class="contact-detail">
+            <h4>Email</h4>
+            <p>info@centralhypermarket.gr</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">🅿️</div>
+          <div class="contact-detail">
+            <h4><span class="en">Parking</span><span class="el">Πάρκινγκ</span></h4>
+            <p><span class="en">500+ free spaces, 24/7 security</span><span class="el">500+ δωρεάν θέσεις, ασφάλεια 24/7</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="map-placeholder">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3145.0!2d23.65!3d37.94!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2z!5e0!3m2!1sen!2sgr!4v1700000000000"
+        allowfullscreen="" loading="lazy"></iframe>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-brand">
+    <div class="footer-logo">Central <span>Hypermarket</span></div>
+    <p>
+      <span class="en">The heart of your shopping experience in Athens.</span>
+      <span class="el">Η καρδιά της εμπειρίας αγορών σας στην Αθήνα.</span>
+    </p>
+  </div>
+  <div class="footer-col">
+    <h5><span class="en">Quick Links</span><span class="el">Σύνδεσμοι</span></h5>
+    <ul>
+      <li><a href="#about" style="color:inherit;text-decoration:none;"><span class="en">About Us</span><span class="el">Σχετικά</span></a></li>
+      <li><a href="#products" style="color:inherit;text-decoration:none;"><span class="en">Departments</span><span class="el">Τμήματα</span></a></li>
+      <li><a href="#hours" style="color:inherit;text-decoration:none;"><span class="en">Hours</span><span class="el">Ώρες</span></a></li>
+      <li><a href="#contact" style="color:inherit;text-decoration:none;"><span class="en">Contact</span><span class="el">Επικοινωνία</span></a></li>
+    </ul>
+  </div>
+  <div class="footer-col">
+    <h5><span class="en">Services</span><span class="el">Υπηρεσίες</span></h5>
+    <ul>
+      <li><span class="en">Home Delivery</span><span class="el">Παράδοση στο Σπίτι</span></li>
+      <li><span class="en">Click & Collect</span><span class="el">Αγορά & Παραλαβή</span></li>
+      <li><span class="en">Loyalty Card</span><span class="el">Κάρτα Πιστότητας</span></li>
+      <li><span class="en">Gift Cards</span><span class="el">Δωροεπιταγές</span></li>
+    </ul>
+  </div>
+  <div class="footer-bottom">
+    <span class="en">&copy; 2024 Central Hypermarket. All rights reserved.</span>
+    <span class="el">&copy; 2024 Central Hypermarket. Με επιφύλαξη παντός δικαιώματος.</span>
+  </div>
+</footer>
+
+<script>
+  function toggleLang() {
+    const body = document.body;
+    const btn = document.getElementById('langBtn');
+    if (body.classList.contains('lang-el')) {
+      body.classList.remove('lang-el');
+      btn.textContent = 'ΕΛ';
+    } else {
+      body.classList.add('lang-el');
+      btn.textContent = 'EN';
+    }
+  }
+</script>
+</body>
+</html>
