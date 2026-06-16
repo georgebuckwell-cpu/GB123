@@ -1,0 +1,1003 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --teal:        #2B8E8E;
+    --teal-bright: #3AAEAE;
+    --teal-light:  #5ECECE;
+    --teal-dim:    #1F6666;
+    --bg:          #050A0A;
+    --bg2:         #0F1A1A;
+    --bg3:         #1C2E2E;
+    --bg4:         #152222;
+    --bg5:         #0A1414;
+    --white:       #FFFFFF;
+    --off-white:   #EEF7F7;
+    --muted:       #AAD4D4;
+    --dim:         #6A9999;
+  }
+
+  html, body {
+    font-family: 'Inter', 'Helvetica Neue', sans-serif;
+    background: var(--bg);
+    color: var(--white);
+    font-size: 10pt;
+  }
+
+  /* ═══════════════════════════════════════════
+     PAGE LAYOUT
+  ═══════════════════════════════════════════ */
+  .page {
+    width: 297mm;
+    min-height: 210mm;
+    padding: 0;
+    page-break-after: always;
+    overflow: hidden;
+    position: relative;
+    background: var(--bg);
+  }
+  .page:last-child { page-break-after: auto; }
+
+  @page {
+    size: A4 landscape;
+    margin: 0;
+  }
+  @media print {
+    html, body { margin: 0; padding: 0; }
+    .page { page-break-after: always; }
+  }
+
+  /* ═══════════════════════════════════════════
+     SHARED COMPONENTS
+  ═══════════════════════════════════════════ */
+  .left-bar {
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 4px;
+    background: linear-gradient(180deg, var(--teal-bright) 0%, var(--teal) 50%, var(--teal-dim) 100%);
+  }
+
+  .header {
+    background: var(--bg2);
+    padding: 14px 28px 12px 28px;
+    border-bottom: 2px solid var(--teal);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .header-left .eyebrow {
+    font-size: 6.5pt;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: var(--teal-bright);
+    text-transform: uppercase;
+    margin-bottom: 3px;
+  }
+  .header-left h1 {
+    font-size: 20pt;
+    font-weight: 800;
+    color: var(--white);
+    letter-spacing: -0.5px;
+    line-height: 1;
+  }
+  .header-left .sub {
+    font-size: 7.5pt;
+    color: var(--muted);
+    margin-top: 4px;
+    letter-spacing: 0.3px;
+  }
+
+  .logo-mark {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-shrink: 0;
+  }
+  .logo-vs {
+    width: 38px;
+    height: 38px;
+    background: var(--teal);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 900;
+    font-size: 13pt;
+    color: #fff;
+    letter-spacing: -1px;
+    flex-shrink: 0;
+  }
+  .logo-name {
+    font-weight: 800;
+    font-size: 9pt;
+    color: var(--off-white);
+    letter-spacing: 2px;
+    line-height: 1.2;
+  }
+  .logo-name span {
+    display: block;
+    font-size: 6pt;
+    font-weight: 500;
+    color: var(--dim);
+    letter-spacing: 1px;
+  }
+
+  .page-body {
+    padding: 16px 20px 10px 20px;
+  }
+
+  /* section label */
+  .section-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+    margin-top: 14px;
+  }
+  .section-label:first-child { margin-top: 0; }
+  .section-label .bar {
+    width: 3px;
+    height: 16px;
+    background: var(--teal-bright);
+    flex-shrink: 0;
+  }
+  .section-label h2 {
+    font-size: 7.5pt;
+    font-weight: 700;
+    letter-spacing: 2.5px;
+    color: var(--teal-bright);
+    text-transform: uppercase;
+  }
+  .section-label .rule {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, var(--bg3) 0%, transparent 100%);
+  }
+
+  /* ═══════════════════════════════════════════
+     PAGE 1 — PIPELINE + CADENCE + KPIs
+  ═══════════════════════════════════════════ */
+
+  /* Stage cards */
+  .stage-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 6px;
+    margin-bottom: 6px;
+  }
+  .stage-card {
+    background: var(--bg3);
+    border-top: 2px solid var(--teal);
+    padding: 8px 8px 8px 8px;
+    position: relative;
+  }
+  .stage-card .stage-num {
+    font-size: 18pt;
+    font-weight: 900;
+    color: var(--teal);
+    line-height: 1;
+    letter-spacing: -1px;
+  }
+  .stage-card .stage-name {
+    font-size: 7pt;
+    font-weight: 700;
+    color: var(--teal-bright);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin: 3px 0 4px;
+  }
+  .stage-card .stage-sub {
+    font-size: 6.5pt;
+    color: var(--muted);
+    font-weight: 400;
+    line-height: 1.4;
+  }
+  .stage-card .arrow {
+    position: absolute;
+    right: -4px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--teal);
+    font-size: 10pt;
+    font-weight: 700;
+    z-index: 2;
+  }
+  .stage-card:last-child .arrow { display: none; }
+
+  /* Two-column layout for lower sections */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+  .three-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 8px;
+  }
+
+  /* Daily schedule */
+  .day-row {
+    display: grid;
+    grid-template-columns: 42px 1fr;
+    gap: 0;
+    margin-bottom: 4px;
+    background: var(--bg3);
+  }
+  .day-label {
+    background: var(--teal);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 7pt;
+    font-weight: 800;
+    letter-spacing: 1px;
+    color: #fff;
+    padding: 6px 4px;
+  }
+  .day-events {
+    padding: 5px 8px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 10px;
+    align-items: center;
+  }
+  .day-event {
+    font-size: 6.5pt;
+    color: var(--muted);
+  }
+  .day-event strong {
+    color: var(--off-white);
+    font-weight: 600;
+  }
+
+  /* Sprint blocks */
+  .sprint-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 5px;
+    margin-top: 6px;
+  }
+  .sprint-block {
+    background: var(--bg4);
+    border-left: 3px solid var(--teal-bright);
+    padding: 6px 8px;
+  }
+  .sprint-block .time {
+    font-size: 7.5pt;
+    font-weight: 700;
+    color: var(--teal-bright);
+  }
+  .sprint-block .label {
+    font-size: 6.5pt;
+    color: var(--muted);
+    margin-top: 2px;
+  }
+
+  /* KPI cards */
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 6px;
+  }
+  .kpi-card {
+    background: var(--bg3);
+    padding: 8px;
+    border-bottom: 2px solid var(--teal);
+    text-align: center;
+  }
+  .kpi-card .kpi-val {
+    font-size: 16pt;
+    font-weight: 900;
+    color: var(--teal-bright);
+    line-height: 1;
+    letter-spacing: -0.5px;
+  }
+  .kpi-card .kpi-label {
+    font-size: 6pt;
+    color: var(--muted);
+    margin-top: 3px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  /* Support row */
+  .support-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+    margin-top: 6px;
+  }
+  .support-card {
+    background: var(--bg4);
+    border-left: 3px solid var(--teal-dim);
+    padding: 6px 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .support-card .icon {
+    font-size: 14pt;
+    flex-shrink: 0;
+  }
+  .support-card .s-title {
+    font-size: 7.5pt;
+    font-weight: 700;
+    color: var(--off-white);
+  }
+  .support-card .s-sub {
+    font-size: 6pt;
+    color: var(--dim);
+    margin-top: 1px;
+  }
+
+  /* footer */
+  .footer {
+    background: var(--bg3);
+    padding: 5px 20px;
+    text-align: center;
+    font-size: 5.8pt;
+    color: var(--teal-dim);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+
+  /* ═══════════════════════════════════════════
+     PAGE 2 — SCRIPTS + OBJECTIONS + CLOSES + PRICING
+  ═══════════════════════════════════════════ */
+
+  /* Discovery question cards */
+  .q-list { display: flex; flex-direction: column; gap: 4px; }
+  .q-card {
+    background: var(--bg3);
+    display: grid;
+    grid-template-columns: 22px 1fr;
+    gap: 0;
+  }
+  .q-num {
+    background: var(--teal);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 9pt;
+    font-weight: 800;
+    color: #fff;
+  }
+  .q-card:last-child .q-num { background: var(--teal-bright); }
+  .q-body { padding: 5px 8px; }
+  .q-label {
+    font-size: 6pt;
+    font-weight: 700;
+    color: var(--teal-bright);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 2px;
+  }
+  .q-quote {
+    font-size: 6.8pt;
+    font-style: italic;
+    color: var(--off-white);
+    line-height: 1.4;
+  }
+
+  .pivot-box {
+    margin-top: 6px;
+    background: var(--bg4);
+    border-left: 3px solid var(--teal-bright);
+    padding: 6px 10px;
+    font-size: 6.8pt;
+    color: var(--off-white);
+    line-height: 1.5;
+  }
+
+  /* Objection cards */
+  .obj-list { display: flex; flex-direction: column; gap: 4px; }
+  .obj-card {
+    background: var(--bg3);
+    padding: 6px 10px 6px 10px;
+    border-left: 3px solid var(--teal-bright);
+    position: relative;
+  }
+  .obj-q {
+    font-size: 7pt;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 2px;
+  }
+  .obj-a {
+    font-size: 6.5pt;
+    color: var(--muted);
+    line-height: 1.4;
+  }
+
+  /* Close cards */
+  .close-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5px;
+  }
+  .close-card {
+    background: var(--bg4);
+    border-top: 2px solid var(--teal);
+    padding: 7px 9px;
+  }
+  .close-card .c-name {
+    font-size: 7pt;
+    font-weight: 700;
+    color: var(--teal-bright);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+  .close-card .c-script {
+    font-size: 6.5pt;
+    font-style: italic;
+    color: var(--off-white);
+    line-height: 1.5;
+    border-left: 2px solid var(--teal-dim);
+    padding-left: 6px;
+  }
+
+  /* Pricing */
+  .pricing-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+    margin-bottom: 6px;
+  }
+  .pkg-card {
+    background: var(--bg3);
+    padding: 8px 10px;
+    position: relative;
+    overflow: hidden;
+  }
+  .pkg-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--teal);
+  }
+  .pkg-card.best::before { background: var(--teal-bright); }
+  .pkg-best-tag {
+    position: absolute;
+    top: 6px; right: 8px;
+    background: var(--teal-bright);
+    color: #fff;
+    font-size: 5.5pt;
+    font-weight: 700;
+    padding: 2px 6px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .pkg-name {
+    font-size: 7pt;
+    font-weight: 700;
+    color: var(--teal-bright);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    margin-bottom: 3px;
+  }
+  .pkg-price {
+    font-size: 18pt;
+    font-weight: 900;
+    color: var(--white);
+    line-height: 1;
+    letter-spacing: -1px;
+  }
+  .pkg-price span {
+    font-size: 8pt;
+    font-weight: 400;
+    color: var(--muted);
+    letter-spacing: 0;
+  }
+  .pkg-monthly {
+    font-size: 7pt;
+    color: var(--muted);
+    margin-top: 3px;
+    margin-bottom: 6px;
+  }
+  .pkg-features {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .pkg-feature {
+    font-size: 6.2pt;
+    color: var(--muted);
+    display: flex;
+    align-items: flex-start;
+    gap: 5px;
+  }
+  .pkg-feature::before {
+    content: '✓';
+    color: var(--teal-bright);
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  .anchor-bar {
+    background: var(--bg4);
+    border-left: 4px solid var(--teal-bright);
+    padding: 8px 12px;
+    font-size: 7pt;
+    font-style: italic;
+    color: var(--off-white);
+    line-height: 1.6;
+  }
+  .anchor-bar strong { color: var(--teal-bright); font-style: normal; }
+
+  /* Rules list */
+  .rules-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 4px;
+  }
+  .rule-card {
+    background: var(--bg4);
+    padding: 6px 8px;
+    border-left: 3px solid var(--teal-dim);
+    display: flex;
+    align-items: flex-start;
+    gap: 6px;
+  }
+  .rule-icon { font-size: 11pt; flex-shrink: 0; }
+  .rule-text { font-size: 6.5pt; color: var(--muted); line-height: 1.4; }
+  .rule-text strong { color: var(--off-white); display: block; margin-bottom: 1px; }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════
+     PAGE 1 — THE COMPLETE PIPELINE, DAILY CADENCE & KPIs
+═══════════════════════════════════════ -->
+<div class="page">
+  <div class="left-bar"></div>
+
+  <div class="header">
+    <div class="header-left">
+      <div class="eyebrow">Sales Advisor Quick Reference &nbsp;·&nbsp; Page 1 of 2</div>
+      <h1>The Complete Pipeline</h1>
+      <div class="sub">Know every stage. Hit every beat. Close every room.</div>
+    </div>
+    <div class="logo-mark">
+      <div class="logo-vs">VS</div>
+      <div class="logo-name">VELA SYNC<span>Internal · Confidential</span></div>
+    </div>
+  </div>
+
+  <div class="page-body">
+
+    <!-- Stage Pipeline -->
+    <div class="section-label">
+      <div class="bar"></div>
+      <h2>6-Stage Sales Pipeline</h2>
+      <div class="rule"></div>
+    </div>
+
+    <div class="stage-grid">
+      <div class="stage-card">
+        <div class="stage-num">01</div>
+        <div class="stage-name">Onboarding</div>
+        <div class="stage-sub">Know every package, price and KPI cold. Tools ready. Scripts memorised. Don't speak to a prospect until this is done.</div>
+        <div class="arrow">›</div>
+      </div>
+      <div class="stage-card">
+        <div class="stage-num">02</div>
+        <div class="stage-name">Research</div>
+        <div class="stage-sub">10 min before every meeting. Google them, check their site, review Google Maps score, audit 3 competitors. Walk in knowing their problem.</div>
+        <div class="arrow">›</div>
+      </div>
+      <div class="stage-card">
+        <div class="stage-num">03</div>
+        <div class="stage-name">Discovery</div>
+        <div class="stage-sub">Six questions in sequence. Listen deeply. Take notes visibly. Feed their answers back verbatim before you reveal anything.</div>
+        <div class="arrow">›</div>
+      </div>
+      <div class="stage-card">
+        <div class="stage-num">04</div>
+        <div class="stage-name">Reveal &amp; Pitch</div>
+        <div class="stage-sub">Bridge their pain → open the draft site in silence → scroll slowly → anchor £2,000+ → land £450 or £650. Contrast does the selling.</div>
+        <div class="arrow">›</div>
+      </div>
+      <div class="stage-card">
+        <div class="stage-num">05</div>
+        <div class="stage-name">Close</div>
+        <div class="stage-sub">Acknowledge every objection. Reframe it as a question. Pick a close technique. Ask once, then stop talking. Silence is your ally.</div>
+        <div class="arrow">›</div>
+      </div>
+      <div class="stage-card">
+        <div class="stage-num">06</div>
+        <div class="stage-name">Post-Close</div>
+        <div class="stage-sub">Invoice same day. Log in CRM. Brief call booked before you leave. Build team notified. Site live within 24 hours. Close is not the finish line.</div>
+      </div>
+    </div>
+
+    <!-- THE SIX RULES -->
+    <div class="section-label" style="margin-top:10px;">
+      <div class="bar"></div>
+      <h2>The Six Advisor Rules</h2>
+      <div class="rule"></div>
+    </div>
+    <div class="rules-grid">
+      <div class="rule-card">
+        <div class="rule-icon">🎯</div>
+        <div class="rule-text"><strong>You are the expert. Act like it.</strong>Confidence is not optional. Doubt closes nothing.</div>
+      </div>
+      <div class="rule-card">
+        <div class="rule-icon">🔇</div>
+        <div class="rule-text"><strong>Silence is a weapon.</strong>After every powerful question — stop talking.</div>
+      </div>
+      <div class="rule-card">
+        <div class="rule-icon">🩺</div>
+        <div class="rule-text"><strong>Diagnose before you prescribe.</strong>Ask before you pitch. Always.</div>
+      </div>
+      <div class="rule-card">
+        <div class="rule-icon">📊</div>
+        <div class="rule-text"><strong>Speak in outcomes, not features.</strong>They care about customers, not animations.</div>
+      </div>
+      <div class="rule-card">
+        <div class="rule-icon">🏦</div>
+        <div class="rule-text"><strong>Frame everything as ROI.</strong>Every price is an investment, not a cost.</div>
+      </div>
+      <div class="rule-card">
+        <div class="rule-icon">🪝</div>
+        <div class="rule-text"><strong>Show, don't tell.</strong>Open the draft site silently. Let them sell themselves.</div>
+      </div>
+    </div>
+
+    <!-- DAILY CADENCE + KPIs in two columns -->
+    <div class="two-col" style="margin-top:10px; gap:12px;">
+
+      <!-- LEFT: Weekly Schedule -->
+      <div>
+        <div class="section-label">
+          <div class="bar"></div>
+          <h2>Weekly Schedule</h2>
+          <div class="rule"></div>
+        </div>
+
+        <div class="day-row">
+          <div class="day-label">MON</div>
+          <div class="day-events">
+            <div class="day-event"><strong>11:00 AM</strong> Diary Alignment</div>
+            <div class="day-event"><strong>5:00 PM</strong> KPI Review</div>
+          </div>
+        </div>
+        <div class="day-row">
+          <div class="day-label">TUE</div>
+          <div class="day-events">
+            <div class="day-event"><strong>5:00 PM</strong> Daily Touch Point</div>
+          </div>
+        </div>
+        <div class="day-row">
+          <div class="day-label">WED</div>
+          <div class="day-events">
+            <div class="day-event"><strong>5:00 PM</strong> Daily Touch Point</div>
+          </div>
+        </div>
+        <div class="day-row">
+          <div class="day-label">THU</div>
+          <div class="day-events">
+            <div class="day-event"><strong>5:00 PM</strong> Fwd Planning</div>
+            <div class="day-event"><strong>5:00 PM</strong> Daily Touch Point</div>
+          </div>
+        </div>
+        <div class="day-row">
+          <div class="day-label">FRI</div>
+          <div class="day-events">
+            <div class="day-event"><strong>5:00 PM</strong> Daily Touch Point</div>
+          </div>
+        </div>
+
+        <div class="sprint-row">
+          <div class="sprint-block">
+            <div class="time">9 – 11 AM</div>
+            <div class="label">Call Sprint 1</div>
+          </div>
+          <div class="sprint-block">
+            <div class="time">11 – 12</div>
+            <div class="label">Admin / 1 hr</div>
+          </div>
+          <div class="sprint-block">
+            <div class="time">12 – 2 PM</div>
+            <div class="label">Call Sprint 2</div>
+          </div>
+          <div class="sprint-block">
+            <div class="time">4 – 6 PM</div>
+            <div class="label">Call Sprint 3</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: KPIs -->
+      <div>
+        <div class="section-label">
+          <div class="bar"></div>
+          <h2>KPI Targets — Non-Negotiable</h2>
+          <div class="rule"></div>
+        </div>
+
+        <div class="kpi-grid" style="grid-template-columns: repeat(3, 1fr); margin-bottom:6px;">
+          <div class="kpi-card">
+            <div class="kpi-val">500+</div>
+            <div class="kpi-label">Outbound Calls / Week</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-val">5+</div>
+            <div class="kpi-label">Closes / Week</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-val">24h</div>
+            <div class="kpi-label">Site Live After Close</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-val">£450</div>
+            <div class="kpi-label">Minimum Deal Value</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-val">100%</div>
+            <div class="kpi-label">Warm Lead Follow-Up</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-val">£2k</div>
+            <div class="kpi-label">Anchor Price (Agency)</div>
+          </div>
+        </div>
+
+        <div class="section-label" style="margin-top:8px;">
+          <div class="bar"></div>
+          <h2>Support &amp; Development</h2>
+          <div class="rule"></div>
+        </div>
+        <div class="support-row" style="margin-top:0;">
+          <div class="support-card">
+            <div class="icon">🔴</div>
+            <div>
+              <div class="s-title">MD Direct Line</div>
+              <div class="s-sub">Available 24/7</div>
+            </div>
+          </div>
+          <div class="support-card">
+            <div class="icon">🎯</div>
+            <div>
+              <div class="s-title">Bi-Weekly 1:1s</div>
+              <div class="s-sub">Every two weeks</div>
+            </div>
+          </div>
+          <div class="support-card">
+            <div class="icon">📋</div>
+            <div>
+              <div class="s-title">Personal Dev Plan</div>
+              <div class="s-sub">Annual roadmap</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /two-col -->
+
+  </div><!-- /page-body -->
+
+  <div class="footer">
+    Internal Operations &nbsp;·&nbsp; Confidential &nbsp;·&nbsp; Not for Distribution &nbsp;·&nbsp; © 2026 Vela Sync Ltd &nbsp;·&nbsp; Co. No. 17051204
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════
+     PAGE 2 — SCRIPTS, OBJECTIONS & CLOSE TOOLKIT
+═══════════════════════════════════════ -->
+<div class="page">
+  <div class="left-bar"></div>
+
+  <div class="header">
+    <div class="header-left">
+      <div class="eyebrow">Sales Advisor Quick Reference &nbsp;·&nbsp; Page 2 of 2</div>
+      <h1>Scripts, Objections &amp; Close Toolkit</h1>
+      <div class="sub">Every word matters. Every silence is a weapon. Know this cold.</div>
+    </div>
+    <div class="logo-mark">
+      <div class="logo-vs">VS</div>
+      <div class="logo-name">VELA SYNC<span>Internal · Confidential</span></div>
+    </div>
+  </div>
+
+  <div class="page-body">
+
+    <div class="two-col" style="gap:14px;">
+
+      <!-- LEFT COLUMN -->
+      <div>
+
+        <!-- Discovery questions -->
+        <div class="section-label">
+          <div class="bar"></div>
+          <h2>6 Discovery Questions — In Order</h2>
+          <div class="rule"></div>
+        </div>
+
+        <div class="q-list">
+          <div class="q-card">
+            <div class="q-num">1</div>
+            <div class="q-body">
+              <div class="q-label">Current State</div>
+              <div class="q-quote">"When a potential customer Googles you right now — what do they find?"</div>
+            </div>
+          </div>
+          <div class="q-card">
+            <div class="q-num">2</div>
+            <div class="q-body">
+              <div class="q-label">Awareness</div>
+              <div class="q-quote">"How are most of your customers finding you at the moment?"</div>
+            </div>
+          </div>
+          <div class="q-card">
+            <div class="q-num">3</div>
+            <div class="q-body">
+              <div class="q-label">Competition</div>
+              <div class="q-quote">"Have you looked at what your top three competitors are doing online?"</div>
+            </div>
+          </div>
+          <div class="q-card">
+            <div class="q-num">4</div>
+            <div class="q-body">
+              <div class="q-label">Revenue Impact</div>
+              <div class="q-quote">"76% of people research online before making contact — what does that mean for the customers you're missing?"</div>
+            </div>
+          </div>
+          <div class="q-card">
+            <div class="q-num">5</div>
+            <div class="q-body">
+              <div class="q-label">Previous Experience</div>
+              <div class="q-quote">"Have you ever tried to get a website built before? What happened?"</div>
+            </div>
+          </div>
+          <div class="q-card">
+            <div class="q-num" style="background:var(--teal-bright);">6</div>
+            <div class="q-body">
+              <div class="q-label" style="color:var(--teal-light);">Future Vision ★ Most Powerful</div>
+              <div class="q-quote">"If your digital presence was exactly where you wanted it — what would change for your business?"</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="pivot-box">
+          💡 <strong>After Q6:</strong> <em>"So if I've understood you correctly…"</em> — feed their answers back verbatim, word for word. Validates their concerns, amplifies the pain, sets up the pitch perfectly. <strong>Never skip this step.</strong>
+        </div>
+
+        <!-- Price reveal script -->
+        <div class="section-label" style="margin-top:10px;">
+          <div class="bar"></div>
+          <h2>Price Reveal Script</h2>
+          <div class="rule"></div>
+        </div>
+        <div class="anchor-bar">
+          <strong>Step 1 — Anchor high:</strong> <em>"A website of this quality from a traditional agency — you're looking at £2,000 minimum, often more."</em><br>
+          <strong>Step 2 — Land low:</strong> <em>"We charge £450. And you're live within 24 hours. Not a week. Not a month. Tomorrow."</em><br>
+          <strong>Step 3 — Silence.</strong> Let the contrast land. The next person who speaks loses.
+        </div>
+
+      </div>
+
+      <!-- RIGHT COLUMN -->
+      <div>
+
+        <!-- Objections -->
+        <div class="section-label">
+          <div class="bar"></div>
+          <h2>Objection Responses</h2>
+          <div class="rule"></div>
+        </div>
+
+        <div class="obj-list">
+          <div class="obj-card">
+            <div class="obj-q">"We already have a website."</div>
+            <div class="obj-a">Is it ranking? Is it bringing in enquiries — or is it just a digital brochure nobody reads?</div>
+          </div>
+          <div class="obj-card">
+            <div class="obj-q">"£450 seems too cheap."</div>
+            <div class="obj-a">You've just seen it. That is the quality. Enterprise engineers, zero agency overhead. That's how we do it.</div>
+          </div>
+          <div class="obj-card">
+            <div class="obj-q">"We need to think about it."</div>
+            <div class="obj-a">What specifically? Name the real objection. Then stop talking. Silence forces the answer.</div>
+          </div>
+          <div class="obj-card">
+            <div class="obj-q">"We want to get a few quotes first."</div>
+            <div class="obj-a">Equivalent quality starts at £2,000+. Come back and we will beat any genuine quote.</div>
+          </div>
+          <div class="obj-card">
+            <div class="obj-q">"We had a bad experience before."</div>
+            <div class="obj-a">"Tell me exactly what happened." Vela Sync was built specifically because of that gap in the market.</div>
+          </div>
+          <div class="obj-card">
+            <div class="obj-q">"Not sure about the monthly fee."</div>
+            <div class="obj-a">£50 a month is insurance on a £450 asset. It's the easiest financial decision in this room.</div>
+          </div>
+        </div>
+
+        <!-- Close Techniques -->
+        <div class="section-label" style="margin-top:10px;">
+          <div class="bar"></div>
+          <h2>Close Techniques</h2>
+          <div class="rule"></div>
+        </div>
+
+        <div class="close-grid">
+          <div class="close-card">
+            <div class="c-name">Assumptive Close</div>
+            <div class="c-script">"What's the domain name you're currently using?"<br><span style="color:var(--dim);font-size:6pt;">Assumes the sale — moves straight to logistics.</span></div>
+          </div>
+          <div class="close-card">
+            <div class="c-name">ROI Frame Close</div>
+            <div class="c-script">"If the site brings in just one extra customer — what's that worth to you?"<br><span style="color:var(--dim);font-size:6pt;">Forces them to calculate the return in their own head.</span></div>
+          </div>
+          <div class="close-card">
+            <div class="c-name">Urgency Close</div>
+            <div class="c-script">"Someone is Googling you right now. What is stopping us doing this today?" → <em>silence.</em><br><span style="color:var(--dim);font-size:6pt;">Real urgency. Not manufactured. Then stop talking.</span></div>
+          </div>
+          <div class="close-card">
+            <div class="c-name">Option Close</div>
+            <div class="c-script">"The £450 standard or the £650 SEO &amp; Growth — which feels like the right fit?"<br><span style="color:var(--dim);font-size:6pt;">Both options are a yes. Choice replaces hesitation.</span></div>
+          </div>
+        </div>
+
+        <!-- Pricing -->
+        <div class="section-label" style="margin-top:10px;">
+          <div class="bar"></div>
+          <h2>Pricing — Know These Cold</h2>
+          <div class="rule"></div>
+        </div>
+
+        <div class="pricing-row">
+          <div class="pkg-card">
+            <div class="pkg-name">Standard Package</div>
+            <div class="pkg-price">£450 <span>setup</span></div>
+            <div class="pkg-monthly">then £50/mo &nbsp;·&nbsp; Industry avg £150+/mo &nbsp;·&nbsp; Cancel anytime</div>
+            <div class="pkg-features">
+              <div class="pkg-feature">Professional, mobile-responsive website</div>
+              <div class="pkg-feature">Domain activation or transfer included</div>
+              <div class="pkg-feature">SSL, on-page SEO &amp; performance optimised</div>
+              <div class="pkg-feature">Client reviews &amp; approves before launch</div>
+              <div class="pkg-feature">Live within 24 hours · Instalments available</div>
+            </div>
+          </div>
+          <div class="pkg-card best">
+            <div class="pkg-best-tag">Best Value</div>
+            <div class="pkg-name">SEO &amp; Growth Package</div>
+            <div class="pkg-price">£650 <span>setup</span></div>
+            <div class="pkg-monthly">then £100/mo &nbsp;·&nbsp; Industry avg £300+/mo &nbsp;·&nbsp; No contract</div>
+            <div class="pkg-features">
+              <div class="pkg-feature">Everything in Standard Package</div>
+              <div class="pkg-feature">Marketing team briefed at launch</div>
+              <div class="pkg-feature">Live traffic strategy from day one</div>
+              <div class="pkg-feature">ML-backed digital strategy applied day one</div>
+              <div class="pkg-feature">Save up to £1,550 vs average agency</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div><!-- /two-col -->
+
+  </div><!-- /page-body -->
+
+  <div class="footer">
+    Internal Operations &nbsp;·&nbsp; Confidential &nbsp;·&nbsp; Not for Distribution &nbsp;·&nbsp; © 2026 Vela Sync Ltd &nbsp;·&nbsp; Co. No. 17051204
+  </div>
+</div>
+
+</body>
+</html>
