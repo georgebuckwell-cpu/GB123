@@ -32,8 +32,9 @@ green), recreated faithfully in CSS as `.brand-frame`.
 **Personality:** modern + technical. Dark, precise, engineered. Motion is
 purposeful (scan lines, particle mesh, live data) — never decorative noise.
 
-**Design system files:** `assets/styles.css` (token-driven, mobile-first) and
-`assets/app.js` (all interaction). Both are shared across every page so the
+**Design system files:** `assets/styles.css` (token-driven, mobile-first),
+`assets/app.js` (shared site interaction) and `assets/brief.js` (the buyer
+brief-builder wizard + matching engine). Shared across every page so the
 site scales without duplication.
 
 ---
@@ -62,8 +63,8 @@ Line Guide
 └── APPLICATION (authenticated)
     ├── /signup · /login · /verify-email
     ├── BUYER
-    │   ├── /buyer/brief/new ──── guided brief builder (the funnel)
-    │   ├── /buyer/matches/:id ── top-3 results + comparison
+    │   ├── /buyer/brief/new ──── guided brief builder (the funnel)   [BUILT → brief.html]
+    │   ├── /buyer/matches/:id ── top-3 results + comparison          [BUILT → brief.html results]
     │   ├── /buyer/messages ───── conversations with suppliers
     │   └── /buyer/dashboard ──── saved briefs, shortlists, history
     └── SUPPLIER
@@ -133,13 +134,22 @@ case studies, verified badge). **Goal:** SEO, supplier vanity/lead value
 ### 3.8 About / Blog / Contact / Legal *(roadmap)*
 Standard trust & growth surfaces. Blog is the long-term SEO/authority engine.
 
-### 3.9 Application — Buyer flow *(roadmap, the core funnel)*
-1. **Brief builder** `/buyer/brief/new` — multi-step: use-case → specs →
-   budget → timeframe → constraints. Mirrors the home demo, saved & richer.
-2. **Matches** `/buyer/matches/:id` — top-3 with fit breakdown + side-by-side
-   compare + "introduce me".
-3. **Messages / Dashboard** — manage conversations, saved briefs, shortlists.
+### 3.9 Application — Buyer flow — *BUILT (`brief.html`)*
+The core funnel, now live as a 5-step wizard → results:
+1. **Brief builder** — Application → Line details (format, throughput,
+   environment) → Commercials (budget, timeframe) → Requirements (region,
+   must-haves) → Your details. Progress stepper, inline validation,
+   keyboard (Enter) nav, and a live brief-summary rail.
+2. **Matches** — runs the richer matching engine (`brief.js`) and reveals the
+   **top 3** with overall fit %, a **per-signal breakdown** (use-case, rating,
+   budget, timeline) and **"request introduction"** with confirm state.
+3. **Messages / Dashboard** *(roadmap)* — manage conversations, saved briefs.
 **Goal:** turn intent into qualified introductions (the marketplace event).
+
+> **Matching upgrade in `brief.js`:** extends the home demo with product
+> format, throughput→required-speed, production environment, region and
+> must-have modifiers — all folded transparently into the four headline
+> signals. Tier still affects visibility only, never rating.
 
 ### 3.10 Application — Supplier flow *(roadmap)*
 Onboarding (profile + verification + tier) → **Leads inbox** (matched briefs,
