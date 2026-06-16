@@ -1,0 +1,1528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title data-i18n="meta.title">Vela Sync — Enterprise Tech. Local Business Prices.</title>
+<meta name="description" data-i18n="meta.desc" content="Award-winning engineers and ML strategy. Professional websites live in 24 hours with ongoing support — at a fraction of agency prices.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300&display=swap" rel="stylesheet">
+<style>
+:root{
+  --teal:#2B8E8E;--teal-l:#3aaeae;--teal-ll:#5fd0d0;
+  --teal-g:rgba(43,142,142,.18);--teal-gs:rgba(43,142,142,.08);
+  --bg:#050a0a;--s0:#0a1212;--s1:#0f1a1a;--s2:#152222;--s3:#1c2e2e;
+  --ink:#eef7f7;--ink-2:rgba(238,247,247,.58);--ink-3:rgba(238,247,247,.32);--ink-4:rgba(238,247,247,.14);
+  --hr:rgba(43,142,142,.12);--hr-m:rgba(43,142,142,.24);--hr-s:rgba(43,142,142,.48);
+  --gold:#fbbf24;
+  --ease:cubic-bezier(.32,.72,0,1);--spring:cubic-bezier(.34,1.56,.64,1);
+}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms !important;transition-duration:.01ms !important}
+  .up{opacity:1 !important;transform:none !important;filter:none !important}
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:'Plus Jakarta Sans',system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+::selection{background:rgba(43,142,142,.3);color:#fff}
+::-webkit-scrollbar{width:3px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--hr-s);border-radius:2px}
+:focus-visible{outline:2px solid var(--teal-l);outline-offset:3px}
+[id]{scroll-margin-top:96px}
+
+.skip{position:absolute;top:-60px;left:1rem;z-index:9999;background:var(--teal);color:#fff;padding:8px 14px;border-radius:8px;font-size:.82rem;font-weight:700;transition:top .15s}
+.skip:focus{top:1rem}
+#prog{position:fixed;top:0;left:0;height:1.5px;width:0;z-index:999;background:linear-gradient(90deg,var(--teal),var(--teal-ll));box-shadow:0 0 10px var(--teal-g)}
+body::after{content:'';position:fixed;inset:0;pointer-events:none;z-index:998;opacity:.022;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:180px 180px}
+#load{position:fixed;inset:0;background:var(--bg);z-index:9997;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:18px;transition:opacity .6s var(--ease),visibility .6s}
+#load.gone{opacity:0;visibility:hidden}
+.lm{width:46px;height:46px;background:var(--teal);border-radius:13px;display:flex;align-items:center;justify-content:center;box-shadow:0 0 28px var(--teal-g);animation:lp 1s var(--ease) infinite alternate}
+.lm span{font-size:.75rem;font-weight:800;color:#fff;letter-spacing:-.5px}
+.lb{width:72px;height:1.5px;background:var(--s2);border-radius:1px;overflow:hidden}
+.lb::after{content:'';display:block;height:100%;width:36%;background:var(--teal);animation:ls 1s var(--ease) infinite}
+@keyframes lp{from{opacity:.45;transform:scale(.86)}to{opacity:1;transform:scale(1)}}
+@keyframes ls{0%{transform:translateX(-100%)}100%{transform:translateX(320%)}}
+
+/* NAV */
+.nav-wrap{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;justify-content:center;padding:18px 1.5rem;pointer-events:none;transition:padding .4s var(--ease)}
+.nav-wrap.scrolled{padding:10px 1.5rem}
+.nav{pointer-events:all;display:flex;align-items:center;gap:0;background:rgba(5,10,10,.72);backdrop-filter:blur(28px) saturate(160%);-webkit-backdrop-filter:blur(28px) saturate(160%);border:1px solid var(--hr-m);border-radius:100px;padding:8px 8px 8px 20px;box-shadow:0 8px 40px rgba(0,0,0,.5),0 0 0 1px var(--hr),inset 0 1px 0 rgba(255,255,255,.04);transition:background .4s,box-shadow .4s,border-color .4s;max-width:960px;width:100%}
+.nav-wrap.scrolled .nav{background:rgba(5,10,10,.92);border-color:var(--hr-s)}
+.nav-logo{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.nm{width:30px;height:30px;background:var(--teal);border-radius:8px;display:flex;align-items:center;justify-content:center;box-shadow:0 0 16px rgba(43,142,142,.35)}
+.nm span{font-size:.6rem;font-weight:900;color:#fff;letter-spacing:-.5px}
+.nw{font-size:.75rem;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;opacity:.85}
+.nav-links{display:flex;align-items:center;gap:.25rem;margin-left:auto;margin-right:.5rem}
+.nav-links a{font-size:.75rem;font-weight:500;color:var(--ink-2);padding:6px 12px;border-radius:100px;transition:color .15s,background .15s}
+.nav-links a:hover{color:var(--ink);background:rgba(255,255,255,.06)}
+.ncta{background:var(--teal);color:#fff;font-size:.78rem;font-weight:700;padding:9px 20px;border-radius:100px;transition:background .15s,transform .15s,box-shadow .15s;white-space:nowrap;flex-shrink:0;box-shadow:inset 0 1px 0 rgba(255,255,255,.15)}
+.ncta:hover{background:var(--teal-l);transform:translateY(-1px);box-shadow:0 0 24px var(--teal-g),inset 0 1px 0 rgba(255,255,255,.2)}
+.ncta:active{transform:scale(.97)}
+
+/* LANGUAGE SWITCHER */
+.lang{position:relative;flex-shrink:0;margin-right:.4rem}
+.lang-btn{display:flex;align-items:center;gap:7px;background:rgba(255,255,255,.05);border:1px solid var(--hr-m);border-radius:100px;padding:7px 12px;font-size:.72rem;font-weight:700;color:var(--ink-2);transition:background .15s,color .15s,border-color .15s}
+.lang-btn:hover{background:rgba(255,255,255,.1);color:var(--ink);border-color:var(--hr-s)}
+.lang-btn svg{transition:transform .25s var(--ease)}
+.lang.open .lang-btn svg{transform:rotate(180deg)}
+.lang-cur{letter-spacing:.5px}
+.lang-menu{position:absolute;top:calc(100% + 10px);right:0;min-width:170px;background:rgba(10,18,18,.96);backdrop-filter:blur(28px) saturate(160%);-webkit-backdrop-filter:blur(28px) saturate(160%);border:1px solid var(--hr-m);border-radius:16px;padding:6px;box-shadow:0 16px 48px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.05);opacity:0;visibility:hidden;transform:translateY(-8px) scale(.97);transform-origin:top right;transition:opacity .22s var(--ease),transform .22s var(--ease),visibility .22s}
+.lang.open .lang-menu{opacity:1;visibility:visible;transform:none}
+.lang-opt{display:flex;align-items:center;gap:10px;width:100%;text-align:left;padding:9px 12px;border-radius:10px;font-size:.82rem;font-weight:600;color:var(--ink-2);transition:background .15s,color .15s}
+.lang-opt:hover{background:rgba(255,255,255,.06);color:var(--ink)}
+.lang-opt.active{color:var(--teal-l);background:rgba(43,142,142,.08)}
+.lang-opt .flag{font-size:1.05rem;line-height:1;flex-shrink:0}
+.lang-opt .tick{margin-left:auto;opacity:0;color:var(--teal-l)}
+.lang-opt.active .tick{opacity:1}
+
+.hbg{display:none;width:38px;height:38px;background:rgba(255,255,255,.06);border:1px solid var(--hr-m);border-radius:100px;align-items:center;justify-content:center;flex-direction:column;gap:4.5px;margin-left:.4rem;flex-shrink:0;transition:background .2s}
+.hbg:hover{background:rgba(255,255,255,.1)}
+.hbg span{display:block;width:15px;height:1.5px;background:var(--ink);border-radius:1px;transition:transform .28s var(--ease),opacity .28s}
+.hbg.open span:nth-child(1){transform:translateY(6px) rotate(45deg)}
+.hbg.open span:nth-child(2){opacity:0}
+.hbg.open span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+@media(max-width:980px){.nav-links{display:none}.hbg{display:flex}}
+@media(max-width:560px){.nw{display:none}}
+
+.mob{position:fixed;inset:0;z-index:490;background:rgba(5,10,10,.95);backdrop-filter:blur(32px);display:flex;flex-direction:column;justify-content:center;padding:2rem;opacity:0;visibility:hidden;transition:opacity .32s var(--ease),visibility .32s;overflow-y:auto}
+.mob.open{opacity:1;visibility:visible}
+.mob a{font-size:1.7rem;font-weight:700;color:var(--ink-2);padding:1rem 0;border-bottom:1px solid var(--hr);display:block;opacity:0;transform:translateY(20px);transition:color .15s,padding-left .2s,opacity .4s var(--ease),transform .4s var(--ease)}
+.mob.open a{opacity:1;transform:none}
+.mob.open a:nth-child(1){transition-delay:.05s}.mob.open a:nth-child(2){transition-delay:.1s}.mob.open a:nth-child(3){transition-delay:.15s}.mob.open a:nth-child(4){transition-delay:.2s}.mob.open a:nth-child(5){transition-delay:.25s}.mob.open a:nth-child(6){transition-delay:.3s}.mob.open a:nth-child(7){transition-delay:.35s}
+.mob a:hover{color:var(--ink);padding-left:8px}
+.mob-cta{margin-top:1.75rem !important;background:var(--teal) !important;color:#fff !important;padding:16px 28px !important;border-radius:100px;display:inline-block !important;font-weight:700;text-align:center;border-bottom:none !important}
+
+/* HERO */
+.hero{min-height:100dvh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:140px clamp(1.25rem,5vw,3rem) 80px;position:relative;overflow:hidden}
+.hero-bg{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 130% 70% at 50% -10%,rgba(43,142,142,.16) 0%,transparent 60%),radial-gradient(ellipse 70% 50% at 82% 85%,rgba(15,42,94,.22) 0%,transparent 55%),radial-gradient(ellipse 50% 40% at 15% 70%,rgba(43,142,142,.07) 0%,transparent 50%)}
+.hero-grid{position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(rgba(43,142,142,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(43,142,142,.03) 1px,transparent 1px);background-size:80px 80px;mask-image:radial-gradient(ellipse 90% 75% at 50% 38%,black 15%,transparent 100%)}
+/* LOGO MARK */
+.vsmark{display:block;color:#fff}
+.nm .vsmark{width:18px;height:18px}
+.lm .vsmark{width:28px;height:28px}
+.flogo .nm .vsmark{width:18px;height:18px}
+/* HERO FLOATING ICONS */
+.hero-floats{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden}
+.float-ic{position:absolute;width:54px;height:54px;border-radius:16px;display:flex;align-items:center;justify-content:center;background:rgba(43,142,142,.08);border:1px solid var(--hr-m);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:0 10px 30px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,255,255,.07);color:var(--teal-l);animation:floaty 7s var(--ease) infinite}
+.float-ic svg{width:24px;height:24px}
+.fi1{top:19%;left:6.5%;animation-delay:-.4s}
+.fi2{top:24%;right:7.5%;animation-duration:8.4s;animation-delay:-2.1s}
+.fi3{top:58%;left:10%;animation-duration:7.8s;animation-delay:-3.4s}
+.fi4{top:62%;right:9%;animation-duration:9s;animation-delay:-1.2s}
+.fi5{top:41%;left:3%;animation-duration:8s;animation-delay:-4.6s}
+.fi6{top:45%;right:3%;animation-duration:8.8s;animation-delay:-5.3s}
+@keyframes floaty{0%,100%{transform:translateY(0) rotate(-3deg)}50%{transform:translateY(-18px) rotate(3deg)}}
+@media(max-width:1180px){.fi5,.fi6{display:none}}
+@media(max-width:1080px){.hero-floats{display:none}}
+/* FIXED TOP-LEFT BRAND */
+.brand-fixed{position:fixed;top:20px;left:24px;z-index:450;display:flex;align-items:center;gap:11px;padding:8px 18px 8px 8px;border-radius:100px;background:rgba(5,10,10,.55);backdrop-filter:blur(20px) saturate(160%);-webkit-backdrop-filter:blur(20px) saturate(160%);border:1px solid var(--hr-m);box-shadow:0 8px 30px rgba(0,0,0,.4);transition:background .3s,border-color .3s,transform .3s}
+.brand-fixed:hover{border-color:var(--hr-s);background:rgba(5,10,10,.72);transform:translateY(-1px)}
+.brand-fixed .bm{width:34px;height:34px;border-radius:9px;background:var(--teal);display:flex;align-items:center;justify-content:center;box-shadow:0 0 18px rgba(43,142,142,.4)}
+.brand-fixed .bm .vsmark{width:21px;height:21px}
+.brand-fixed .bw{font-size:.78rem;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--ink)}
+@media(max-width:1360px){.brand-fixed{display:none}}
+/* HERO BACKGROUND PHOTO */
+.hero-photo{position:absolute;inset:0;z-index:0;background-image:url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1600&q=80');background-size:cover;background-position:center;opacity:.2;filter:saturate(.85) brightness(.95);mask-image:radial-gradient(ellipse 100% 90% at 50% 30%,#000 30%,transparent 85%);-webkit-mask-image:radial-gradient(ellipse 100% 90% at 50% 30%,#000 30%,transparent 85%)}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:10px;border:1px solid var(--hr-m);border-radius:100px;padding:7px 16px 7px 10px;background:rgba(43,142,142,.07);font-size:.68rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--teal-l);margin-bottom:2.5rem;position:relative;z-index:2;overflow:hidden}
+.hero-eyebrow::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(43,142,142,.12) 50%,transparent);transform:translateX(-100%);animation:sh 4s ease-in-out infinite}
+@keyframes sh{0%{transform:translateX(-100%)}60%,100%{transform:translateX(100%)}}
+.edot{width:6px;height:6px;border-radius:50%;background:var(--teal);flex-shrink:0;animation:bk 2.4s ease-in-out infinite;box-shadow:0 0 10px rgba(43,142,142,.7)}
+@keyframes bk{0%,100%{opacity:1;box-shadow:0 0 10px rgba(43,142,142,.7)}50%{opacity:.25;box-shadow:none}}
+.hero h1{font-size:clamp(3.6rem,9vw,8rem);font-weight:800;line-height:.92;letter-spacing:-4.5px;max-width:1100px;width:100%;position:relative;z-index:2;margin-bottom:1.8rem}
+.grd{background:linear-gradient(125deg,#d8f5f5 5%,var(--teal-l) 45%,var(--teal-ll) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-sub{font-size:clamp(1rem,2vw,1.18rem);color:var(--ink-2);max-width:540px;margin:0 auto 3rem;font-weight:300;line-height:1.85;position:relative;z-index:2}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;position:relative;z-index:2;margin-bottom:5rem}
+
+.marquee-wrap{position:relative;z-index:2;width:100%;max-width:900px;overflow:hidden;mask-image:linear-gradient(90deg,transparent 0%,black 15%,black 85%,transparent 100%)}
+.marquee-track{display:flex;gap:2.5rem;width:max-content;animation:mq 22s linear infinite}
+.marquee-wrap:hover .marquee-track{animation-play-state:paused}
+@keyframes mq{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.mitem{display:flex;align-items:center;gap:10px;flex-shrink:0;font-size:.73rem;font-weight:600;color:var(--ink-3);white-space:nowrap;letter-spacing:.3px}
+.mdiv{width:4px;height:4px;border-radius:50%;background:var(--hr-s);flex-shrink:0}
+
+.btn{display:inline-flex;align-items:center;gap:10px;padding:14px 24px;border-radius:100px;font-size:.9rem;font-weight:700;letter-spacing:-.2px;transition:transform .2s var(--ease),box-shadow .2s var(--ease),background .15s;cursor:pointer;touch-action:manipulation;position:relative;overflow:hidden}
+.btn:active{transform:scale(.96) !important}
+.btn-p{background:var(--teal);color:#fff;box-shadow:0 0 36px rgba(43,142,142,.3),inset 0 1px 0 rgba(255,255,255,.18)}
+.btn-p:hover{background:var(--teal-l);transform:translateY(-2px);box-shadow:0 0 56px rgba(43,142,142,.5),inset 0 1px 0 rgba(255,255,255,.22)}
+.btn-g{background:rgba(255,255,255,.05);border:1px solid var(--hr-m);color:var(--ink);backdrop-filter:blur(8px)}
+.btn-g:hover{background:rgba(255,255,255,.09);border-color:var(--hr-s);transform:translateY(-2px)}
+.btn-lg{padding:15px 32px;font-size:.95rem}
+.bic{width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:transform .2s var(--spring),background .15s}
+.btn:hover .bic{transform:translateX(2px) translateY(-1px) scale(1.08);background:rgba(255,255,255,.22)}
+.bic-dk{background:rgba(0,0,0,.12)}
+.btn:hover .bic-dk{background:rgba(0,0,0,.2)}
+
+.sec{max-width:1160px;margin:0 auto;padding:120px clamp(1.25rem,4vw,2.5rem)}
+@media(max-width:640px){.sec{padding:80px 1.25rem}}
+.tag{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--hr-m);border-radius:100px;padding:5px 14px;background:rgba(43,142,142,.06);font-size:.62rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--teal-l);margin-bottom:1.1rem}
+.tag::before{content:'';width:16px;height:1px;background:linear-gradient(90deg,var(--teal),var(--teal-ll))}
+.h2{font-size:clamp(2.1rem,4.2vw,3.4rem);font-weight:800;letter-spacing:-2px;line-height:1.05;margin-bottom:1.2rem}
+.sub{font-size:.95rem;color:var(--ink-2);max-width:560px;line-height:1.85;margin-bottom:3.5rem;font-weight:400}
+.div{border:none;border-top:1px solid var(--hr)}
+
+/* STATS BAND */
+.stats-band{background:var(--s0);border-top:1px solid var(--hr);border-bottom:1px solid var(--hr)}
+.stats-inner{max-width:1160px;margin:0 auto;padding:64px clamp(1.25rem,5vw,2.5rem);display:grid;grid-template-columns:repeat(4,1fr);gap:2rem}
+@media(max-width:760px){.stats-inner{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:420px){.stats-inner{grid-template-columns:1fr}}
+.stat-item{text-align:center}
+.stat-val{font-size:2.8rem;font-weight:800;letter-spacing:-2px;color:var(--teal-l);line-height:1;margin-bottom:.3rem}
+.stat-lbl{font-size:.75rem;color:var(--ink-3);text-transform:uppercase;letter-spacing:1px;font-weight:600;line-height:1.5}
+
+/* ABOUT */
+.about-wrap{background:var(--bg)}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+@media(max-width:760px){.about-grid{grid-template-columns:1fr;gap:2.5rem}}
+.about-text h2{margin-bottom:1.4rem}
+.about-text p{font-size:.95rem;color:var(--ink-2);line-height:1.85;margin-bottom:1rem}
+.about-img{border-radius:24px;overflow:hidden;border:1px solid var(--hr-m);aspect-ratio:4/3;position:relative}
+.about-img img{width:100%;height:100%;object-fit:cover;filter:saturate(1.05) brightness(.88)}
+.about-img::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(43,142,142,.12) 0%,transparent 60%)}
+
+/* BENTO */
+.bento{display:grid;grid-template-columns:repeat(12,1fr);grid-auto-rows:minmax(160px,auto);gap:1.25rem;grid-auto-flow:dense}
+.bc-a{grid-column:span 8;grid-row:span 2}
+.bc-b,.bc-c,.bc-d,.bc-e,.bc-f{grid-column:span 4;grid-row:span 1}
+@media(max-width:900px){.bento{grid-template-columns:1fr 1fr;grid-auto-rows:auto}.bc-a,.bc-b,.bc-c,.bc-d,.bc-e,.bc-f{grid-column:span 1;grid-row:span 1}.bc-a{grid-column:span 2}}
+@media(max-width:540px){.bento{grid-template-columns:1fr}.bc-a{grid-column:span 1}}
+.card-shell{border-radius:24px;background:rgba(255,255,255,.03);border:1px solid var(--hr);padding:1.5px;transition:border-color .3s}
+.card-shell:hover{border-color:var(--hr-m)}
+.card-inner{border-radius:calc(24px - 1.5px);background:var(--s1);padding:2rem;height:100%;box-shadow:inset 0 1px 0 rgba(255,255,255,.05);transition:background .3s;display:flex;flex-direction:column;position:relative;overflow:hidden}
+.card-shell:hover .card-inner{background:var(--s2)}
+.bc-a .card-inner{background:linear-gradient(145deg,var(--s2) 0%,var(--s1) 60%);justify-content:flex-end;min-height:340px}
+.bc-a .card-inner::before{content:'';position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 80% 60% at 30% 20%,rgba(43,142,142,.1) 0%,transparent 60%)}
+.big-num{font-size:clamp(5rem,10vw,9rem);font-weight:800;letter-spacing:-6px;line-height:1;color:rgba(43,142,142,.12);position:absolute;top:.75rem;right:1.25rem;transition:color .3s}
+.card-shell:hover .big-num{color:rgba(43,142,142,.2)}
+.bento-img{position:absolute;inset:0;z-index:0;overflow:hidden}
+.bento-img img{width:100%;height:100%;object-fit:cover;filter:saturate(.8) brightness(.5);transition:transform .7s var(--ease),filter .7s}
+.card-shell:hover .bento-img img{transform:scale(1.06);filter:saturate(1) brightness(.6)}
+.bento-img::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,10,10,.5) 0%,rgba(5,10,10,.66) 40%,rgba(5,10,10,.88) 100%)}
+.has-img .card-inner{background:var(--s2)}
+.has-img .card-inner>*:not(.bento-img){position:relative;z-index:2}
+.card-ico{width:44px;height:44px;border-radius:12px;background:rgba(43,142,142,.1);border:1px solid var(--hr-m);display:flex;align-items:center;justify-content:center;color:var(--teal);margin-bottom:1.25rem;transition:background .2s,box-shadow .2s,transform .22s var(--spring)}
+.card-shell:hover .card-ico{background:rgba(43,142,142,.18);box-shadow:0 0 18px rgba(43,142,142,.15);transform:scale(1.07)}
+.card-inner h3{font-size:1rem;font-weight:700;color:var(--ink);margin-bottom:.4rem;line-height:1.4}
+.card-inner p{font-size:.845rem;color:var(--ink-2);line-height:1.78;margin-top:auto}
+.bc-a h3{font-size:1.5rem;font-weight:800;letter-spacing:-.5px}
+.bc-a p{font-size:.95rem;margin-top:.75rem}
+
+/* PRICING */
+.price-wrap{background:var(--s0)}
+.price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;margin-bottom:2rem}
+@media(max-width:860px){.price-grid{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:1rem;padding-bottom:1rem;-webkit-overflow-scrolling:touch}.pc{min-width:288px;scroll-snap-align:start;flex-shrink:0}}
+@media(max-width:560px){.price-grid{margin:0 -1.25rem;padding:0 1.25rem 1rem}.pc{min-width:80vw}}
+.pc{border-radius:26px;background:rgba(255,255,255,.03);border:1px solid var(--hr);padding:1.5px;transition:border-color .3s,transform .3s var(--ease),box-shadow .3s}
+.pc:hover{border-color:var(--hr-m);transform:translateY(-6px);box-shadow:0 20px 60px rgba(0,0,0,.5)}
+.pc-in{border-radius:calc(26px - 1.5px);background:var(--s1);padding:2.25rem;height:100%;box-shadow:inset 0 1px 0 rgba(255,255,255,.05);position:relative;overflow:hidden}
+.pc.feat{border-color:transparent;background:linear-gradient(145deg,var(--teal),rgba(43,142,142,.35) 50%,var(--teal-l))}
+.pc.feat .pc-in{background:var(--s2)}
+.pc.feat .pc-in::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 45% at 50% -5%,rgba(43,142,142,.14) 0%,transparent 60%);pointer-events:none}
+.feat-tag{position:absolute;top:1.4rem;right:1.4rem;background:var(--teal);color:#fff;font-size:.58rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:4px 12px;border-radius:100px;box-shadow:0 0 14px rgba(43,142,142,.4)}
+.ptag{font-size:.6rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--teal-l);margin-bottom:1.4rem}
+.pamt{font-size:3.8rem;font-weight:800;letter-spacing:-3.5px;color:var(--ink);line-height:1;margin-bottom:.2rem}
+.pamt sup{font-size:1.5rem;font-weight:600;vertical-align:super;line-height:0;letter-spacing:0}
+.pnote{font-size:.78rem;color:var(--ink-2);margin-bottom:1.75rem}
+.pdiv{height:1px;background:var(--hr);margin-bottom:1.6rem}
+.plist{list-style:none;font-size:.85rem;color:var(--ink-2);line-height:2.2}
+.plist li{display:flex;align-items:flex-start;gap:10px}
+.plist li svg{flex-shrink:0;margin-top:5px;color:var(--teal)}
+.save-bar{border-radius:20px;background:var(--s1);border:1px solid var(--hr);padding:1.5rem 2rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;position:relative;overflow:hidden}
+.save-bar::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(180deg,var(--teal),var(--teal-ll))}
+.save-bar::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,rgba(43,142,142,.04) 0%,transparent 35%);pointer-events:none}
+.save-txt{font-size:.87rem;color:var(--ink-2)}
+.save-row{display:flex;align-items:center;gap:1.25rem;flex-wrap:wrap}
+.save-old{font-size:1.6rem;font-weight:800;color:var(--ink-3);text-decoration:line-through;letter-spacing:-1px}
+.save-pill{background:rgba(43,142,142,.12);border:1px solid var(--hr-m);color:var(--teal-l);padding:7px 16px;border-radius:100px;font-size:.8rem;font-weight:700}
+
+/* PROCESS */
+.proc-wrap{background:var(--bg)}
+.proc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;position:relative}
+.proc-grid::before{content:'';position:absolute;top:18px;left:calc(12.5%);right:calc(12.5%);height:1px;background:linear-gradient(90deg,transparent,var(--hr-s) 20%,var(--hr-s) 80%,transparent)}
+.ps{display:flex;flex-direction:column;align-items:center;text-align:center}
+.pcirc{width:36px;height:36px;border-radius:50%;background:var(--s2);border:1px solid var(--hr-s);display:flex;align-items:center;justify-content:center;font-size:.73rem;font-weight:800;color:var(--teal);margin-bottom:1.6rem;position:relative;z-index:1;flex-shrink:0;transition:background .28s,border-color .28s,box-shadow .28s,color .28s,transform .28s var(--spring)}
+.ps:hover .pcirc{background:var(--teal);color:#fff;border-color:var(--teal);box-shadow:0 0 28px rgba(43,142,142,.35);transform:scale(1.12)}
+.pbadge{display:inline-block;background:rgba(43,142,142,.07);border:1px solid var(--hr);color:var(--teal);font-size:.58rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:4px 11px;border-radius:100px;margin-bottom:.65rem}
+.ps h3{font-size:.92rem;font-weight:700;color:var(--ink);margin-bottom:.4rem}
+.ps p{font-size:.82rem;color:var(--ink-2);line-height:1.75}
+@media(max-width:860px){.proc-grid{grid-template-columns:1fr;gap:0;padding-left:2.75rem}.proc-grid::before{top:18px;bottom:18px;left:17px;right:auto;width:1px;height:auto;background:linear-gradient(180deg,transparent,var(--hr-s) 10%,var(--hr-s) 90%,transparent)}.ps{align-items:flex-start;text-align:left;padding:0 0 2.5rem 1.75rem;position:relative}.ps:last-child{padding-bottom:0}.pcirc{position:absolute;left:0;top:0;transform:translateX(-50%) translateX(-1px);margin-bottom:0}.ps:hover .pcirc{transform:translateX(-50%) translateX(-1px) scale(1.1)}}
+
+/* COMPARE TABLE */
+.compare-wrap{background:var(--s0)}
+.compare-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.compare-table{width:100%;min-width:640px;border-collapse:separate;border-spacing:0;border:1px solid var(--hr-m);border-radius:20px;overflow:hidden}
+.compare-table th{padding:1.2rem 1.5rem;font-size:.72rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;background:var(--s2);color:var(--ink-3);text-align:left;border-bottom:1px solid var(--hr)}
+.compare-table th:nth-child(2){color:var(--teal-l)}
+.compare-table td{padding:1.05rem 1.5rem;font-size:.86rem;color:var(--ink-2);border-bottom:1px solid var(--hr);background:var(--s1)}
+.compare-table tr:last-child td{border-bottom:none}
+.compare-table td:first-child{color:var(--ink);font-weight:500}
+.compare-table td:nth-child(2){background:rgba(43,142,142,.04);color:var(--ink);font-weight:600}
+.compare-table .yes{color:var(--teal-l);font-weight:700}
+.compare-table .no{color:rgba(238,247,247,.3)}
+.compare-table .vs{color:var(--gold);font-weight:600}
+
+/* FEES */
+.fees-wrap{background:var(--bg)}
+.fees-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.35rem}
+@media(max-width:860px){.fees-grid{grid-template-columns:1fr}}
+.fc2{border-radius:24px;background:rgba(255,255,255,.03);border:1px solid var(--hr);padding:1.5px;transition:border-color .3s,transform .3s var(--ease)}
+.fc2:hover{border-color:var(--hr-m);transform:translateY(-5px)}
+.fc2-in{border-radius:calc(24px - 1.5px);background:var(--s1);padding:2.25rem;text-align:center;box-shadow:inset 0 1px 0 rgba(255,255,255,.05);position:relative;overflow:hidden}
+.fc2-in::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 40% at 50% -10%,rgba(43,142,142,.09) 0%,transparent 60%);opacity:0;transition:opacity .3s;pointer-events:none}
+.fc2:hover .fc2-in::before{opacity:1}
+.fc2.feat2{border-color:var(--hr-m)}
+.fc2.feat2 .fc2-in{background:var(--s2);box-shadow:0 0 48px rgba(43,142,142,.09),inset 0 1px 0 rgba(255,255,255,.06)}
+.fc2.feat2 .fc2-in::before{opacity:1}
+.fbig{font-size:3.1rem;font-weight:800;letter-spacing:-2.5px;color:var(--ink);line-height:1;margin-bottom:.2rem}
+.fbig sup{font-size:1.2rem;font-weight:600;vertical-align:super;line-height:0;letter-spacing:0}
+.fc2.feat2 .fbig,.fc2.feat2 .fbig sup{color:var(--teal-l)}
+.fper{font-size:.7rem;color:var(--ink-2);margin-bottom:.85rem;text-transform:uppercase;letter-spacing:.5px}
+.fname{font-size:.95rem;font-weight:700;color:var(--ink);margin-bottom:.4rem}
+.fdesc{font-size:.83rem;color:var(--ink-2);line-height:1.7}
+.fvs{display:inline-block;margin-top:1.1rem;background:rgba(255,255,255,.03);border:1px solid var(--hr);padding:4px 13px;border-radius:100px;font-size:.67rem;color:var(--ink-3)}
+
+/* GUARANTEE */
+.guarantee-wrap{background:linear-gradient(135deg,rgba(43,142,142,.1) 0%,rgba(43,142,142,.04) 50%,rgba(5,10,10,0) 100%);border-top:1px solid var(--hr);border-bottom:1px solid var(--hr)}
+.guarantee-inner{max-width:1160px;margin:0 auto;padding:90px clamp(1.25rem,5vw,2.5rem);display:grid;grid-template-columns:1fr 1fr;gap:3.5rem;align-items:center}
+@media(max-width:760px){.guarantee-inner{grid-template-columns:1fr;gap:2rem}}
+.guarantee-text p{font-size:.92rem;color:var(--ink-2);line-height:1.85}
+.guarantee-points{display:flex;flex-direction:column;gap:1rem}
+.gp{display:flex;align-items:flex-start;gap:1rem;background:var(--s1);border:1px solid var(--hr);border-radius:16px;padding:1.1rem 1.4rem;transition:border-color .25s}
+.gp:hover{border-color:var(--hr-m)}
+.gp-ico{width:38px;height:38px;background:rgba(43,142,142,.1);border:1px solid var(--hr-m);border-radius:10px;display:flex;align-items:center;justify-content:center;color:var(--teal);flex-shrink:0}
+.gp-body h4{font-size:.88rem;font-weight:700;color:var(--ink);margin-bottom:.25rem}
+.gp-body p{font-size:.8rem;color:var(--ink-2);line-height:1.7}
+
+/* TEAM */
+.team-wrap{background:var(--bg)}
+.team-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem}
+@media(max-width:740px){.team-grid{grid-template-columns:1fr}}
+.tc{border-radius:26px;background:rgba(255,255,255,.03);border:1px solid var(--hr);padding:1.5px;transition:border-color .3s,transform .3s,box-shadow .3s}
+.tc:hover{border-color:var(--hr-m);transform:translateY(-3px);box-shadow:0 16px 48px rgba(0,0,0,.4)}
+.tc-in{border-radius:calc(26px - 1.5px);background:var(--s1);overflow:hidden;box-shadow:inset 0 1px 0 rgba(255,255,255,.05)}
+.tc-head{padding:1.85rem 2rem 1.6rem;background:linear-gradient(150deg,rgba(43,142,142,.08) 0%,transparent 65%);border-bottom:1px solid var(--hr);position:relative}
+.tc-head::after{content:'';position:absolute;bottom:-1px;left:0;width:60%;height:1px;background:linear-gradient(90deg,var(--teal),transparent)}
+.tc-role{font-size:.58rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--teal);margin-bottom:.5rem}
+.tc-title{font-size:.95rem;font-weight:700;color:var(--ink);line-height:1.45}
+.tc-body{padding:1.5rem 2rem}
+.tc-body ul{list-style:none;font-size:.845rem;color:var(--ink-2);line-height:2.15}
+.tc-body li{display:flex;align-items:flex-start;gap:10px}
+.tc-body li svg{flex-shrink:0;margin-top:5px;color:var(--teal-l);opacity:.65}
+.award{display:inline-flex;align-items:center;gap:6px;background:rgba(251,191,36,.07);border:1px solid rgba(251,191,36,.18);color:var(--gold);font-size:.7rem;font-weight:600;padding:5px 13px;border-radius:100px;margin-top:1rem}
+.pr-row{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;grid-column:span 2}
+@media(max-width:740px){.pr-row{grid-column:span 1;grid-template-columns:1fr}}
+.prc{border-radius:22px;background:rgba(255,255,255,.03);border:1px solid var(--hr);padding:1.5px;transition:border-color .25s,transform .25s}
+.prc:hover{border-color:var(--hr-m);transform:translateY(-2px)}
+.prc-in{border-radius:calc(22px - 1.5px);background:var(--s1);padding:1.85rem;box-shadow:inset 0 1px 0 rgba(255,255,255,.05)}
+.pr-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(15,42,94,.22);border:1px solid rgba(15,42,94,.5);color:#93b4f0;font-size:.58rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:4px 12px;border-radius:100px;margin-bottom:.8rem}
+.pr-name{font-size:.95rem;font-weight:700;color:var(--ink);margin-bottom:.4rem}
+.pr-desc{font-size:.845rem;color:var(--ink-2);line-height:1.75}
+.tag-row{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1rem}
+.chip{background:rgba(255,255,255,.04);border:1px solid var(--hr);padding:4px 12px;border-radius:100px;font-size:.67rem;color:var(--ink-2);transition:border-color .15s}
+.chip:hover{border-color:var(--hr-m)}
+
+/* SERVICES */
+.build-wrap{background:var(--s0)}
+.build-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem}
+@media(max-width:640px){.build-grid{grid-template-columns:1fr}}
+.bld{border-radius:26px;background:rgba(255,255,255,.03);border:1px solid var(--hr);padding:1.5px;transition:border-color .3s,transform .3s var(--ease),box-shadow .3s}
+.bld:hover{border-color:var(--hr-m);transform:translateY(-6px);box-shadow:0 24px 64px rgba(0,0,0,.5)}
+.bld-in{border-radius:calc(26px - 1.5px);background:var(--s1);padding:2.5rem;box-shadow:inset 0 1px 0 rgba(255,255,255,.05);position:relative;overflow:hidden}
+.bld-n{position:absolute;top:1.75rem;right:1.75rem;font-size:4rem;font-weight:800;letter-spacing:-3px;color:rgba(43,142,142,.06);line-height:1;transition:color .3s}
+.bld:hover .bld-n{color:rgba(43,142,142,.12)}
+.bld-img{width:100%;aspect-ratio:16/9;border-radius:14px;overflow:hidden;margin-bottom:1.75rem;position:relative;border:1px solid var(--hr)}
+.bld-img img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease),filter .6s;filter:saturate(.75) brightness(.8)}
+.bld:hover .bld-img img{transform:scale(1.06);filter:saturate(1.05) brightness(.92)}
+.bld-img::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(5,10,10,.75) 100%);pointer-events:none}
+.bld-ico{width:48px;height:48px;background:rgba(43,142,142,.09);border:1px solid var(--hr-m);border-radius:14px;display:flex;align-items:center;justify-content:center;color:var(--teal);margin-bottom:1.5rem;transition:background .22s,box-shadow .22s,transform .22s var(--spring)}
+.bld:hover .bld-ico{background:rgba(43,142,142,.17);box-shadow:0 0 22px rgba(43,142,142,.15);transform:scale(1.07)}
+.bld-sub{font-size:.62rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--teal);margin-bottom:.6rem}
+.bld-in h3{font-size:1.08rem;font-weight:700;color:var(--ink);margin-bottom:.5rem}
+.bld-in p{font-size:.875rem;color:var(--ink-2);line-height:1.8}
+
+/* LOCATIONS */
+.locs-wrap{background:var(--bg)}
+.loc-row{display:flex;flex-wrap:wrap;gap:.875rem;margin-top:2rem}
+.lpill{display:flex;align-items:center;gap:9px;background:var(--s1);border:1px solid var(--hr);padding:10px 22px;border-radius:100px;font-size:.875rem;font-weight:500;color:var(--ink);transition:border-color .2s,transform .2s}
+.lpill:hover{border-color:var(--hr-m);transform:translateY(-2px)}
+
+/* HIRING */
+.hire-wrap{background:var(--s0)}
+.intro-card{background:rgba(43,142,142,.06);border:1px solid var(--hr);border-left:3px solid var(--teal);border-radius:0 16px 16px 0;padding:1.6rem 1.85rem;margin-bottom:3rem;font-size:.95rem;color:var(--ink-2);line-height:1.8;max-width:760px}
+.intro-card strong{color:var(--teal-l);font-weight:700}
+.hire-sub-h{font-size:1.2rem;font-weight:800;letter-spacing:-.5px;margin:3.5rem 0 1.5rem}
+.duty-list{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:.85rem 2rem}
+@media(max-width:680px){.duty-list{grid-template-columns:1fr}}
+.duty-list li{display:flex;align-items:flex-start;gap:11px;font-size:.875rem;color:var(--ink-2);line-height:1.65}
+.duty-list li svg{flex-shrink:0;margin-top:4px;color:var(--teal)}
+.perk-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;margin-top:1.5rem}
+@media(max-width:860px){.perk-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.perk-grid{grid-template-columns:1fr}}
+.perk{border-radius:18px;background:var(--s1);border:1px solid var(--hr);padding:1.5rem 1.6rem;transition:border-color .25s,transform .25s}
+.perk:hover{border-color:var(--hr-m);transform:translateY(-3px)}
+.perk-ico{margin-bottom:.7rem;color:var(--teal);line-height:0}
+.perk-ico svg{width:25px;height:25px}
+.perk h4{font-size:.92rem;font-weight:700;color:var(--ink);margin-bottom:.35rem}
+.perk p{font-size:.82rem;color:var(--ink-2);line-height:1.65}
+
+/* CTA */
+.cta-wrap{background:var(--bg);position:relative;overflow:hidden}
+.cta-gl{position:absolute;width:900px;height:900px;background:radial-gradient(circle,rgba(43,142,142,.11) 0%,transparent 68%);bottom:-350px;left:-250px;pointer-events:none}
+.cta-gr{position:absolute;width:700px;height:700px;background:radial-gradient(circle,rgba(15,42,94,.45) 0%,transparent 68%);top:-200px;right:-150px;pointer-events:none}
+.cta-in{max-width:680px;margin:0 auto;padding:130px clamp(1.25rem,5vw,2rem);text-align:center;position:relative;z-index:1}
+.cta-in h2{font-size:clamp(2.8rem,5.8vw,5rem);font-weight:800;letter-spacing:-3px;line-height:.95;color:var(--ink);margin:1rem 0 1.4rem}
+.cta-in p{font-size:1.02rem;color:var(--ink-2);line-height:1.85;margin-bottom:2.75rem;max-width:440px;margin-left:auto;margin-right:auto}
+.cpills{display:flex;flex-wrap:wrap;gap:.75rem;justify-content:center;margin-bottom:2.75rem}
+.cpill{background:rgba(255,255,255,.04);border:1px solid var(--hr);padding:7px 17px;border-radius:100px;font-size:.78rem;color:var(--ink-2);transition:border-color .15s}
+.cpill:hover{border-color:var(--hr-m)}
+@media(max-width:640px){.cta-in{padding:80px 1.25rem}}
+
+/* FOOTER */
+.footer{background:var(--bg);border-top:1px solid var(--hr);padding:48px clamp(1.25rem,3vw,2rem)}
+.footer-in{max-width:1160px;margin:0 auto;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:2rem}
+.flogo{display:flex;align-items:center;gap:10px}
+.fw{font-size:.75rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--ink-3)}
+.fctr{text-align:center;font-size:.72rem;color:var(--ink-3);line-height:2}
+.flinks{display:flex;justify-content:flex-end;gap:1.75rem;flex-wrap:wrap}
+.flinks a{font-size:.72rem;color:var(--ink-3);transition:color .15s}
+.flinks a:hover{color:var(--ink-2)}
+@media(max-width:640px){.footer-in{grid-template-columns:1fr;text-align:center}.flogo{justify-content:center}.flinks{justify-content:center}}
+
+/* MOBILE CTA BAR */
+.mob-bar{display:none;position:fixed;bottom:0;left:0;right:0;z-index:400;padding:.9rem 1.25rem calc(.9rem + env(safe-area-inset-bottom));background:rgba(5,10,10,.94);backdrop-filter:blur(24px);border-top:1px solid var(--hr-m);transform:translateY(100%);transition:transform .38s var(--ease)}
+.mob-bar.vis{transform:none}
+.mob-bar-in{display:flex;align-items:center;justify-content:space-between;gap:1rem;max-width:480px;margin:0 auto}
+.mb-info{font-size:.77rem;color:var(--ink-2);font-weight:500}
+.mb-info strong{color:var(--teal);font-weight:700}
+.mb-btn{background:var(--teal);color:#fff;padding:10px 22px;border-radius:100px;font-size:.84rem;font-weight:700;white-space:nowrap;flex-shrink:0;transition:background .15s}
+.mb-btn:hover{background:var(--teal-l)}
+@media(max-width:980px){.mob-bar{display:block}}
+
+/* REVEAL */
+.up{opacity:0;transform:translateY(28px);filter:blur(4px);transition:opacity .75s var(--ease),transform .75s var(--ease),filter .75s var(--ease)}
+.up.in{opacity:1;transform:none;filter:none}
+.stag>*{opacity:0;transform:translateY(22px);filter:blur(3px);transition:opacity .65s var(--ease),transform .65s var(--ease),filter .65s var(--ease)}
+.stag.in>*{opacity:1;transform:none;filter:none}
+.stag.in>*:nth-child(1){transition-delay:.04s}.stag.in>*:nth-child(2){transition-delay:.12s}.stag.in>*:nth-child(3){transition-delay:.2s}.stag.in>*:nth-child(4){transition-delay:.28s}.stag.in>*:nth-child(5){transition-delay:.36s}.stag.in>*:nth-child(6){transition-delay:.44s}
+.i18n-swap{opacity:0;transition:opacity .18s ease}
+</style>
+</head>
+<body>
+
+<a href="#main" class="skip" data-i18n="skip">Skip to main content</a>
+<div id="prog" role="progressbar" aria-hidden="true"></div>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><symbol id="vs-mark" viewBox="0 0 32 32"><path fill="currentColor" d="M14.4 5 14.4 18.6 6.4 18.6 Z"/><path fill="currentColor" d="M16.6 2.8 16.6 18.6 25.8 18.6 Z"/><path fill="currentColor" d="M4 20.4 H28 C26.3 25.4 23.3 27.2 19.4 27.2 H12.6 C8.7 27.2 5.7 25.4 4 20.4 Z"/><path fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" d="M4 30 C8.5 27.2 11 31.4 15.5 29.6 S23.5 31.6 28 29"/></symbol></svg>
+<div id="load" aria-hidden="true"><div class="lm"><svg class="vsmark"><use href="#vs-mark"/></svg></div><div class="lb"></div></div>
+
+<!-- NAV -->
+<a class="brand-fixed" href="#main" aria-label="Vela Sync — home">
+  <span class="bm" aria-hidden="true"><svg class="vsmark"><use href="#vs-mark"/></svg></span>
+  <span class="bw">Vela Sync</span>
+</a>
+
+<div class="nav-wrap" id="nwrap">
+  <nav class="nav" aria-label="Main navigation">
+    <div class="nav-logo">
+      <div class="nm" aria-hidden="true"><svg class="vsmark"><use href="#vs-mark"/></svg></div>
+      <span class="nw">Vela Sync</span>
+    </div>
+    <div class="nav-links">
+      <a href="#why" data-i18n="nav.why">Why us</a>
+      <a href="#pricing" data-i18n="nav.pricing">Pricing</a>
+      <a href="#process" data-i18n="nav.process">Process</a>
+      <a href="#compare" data-i18n="nav.compare">Compare</a>
+      <a href="#team" data-i18n="nav.team">Team</a>
+      <a href="#build" data-i18n="nav.services">Services</a>
+      <a href="#hiring" data-i18n="nav.hiring">Hiring</a>
+    </div>
+    <div class="lang" id="lang">
+      <button class="lang-btn" id="langBtn" aria-haspopup="true" aria-expanded="false" aria-label="Change language">
+        <span class="flag" id="langFlag">🇬🇧</span><span class="lang-cur" id="langCur">EN</span>
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+      </button>
+      <div class="lang-menu" id="langMenu" role="menu">
+        <button class="lang-opt" role="menuitem" data-lang="en"><span class="flag">🇬🇧</span>English<svg class="tick" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></button>
+        <button class="lang-opt" role="menuitem" data-lang="nl"><span class="flag">🇳🇱</span>Nederlands<svg class="tick" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></button>
+        <button class="lang-opt" role="menuitem" data-lang="fr"><span class="flag">🇫🇷</span>Français<svg class="tick" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></button>
+        <button class="lang-opt" role="menuitem" data-lang="de"><span class="flag">🇩🇪</span>Deutsch<svg class="tick" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></button>
+        <button class="lang-opt" role="menuitem" data-lang="es"><span class="flag">🇪🇸</span>Español<svg class="tick" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></button>
+      </div>
+    </div>
+    <a href="#cta" class="ncta" data-i18n="nav.book">Book a call</a>
+    <button class="hbg" id="hbg" aria-label="Toggle menu" aria-expanded="false" aria-controls="mob"><span></span><span></span><span></span></button>
+  </nav>
+</div>
+
+<!-- MOBILE MENU -->
+<div class="mob" id="mob" role="dialog" aria-label="Mobile menu">
+  <a href="#why" class="mml" data-i18n="nav.why">Why us</a>
+  <a href="#pricing" class="mml" data-i18n="nav.pricing">Pricing</a>
+  <a href="#process" class="mml" data-i18n="nav.process">Process</a>
+  <a href="#compare" class="mml" data-i18n="nav.compare">Compare</a>
+  <a href="#team" class="mml" data-i18n="nav.team">Team</a>
+  <a href="#build" class="mml" data-i18n="nav.services">Services</a>
+  <a href="#hiring" class="mml" data-i18n="nav.hiring">Hiring</a>
+  <a href="#cta" class="mob-cta mml" data-i18n="nav.bookarrow">Book your free call →</a>
+</div>
+
+<main id="main">
+
+<!-- HERO -->
+<section class="hero" aria-labelledby="h1">
+  <div class="hero-photo" aria-hidden="true"></div>
+  <div class="hero-bg" aria-hidden="true"></div>
+  <div class="hero-grid" aria-hidden="true"></div>
+  <div class="hero-floats" aria-hidden="true">
+    <span class="float-ic fi1" title="Live in 24 hours"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></span>
+    <span class="float-ic fi2" title="Expanding across Europe"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></span>
+    <span class="float-ic fi3" title="We drive traffic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg></span>
+    <span class="float-ic fi4" title="Local prices"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41 13.42 20.58a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg></span>
+    <span class="float-ic fi5" title="Enterprise-grade & secure"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
+    <span class="float-ic fi6" title="Award-winning team"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg></span>
+  </div>
+  <div class="hero-eyebrow"><span class="edot" aria-hidden="true"></span><span data-i18n="hero.eyebrow">Now expanding across Europe</span></div>
+  <h1 id="h1" data-i18n="hero.h1">Enterprise tech.<br><span class="grd">Local prices.</span></h1>
+  <p class="hero-sub" data-i18n="hero.sub">Award-winning engineers. Machine Learning strategy. Websites live in 24 hours with continued support on changes — at a fraction of what agencies charge.</p>
+  <div class="hero-btns">
+    <a href="#cta" class="btn btn-p btn-lg"><span data-i18n="hero.cta1">Book your free call</span><span class="bic" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></a>
+    <a href="#pricing" class="btn btn-g btn-lg"><span data-i18n="hero.cta2">See pricing</span><span class="bic bic-dk" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></a>
+  </div>
+  <div class="marquee-wrap" aria-hidden="true"><div class="marquee-track" id="mqtrack"></div></div>
+</section>
+
+<hr class="div">
+
+<!-- STATS -->
+<div class="stats-band">
+  <div class="stats-inner">
+    <div class="stat-item"><div class="stat-val">250k</div><div class="stat-lbl" data-i18n="stats.l1">Simultaneous users our platform has handled</div></div>
+    <div class="stat-item"><div class="stat-val">36%</div><div class="stat-lbl" data-i18n="stats.l2">Search ranking improvement on live platforms</div></div>
+    <div class="stat-item"><div class="stat-val">£500m+</div><div class="stat-lbl" data-i18n="stats.l3">Capital investment managed by our finance team</div></div>
+    <div class="stat-item"><div class="stat-val">4</div><div class="stat-lbl" data-i18n="stats.l4">Continents we operate across</div></div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="about-wrap" aria-labelledby="ah">
+<div class="sec">
+  <div class="about-grid">
+    <div class="about-text up">
+      <div class="tag" aria-hidden="true" data-i18n="about.tag">About Vela Sync</div>
+      <h2 class="h2" id="ah" data-i18n="about.h2">The agency gap — <span class="grd">finally closed.</span></h2>
+      <p data-i18n="about.p1">Vela Sync was founded on a simple observation: local businesses deserve the same quality of digital infrastructure as global enterprises — but without the enterprise price tag.</p>
+      <p data-i18n="about.p2">Our team has built platforms for private healthcare, architected global API infrastructure for major banks, and delivered for hundreds of enterprise clients. We've channelled that expertise into a service built specifically for the business owner who wants results, not complexity.</p>
+      <p style="color:var(--ink-3);font-size:.85rem">Co. No. 17051204 &middot; velasync.com &middot; hello@velasync.com</p>
+    </div>
+    <div class="about-img up"><img src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=900&q=80" alt="Modern office workspace" loading="lazy"></div>
+  </div>
+</div>
+</section>
+
+<hr class="div">
+
+<!-- WHY US -->
+<section id="why" aria-labelledby="wh">
+<div class="sec">
+  <div class="up">
+    <div class="tag" aria-hidden="true" data-i18n="why.tag">Why Vela Sync</div>
+    <h2 class="h2" id="wh" data-i18n="why.h2">Not just cheaper.<br><span class="grd">Genuinely better.</span></h2>
+    <p class="sub" data-i18n="why.sub">Enterprise-grade digital expertise brought to local businesses — the same team that has built platforms for the most demanding, regulated industries in the world.</p>
+  </div>
+  <div class="bento stag">
+    <div class="card-shell bc-a has-img"><div class="card-inner">
+      <div class="bento-img" aria-hidden="true"><img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=1100&q=80" alt="" loading="lazy" width="1100" height="620"></div>
+      <div class="big-num" aria-hidden="true">24h</div>
+      <div class="card-ico" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+      <h3 data-i18n="why.a.h">Live in 24 hours — with continued support on changes</h3>
+      <p data-i18n="why.a.p">Fast, efficient delivery from brief to live. Your site goes live within 24 hours, with our team on hand for ongoing changes and updates — no waiting weeks, no disappearing after handover.</p>
+    </div></div>
+    <div class="card-shell bc-b has-img"><div class="card-inner"><div class="bento-img" aria-hidden="true"><img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=900&q=80" alt="" loading="lazy" width="900" height="600"></div>
+      <div class="card-ico" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg></div>
+      <h3 data-i18n="why.b.h">Award-winning team</h3>
+      <p data-i18n="why.b.p">Multiple industry awards. Enterprise pedigree on your side.</p>
+    </div></div>
+    <div class="card-shell bc-c has-img"><div class="card-inner">
+      <div class="bento-img" aria-hidden="true"><img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=900&q=80" alt="" loading="lazy" width="900" height="600"></div>
+      <div class="card-ico" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg></div>
+      <h3 data-i18n="why.c.h">We drive traffic</h3>
+      <p data-i18n="why.c.p">Our platform has handled up to 250,000 simultaneous users. We apply that same growth engineering to your business — turning your new site into a client acquisition engine from day one.</p>
+    </div></div>
+    <div class="card-shell bc-d has-img"><div class="card-inner"><div class="bento-img" aria-hidden="true"><img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=900&q=80" alt="" loading="lazy" width="900" height="600"></div>
+      <div class="card-ico" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+      <h3 data-i18n="why.d.h">Proven in regulated sectors</h3>
+      <p data-i18n="why.d.p">Private healthcare and workforce solutions. Right first time.</p>
+    </div></div>
+    <div class="card-shell bc-e has-img"><div class="card-inner"><div class="bento-img" aria-hidden="true"><img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=900&q=80" alt="" loading="lazy" width="900" height="600"></div>
+      <div class="card-ico" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="2" x2="9" y2="4"/><line x1="15" y1="2" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="22"/><line x1="15" y1="20" x2="15" y2="22"/><line x1="2" y1="9" x2="4" y2="9"/><line x1="2" y1="15" x2="4" y2="15"/><line x1="20" y1="9" x2="22" y2="9"/><line x1="20" y1="15" x2="22" y2="15"/></svg></div>
+      <h3 data-i18n="why.e.h">ML-backed strategy</h3>
+      <p data-i18n="why.e.p">Our CEO holds highly advanced qualifications in Machine Learning. Growth engineered with data.</p>
+    </div></div>
+    <div class="card-shell bc-f has-img"><div class="card-inner"><div class="bento-img" aria-hidden="true"><img src="https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?w=900&q=80" alt="" loading="lazy" width="900" height="600"></div>
+      <div class="card-ico" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+      <h3 data-i18n="why.f.h">Starter site included</h3>
+      <p data-i18n="why.f.p">Every prospect sees their site before they sign. Zero barriers to yes.</p>
+    </div></div>
+  </div>
+</div>
+</section>
+
+<hr class="div">
+
+<!-- PRICING -->
+<section class="price-wrap" id="pricing" aria-labelledby="ph">
+<div class="sec">
+  <div class="up">
+    <div class="tag" aria-hidden="true" data-i18n="pricing.tag">Pricing</div>
+    <h2 class="h2" id="ph" data-i18n="pricing.h2">The most competitive<br><span class="grd">pricing in the market.</span></h2>
+  </div>
+  <div class="price-grid stag">
+    <div class="pc feat"><div class="pc-in">
+      <div class="feat-tag" data-i18n="pricing.popular">Most popular</div>
+      <div class="ptag" data-i18n="pricing.p1.tier">Website — Full Build</div>
+      <div class="pamt" data-i18n="price.amt1"><sup>£</sup>450</div>
+      <div class="pnote" data-i18n="pricing.p1.note">One-off · Live within 24 hours</div>
+      <div class="pdiv"></div>
+      <ul class="plist">
+        <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span data-i18n="feat.responsive">Professional, mobile-responsive design</span></li>
+        <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span data-i18n="feat.call">1:1 call with exec or design team</span></li>
+        <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span data-i18n="feat.personalised">Fully personalised to your brand</span></li>
+        <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span data-i18n="feat.domain">Domain activation or transfer</span></li>
+        <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span data-i18n="feat.sameday">Handed over the same day</span></li>
+        <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span data-i18n="feat.instalments">Instalments available</span></li>
+      </ul>
+    </div></div>
+    <div class="pc"><div class="pc-in">
+      <div class="ptag" data-i18n="pricing.p2.tier">Website + Marketing Launch</div>
+      <div class="pamt" data-i18n="price.amt2"><sup>£</sup>650</div>
+      <div class="pnote" data-i18n="pricing.p2.note">Everything in the build, plus launch momentum</div>
+      <div class="pdiv"></div>
+      <ul class="plist">
+        <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span data-i18n="feat.fullbuild">Full build package included</span></li>
+        <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span data-i18n="feat.briefed">Marketing team briefed at launch</span></li>
+        <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span data-i18n="feat.traffic">Traffic strategy from day one</span></li>
+        <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span data-i18n="feat.roadmap">Growth roadmap handed over</span></li>
+        <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span data-i18n="feat.save">Save up to £1,550 vs agency avg</span></li>
+      </ul>
+    </div></div>
+    <div class="pc"><div class="pc-in">
+      <div class="ptag" data-i18n="pricing.p3.tier">Flexible Payments</div>
+      <div class="pamt" style="font-size:2.6rem;letter-spacing:-1.5px" data-i18n="pricing.p3.amt">Instalments</div>
+      <div class="pnote" data-i18n="pricing.p3.note">Pay over time. No barriers.</div>
+      <div class="pdiv"></div>
+      <ul class="plist">
+        <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span data-i18n="feat.split">Split payments available</span></li>
+        <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span data-i18n="feat.schedule">Agreed schedule upfront</span></li>
+        <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span data-i18n="feat.fullservice">Full service from day one</span></li>
+        <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span data-i18n="feat.nocompromise">Zero compromise on quality</span></li>
+      </ul>
+    </div></div>
+  </div>
+  <div class="save-bar up">
+    <div class="save-txt" data-i18n="save.txt">The average agency charges for the same work</div>
+    <div class="save-row"><div class="save-old" data-i18n="save.old">£2,000+</div><div class="save-pill" data-i18n="save.pill">Save up to £1,550 with Vela Sync</div></div>
+  </div>
+</div>
+</section>
+
+<hr class="div">
+
+<!-- PROCESS -->
+<section class="proc-wrap" id="process" aria-labelledby="prch">
+<div class="sec">
+  <div class="up">
+    <div class="tag" aria-hidden="true" data-i18n="process.tag">Process</div>
+    <h2 class="h2" id="prch" data-i18n="process.h2">From enquiry to live<br><span class="grd">in 24 hours.</span></h2>
+  </div>
+  <div class="proc-grid stag">
+    <div class="ps"><div class="pcirc" aria-hidden="true">01</div><div class="pbadge" data-i18n="step1.badge">30 minutes</div><h3 data-i18n="step1.h">Discovery call</h3><p data-i18n="step1.p">We discuss your brand, goals and vision in a focused 30-minute call. Our team works fast — everything you need to go live is ready to move the moment you are.</p></div>
+    <div class="ps"><div class="pcirc" aria-hidden="true">02</div><div class="pbadge" data-i18n="step2.badge">Same day</div><h3 data-i18n="step2.h">Design &amp; build</h3><p data-i18n="step2.p">Our team personalises your site and sets up your domain — new or transferred — getting everything production-ready.</p></div>
+    <div class="ps"><div class="pcirc" aria-hidden="true">03</div><div class="pbadge" data-i18n="step3.badge">Within 24 hours</div><h3 data-i18n="step3.h">You review &amp; approve</h3><p data-i18n="step3.p">Mobile-responsive, SEO-ready, performance-optimised. You review and approve before anything goes public.</p></div>
+    <div class="ps"><div class="pcirc" aria-hidden="true">04</div><div class="pbadge" data-i18n="step4.badge">£650 package</div><h3 data-i18n="step4.h">Marketing launch</h3><p data-i18n="step4.p">Upgrade and we brief our marketing team at launch — handing you a live traffic strategy and growth roadmap from day one.</p></div>
+  </div>
+</div>
+</section>
+
+<hr class="div">
+
+<!-- COMPARE -->
+<section class="compare-wrap" id="compare" aria-labelledby="ch2">
+<div class="sec">
+  <div class="up">
+    <div class="tag" aria-hidden="true" data-i18n="compare.tag">Value comparison</div>
+    <h2 class="h2" id="ch2" data-i18n="compare.h2">How we stack up<br><span class="grd">against the alternatives.</span></h2>
+    <p class="sub" data-i18n="compare.sub">The numbers speak for themselves. Vela Sync delivers enterprise-grade output at a fraction of what traditional agencies charge — with faster turnaround and ongoing support included.</p>
+  </div>
+  <div class="compare-scroll up">
+    <table class="compare-table">
+      <thead><tr>
+        <th data-i18n="compare.th1">What you get</th>
+        <th data-i18n="compare.th2">Vela Sync</th>
+        <th data-i18n="compare.th3">Typical Agency</th>
+        <th data-i18n="compare.th4">DIY Builder (e.g. Wix)</th>
+      </tr></thead>
+      <tbody>
+        <tr><td data-i18n="cmp.r1.a">Build cost</td><td class="yes" data-i18n="cmp.r1.b">£450 – £650</td><td class="vs" data-i18n="cmp.r1.c">£2,000 – £8,000+</td><td data-i18n="cmp.r1.d">£0 – £30/mo</td></tr>
+        <tr><td data-i18n="cmp.r2.a">Time to live</td><td class="yes">24h</td><td class="no" data-i18n="cmp.r2.c">4 – 12 weeks</td><td data-i18n="cmp.selfmanaged">Self-managed</td></tr>
+        <tr><td data-i18n="cmp.r3.a">Custom design (not a template)</td><td class="yes" data-i18n="cmp.inc">✓ Included</td><td data-i18n="cmp.inc">✓ Included</td><td class="no" data-i18n="cmp.r3.d">✗ Template only</td></tr>
+        <tr><td data-i18n="cmp.r4.a">1:1 strategy call</td><td class="yes" data-i18n="cmp.r4.b">✓ Every client</td><td data-i18n="cmp.r4.c">Sometimes</td><td class="no" data-i18n="cmp.none">✗ None</td></tr>
+        <tr><td data-i18n="cmp.r5.a">Domain setup / transfer</td><td class="yes" data-i18n="cmp.inc">✓ Included</td><td class="vs" data-i18n="cmp.r5.c">Often extra cost</td><td data-i18n="cmp.selfmanaged">Self-managed</td></tr>
+        <tr><td data-i18n="cmp.r6.a">Ongoing monthly support</td><td class="yes" data-i18n="cmp.r6.b">£50/mo (maintenance)</td><td class="vs" data-i18n="cmp.r6.c">£150 – £300+/mo</td><td class="no" data-i18n="cmp.r6.d">None</td></tr>
+        <tr><td data-i18n="cmp.r7.a">SEO + full marketing</td><td class="yes" data-i18n="cmp.r7.b">£100/mo (all-in)</td><td class="vs" data-i18n="cmp.r7.c">£300+/mo</td><td class="no" data-i18n="cmp.r7.d">Basic / manual</td></tr>
+        <tr><td data-i18n="cmp.r8.a">ML-backed growth strategy</td><td class="yes" data-i18n="cmp.inc">✓ Included</td><td class="no" data-i18n="cmp.r8.c">✗ Rarely offered</td><td class="no" data-i18n="cmp.r8.d">✗ Not available</td></tr>
+        <tr><td data-i18n="cmp.r9.a">Enterprise engineering pedigree</td><td class="yes" data-i18n="cmp.r9.b">✓ Core team</td><td data-i18n="cmp.r9.c">Varies widely</td><td class="no" data-i18n="cmp.none">✗ None</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+</section>
+
+<hr class="div">
+
+<!-- FEES -->
+<section class="fees-wrap" aria-labelledby="fh">
+<div class="sec">
+  <div class="up">
+    <div class="tag" aria-hidden="true" data-i18n="fees.tag">Ongoing support</div>
+    <h2 class="h2" id="fh" data-i18n="fees.h2">We don't build it<br><span class="grd">and disappear.</span></h2>
+    <p class="sub" data-i18n="fees.sub">Other agencies charge £150–£300/month to maintain a site. We maintain yours, drive traffic to it and improve your rankings. No lock-in, cancel any time.</p>
+  </div>
+  <div class="fees-grid stag">
+    <div class="fc2"><div class="fc2-in"><div class="fbig" data-i18n="fee.amt1"><sup>£</sup>50</div><div class="fper" data-i18n="fees.permonth">per month</div><div class="fname" data-i18n="fee1.name">Standard Package</div><div class="fdesc" data-i18n="fee1.desc">Site maintenance, uptime monitoring and active traffic driving</div><div class="fvs" data-i18n="fee1.vs">Industry avg: £150+/mo</div></div></div>
+    <div class="fc2"><div class="fc2-in"><div class="fbig" data-i18n="fee.amt2"><sup>£</sup>50</div><div class="fper" data-i18n="fees.permonth">per month</div><div class="fname" data-i18n="fee2.name">SEO Improvement</div><div class="fdesc" data-i18n="fee2.desc">Ongoing search engine optimisation to grow your organic rankings month by month</div><div class="fvs" data-i18n="fee2.vs">Industry avg: £200+/mo</div></div></div>
+    <div class="fc2 feat2"><div class="fc2-in"><div class="fbig" data-i18n="fee.amt3"><sup>£</sup>100</div><div class="fper" data-i18n="fees.permonthall">per month — everything</div><div class="fname" data-i18n="fee3.name">Marketing Pack</div><div class="fdesc" data-i18n="fee3.desc">Maintenance, active traffic driving, SEO and digital marketing combined. Cancel any time, no lock-in.</div><div class="fvs" data-i18n="fee3.vs">Industry avg: £300+/mo</div></div></div>
+  </div>
+</div>
+</section>
+
+<!-- GUARANTEE -->
+<section class="guarantee-wrap" aria-labelledby="gh">
+<div class="guarantee-inner">
+  <div class="guarantee-text up">
+    <div class="tag" aria-hidden="true" data-i18n="guarantee.tag">Our promise</div>
+    <h2 class="h2" id="gh" data-i18n="guarantee.h2">Why clients<br>choose to <span class="grd">stay with us.</span></h2>
+    <p data-i18n="guarantee.p">We built Vela Sync around a single principle: the relationship doesn't end at handover. From day one to month twelve and beyond, we are your technology partner — not just your website builder.</p>
+  </div>
+  <div class="guarantee-points stag">
+    <div class="gp"><div class="gp-ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div><div class="gp-body"><h4 data-i18n="gp1.h">Live in 24 hours, guaranteed</h4><p data-i18n="gp1.p">Your site goes live within one business day — no exceptions, no excuses.</p></div></div>
+    <div class="gp"><div class="gp-ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div class="gp-body"><h4 data-i18n="gp2.h">You own everything</h4><p data-i18n="gp2.p">Full ownership of your domain, code and hosting credentials — always yours.</p></div></div>
+    <div class="gp"><div class="gp-ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><div class="gp-body"><h4 data-i18n="gp3.h">Continued support on changes</h4><p data-i18n="gp3.p">Updates, revisions and improvements handled promptly — no ticket queue, no delays.</p></div></div>
+    <div class="gp"><div class="gp-ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div><div class="gp-body"><h4 data-i18n="gp4.h">No hidden costs, ever</h4><p data-i18n="gp4.p">What you're quoted is what you pay. Instalments available. Cancel monthly plans any time.</p></div></div>
+  </div>
+</div>
+</section>
+
+<hr class="div">
+
+<!-- TEAM -->
+<section class="team-wrap" id="team" aria-labelledby="th">
+<div class="sec">
+  <div class="up">
+    <div class="tag" aria-hidden="true" data-i18n="team.tag">The team behind it</div>
+    <h2 class="h2" id="th" data-i18n="team.h2">Enterprise pedigree.<br><span class="grd">Local business focus.</span></h2>
+    <p class="sub" data-i18n="team.sub">Engineers and strategists who've delivered at the highest level in financial services, healthcare and global enterprise — brought directly to your business.</p>
+  </div>
+  <div class="team-grid stag">
+    <div class="tc"><div class="tc-in">
+      <div class="tc-head"><div class="tc-role" data-i18n="t1.role">Chief Executive</div><div class="tc-title" data-i18n="t1.title">Machine Learning Specialist &amp; Digital Growth Strategist</div></div>
+      <div class="tc-body"><ul>
+        <li><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg><span data-i18n="t1.b1">Highly advanced qualifications in Machine Learning</span></li>
+        <li><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg><span data-i18n="t1.b2">Designed CRM &amp; workforce platform for private healthcare</span></li>
+        <li><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg><span data-i18n="t1.b3">Founded &amp; runs an active digital marketing agency</span></li>
+        <li><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg><span data-i18n="t1.b4">Experienced in scaling brands via data-driven digital strategy</span></li>
+      </ul></div>
+    </div></div>
+    <div class="tc"><div class="tc-in">
+      <div class="tc-head"><div class="tc-role" data-i18n="t2.role">Lead Engineer — Platforms</div><div class="tc-title" data-i18n="t2.title">8+ Years Enterprise-Scale Platform Delivery</div></div>
+      <div class="tc-body"><ul>
+        <li><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg><span data-i18n="t2.b1">Built developer portals for hundreds of global enterprise clients</span></li>
+        <li><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg><span data-i18n="t2.b2">Architected global API bridge between a major bank &amp; e-commerce platform</span></li>
+        <li><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg><span data-i18n="t2.b3">Led teams of 5+ engineers across concurrent high-stakes projects</span></li>
+        <li><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg><span data-i18n="t2.b4">Delivered 36% improvement in search rankings on live platforms</span></li>
+      </ul><div class="award"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg> <span data-i18n="t2.award">3× Industry Awards — Engineering Excellence</span></div></div>
+    </div></div>
+    <div class="tc"><div class="tc-in">
+      <div class="tc-head"><div class="tc-role" data-i18n="t3.role">Technical Lead — Engineering</div><div class="tc-title" data-i18n="t3.title">Award-Winning Engineer in Financial Services</div></div>
+      <div class="tc-body"><ul>
+        <li><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg><span data-i18n="t3.b1">Led event-driven architecture on a business-critical legacy platform</span></li>
+        <li><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg><span data-i18n="t3.b2">Presented to board-level stakeholders — CEOs, CIOs &amp; COOs</span></li>
+        <li><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg><span data-i18n="t3.b3">Drove modernisation of regulated, customer-facing transaction systems</span></li>
+      </ul><div class="award"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"/></svg> <span data-i18n="t3.award">Group Technology Engineering Excellence Award 2025</span></div></div>
+    </div></div>
+    <div class="tc"><div class="tc-in">
+      <div class="tc-head"><div class="tc-role" data-i18n="t4.role">Finance &amp; Accounts Manager</div><div class="tc-title" data-i18n="t4.title">CIMA Qualified Management Accountant</div></div>
+      <div class="tc-body"><ul>
+        <li><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg><span data-i18n="t4.b1">Managed £500m+ capital investment business cases across multiple sectors</span></li>
+        <li><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg><span data-i18n="t4.b2">Managed €500m+ development investment business case</span></li>
+        <li><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg><span data-i18n="t4.b3">Delivered Board &amp; Project Steering Committee financial updates</span></li>
+      </ul></div>
+    </div></div>
+    <div class="pr-row">
+      <div class="prc"><div class="prc-in"><div class="pr-badge" data-i18n="partner1.badge">Compliance Partner</div><div class="pr-name">Afford Bond — Chartered Accountants</div><div class="pr-desc" data-i18n="partner1.desc">Group compliance accounting across all Vela Sync entities. ICAEW registered with dual software certifications.</div><div class="tag-row"><span class="chip" data-i18n="partner1.c1">ICAEW Registered</span><span class="chip" data-i18n="partner1.c2">Xero Gold Champion</span><span class="chip" data-i18n="partner1.c3">Sage Certified</span></div></div></div>
+      <div class="prc"><div class="prc-in"><div class="pr-badge" data-i18n="partner2.badge">Global Network</div><div class="pr-name">LEA Global — 100 Countries · 200 Firms</div><div class="pr-desc" data-i18n="partner2.desc">Member of one of the world's leading associations of independent accounting and advisory firms.</div><div class="tag-row"><span class="chip">Nantwich</span><span class="chip">Wilmslow</span><span class="chip">Manchester</span></div></div></div>
+    </div>
+  </div>
+</div>
+</section>
+
+<hr class="div">
+
+<!-- SERVICES -->
+<section class="build-wrap" id="build" aria-labelledby="bh">
+<div class="sec">
+  <div class="up">
+    <div class="tag" aria-hidden="true" data-i18n="services.tag">Our services</div>
+    <h2 class="h2" id="bh" data-i18n="services.h2">We don't just build websites.<br><span class="grd">We build digital businesses.</span></h2>
+  </div>
+  <div class="build-grid stag">
+    <div class="bld"><div class="bld-in">
+      <div class="bld-n" aria-hidden="true">01</div>
+      <div class="bld-img"><img src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=900&q=80" alt="Modern business website design" loading="lazy"></div>
+      <div class="bld-ico" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+      <div class="bld-sub" data-i18n="svc1.sub">From £450 · Live in 24 hours</div>
+      <h3 data-i18n="svc1.h">Business websites</h3>
+      <p data-i18n="svc1.p">Professional, fast, mobile-first sites built to convert visitors into customers. Fully personalised and handed over in a day.</p>
+    </div></div>
+    <div class="bld"><div class="bld-in">
+      <div class="bld-n" aria-hidden="true">02</div>
+      <div class="bld-img"><img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=900&q=80" alt="CRM platform dashboard" loading="lazy"></div>
+      <div class="bld-ico" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
+      <div class="bld-sub" data-i18n="svc2.sub">Custom · Scalable · Compliant</div>
+      <h3 data-i18n="svc2.h">CRM platforms</h3>
+      <p data-i18n="svc2.p">Custom CRM solutions built for private healthcare and workforce solutions. Enterprise-grade at a fraction of the cost.</p>
+    </div></div>
+    <div class="bld"><div class="bld-in">
+      <div class="bld-n" aria-hidden="true">03</div>
+      <div class="bld-img"><img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?w=900&q=80" alt="Healthcare workforce platform" loading="lazy"></div>
+      <div class="bld-ico" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+      <div class="bld-sub" data-i18n="svc3.sub">End-to-end · Recruitment platforms</div>
+      <h3 data-i18n="svc3.h">Workforce solutions</h3>
+      <p data-i18n="svc3.p">Built for staffing and private healthcare industries where reliability isn't optional. Designed to handle complexity at volume.</p>
+    </div></div>
+    <div class="bld"><div class="bld-in">
+      <div class="bld-n" aria-hidden="true">04</div>
+      <div class="bld-img"><img src="https://images.unsplash.com/photo-1533750349088-cd871a92f312?w=900&q=80" alt="Digital traffic and growth" loading="lazy"></div>
+      <div class="bld-ico" aria-hidden="true"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg></div>
+      <div class="bld-sub" data-i18n="svc4.sub">Built to scale your client base</div>
+      <h3 data-i18n="svc4.h">Traffic &amp; growth</h3>
+      <p data-i18n="svc4.p">We actively drive client growth through SEO, content and digital marketing — applying the same strategies that have handled 250,000 simultaneous users to grow your business, not just your traffic.</p>
+    </div></div>
+  </div>
+</div>
+</section>
+
+<hr class="div">
+
+<!-- LOCATIONS -->
+<section class="locs-wrap" aria-labelledby="lh">
+<div class="sec">
+  <div class="up">
+    <div class="tag" aria-hidden="true" data-i18n="locs.tag">Where we operate</div>
+    <h2 class="h2" id="lh" data-i18n="locs.h2">Active across<br><span class="grd">four continents.</span></h2>
+  </div>
+  <div class="loc-row up">
+    <div class="lpill"><span aria-hidden="true">🇬🇧</span> <span data-i18n="loc.uk">United Kingdom</span></div>
+    <div class="lpill"><span aria-hidden="true">🇺🇸</span> <span data-i18n="loc.us">United States</span></div>
+    <div class="lpill"><span aria-hidden="true">🇿🇦</span> <span data-i18n="loc.za">South Africa</span></div>
+    <div class="lpill"><span aria-hidden="true">🇪🇺</span> <span data-i18n="loc.eu">European Union</span></div>
+    <div class="lpill" style="border-color:var(--hr-m);color:var(--teal-l)"><span class="edot" style="width:7px;height:7px" aria-hidden="true"></span> <span data-i18n="loc.expanding">Expanding Europe now</span></div>
+  </div>
+</div>
+</section>
+
+<hr class="div">
+
+<!-- HIRING -->
+<section class="hire-wrap" id="hiring" aria-labelledby="hh">
+<div class="sec">
+  <div class="up">
+    <div class="tag" aria-hidden="true" data-i18n="hiring.tag">Join the team</div>
+    <h2 class="h2" id="hh" data-i18n="hiring.h2">We're hiring a <span class="grd">Sales Advisor.</span></h2>
+    <p class="sub" data-i18n="hiring.sub">A remote, commission-only sales role for a driven closer who wants uncapped earnings, a warm lead list and a product that sells itself. Full-time. Start immediately.</p>
+  </div>
+  <div class="intro-card up" data-i18n="hiring.intro">At Vela Sync, we help small and growing businesses get online quickly with professionally designed websites. As a Sales Advisor, you'll be the first voice a potential customer hears — and the reason they say yes. This is a high-impact, people-first role where your warmth, instinct and persistence directly determine your success.</div>
+  <div class="build-grid stag">
+    <div class="card-shell"><div class="card-inner">
+      <div class="card-ico" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div>
+      <h3 data-i18n="hire.role.h">Role overview</h3>
+      <p data-i18n="hire.role.p">Commission-only Sales Advisor — remote or field-based, full-time. You'll sell Vela Sync's website and digital packages directly to SME business owners across the UK. Pre-qualified leads provided from day one.</p>
+    </div></div>
+    <div class="card-shell"><div class="card-inner">
+      <div class="card-ico" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
+      <h3 data-i18n="hire.do.h">What you'll do</h3>
+      <p data-i18n="hire.do.p">Make a minimum of 500 outbound calls per week from our pre-qualified lead list and close a minimum of 5 sales per week. Present and close Vela Sync packages — website builds, monthly support, marketing packs — directly to SME decision-makers.</p>
+    </div></div>
+    <div class="card-shell"><div class="card-inner">
+      <div class="card-ico" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+      <h3 data-i18n="hire.req.h">Requirements</h3>
+      <p data-i18n="hire.req.p">Proven track record in outbound or B2B sales. Confident on the phone with business owners. Self-motivated and results-driven. Comfortable working independently in a remote or field environment. Experience in digital or website sales is a bonus — not essential.</p>
+    </div></div>
+    <div class="card-shell"><div class="card-inner">
+      <div class="card-ico" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+      <h3 data-i18n="hire.comp.h">Compensation</h3>
+      <p data-i18n="hire.comp.p">100% commission — uncapped earning potential. Competitive rates per closed sale. Top performers targeting £2,000–£4,000+/month. Pre-qualified leads provided; no cold sourcing required.</p>
+    </div></div>
+  </div>
+
+  <h3 class="hire-sub-h up" data-i18n="hire.duties.h">Key responsibilities</h3>
+  <ul class="duty-list up">
+    <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span data-i18n="duty.1">Contact prospects from the Vela Sync lead list in a timely, organised manner</span></li>
+    <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span data-i18n="duty.2">Deliver engaging, consultative sales calls using the provided script as a guide</span></li>
+    <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span data-i18n="duty.3">Adapt your approach based on the lead's tone, industry and specific needs</span></li>
+    <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span data-i18n="duty.4">Present Vela Sync's website offering clearly and compellingly</span></li>
+    <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span data-i18n="duty.5">Handle objections professionally and with empathy</span></li>
+    <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span data-i18n="duty.6">Accurately record call notes, outcomes and follow-up actions</span></li>
+    <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span data-i18n="duty.7">Complete a minimum of 500 calls per week, with a minimum target of 5 sales</span></li>
+    <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg><span data-i18n="duty.8">Chase outstanding payments once a customer's website has been delivered</span></li>
+  </ul>
+
+  <h3 class="hire-sub-h up" data-i18n="hire.perks.h">Benefits &amp; culture</h3>
+  <div class="perk-grid stag">
+    <div class="perk"><div class="perk-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div><h4 data-i18n="perk1.h">Uncapped earnings</h4><p data-i18n="perk1.p">Commission-only with no ceiling. The more you close, the more you earn.</p></div>
+    <div class="perk"><div class="perk-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div><h4 data-i18n="perk2.h">Ready-to-go leads</h4><p data-i18n="perk2.p">No cold prospecting. Start calling a qualified list from day one.</p></div>
+    <div class="perk"><div class="perk-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div><h4 data-i18n="perk3.h">A product that sells itself</h4><p data-i18n="perk3.p">Something tangible and visual — a website prospects can see immediately.</p></div>
+    <div class="perk"><div class="perk-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg></div><h4 data-i18n="perk4.h">Real growth potential</h4><p data-i18n="perk4.p">Top performers move into senior and team-lead positions quickly.</p></div>
+    <div class="perk"><div class="perk-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div><h4 data-i18n="perk5.h">Supportive team</h4><p data-i18n="perk5.p">Script, training and peer support from a team that wants you to win.</p></div>
+    <div class="perk"><div class="perk-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><h4 data-i18n="perk6.h">Flexible working</h4><p data-i18n="perk6.p">We care about results, not clock-watching. Manage your time, hit your numbers.</p></div>
+  </div>
+
+  <div class="save-bar up" style="margin-top:2.5rem">
+    <div class="save-txt" data-i18n="hire.apply.txt">Ready to apply? Send your CV and a short note about why you're the right fit.</div>
+    <div class="save-row"><a href="mailto:careers@velasync.com" class="btn btn-p"><span data-i18n="hire.apply.btn">Apply now · careers@velasync.com</span><span class="bic" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></a></div>
+  </div>
+</div>
+</section>
+
+<hr class="div">
+
+<!-- CTA -->
+<section class="cta-wrap" id="cta" aria-labelledby="cth">
+  <div class="cta-gl" aria-hidden="true"></div>
+  <div class="cta-gr" aria-hidden="true"></div>
+  <div class="cta-in up">
+    <div class="tag" style="justify-content:center" aria-hidden="true" data-i18n="cta.tag">Get started</div>
+    <h2 id="cth" data-i18n="cta.h2">Ready to launch?<br><span class="grd">Let's talk today.</span></h2>
+    <p data-i18n="cta.p">A 30-minute call is all it takes to go from zero to live. We'll talk through your vision and have your website up within 24 hours.</p>
+    <div class="cpills">
+      <div class="cpill" data-i18n="cpill.1">From £450</div>
+      <div class="cpill" data-i18n="cpill.2">Live in 24 hours</div>
+      <div class="cpill" data-i18n="cpill.3">Instalments available</div>
+      <div class="cpill" data-i18n="cpill.4">£100/month all-in</div>
+    </div>
+    <a href="mailto:hello@velasync.com" class="btn btn-p btn-lg"><span data-i18n="cta.btn">Book your free call</span><span class="bic" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></span></a>
+  </div>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-in">
+    <div class="flogo"><div class="nm" aria-hidden="true"><svg class="vsmark"><use href="#vs-mark"/></svg></div><span class="fw">Vela Sync</span></div>
+    <div class="fctr"><span data-i18n="footer.l1">© 2026 Vela Sync Ltd · Co. No. 17051204</span><br><span data-i18n="footer.l2">Web &amp; Digital Solutions · Private Healthcare · Workforce Solutions</span></div>
+    <nav class="flinks" aria-label="Footer links"><a href="#">www.velasync.com</a><a href="#">UK · US · ZA · EU</a></nav>
+  </div>
+</footer>
+
+<div class="mob-bar" id="mbar" aria-hidden="true">
+  <div class="mob-bar-in">
+    <div class="mb-info" data-i18n="mbar.info">Websites from <strong>£450</strong> · Live in 24h</div>
+    <a href="#cta" class="mb-btn" tabindex="-1" data-i18n="mbar.btn">Book free call →</a>
+  </div>
+</div>
+
+<script>
+const LANG_META={en:{flag:'🇬🇧',code:'EN'},nl:{flag:'🇳🇱',code:'NL'},fr:{flag:'🇫🇷',code:'FR'},de:{flag:'🇩🇪',code:'DE'},es:{flag:'🇪🇸',code:'ES'}};
+const SUPPORTED=['en','nl','fr','de','es'];
+const I18N={};
+I18N.en={
+"price.amt1":"<sup>£</sup>450","price.amt2":"<sup>£</sup>650","fee.amt1":"<sup>£</sup>50","fee.amt2":"<sup>£</sup>50","fee.amt3":"<sup>£</sup>100","save.old":"£2,000+","cmp.r1.b":"£450 – £650","cmp.r1.c":"£2,000 – £8,000+","cmp.r1.d":"£0 – £30/mo","cmp.r6.c":"£150 – £300+/mo","cmp.r7.c":"£300+/mo",
+"meta.title":"Vela Sync — Enterprise Tech. Local Business Prices.",
+"meta.desc":"Award-winning engineers and ML strategy. Professional websites live in 24 hours with ongoing support — at a fraction of agency prices.",
+"skip":"Skip to main content",
+"nav.why":"Why us","nav.pricing":"Pricing","nav.process":"Process","nav.compare":"Compare","nav.team":"Team","nav.services":"Services","nav.hiring":"Hiring","nav.book":"Book a call","nav.bookarrow":"Book your free call →",
+"hero.eyebrow":"Now expanding across Europe",
+"hero.h1":"Enterprise tech.<br><span class=\"grd\">Local prices.</span>",
+"hero.sub":"Award-winning engineers. Machine Learning strategy. Websites live in 24 hours with continued support on changes — at a fraction of what agencies charge.",
+"hero.cta1":"Book your free call","hero.cta2":"See pricing",
+"trust.awards":"3× Industry Awards","trust.live":"Live in 24 hours","trust.users":"250k simultaneous users","trust.quality":"Enterprise-grade quality","trust.experience":"17+ years cumulative tech experience","trust.ml":"ML-backed strategy",
+"stats.l1":"Simultaneous users our platform has handled","stats.l2":"Search ranking improvement on live platforms","stats.l3":"Capital investment managed by our finance team","stats.l4":"Continents we operate across",
+"about.tag":"About Vela Sync",
+"about.h2":"The agency gap — <span class=\"grd\">finally closed.</span>",
+"about.p1":"Vela Sync was founded on a simple observation: local businesses deserve the same quality of digital infrastructure as global enterprises — but without the enterprise price tag.",
+"about.p2":"Our team has built platforms for private healthcare, architected global API infrastructure for major banks, and delivered for hundreds of enterprise clients. We've channelled that expertise into a service built specifically for the business owner who wants results, not complexity.",
+"why.tag":"Why Vela Sync",
+"why.h2":"Not just cheaper.<br><span class=\"grd\">Genuinely better.</span>",
+"why.sub":"Enterprise-grade digital expertise brought to local businesses — the same team that has built platforms for the most demanding, regulated industries in the world.",
+"why.a.h":"Live in 24 hours — with continued support on changes","why.a.p":"Fast, efficient delivery from brief to live. Your site goes live within 24 hours, with our team on hand for ongoing changes and updates — no waiting weeks, no disappearing after handover.",
+"why.b.h":"Award-winning team","why.b.p":"Multiple industry awards. Enterprise pedigree on your side.",
+"why.c.h":"We drive traffic","why.c.p":"Our platform has handled up to 250,000 simultaneous users. We apply that same growth engineering to your business — turning your new site into a client acquisition engine from day one.",
+"why.d.h":"Proven in regulated sectors","why.d.p":"Private healthcare and workforce solutions. Right first time.",
+"why.e.h":"ML-backed strategy","why.e.p":"Our CEO holds highly advanced qualifications in Machine Learning. Growth engineered with data.",
+"why.f.h":"Starter site included","why.f.p":"Every prospect sees their site before they sign. Zero barriers to yes.",
+"pricing.tag":"Pricing",
+"pricing.h2":"The most competitive<br><span class=\"grd\">pricing in the market.</span>",
+"pricing.popular":"Most popular","pricing.p1.tier":"Website — Full Build","pricing.p1.note":"One-off · Live within 24 hours",
+"pricing.p2.tier":"Website + Marketing Launch","pricing.p2.note":"Everything in the build, plus launch momentum",
+"pricing.p3.tier":"Flexible Payments","pricing.p3.amt":"Instalments","pricing.p3.note":"Pay over time. No barriers.",
+"feat.responsive":"Professional, mobile-responsive design","feat.call":"1:1 call with exec or design team","feat.personalised":"Fully personalised to your brand","feat.domain":"Domain activation or transfer","feat.sameday":"Handed over the same day","feat.instalments":"Instalments available",
+"feat.fullbuild":"Full build package included","feat.briefed":"Marketing team briefed at launch","feat.traffic":"Traffic strategy from day one","feat.roadmap":"Growth roadmap handed over","feat.save":"Save up to £1,550 vs agency avg",
+"feat.split":"Split payments available","feat.schedule":"Agreed schedule upfront","feat.fullservice":"Full service from day one","feat.nocompromise":"Zero compromise on quality",
+"save.txt":"The average agency charges for the same work","save.pill":"Save up to £1,550 with Vela Sync",
+"process.tag":"Process","process.h2":"From enquiry to live<br><span class=\"grd\">in 24 hours.</span>",
+"step1.badge":"30 minutes","step1.h":"Discovery call","step1.p":"We discuss your brand, goals and vision in a focused 30-minute call. Our team works fast — everything you need to go live is ready to move the moment you are.",
+"step2.badge":"Same day","step2.h":"Design & build","step2.p":"Our team personalises your site and sets up your domain — new or transferred — getting everything production-ready.",
+"step3.badge":"Within 24 hours","step3.h":"You review & approve","step3.p":"Mobile-responsive, SEO-ready, performance-optimised. You review and approve before anything goes public.",
+"step4.badge":"£650 package","step4.h":"Marketing launch","step4.p":"Upgrade and we brief our marketing team at launch — handing you a live traffic strategy and growth roadmap from day one.",
+"compare.tag":"Value comparison","compare.h2":"How we stack up<br><span class=\"grd\">against the alternatives.</span>",
+"compare.sub":"The numbers speak for themselves. Vela Sync delivers enterprise-grade output at a fraction of what traditional agencies charge — with faster turnaround and ongoing support included.",
+"compare.th1":"What you get","compare.th2":"Vela Sync","compare.th3":"Typical Agency","compare.th4":"DIY Builder (e.g. Wix)",
+"cmp.inc":"✓ Included","cmp.none":"✗ None","cmp.selfmanaged":"Self-managed",
+"cmp.r1.a":"Build cost","cmp.r2.a":"Time to live","cmp.r2.c":"4 – 12 weeks",
+"cmp.r3.a":"Custom design (not a template)","cmp.r3.d":"✗ Template only",
+"cmp.r4.a":"1:1 strategy call","cmp.r4.b":"✓ Every client","cmp.r4.c":"Sometimes",
+"cmp.r5.a":"Domain setup / transfer","cmp.r5.c":"Often extra cost",
+"cmp.r6.a":"Ongoing monthly support","cmp.r6.b":"£50/mo (maintenance)","cmp.r6.d":"None",
+"cmp.r7.a":"SEO + full marketing","cmp.r7.b":"£100/mo (all-in)","cmp.r7.d":"Basic / manual",
+"cmp.r8.a":"ML-backed growth strategy","cmp.r8.c":"✗ Rarely offered","cmp.r8.d":"✗ Not available",
+"cmp.r9.a":"Enterprise engineering pedigree","cmp.r9.b":"✓ Core team","cmp.r9.c":"Varies widely",
+"fees.tag":"Ongoing support","fees.h2":"We don't build it<br><span class=\"grd\">and disappear.</span>",
+"fees.sub":"Other agencies charge £150–£300/month to maintain a site. We maintain yours, drive traffic to it and improve your rankings. No lock-in, cancel any time.",
+"fees.permonth":"per month","fees.permonthall":"per month — everything",
+"fee1.name":"Standard Package","fee1.desc":"Site maintenance, uptime monitoring and active traffic driving","fee1.vs":"Industry avg: £150+/mo",
+"fee2.name":"SEO Improvement","fee2.desc":"Ongoing search engine optimisation to grow your organic rankings month by month","fee2.vs":"Industry avg: £200+/mo",
+"fee3.name":"Marketing Pack","fee3.desc":"Maintenance, active traffic driving, SEO and digital marketing combined. Cancel any time, no lock-in.","fee3.vs":"Industry avg: £300+/mo",
+"guarantee.tag":"Our promise","guarantee.h2":"Why clients<br>choose to <span class=\"grd\">stay with us.</span>",
+"guarantee.p":"We built Vela Sync around a single principle: the relationship doesn't end at handover. From day one to month twelve and beyond, we are your technology partner — not just your website builder.",
+"gp1.h":"Live in 24 hours, guaranteed","gp1.p":"Your site goes live within one business day — no exceptions, no excuses.",
+"gp2.h":"You own everything","gp2.p":"Full ownership of your domain, code and hosting credentials — always yours.",
+"gp3.h":"Continued support on changes","gp3.p":"Updates, revisions and improvements handled promptly — no ticket queue, no delays.",
+"gp4.h":"No hidden costs, ever","gp4.p":"What you're quoted is what you pay. Instalments available. Cancel monthly plans any time.",
+"team.tag":"The team behind it","team.h2":"Enterprise pedigree.<br><span class=\"grd\">Local business focus.</span>",
+"team.sub":"Engineers and strategists who've delivered at the highest level in financial services, healthcare and global enterprise — brought directly to your business.",
+"t1.role":"Chief Executive","t1.title":"Machine Learning Specialist & Digital Growth Strategist",
+"t1.b1":"Highly advanced qualifications in Machine Learning","t1.b2":"Designed CRM & workforce platform for private healthcare","t1.b3":"Founded & runs an active digital marketing agency","t1.b4":"Experienced in scaling brands via data-driven digital strategy",
+"t2.role":"Lead Engineer — Platforms","t2.title":"8+ Years Enterprise-Scale Platform Delivery",
+"t2.b1":"Built developer portals for hundreds of global enterprise clients","t2.b2":"Architected global API bridge between a major bank & e-commerce platform","t2.b3":"Led teams of 5+ engineers across concurrent high-stakes projects","t2.b4":"Delivered 36% improvement in search rankings on live platforms","t2.award":"3× Industry Awards — Engineering Excellence",
+"t3.role":"Technical Lead — Engineering","t3.title":"Award-Winning Engineer in Financial Services",
+"t3.b1":"Led event-driven architecture on a business-critical legacy platform","t3.b2":"Presented to board-level stakeholders — CEOs, CIOs & COOs","t3.b3":"Drove modernisation of regulated, customer-facing transaction systems","t3.award":"Group Technology Engineering Excellence Award 2025",
+"t4.role":"Finance & Accounts Manager","t4.title":"CIMA Qualified Management Accountant",
+"t4.b1":"Managed £500m+ capital investment business cases across multiple sectors","t4.b2":"Managed €500m+ development investment business case","t4.b3":"Delivered Board & Project Steering Committee financial updates",
+"partner1.badge":"Compliance Partner","partner1.desc":"Group compliance accounting across all Vela Sync entities. ICAEW registered with dual software certifications.","partner1.c1":"ICAEW Registered","partner1.c2":"Xero Gold Champion","partner1.c3":"Sage Certified",
+"partner2.badge":"Global Network","partner2.desc":"Member of one of the world's leading associations of independent accounting and advisory firms.",
+"services.tag":"Our services","services.h2":"We don't just build websites.<br><span class=\"grd\">We build digital businesses.</span>",
+"svc1.sub":"From £450 · Live in 24 hours","svc1.h":"Business websites","svc1.p":"Professional, fast, mobile-first sites built to convert visitors into customers. Fully personalised and handed over in a day.",
+"svc2.sub":"Custom · Scalable · Compliant","svc2.h":"CRM platforms","svc2.p":"Custom CRM solutions built for private healthcare and workforce solutions. Enterprise-grade at a fraction of the cost.",
+"svc3.sub":"End-to-end · Recruitment platforms","svc3.h":"Workforce solutions","svc3.p":"Built for staffing and private healthcare industries where reliability isn't optional. Designed to handle complexity at volume.",
+"svc4.sub":"Built to scale your client base","svc4.h":"Traffic & growth","svc4.p":"We actively drive client growth through SEO, content and digital marketing — applying the same strategies that have handled 250,000 simultaneous users to grow your business, not just your traffic.",
+"locs.tag":"Where we operate","locs.h2":"Active across<br><span class=\"grd\">four continents.</span>",
+"loc.uk":"United Kingdom","loc.us":"United States","loc.za":"South Africa","loc.eu":"European Union","loc.expanding":"Expanding Europe now",
+"hiring.tag":"Join the team","hiring.h2":"We're hiring a <span class=\"grd\">Sales Advisor.</span>",
+"hiring.sub":"A remote, commission-only sales role for a driven closer who wants uncapped earnings, a warm lead list and a product that sells itself. Full-time. Start immediately.",
+"hiring.intro":"At Vela Sync, we help small and growing businesses get online quickly with professionally designed websites. As a Sales Advisor, you'll be the first voice a potential customer hears — and the reason they say yes. This is a high-impact, people-first role where your warmth, instinct and persistence directly determine your success.",
+"hire.role.h":"Role overview","hire.role.p":"Commission-only Sales Advisor — remote or field-based, full-time. You'll sell Vela Sync's website and digital packages directly to SME business owners across the UK. Pre-qualified leads provided from day one.",
+"hire.do.h":"What you'll do","hire.do.p":"Make a minimum of 500 outbound calls per week from our pre-qualified lead list and close a minimum of 5 sales per week. Present and close Vela Sync packages — website builds, monthly support, marketing packs — directly to SME decision-makers.",
+"hire.req.h":"Requirements","hire.req.p":"Proven track record in outbound or B2B sales. Confident on the phone with business owners. Self-motivated and results-driven. Comfortable working independently in a remote or field environment. Experience in digital or website sales is a bonus — not essential.",
+"hire.comp.h":"Compensation","hire.comp.p":"100% commission — uncapped earning potential. Competitive rates per closed sale. Top performers targeting £2,000–£4,000+/month. Pre-qualified leads provided; no cold sourcing required.",
+"hire.duties.h":"Key responsibilities",
+"duty.1":"Contact prospects from the Vela Sync lead list in a timely, organised manner","duty.2":"Deliver engaging, consultative sales calls using the provided script as a guide","duty.3":"Adapt your approach based on the lead's tone, industry and specific needs","duty.4":"Present Vela Sync's website offering clearly and compellingly","duty.5":"Handle objections professionally and with empathy","duty.6":"Accurately record call notes, outcomes and follow-up actions","duty.7":"Complete a minimum of 500 calls per week, with a minimum target of 5 sales","duty.8":"Chase outstanding payments once a customer's website has been delivered",
+"hire.perks.h":"Benefits & culture",
+"perk1.h":"Uncapped earnings","perk1.p":"Commission-only with no ceiling. The more you close, the more you earn.",
+"perk2.h":"Ready-to-go leads","perk2.p":"No cold prospecting. Start calling a qualified list from day one.",
+"perk3.h":"A product that sells itself","perk3.p":"Something tangible and visual — a website prospects can see immediately.",
+"perk4.h":"Real growth potential","perk4.p":"Top performers move into senior and team-lead positions quickly.",
+"perk5.h":"Supportive team","perk5.p":"Script, training and peer support from a team that wants you to win.",
+"perk6.h":"Flexible working","perk6.p":"We care about results, not clock-watching. Manage your time, hit your numbers.",
+"hire.apply.txt":"Ready to apply? Send your CV and a short note about why you're the right fit.","hire.apply.btn":"Apply now · careers@velasync.com",
+"cta.tag":"Get started","cta.h2":"Ready to launch?<br><span class=\"grd\">Let's talk today.</span>",
+"cta.p":"A 30-minute call is all it takes to go from zero to live. We'll talk through your vision and have your website up within 24 hours.",
+"cpill.1":"From £450","cpill.2":"Live in 24 hours","cpill.3":"Instalments available","cpill.4":"£100/month all-in","cta.btn":"Book your free call",
+"footer.l1":"© 2026 Vela Sync Ltd · Co. No. 17051204","footer.l2":"Web & Digital Solutions · Private Healthcare · Workforce Solutions",
+"mbar.info":"Websites from <strong>£450</strong> · Live in 24h","mbar.btn":"Book free call →"
+};
+I18N.nl={
+"price.amt1":"<sup>€</sup>499","price.amt2":"<sup>€</sup>699","fee.amt1":"<sup>€</sup>59","fee.amt2":"<sup>€</sup>59","fee.amt3":"<sup>€</sup>99","save.old":"€2.300+","cmp.r1.b":"€499 – €699","cmp.r1.c":"€2.300 – €9.000+","cmp.r1.d":"€0 – €35/mo","cmp.r6.c":"€175 – €349+/mo","cmp.r7.c":"€349+/mo",
+"meta.title":"Vela Sync — Enterprisetechnologie. Lokale prijzen.",
+"meta.desc":"Bekroonde engineers en ML-strategie. Professionele websites binnen 24 uur live met doorlopende ondersteuning — voor een fractie van de prijs van een bureau.",
+"skip":"Ga naar hoofdinhoud",
+"nav.why":"Waarom wij","nav.pricing":"Prijzen","nav.process":"Proces","nav.compare":"Vergelijken","nav.team":"Team","nav.services":"Diensten","nav.hiring":"Vacatures","nav.book":"Plan een gesprek","nav.bookarrow":"Plan je gratis gesprek →",
+"hero.eyebrow":"Nu in heel Europa aan het uitbreiden",
+"hero.h1":"Enterprisetech.<br><span class=\"grd\">Lokale prijzen.</span>",
+"hero.sub":"Bekroonde engineers. Machine Learning-strategie. Websites binnen 24 uur live met doorlopende ondersteuning bij wijzigingen — voor een fractie van wat bureaus rekenen.",
+"hero.cta1":"Plan je gratis gesprek","hero.cta2":"Bekijk prijzen",
+"trust.awards":"3× branche-awards","trust.live":"Binnen 24 uur live","trust.users":"250k gelijktijdige gebruikers","trust.quality":"Enterprisekwaliteit","trust.experience":"17+ jaar gezamenlijke tech-ervaring","trust.ml":"ML-gedreven strategie",
+"stats.l1":"Gelijktijdige gebruikers die ons platform aankon","stats.l2":"Verbetering in zoekresultaten op live platforms","stats.l3":"Kapitaalinvestering beheerd door ons financeteam","stats.l4":"Continenten waarop wij actief zijn",
+"about.tag":"Over Vela Sync",
+"about.h2":"De kloof met bureaus — <span class=\"grd\">eindelijk gedicht.</span>",
+"about.p1":"Vela Sync is opgericht vanuit een eenvoudige observatie: lokale bedrijven verdienen dezelfde kwaliteit digitale infrastructuur als wereldwijde ondernemingen — maar zonder het enterprise-prijskaartje.",
+"about.p2":"Ons team heeft platforms gebouwd voor de private zorg, wereldwijde API-infrastructuur ontworpen voor grote banken en geleverd voor honderden enterprise-klanten. Die expertise hebben we omgezet in een dienst speciaal voor de ondernemer die resultaat wil, geen complexiteit.",
+"why.tag":"Waarom Vela Sync",
+"why.h2":"Niet alleen goedkoper.<br><span class=\"grd\">Echt beter.</span>",
+"why.sub":"Digitale expertise van enterprise-niveau voor lokale bedrijven — hetzelfde team dat platforms bouwde voor de meest veeleisende, gereguleerde sectoren ter wereld.",
+"why.a.h":"Binnen 24 uur live — met doorlopende ondersteuning bij wijzigingen","why.a.p":"Snelle, efficiënte oplevering van briefing tot live. Je site staat binnen 24 uur online, met ons team paraat voor wijzigingen en updates — geen weken wachten, niet verdwijnen na oplevering.",
+"why.b.h":"Bekroond team","why.b.p":"Meerdere branche-awards. Enterprise-staat van dienst aan jouw kant.",
+"why.c.h":"Wij genereren verkeer","why.c.p":"Ons platform verwerkte tot 250.000 gelijktijdige gebruikers. Diezelfde groei-engineering passen we toe op jouw bedrijf — zo wordt je nieuwe site vanaf dag één een klantenmachine.",
+"why.d.h":"Bewezen in gereguleerde sectoren","why.d.p":"Private zorg en personeelsoplossingen. In één keer goed.",
+"why.e.h":"ML-gedreven strategie","why.e.p":"Onze CEO heeft zeer geavanceerde kwalificaties in Machine Learning. Groei ontworpen met data.",
+"why.f.h":"Startersite inbegrepen","why.f.p":"Elke prospect ziet zijn site vóór ondertekening. Geen drempels naar ja.",
+"pricing.tag":"Prijzen",
+"pricing.h2":"De meest concurrerende<br><span class=\"grd\">prijzen op de markt.</span>",
+"pricing.popular":"Meest gekozen","pricing.p1.tier":"Website — Volledige bouw","pricing.p1.note":"Eenmalig · Binnen 24 uur live",
+"pricing.p2.tier":"Website + Marketinglancering","pricing.p2.note":"Alles uit de bouw, plus lanceermomentum",
+"pricing.p3.tier":"Flexibel betalen","pricing.p3.amt":"Termijnen","pricing.p3.note":"Betaal in termijnen. Geen drempels.",
+"feat.responsive":"Professioneel, mobielvriendelijk ontwerp","feat.call":"1-op-1 gesprek met directie- of designteam","feat.personalised":"Volledig afgestemd op jouw merk","feat.domain":"Domeinactivatie of -overdracht","feat.sameday":"Dezelfde dag opgeleverd","feat.instalments":"Betaling in termijnen mogelijk",
+"feat.fullbuild":"Volledig bouwpakket inbegrepen","feat.briefed":"Marketingteam gebriefd bij lancering","feat.traffic":"Verkeersstrategie vanaf dag één","feat.roadmap":"Groeiroadmap overgedragen","feat.save":"Bespaar tot €1.800 t.o.v. gemiddeld bureau",
+"feat.split":"Gespreide betaling mogelijk","feat.schedule":"Vooraf afgesproken schema","feat.fullservice":"Volledige service vanaf dag één","feat.nocompromise":"Geen concessies aan kwaliteit",
+"save.txt":"Een gemiddeld bureau rekent voor hetzelfde werk","save.pill":"Bespaar tot €1.800 met Vela Sync",
+"process.tag":"Proces","process.h2":"Van aanvraag tot live<br><span class=\"grd\">in 24 uur.</span>",
+"step1.badge":"30 minuten","step1.h":"Kennismakingsgesprek","step1.p":"We bespreken je merk, doelen en visie in een gericht gesprek van 30 minuten. Ons team werkt snel — alles wat nodig is om live te gaan staat klaar zodra jij dat bent.",
+"step2.badge":"Zelfde dag","step2.h":"Ontwerp & bouw","step2.p":"Ons team personaliseert je site en regelt je domein — nieuw of overgedragen — en maakt alles productieklaar.",
+"step3.badge":"Binnen 24 uur","step3.h":"Jij beoordeelt & keurt goed","step3.p":"Mobielvriendelijk, SEO-klaar, prestatie-geoptimaliseerd. Jij beoordeelt en keurt goed voordat er iets online gaat.",
+"step4.badge":"€699-pakket","step4.h":"Marketinglancering","step4.p":"Upgrade en we briefen ons marketingteam bij de lancering — met een live verkeersstrategie en groeiroadmap vanaf dag één.",
+"compare.tag":"Waardevergelijking","compare.h2":"Hoe wij ons verhouden<br><span class=\"grd\">tot de alternatieven.</span>",
+"compare.sub":"De cijfers spreken voor zich. Vela Sync levert enterprise-resultaat voor een fractie van wat traditionele bureaus rekenen — met snellere oplevering en doorlopende ondersteuning inbegrepen.",
+"compare.th1":"Wat je krijgt","compare.th2":"Vela Sync","compare.th3":"Gemiddeld bureau","compare.th4":"Doe-het-zelf (bijv. Wix)",
+"cmp.inc":"✓ Inbegrepen","cmp.none":"✗ Geen","cmp.selfmanaged":"Zelf beheren",
+"cmp.r1.a":"Bouwkosten","cmp.r2.a":"Tijd tot live","cmp.r2.c":"4 – 12 weken",
+"cmp.r3.a":"Maatwerkontwerp (geen template)","cmp.r3.d":"✗ Alleen template",
+"cmp.r4.a":"1-op-1 strategiegesprek","cmp.r4.b":"✓ Elke klant","cmp.r4.c":"Soms",
+"cmp.r5.a":"Domein instellen / overdragen","cmp.r5.c":"Vaak extra kosten",
+"cmp.r6.a":"Doorlopende maandelijkse ondersteuning","cmp.r6.b":"€59/mnd (onderhoud)","cmp.r6.d":"Geen",
+"cmp.r7.a":"SEO + volledige marketing","cmp.r7.b":"€99/mnd (alles-in)","cmp.r7.d":"Basis / handmatig",
+"cmp.r8.a":"ML-gedreven groeistrategie","cmp.r8.c":"✗ Zelden geboden","cmp.r8.d":"✗ Niet beschikbaar",
+"cmp.r9.a":"Enterprise-engineeringervaring","cmp.r9.b":"✓ Kernteam","cmp.r9.c":"Sterk wisselend",
+"fees.tag":"Doorlopende ondersteuning","fees.h2":"Wij bouwen het niet<br><span class=\"grd\">om dan te verdwijnen.</span>",
+"fees.sub":"Andere bureaus rekenen €175–€349 per maand voor onderhoud. Wij onderhouden jouw site, sturen er verkeer naartoe en verbeteren je posities. Geen contractduur, altijd opzegbaar.",
+"fees.permonth":"per maand","fees.permonthall":"per maand — alles",
+"fee1.name":"Standaardpakket","fee1.desc":"Onderhoud, uptimemonitoring en actief verkeer genereren","fee1.vs":"Branchegemiddelde: €175+/mnd",
+"fee2.name":"SEO-verbetering","fee2.desc":"Doorlopende zoekmachineoptimalisatie om je organische posities maand na maand te laten groeien","fee2.vs":"Branchegemiddelde: €239+/mnd",
+"fee3.name":"Marketingpakket","fee3.desc":"Onderhoud, actief verkeer, SEO en digitale marketing gecombineerd. Altijd opzegbaar, geen contractduur.","fee3.vs":"Branchegemiddelde: €349+/mnd",
+"guarantee.tag":"Onze belofte","guarantee.h2":"Waarom klanten<br>ervoor kiezen <span class=\"grd\">om te blijven.</span>",
+"guarantee.p":"We bouwden Vela Sync rond één principe: de relatie eindigt niet bij de oplevering. Van dag één tot maand twaalf en verder zijn we je technologiepartner — niet alleen je websitebouwer.",
+"gp1.h":"Binnen 24 uur live, gegarandeerd","gp1.p":"Je site gaat live binnen één werkdag — geen uitzonderingen, geen smoesjes.",
+"gp2.h":"Jij bezit alles","gp2.p":"Volledig eigendom van je domein, code en hostinggegevens — altijd van jou.",
+"gp3.h":"Doorlopende ondersteuning bij wijzigingen","gp3.p":"Updates, aanpassingen en verbeteringen worden snel afgehandeld — geen wachtrij, geen vertraging.",
+"gp4.h":"Nooit verborgen kosten","gp4.p":"Wat je wordt geoffreerd, betaal je. Termijnen mogelijk. Maandabonnementen altijd opzegbaar.",
+"team.tag":"Het team erachter","team.h2":"Enterprise-staat van dienst.<br><span class=\"grd\">Focus op lokale bedrijven.</span>",
+"team.sub":"Engineers en strategen die op het hoogste niveau hebben geleverd in financiële dienstverlening, zorg en wereldwijde enterprise — direct ingezet voor jouw bedrijf.",
+"t1.role":"Algemeen directeur","t1.title":"Machine Learning-specialist & strateeg digitale groei",
+"t1.b1":"Zeer geavanceerde kwalificaties in Machine Learning","t1.b2":"Ontwierp CRM- & personeelsplatform voor de private zorg","t1.b3":"Oprichter & leider van een actief digitaal marketingbureau","t1.b4":"Ervaren in het opschalen van merken via datagedreven digitale strategie",
+"t2.role":"Lead Engineer — Platforms","t2.title":"8+ jaar levering van enterprise-platforms",
+"t2.b1":"Bouwde ontwikkelaarsportalen voor honderden wereldwijde enterprise-klanten","t2.b2":"Ontwierp wereldwijde API-brug tussen een grote bank & e-commerceplatform","t2.b3":"Leidde teams van 5+ engineers op gelijktijdige hoge-inzetprojecten","t2.b4":"Realiseerde 36% verbetering in zoekposities op live platforms","t2.award":"3× branche-awards — Engineering Excellence",
+"t3.role":"Technical Lead — Engineering","t3.title":"Bekroonde engineer in financiële dienstverlening",
+"t3.b1":"Leidde event-driven architectuur op een bedrijfskritisch legacy-platform","t3.b2":"Presenteerde aan stakeholders op directieniveau — CEO's, CIO's & COO's","t3.b3":"Stuwde de modernisering van gereguleerde, klantgerichte transactiesystemen","t3.award":"Group Technology Engineering Excellence Award 2025",
+"t4.role":"Finance- & accountsmanager","t4.title":"CIMA-gekwalificeerd management accountant",
+"t4.b1":"Beheerde investeringsbusinesscases van £500m+ in meerdere sectoren","t4.b2":"Beheerde ontwikkelingsbusinesscase van €500m+","t4.b3":"Leverde financiële updates aan bestuur & projectstuurgroep",
+"partner1.badge":"Compliancepartner","partner1.desc":"Groepscompliance-administratie voor alle Vela Sync-entiteiten. ICAEW-geregistreerd met dubbele softwarecertificeringen.","partner1.c1":"ICAEW-geregistreerd","partner1.c2":"Xero Gold Champion","partner1.c3":"Sage-gecertificeerd",
+"partner2.badge":"Wereldwijd netwerk","partner2.desc":"Lid van een van 's werelds toonaangevende verenigingen van onafhankelijke accountants- en adviesbureaus.",
+"services.tag":"Onze diensten","services.h2":"Wij bouwen niet zomaar websites.<br><span class=\"grd\">Wij bouwen digitale bedrijven.</span>",
+"svc1.sub":"Vanaf €499 · Binnen 24 uur live","svc1.h":"Bedrijfswebsites","svc1.p":"Professionele, snelle, mobile-first sites gebouwd om bezoekers in klanten om te zetten. Volledig gepersonaliseerd en binnen een dag opgeleverd.",
+"svc2.sub":"Maatwerk · Schaalbaar · Compliant","svc2.h":"CRM-platforms","svc2.p":"CRM-oplossingen op maat voor de private zorg en personeelsoplossingen. Enterprisekwaliteit voor een fractie van de kosten.",
+"svc3.sub":"End-to-end · Wervingsplatforms","svc3.h":"Personeelsoplossingen","svc3.p":"Gebouwd voor uitzendwerk en private zorg waar betrouwbaarheid geen optie is. Ontworpen om complexiteit op volume aan te kunnen.",
+"svc4.sub":"Gebouwd om je klantenbestand te laten groeien","svc4.h":"Verkeer & groei","svc4.p":"We stimuleren actief klantengroei via SEO, content en digitale marketing — met dezelfde strategieën die 250.000 gelijktijdige gebruikers aankonden om jouw bedrijf te laten groeien, niet alleen je verkeer.",
+"locs.tag":"Waar wij actief zijn","locs.h2":"Actief op<br><span class=\"grd\">vier continenten.</span>",
+"loc.uk":"Verenigd Koninkrijk","loc.us":"Verenigde Staten","loc.za":"Zuid-Afrika","loc.eu":"Europese Unie","loc.expanding":"Nu Europa aan het uitbreiden",
+"hiring.tag":"Kom bij het team","hiring.h2":"We zoeken een <span class=\"grd\">Sales Advisor.</span>",
+"hiring.sub":"Een remote, commissiegedreven verkooprol voor een gedreven closer die ongelimiteerde verdiensten, een warme leadlijst en een product dat zichzelf verkoopt wil. Fulltime. Direct beginnen.",
+"hiring.intro":"Bij Vela Sync helpen we kleine en groeiende bedrijven snel online te komen met professioneel ontworpen websites. Als Sales Advisor ben jij de eerste stem die een potentiële klant hoort — en de reden dat ze ja zeggen. Dit is een impactvolle, mensgerichte rol waarin jouw warmte, intuïtie en doorzettingsvermogen je succes rechtstreeks bepalen.",
+"hire.role.h":"Roloverzicht","hire.role.p":"Sales Advisor op commissiebasis — remote of in het veld, fulltime. Je verkoopt Vela Syncs website- en digitale pakketten rechtstreeks aan mkb-ondernemers in het VK. Vooraf gekwalificeerde leads vanaf dag één.",
+"hire.do.h":"Wat je gaat doen","hire.do.p":"Maak minimaal 500 uitgaande gesprekken per week vanuit onze vooraf gekwalificeerde leadlijst en sluit minimaal 5 verkopen per week. Presenteer en sluit Vela Sync-pakketten — websitebouw, maandelijkse ondersteuning, marketingpakketten — rechtstreeks bij mkb-beslissers.",
+"hire.req.h":"Vereisten","hire.req.p":"Aantoonbare ervaring in uitgaande of B2B-verkoop. Vol zelfvertrouwen aan de telefoon met ondernemers. Zelfgemotiveerd en resultaatgericht. Comfortabel zelfstandig werkend in een remote- of veldomgeving. Ervaring in digitale of websiteverkoop is een pré — geen vereiste.",
+"hire.comp.h":"Beloning","hire.comp.p":"100% commissie — ongelimiteerd verdienpotentieel. Concurrerende tarieven per gesloten verkoop. Topverkopers richten op €2.300–€4.700+/maand. Vooraf gekwalificeerde leads geleverd; geen koude acquisitie nodig.",
+"hire.duties.h":"Belangrijkste verantwoordelijkheden",
+"duty.1":"Benader prospects van de Vela Sync-leadlijst op een tijdige, georganiseerde manier","duty.2":"Voer boeiende, adviserende verkoopgesprekken met het aangereikte script als leidraad","duty.3":"Pas je aanpak aan op de toon, branche en specifieke behoeften van de lead","duty.4":"Presenteer Vela Syncs website-aanbod helder en overtuigend","duty.5":"Ga professioneel en met empathie om met bezwaren","duty.6":"Leg gespreksnotities, uitkomsten en opvolgacties nauwkeurig vast","duty.7":"Voltooi minimaal 500 gesprekken per week, met een minimumdoel van 5 verkopen","duty.8":"Volg openstaande betalingen op zodra de website van een klant is opgeleverd",
+"hire.perks.h":"Voordelen & cultuur",
+"perk1.h":"Ongelimiteerde verdiensten","perk1.p":"Alleen commissie, zonder plafond. Hoe meer je sluit, hoe meer je verdient.",
+"perk2.h":"Kant-en-klare leads","perk2.p":"Geen koude acquisitie. Begin vanaf dag één met bellen vanuit een gekwalificeerde lijst.",
+"perk3.h":"Een product dat zichzelf verkoopt","perk3.p":"Iets tastbaars en visueels — een website die prospects meteen kunnen zien.",
+"perk4.h":"Echte groeikansen","perk4.p":"Topverkopers stromen snel door naar senior- en teamleadposities.",
+"perk5.h":"Ondersteunend team","perk5.p":"Script, training en steun van collega's uit een team dat wil dat je wint.",
+"perk6.h":"Flexibel werken","perk6.p":"Wij geven om resultaten, niet om de klok. Beheer je tijd, haal je cijfers.",
+"hire.apply.txt":"Klaar om te solliciteren? Stuur je cv en een korte motivatie waarom jij de juiste persoon bent.","hire.apply.btn":"Solliciteer nu · careers@velasync.com",
+"cta.tag":"Aan de slag","cta.h2":"Klaar om te lanceren?<br><span class=\"grd\">Laten we vandaag praten.</span>",
+"cta.p":"Een gesprek van 30 minuten is genoeg om van nul naar live te gaan. We bespreken je visie en hebben je website binnen 24 uur online.",
+"cpill.1":"Vanaf €499","cpill.2":"Binnen 24 uur live","cpill.3":"Termijnen mogelijk","cpill.4":"€99/maand alles-in","cta.btn":"Plan je gratis gesprek",
+"footer.l1":"© 2026 Vela Sync Ltd · Bedrijfsnr. 17051204","footer.l2":"Web- & digitale oplossingen · Private zorg · Personeelsoplossingen",
+"mbar.info":"Websites vanaf <strong>€499</strong> · Binnen 24u live","mbar.btn":"Plan gratis gesprek →"
+};
+I18N.fr={
+"price.amt1":"<sup>€</sup>499","price.amt2":"<sup>€</sup>699","fee.amt1":"<sup>€</sup>59","fee.amt2":"<sup>€</sup>59","fee.amt3":"<sup>€</sup>99","save.old":"€2.300+","cmp.r1.b":"€499 – €699","cmp.r1.c":"€2.300 – €9.000+","cmp.r1.d":"€0 – €35/mo","cmp.r6.c":"€175 – €349+/mo","cmp.r7.c":"€349+/mo",
+"meta.title":"Vela Sync — Technologie d'entreprise. Prix local.",
+"meta.desc":"Ingénieurs primés et stratégie ML. Sites web en ligne en 24 heures avec un accompagnement continu — pour une fraction du prix d'une agence.",
+"skip":"Aller au contenu principal",
+"nav.why":"Pourquoi nous","nav.pricing":"Tarifs","nav.process":"Processus","nav.compare":"Comparer","nav.team":"Équipe","nav.services":"Services","nav.hiring":"Recrutement","nav.book":"Réserver un appel","nav.bookarrow":"Réservez votre appel gratuit →",
+"hero.eyebrow":"Désormais en expansion à travers l'Europe",
+"hero.h1":"Tech d'entreprise.<br><span class=\"grd\">Prix local.</span>",
+"hero.sub":"Des ingénieurs primés. Une stratégie Machine Learning. Des sites en ligne en 24 heures avec un accompagnement continu des modifications — pour une fraction du tarif des agences.",
+"hero.cta1":"Réservez votre appel gratuit","hero.cta2":"Voir les tarifs",
+"trust.awards":"3× récompenses du secteur","trust.live":"En ligne en 24 heures","trust.users":"250k utilisateurs simultanés","trust.quality":"Qualité d'entreprise","trust.experience":"17+ ans d'expérience tech cumulée","trust.ml":"Stratégie pilotée par le ML",
+"stats.l1":"Utilisateurs simultanés gérés par notre plateforme","stats.l2":"Amélioration du classement de recherche sur les plateformes en ligne","stats.l3":"Investissement en capital géré par notre équipe finance","stats.l4":"Continents où nous opérons",
+"about.tag":"À propos de Vela Sync",
+"about.h2":"L'écart avec les agences — <span class=\"grd\">enfin comblé.</span>",
+"about.p1":"Vela Sync est né d'un constat simple : les entreprises locales méritent la même qualité d'infrastructure numérique que les grandes entreprises — mais sans le tarif d'entreprise.",
+"about.p2":"Notre équipe a conçu des plateformes pour la santé privée, architecturé une infrastructure d'API mondiale pour de grandes banques et livré pour des centaines de clients grands comptes. Nous avons canalisé cette expertise dans un service conçu spécialement pour le dirigeant qui veut des résultats, pas de la complexité.",
+"why.tag":"Pourquoi Vela Sync",
+"why.h2":"Pas seulement moins cher.<br><span class=\"grd\">Vraiment meilleur.</span>",
+"why.sub":"Une expertise numérique de niveau entreprise au service des entreprises locales — la même équipe qui a conçu des plateformes pour les secteurs les plus exigeants et réglementés au monde.",
+"why.a.h":"En ligne en 24 heures — avec un accompagnement continu des modifications","why.a.p":"Une livraison rapide et efficace, du brief à la mise en ligne. Votre site est en ligne en 24 heures, avec notre équipe disponible pour les modifications et mises à jour — sans attendre des semaines, sans disparaître après la livraison.",
+"why.b.h":"Équipe primée","why.b.p":"De multiples récompenses du secteur. Un pedigree d'entreprise à vos côtés.",
+"why.c.h":"Nous générons du trafic","why.c.p":"Notre plateforme a géré jusqu'à 250 000 utilisateurs simultanés. Nous appliquons cette même ingénierie de croissance à votre entreprise — transformant votre nouveau site en moteur d'acquisition dès le premier jour.",
+"why.d.h":"Éprouvé dans les secteurs réglementés","why.d.p":"Santé privée et solutions de main-d'œuvre. Bien du premier coup.",
+"why.e.h":"Stratégie pilotée par le ML","why.e.p":"Notre PDG possède des qualifications très avancées en Machine Learning. Une croissance conçue avec les données.",
+"why.f.h":"Site de démarrage inclus","why.f.p":"Chaque prospect voit son site avant de signer. Aucun obstacle au oui.",
+"pricing.tag":"Tarifs",
+"pricing.h2":"Les tarifs les plus<br><span class=\"grd\">compétitifs du marché.</span>",
+"pricing.popular":"Le plus choisi","pricing.p1.tier":"Site web — Création complète","pricing.p1.note":"Paiement unique · En ligne sous 24 heures",
+"pricing.p2.tier":"Site web + Lancement marketing","pricing.p2.note":"Tout de la création, plus l'élan du lancement",
+"pricing.p3.tier":"Paiements flexibles","pricing.p3.amt":"Échelonné","pricing.p3.note":"Payez dans le temps. Sans obstacle.",
+"feat.responsive":"Design professionnel et adapté au mobile","feat.call":"Appel individuel avec la direction ou l'équipe design","feat.personalised":"Entièrement personnalisé à votre marque","feat.domain":"Activation ou transfert de domaine","feat.sameday":"Livré le jour même","feat.instalments":"Paiement échelonné possible",
+"feat.fullbuild":"Forfait de création complet inclus","feat.briefed":"Équipe marketing briefée au lancement","feat.traffic":"Stratégie de trafic dès le premier jour","feat.roadmap":"Feuille de route de croissance remise","feat.save":"Économisez jusqu'à 1 800 € vs agence moyenne",
+"feat.split":"Paiement fractionné possible","feat.schedule":"Échéancier convenu à l'avance","feat.fullservice":"Service complet dès le premier jour","feat.nocompromise":"Aucun compromis sur la qualité",
+"save.txt":"Une agence moyenne facture pour le même travail","save.pill":"Économisez jusqu'à 1 800 € avec Vela Sync",
+"process.tag":"Processus","process.h2":"De la demande à la mise en ligne<br><span class=\"grd\">en 24 heures.</span>",
+"step1.badge":"30 minutes","step1.h":"Appel de découverte","step1.p":"Nous discutons de votre marque, vos objectifs et votre vision lors d'un appel ciblé de 30 minutes. Notre équipe travaille vite — tout ce qu'il faut pour la mise en ligne est prêt dès que vous l'êtes.",
+"step2.badge":"Le jour même","step2.h":"Conception & création","step2.p":"Notre équipe personnalise votre site et configure votre domaine — nouveau ou transféré — pour que tout soit prêt à la production.",
+"step3.badge":"Sous 24 heures","step3.h":"Vous vérifiez & approuvez","step3.p":"Adapté au mobile, prêt pour le SEO, optimisé pour la performance. Vous vérifiez et approuvez avant toute mise en ligne.",
+"step4.badge":"Forfait 699 €","step4.h":"Lancement marketing","step4.p":"Passez à l'offre supérieure et nous briefons notre équipe marketing au lancement — avec une stratégie de trafic en direct et une feuille de route de croissance dès le premier jour.",
+"compare.tag":"Comparaison de valeur","compare.h2":"Comment nous nous situons<br><span class=\"grd\">face aux alternatives.</span>",
+"compare.sub":"Les chiffres parlent d'eux-mêmes. Vela Sync livre une qualité d'entreprise pour une fraction du tarif des agences traditionnelles — avec des délais plus courts et un accompagnement continu inclus.",
+"compare.th1":"Ce que vous obtenez","compare.th2":"Vela Sync","compare.th3":"Agence classique","compare.th4":"Outil DIY (ex. Wix)",
+"cmp.inc":"✓ Inclus","cmp.none":"✗ Aucun","cmp.selfmanaged":"Géré par vous",
+"cmp.r1.a":"Coût de création","cmp.r2.a":"Délai de mise en ligne","cmp.r2.c":"4 à 12 semaines",
+"cmp.r3.a":"Design sur mesure (pas un modèle)","cmp.r3.d":"✗ Modèle uniquement",
+"cmp.r4.a":"Appel stratégique individuel","cmp.r4.b":"✓ Chaque client","cmp.r4.c":"Parfois",
+"cmp.r5.a":"Configuration / transfert de domaine","cmp.r5.c":"Souvent en supplément",
+"cmp.r6.a":"Accompagnement mensuel continu","cmp.r6.b":"59 €/mois (maintenance)","cmp.r6.d":"Aucun",
+"cmp.r7.a":"SEO + marketing complet","cmp.r7.b":"99 €/mois (tout compris)","cmp.r7.d":"Basique / manuel",
+"cmp.r8.a":"Stratégie de croissance ML","cmp.r8.c":"✗ Rarement proposé","cmp.r8.d":"✗ Indisponible",
+"cmp.r9.a":"Pedigree d'ingénierie d'entreprise","cmp.r9.b":"✓ Équipe centrale","cmp.r9.c":"Très variable",
+"fees.tag":"Accompagnement continu","fees.h2":"On ne le crée pas<br><span class=\"grd\">pour ensuite disparaître.</span>",
+"fees.sub":"D'autres agences facturent 175 à 349 €/mois pour maintenir un site. Nous maintenons le vôtre, y générons du trafic et améliorons votre classement. Sans engagement, résiliable à tout moment.",
+"fees.permonth":"par mois","fees.permonthall":"par mois — tout compris",
+"fee1.name":"Forfait Standard","fee1.desc":"Maintenance du site, surveillance de la disponibilité et génération active de trafic","fee1.vs":"Moyenne du secteur : 175+ €/mois",
+"fee2.name":"Amélioration SEO","fee2.desc":"Optimisation continue pour le référencement afin de faire grimper votre classement organique mois après mois","fee2.vs":"Moyenne du secteur : 239+ €/mois",
+"fee3.name":"Pack Marketing","fee3.desc":"Maintenance, génération active de trafic, SEO et marketing numérique combinés. Résiliable à tout moment, sans engagement.","fee3.vs":"Moyenne du secteur : 349+ €/mois",
+"guarantee.tag":"Notre promesse","guarantee.h2":"Pourquoi nos clients<br>choisissent de <span class=\"grd\">rester.</span>",
+"guarantee.p":"Nous avons bâti Vela Sync autour d'un seul principe : la relation ne s'arrête pas à la livraison. Du premier jour au douzième mois et au-delà, nous sommes votre partenaire technologique — pas seulement votre créateur de site.",
+"gp1.h":"En ligne en 24 heures, garanti","gp1.p":"Votre site est en ligne en un jour ouvré — sans exception, sans excuse.",
+"gp2.h":"Vous possédez tout","gp2.p":"Pleine propriété de votre domaine, de votre code et de vos identifiants d'hébergement — toujours à vous.",
+"gp3.h":"Accompagnement continu des modifications","gp3.p":"Mises à jour, révisions et améliorations traitées rapidement — sans file d'attente, sans délai.",
+"gp4.h":"Jamais de coûts cachés","gp4.p":"Le prix annoncé est le prix payé. Paiement échelonné possible. Forfaits mensuels résiliables à tout moment.",
+"team.tag":"L'équipe derrière","team.h2":"Pedigree d'entreprise.<br><span class=\"grd\">Focus sur l'entreprise locale.</span>",
+"team.sub":"Des ingénieurs et stratèges qui ont livré au plus haut niveau dans les services financiers, la santé et les grands comptes mondiaux — au service direct de votre entreprise.",
+"t1.role":"Directeur général","t1.title":"Spécialiste Machine Learning & stratège de croissance numérique",
+"t1.b1":"Qualifications très avancées en Machine Learning","t1.b2":"A conçu une plateforme CRM & main-d'œuvre pour la santé privée","t1.b3":"A fondé & dirige une agence de marketing numérique active","t1.b4":"Expérimenté dans la croissance de marques via une stratégie numérique pilotée par les données",
+"t2.role":"Ingénieur principal — Plateformes","t2.title":"8+ ans de livraison de plateformes à l'échelle entreprise",
+"t2.b1":"A conçu des portails développeurs pour des centaines de clients grands comptes mondiaux","t2.b2":"A architecturé un pont d'API mondial entre une grande banque & une plateforme e-commerce","t2.b3":"A dirigé des équipes de 5+ ingénieurs sur des projets à fort enjeu simultanés","t2.b4":"A livré 36 % d'amélioration du classement de recherche sur des plateformes en ligne","t2.award":"3× récompenses du secteur — Excellence en ingénierie",
+"t3.role":"Responsable technique — Ingénierie","t3.title":"Ingénieur primé dans les services financiers",
+"t3.b1":"A dirigé une architecture événementielle sur une plateforme legacy critique","t3.b2":"A présenté à des dirigeants — PDG, DSI & DGA","t3.b3":"A piloté la modernisation de systèmes de transactions réglementés et orientés client","t3.award":"Group Technology Engineering Excellence Award 2025",
+"t4.role":"Responsable finance & comptabilité","t4.title":"Comptable de gestion qualifié CIMA",
+"t4.b1":"A géré des dossiers d'investissement en capital de 500 M£+ dans plusieurs secteurs","t4.b2":"A géré un dossier d'investissement de développement de 500 M€+","t4.b3":"A présenté les points financiers au conseil & au comité de pilotage de projet",
+"partner1.badge":"Partenaire conformité","partner1.desc":"Comptabilité de conformité de groupe pour toutes les entités Vela Sync. Inscrit à l'ICAEW avec une double certification logicielle.","partner1.c1":"Inscrit à l'ICAEW","partner1.c2":"Xero Gold Champion","partner1.c3":"Certifié Sage",
+"partner2.badge":"Réseau mondial","partner2.desc":"Membre de l'une des principales associations mondiales de cabinets indépendants de comptabilité et de conseil.",
+"services.tag":"Nos services","services.h2":"Nous ne créons pas que des sites.<br><span class=\"grd\">Nous créons des entreprises numériques.</span>",
+"svc1.sub":"À partir de 499 € · En ligne en 24 heures","svc1.h":"Sites d'entreprise","svc1.p":"Des sites professionnels, rapides et mobile-first conçus pour convertir les visiteurs en clients. Entièrement personnalisés et livrés en une journée.",
+"svc2.sub":"Sur mesure · Évolutif · Conforme","svc2.h":"Plateformes CRM","svc2.p":"Des solutions CRM sur mesure conçues pour la santé privée et les solutions de main-d'œuvre. Qualité d'entreprise pour une fraction du coût.",
+"svc3.sub":"De bout en bout · Plateformes de recrutement","svc3.h":"Solutions de main-d'œuvre","svc3.p":"Conçues pour l'intérim et la santé privée où la fiabilité n'est pas optionnelle. Pensées pour gérer la complexité à grande échelle.",
+"svc4.sub":"Conçu pour développer votre clientèle","svc4.h":"Trafic & croissance","svc4.p":"Nous stimulons activement la croissance client via le SEO, le contenu et le marketing numérique — en appliquant les mêmes stratégies qui ont géré 250 000 utilisateurs simultanés pour développer votre entreprise, pas seulement votre trafic.",
+"locs.tag":"Où nous opérons","locs.h2":"Actifs sur<br><span class=\"grd\">quatre continents.</span>",
+"loc.uk":"Royaume-Uni","loc.us":"États-Unis","loc.za":"Afrique du Sud","loc.eu":"Union européenne","loc.expanding":"Expansion en Europe en cours",
+"hiring.tag":"Rejoignez l'équipe","hiring.h2":"Nous recrutons un <span class=\"grd\">conseiller commercial.</span>",
+"hiring.sub":"Un poste commercial à distance, à la commission, pour un closer motivé qui veut des gains non plafonnés, une liste de prospects chauds et un produit qui se vend tout seul. Temps plein. Démarrage immédiat.",
+"hiring.intro":"Chez Vela Sync, nous aidons les petites entreprises en croissance à être rapidement en ligne avec des sites conçus professionnellement. En tant que conseiller commercial, vous êtes la première voix qu'un client potentiel entend — et la raison de son oui. C'est un rôle à fort impact, centré sur l'humain, où votre chaleur, votre instinct et votre persévérance déterminent directement votre réussite.",
+"hire.role.h":"Aperçu du poste","hire.role.p":"Conseiller commercial à la commission — à distance ou sur le terrain, temps plein. Vous vendez les offres web et numériques de Vela Sync directement aux dirigeants de PME au Royaume-Uni. Prospects pré-qualifiés dès le premier jour.",
+"hire.do.h":"Ce que vous ferez","hire.do.p":"Passez au minimum 500 appels sortants par semaine depuis notre liste de prospects pré-qualifiés et concluez au moins 5 ventes par semaine. Présentez et concluez les offres Vela Sync — création de sites, support mensuel, packs marketing — directement auprès des décideurs de PME.",
+"hire.req.h":"Profil recherché","hire.req.p":"Expérience confirmée en vente sortante ou B2B. À l'aise au téléphone avec les dirigeants. Autonome et orienté résultats. À l'aise pour travailler de façon indépendante à distance ou sur le terrain. Une expérience en vente numérique ou web est un plus — pas une obligation.",
+"hire.comp.h":"Rémunération","hire.comp.p":"100 % de commission — potentiel de gains non plafonné. Taux compétitifs par vente conclue. Les meilleurs visent 2 300 à 4 700 €+/mois. Prospects pré-qualifiés fournis ; aucune prospection à froid requise.",
+"hire.duties.h":"Responsabilités clés",
+"duty.1":"Contacter les prospects de la liste Vela Sync de façon rapide et organisée","duty.2":"Mener des appels de vente engageants et consultatifs en utilisant le script fourni comme guide","duty.3":"Adapter votre approche selon le ton, le secteur et les besoins spécifiques du prospect","duty.4":"Présenter l'offre web de Vela Sync de manière claire et convaincante","duty.5":"Gérer les objections avec professionnalisme et empathie","duty.6":"Consigner avec précision les notes d'appel, les résultats et les actions de suivi","duty.7":"Réaliser au minimum 500 appels par semaine, avec un objectif minimum de 5 ventes","duty.8":"Relancer les paiements en attente une fois le site du client livré",
+"hire.perks.h":"Avantages & culture",
+"perk1.h":"Gains non plafonnés","perk1.p":"À la commission, sans plafond. Plus vous concluez, plus vous gagnez.",
+"perk2.h":"Prospects clés en main","perk2.p":"Pas de prospection à froid. Appelez une liste qualifiée dès le premier jour.",
+"perk3.h":"Un produit qui se vend tout seul","perk3.p":"Quelque chose de tangible et visuel — un site que les prospects voient immédiatement.",
+"perk4.h":"De vraies perspectives d'évolution","perk4.p":"Les meilleurs accèdent rapidement à des postes senior et de chef d'équipe.",
+"perk5.h":"Équipe solidaire","perk5.p":"Script, formation et soutien des pairs au sein d'une équipe qui veut votre réussite.",
+"perk6.h":"Travail flexible","perk6.p":"Nous valorisons les résultats, pas le pointage. Gérez votre temps, atteignez vos chiffres.",
+"hire.apply.txt":"Prêt à postuler ? Envoyez votre CV et un court mot expliquant pourquoi vous êtes le bon profil.","hire.apply.btn":"Postuler · careers@velasync.com",
+"cta.tag":"Commencer","cta.h2":"Prêt à lancer ?<br><span class=\"grd\">Parlons-en aujourd'hui.</span>",
+"cta.p":"Un appel de 30 minutes suffit pour passer de zéro à en ligne. Nous discutons de votre vision et mettons votre site en ligne en 24 heures.",
+"cpill.1":"À partir de 499 €","cpill.2":"En ligne en 24 heures","cpill.3":"Paiement échelonné possible","cpill.4":"99 €/mois tout compris","cta.btn":"Réservez votre appel gratuit",
+"footer.l1":"© 2026 Vela Sync Ltd · N° de société 17051204","footer.l2":"Solutions web & numériques · Santé privée · Solutions de main-d'œuvre",
+"mbar.info":"Sites à partir de <strong>499 €</strong> · En ligne en 24h","mbar.btn":"Appel gratuit →"
+};
+I18N.de={
+"price.amt1":"<sup>€</sup>499","price.amt2":"<sup>€</sup>699","fee.amt1":"<sup>€</sup>59","fee.amt2":"<sup>€</sup>59","fee.amt3":"<sup>€</sup>99","save.old":"€2.300+","cmp.r1.b":"€499 – €699","cmp.r1.c":"€2.300 – €9.000+","cmp.r1.d":"€0 – €35/mo","cmp.r6.c":"€175 – €349+/mo","cmp.r7.c":"€349+/mo",
+"meta.title":"Vela Sync — Enterprise-Technologie. Lokale Preise.",
+"meta.desc":"Preisgekrönte Ingenieure und ML-Strategie. Websites in 24 Stunden live mit laufender Betreuung — zu einem Bruchteil der Agenturpreise.",
+"skip":"Zum Hauptinhalt springen",
+"nav.why":"Warum wir","nav.pricing":"Preise","nav.process":"Ablauf","nav.compare":"Vergleich","nav.team":"Team","nav.services":"Leistungen","nav.hiring":"Karriere","nav.book":"Gespräch buchen","nav.bookarrow":"Kostenloses Gespräch buchen →",
+"hero.eyebrow":"Jetzt europaweit auf Expansionskurs",
+"hero.h1":"Enterprise-Tech.<br><span class=\"grd\">Lokale Preise.</span>",
+"hero.sub":"Preisgekrönte Ingenieure. Machine-Learning-Strategie. Websites in 24 Stunden live mit laufender Betreuung bei Änderungen — zu einem Bruchteil dessen, was Agenturen verlangen.",
+"hero.cta1":"Kostenloses Gespräch buchen","hero.cta2":"Preise ansehen",
+"trust.awards":"3× Branchenauszeichnungen","trust.live":"In 24 Stunden live","trust.users":"250k gleichzeitige Nutzer","trust.quality":"Enterprise-Qualität","trust.experience":"17+ Jahre kumulierte Tech-Erfahrung","trust.ml":"ML-gestützte Strategie",
+"stats.l1":"Gleichzeitige Nutzer, die unsere Plattform bewältigt hat","stats.l2":"Verbesserung des Suchrankings auf Live-Plattformen","stats.l3":"Von unserem Finanzteam verwaltete Kapitalinvestitionen","stats.l4":"Kontinente, auf denen wir tätig sind",
+"about.tag":"Über Vela Sync",
+"about.h2":"Die Lücke zu Agenturen — <span class=\"grd\">endlich geschlossen.</span>",
+"about.p1":"Vela Sync entstand aus einer einfachen Beobachtung: Lokale Unternehmen verdienen dieselbe Qualität an digitaler Infrastruktur wie globale Konzerne — aber ohne den Enterprise-Preis.",
+"about.p2":"Unser Team hat Plattformen für die private Gesundheitsversorgung gebaut, globale API-Infrastruktur für Großbanken konzipiert und für Hunderte von Enterprise-Kunden geliefert. Diese Expertise haben wir in einen Service gebündelt, der speziell für Unternehmer gemacht ist, die Ergebnisse wollen, keine Komplexität.",
+"why.tag":"Warum Vela Sync",
+"why.h2":"Nicht nur günstiger.<br><span class=\"grd\">Wirklich besser.</span>",
+"why.sub":"Digitale Expertise auf Enterprise-Niveau für lokale Unternehmen — dasselbe Team, das Plattformen für die anspruchsvollsten, regulierten Branchen der Welt gebaut hat.",
+"why.a.h":"In 24 Stunden live — mit laufender Betreuung bei Änderungen","why.a.p":"Schnelle, effiziente Umsetzung vom Briefing bis zum Livegang. Ihre Seite ist in 24 Stunden online, mit unserem Team zur Hand für laufende Änderungen und Updates — kein wochenlanges Warten, kein Verschwinden nach der Übergabe.",
+"why.b.h":"Preisgekröntes Team","why.b.p":"Mehrere Branchenauszeichnungen. Enterprise-Erfahrung auf Ihrer Seite.",
+"why.c.h":"Wir bringen Traffic","why.c.p":"Unsere Plattform hat bis zu 250.000 gleichzeitige Nutzer bewältigt. Dieselbe Growth-Engineering wenden wir auf Ihr Unternehmen an — Ihre neue Seite wird ab Tag eins zur Kundengewinnungsmaschine.",
+"why.d.h":"Bewährt in regulierten Branchen","why.d.p":"Private Gesundheitsversorgung und Personallösungen. Gleich beim ersten Mal richtig.",
+"why.e.h":"ML-gestützte Strategie","why.e.p":"Unser CEO verfügt über hochqualifizierte Abschlüsse im Machine Learning. Wachstum, mit Daten konstruiert.",
+"why.f.h":"Starter-Seite inklusive","why.f.p":"Jeder Interessent sieht seine Seite vor der Unterschrift. Keine Hürden zum Ja.",
+"pricing.tag":"Preise",
+"pricing.h2":"Die wettbewerbsfähigsten<br><span class=\"grd\">Preise am Markt.</span>",
+"pricing.popular":"Am beliebtesten","pricing.p1.tier":"Website — Komplettbau","pricing.p1.note":"Einmalig · In 24 Stunden live",
+"pricing.p2.tier":"Website + Marketing-Launch","pricing.p2.note":"Alles aus dem Bau, plus Launch-Schwung",
+"pricing.p3.tier":"Flexible Zahlung","pricing.p3.amt":"Raten","pricing.p3.note":"Zahlen Sie über die Zeit. Ohne Hürden.",
+"feat.responsive":"Professionelles, mobiloptimiertes Design","feat.call":"1:1-Gespräch mit Geschäftsführung oder Designteam","feat.personalised":"Vollständig an Ihre Marke angepasst","feat.domain":"Domain-Aktivierung oder -Transfer","feat.sameday":"Am selben Tag übergeben","feat.instalments":"Ratenzahlung möglich",
+"feat.fullbuild":"Komplettpaket inklusive","feat.briefed":"Marketingteam beim Launch gebrieft","feat.traffic":"Traffic-Strategie ab Tag eins","feat.roadmap":"Wachstums-Roadmap übergeben","feat.save":"Bis zu 1.800 € gegenüber Agenturschnitt sparen",
+"feat.split":"Geteilte Zahlung möglich","feat.schedule":"Vorab vereinbarter Zahlplan","feat.fullservice":"Voller Service ab Tag eins","feat.nocompromise":"Keine Kompromisse bei der Qualität",
+"save.txt":"Eine durchschnittliche Agentur verlangt für dieselbe Arbeit","save.pill":"Bis zu 1.800 € mit Vela Sync sparen",
+"process.tag":"Ablauf","process.h2":"Von der Anfrage bis live<br><span class=\"grd\">in 24 Stunden.</span>",
+"step1.badge":"30 Minuten","step1.h":"Kennenlerngespräch","step1.p":"Wir besprechen Ihre Marke, Ziele und Vision in einem fokussierten 30-minütigen Gespräch. Unser Team arbeitet schnell — alles für den Livegang ist bereit, sobald Sie es sind.",
+"step2.badge":"Am selben Tag","step2.h":"Design & Bau","step2.p":"Unser Team personalisiert Ihre Seite und richtet Ihre Domain ein — neu oder übertragen — und macht alles produktionsreif.",
+"step3.badge":"Innerhalb von 24 Stunden","step3.h":"Sie prüfen & geben frei","step3.p":"Mobiloptimiert, SEO-bereit, performance-optimiert. Sie prüfen und geben frei, bevor etwas online geht.",
+"step4.badge":"699-€-Paket","step4.h":"Marketing-Launch","step4.p":"Upgraden Sie, und wir briefen unser Marketingteam zum Launch — mit einer Live-Traffic-Strategie und Wachstums-Roadmap ab Tag eins.",
+"compare.tag":"Wertvergleich","compare.h2":"Wie wir abschneiden<br><span class=\"grd\">gegenüber den Alternativen.</span>",
+"compare.sub":"Die Zahlen sprechen für sich. Vela Sync liefert Enterprise-Qualität zu einem Bruchteil dessen, was traditionelle Agenturen verlangen — mit schnellerer Umsetzung und inklusive laufender Betreuung.",
+"compare.th1":"Was Sie bekommen","compare.th2":"Vela Sync","compare.th3":"Typische Agentur","compare.th4":"DIY-Baukasten (z. B. Wix)",
+"cmp.inc":"✓ Inklusive","cmp.none":"✗ Keine","cmp.selfmanaged":"Selbst verwaltet",
+"cmp.r1.a":"Baukosten","cmp.r2.a":"Zeit bis live","cmp.r2.c":"4 – 12 Wochen",
+"cmp.r3.a":"Individuelles Design (keine Vorlage)","cmp.r3.d":"✗ Nur Vorlage",
+"cmp.r4.a":"1:1-Strategiegespräch","cmp.r4.b":"✓ Jeder Kunde","cmp.r4.c":"Manchmal",
+"cmp.r5.a":"Domain-Einrichtung / -Transfer","cmp.r5.c":"Oft Zusatzkosten",
+"cmp.r6.a":"Laufende monatliche Betreuung","cmp.r6.b":"59 €/Mon. (Wartung)","cmp.r6.d":"Keine",
+"cmp.r7.a":"SEO + komplettes Marketing","cmp.r7.b":"99 €/Mon. (alles inklusive)","cmp.r7.d":"Basis / manuell",
+"cmp.r8.a":"ML-gestützte Wachstumsstrategie","cmp.r8.c":"✗ Selten angeboten","cmp.r8.d":"✗ Nicht verfügbar",
+"cmp.r9.a":"Enterprise-Engineering-Erfahrung","cmp.r9.b":"✓ Kernteam","cmp.r9.c":"Stark unterschiedlich",
+"fees.tag":"Laufende Betreuung","fees.h2":"Wir bauen sie nicht<br><span class=\"grd\">und verschwinden dann.</span>",
+"fees.sub":"Andere Agenturen verlangen 175–349 €/Monat für die Pflege einer Seite. Wir pflegen Ihre, bringen Traffic darauf und verbessern Ihr Ranking. Keine Bindung, jederzeit kündbar.",
+"fees.permonth":"pro Monat","fees.permonthall":"pro Monat — alles",
+"fee1.name":"Standardpaket","fee1.desc":"Seitenwartung, Uptime-Überwachung und aktive Traffic-Generierung","fee1.vs":"Branchenschnitt: 175+ €/Mon.",
+"fee2.name":"SEO-Verbesserung","fee2.desc":"Laufende Suchmaschinenoptimierung, um Ihr organisches Ranking Monat für Monat zu steigern","fee2.vs":"Branchenschnitt: 239+ €/Mon.",
+"fee3.name":"Marketing-Paket","fee3.desc":"Wartung, aktive Traffic-Generierung, SEO und digitales Marketing kombiniert. Jederzeit kündbar, keine Bindung.","fee3.vs":"Branchenschnitt: 349+ €/Mon.",
+"guarantee.tag":"Unser Versprechen","guarantee.h2":"Warum Kunden<br>sich entscheiden, <span class=\"grd\">zu bleiben.</span>",
+"guarantee.p":"Wir haben Vela Sync um ein einziges Prinzip herum aufgebaut: Die Beziehung endet nicht mit der Übergabe. Von Tag eins bis Monat zwölf und darüber hinaus sind wir Ihr Technologiepartner — nicht nur Ihr Website-Bauer.",
+"gp1.h":"In 24 Stunden live, garantiert","gp1.p":"Ihre Seite geht innerhalb eines Werktags live — ohne Ausnahmen, ohne Ausreden.",
+"gp2.h":"Ihnen gehört alles","gp2.p":"Volles Eigentum an Ihrer Domain, Ihrem Code und Ihren Hosting-Zugangsdaten — immer Ihres.",
+"gp3.h":"Laufende Betreuung bei Änderungen","gp3.p":"Updates, Überarbeitungen und Verbesserungen werden zügig bearbeitet — keine Warteschlange, keine Verzögerung.",
+"gp4.h":"Niemals versteckte Kosten","gp4.p":"Was Ihnen genannt wird, zahlen Sie. Ratenzahlung möglich. Monatspakete jederzeit kündbar.",
+"team.tag":"Das Team dahinter","team.h2":"Enterprise-Erfahrung.<br><span class=\"grd\">Fokus auf lokale Unternehmen.</span>",
+"team.sub":"Ingenieure und Strategen, die auf höchstem Niveau in Finanzdienstleistungen, Gesundheit und globalen Konzernen geliefert haben — direkt für Ihr Unternehmen.",
+"t1.role":"Geschäftsführer","t1.title":"Machine-Learning-Spezialist & Stratege für digitales Wachstum",
+"t1.b1":"Hochqualifizierte Abschlüsse im Machine Learning","t1.b2":"Entwarf CRM- & Personalplattform für die private Gesundheitsversorgung","t1.b3":"Gründete & leitet eine aktive Digitalmarketing-Agentur","t1.b4":"Erfahren in der Skalierung von Marken durch datengetriebene Digitalstrategie",
+"t2.role":"Lead Engineer — Plattformen","t2.title":"8+ Jahre Plattformlieferung im Enterprise-Maßstab",
+"t2.b1":"Baute Entwicklerportale für Hunderte globaler Enterprise-Kunden","t2.b2":"Konzipierte eine globale API-Brücke zwischen einer Großbank & einer E-Commerce-Plattform","t2.b3":"Leitete Teams von 5+ Ingenieuren in parallelen Projekten mit hohem Einsatz","t2.b4":"Erzielte 36 % Verbesserung im Suchranking auf Live-Plattformen","t2.award":"3× Branchenauszeichnungen — Engineering Excellence",
+"t3.role":"Technical Lead — Engineering","t3.title":"Preisgekrönter Ingenieur in Finanzdienstleistungen",
+"t3.b1":"Leitete ereignisgesteuerte Architektur auf einer geschäftskritischen Legacy-Plattform","t3.b2":"Präsentierte vor Stakeholdern auf Vorstandsebene — CEOs, CIOs & COOs","t3.b3":"Trieb die Modernisierung regulierter, kundenorientierter Transaktionssysteme voran","t3.award":"Group Technology Engineering Excellence Award 2025",
+"t4.role":"Finanz- & Buchhaltungsleiter","t4.title":"CIMA-qualifizierter Management Accountant",
+"t4.b1":"Verwaltete Investitions-Businesscases von 500 Mio. £+ über mehrere Branchen","t4.b2":"Verwaltete einen Entwicklungs-Businesscase von 500 Mio. €+","t4.b3":"Lieferte Finanzberichte an Vorstand & Projektlenkungsausschuss",
+"partner1.badge":"Compliance-Partner","partner1.desc":"Konzern-Compliance-Buchhaltung für alle Vela-Sync-Einheiten. ICAEW-registriert mit doppelter Softwarezertifizierung.","partner1.c1":"ICAEW-registriert","partner1.c2":"Xero Gold Champion","partner1.c3":"Sage-zertifiziert",
+"partner2.badge":"Globales Netzwerk","partner2.desc":"Mitglied eines der weltweit führenden Verbände unabhängiger Wirtschaftsprüfungs- und Beratungsfirmen.",
+"services.tag":"Unsere Leistungen","services.h2":"Wir bauen nicht nur Websites.<br><span class=\"grd\">Wir bauen digitale Unternehmen.</span>",
+"svc1.sub":"Ab 499 € · In 24 Stunden live","svc1.h":"Unternehmenswebsites","svc1.p":"Professionelle, schnelle, mobile-first Seiten, gebaut, um Besucher in Kunden zu verwandeln. Vollständig personalisiert und an einem Tag übergeben.",
+"svc2.sub":"Individuell · Skalierbar · Konform","svc2.h":"CRM-Plattformen","svc2.p":"Maßgeschneiderte CRM-Lösungen für die private Gesundheitsversorgung und Personallösungen. Enterprise-Qualität zu einem Bruchteil der Kosten.",
+"svc3.sub":"End-to-End · Recruiting-Plattformen","svc3.h":"Personallösungen","svc3.p":"Gebaut für Zeitarbeit und private Gesundheitsversorgung, wo Zuverlässigkeit keine Option ist. Konzipiert, um Komplexität in großem Umfang zu bewältigen.",
+"svc4.sub":"Gebaut, um Ihren Kundenstamm zu skalieren","svc4.h":"Traffic & Wachstum","svc4.p":"Wir treiben aktiv Kundenwachstum durch SEO, Content und digitales Marketing — mit denselben Strategien, die 250.000 gleichzeitige Nutzer bewältigt haben, um Ihr Unternehmen wachsen zu lassen, nicht nur Ihren Traffic.",
+"locs.tag":"Wo wir tätig sind","locs.h2":"Aktiv auf<br><span class=\"grd\">vier Kontinenten.</span>",
+"loc.uk":"Vereinigtes Königreich","loc.us":"Vereinigte Staaten","loc.za":"Südafrika","loc.eu":"Europäische Union","loc.expanding":"Expansion in Europa läuft",
+"hiring.tag":"Werden Sie Teil des Teams","hiring.h2":"Wir suchen einen <span class=\"grd\">Vertriebsberater.</span>",
+"hiring.sub":"Eine ortsunabhängige Vertriebsrolle auf reiner Provisionsbasis für einen zielstrebigen Abschlussstarken, der unbegrenztes Einkommen, eine warme Lead-Liste und ein Produkt will, das sich selbst verkauft. Vollzeit. Sofortiger Start.",
+"hiring.intro":"Bei Vela Sync helfen wir kleinen und wachsenden Unternehmen, mit professionell gestalteten Websites schnell online zu gehen. Als Vertriebsberater sind Sie die erste Stimme, die ein potenzieller Kunde hört — und der Grund für sein Ja. Eine wirkungsvolle, menschenorientierte Rolle, in der Ihre Herzlichkeit, Ihr Instinkt und Ihre Beharrlichkeit Ihren Erfolg direkt bestimmen.",
+"hire.role.h":"Rollenübersicht","hire.role.p":"Vertriebsberater auf Provisionsbasis — ortsunabhängig oder im Außendienst, Vollzeit. Sie verkaufen die Website- und Digitalpakete von Vela Sync direkt an KMU-Inhaber im Vereinigten Königreich. Vorqualifizierte Leads ab Tag eins.",
+"hire.do.h":"Ihre Aufgaben","hire.do.p":"Führen Sie mindestens 500 Ausgangsanrufe pro Woche aus unserer vorqualifizierten Lead-Liste und schließen Sie mindestens 5 Verkäufe pro Woche ab. Präsentieren und schließen Sie Vela-Sync-Pakete — Website-Builds, monatliche Betreuung, Marketing-Pakete — direkt bei KMU-Entscheidern.",
+"hire.req.h":"Anforderungen","hire.req.p":"Nachweisliche Erfolge im Outbound- oder B2B-Vertrieb. Sicher am Telefon mit Unternehmern. Eigenmotiviert und ergebnisorientiert. Komfortabel beim eigenständigen Arbeiten im Remote- oder Außendienst. Erfahrung im Digital- oder Website-Vertrieb ist ein Plus — keine Voraussetzung.",
+"hire.comp.h":"Vergütung","hire.comp.p":"100 % Provision — unbegrenztes Verdienstpotenzial. Wettbewerbsfähige Sätze pro Abschluss. Top-Performer zielen auf 2.300–4.700 €+/Monat. Vorqualifizierte Leads bereitgestellt; keine Kaltakquise nötig.",
+"hire.duties.h":"Hauptverantwortlichkeiten",
+"duty.1":"Interessenten aus der Vela-Sync-Lead-Liste zeitnah und organisiert kontaktieren","duty.2":"Ansprechende, beratende Verkaufsgespräche mit dem bereitgestellten Skript als Leitfaden führen","duty.3":"Ihren Ansatz an Ton, Branche und spezifische Bedürfnisse des Leads anpassen","duty.4":"Das Website-Angebot von Vela Sync klar und überzeugend präsentieren","duty.5":"Einwände professionell und mit Empathie behandeln","duty.6":"Gesprächsnotizen, Ergebnisse und Folgemaßnahmen exakt erfassen","duty.7":"Mindestens 500 Anrufe pro Woche absolvieren, mit einem Mindestziel von 5 Verkäufen","duty.8":"Offene Zahlungen nachverfolgen, sobald die Website eines Kunden geliefert wurde",
+"hire.perks.h":"Vorteile & Kultur",
+"perk1.h":"Unbegrenztes Einkommen","perk1.p":"Reine Provision ohne Obergrenze. Je mehr Sie abschließen, desto mehr verdienen Sie.",
+"perk2.h":"Sofort einsatzbereite Leads","perk2.p":"Keine Kaltakquise. Rufen Sie ab Tag eins eine qualifizierte Liste an.",
+"perk3.h":"Ein Produkt, das sich selbst verkauft","perk3.p":"Etwas Greifbares und Visuelles — eine Website, die Interessenten sofort sehen.",
+"perk4.h":"Echte Aufstiegschancen","perk4.p":"Top-Performer rücken schnell in Senior- und Teamleiter-Positionen auf.",
+"perk5.h":"Unterstützendes Team","perk5.p":"Skript, Schulung und kollegiale Unterstützung aus einem Team, das Ihren Erfolg will.",
+"perk6.h":"Flexibles Arbeiten","perk6.p":"Uns zählen Ergebnisse, nicht das Stempeln. Teilen Sie sich die Zeit ein, erreichen Sie Ihre Zahlen.",
+"hire.apply.txt":"Bereit, sich zu bewerben? Senden Sie Ihren Lebenslauf und ein paar Zeilen, warum Sie passen.","hire.apply.btn":"Jetzt bewerben · careers@velasync.com",
+"cta.tag":"Loslegen","cta.h2":"Bereit für den Launch?<br><span class=\"grd\">Sprechen wir heute.</span>",
+"cta.p":"Ein 30-minütiges Gespräch genügt, um von null auf live zu gehen. Wir besprechen Ihre Vision und bringen Ihre Website in 24 Stunden online.",
+"cpill.1":"Ab 499 €","cpill.2":"In 24 Stunden live","cpill.3":"Ratenzahlung möglich","cpill.4":"99 €/Monat alles inklusive","cta.btn":"Kostenloses Gespräch buchen",
+"footer.l1":"© 2026 Vela Sync Ltd · Reg.-Nr. 17051204","footer.l2":"Web- & Digitallösungen · Private Gesundheitsversorgung · Personallösungen",
+"mbar.info":"Websites ab <strong>499 €</strong> · In 24 Std. live","mbar.btn":"Gratis-Gespräch →"
+};
+I18N.es={
+"price.amt1":"<sup>€</sup>499","price.amt2":"<sup>€</sup>699","fee.amt1":"<sup>€</sup>59","fee.amt2":"<sup>€</sup>59","fee.amt3":"<sup>€</sup>99","save.old":"€2.300+","cmp.r1.b":"€499 – €699","cmp.r1.c":"€2.300 – €9.000+","cmp.r1.d":"€0 – €35/mo","cmp.r6.c":"€175 – €349+/mo","cmp.r7.c":"€349+/mo",
+"meta.title":"Vela Sync — Tecnología de empresa. Precios locales.",
+"meta.desc":"Ingenieros premiados y estrategia de ML. Webs en línea en 24 horas con soporte continuo — por una fracción del precio de una agencia.",
+"skip":"Saltar al contenido principal",
+"nav.why":"Por qué nosotros","nav.pricing":"Precios","nav.process":"Proceso","nav.compare":"Comparar","nav.team":"Equipo","nav.services":"Servicios","nav.hiring":"Empleo","nav.book":"Reservar llamada","nav.bookarrow":"Reserva tu llamada gratuita →",
+"hero.eyebrow":"Ahora en expansión por toda Europa",
+"hero.h1":"Tecnología de empresa.<br><span class=\"grd\">Precios locales.</span>",
+"hero.sub":"Ingenieros premiados. Estrategia de Machine Learning. Webs en línea en 24 horas con soporte continuo en los cambios — por una fracción de lo que cobran las agencias.",
+"hero.cta1":"Reserva tu llamada gratuita","hero.cta2":"Ver precios",
+"trust.awards":"3× premios del sector","trust.live":"En línea en 24 horas","trust.users":"250k usuarios simultáneos","trust.quality":"Calidad de empresa","trust.experience":"17+ años de experiencia técnica acumulada","trust.ml":"Estrategia basada en ML",
+"stats.l1":"Usuarios simultáneos que ha gestionado nuestra plataforma","stats.l2":"Mejora del posicionamiento de búsqueda en plataformas activas","stats.l3":"Inversión de capital gestionada por nuestro equipo financiero","stats.l4":"Continentes en los que operamos",
+"about.tag":"Sobre Vela Sync",
+"about.h2":"La brecha con las agencias — <span class=\"grd\">por fin cerrada.</span>",
+"about.p1":"Vela Sync nació de una observación sencilla: las empresas locales merecen la misma calidad de infraestructura digital que las grandes corporaciones — pero sin el precio de empresa.",
+"about.p2":"Nuestro equipo ha creado plataformas para la sanidad privada, diseñado infraestructura de API global para grandes bancos y entregado para cientos de clientes corporativos. Hemos canalizado esa experiencia en un servicio creado específicamente para el empresario que quiere resultados, no complejidad.",
+"why.tag":"Por qué Vela Sync",
+"why.h2":"No solo más barato.<br><span class=\"grd\">Realmente mejor.</span>",
+"why.sub":"Experiencia digital de nivel empresarial al servicio de las empresas locales — el mismo equipo que ha creado plataformas para los sectores más exigentes y regulados del mundo.",
+"why.a.h":"En línea en 24 horas — con soporte continuo en los cambios","why.a.p":"Entrega rápida y eficiente, del briefing a la publicación. Tu web está en línea en 24 horas, con nuestro equipo disponible para cambios y actualizaciones — sin esperar semanas, sin desaparecer tras la entrega.",
+"why.b.h":"Equipo premiado","why.b.p":"Múltiples premios del sector. Trayectoria de empresa de tu lado.",
+"why.c.h":"Generamos tráfico","why.c.p":"Nuestra plataforma ha gestionado hasta 250.000 usuarios simultáneos. Aplicamos esa misma ingeniería de crecimiento a tu negocio — convirtiendo tu nueva web en una máquina de captación de clientes desde el primer día.",
+"why.d.h":"Probado en sectores regulados","why.d.p":"Sanidad privada y soluciones de personal. Bien a la primera.",
+"why.e.h":"Estrategia basada en ML","why.e.p":"Nuestro CEO posee cualificaciones muy avanzadas en Machine Learning. Crecimiento diseñado con datos.",
+"why.f.h":"Web inicial incluida","why.f.p":"Cada prospecto ve su web antes de firmar. Cero barreras para el sí.",
+"pricing.tag":"Precios",
+"pricing.h2":"Los precios más<br><span class=\"grd\">competitivos del mercado.</span>",
+"pricing.popular":"El más elegido","pricing.p1.tier":"Web — Construcción completa","pricing.p1.note":"Pago único · En línea en 24 horas",
+"pricing.p2.tier":"Web + Lanzamiento de marketing","pricing.p2.note":"Todo lo de la construcción, más el impulso del lanzamiento",
+"pricing.p3.tier":"Pagos flexibles","pricing.p3.amt":"A plazos","pricing.p3.note":"Paga a lo largo del tiempo. Sin barreras.",
+"feat.responsive":"Diseño profesional y adaptado a móvil","feat.call":"Llamada individual con dirección o equipo de diseño","feat.personalised":"Totalmente personalizado a tu marca","feat.domain":"Activación o transferencia de dominio","feat.sameday":"Entregado el mismo día","feat.instalments":"Pago a plazos disponible",
+"feat.fullbuild":"Paquete de construcción completo incluido","feat.briefed":"Equipo de marketing informado en el lanzamiento","feat.traffic":"Estrategia de tráfico desde el primer día","feat.roadmap":"Hoja de ruta de crecimiento entregada","feat.save":"Ahorra hasta 1.800 € frente a la agencia media",
+"feat.split":"Pago fraccionado disponible","feat.schedule":"Calendario acordado por adelantado","feat.fullservice":"Servicio completo desde el primer día","feat.nocompromise":"Sin concesiones en la calidad",
+"save.txt":"Una agencia media cobra por el mismo trabajo","save.pill":"Ahorra hasta 1.800 € con Vela Sync",
+"process.tag":"Proceso","process.h2":"De la consulta a en línea<br><span class=\"grd\">en 24 horas.</span>",
+"step1.badge":"30 minutos","step1.h":"Llamada de descubrimiento","step1.p":"Hablamos de tu marca, objetivos y visión en una llamada enfocada de 30 minutos. Nuestro equipo trabaja rápido — todo lo necesario para publicar está listo en cuanto tú lo estés.",
+"step2.badge":"El mismo día","step2.h":"Diseño y construcción","step2.p":"Nuestro equipo personaliza tu web y configura tu dominio — nuevo o transferido — dejándolo todo listo para producción.",
+"step3.badge":"En 24 horas","step3.h":"Revisas y apruebas","step3.p":"Adaptada a móvil, lista para SEO, optimizada en rendimiento. Revisas y apruebas antes de que nada se publique.",
+"step4.badge":"Paquete de 699 €","step4.h":"Lanzamiento de marketing","step4.p":"Mejora tu plan e informamos a nuestro equipo de marketing en el lanzamiento — con una estrategia de tráfico activa y una hoja de ruta de crecimiento desde el primer día.",
+"compare.tag":"Comparativa de valor","compare.h2":"Cómo nos comparamos<br><span class=\"grd\">con las alternativas.</span>",
+"compare.sub":"Los números hablan por sí solos. Vela Sync entrega resultados de nivel empresarial por una fracción de lo que cobran las agencias tradicionales — con plazos más rápidos y soporte continuo incluido.",
+"compare.th1":"Lo que obtienes","compare.th2":"Vela Sync","compare.th3":"Agencia típica","compare.th4":"Creador DIY (p. ej. Wix)",
+"cmp.inc":"✓ Incluido","cmp.none":"✗ Ninguno","cmp.selfmanaged":"Autogestionado",
+"cmp.r1.a":"Coste de construcción","cmp.r2.a":"Tiempo hasta publicar","cmp.r2.c":"4 – 12 semanas",
+"cmp.r3.a":"Diseño a medida (no una plantilla)","cmp.r3.d":"✗ Solo plantilla",
+"cmp.r4.a":"Llamada estratégica individual","cmp.r4.b":"✓ Cada cliente","cmp.r4.c":"A veces",
+"cmp.r5.a":"Configuración / transferencia de dominio","cmp.r5.c":"A menudo con coste extra",
+"cmp.r6.a":"Soporte mensual continuo","cmp.r6.b":"59 €/mes (mantenimiento)","cmp.r6.d":"Ninguno",
+"cmp.r7.a":"SEO + marketing completo","cmp.r7.b":"99 €/mes (todo incluido)","cmp.r7.d":"Básico / manual",
+"cmp.r8.a":"Estrategia de crecimiento con ML","cmp.r8.c":"✗ Rara vez se ofrece","cmp.r8.d":"✗ No disponible",
+"cmp.r9.a":"Trayectoria de ingeniería empresarial","cmp.r9.b":"✓ Equipo principal","cmp.r9.c":"Muy variable",
+"fees.tag":"Soporte continuo","fees.h2":"No la construimos<br><span class=\"grd\">para luego desaparecer.</span>",
+"fees.sub":"Otras agencias cobran 175–349 €/mes por mantener una web. Nosotros mantenemos la tuya, le generamos tráfico y mejoramos tu posicionamiento. Sin permanencia, cancela cuando quieras.",
+"fees.permonth":"al mes","fees.permonthall":"al mes — todo incluido",
+"fee1.name":"Paquete Estándar","fee1.desc":"Mantenimiento del sitio, monitorización de disponibilidad y generación activa de tráfico","fee1.vs":"Media del sector: 175+ €/mes",
+"fee2.name":"Mejora SEO","fee2.desc":"Optimización continua para buscadores para hacer crecer tu posicionamiento orgánico mes a mes","fee2.vs":"Media del sector: 239+ €/mes",
+"fee3.name":"Pack de Marketing","fee3.desc":"Mantenimiento, generación activa de tráfico, SEO y marketing digital combinados. Cancela cuando quieras, sin permanencia.","fee3.vs":"Media del sector: 349+ €/mes",
+"guarantee.tag":"Nuestra promesa","guarantee.h2":"Por qué los clientes<br>eligen <span class=\"grd\">quedarse.</span>",
+"guarantee.p":"Construimos Vela Sync en torno a un único principio: la relación no termina con la entrega. Desde el primer día hasta el mes doce y más allá, somos tu socio tecnológico — no solo quien crea tu web.",
+"gp1.h":"En línea en 24 horas, garantizado","gp1.p":"Tu web se publica en un día laborable — sin excepciones, sin excusas.",
+"gp2.h":"Todo es tuyo","gp2.p":"Plena propiedad de tu dominio, código y credenciales de hosting — siempre tuyas.",
+"gp3.h":"Soporte continuo en los cambios","gp3.p":"Actualizaciones, revisiones y mejoras gestionadas con rapidez — sin colas de tickets, sin demoras.",
+"gp4.h":"Nunca costes ocultos","gp4.p":"Lo que se te presupuesta es lo que pagas. Pago a plazos disponible. Cancela los planes mensuales cuando quieras.",
+"team.tag":"El equipo detrás","team.h2":"Trayectoria de empresa.<br><span class=\"grd\">Foco en el negocio local.</span>",
+"team.sub":"Ingenieros y estrategas que han entregado al más alto nivel en servicios financieros, sanidad y grandes corporaciones — al servicio directo de tu negocio.",
+"t1.role":"Director ejecutivo","t1.title":"Especialista en Machine Learning y estratega de crecimiento digital",
+"t1.b1":"Cualificaciones muy avanzadas en Machine Learning","t1.b2":"Diseñó una plataforma CRM y de personal para la sanidad privada","t1.b3":"Fundó y dirige una agencia de marketing digital activa","t1.b4":"Experto en escalar marcas mediante estrategia digital basada en datos",
+"t2.role":"Ingeniero principal — Plataformas","t2.title":"8+ años entregando plataformas a escala empresarial",
+"t2.b1":"Creó portales para desarrolladores para cientos de clientes corporativos globales","t2.b2":"Diseñó un puente de API global entre un gran banco y una plataforma de e-commerce","t2.b3":"Dirigió equipos de 5+ ingenieros en proyectos simultáneos de alto riesgo","t2.b4":"Logró una mejora del 36 % en el posicionamiento de búsqueda en plataformas activas","t2.award":"3× premios del sector — Excelencia en ingeniería",
+"t3.role":"Líder técnico — Ingeniería","t3.title":"Ingeniero premiado en servicios financieros",
+"t3.b1":"Dirigió una arquitectura orientada a eventos en una plataforma heredada crítica","t3.b2":"Presentó ante altos directivos — CEO, CIO y COO","t3.b3":"Impulsó la modernización de sistemas de transacciones regulados y de cara al cliente","t3.award":"Group Technology Engineering Excellence Award 2025",
+"t4.role":"Responsable de finanzas y contabilidad","t4.title":"Contable de gestión cualificado por CIMA",
+"t4.b1":"Gestionó casos de inversión de capital de más de 500 M£ en varios sectores","t4.b2":"Gestionó un caso de inversión de desarrollo de más de 500 M€","t4.b3":"Presentó informes financieros al consejo y al comité directivo del proyecto",
+"partner1.badge":"Socio de cumplimiento","partner1.desc":"Contabilidad de cumplimiento de grupo para todas las entidades de Vela Sync. Registrado en ICAEW con doble certificación de software.","partner1.c1":"Registrado en ICAEW","partner1.c2":"Xero Gold Champion","partner1.c3":"Certificado Sage",
+"partner2.badge":"Red global","partner2.desc":"Miembro de una de las principales asociaciones mundiales de firmas independientes de contabilidad y asesoría.",
+"services.tag":"Nuestros servicios","services.h2":"No solo creamos webs.<br><span class=\"grd\">Creamos negocios digitales.</span>",
+"svc1.sub":"Desde 499 € · En línea en 24 horas","svc1.h":"Webs de empresa","svc1.p":"Sitios profesionales, rápidos y mobile-first creados para convertir visitantes en clientes. Totalmente personalizados y entregados en un día.",
+"svc2.sub":"A medida · Escalable · Conforme","svc2.h":"Plataformas CRM","svc2.p":"Soluciones CRM a medida creadas para la sanidad privada y soluciones de personal. Calidad de empresa por una fracción del coste.",
+"svc3.sub":"De principio a fin · Plataformas de selección","svc3.h":"Soluciones de personal","svc3.p":"Creadas para la dotación de personal y la sanidad privada donde la fiabilidad no es opcional. Diseñadas para gestionar la complejidad a gran escala.",
+"svc4.sub":"Diseñado para escalar tu cartera de clientes","svc4.h":"Tráfico y crecimiento","svc4.p":"Impulsamos activamente el crecimiento de clientes mediante SEO, contenido y marketing digital — aplicando las mismas estrategias que han gestionado 250.000 usuarios simultáneos para hacer crecer tu negocio, no solo tu tráfico.",
+"locs.tag":"Dónde operamos","locs.h2":"Activos en<br><span class=\"grd\">cuatro continentes.</span>",
+"loc.uk":"Reino Unido","loc.us":"Estados Unidos","loc.za":"Sudáfrica","loc.eu":"Unión Europea","loc.expanding":"Expandiéndonos por Europa ahora",
+"hiring.tag":"Únete al equipo","hiring.h2":"Buscamos un <span class=\"grd\">asesor de ventas.</span>",
+"hiring.sub":"Un puesto comercial remoto, solo a comisión, para un cerrador motivado que quiere ingresos sin límite, una lista de contactos cálidos y un producto que se vende solo. Jornada completa. Incorporación inmediata.",
+"hiring.intro":"En Vela Sync ayudamos a las pequeñas empresas en crecimiento a estar pronto en línea con webs diseñadas profesionalmente. Como asesor de ventas, serás la primera voz que oye un cliente potencial — y la razón de su sí. Es un puesto de gran impacto, centrado en las personas, donde tu cercanía, instinto y constancia determinan directamente tu éxito.",
+"hire.role.h":"Resumen del puesto","hire.role.p":"Asesor de ventas solo a comisión — remoto o de campo, jornada completa. Venderás los paquetes web y digitales de Vela Sync directamente a propietarios de pymes en el Reino Unido. Contactos precualificados desde el primer día.",
+"hire.do.h":"Qué harás","hire.do.p":"Realiza un mínimo de 500 llamadas salientes por semana desde nuestra lista de contactos precualificados y cierra un mínimo de 5 ventas por semana. Presenta y cierra los paquetes de Vela Sync — creación de webs, soporte mensual, packs de marketing — directamente con responsables de pymes.",
+"hire.req.h":"Requisitos","hire.req.p":"Trayectoria probada en ventas salientes o B2B. Seguridad al teléfono con empresarios. Automotivado y orientado a resultados. Cómodo trabajando de forma independiente en un entorno remoto o de campo. La experiencia en ventas digitales o de webs es un plus — no es imprescindible.",
+"hire.comp.h":"Retribución","hire.comp.p":"100 % a comisión — potencial de ingresos sin límite. Tarifas competitivas por venta cerrada. Los mejores apuntan a 2.300–4.700 €+/mes. Contactos precualificados proporcionados; sin captación en frío.",
+"hire.duties.h":"Responsabilidades clave",
+"duty.1":"Contactar a los prospectos de la lista de Vela Sync de forma puntual y organizada","duty.2":"Realizar llamadas de venta atractivas y consultivas usando el guion proporcionado como guía","duty.3":"Adaptar tu enfoque según el tono, el sector y las necesidades específicas del contacto","duty.4":"Presentar la oferta web de Vela Sync de forma clara y convincente","duty.5":"Gestionar las objeciones con profesionalidad y empatía","duty.6":"Registrar con precisión las notas de llamada, los resultados y las acciones de seguimiento","duty.7":"Completar un mínimo de 500 llamadas por semana, con un objetivo mínimo de 5 ventas","duty.8":"Reclamar los pagos pendientes una vez entregada la web del cliente",
+"hire.perks.h":"Ventajas y cultura",
+"perk1.h":"Ingresos sin límite","perk1.p":"Solo a comisión, sin techo. Cuanto más cierras, más ganas.",
+"perk2.h":"Contactos listos para usar","perk2.p":"Sin captación en frío. Empieza a llamar a una lista cualificada desde el primer día.",
+"perk3.h":"Un producto que se vende solo","perk3.p":"Algo tangible y visual — una web que los prospectos pueden ver de inmediato.",
+"perk4.h":"Verdaderas opciones de crecimiento","perk4.p":"Los mejores ascienden rápido a puestos senior y de jefe de equipo.",
+"perk5.h":"Equipo de apoyo","perk5.p":"Guion, formación y apoyo de los compañeros de un equipo que quiere que ganes.",
+"perk6.h":"Trabajo flexible","perk6.p":"Nos importan los resultados, no el reloj. Organiza tu tiempo, alcanza tus cifras.",
+"hire.apply.txt":"¿Listo para postular? Envía tu CV y una breve nota sobre por qué encajas.","hire.apply.btn":"Postula ahora · careers@velasync.com",
+"cta.tag":"Empieza","cta.h2":"¿Listo para lanzar?<br><span class=\"grd\">Hablemos hoy.</span>",
+"cta.p":"Una llamada de 30 minutos es todo lo que hace falta para pasar de cero a en línea. Hablamos de tu visión y tenemos tu web lista en 24 horas.",
+"cpill.1":"Desde 499 €","cpill.2":"En línea en 24 horas","cpill.3":"Pago a plazos disponible","cpill.4":"99 €/mes todo incluido","cta.btn":"Reserva tu llamada gratuita",
+"footer.l1":"© 2026 Vela Sync Ltd · N.º de sociedad 17051204","footer.l2":"Soluciones web y digitales · Sanidad privada · Soluciones de personal",
+"mbar.info":"Webs desde <strong>499 €</strong> · En línea en 24h","mbar.btn":"Llamada gratis →"
+};
+
+function detectLang(){
+  const saved=localStorage.getItem('vs_lang');
+  if(saved&&SUPPORTED.includes(saved))return saved;
+  const nav=(navigator.language||'en').slice(0,2).toLowerCase();
+  return SUPPORTED.includes(nav)?nav:'en';
+}
+function applyLang(lang){
+  const dict=I18N[lang]||I18N.en;
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const key=el.getAttribute('data-i18n');
+    let val=dict[key];if(val==null)val=I18N.en[key];if(val==null)return;
+    if(el.tagName==='META'){el.setAttribute('content',val);return;}
+    if(el.tagName==='TITLE'){el.textContent=val;return;}
+    if(val.indexOf('<')!==-1)el.innerHTML=val;else el.textContent=val;
+  });
+  document.documentElement.lang=lang;
+  const meta=LANG_META[lang]||LANG_META.en;
+  const f=document.getElementById('langFlag'),c=document.getElementById('langCur');
+  if(f)f.textContent=meta.flag;if(c)c.textContent=meta.code;
+  document.querySelectorAll('.lang-opt').forEach(o=>o.classList.toggle('active',o.getAttribute('data-lang')===lang));
+  const t=dict['meta.title']||I18N.en['meta.title'];if(t)document.title=t;
+  localStorage.setItem('vs_lang',lang);
+}
+function setLang(lang){
+  if(!SUPPORTED.includes(lang))lang='en';
+  const els=document.querySelectorAll('[data-i18n]');
+  els.forEach(el=>{if(el.tagName!=='META'&&el.tagName!=='TITLE')el.classList.add('i18n-swap');});
+  requestAnimationFrame(()=>{applyLang(lang);buildMarquee();requestAnimationFrame(()=>els.forEach(el=>el.classList.remove('i18n-swap')));});
+}
+function buildMarquee(){
+  const lang=document.documentElement.lang||'en';
+  const dict=I18N[lang]||I18N.en;
+  const keys=['trust.awards','trust.live','trust.users','trust.quality','trust.experience','trust.ml'];
+  const track=document.getElementById('mqtrack');if(!track)return;
+  const set=keys.map(k=>`<div class="mitem">${dict[k]||I18N.en[k]||''}</div><div class="mdiv"></div>`).join('');
+  track.innerHTML=set+set;
+}
+document.addEventListener('DOMContentLoaded',()=>{
+  applyLang(detectLang());buildMarquee();
+  const lw=document.getElementById('lang'),lb=document.getElementById('langBtn');
+  lb.addEventListener('click',e=>{e.stopPropagation();const o=lw.classList.toggle('open');lb.setAttribute('aria-expanded',o);});
+  document.addEventListener('click',()=>{lw.classList.remove('open');lb.setAttribute('aria-expanded','false');});
+  document.querySelectorAll('.lang-opt').forEach(o=>o.addEventListener('click',e=>{e.stopPropagation();setLang(o.getAttribute('data-lang'));lw.classList.remove('open');lb.setAttribute('aria-expanded','false');}));
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'){lw.classList.remove('open');lb.setAttribute('aria-expanded','false');}});
+});
+window.addEventListener('load',()=>{setTimeout(()=>{const l=document.getElementById('load');l.classList.add('gone');l.addEventListener('transitionend',()=>l.remove(),{once:true});},260);});
+const prog=document.getElementById('prog');
+window.addEventListener('scroll',()=>{prog.style.width=Math.min((window.scrollY/(document.body.scrollHeight-window.innerHeight))*100,100)+'%';},{passive:true});
+const nw=document.getElementById('nwrap');
+window.addEventListener('scroll',()=>nw.classList.toggle('scrolled',window.scrollY>60),{passive:true});
+const hbg=document.getElementById('hbg'),mob=document.getElementById('mob');
+hbg.addEventListener('click',()=>{const o=mob.classList.toggle('open');hbg.classList.toggle('open',o);hbg.setAttribute('aria-expanded',o);document.body.style.overflow=o?'hidden':'';});
+document.querySelectorAll('.mml').forEach(a=>a.addEventListener('click',()=>{mob.classList.remove('open');hbg.classList.remove('open');hbg.setAttribute('aria-expanded','false');document.body.style.overflow='';}));
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&mob.classList.contains('open')){mob.classList.remove('open');hbg.classList.remove('open');hbg.setAttribute('aria-expanded','false');document.body.style.overflow='';hbg.focus();}});
+const mbar=document.getElementById('mbar');
+window.addEventListener('scroll',()=>{const v=window.scrollY>500;mbar.classList.toggle('vis',v);mbar.setAttribute('aria-hidden',!v);const a=mbar.querySelector('a');if(a)a.tabIndex=v?0:-1;},{passive:true});
+if(!window.matchMedia('(prefers-reduced-motion:reduce)').matches){
+  const obs=new IntersectionObserver(en=>{en.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target);}});},{threshold:.08,rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.up,.stag').forEach(el=>obs.observe(el));
+}else{document.querySelectorAll('.up,.stag').forEach(el=>el.classList.add('in'));}
+</script>
+</body>
+</html>
