@@ -1,0 +1,48 @@
+name: Deploy Line Guide to GitHub Pages
+
+# Publishes the static site in line-guide/ as the site root.
+# One-time setup: repo Settings → Pages → Build and deployment → Source = "GitHub Actions".
+
+on:
+  push:
+    branches:
+      - claude/peaceful-davinci-0zn11j   # preview from the feature branch
+      - claude/gracious-gauss-62ymmv     # default branch (after merge)
+    paths:
+      - 'line-guide/**'
+      - '.github/workflows/pages.yml'
+  workflow_dispatch:                      # allow manual runs from the Actions tab
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow one concurrent deployment; cancel in-progress runs for the same group.
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+        with:
+          enablement: true   # auto-enable Pages (Actions source) if not already on
+
+      - name: Upload site (line-guide/)
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: line-guide
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

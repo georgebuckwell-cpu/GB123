@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Build your brief — Line Guide</title>
+<meta name="description" content="Describe your automation need, budget and timeframe. Line Guide returns your top 3 best-fit, verified suppliers — free for manufacturers.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+
+<canvas id="fx-canvas"></canvas>
+<div id="progress"></div>
+<div class="cursor-glow" id="cursorGlow"></div>
+<div id="loader"><div class="loader-brand"><span>LG</span></div></div>
+
+<div class="announce"><span class="rocket">🚀</span> Free for buyers, always <span class="sep">|</span> <a href="index.html#how">How matching works →</a></div>
+
+<nav class="nav" id="nav">
+  <div class="container">
+    <a href="index.html" class="brand"><span class="brand-frame"><span>LG</span></span><span class="brand-word">Line<b>·</b>Guide</span></a>
+    <div class="nav-links">
+      <a href="how-it-works.html">How it works</a>
+      <a href="use-cases.html">Use cases</a>
+      <a href="suppliers.html">Suppliers</a>
+      <a href="for-buyers.html" class="active">For buyers</a>
+      <a href="for-suppliers.html">For suppliers</a>
+      <a href="pricing.html">Pricing</a>
+    </div>
+    <div class="nav-right">
+      <a href="for-suppliers.html" class="link-quiet desktop-only">List your business</a>
+      <a href="#wizard" class="btn btn-primary">Start brief
+        <svg class="arr" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="how-it-works.html">How it works</a>
+      <a href="use-cases.html">Use cases</a>
+  <a href="suppliers.html">Suppliers</a>
+  <a href="for-buyers.html">For buyers</a>
+  <a href="for-suppliers.html">For suppliers</a>
+  <a href="pricing.html">Pricing</a>
+  <a href="#wizard" class="btn btn-primary btn-block">Start brief</a>
+</div>
+
+<main class="page">
+
+<!-- HEADER -->
+<section class="subhero" style="padding:108px 0 48px">
+  <div class="hero-grid"></div>
+  <div class="container">
+    <div class="subhero-inner reveal">
+      <div class="hero-badge"><span class="pulse"></span> Takes about 60 seconds · no account needed</div>
+      <h1 class="h-xl" style="font-size:clamp(2.2rem,5vw,3.4rem)">Build your brief.<br><span class="gt">Meet your top 3.</span></h1>
+      <p class="hero-sub">Answer a few questions about your line. Our matching engine ranks verified suppliers by real fit — then introduces you.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WIZARD -->
+<section class="section" style="padding-top:24px" id="wizard">
+  <div class="container">
+    <div class="wizard">
+
+      <!-- PROGRESS -->
+      <div class="wz-progress">
+        <div class="wz-pstep active"><div class="wz-pnum">1</div><div class="wz-pline"></div></div>
+        <div class="wz-pstep"><div class="wz-pnum">2</div><div class="wz-pline"></div></div>
+        <div class="wz-pstep"><div class="wz-pnum">3</div><div class="wz-pline"></div></div>
+        <div class="wz-pstep"><div class="wz-pnum">4</div><div class="wz-pline"></div></div>
+        <div class="wz-pstep"><div class="wz-pnum">5</div></div>
+      </div>
+
+      <!-- STEP 1 — APPLICATION -->
+      <div class="wz-step active" data-step="1">
+        <div class="wz-eyebrow">01 · Application</div>
+        <h2>What do you need to automate?</h2>
+        <p class="sub">Pick the closest match. You can add detail next.</p>
+        <div class="opt-grid">
+          <button class="opt" data-group="useCase" data-val="packing"><span class="opt-check"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span class="opt-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="8" width="18" height="12" rx="1"/><path d="M3 12h18M8 8V5h8v3"/></svg></span><span class="opt-name">Packing</span><span class="opt-desc">Flow-wrap, cartoning, bagging, tray load</span></button>
+          <button class="opt" data-group="useCase" data-val="palletising"><span class="opt-check"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span class="opt-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 16V8a2 2 0 0 0-1-1.7l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.7l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg></span><span class="opt-name">Palletising</span><span class="opt-desc">Robotic / layer palletising</span></button>
+          <button class="opt" data-group="useCase" data-val="end-of-line"><span class="opt-check"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span class="opt-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 17l6-6-6-6M12 19h8"/></svg></span><span class="opt-name">End-of-line</span><span class="opt-desc">Accumulation, sortation, conveying</span></button>
+          <button class="opt" data-group="useCase" data-val="filling"><span class="opt-check"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span class="opt-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2v6M12 8c-3 0-5 2-5 5v7h10v-7c0-3-2-5-5-5z"/></svg></span><span class="opt-name">Filling / dosing</span><span class="opt-desc">Liquid, powder, viscous filling</span></button>
+          <button class="opt" data-group="useCase" data-val="inspection"><span class="opt-check"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span class="opt-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg></span><span class="opt-name">Inspection</span><span class="opt-desc">Vision, check-weigh, label verify</span></button>
+          <button class="opt" data-group="useCase" data-val="manual"><span class="opt-check"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span class="opt-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 9V5a3 3 0 0 0-6 0v4M5 9h14l1 11H4z"/></svg></span><span class="opt-name">Manual process</span><span class="opt-desc">Retrofit a repetitive manual station</span></button>
+        </div>
+      </div>
+
+      <!-- STEP 2 — LINE DETAILS -->
+      <div class="wz-step" data-step="2">
+        <div class="wz-eyebrow">02 · Line details</div>
+        <h2>Tell us about the line</h2>
+        <p class="sub">This sharpens the match to suppliers who handle your format and environment.</p>
+
+        <div class="wz-field">
+          <label>Primary product format</label>
+          <div class="opt-grid">
+            <button class="opt" data-group="format" data-val="pouches"><span class="opt-check"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span class="opt-name">Pouches</span><span class="opt-desc">Flexible / sachets</span></button>
+            <button class="opt" data-group="format" data-val="cartons"><span class="opt-check"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span class="opt-name">Cartons</span><span class="opt-desc">Cases / boxes</span></button>
+            <button class="opt" data-group="format" data-val="bottles"><span class="opt-check"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span class="opt-name">Bottles / jars</span><span class="opt-desc">Rigid containers</span></button>
+            <button class="opt" data-group="format" data-val="cans"><span class="opt-check"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span class="opt-name">Cans</span><span class="opt-desc">Metal packaging</span></button>
+            <button class="opt" data-group="format" data-val="trays"><span class="opt-check"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span class="opt-name">Trays</span><span class="opt-desc">Ready meals / produce</span></button>
+            <button class="opt" data-group="format" data-val="bulk"><span class="opt-check"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span class="opt-name">Bulk / loose</span><span class="opt-desc">Unpackaged product</span></button>
+          </div>
+        </div>
+
+        <div class="wz-field">
+          <label>Required throughput <span class="hint">// drag</span></label>
+          <input type="range" class="mf-range" id="wzTput" min="0" max="100" value="50" style="--pct:50%">
+          <div class="wz-readout"><div class="v" id="wzTputOut"><em>310</em> units/min</div><div class="c">target line speed</div></div>
+        </div>
+
+        <div class="wz-field" style="margin-bottom:0">
+          <label>Production environment</label>
+          <div class="wz-chips">
+            <button class="chip sel" data-group="env" data-val="ambient">Ambient</button>
+            <button class="chip" data-group="env" data-val="chilled">Chilled</button>
+            <button class="chip" data-group="env" data-val="frozen">Frozen</button>
+            <button class="chip" data-group="env" data-val="washdown">Washdown / hygienic</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 3 — COMMERCIALS -->
+      <div class="wz-step" data-step="3">
+        <div class="wz-eyebrow">03 · Commercials</div>
+        <h2>Budget &amp; timeframe</h2>
+        <p class="sub">Matches respect your real-world constraints — capital and install window.</p>
+
+        <div class="wz-field">
+          <label>Capital budget <span class="hint">// drag</span></label>
+          <input type="range" class="mf-range" id="wzBudget" min="0" max="100" value="50" style="--pct:50%">
+          <div class="wz-readout"><div class="v" id="wzBudgetOut">£<em>200k</em></div><div class="c">available to invest</div></div>
+        </div>
+
+        <div class="wz-field" style="margin-bottom:0">
+          <label>Install timeframe</label>
+          <div class="opt-grid">
+            <button class="opt" data-group="timeframe" data-val="asap"><span class="opt-check"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span class="opt-name">ASAP</span><span class="opt-desc">Under 1 month</span></button>
+            <button class="opt" data-group="timeframe" data-val="1-3"><span class="opt-check"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span class="opt-name">1–3 months</span><span class="opt-desc">Near term</span></button>
+            <button class="opt" data-group="timeframe" data-val="3-6"><span class="opt-check"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span class="opt-name">3–6 months</span><span class="opt-desc">Planned project</span></button>
+            <button class="opt" data-group="timeframe" data-val="6+"><span class="opt-check"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span><span class="opt-name">6+ months</span><span class="opt-desc">Scoping / budgeting</span></button>
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 4 — REQUIREMENTS -->
+      <div class="wz-step" data-step="4">
+        <div class="wz-eyebrow">04 · Requirements</div>
+        <h2>Any must-haves?</h2>
+        <p class="sub">Optional, but they refine your ranking.</p>
+
+        <div class="wz-field">
+          <label>Preferred supplier region</label>
+          <div class="wz-chips">
+            <button class="chip" data-group="region" data-val="uk">United Kingdom</button>
+            <button class="chip" data-group="region" data-val="eu">European Union</button>
+            <button class="chip" data-group="region" data-val="either">No preference</button>
+          </div>
+        </div>
+
+        <div class="wz-field" style="margin-bottom:0">
+          <label>Must-haves <span class="hint">// select any</span></label>
+          <div class="wz-chips">
+            <button class="chip" data-group="must" data-multi="1" data-val="footprint">Small footprint</button>
+            <button class="chip" data-group="must" data-multi="1" data-val="certs">CE / UL certified</button>
+            <button class="chip" data-group="must" data-multi="1" data-val="integration">Existing line integration</button>
+            <button class="chip" data-group="must" data-multi="1" data-val="support">Service &amp; support</button>
+            <button class="chip" data-group="must" data-multi="1" data-val="cobot">Collaborative / cobot</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- STEP 5 — DETAILS -->
+      <div class="wz-step" data-step="5">
+        <div class="wz-eyebrow">05 · Your details</div>
+        <h2>Where do we send your matches?</h2>
+        <p class="sub">We only use this to share your shortlist and warm-intro the suppliers you choose.</p>
+        <div class="wz-field">
+          <div class="wz-two" style="margin-bottom:.9rem">
+            <input class="wz-input" id="wzName" placeholder="Full name" autocomplete="name">
+            <input class="wz-input" id="wzCompany" placeholder="Company" autocomplete="organization">
+          </div>
+          <input class="wz-input" id="wzEmail" type="email" placeholder="Work email" autocomplete="email">
+          <p class="mono-note" style="margin-top:.9rem">// free for buyers · no spam · unsubscribe anytime</p>
+        </div>
+      </div>
+
+      <!-- WARN -->
+      <div class="wz-warn" id="wzWarn"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg><span id="wzWarnMsg"></span></div>
+
+      <!-- NAV -->
+      <div class="wz-nav">
+        <button class="wz-back" id="wzBack" disabled><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg> Back</button>
+        <span class="wz-count" id="wzCount">Step 1 of 5</span>
+        <button class="btn btn-primary" id="wzNext">Continue</button>
+      </div>
+
+      <!-- LIVE SUMMARY -->
+      <div class="wz-summary" id="wzSummary"></div>
+
+      <!-- RESULTS -->
+      <div class="wz-results" id="wzResultsPanel">
+        <div class="res-head">
+          <div class="calc"><span class="res-spin"></span> Matching engine · weighted fit scoring</div>
+          <h2 class="h-lg" style="margin-bottom:.4rem"><span class="gt">Your top 3 matches.</span></h2>
+          <p class="lede center" id="wzGreet" style="margin-bottom:0">Ranking verified suppliers…</p>
+        </div>
+        <div class="res-grid" id="wzResults"></div>
+        <div class="res-restart">
+          <button class="wz-back" id="wzRestart" style="opacity:1"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 2v6h6M21 12a9 9 0 1 1-3-6.7L21 8"/></svg> Start a new brief</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-bot" style="border-top:none;padding-top:0">
+      <a href="index.html" class="brand"><span class="brand-frame"><span>LG</span></span><span class="brand-word">Line<b>·</b>Guide</span></a>
+      <div>© 2026 Line Guide · The new way to buy automation equipment</div>
+      <a href="for-suppliers.html" class="link-quiet">Are you a supplier? →</a>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/app.js"></script>
+<script src="assets/brief.js"></script>
+</body>
+</html>

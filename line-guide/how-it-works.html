@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How Line Guide works — matching, ratings &amp; trust</title>
+<meta name="description" content="How Line Guide matches food & beverage manufacturers with the right automation suppliers — the buyer journey, the supplier journey, and the transparent fit-scoring algorithm behind your top 3.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+
+<canvas id="fx-canvas"></canvas>
+<div id="progress"></div>
+<div class="cursor-glow" id="cursorGlow"></div>
+<div id="loader"><div class="loader-brand"><span>LG</span></div></div>
+
+<div class="announce"><span class="rocket">🚀</span> Built for food &amp; beverage <span class="sep">|</span> <a href="brief.html">Get matched →</a></div>
+
+<nav class="nav" id="nav">
+  <div class="container">
+    <a href="index.html" class="brand"><span class="brand-frame"><span>LG</span></span><span class="brand-word">Line<b>·</b>Guide</span></a>
+    <div class="nav-links">
+      <a href="how-it-works.html" class="active">How it works</a>
+      <a href="use-cases.html">Use cases</a>
+      <a href="suppliers.html">Suppliers</a>
+      <a href="for-buyers.html">For buyers</a>
+      <a href="for-suppliers.html">For suppliers</a>
+    </div>
+    <div class="nav-right">
+      <a href="pricing.html" class="link-quiet desktop-only">Pricing</a>
+      <a href="brief.html" class="btn btn-primary">Get matched
+        <svg class="arr" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="how-it-works.html">How it works</a>
+  <a href="use-cases.html">Use cases</a>
+  <a href="suppliers.html">Suppliers</a>
+  <a href="for-buyers.html">For buyers</a>
+  <a href="for-suppliers.html">For suppliers</a>
+  <a href="pricing.html">Pricing</a>
+  <a href="brief.html" class="btn btn-primary btn-block">Get matched</a>
+</div>
+
+<main class="page">
+
+<!-- SUBHERO -->
+<section class="subhero" style="padding:120px 0 56px">
+  <div class="hero-grid"></div>
+  <div class="container">
+    <div class="subhero-inner reveal">
+      <div class="hero-badge"><span class="pulse"></span> The mechanics, in full</div>
+      <h1 class="h-xl">How Line Guide <span class="gt">works.</span></h1>
+      <p class="hero-sub">A marketplace with one job: connect the right buyer and supplier, fast. Here's the model, both journeys, and exactly how the matching engine ranks your top three.</p>
+    </div>
+  </div>
+</section>
+
+<!-- THE MODEL -->
+<section class="section" style="padding-top:24px">
+  <div class="container">
+    <div class="section-head center reveal">
+      <div class="eyebrow center">The model</div>
+      <h2 class="h-lg">Two sides. <span class="gt">One engine in the middle.</span></h2>
+      <p class="lede center">Buyers bring demand — a real application with budget and timeframe. Suppliers bring capability. The engine matches them on genuine fit, and only fit.</p>
+    </div>
+    <div class="pillars stagger">
+      <div class="pillar">
+        <span class="pillar-step">Buyer</span>
+        <div class="pillar-ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div>
+        <h3>Brings the need</h3>
+        <p>A food &amp; beverage manufacturer describes the line to automate, with budget and timeframe attached. Free, always.</p>
+      </div>
+      <div class="pillar">
+        <span class="pillar-step">Engine</span>
+        <div class="pillar-ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4M5 5l3 3M16 16l3 3M19 5l-3 3M8 16l-3 3"/></svg></div>
+        <h3>Matches on fit</h3>
+        <p>A transparent weighted score ranks suppliers by how well they actually solve the brief — returning the top three.</p>
+      </div>
+      <div class="pillar">
+        <span class="pillar-step">Supplier</span>
+        <div class="pillar-ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg></div>
+        <h3>Brings capability</h3>
+        <p>A verified automation specialist lists its strengths and surfaces when its capabilities fit a live brief.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BUYER JOURNEY -->
+<section class="section bg-1">
+  <div class="container">
+    <div class="section-head center reveal">
+      <div class="eyebrow center">The buyer journey</div>
+      <h2 class="h-lg">From problem to <span class="gt">three real options.</span></h2>
+    </div>
+    <div class="timeline stagger" style="text-align:left">
+      <div class="tstep"><div class="tdot">01</div><div class="tbody"><span class="tbadge">Minutes</span><h4>Describe the line</h4><p>Application, product format, throughput and environment — in plain language. The brief builder structures it for you.</p></div></div>
+      <div class="tstep"><div class="tdot">02</div><div class="tbody"><span class="tbadge">Constraints</span><h4>Set budget &amp; timeframe</h4><p>Add your capital range and install window so every match respects your real-world limits.</p></div></div>
+      <div class="tstep"><div class="tdot">03</div><div class="tbody"><span class="tbadge">Instant</span><h4>Review your top 3</h4><p>Each match shows an overall fit score plus a per-signal breakdown — you see exactly why it ranks.</p></div></div>
+      <div class="tstep"><div class="tdot">04</div><div class="tbody"><span class="tbadge">Free</span><h4>Request introductions</h4><p>Open warm, qualified conversations with the suppliers you choose. No fees, no obligation.</p></div></div>
+    </div>
+    <div class="center" style="margin-top:2.6rem"><a href="brief.html" class="btn btn-primary reveal">Try the brief builder
+      <svg class="arr" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></div>
+  </div>
+</section>
+
+<!-- SUPPLIER JOURNEY -->
+<section class="section">
+  <div class="container">
+    <div class="section-head center reveal">
+      <div class="eyebrow center">The supplier journey</div>
+      <h2 class="h-lg">From profile to <span class="gt">qualified pipeline.</span></h2>
+    </div>
+    <div class="timeline stagger" style="text-align:left">
+      <div class="tstep"><div class="tdot">01</div><div class="tbody"><span class="tbadge">Onboard</span><h4>Build &amp; verify your profile</h4><p>Capabilities, sectors, formats, lead times and case studies — then get the verified badge.</p></div></div>
+      <div class="tstep"><div class="tdot">02</div><div class="tbody"><span class="tbadge">Choose tier</span><h4>Basic, Premium or Ultra</h4><p>A monthly membership sets your visibility and lead flow. Scale up or down anytime.</p></div></div>
+      <div class="tstep"><div class="tdot">03</div><div class="tbody"><span class="tbadge">Automatic</span><h4>Surface in matching briefs</h4><p>When your strengths fit a live brief, you appear in the buyer's top three — pre-qualified.</p></div></div>
+      <div class="tstep"><div class="tdot">04</div><div class="tbody"><span class="tbadge">Grow</span><h4>Deliver &amp; earn ratings</h4><p>Great projects earn verified reviews that lift your ranking — a flywheel of better leads.</p></div></div>
+    </div>
+    <div class="center" style="margin-top:2.6rem"><a href="for-suppliers.html" class="btn btn-ghost reveal">List your business
+      <svg class="arr" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></div>
+  </div>
+</section>
+
+<!-- THE ALGORITHM -->
+<section class="section bg-1">
+  <div class="container">
+    <div class="ratings">
+      <div class="reveal">
+        <div class="eyebrow">The matching algorithm</div>
+        <h2 class="h-lg">A score you can <span class="gt">see through.</span></h2>
+        <p class="lede">Every match gets a weighted fit score from four signals. We show the breakdown on each result so a recommendation is never a black box.</p>
+        <ul class="split-list" style="margin-top:.5rem">
+          <li style="display:flex;gap:11px;padding:.5rem 0;font-size:.92rem;color:var(--sub)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2.4" style="flex-shrink:0;margin-top:3px"><polyline points="20 6 9 17 4 12"/></svg><span><b style="color:var(--text)">Use-case fit (45%)</b> — does the supplier genuinely do this application, format and environment?</span></li>
+          <li style="display:flex;gap:11px;padding:.5rem 0;font-size:.92rem;color:var(--sub)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2.4" style="flex-shrink:0;margin-top:3px"><polyline points="20 6 9 17 4 12"/></svg><span><b style="color:var(--text)">Verified rating (25%)</b> — what real buyers reported after delivery.</span></li>
+          <li style="display:flex;gap:11px;padding:.5rem 0;font-size:.92rem;color:var(--sub)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2.4" style="flex-shrink:0;margin-top:3px"><polyline points="20 6 9 17 4 12"/></svg><span><b style="color:var(--text)">Budget alignment (18%)</b> — does the supplier operate in your capital band?</span></li>
+          <li style="display:flex;gap:11px;padding:.5rem 0;font-size:.92rem;color:var(--sub)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2.4" style="flex-shrink:0;margin-top:3px"><polyline points="20 6 9 17 4 12"/></svg><span><b style="color:var(--text)">Delivery vs timeframe (12%)</b> — can they hit your install window?</span></li>
+        </ul>
+      </div>
+      <div class="rate-card reveal">
+        <div class="rate-row"><div class="rate-lbl">Use-case fit</div><div class="rate-bar-track"><div class="rate-bar" data-w="92"></div></div><div class="rate-val">45%</div></div>
+        <div class="rate-row"><div class="rate-lbl">Verified rating</div><div class="rate-bar-track"><div class="rate-bar" data-w="78"></div></div><div class="rate-val">25%</div></div>
+        <div class="rate-row"><div class="rate-lbl">Budget alignment</div><div class="rate-bar-track"><div class="rate-bar" data-w="62"></div></div><div class="rate-val">18%</div></div>
+        <div class="rate-row"><div class="rate-lbl">Delivery speed</div><div class="rate-bar-track"><div class="rate-bar" data-w="45"></div></div><div class="rate-val">12%</div></div>
+        <div class="rate-summary" style="margin-top:1.4rem;margin-bottom:0">
+          <div>
+            <div class="h-md" style="color:var(--white);margin-bottom:.3rem">Tier never buys trust</div>
+            <p class="mono-note" style="line-height:1.6">// Membership affects visibility &amp; ranking priority only — never your rating, reviews or fit score.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WORKED EXAMPLE -->
+<section class="section">
+  <div class="container">
+    <div class="section-head center reveal">
+      <div class="eyebrow center">A worked example</div>
+      <h2 class="h-lg">One brief, <span class="gt">scored.</span></h2>
+      <p class="lede center">A chilled ready-meal producer needs packing automation: £180k budget, 1–3 month install, UK preferred. Here's how three suppliers rank.</p>
+    </div>
+    <div class="res-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem">
+      <div class="res-card top in" style="opacity:1;transform:none"><div class="res-ranktag">★ Best fit</div><div class="res-name">Meridian Robotics</div><div class="res-meta">★ 4.9 · UK · Ultra</div><div class="res-fit"><span class="big">96%</span><span class="lbl">overall fit</span></div>
+        <div class="res-break">
+          <div class="brk-row"><span class="brk-lbl">Use-case</span><span class="brk-track"><span class="brk-bar" style="--w:96%"></span></span></div>
+          <div class="brk-row"><span class="brk-lbl">Rating</span><span class="brk-track"><span class="brk-bar" style="--w:90%"></span></span></div>
+          <div class="brk-row"><span class="brk-lbl">Budget</span><span class="brk-track"><span class="brk-bar" style="--w:85%"></span></span></div>
+          <div class="brk-row"><span class="brk-lbl">Timeline</span><span class="brk-track"><span class="brk-bar" style="--w:88%"></span></span></div>
+        </div>
+        <div class="res-tags"><span class="res-tag">Robotics</span><span class="res-tag">High-speed</span></div>
+      </div>
+      <div class="res-card in" style="opacity:1;transform:none"><div class="res-ranktag">Match #2</div><div class="res-name">AxisFlow Automation</div><div class="res-meta">★ 4.8 · UK · Premium</div><div class="res-fit"><span class="big">89%</span><span class="lbl">overall fit</span></div>
+        <div class="res-break">
+          <div class="brk-row"><span class="brk-lbl">Use-case</span><span class="brk-track"><span class="brk-bar" style="--w:88%"></span></span></div>
+          <div class="brk-row"><span class="brk-lbl">Rating</span><span class="brk-track"><span class="brk-bar" style="--w:86%"></span></span></div>
+          <div class="brk-row"><span class="brk-lbl">Budget</span><span class="brk-track"><span class="brk-bar" style="--w:100%"></span></span></div>
+          <div class="brk-row"><span class="brk-lbl">Timeline</span><span class="brk-track"><span class="brk-bar" style="--w:84%"></span></span></div>
+        </div>
+        <div class="res-tags"><span class="res-tag">Flexible</span><span class="res-tag">Quick install</span></div>
+      </div>
+      <div class="res-card in" style="opacity:1;transform:none"><div class="res-ranktag">Match #3</div><div class="res-name">Vanguard Cobotics</div><div class="res-meta">★ 4.7 · UK · Premium</div><div class="res-fit"><span class="big">84%</span><span class="lbl">overall fit</span></div>
+        <div class="res-break">
+          <div class="brk-row"><span class="brk-lbl">Use-case</span><span class="brk-track"><span class="brk-bar" style="--w:82%"></span></span></div>
+          <div class="brk-row"><span class="brk-lbl">Rating</span><span class="brk-track"><span class="brk-bar" style="--w:84%"></span></span></div>
+          <div class="brk-row"><span class="brk-lbl">Budget</span><span class="brk-track"><span class="brk-bar" style="--w:80%"></span></span></div>
+          <div class="brk-row"><span class="brk-lbl">Timeline</span><span class="brk-track"><span class="brk-bar" style="--w:92%"></span></span></div>
+        </div>
+        <div class="res-tags"><span class="res-tag">Cobots</span><span class="res-tag">Fast ROI</span></div>
+      </div>
+    </div>
+    <p class="mono-note center" style="margin-top:1.6rem">// illustrative scores · run your own brief for live results</p>
+  </div>
+</section>
+
+<!-- TRUST -->
+<section class="section bg-1">
+  <div class="container">
+    <div class="section-head center reveal">
+      <div class="eyebrow center">Verification &amp; trust</div>
+      <h2 class="h-lg">Why the rankings <span class="gt">hold up.</span></h2>
+    </div>
+    <div class="why stagger">
+      <div class="why-card"><div class="why-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2l9 4v6c0 5-3.8 9-9 10-5.2-1-9-5-9-10V6z"/><path d="M9 12l2 2 4-4"/></svg></div><h4>Verified suppliers</h4><p>Every supplier is checked before they earn the verified badge that lifts buyer confidence.</p></div>
+      <div class="why-card"><div class="why-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2l3 6.5 7 .9-5 4.9 1.2 7L12 18l-6.4 3.3L7 14.3 2 9.4l7-.9z"/></svg></div><h4>Reviews from real buyers</h4><p>Ratings come only from manufacturers who actually engaged — no self-reported scores.</p></div>
+      <div class="why-card"><div class="why-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 3v18h18"/><path d="M7 14l4-4 3 3 5-6"/></svg></div><h4>Transparent scoring</h4><p>The per-signal breakdown is visible on every match, so buyers can judge the reasoning.</p></div>
+      <div class="why-card"><div class="why-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M18 6L6 18M6 6l12 12"/></svg></div><h4>No pay-to-win quality</h4><p>Money buys visibility, never a better rating. The two are deliberately kept separate.</p></div>
+      <div class="why-card"><div class="why-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 6L9 17l-5-5"/></svg></div><h4>Free for buyers</h4><p>Manufacturers never pay — so our only incentive is matching them with the best fit.</p></div>
+      <div class="why-card"><div class="why-ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg></div><h4>Sector focus</h4><p>Built for food &amp; beverage realities: hygiene, throughput, cold chain and compliance.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section">
+  <div class="container">
+    <div class="section-head center reveal">
+      <div class="eyebrow center">Questions</div>
+      <h2 class="h-lg">Still <span class="gt">wondering?</span></h2>
+    </div>
+    <div class="faq reveal">
+      <div class="faq-item"><button class="faq-q">Why only three matches?<span class="ico"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg></span></button><div class="faq-a"><p>Three is enough to compare meaningfully without drowning in options. You get genuine, qualified choices rather than a directory of maybes.</p></div></div>
+      <div class="faq-item"><button class="faq-q">What if no supplier perfectly fits?<span class="ico"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg></span></button><div class="faq-a"><p>The engine ranks by best available fit and shows the breakdown, so you can see trade-offs. As the supplier base grows, match quality keeps improving.</p></div></div>
+      <div class="faq-item"><button class="faq-q">Can suppliers pay for a better rating?<span class="ico"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg></span></button><div class="faq-a"><p>No. Membership tier affects visibility and ranking priority only. Ratings and reviews come purely from verified buyers — that separation is non-negotiable.</p></div></div>
+      <div class="faq-item"><button class="faq-q">How long until a supplier responds?<span class="ico"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg></span></button><div class="faq-a"><p>Most respond within 48 hours, and many within 24. Because the brief is qualified, conversations start with substance.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <div class="cta-glow"></div>
+  <div class="container"><div class="cta-inner reveal">
+    <div class="eyebrow center">See it for yourself</div>
+    <h2 class="h-lg">Run a brief, <span class="gt">meet your top 3.</span></h2>
+    <p class="lede center">It takes about a minute — and it's free for manufacturers.</p>
+    <a href="brief.html" class="btn btn-primary btn-lg">Build my brief
+      <svg class="arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+  </div></div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-bot" style="border-top:none;padding-top:0">
+      <a href="index.html" class="brand"><span class="brand-frame"><span>LG</span></span><span class="brand-word">Line<b>·</b>Guide</span></a>
+      <div>© 2026 Line Guide · The new way to buy automation equipment</div>
+      <a href="brief.html" class="link-quiet">Get matched →</a>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/app.js"></script>
+</body>
+</html>

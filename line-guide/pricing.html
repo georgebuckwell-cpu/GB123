@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pricing — Line Guide</title>
+<meta name="description" content="Simple supplier membership pricing — Basic, Premium and Ultra. Free for buyers. Compare tiers, switch to annual to save, and calculate your ROI.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+
+<canvas id="fx-canvas"></canvas>
+<div id="progress"></div>
+<div class="cursor-glow" id="cursorGlow"></div>
+<div id="loader"><div class="loader-brand"><span>LG</span></div></div>
+
+<div class="announce"><span class="rocket">🚀</span> Founding-member rates <span class="sep">|</span> <a href="for-suppliers.html">Claim your spot →</a></div>
+
+<nav class="nav" id="nav">
+  <div class="container">
+    <a href="index.html" class="brand"><span class="brand-frame"><span>LG</span></span><span class="brand-word">Line<b>·</b>Guide</span></a>
+    <div class="nav-links">
+      <a href="how-it-works.html">How it works</a>
+      <a href="use-cases.html">Use cases</a>
+      <a href="suppliers.html">Suppliers</a>
+      <a href="for-buyers.html">For buyers</a>
+      <a href="for-suppliers.html">For suppliers</a>
+    </div>
+    <div class="nav-right">
+      <a href="for-buyers.html" class="link-quiet desktop-only">I'm a buyer</a>
+      <a href="for-suppliers.html" class="btn btn-primary">List your business
+        <svg class="arr" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="how-it-works.html">How it works</a>
+  <a href="use-cases.html">Use cases</a>
+  <a href="suppliers.html">Suppliers</a>
+  <a href="for-buyers.html">For buyers</a>
+  <a href="for-suppliers.html">For suppliers</a>
+  <a href="for-suppliers.html" class="btn btn-primary btn-block">List your business</a>
+</div>
+
+<main class="page">
+
+<section class="subhero" style="padding:108px 0 32px">
+  <div class="hero-grid"></div>
+  <div class="container">
+    <div class="subhero-inner reveal">
+      <div class="hero-badge"><span class="pulse"></span> Buyers free · suppliers from £149/mo</div>
+      <h1 class="h-xl" style="font-size:clamp(2.2rem,5vw,3.4rem)">Simple, scalable <span class="gt">pricing.</span></h1>
+      <p class="hero-sub">Manufacturers use Line Guide free, forever. Suppliers pick a membership tier for visibility and lead flow — and only ever pay for one thing: better-fit demand.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-top:24px">
+  <div class="container">
+
+    <!-- BILLING TOGGLE -->
+    <div class="billing reveal">
+      <span class="opt-lbl on" id="billMonthly">Monthly</span>
+      <div class="switch" id="billSwitch"><div class="knob"></div></div>
+      <span class="opt-lbl" id="billAnnual">Annual</span>
+      <span class="save-badge">2 months free</span>
+    </div>
+
+    <!-- TIER CARDS -->
+    <div class="pricing stagger">
+      <div class="tier">
+        <div class="tier-name">Basic</div>
+        <div class="tier-price" data-tier-price="Basic"><sup>£</sup><span class="amt">149</span><span class="per">/mo</span><span class="sub-bill"></span></div>
+        <p class="tier-desc">Get discovered. A verified presence in the marketplace.</p>
+        <div class="tier-div"></div>
+        <ul class="tier-feats">
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Verified company profile</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Appear in relevant matches</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Up to 5 leads / month</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Ratings &amp; reviews</li>
+        </ul>
+        <a href="for-suppliers.html" class="btn btn-ghost btn-block">Start with Basic</a>
+      </div>
+
+      <div class="tier featured">
+        <div class="tier-tag">Most popular</div>
+        <div class="tier-name">Premium</div>
+        <div class="tier-price" data-tier-price="Premium"><sup>£</sup><span class="amt">399</span><span class="per">/mo</span><span class="sub-bill"></span></div>
+        <p class="tier-desc">Lead the line. Higher visibility and richer profiles.</p>
+        <div class="tier-div"></div>
+        <ul class="tier-feats">
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Everything in Basic</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Priority ranking boost</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Unlimited leads</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Case studies &amp; rich media</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Performance analytics</li>
+        </ul>
+        <a href="for-suppliers.html" class="btn btn-primary btn-block">Choose Premium</a>
+      </div>
+
+      <div class="tier">
+        <div class="tier-name">Ultra</div>
+        <div class="tier-price" data-tier-price="Ultra"><sup>£</sup><span class="amt">899</span><span class="per">/mo</span><span class="sub-bill"></span></div>
+        <p class="tier-desc">Own your category. Maximum reach &amp; white-glove support.</p>
+        <div class="tier-div"></div>
+        <ul class="tier-feats">
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Everything in Premium</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Top-tier ranking priority</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Featured placement &amp; spotlight</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Dedicated account manager</li>
+          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>API &amp; CRM lead sync</li>
+        </ul>
+        <a href="for-suppliers.html" class="btn btn-ghost btn-block">Go Ultra</a>
+      </div>
+    </div>
+    <p class="mono-note center" style="margin-top:1.4rem">// all tiers: verified profile · cancel anytime · no setup fees</p>
+  </div>
+</section>
+
+<!-- COMPARISON TABLE -->
+<section class="section bg-1">
+  <div class="container">
+    <div class="section-head center reveal">
+      <div class="eyebrow center">Compare every feature</div>
+      <h2 class="h-lg">Find your <span class="gt">tier.</span></h2>
+    </div>
+    <div class="cmp-wrap reveal">
+      <table class="cmp">
+        <thead>
+          <tr>
+            <th class="feat-col">Feature</th>
+            <th data-th-tier="Basic">Basic<span class="pp">£149/mo</span></th>
+            <th class="featured-col" data-th-tier="Premium">Premium<span class="pp">£399/mo</span></th>
+            <th data-th-tier="Ultra">Ultra<span class="pp">£899/mo</span></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="grp"><td colspan="4">Visibility &amp; matching</td></tr>
+          <tr><td class="feat">Verified company profile</td><td class="yes">✓</td><td class="featured-col yes">✓</td><td class="yes">✓</td></tr>
+          <tr><td class="feat">Appear in relevant matches</td><td class="yes">✓</td><td class="featured-col yes">✓</td><td class="yes">✓</td></tr>
+          <tr><td class="feat">Ranking priority</td><td><span class="val">Standard</span></td><td class="featured-col"><span class="val">Boosted</span></td><td><span class="val">Top tier</span></td></tr>
+          <tr><td class="feat">Featured placement &amp; spotlight</td><td class="no">—</td><td class="featured-col no">—</td><td class="yes">✓</td></tr>
+
+          <tr class="grp"><td colspan="4">Leads</td></tr>
+          <tr><td class="feat">Matched leads / month</td><td><span class="val">Up to 5</span></td><td class="featured-col"><span class="val">Unlimited</span></td><td><span class="val">Unlimited</span></td></tr>
+          <tr><td class="feat">Early access to new briefs</td><td class="no">—</td><td class="featured-col no">—</td><td class="yes">✓</td></tr>
+
+          <tr class="grp"><td colspan="4">Profile &amp; brand</td></tr>
+          <tr><td class="feat">Ratings &amp; reviews</td><td class="yes">✓</td><td class="featured-col yes">✓</td><td class="yes">✓</td></tr>
+          <tr><td class="feat">Case studies &amp; rich media</td><td class="no">—</td><td class="featured-col yes">✓</td><td class="yes">✓</td></tr>
+
+          <tr class="grp"><td colspan="4">Insight &amp; integration</td></tr>
+          <tr><td class="feat">Performance analytics</td><td class="no">—</td><td class="featured-col yes">✓</td><td class="yes">✓</td></tr>
+          <tr><td class="feat">API &amp; CRM lead sync</td><td class="no">—</td><td class="featured-col no">—</td><td class="yes">✓</td></tr>
+          <tr><td class="feat">Dedicated account manager</td><td class="no">—</td><td class="featured-col no">—</td><td class="yes">✓</td></tr>
+
+          <tr class="cta-row">
+            <td class="feat"></td>
+            <td><a href="for-suppliers.html" class="btn btn-ghost">Start</a></td>
+            <td class="featured-col"><a href="for-suppliers.html" class="btn btn-primary">Choose</a></td>
+            <td><a href="for-suppliers.html" class="btn btn-ghost">Go Ultra</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ROI CALCULATOR -->
+<section class="section">
+  <div class="container">
+    <div class="section-head center reveal">
+      <div class="eyebrow center">ROI calculator</div>
+      <h2 class="h-lg">One won project <span class="gt">pays for years.</span></h2>
+      <p class="lede center">Automation projects are high value. See how membership compares to the pipeline a single matched win can unlock.</p>
+    </div>
+
+    <div class="roi reveal">
+      <!-- inputs -->
+      <div class="roi-form">
+        <div class="mf-group" style="margin-bottom:1.7rem">
+          <label style="display:block;font-size:.84rem;color:var(--text);margin-bottom:.8rem">Average project value</label>
+          <input type="range" class="mf-range" id="roiValue" min="20" max="600" value="150" step="10" style="--pct:23%">
+          <div class="wz-readout"><div class="v" id="roiValueOut">£<em>150k</em></div><div class="c">per won project</div></div>
+        </div>
+
+        <div class="mf-group" style="margin-bottom:1.7rem">
+          <label style="display:block;font-size:.84rem;color:var(--text);margin-bottom:.8rem">Projects won via Line Guide</label>
+          <input type="range" class="mf-range" id="roiWins" min="0.25" max="5" value="1" step="0.25" style="--pct:15%">
+          <div class="wz-readout"><div class="v" id="roiWinsOut"><em>1</em> / month</div><div class="c">matched &amp; closed</div></div>
+        </div>
+
+        <div class="mf-group" style="margin-bottom:0">
+          <label style="display:block;font-size:.84rem;color:var(--text);margin-bottom:.4rem">Your membership tier</label>
+          <div class="roi-tier-row">
+            <button class="roi-tier" data-tier="Basic">Basic</button>
+            <button class="roi-tier sel" data-tier="Premium">Premium</button>
+            <button class="roi-tier" data-tier="Ultra">Ultra</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- outputs -->
+      <div class="roi-out">
+        <div class="roi-stat"><div class="big" id="roiROI">£376</div><div class="lbl">matched pipeline for every £1 of membership</div></div>
+        <div class="roi-divider"></div>
+        <div class="roi-stat"><div class="big" id="roiShare">0.27%</div><div class="lbl">membership cost as a share of one project</div></div>
+        <div class="roi-divider"></div>
+        <div class="roi-stat"><div class="big" id="roiBreak">&lt; 1 project / yr</div><div class="lbl">needed to fully cover your membership</div></div>
+        <p class="roi-note">// Illustrative. "Matched pipeline" is project value from Line Guide-sourced wins, not net profit. Annual billing applies the 2-months-free rate.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section bg-1">
+  <div class="container">
+    <div class="section-head center reveal">
+      <div class="eyebrow center">Pricing questions</div>
+      <h2 class="h-lg">Good to <span class="gt">know.</span></h2>
+    </div>
+    <div class="faq reveal">
+      <div class="faq-item"><button class="faq-q">Is it really free for buyers?<span class="ico"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg></span></button><div class="faq-a"><p>Yes — manufacturers sourcing equipment pay nothing. Supplier memberships fund the platform, which keeps our incentive simple: surface the genuinely best-fit suppliers for every buyer.</p></div></div>
+      <div class="faq-item"><button class="faq-q">How does annual billing work?<span class="ico"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg></span></button><div class="faq-a"><p>Switch to annual and you pay for 10 months instead of 12 — effectively two months free. You're billed once yearly and can still cancel renewal anytime.</p></div></div>
+      <div class="faq-item"><button class="faq-q">Does a higher tier buy better ratings?<span class="ico"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg></span></button><div class="faq-a"><p>Never. Tier affects visibility and ranking priority only. Your rating and reviews come purely from verified buyers — that separation is core to platform trust.</p></div></div>
+      <div class="faq-item"><button class="faq-q">Can I change or cancel my tier?<span class="ico"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg></span></button><div class="faq-a"><p>Anytime. Upgrade, downgrade or cancel as your pipeline changes. No lock-in, no setup fees, no exit penalties.</p></div></div>
+      <div class="faq-item"><button class="faq-q">Are there founding-member rates?<span class="ico"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 5v14M5 12h14"/></svg></span></button><div class="faq-a"><p>Yes — join before launch and lock in current pricing for 12 months, with personal onboarding. <a href="for-suppliers.html" style="color:var(--green)">Claim a founding spot →</a></p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <div class="cta-glow"></div>
+  <div class="container"><div class="cta-inner reveal">
+    <div class="eyebrow center">Ready to list?</div>
+    <h2 class="h-lg">Start getting <span class="gt">matched.</span></h2>
+    <p class="lede center">Pick a tier, build your profile, and qualified briefs start landing in your pipeline.</p>
+    <a href="for-suppliers.html" class="btn btn-primary btn-lg">List your business
+      <svg class="arr" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+  </div></div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-bot" style="border-top:none;padding-top:0">
+      <a href="index.html" class="brand"><span class="brand-frame"><span>LG</span></span><span class="brand-word">Line<b>·</b>Guide</span></a>
+      <div>© 2026 Line Guide · The new way to buy automation equipment</div>
+      <a href="for-buyers.html" class="link-quiet">Buyers go free →</a>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/app.js"></script>
+<script src="assets/pricing.js"></script>
+</body>
+</html>
