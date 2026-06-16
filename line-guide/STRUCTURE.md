@@ -51,8 +51,8 @@ Line Guide
 ├── MARKETING
 │   ├── /how-it-works ────── deeper explainer (buyer + supplier)
 │   ├── /pricing ─────────── standalone supplier pricing + compare
-│   ├── /use-cases ───────── packing / palletising / filling / …
-│   ├── /use-cases/:slug ─── single application landing (SEO)
+│   ├── /use-cases ───────── packing / palletising / filling / …    [BUILT → use-cases.html]
+│   ├── /use-cases/:slug ─── single application landing (SEO)        [BUILT → use-case.html?u=]
 │   ├── /suppliers ───────── public directory (browse/search)       [BUILT → suppliers.html]
 │   ├── /suppliers/:slug ─── public supplier profile (SEO + proof)   [BUILT → supplier.html?s=]
 │   ├── /about ───────────── mission, team, story
@@ -120,11 +120,28 @@ Standalone tier comparison **table** (feature × tier), annual toggle, ROI
 calculator ("one won project pays for X months"), pricing FAQ.
 **Goal:** close suppliers who need detail before committing.
 
-### 3.6 Use Cases `/use-cases` + `/use-cases/:slug` *(roadmap)*
-Index + one SEO landing per application (packing, palletising, filling,
-inspection, manual-process, end-of-line). Each: problem, what to look for,
-typical budget/timeframe, "find suppliers for this" CTA → pre-filled brief.
-**Goal:** organic acquisition + funnel pre-fill.
+### 3.6 Use Cases `/use-cases` + `/use-cases/:slug` — *BUILT*
+- **`use-cases.html`** — index grid of all six applications (packing,
+  palletising, end-of-line, filling, inspection, manual process), each with
+  typical budget/timeframe, linking to its landing.
+- **`use-case.html?u=slug`** — dynamic SEO landing per application: intro,
+  quick-facts row, "the challenge", "what to look for" checklist, "questions
+  to ask suppliers", **top-rated related suppliers** (pulled live from
+  `data.js`), an FAQ accordion, and related-application links.
+- **`assets/usecases.js`** — content source of truth (6 entries, with
+  meta title/description set per page); **`assets/usecase.js`** renders both
+  the index and the landing.
+- **Funnel hand-off:** every CTA flows into the funnel — "Find suppliers for
+  this" → `brief.html`, "Browse the directory" → `suppliers.html?case=slug`
+  (the pre-filter wired into the directory).
+
+**Goal:** organic acquisition (one indexable page per high-intent search) that
+feeds straight into the brief builder and directory.
+
+> **SEO note:** content is data-driven and currently client-rendered for
+> maintainability. For production, pre-render each `use-case` to static HTML
+> from `usecases.js` at build time (e.g. a small SSG step) so titles, meta and
+> body are in the initial HTML payload.
 
 ### 3.7 Supplier Directory `/suppliers` + `/suppliers/:slug` — *BUILT*
 - **`suppliers.html`** — browsable directory with live **search**, **application
