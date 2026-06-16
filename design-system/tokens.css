@@ -1,0 +1,306 @@
+/* ============================================================================
+   LINE GUIDE — DESIGN SYSTEM CSS VARIABLES
+   v1.0.0 · Modern + technical · Dark-first
+   ----------------------------------------------------------------------------
+   Usage:
+     <html data-theme="dark">  → dark surfaces (default brand experience)
+     <html data-theme="light"> → light surfaces
+   Falls back to OS preference via prefers-color-scheme when no data-theme set.
+   ============================================================================ */
+
+/* Web font imports — swap for self-hosted in production for performance/GDPR */
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+:root {
+  /* ── PRIMARY · Signal Green ─────────────────────────────────────────────── */
+  --lg-primary-50:  #E6FBEF;
+  --lg-primary-100: #BFF4D6;
+  --lg-primary-200: #84E9AF;
+  --lg-primary-300: #45DA86;
+  --lg-primary-400: #14C765;
+  --lg-primary-500: #00B259;
+  --lg-primary-600: #009149;
+  --lg-primary-700: #00713A;
+  --lg-primary-800: #00532B;
+  --lg-primary-900: #00371D;
+
+  /* ── SECONDARY · Ion Blue ───────────────────────────────────────────────── */
+  --lg-secondary-50:  #EAF1FF;
+  --lg-secondary-100: #CBDDFF;
+  --lg-secondary-200: #9DBEFF;
+  --lg-secondary-300: #6A99FF;
+  --lg-secondary-400: #3D74F5;
+  --lg-secondary-500: #2459DB;
+  --lg-secondary-600: #1B45B0;
+  --lg-secondary-700: #143488;
+  --lg-secondary-800: #0E2563;
+  --lg-secondary-900: #0A1A47;
+
+  /* ── NEUTRAL · Carbon ───────────────────────────────────────────────────── */
+  --lg-neutral-0:   #FFFFFF;
+  --lg-neutral-50:  #F6F8F7;
+  --lg-neutral-100: #ECEFEE;
+  --lg-neutral-200: #D9DFDD;
+  --lg-neutral-300: #BCC6C3;
+  --lg-neutral-400: #95A29F;
+  --lg-neutral-500: #6E7B78;
+  --lg-neutral-600: #515D5A;
+  --lg-neutral-700: #3A4543;
+  --lg-neutral-800: #25302E;
+  --lg-neutral-900: #161E1D;
+  --lg-neutral-950: #0B100F;
+
+  /* ── BRAND UTILITIES ────────────────────────────────────────────────────── */
+  --lg-brand-hero:      #00C961;
+  --lg-brand-accent:    #14C765;
+  --lg-brand-gradient:  linear-gradient(135deg, #14C765 0%, #00B259 100%);
+  --lg-brand-glow:      rgba(20,199,101,0.22);
+  --lg-brand-selection: rgba(20,199,101,0.30);
+
+  /* ── TIER ACCENTS ───────────────────────────────────────────────────────── */
+  --lg-tier-basic:           #6E7B78;
+  --lg-tier-premium:         #00C961;
+  --lg-tier-premium-grad:    linear-gradient(135deg, #14C765 0%, #00B259 100%);
+  --lg-tier-ultra:           #7B6CF6;
+  --lg-tier-ultra-grad:      linear-gradient(135deg, #00E0A4 0%, #6B8BFF 55%, #9A6BFF 100%);
+
+  /* ── TYPOGRAPHY ─────────────────────────────────────────────────────────── */
+  --lg-font-display: 'Space Grotesk', 'Inter', system-ui, sans-serif;
+  --lg-font-body:    'Inter', system-ui, -apple-system, sans-serif;
+  --lg-font-mono:    'JetBrains Mono', 'SFMono-Regular', ui-monospace, monospace;
+
+  --lg-weight-light:     300;
+  --lg-weight-regular:   400;
+  --lg-weight-medium:    500;
+  --lg-weight-semibold:  600;
+  --lg-weight-bold:      700;
+  --lg-weight-extrabold: 800;
+
+  /* 9-step fluid scale (mobile → desktop) */
+  --lg-text-xs:   clamp(0.75rem, 0.74rem + 0.05vw, 0.78rem);
+  --lg-text-sm:   clamp(0.875rem, 0.86rem + 0.07vw, 0.92rem);
+  --lg-text-base: clamp(1rem, 0.98rem + 0.1vw, 1.0625rem);
+  --lg-text-lg:   clamp(1.125rem, 1.09rem + 0.18vw, 1.25rem);
+  --lg-text-xl:   clamp(1.25rem, 1.19rem + 0.3vw, 1.5rem);
+  --lg-text-2xl:  clamp(1.5rem, 1.39rem + 0.55vw, 2rem);
+  --lg-text-3xl:  clamp(2rem, 1.78rem + 1.1vw, 2.75rem);
+  --lg-text-4xl:  clamp(2.75rem, 2.3rem + 2.25vw, 3.75rem);
+  --lg-text-5xl:  clamp(3.75rem, 2.9rem + 4.25vw, 5rem);
+
+  --lg-leading-tight:   1.1;
+  --lg-leading-snug:    1.3;
+  --lg-leading-normal:  1.6;
+  --lg-leading-relaxed: 1.7;
+
+  --lg-tracking-tight:  -0.02em;
+  --lg-tracking-snug:   -0.01em;
+  --lg-tracking-normal: 0em;
+  --lg-tracking-wide:   0.02em;
+  --lg-tracking-caps:   0.08em;
+
+  /* ── SPACING · 8px grid ─────────────────────────────────────────────────── */
+  --lg-space-0:   0;
+  --lg-space-px:  1px;
+  --lg-space-0-5: 0.125rem;
+  --lg-space-1:   0.25rem;
+  --lg-space-2:   0.5rem;
+  --lg-space-3:   0.75rem;
+  --lg-space-4:   1rem;
+  --lg-space-5:   1.25rem;
+  --lg-space-6:   1.5rem;
+  --lg-space-8:   2rem;
+  --lg-space-10:  2.5rem;
+  --lg-space-12:  3rem;
+  --lg-space-16:  4rem;
+  --lg-space-20:  5rem;
+  --lg-space-24:  6rem;
+  --lg-space-32:  8rem;
+  --lg-space-40:  10rem;
+  --lg-space-48:  12rem;
+
+  /* ── RADIUS ─────────────────────────────────────────────────────────────── */
+  --lg-radius-none: 0;
+  --lg-radius-sm:   0.375rem;
+  --lg-radius-md:   0.625rem;
+  --lg-radius-lg:   1rem;
+  --lg-radius-xl:   1.375rem;
+  --lg-radius-2xl:  1.75rem;
+  --lg-radius-full: 9999px;
+
+  /* ── BORDER WIDTH ───────────────────────────────────────────────────────── */
+  --lg-border-hairline: 1px;
+  --lg-border-thin:     1.5px;
+  --lg-border-thick:    2px;
+
+  /* ── MOTION ─────────────────────────────────────────────────────────────── */
+  --lg-duration-instant:    100ms;
+  --lg-duration-fast:       150ms;
+  --lg-duration-base:       200ms;
+  --lg-duration-moderate:   300ms;
+  --lg-duration-slow:       500ms;
+  --lg-duration-deliberate: 800ms;
+
+  --lg-ease-standard:   cubic-bezier(0.2, 0, 0, 1);
+  --lg-ease-decelerate: cubic-bezier(0, 0, 0, 1);
+  --lg-ease-accelerate: cubic-bezier(0.4, 0, 1, 1);
+  --lg-ease-emphasized: cubic-bezier(0.4, 0, 0.2, 1);
+  --lg-ease-spring:     cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* ── LAYOUT ─────────────────────────────────────────────────────────────── */
+  --lg-container-sm:   640px;
+  --lg-container-md:   768px;
+  --lg-container-lg:   1024px;
+  --lg-container-xl:   1200px;
+  --lg-container-full: 1440px;
+
+  --lg-z-base: 0;
+  --lg-z-raised: 10;
+  --lg-z-sticky: 100;
+  --lg-z-nav: 200;
+  --lg-z-dropdown: 300;
+  --lg-z-overlay: 400;
+  --lg-z-modal: 500;
+  --lg-z-toast: 600;
+  --lg-z-tooltip: 700;
+}
+
+/* ============================================================================
+   THEME · DARK (default brand experience)
+   ============================================================================ */
+:root,
+[data-theme="dark"] {
+  color-scheme: dark;
+
+  /* Surfaces */
+  --lg-bg:           #070D0B;
+  --lg-bg-surface:   #0C1412;
+  --lg-bg-raised:    #101A18;
+  --lg-bg-overlay:   #16211F;
+  --lg-bg-hover:     #1C2926;
+
+  /* Text */
+  --lg-text-primary:   #EEF6F3;
+  --lg-text-secondary: rgba(238,246,243,0.66);
+  --lg-text-tertiary:  rgba(238,246,243,0.42);
+  --lg-text-disabled:  rgba(238,246,243,0.28);
+  --lg-text-inverse:   #0B100F;
+  --lg-text-on-brand:  #04140C;
+
+  /* Borders */
+  --lg-border-subtle:  rgba(238,246,243,0.08);
+  --lg-border-default: rgba(238,246,243,0.14);
+  --lg-border-strong:  rgba(238,246,243,0.24);
+  --lg-border-brand:   rgba(20,199,101,0.45);
+
+  /* Brand surfaces for dark */
+  --lg-brand-fill:       #14C765;
+  --lg-brand-fill-hover: #45DA86;
+  --lg-brand-text:       #45DA86;
+  --lg-brand-soft:       rgba(20,199,101,0.12);
+
+  /* Semantic — dark variants */
+  --lg-success-solid:  #22C55E; --lg-success-bg: #0E1F16; --lg-success-border: #1F4B33; --lg-success-text: #4ADE80;
+  --lg-warning-solid:  #FBBF24; --lg-warning-bg: #241B08; --lg-warning-border: #4D3A10; --lg-warning-text: #FCD34D;
+  --lg-error-solid:    #F87171; --lg-error-bg:   #241011; --lg-error-border:   #502526; --lg-error-text:   #FCA5A5;
+  --lg-info-solid:     #4F8BFF; --lg-info-bg:    #0C1830; --lg-info-border:    #1E3A6B; --lg-info-text:    #85AEFF;
+
+  /* Elevation */
+  --lg-shadow-xs:   0 1px 2px rgba(0,0,0,0.25);
+  --lg-shadow-sm:   0 2px 6px rgba(0,0,0,0.30), 0 1px 2px rgba(0,0,0,0.20);
+  --lg-shadow-md:   0 4px 20px rgba(0,0,0,0.45), 0 1px 4px rgba(0,0,0,0.30);
+  --lg-shadow-lg:   0 12px 48px rgba(0,0,0,0.55), 0 4px 12px rgba(0,0,0,0.30);
+  --lg-shadow-xl:   0 24px 80px rgba(0,0,0,0.60), 0 8px 24px rgba(0,0,0,0.35);
+  --lg-shadow-glow: 0 0 0 1px rgba(20,199,101,0.40), 0 0 48px rgba(20,199,101,0.22);
+  --lg-focus-ring:  0 0 0 2px var(--lg-bg), 0 0 0 4px var(--lg-primary-400);
+}
+
+/* ============================================================================
+   THEME · LIGHT
+   ============================================================================ */
+[data-theme="light"] {
+  color-scheme: light;
+
+  --lg-bg:           #FFFFFF;
+  --lg-bg-surface:   #F6F8F7;
+  --lg-bg-raised:    #FFFFFF;
+  --lg-bg-overlay:   #FFFFFF;
+  --lg-bg-hover:     #ECEFEE;
+
+  --lg-text-primary:   #161E1D;
+  --lg-text-secondary: #515D5A;
+  --lg-text-tertiary:  #6E7B78;
+  --lg-text-disabled:  #BCC6C3;
+  --lg-text-inverse:   #FFFFFF;
+  --lg-text-on-brand:  #04140C;
+
+  --lg-border-subtle:  #ECEFEE;
+  --lg-border-default: #D9DFDD;
+  --lg-border-strong:  #BCC6C3;
+  --lg-border-brand:   rgba(0,178,89,0.55);
+
+  --lg-brand-fill:       #00B259;
+  --lg-brand-fill-hover: #009149;
+  --lg-brand-text:       #00713A;
+  --lg-brand-soft:       rgba(0,178,89,0.10);
+
+  --lg-success-solid:  #16A34A; --lg-success-bg: #E7F8EE; --lg-success-border: #A7E8C0; --lg-success-text: #0A6E32;
+  --lg-warning-solid:  #D97706; --lg-warning-bg: #FEF3E2; --lg-warning-border: #FAD9A0; --lg-warning-text: #92500A;
+  --lg-error-solid:    #DC2626; --lg-error-bg:   #FDEAEA; --lg-error-border:   #F5B5B5; --lg-error-text:   #A31616;
+  --lg-info-solid:     #2459DB; --lg-info-bg:    #EAF1FF; --lg-info-border:    #B6CDFF; --lg-info-text:    #16409B;
+
+  --lg-shadow-xs:   0 1px 2px rgba(16,30,28,0.06);
+  --lg-shadow-sm:   0 1px 3px rgba(16,30,28,0.10), 0 1px 2px rgba(16,30,28,0.06);
+  --lg-shadow-md:   0 4px 16px rgba(16,30,28,0.10), 0 2px 4px rgba(16,30,28,0.06);
+  --lg-shadow-lg:   0 12px 40px rgba(16,30,28,0.14), 0 4px 10px rgba(16,30,28,0.08);
+  --lg-shadow-xl:   0 24px 64px rgba(16,30,28,0.18), 0 8px 20px rgba(16,30,28,0.10);
+  --lg-shadow-glow: 0 0 0 1px rgba(0,178,89,0.35), 0 0 32px rgba(0,178,89,0.18);
+  --lg-focus-ring:  0 0 0 2px var(--lg-bg), 0 0 0 4px var(--lg-primary-500);
+}
+
+/* Honour OS preference when no explicit theme attribute is set */
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme]) {
+    color-scheme: light;
+    --lg-bg: #FFFFFF; --lg-bg-surface: #F6F8F7; --lg-bg-raised: #FFFFFF;
+    --lg-bg-overlay: #FFFFFF; --lg-bg-hover: #ECEFEE;
+    --lg-text-primary: #161E1D; --lg-text-secondary: #515D5A; --lg-text-tertiary: #6E7B78;
+    --lg-text-disabled: #BCC6C3; --lg-text-inverse: #FFFFFF; --lg-text-on-brand: #04140C;
+    --lg-border-subtle: #ECEFEE; --lg-border-default: #D9DFDD; --lg-border-strong: #BCC6C3;
+    --lg-brand-fill: #00B259; --lg-brand-fill-hover: #009149; --lg-brand-text: #00713A;
+  }
+}
+
+/* ============================================================================
+   GLOBAL PRIMITIVES (optional base layer)
+   ============================================================================ */
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  background: var(--lg-bg);
+  color: var(--lg-text-primary);
+  font-family: var(--lg-font-body);
+  font-size: var(--lg-text-base);
+  line-height: var(--lg-leading-relaxed);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection { background: var(--lg-brand-selection); color: #fff; }
+
+h1, h2, h3, h4, h5 { font-family: var(--lg-font-display); font-weight: var(--lg-weight-bold); line-height: var(--lg-leading-tight); }
+
+:where(a, button, input, select, textarea):focus-visible {
+  outline: none;
+  box-shadow: var(--lg-focus-ring);
+  border-radius: var(--lg-radius-sm);
+}
+
+/* Honour reduced-motion globally */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

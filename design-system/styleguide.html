@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Line Guide — Design System</title>
+<link rel="stylesheet" href="tokens.css">
+<style>
+  /* ── Styleguide chrome (uses the system's own tokens) ─────────────────── */
+  body { margin: 0; }
+  .wrap { max-width: var(--lg-container-xl); margin: 0 auto; padding: var(--lg-space-8) var(--lg-space-6) var(--lg-space-24); }
+
+  .topbar {
+    position: sticky; top: 0; z-index: var(--lg-z-nav);
+    display: flex; align-items: center; justify-content: space-between;
+    height: 64px; padding: 0 var(--lg-space-6);
+    background: color-mix(in srgb, var(--lg-bg) 78%, transparent);
+    backdrop-filter: blur(24px);
+    border-bottom: 1px solid var(--lg-border-subtle);
+  }
+  .brand { display: flex; align-items: center; gap: var(--lg-space-3); }
+  .brand-mark {
+    width: 36px; height: 36px; border-radius: var(--lg-radius-md);
+    background: var(--lg-brand-gradient); display: grid; place-items: center;
+    font-family: var(--lg-font-display); font-weight: 700; color: #04140C; font-size: 12px; letter-spacing: -.5px;
+  }
+  .brand-name { font-family: var(--lg-font-display); font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; font-size: 14px; }
+
+  h1.hero { font-family: var(--lg-font-display); font-size: var(--lg-text-5xl); line-height: var(--lg-leading-tight); letter-spacing: var(--lg-tracking-tight); margin: var(--lg-space-12) 0 var(--lg-space-4); }
+  .hero em { font-style: normal; color: var(--lg-brand-text); }
+  .lede { font-size: var(--lg-text-lg); color: var(--lg-text-secondary); max-width: 62ch; }
+
+  section { margin-top: var(--lg-space-20); }
+  h2.sec { font-family: var(--lg-font-display); font-size: var(--lg-text-3xl); letter-spacing: var(--lg-tracking-snug); margin: 0 0 var(--lg-space-2); }
+  .sec-tag { font-family: var(--lg-font-mono); font-size: var(--lg-text-xs); color: var(--lg-brand-text); text-transform: uppercase; letter-spacing: var(--lg-tracking-caps); }
+  .sec-desc { color: var(--lg-text-secondary); max-width: 64ch; margin: var(--lg-space-2) 0 var(--lg-space-6); }
+  h3.sub { font-size: var(--lg-text-xl); font-family: var(--lg-font-display); margin: var(--lg-space-8) 0 var(--lg-space-4); }
+
+  .grid { display: grid; gap: var(--lg-space-4); }
+  .cols-auto { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
+
+  /* Swatches */
+  .swatch { border-radius: var(--lg-radius-md); overflow: hidden; border: 1px solid var(--lg-border-subtle); background: var(--lg-bg-surface); }
+  .swatch .chip { height: 72px; }
+  .swatch .meta { padding: var(--lg-space-2) var(--lg-space-3); font-size: var(--lg-text-xs); }
+  .swatch .meta b { display: block; font-weight: 600; }
+  .swatch .meta span { font-family: var(--lg-font-mono); color: var(--lg-text-tertiary); }
+
+  .ramp { display: grid; grid-template-columns: repeat(10, 1fr); border-radius: var(--lg-radius-md); overflow: hidden; border: 1px solid var(--lg-border-subtle); }
+  .ramp div { height: 56px; display: flex; align-items: flex-end; padding: 4px; font-family: var(--lg-font-mono); font-size: 10px; color: rgba(0,0,0,.55); }
+
+  /* Type rows */
+  .type-row { display: flex; align-items: baseline; gap: var(--lg-space-6); padding: var(--lg-space-3) 0; border-bottom: 1px solid var(--lg-border-subtle); }
+  .type-row .tag { font-family: var(--lg-font-mono); font-size: var(--lg-text-xs); color: var(--lg-text-tertiary); width: 110px; flex-shrink: 0; }
+  .type-row .demo { font-family: var(--lg-font-display); }
+
+  /* Spacing */
+  .space-row { display: flex; align-items: center; gap: var(--lg-space-4); margin-bottom: var(--lg-space-2); font-family: var(--lg-font-mono); font-size: var(--lg-text-xs); color: var(--lg-text-tertiary); }
+  .space-row .bar { height: 16px; background: var(--lg-brand-gradient); border-radius: var(--lg-radius-sm); }
+
+  /* Component demo surfaces */
+  .panel { background: var(--lg-bg-surface); border: 1px solid var(--lg-border-subtle); border-radius: var(--lg-radius-lg); padding: var(--lg-space-6); }
+  .row { display: flex; flex-wrap: wrap; gap: var(--lg-space-3); align-items: center; }
+
+  /* Buttons */
+  .btn { display: inline-flex; align-items: center; gap: 8px; font-family: var(--lg-font-body); font-weight: 600; border: 0; cursor: pointer; border-radius: var(--lg-radius-md); height: 40px; padding: 0 16px; font-size: var(--lg-text-sm); transition: transform var(--lg-duration-fast) var(--lg-ease-standard), background var(--lg-duration-fast) var(--lg-ease-standard), box-shadow var(--lg-duration-fast) var(--lg-ease-standard); }
+  .btn:hover { transform: translateY(-1px); box-shadow: var(--lg-shadow-sm); }
+  .btn:active { transform: scale(.98); }
+  .btn:focus-visible { box-shadow: var(--lg-focus-ring); outline: none; }
+  .btn--primary { background: var(--lg-brand-fill); color: var(--lg-text-on-brand); }
+  .btn--primary:hover { background: var(--lg-brand-fill-hover); }
+  .btn--secondary { background: transparent; color: var(--lg-text-primary); border: 1px solid var(--lg-border-strong); }
+  .btn--ghost { background: transparent; color: var(--lg-text-secondary); }
+  .btn--ghost:hover { background: var(--lg-bg-hover); }
+  .btn--destructive { background: var(--lg-error-solid); color: #fff; }
+  .btn[disabled] { opacity: .4; pointer-events: none; }
+
+  /* Badges / chips */
+  .badge { display: inline-flex; align-items: center; gap: 6px; height: 22px; padding: 0 8px; border-radius: var(--lg-radius-full); font-size: var(--lg-text-xs); font-weight: 600; }
+  .badge--success { background: var(--lg-success-bg); color: var(--lg-success-text); border: 1px solid var(--lg-success-border); }
+  .badge--warning { background: var(--lg-warning-bg); color: var(--lg-warning-text); border: 1px solid var(--lg-warning-border); }
+  .badge--error { background: var(--lg-error-bg); color: var(--lg-error-text); border: 1px solid var(--lg-error-border); }
+  .badge--info { background: var(--lg-info-bg); color: var(--lg-info-text); border: 1px solid var(--lg-info-border); }
+  .tier { display: inline-flex; align-items: center; height: 24px; padding: 0 10px; border-radius: var(--lg-radius-full); font-size: var(--lg-text-xs); font-weight: 700; letter-spacing: .04em; text-transform: uppercase; }
+  .tier--basic { background: var(--lg-bg-hover); color: var(--lg-text-secondary); }
+  .tier--premium { background: var(--lg-tier-premium-grad); color: #04140C; }
+  .tier--ultra { background: var(--lg-tier-ultra-grad); color: #0b0820; }
+  .chip { display: inline-flex; align-items: center; gap: 6px; height: 32px; padding: 0 12px; border-radius: var(--lg-radius-full); font-size: var(--lg-text-sm); border: 1px solid var(--lg-border-default); color: var(--lg-text-secondary); cursor: pointer; transition: all var(--lg-duration-fast) var(--lg-ease-standard); }
+  .chip[aria-pressed="true"] { background: var(--lg-brand-soft); border-color: var(--lg-border-brand); color: var(--lg-brand-text); }
+
+  /* Inputs */
+  .field { display: flex; flex-direction: column; gap: 6px; max-width: 320px; }
+  .field label { font-size: var(--lg-text-sm); font-weight: 500; }
+  .input { height: 40px; padding: 0 12px; border-radius: var(--lg-radius-md); background: var(--lg-bg); border: 1px solid var(--lg-border-default); color: var(--lg-text-primary); font: inherit; font-size: var(--lg-text-sm); transition: border var(--lg-duration-fast), box-shadow var(--lg-duration-fast); }
+  .input:focus { outline: none; border-color: var(--lg-primary-400); box-shadow: var(--lg-focus-ring); }
+  .field .help { font-size: var(--lg-text-xs); color: var(--lg-text-tertiary); }
+
+  /* Switch */
+  .switch { position: relative; width: 36px; height: 20px; }
+  .switch input { opacity: 0; width: 0; height: 0; }
+  .switch .track { position: absolute; inset: 0; background: var(--lg-border-strong); border-radius: var(--lg-radius-full); transition: background var(--lg-duration-base) var(--lg-ease-spring); }
+  .switch .track::before { content: ""; position: absolute; width: 16px; height: 16px; left: 2px; top: 2px; background: #fff; border-radius: 50%; transition: transform var(--lg-duration-base) var(--lg-ease-spring); }
+  .switch input:checked + .track { background: var(--lg-brand-fill); }
+  .switch input:checked + .track::before { transform: translateX(16px); }
+
+  /* Match score meter */
+  .meter { display: flex; flex-direction: column; gap: 8px; }
+  .meter .bar { height: 8px; border-radius: var(--lg-radius-full); background: var(--lg-bg-hover); overflow: hidden; }
+  .meter .fill { height: 100%; background: var(--lg-brand-gradient); border-radius: inherit; transition: width var(--lg-duration-slow) var(--lg-ease-decelerate); }
+  .meter .num { font-family: var(--lg-font-mono); font-size: var(--lg-text-2xl); font-weight: 600; }
+
+  /* Match result card */
+  .match-card { background: var(--lg-bg-raised); border: 1px solid var(--lg-border-subtle); border-radius: var(--lg-radius-lg); padding: var(--lg-space-5); display: flex; flex-direction: column; gap: var(--lg-space-3); transition: border var(--lg-duration-base), box-shadow var(--lg-duration-base), transform var(--lg-duration-base); }
+  .match-card:hover { border-color: var(--lg-border-brand); box-shadow: var(--lg-shadow-md); transform: translateY(-2px); }
+  .match-card.rank1 { box-shadow: var(--lg-shadow-glow); }
+  .rank-chip { width: 28px; height: 28px; border-radius: var(--lg-radius-full); display: grid; place-items: center; font-family: var(--lg-font-display); font-weight: 700; font-size: var(--lg-text-sm); }
+  .rank-chip.r1 { background: var(--lg-brand-gradient); color: #04140C; }
+  .rank-chip.r2, .rank-chip.r3 { background: var(--lg-bg-hover); color: var(--lg-text-secondary); }
+  .logo { width: 44px; height: 44px; border-radius: var(--lg-radius-md); background: var(--lg-brand-soft); color: var(--lg-brand-text); display: grid; place-items: center; font-family: var(--lg-font-display); font-weight: 700; }
+
+  .tokens-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap: var(--lg-space-4); }
+  .file-card { background: var(--lg-bg-surface); border: 1px solid var(--lg-border-subtle); border-radius: var(--lg-radius-lg); padding: var(--lg-space-5); }
+  .file-card code { font-family: var(--lg-font-mono); font-size: var(--lg-text-xs); color: var(--lg-brand-text); }
+  .file-card p { color: var(--lg-text-secondary); font-size: var(--lg-text-sm); margin: var(--lg-space-2) 0 0; }
+
+  .theme-toggle { display: inline-flex; align-items: center; gap: 8px; font-size: var(--lg-text-sm); color: var(--lg-text-secondary); cursor: pointer; background: none; border: 1px solid var(--lg-border-default); border-radius: var(--lg-radius-full); padding: 6px 12px; }
+
+  @media (max-width: 768px) { .ramp { grid-template-columns: repeat(5, 1fr); } .type-row { flex-direction: column; gap: 4px; } .type-row .tag { width: auto; } }
+</style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand"><div class="brand-mark">LG</div><span class="brand-name">Line Guide</span></div>
+    <button class="theme-toggle" id="themeToggle">◑ Toggle theme</button>
+  </header>
+
+  <div class="wrap">
+    <h1 class="hero">The visual foundation for <em>automation equipment</em> discovery.</h1>
+    <p class="lede">A production-ready, dark-first design system — modern and technical — powering how
+      machine manufacturers list and how food-manufacturing buyers find their top three suppliers.</p>
+
+    <!-- COLOR -->
+    <section>
+      <p class="sec-tag">01 — Color</p>
+      <h2 class="sec">Color System</h2>
+      <p class="sec-desc">Signal Green brand accent on green-tinted carbon. Ion Blue secondary, full semantic + tier palettes, both themes.</p>
+
+      <h3 class="sub">Primary · Signal Green</h3>
+      <div class="ramp" id="rampPrimary"></div>
+      <h3 class="sub">Secondary · Ion Blue</h3>
+      <div class="ramp" id="rampSecondary"></div>
+      <h3 class="sub">Neutral · Carbon</h3>
+      <div class="ramp" id="rampNeutral"></div>
+
+      <h3 class="sub">Semantic & Tier</h3>
+      <div class="row">
+        <span class="badge badge--success">● Success</span>
+        <span class="badge badge--warning">● Warning</span>
+        <span class="badge badge--error">● Error</span>
+        <span class="badge badge--info">● Info</span>
+        <span class="tier tier--basic">Basic</span>
+        <span class="tier tier--premium">Premium</span>
+        <span class="tier tier--ultra">Ultra</span>
+      </div>
+    </section>
+
+    <!-- TYPE -->
+    <section>
+      <p class="sec-tag">02 — Type</p>
+      <h2 class="sec">Typography</h2>
+      <p class="sec-desc">Space Grotesk (display) + Inter (UI/body) + JetBrains Mono (data). 9-step fluid scale.</p>
+      <div id="typeScale"></div>
+    </section>
+
+    <!-- SPACE -->
+    <section>
+      <p class="sec-tag">03 — Space</p>
+      <h2 class="sec">Spatial System</h2>
+      <p class="sec-desc">8px grid foundation. 4px is the only half-step.</p>
+      <div id="spaceScale" class="panel"></div>
+    </section>
+
+    <!-- COMPONENTS -->
+    <section>
+      <p class="sec-tag">04 — Components</p>
+      <h2 class="sec">Component Library</h2>
+      <p class="sec-desc">40+ documented components. A live sample below; full anatomy in figma-components.md.</p>
+
+      <h3 class="sub">Buttons</h3>
+      <div class="panel"><div class="row">
+        <button class="btn btn--primary">Find suppliers</button>
+        <button class="btn btn--secondary">Compare</button>
+        <button class="btn btn--ghost">Cancel</button>
+        <button class="btn btn--destructive">Remove</button>
+        <button class="btn btn--primary" disabled>Disabled</button>
+      </div></div>
+
+      <h3 class="sub">Inputs, chips & switch</h3>
+      <div class="panel"><div class="row" style="align-items:flex-end">
+        <div class="field"><label for="uc">Use case</label><input class="input" id="uc" placeholder="e.g. packing automation"><span class="help">Describe the application to automate.</span></div>
+        <span class="chip" aria-pressed="true">✓ Packaging</span>
+        <span class="chip" aria-pressed="false">Robotics</span>
+        <span class="chip" aria-pressed="false">Inspection</span>
+        <label class="switch"><input type="checkbox" checked><span class="track"></span></label>
+      </div></div>
+
+      <h3 class="sub">Match Result Cards — top 3</h3>
+      <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(240px,1fr))" id="matchCards"></div>
+    </section>
+
+    <!-- MOTION + A11Y -->
+    <section>
+      <p class="sec-tag">05 — Motion & Accessibility</p>
+      <h2 class="sec">Motion & Accessibility</h2>
+      <p class="sec-desc">UI transitions ≤300ms, standard & spring easing, reduced-motion respected globally. WCAG AA contrast throughout (text ≥4.5:1, UI ≥3:1), 44px targets, visible 2px focus rings — tab through this page to see them.</p>
+      <div class="panel row">
+        <button class="btn btn--primary">Hover & focus me</button>
+        <span class="badge badge--success">✓ Verified supplier</span>
+        <span style="font-family:var(--lg-font-mono);font-size:var(--lg-text-sm);color:var(--lg-text-secondary)">#14C765 on #070D0B = 6.9:1 ✓</span>
+      </div>
+    </section>
+
+    <!-- DELIVERABLES -->
+    <section>
+      <p class="sec-tag">06 — Deliverables</p>
+      <h2 class="sec">Export Formats</h2>
+      <div class="tokens-3">
+        <div class="file-card"><code>tokens.json</code><p>W3C design-token JSON — source of truth for Figma Make / Style Dictionary.</p></div>
+        <div class="file-card"><code>tokens.css</code><p>CSS custom properties, light + dark, drop-in for any web build.</p></div>
+        <div class="file-card"><code>figma-components.md</code><p>40+ components: anatomy, props, states, usage rules.</p></div>
+      </div>
+    </section>
+  </div>
+
+<script>
+  // Theme toggle
+  const root = document.documentElement;
+  document.getElementById('themeToggle').addEventListener('click', () => {
+    root.setAttribute('data-theme', root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+  });
+
+  // Color ramps
+  const ramps = {
+    rampPrimary:   ['#E6FBEF','#BFF4D6','#84E9AF','#45DA86','#14C765','#00B259','#009149','#00713A','#00532B','#00371D'],
+    rampSecondary: ['#EAF1FF','#CBDDFF','#9DBEFF','#6A99FF','#3D74F5','#2459DB','#1B45B0','#143488','#0E2563','#0A1A47'],
+    rampNeutral:   ['#FFFFFF','#F6F8F7','#ECEFEE','#D9DFDD','#BCC6C3','#95A29F','#6E7B78','#515D5A','#3A4543','#161E1D']
+  };
+  const steps = ['50','100','200','300','400','500','600','700','800','900'];
+  for (const [id, cols] of Object.entries(ramps)) {
+    document.getElementById(id).innerHTML = cols.map((c,i)=>`<div style="background:${c};color:${i>4?'#fff':'#000'}">${steps[i]}</div>`).join('');
+  }
+
+  // Type scale
+  const type = [
+    ['5xl / Display','var(--lg-text-5xl)','Find the right suppliers'],
+    ['4xl / H2','var(--lg-text-4xl)','Automation, matched'],
+    ['3xl / H3','var(--lg-text-3xl)','Top three suppliers'],
+    ['2xl / H4','var(--lg-text-2xl)','Manufacturer profile'],
+    ['xl / H5','var(--lg-text-xl)','Capability summary'],
+    ['lg / Lead','var(--lg-text-lg)','Describe your use case and budget'],
+    ['base / Body','var(--lg-text-base)','Match by fit, rating and timeframe.'],
+    ['sm / UI','var(--lg-text-sm)','Secondary and dense interface text'],
+    ['xs / Caption','var(--lg-text-xs)','Captions, labels and legal']
+  ];
+  document.getElementById('typeScale').innerHTML = type.map(([t,s,d])=>
+    `<div class="type-row"><span class="tag">${t}</span><span class="demo" style="font-size:${s}">${d}</span></div>`).join('');
+
+  // Spacing
+  const spaces = [['1',4],['2',8],['3',12],['4',16],['6',24],['8',32],['12',48],['16',64],['24',96]];
+  document.getElementById('spaceScale').innerHTML = spaces.map(([t,px])=>
+    `<div class="space-row"><span style="width:48px">space-${t}</span><span class="bar" style="width:${px}px"></span><span>${px}px</span></div>`).join('');
+
+  // Match cards
+  const matches = [
+    {rank:1,name:'Meridian Robotics',init:'MR',tier:'premium',score:94,fit:'Excellent fit'},
+    {rank:2,name:'Apex Packaging Systems',init:'AP',tier:'ultra',score:88,fit:'Strong fit'},
+    {rank:3,name:'NorthLine Automation',init:'NL',tier:'basic',score:79,fit:'Strong fit'}
+  ];
+  document.getElementById('matchCards').innerHTML = matches.map(m=>`
+    <div class="match-card ${m.rank===1?'rank1':''}">
+      <div class="row" style="justify-content:space-between">
+        <span class="rank-chip r${m.rank}">${m.rank}</span>
+        <span class="tier tier--${m.tier}">${m.tier}</span>
+      </div>
+      <div class="row" style="gap:12px">
+        <span class="logo">${m.init}</span>
+        <div><div style="font-family:var(--lg-font-display);font-weight:700">${m.name}</div>
+        <div style="font-size:var(--lg-text-sm);color:var(--lg-warning-text)">★ 4.${9-m.rank} <span style="color:var(--lg-text-tertiary)">(${120-m.rank*9})</span></div></div>
+      </div>
+      <div class="meter">
+        <div class="row" style="justify-content:space-between"><span class="num">${m.score}%</span><span style="font-size:var(--lg-text-sm);color:var(--lg-brand-text)">${m.fit}</span></div>
+        <div class="bar"><div class="fill" style="width:0"></div></div>
+      </div>
+      <button class="btn btn--primary" style="width:100%">Connect</button>
+    </div>`).join('');
+  // Animate meter fills on load
+  requestAnimationFrame(()=>setTimeout(()=>{
+    document.querySelectorAll('.match-card .fill').forEach((el,i)=>el.style.width=matches[i].score+'%');
+  },150));
+</script>
+</body>
+</html>
