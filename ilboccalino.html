@@ -1,0 +1,2062 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Il Boccalino — Authentic Italian Restaurant, Amsterdam</title>
+<meta name="description" content="Il Boccalino — authentic Italian cuisine in the heart of Amsterdam. Reservations, seasonal menu, and a warm Mediterranean welcome await you.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+/* ── TOKENS ────────────────────────────────────────────────────── */
+:root {
+  --cream:      #FAF6EF;
+  --ivory:      #F2EBD9;
+  --gold:       #B8975A;
+  --gold-light: #D4B483;
+  --gold-dark:  #8C6E3A;
+  --red:        #8B1A1A;
+  --red-muted:  #A0352A;
+  --charcoal:   #1C1917;
+  --warm-gray:  #5C5346;
+  --border:     rgba(184,151,90,0.25);
+  --shadow:     0 4px 40px rgba(28,25,23,0.12);
+  --shadow-lg:  0 16px 80px rgba(28,25,23,0.18);
+}
+
+/* ── RESET ─────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; font-size: 16px; }
+body {
+  background: var(--cream);
+  color: var(--charcoal);
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 300;
+  line-height: 1.7;
+  overflow-x: hidden;
+}
+img { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+
+/* ── UTILITIES ─────────────────────────────────────────────────── */
+.container { max-width: 1120px; margin: 0 auto; padding: 0 32px; }
+.section-label {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.section-label::before, .section-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+.section-label.left::before { display: none; }
+.section-label.left::after { max-width: 40px; }
+
+h1, h2, h3 { font-family: 'Playfair Display', Georgia, serif; font-weight: 400; line-height: 1.15; }
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 16px 36px;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: none;
+}
+.btn-gold {
+  background: var(--gold);
+  color: #fff;
+}
+.btn-gold:hover { background: var(--gold-dark); transform: translateY(-1px); box-shadow: 0 8px 24px rgba(184,151,90,0.35); }
+.btn-outline {
+  background: transparent;
+  color: var(--gold);
+  border: 1.5px solid var(--gold);
+}
+.btn-outline:hover { background: var(--gold); color: #fff; }
+.btn-dark {
+  background: var(--charcoal);
+  color: var(--cream);
+}
+.btn-dark:hover { background: var(--red); transform: translateY(-1px); }
+
+/* ── NAV ───────────────────────────────────────────────────────── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 24px 0;
+  transition: all 0.4s ease;
+}
+nav.scrolled {
+  background: rgba(250,246,239,0.97);
+  backdrop-filter: blur(12px);
+  padding: 16px 0;
+  box-shadow: 0 1px 32px rgba(28,25,23,0.08);
+}
+.nav-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.nav-logo {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 22px;
+  color: var(--cream);
+  transition: color 0.4s;
+}
+nav.scrolled .nav-logo { color: var(--charcoal); }
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  list-style: none;
+}
+.nav-links a {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.85);
+  transition: color 0.3s;
+}
+.nav-links a:hover { color: var(--gold-light); }
+nav.scrolled .nav-links a { color: var(--warm-gray); }
+nav.scrolled .nav-links a:hover { color: var(--gold); }
+.nav-reserve {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 10px 24px;
+  border-radius: 2px;
+  border: 1.5px solid rgba(255,255,255,0.6);
+  color: #fff;
+  transition: all 0.3s;
+}
+.nav-reserve:hover { background: var(--gold); border-color: var(--gold); }
+nav.scrolled .nav-reserve { border-color: var(--gold); color: var(--gold); }
+nav.scrolled .nav-reserve:hover { background: var(--gold); color: #fff; }
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: 4px;
+}
+.hamburger span {
+  display: block;
+  width: 24px;
+  height: 1.5px;
+  background: #fff;
+  transition: all 0.3s;
+}
+nav.scrolled .hamburger span { background: var(--charcoal); }
+
+/* ── HERO ──────────────────────────────────────────────────────── */
+#hero {
+  position: relative;
+  height: 100vh;
+  min-height: 680px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(160deg, rgba(28,25,23,0.72) 0%, rgba(139,26,26,0.18) 60%, rgba(28,25,23,0.55) 100%),
+    url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=1800&q=80&auto=format&fit=crop') center/cover no-repeat;
+  transform: scale(1.04);
+  transition: transform 8s ease;
+}
+#hero:hover .hero-bg { transform: scale(1); }
+
+/* Italian tile overlay pattern */
+.hero-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle at 1px 1px, rgba(184,151,90,0.08) 1px, transparent 0);
+  background-size: 40px 40px;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  width: 100%;
+  padding-top: 80px;
+}
+.hero-eyebrow {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--gold-light);
+  margin-bottom: 24px;
+}
+.hero-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(56px, 9vw, 110px);
+  font-style: italic;
+  color: #fff;
+  line-height: 1;
+  margin-bottom: 8px;
+  text-shadow: 0 2px 40px rgba(28,25,23,0.4);
+}
+.hero-subtitle {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(18px, 2.5vw, 26px);
+  font-weight: 300;
+  color: rgba(255,255,255,0.78);
+  letter-spacing: 0.12em;
+  margin-bottom: 48px;
+}
+.hero-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 48px;
+}
+.hero-divider span { width: 40px; height: 1px; background: var(--gold-light); opacity: 0.6; }
+.hero-divider svg { color: var(--gold-light); width: 16px; height: 16px; }
+.hero-actions { display: flex; align-items: center; justify-content: center; gap: 16px; flex-wrap: wrap; }
+.hero-scroll {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: rgba(255,255,255,0.5);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 9px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  animation: bounce 2.5s infinite;
+}
+.hero-scroll svg { width: 20px; height: 20px; }
+@keyframes bounce { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(6px)} }
+
+/* ── INTRO ─────────────────────────────────────────────────────── */
+#intro {
+  padding: 120px 0;
+  background: var(--cream);
+}
+.intro-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+.intro-image-wrap {
+  position: relative;
+}
+.intro-image-wrap::before {
+  content: '';
+  position: absolute;
+  top: -20px; left: -20px;
+  right: 20px; bottom: 20px;
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  z-index: 0;
+}
+.intro-image-wrap img {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 480px;
+  object-fit: cover;
+  border-radius: 2px;
+  box-shadow: var(--shadow-lg);
+}
+.intro-badge {
+  position: absolute;
+  bottom: -24px;
+  right: -24px;
+  z-index: 2;
+  width: 120px;
+  height: 120px;
+  background: var(--red);
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #fff;
+  box-shadow: var(--shadow);
+}
+.intro-badge strong {
+  font-family: 'Playfair Display', serif;
+  font-size: 28px;
+  line-height: 1;
+}
+.intro-badge span {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 8px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  opacity: 0.85;
+  margin-top: 4px;
+}
+.intro-text h2 {
+  font-size: clamp(32px, 4vw, 48px);
+  margin-bottom: 24px;
+  color: var(--charcoal);
+}
+.intro-text h2 em { color: var(--red); font-style: italic; }
+.intro-text p {
+  font-size: 18px;
+  color: var(--warm-gray);
+  margin-bottom: 20px;
+  line-height: 1.8;
+}
+.intro-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 48px;
+  padding-top: 40px;
+  border-top: 1px solid var(--border);
+}
+.stat strong {
+  display: block;
+  font-family: 'Playfair Display', serif;
+  font-size: 36px;
+  color: var(--gold);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+.stat span {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--warm-gray);
+}
+
+/* ── MENU ──────────────────────────────────────────────────────── */
+#menu {
+  padding: 120px 0;
+  background: var(--charcoal);
+  position: relative;
+  overflow: hidden;
+}
+#menu::before {
+  content: '"';
+  position: absolute;
+  top: -40px; right: 60px;
+  font-family: 'Playfair Display', serif;
+  font-size: 400px;
+  color: rgba(184,151,90,0.05);
+  line-height: 1;
+  pointer-events: none;
+}
+.menu-header {
+  text-align: center;
+  margin-bottom: 72px;
+}
+.menu-header h2 {
+  font-size: clamp(36px, 5vw, 56px);
+  color: var(--cream);
+  margin-bottom: 16px;
+}
+.menu-header p {
+  font-size: 18px;
+  color: rgba(250,246,239,0.55);
+  max-width: 520px;
+  margin: 0 auto;
+}
+.menu-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 0;
+  margin-bottom: 60px;
+  border: 1px solid rgba(184,151,90,0.2);
+  border-radius: 2px;
+  overflow: hidden;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+.menu-tab {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 14px 28px;
+  color: rgba(250,246,239,0.5);
+  cursor: pointer;
+  transition: all 0.3s;
+  border: none;
+  background: transparent;
+  border-right: 1px solid rgba(184,151,90,0.2);
+}
+.menu-tab:last-child { border-right: none; }
+.menu-tab.active, .menu-tab:hover {
+  background: var(--gold);
+  color: #fff;
+}
+.menu-panel { display: none; }
+.menu-panel.active { display: block; }
+.menu-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+}
+.menu-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 28px 32px;
+  background: rgba(250,246,239,0.03);
+  border: 1px solid rgba(184,151,90,0.08);
+  transition: all 0.3s;
+  cursor: default;
+}
+.menu-item:hover {
+  background: rgba(184,151,90,0.07);
+  border-color: rgba(184,151,90,0.2);
+}
+.menu-item-icon {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: rgba(184,151,90,0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  margin-top: 2px;
+}
+.menu-item-body { flex: 1; }
+.menu-item-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 6px;
+}
+.menu-item-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 17px;
+  color: var(--cream);
+}
+.menu-item-dots {
+  flex: 1;
+  border-bottom: 1px dotted rgba(184,151,90,0.25);
+  margin-bottom: 4px;
+}
+.menu-item-price {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--gold);
+  white-space: nowrap;
+}
+.menu-item-desc {
+  font-size: 14px;
+  color: rgba(250,246,239,0.45);
+  line-height: 1.6;
+}
+.menu-item-tag {
+  display: inline-block;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 8px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 1px;
+  margin-top: 8px;
+}
+.tag-chef { background: rgba(139,26,26,0.5); color: #f5b0a0; }
+.tag-vegan { background: rgba(60,120,60,0.4); color: #a8d8a8; }
+.tag-new { background: rgba(184,151,90,0.25); color: var(--gold-light); }
+.menu-footer {
+  text-align: center;
+  margin-top: 56px;
+}
+.menu-footer p {
+  font-size: 14px;
+  color: rgba(250,246,239,0.35);
+  font-style: italic;
+  margin-bottom: 24px;
+}
+
+/* ── EXPERIENCE ────────────────────────────────────────────────── */
+#experience {
+  padding: 0;
+  background: var(--ivory);
+}
+.experience-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 600px;
+}
+.experience-images {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 4px;
+}
+.experience-images div {
+  overflow: hidden;
+}
+.experience-images div img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+.experience-images div:hover img { transform: scale(1.05); }
+.experience-images div:first-child {
+  grid-row: span 2;
+}
+.experience-text {
+  padding: 80px 72px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.experience-text h2 {
+  font-size: clamp(30px, 3.5vw, 44px);
+  margin-bottom: 28px;
+  color: var(--charcoal);
+}
+.experience-text h2 em { color: var(--red); font-style: italic; }
+.experience-text p {
+  font-size: 17px;
+  color: var(--warm-gray);
+  margin-bottom: 20px;
+  line-height: 1.85;
+}
+.experience-features {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.experience-feature {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+.feature-icon {
+  width: 36px;
+  height: 36px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: var(--gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2px;
+}
+.feature-icon svg { width: 16px; height: 16px; color: #fff; }
+.feature-text strong {
+  display: block;
+  font-family: 'Playfair Display', serif;
+  font-size: 16px;
+  color: var(--charcoal);
+  margin-bottom: 2px;
+}
+.feature-text span {
+  font-size: 14px;
+  color: var(--warm-gray);
+}
+
+/* ── WINE ──────────────────────────────────────────────────────── */
+#wine {
+  padding: 120px 0;
+  background: var(--red);
+  position: relative;
+  overflow: hidden;
+}
+#wine::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(ellipse at 70% 50%, rgba(255,255,255,0.04) 0%, transparent 60%);
+}
+.wine-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+.wine-text h2 {
+  font-size: clamp(32px, 4vw, 48px);
+  color: #fff;
+  margin-bottom: 24px;
+}
+.wine-text p {
+  font-size: 18px;
+  color: rgba(255,255,255,0.7);
+  margin-bottom: 20px;
+  line-height: 1.8;
+}
+.wine-list {
+  list-style: none;
+  margin-top: 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+.wine-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 18px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.12);
+}
+.wine-list li:first-child { border-top: 1px solid rgba(255,255,255,0.12); }
+.wine-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  color: #fff;
+}
+.wine-region {
+  font-size: 13px;
+  color: rgba(255,255,255,0.5);
+  font-style: italic;
+  margin-top: 2px;
+}
+.wine-price {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--gold-light);
+}
+.wine-image {
+  position: relative;
+}
+.wine-image img {
+  width: 100%;
+  height: 520px;
+  object-fit: cover;
+  border-radius: 2px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.35);
+}
+.wine-image::before {
+  content: '';
+  position: absolute;
+  top: -16px; left: -16px;
+  right: 16px; bottom: 16px;
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 2px;
+}
+
+/* ── RESERVATION ───────────────────────────────────────────────── */
+#reservation {
+  padding: 120px 0;
+  background: var(--cream);
+}
+.reservation-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: start;
+}
+.reservation-info h2 {
+  font-size: clamp(32px, 4vw, 48px);
+  margin-bottom: 24px;
+  color: var(--charcoal);
+}
+.reservation-info h2 em { color: var(--red); font-style: italic; }
+.reservation-info p {
+  font-size: 17px;
+  color: var(--warm-gray);
+  margin-bottom: 40px;
+  line-height: 1.8;
+}
+.info-blocks { display: flex; flex-direction: column; gap: 28px; }
+.info-block {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+.info-block-icon {
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gold);
+}
+.info-block-icon svg { width: 18px; height: 18px; }
+.info-block strong {
+  display: block;
+  font-family: 'Playfair Display', serif;
+  font-size: 17px;
+  color: var(--charcoal);
+  margin-bottom: 4px;
+}
+.info-block p {
+  font-size: 14px;
+  color: var(--warm-gray);
+  margin: 0;
+  line-height: 1.65;
+}
+.info-block a { color: var(--gold); }
+.info-block a:hover { color: var(--gold-dark); }
+
+.reservation-form {
+  background: #fff;
+  border-radius: 4px;
+  padding: 48px;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+}
+.reservation-form h3 {
+  font-size: 24px;
+  margin-bottom: 32px;
+  color: var(--charcoal);
+}
+.form-group { margin-bottom: 20px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+label {
+  display: block;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--warm-gray);
+  margin-bottom: 8px;
+}
+input, select, textarea {
+  width: 100%;
+  padding: 14px 16px;
+  background: var(--cream);
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 16px;
+  color: var(--charcoal);
+  transition: border-color 0.3s;
+  outline: none;
+  appearance: none;
+}
+input:focus, select:focus, textarea:focus {
+  border-color: var(--gold);
+  background: #fff;
+}
+select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23B8975A' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  padding-right: 40px;
+}
+textarea { resize: vertical; min-height: 100px; }
+.form-submit { width: 100%; justify-content: center; margin-top: 8px; }
+
+/* ── REVIEWS ───────────────────────────────────────────────────── */
+#reviews {
+  padding: 120px 0;
+  background: var(--ivory);
+  overflow: hidden;
+}
+.reviews-header {
+  text-align: center;
+  margin-bottom: 72px;
+}
+.reviews-header h2 {
+  font-size: clamp(32px, 4vw, 48px);
+  color: var(--charcoal);
+  margin-bottom: 16px;
+}
+.reviews-header .stars {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+.reviews-header .stars svg { width: 22px; height: 22px; color: var(--gold); fill: currentColor; }
+.reviews-header p { font-size: 16px; color: var(--warm-gray); }
+.reviews-track {
+  display: flex;
+  gap: 24px;
+  animation: slide 40s linear infinite;
+  width: max-content;
+}
+.reviews-track:hover { animation-play-state: paused; }
+@keyframes slide { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+.review-card {
+  width: 340px;
+  flex-shrink: 0;
+  background: #fff;
+  border-radius: 4px;
+  padding: 36px 32px;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--border);
+}
+.review-stars { display: flex; gap: 4px; margin-bottom: 16px; }
+.review-stars svg { width: 14px; height: 14px; color: var(--gold); fill: currentColor; }
+.review-text {
+  font-size: 15px;
+  color: var(--warm-gray);
+  line-height: 1.75;
+  margin-bottom: 24px;
+  font-style: italic;
+}
+.review-author {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.review-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Playfair Display', serif;
+  font-size: 16px;
+  color: #fff;
+  flex-shrink: 0;
+}
+.review-author strong {
+  display: block;
+  font-family: 'Playfair Display', serif;
+  font-size: 15px;
+  color: var(--charcoal);
+}
+.review-author span {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 10px;
+  color: var(--warm-gray);
+  letter-spacing: 0.05em;
+}
+.google-badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 8px;
+}
+.google-badge svg { width: 14px; height: 14px; }
+.google-badge span { font-size: 11px; color: #999; font-family: 'Montserrat', sans-serif; }
+
+/* ── MAP / FIND US ─────────────────────────────────────────────── */
+#location {
+  background: var(--charcoal);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 480px;
+}
+.location-map {
+  background: #2a2520;
+  position: relative;
+  overflow: hidden;
+}
+.location-map iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  filter: grayscale(30%) contrast(1.1);
+}
+.location-info {
+  padding: 80px 72px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.location-info h2 {
+  font-size: 36px;
+  color: var(--cream);
+  margin-bottom: 40px;
+}
+.location-details { display: flex; flex-direction: column; gap: 24px; }
+.location-detail {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+.location-detail svg { width: 18px; height: 18px; color: var(--gold); flex-shrink: 0; margin-top: 3px; }
+.location-detail strong {
+  display: block;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 4px;
+}
+.location-detail p, .location-detail a {
+  font-size: 16px;
+  color: rgba(250,246,239,0.7);
+  line-height: 1.6;
+}
+.location-detail a:hover { color: var(--gold-light); }
+.hours-grid { display: grid; grid-template-columns: auto 1fr; gap: 4px 20px; }
+.hours-day { font-family: 'Montserrat', sans-serif; font-size: 12px; color: rgba(250,246,239,0.45); }
+.hours-time { font-size: 15px; color: rgba(250,246,239,0.75); }
+
+/* ── FOOTER ────────────────────────────────────────────────────── */
+footer {
+  background: #111009;
+  padding: 72px 0 40px;
+}
+.footer-inner {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 60px;
+  padding-bottom: 48px;
+  border-bottom: 1px solid rgba(184,151,90,0.12);
+  margin-bottom: 32px;
+}
+.footer-brand h3 {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 26px;
+  color: var(--cream);
+  margin-bottom: 16px;
+}
+.footer-brand p {
+  font-size: 14px;
+  color: rgba(250,246,239,0.4);
+  line-height: 1.8;
+  max-width: 300px;
+  margin-bottom: 28px;
+}
+.social-links { display: flex; gap: 12px; }
+.social-link {
+  width: 36px;
+  height: 36px;
+  border: 1px solid rgba(184,151,90,0.25);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(250,246,239,0.5);
+  transition: all 0.3s;
+}
+.social-link svg { width: 15px; height: 15px; }
+.social-link:hover { border-color: var(--gold); color: var(--gold); }
+.footer-col h4 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 20px;
+}
+.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.footer-col ul li a {
+  font-size: 14px;
+  color: rgba(250,246,239,0.45);
+  transition: color 0.3s;
+}
+.footer-col ul li a:hover { color: var(--cream); }
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.footer-bottom p {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 10px;
+  color: rgba(250,246,239,0.25);
+  letter-spacing: 0.05em;
+}
+
+/* ── ORNAMENT ──────────────────────────────────────────────────── */
+.ornament {
+  text-align: center;
+  margin: 12px 0;
+  color: var(--gold);
+  opacity: 0.5;
+  font-size: 20px;
+  letter-spacing: 8px;
+}
+
+/* ── MOBILE NAV ────────────────────────────────────────────────── */
+.mobile-menu {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: var(--charcoal);
+  z-index: 200;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+}
+.mobile-menu.open { display: flex; }
+.mobile-menu a {
+  font-family: 'Playfair Display', serif;
+  font-size: 28px;
+  color: var(--cream);
+  font-style: italic;
+}
+.mobile-menu a:hover { color: var(--gold); }
+.mobile-close {
+  position: absolute;
+  top: 32px; right: 32px;
+  font-size: 32px;
+  color: var(--cream);
+  cursor: pointer;
+  background: none;
+  border: none;
+  line-height: 1;
+}
+
+/* ── ANIMATIONS ────────────────────────────────────────────────── */
+.fade-up {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.fade-up.visible { opacity: 1; transform: none; }
+.fade-up:nth-child(2) { transition-delay: 0.1s; }
+.fade-up:nth-child(3) { transition-delay: 0.2s; }
+.fade-up:nth-child(4) { transition-delay: 0.3s; }
+
+/* ── RESPONSIVE ────────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .nav-links, .nav-reserve { display: none; }
+  .hamburger { display: flex; }
+  .intro-grid, .reservation-grid, .wine-inner, .experience-grid,
+  #location { grid-template-columns: 1fr; }
+  .experience-images { grid-template-columns: 1fr 1fr; min-height: 300px; }
+  .experience-images div:first-child { grid-row: span 1; }
+  .experience-text { padding: 60px 32px; }
+  .location-info { padding: 60px 32px; }
+  .menu-grid { grid-template-columns: 1fr; }
+  .footer-inner { grid-template-columns: 1fr; gap: 40px; }
+  .intro-stats { grid-template-columns: repeat(3, 1fr); }
+  .intro-image-wrap { display: none; }
+  .wine-image { display: none; }
+  .form-row { grid-template-columns: 1fr; }
+  .reservation-form { padding: 32px 24px; }
+}
+@media (max-width: 600px) {
+  .container { padding: 0 20px; }
+  #intro, #menu, #reservation, #reviews, #wine { padding: 80px 0; }
+  .hero-title { font-size: 52px; }
+  .menu-tabs { flex-wrap: wrap; width: 100%; }
+  .intro-stats { grid-template-columns: 1fr 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <div class="container">
+    <div class="nav-inner">
+      <a href="#hero" class="nav-logo">Il Boccalino</a>
+      <ul class="nav-links">
+        <li><a href="#intro">Story</a></li>
+        <li><a href="#menu">Menu</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#wine">Wine</a></li>
+        <li><a href="#reviews">Reviews</a></li>
+        <li><a href="#location">Find Us</a></li>
+      </ul>
+      <a href="#reservation" class="nav-reserve">Reserve a Table</a>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-close" id="mobileClose">✕</button>
+  <a href="#intro" class="mobile-link">Our Story</a>
+  <a href="#menu" class="mobile-link">The Menu</a>
+  <a href="#experience" class="mobile-link">Experience</a>
+  <a href="#wine" class="mobile-link">Wine</a>
+  <a href="#reviews" class="mobile-link">Reviews</a>
+  <a href="#location" class="mobile-link">Find Us</a>
+  <a href="#reservation" class="mobile-link btn btn-gold">Reserve a Table</a>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Amsterdam · Since 1995</p>
+    <h1 class="hero-title">Il Boccalino</h1>
+    <p class="hero-subtitle">Cucina Italiana Autentica</p>
+    <div class="hero-divider">
+      <span></span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2C8 2 5 5 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-4-3-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+      <span></span>
+    </div>
+    <div class="hero-actions">
+      <a href="#reservation" class="btn btn-gold">Reserve Your Table</a>
+      <a href="#menu" class="btn btn-outline" style="color:#fff;border-color:rgba(255,255,255,0.55)">View the Menu</a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- INTRO -->
+<section id="intro">
+  <div class="container">
+    <div class="intro-grid">
+      <div class="intro-image-wrap fade-up">
+        <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80&auto=format&fit=crop" alt="Il Boccalino interior dining room">
+        <div class="intro-badge">
+          <strong>4.5</strong>
+          <span>Google Reviews</span>
+        </div>
+      </div>
+      <div class="intro-text fade-up">
+        <div class="section-label left">Our Story</div>
+        <h2>A corner of <em>Italy</em> in the heart of Amsterdam</h2>
+        <p>Nestled on the Utrechtsestraat, Il Boccalino has been welcoming guests with the warmth and passion of true Italian hospitality since 1995. Every dish is prepared with seasonal ingredients sourced directly from trusted Italian producers.</p>
+        <p>Our kitchen tells the story of Italy's regions — from the rich ragùs of Bologna to the delicate seafood of the Amalfi Coast. Sit back, breathe in the aroma of fresh herbs and wood-fire, and let Italy come to you.</p>
+        <div class="intro-stats">
+          <div class="stat fade-up">
+            <strong>30+</strong>
+            <span>Years of Tradition</span>
+          </div>
+          <div class="stat fade-up">
+            <strong>1,905</strong>
+            <span>Google Reviews</span>
+          </div>
+          <div class="stat fade-up">
+            <strong>100%</strong>
+            <span>Fresh Ingredients</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MENU -->
+<section id="menu">
+  <div class="container">
+    <div class="menu-header fade-up">
+      <div class="section-label">La Cucina</div>
+      <h2>The Menu</h2>
+      <p>Crafted daily with the finest seasonal produce and authentic Italian recipes passed through generations.</p>
+    </div>
+
+    <div class="menu-tabs">
+      <button class="menu-tab active" data-tab="antipasti">Antipasti</button>
+      <button class="menu-tab" data-tab="primi">Primi Piatti</button>
+      <button class="menu-tab" data-tab="secondi">Secondi</button>
+      <button class="menu-tab" data-tab="dolci">Dolci</button>
+    </div>
+
+    <!-- ANTIPASTI -->
+    <div class="menu-panel active" id="tab-antipasti">
+      <div class="menu-grid">
+        <div class="menu-item">
+          <div class="menu-item-icon">🍅</div>
+          <div class="menu-item-body">
+            <div class="menu-item-top">
+              <span class="menu-item-name">Burrata con Pomodori</span>
+              <span class="menu-item-dots"></span>
+              <span class="menu-item-price">€14</span>
+            </div>
+            <p class="menu-item-desc">Creamy burrata from Puglia, heirloom tomatoes, basil oil, sea salt</p>
+            <span class="menu-item-tag tag-chef">Chef's Choice</span>
+          </div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-icon">🥩</div>
+          <div class="menu-item-body">
+            <div class="menu-item-top">
+              <span class="menu-item-name">Carpaccio di Manzo</span>
+              <span class="menu-item-dots"></span>
+              <span class="menu-item-price">€16</span>
+            </div>
+            <p class="menu-item-desc">Thinly sliced beef tenderloin, rocket, Parmigiano Reggiano, truffle oil</p>
+          </div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-icon">🦑</div>
+          <div class="menu-item-body">
+            <div class="menu-item-top">
+              <span class="menu-item-name">Frittura di Calamari</span>
+              <span class="menu-item-dots"></span>
+              <span class="menu-item-price">€15</span>
+            </div>
+            <p class="menu-item-desc">Crispy fried squid rings, lemon aioli, fresh chilli, parsley</p>
+          </div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-icon">🫒</div>
+          <div class="menu-item-body">
+            <div class="menu-item-top">
+              <span class="menu-item-name">Tagliere Misto</span>
+              <span class="menu-item-dots"></span>
+              <span class="menu-item-price">€22</span>
+            </div>
+            <p class="menu-item-desc">Selection of Italian charcuterie, aged cheeses, honey, grissini</p>
+            <span class="menu-item-tag tag-new">For Two</span>
+          </div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-icon">🍄</div>
+          <div class="menu-item-body">
+            <div class="menu-item-top">
+              <span class="menu-item-name">Funghi Porcini Trifolati</span>
+              <span class="menu-item-dots"></span>
+              <span class="menu-item-price">€13</span>
+            </div>
+            <p class="menu-item-desc">Sautéed porcini mushrooms, garlic, thyme, crostini</p>
+            <span class="menu-item-tag tag-vegan">Vegan</span>
+          </div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-icon">🦐</div>
+          <div class="menu-item-body">
+            <div class="menu-item-top">
+              <span class="menu-item-name">Gamberoni all'Aglio</span>
+              <span class="menu-item-dots"></span>
+              <span class="menu-item-price">€18</span>
+            </div>
+            <p class="menu-item-desc">King prawns sautéed in garlic, white wine, cherry tomatoes, focaccia</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PRIMI -->
+    <div class="menu-panel" id="tab-primi">
+      <div class="menu-grid">
+        <div class="menu-item">
+          <div class="menu-item-icon">🍝</div>
+          <div class="menu-item-body">
+            <div class="menu-item-top">
+              <span class="menu-item-name">Tagliatelle al Ragù</span>
+              <span class="menu-item-dots"></span>
+              <span class="menu-item-price">€19</span>
+            </div>
+            <p class="menu-item-desc">Slow-cooked Bolognese of veal & pork, fresh egg tagliatelle, Parmigiano</p>
+            <span class="menu-item-tag tag-chef">Signature</span>
+          </div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-icon">🦞</div>
+          <div class="menu-item-body">
+            <div class="menu-item-top">
+              <span class="menu-item-name">Linguine all'Astice</span>
+              <span class="menu-item-dots"></span>
+              <span class="menu-item-price">€32</span>
+            </div>
+            <p class="menu-item-desc">Fresh lobster, cherry tomatoes, bisque sauce, linguine, parsley</p>
+          </div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-icon">🧀</div>
+          <div class="menu-item-body">
+            <div class="menu-item-top">
+              <span class="menu-item-name">Risotto ai Funghi</span>
+              <span class="menu-item-dots"></span>
+              <span class="menu-item-price">€21</span>
+            </div>
+            <p class="menu-item-desc">Vialone nano rice, mixed wild mushrooms, truffle oil, Parmigiano Reggiano</p>
+          </div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-icon">🌿</div>
+          <div class="menu-item-body">
+            <div class="menu-item-top">
+              <span class="menu-item-name">Gnocchi al Gorgonzola</span>
+              <span class="menu-item-dots"></span>
+              <span class="menu-item-price">€18</span>
+            </div>
+            <p class="menu-item-desc">Homemade potato gnocchi, Gorgonzola dolce, walnut, sage butter</p>
+          </div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-icon">🍅</div>
+          <div class="menu-item-body">
+            <div class="menu-item-top">
+              <span class="menu-item-name">Penne all'Arrabbiata</span>
+              <span class="menu-item-dots"></span>
+              <span class="menu-item-price">€16</span>
+            </div>
+            <p class="menu-item-desc">San Marzano tomatoes, fresh chilli, garlic, basil, penne rigate</p>
+            <span class="menu-item-tag tag-vegan">Vegan</span>
+          </div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-icon">🦑</div>
+          <div class="menu-item-body">
+            <div class="menu-item-top">
+              <span class="menu-item-name">Risotto al Nero di Seppia</span>
+              <span class="menu-item-dots"></span>
+              <span class="menu-item-price">€24</span>
+            </div>
+            <p class="menu-item-desc">Black squid ink risotto, grilled baby squid, lemon, crème fraîche</p>
+            <span class="menu-item-tag tag-new">Seasonal</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SECONDI -->
+    <div class="menu-panel" id="tab-secondi">
+      <div class="menu-grid">
+        <div class="menu-item">
+          <div class="menu-item-icon">🥩</div>
+          <div class="menu-item-body">
+            <div class="menu-item-top">
+              <span class="menu-item-name">Bistecca alla Fiorentina</span>
+              <span class="menu-item-dots"></span>
+              <span class="menu-item-price">€46</span>
+            </div>
+            <p class="menu-item-desc">600g T-bone, Chianina beef, rosemary, sea salt, roasted potatoes</p>
+            <span class="menu-item-tag tag-chef">Chef's Choice</span>
+          </div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-icon">🐟</div>
+          <div class="menu-item-body">
+            <div class="menu-item-top">
+              <span class="menu-item-name">Branzino al Forno</span>
+              <span class="menu-item-dots"></span>
+              <span class="menu-item-price">€28</span>
+            </div>
+            <p class="menu-item-desc">Whole sea bass, capers, olives, cherry tomatoes, white wine, lemon</p>
+          </div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-icon">🍗</div>
+          <div class="menu-item-body">
+            <div class="menu-item-top">
+              <span class="menu-item-name">Pollo alla Cacciatora</span>
+              <span class="menu-item-dots"></span>
+              <span class="menu-item-price">€24</span>
+            </div>
+            <p class="menu-item-desc">Free-range chicken braised in tomato, olives, capers, rosemary, white wine</p>
+          </div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-icon">🐄</div>
+          <div class="menu-item-body">
+            <div class="menu-item-top">
+              <span class="menu-item-name">Osso Buco alla Milanese</span>
+              <span class="menu-item-dots"></span>
+              <span class="menu-item-price">€32</span>
+            </div>
+            <p class="menu-item-desc">Slow-braised veal shank, gremolata, saffron risotto Milanese</p>
+          </div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-icon">🦞</div>
+          <div class="menu-item-body">
+            <div class="menu-item-top">
+              <span class="menu-item-name">Spigola con Verdure</span>
+              <span class="menu-item-dots"></span>
+              <span class="menu-item-price">€26</span>
+            </div>
+            <p class="menu-item-desc">Pan-seared sea bass fillet, grilled courgette, fennel, salsa verde</p>
+          </div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-icon">🌱</div>
+          <div class="menu-item-body">
+            <div class="menu-item-top">
+              <span class="menu-item-name">Melanzane alla Parmigiana</span>
+              <span class="menu-item-dots"></span>
+              <span class="menu-item-price">€20</span>
+            </div>
+            <p class="menu-item-desc">Layered aubergine, San Marzano tomato sauce, basil, buffalo mozzarella</p>
+            <span class="menu-item-tag tag-vegan">Vegetarian</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DOLCI -->
+    <div class="menu-panel" id="tab-dolci">
+      <div class="menu-grid">
+        <div class="menu-item">
+          <div class="menu-item-icon">☕</div>
+          <div class="menu-item-body">
+            <div class="menu-item-top">
+              <span class="menu-item-name">Tiramisù della Casa</span>
+              <span class="menu-item-dots"></span>
+              <span class="menu-item-price">€9</span>
+            </div>
+            <p class="menu-item-desc">Classic house tiramisù, Savoiardi biscuits, mascarpone, espresso, cocoa</p>
+            <span class="menu-item-tag tag-chef">Signature</span>
+          </div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-icon">🍋</div>
+          <div class="menu-item-body">
+            <div class="menu-item-top">
+              <span class="menu-item-name">Panna Cotta al Limone</span>
+              <span class="menu-item-dots"></span>
+              <span class="menu-item-price">€8</span>
+            </div>
+            <p class="menu-item-desc">Set cream with Amalfi lemon zest, strawberry coulis, fresh mint</p>
+          </div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-icon">🍫</div>
+          <div class="menu-item-body">
+            <div class="menu-item-top">
+              <span class="menu-item-name">Fondente al Cioccolato</span>
+              <span class="menu-item-dots"></span>
+              <span class="menu-item-price">€10</span>
+            </div>
+            <p class="menu-item-desc">Warm dark chocolate fondant, Sicilian pistachio ice cream, sea salt</p>
+          </div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-icon">🍨</div>
+          <div class="menu-item-body">
+            <div class="menu-item-top">
+              <span class="menu-item-name">Gelato Artigianale</span>
+              <span class="menu-item-dots"></span>
+              <span class="menu-item-price">€7</span>
+            </div>
+            <p class="menu-item-desc">Three scoops of artisan Italian gelato — ask your server for today's flavours</p>
+          </div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-icon">🍮</div>
+          <div class="menu-item-body">
+            <div class="menu-item-top">
+              <span class="menu-item-name">Cannolo Siciliano</span>
+              <span class="menu-item-dots"></span>
+              <span class="menu-item-price">€8</span>
+            </div>
+            <p class="menu-item-desc">Crispy pastry shell, whipped ricotta, candied orange, dark chocolate</p>
+          </div>
+        </div>
+        <div class="menu-item">
+          <div class="menu-item-icon">🧃</div>
+          <div class="menu-item-body">
+            <div class="menu-item-top">
+              <span class="menu-item-name">Formaggi Italiani</span>
+              <span class="menu-item-dots"></span>
+              <span class="menu-item-price">€14</span>
+            </div>
+            <p class="menu-item-desc">Selection of Italian cheeses, quince, honey, walnuts, grissini</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="menu-footer">
+      <p>All dishes may contain allergens. Please inform your server of any dietary requirements.<br>Prices include VAT. Service not included.</p>
+      <a href="#reservation" class="btn btn-gold">Reserve Your Table</a>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="experience-grid">
+    <div class="experience-images">
+      <div>
+        <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?w=600&q=80&auto=format&fit=crop" alt="Il Boccalino restaurant interior">
+      </div>
+      <div>
+        <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=400&q=80&auto=format&fit=crop" alt="Italian pasta dish">
+      </div>
+      <div>
+        <img src="https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=400&q=80&auto=format&fit=crop" alt="Italian pizza">
+      </div>
+    </div>
+    <div class="experience-text">
+      <div class="section-label left">The Experience</div>
+      <h2>More than a meal — <em>a memory</em></h2>
+      <p>Step through our doors and the noise of Amsterdam fades. Candlelight, warm terracotta tones, the gentle murmur of Italian — Il Boccalino wraps you in an atmosphere that feels like a family trattoria in Tuscany.</p>
+      <p>Whether you're celebrating a milestone or simply savouring a mid-week escape, our team is devoted to making your evening exceptional.</p>
+      <div class="experience-features">
+        <div class="experience-feature fade-up">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <div class="feature-text">
+            <strong>4.5 Stars — 1,905 Reviews</strong>
+            <span>Consistently rated one of Amsterdam's finest Italian restaurants</span>
+          </div>
+        </div>
+        <div class="experience-feature fade-up">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          </div>
+          <div class="feature-text">
+            <strong>Private Dining Available</strong>
+            <span>Exclusive spaces for celebrations, corporate dinners, and special occasions</span>
+          </div>
+        </div>
+        <div class="experience-feature fade-up">
+          <div class="feature-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <div class="feature-text">
+            <strong>Open Until Midnight</strong>
+            <span>Perfect for a late evening dinner — Amsterdam's most welcoming hours</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WINE -->
+<section id="wine">
+  <div class="container">
+    <div class="wine-inner">
+      <div class="wine-text fade-up">
+        <div class="section-label left" style="color:rgba(255,255,255,0.5)">La Cantina</div>
+        <h2>A cellar worth exploring</h2>
+        <p>Our wine list is a love letter to the Italian peninsula. From the volcanic slopes of Etna to the hills of Barolo, every bottle is chosen to complement our kitchen — and to be enjoyed slowly.</p>
+        <ul class="wine-list">
+          <li>
+            <div>
+              <div class="wine-name">Barolo DOCG</div>
+              <div class="wine-region">Nebbiolo · Piedmont, 2019</div>
+            </div>
+            <span class="wine-price">€68 / €14</span>
+          </li>
+          <li>
+            <div>
+              <div class="wine-name">Brunello di Montalcino</div>
+              <div class="wine-region">Sangiovese Grosso · Tuscany, 2018</div>
+            </div>
+            <span class="wine-price">€85 / €18</span>
+          </li>
+          <li>
+            <div>
+              <div class="wine-name">Pinot Grigio delle Venezie</div>
+              <div class="wine-region">Pinot Grigio · Friuli, 2022</div>
+            </div>
+            <span class="wine-price">€38 / €9</span>
+          </li>
+          <li>
+            <div>
+              <div class="wine-name">Etna Rosso DOC</div>
+              <div class="wine-region">Nerello Mascalese · Sicily, 2020</div>
+            </div>
+            <span class="wine-price">€52 / €11</span>
+          </li>
+          <li>
+            <div>
+              <div class="wine-name">Prosecco di Valdobbiadene</div>
+              <div class="wine-region">Glera · Veneto, NV</div>
+            </div>
+            <span class="wine-price">€42 / €9</span>
+          </li>
+        </ul>
+        <p style="font-size:13px;opacity:0.45;margin-top:16px">Bottle / Glass price. Full wine list available on request.</p>
+      </div>
+      <div class="wine-image fade-up">
+        <img src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=700&q=80&auto=format&fit=crop" alt="Italian wine selection">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESERVATION -->
+<section id="reservation">
+  <div class="container">
+    <div class="reservation-grid">
+      <div class="reservation-info fade-up">
+        <div class="section-label left">Prenotazioni</div>
+        <h2>Join us for an <em>unforgettable</em> evening</h2>
+        <p>Reservations are strongly recommended, especially on weekends. We welcome walk-ins at the bar whenever space allows. Private dining enquiries are warmly welcomed.</p>
+        <div class="info-blocks">
+          <div class="info-block">
+            <div class="info-block-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div>
+              <strong>Address</strong>
+              <p>Utrechtsestraat 133<br>1017 VM Amsterdam, Netherlands</p>
+            </div>
+          </div>
+          <div class="info-block">
+            <div class="info-block-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.07 9.8 19.79 19.79 0 011 1.18 2 2 0 013 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
+            </div>
+            <div>
+              <strong>Phone</strong>
+              <p><a href="tel:+31628079879">+31 6 28079879</a></p>
+            </div>
+          </div>
+          <div class="info-block">
+            <div class="info-block-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <div>
+              <strong>Opening Hours</strong>
+              <p>
+                Monday – Friday: 17:00 – 00:00<br>
+                Saturday – Sunday: 12:00 – 00:00<br>
+                Takeaway until 23:00
+              </p>
+            </div>
+          </div>
+          <div class="info-block">
+            <div class="info-block-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>
+            </div>
+            <div>
+              <strong>Online Reservations</strong>
+              <p><a href="https://ilboccalino.com" target="_blank" rel="noopener">ilboccalino.com</a><br>Or use the form →</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="reservation-form fade-up">
+        <h3>Reserve Your Table</h3>
+        <form id="reserveForm" onsubmit="handleReservation(event)">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="fname">First Name</label>
+              <input type="text" id="fname" placeholder="Maria" required>
+            </div>
+            <div class="form-group">
+              <label for="lname">Last Name</label>
+              <input type="text" id="lname" placeholder="Rossi" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" placeholder="maria@example.com" required>
+          </div>
+          <div class="form-group">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" placeholder="+31 6 ...">
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="date">Preferred Date</label>
+              <input type="date" id="date" required>
+            </div>
+            <div class="form-group">
+              <label for="time">Preferred Time</label>
+              <select id="time" required>
+                <option value="">Select time</option>
+                <option>17:00</option><option>17:30</option>
+                <option>18:00</option><option>18:30</option>
+                <option>19:00</option><option>19:30</option>
+                <option>20:00</option><option>20:30</option>
+                <option>21:00</option><option>21:30</option>
+                <option>22:00</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="guests">Number of Guests</label>
+            <select id="guests" required>
+              <option value="">Select guests</option>
+              <option>1 guest</option><option>2 guests</option>
+              <option>3 guests</option><option>4 guests</option>
+              <option>5 guests</option><option>6 guests</option>
+              <option>7–10 guests (private dining)</option>
+              <option>10+ guests (group enquiry)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="notes">Special Requests</label>
+            <textarea id="notes" placeholder="Dietary requirements, allergies, occasion, seating preference…"></textarea>
+          </div>
+          <button type="submit" class="btn btn-gold form-submit">Confirm Reservation</button>
+        </form>
+        <div id="formSuccess" style="display:none;text-align:center;padding:40px 0;">
+          <div style="font-size:48px;margin-bottom:16px">🍝</div>
+          <h3 style="color:var(--charcoal);margin-bottom:12px">Grazie mille!</h3>
+          <p style="color:var(--warm-gray);font-size:16px">Your reservation request has been received. We'll confirm by email within 2 hours.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section id="reviews">
+  <div class="container">
+    <div class="reviews-header fade-up">
+      <div class="section-label">What Our Guests Say</div>
+      <div class="stars">
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      </div>
+      <h2>4.5 Stars · 1,905 Reviews</h2>
+      <p>A beloved Amsterdam institution — rated consistently outstanding on Google.</p>
+    </div>
+  </div>
+  <div style="overflow:hidden;padding:8px 0 48px;">
+    <div class="reviews-track">
+      <!-- Set 1 -->
+      <div class="review-card">
+        <div class="review-stars">
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <p class="review-text">"Absolutely superb. The tagliatelle al ragù was the best I've had outside of Bologna. Staff were warm and attentive all evening. We'll be back every visit to Amsterdam."</p>
+        <div class="review-author">
+          <div class="review-avatar">S</div>
+          <div>
+            <strong>Sophie van der Berg</strong>
+            <span>Amsterdam · 3 months ago</span>
+          </div>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <p class="review-text">"We celebrated our anniversary here and it was perfect. The risotto ai funghi was extraordinary, and the sommelier's wine pairing recommendation was spot on. Magical atmosphere."</p>
+        <div class="review-author">
+          <div class="review-avatar">M</div>
+          <div>
+            <strong>Marco & Elena R.</strong>
+            <span>Milan · 1 month ago</span>
+          </div>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <p class="review-text">"I've been coming here for ten years and it never disappoints. The burrata is divine, the tiramisù is legendary, and the team feel like family. True Italian soul in Amsterdam."</p>
+        <div class="review-author">
+          <div class="review-avatar">J</div>
+          <div>
+            <strong>James Whitfield</strong>
+            <span>London · 2 months ago</span>
+          </div>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <p class="review-text">"Remarkable. The osso buco is the finest I've had in the Netherlands. The wine list is impeccable. Service is professional yet genuinely warm. A restaurant that earns every star."</p>
+        <div class="review-author">
+          <div class="review-avatar">A</div>
+          <div>
+            <strong>Anneke de Vries</strong>
+            <span>Rotterdam · 5 months ago</span>
+          </div>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <p class="review-text">"We were a group of eight for a birthday dinner and the team went above and beyond. The food was outstanding — the bistecca alone was worth the trip. Highly, highly recommended."</p>
+        <div class="review-author">
+          <div class="review-avatar">L</div>
+          <div>
+            <strong>Luca Bianchi</strong>
+            <span>Amsterdam · 1 week ago</span>
+          </div>
+        </div>
+      </div>
+      <!-- Duplicated for seamless loop -->
+      <div class="review-card">
+        <div class="review-stars">
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <p class="review-text">"Absolutely superb. The tagliatelle al ragù was the best I've had outside of Bologna. Staff were warm and attentive all evening. We'll be back every visit to Amsterdam."</p>
+        <div class="review-author">
+          <div class="review-avatar">S</div>
+          <div>
+            <strong>Sophie van der Berg</strong>
+            <span>Amsterdam · 3 months ago</span>
+          </div>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <p class="review-text">"We celebrated our anniversary here and it was perfect. The risotto ai funghi was extraordinary, and the sommelier's wine pairing recommendation was spot on. Magical atmosphere."</p>
+        <div class="review-author">
+          <div class="review-avatar">M</div>
+          <div>
+            <strong>Marco & Elena R.</strong>
+            <span>Milan · 1 month ago</span>
+          </div>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <p class="review-text">"I've been coming here for ten years and it never disappoints. The burrata is divine, the tiramisù is legendary, and the team feel like family. True Italian soul in Amsterdam."</p>
+        <div class="review-author">
+          <div class="review-avatar">J</div>
+          <div>
+            <strong>James Whitfield</strong>
+            <span>London · 2 months ago</span>
+          </div>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <p class="review-text">"Remarkable. The osso buco is the finest I've had in the Netherlands. The wine list is impeccable. Service is professional yet genuinely warm. A restaurant that earns every star."</p>
+        <div class="review-author">
+          <div class="review-avatar">A</div>
+          <div>
+            <strong>Anneke de Vries</strong>
+            <span>Rotterdam · 5 months ago</span>
+          </div>
+        </div>
+      </div>
+      <div class="review-card">
+        <div class="review-stars">
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <p class="review-text">"We were a group of eight for a birthday dinner and the team went above and beyond. The food was outstanding — the bistecca alone was worth the trip. Highly, highly recommended."</p>
+        <div class="review-author">
+          <div class="review-avatar">L</div>
+          <div>
+            <strong>Luca Bianchi</strong>
+            <span>Amsterdam · 1 week ago</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOCATION -->
+<section id="location">
+  <div class="location-map">
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2436.5!2d4.8989!3d52.3593!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c609b37c3a3e4d%3A0x3c7e45a9b36d2ee5!2sUtrechtsestraat%20133%2C%201017%20VM%20Amsterdam!5e0!3m2!1sen!2snl!4v1680000000000"
+      allowfullscreen
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+      title="Il Boccalino location on Google Maps">
+    </iframe>
+  </div>
+  <div class="location-info">
+    <h2>Find Us</h2>
+    <div class="location-details">
+      <div class="location-detail">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <div>
+          <strong>Address</strong>
+          <p>Utrechtsestraat 133<br>1017 VM Amsterdam</p>
+        </div>
+      </div>
+      <div class="location-detail">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        <div>
+          <strong>Opening Hours</strong>
+          <div class="hours-grid">
+            <span class="hours-day">Mon – Fri</span>
+            <span class="hours-time">17:00 – 00:00</span>
+            <span class="hours-day">Sat – Sun</span>
+            <span class="hours-time">12:00 – 00:00</span>
+            <span class="hours-day">Takeaway</span>
+            <span class="hours-time">Until 23:00</span>
+          </div>
+        </div>
+      </div>
+      <div class="location-detail">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.07 9.8 19.79 19.79 0 011 1.18 2 2 0 013 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
+        <div>
+          <strong>Phone & Email</strong>
+          <p><a href="tel:+31628079879">+31 6 28079879</a><br>
+          <a href="https://ilboccalino.com" target="_blank" rel="noopener">ilboccalino.com</a></p>
+        </div>
+      </div>
+      <div class="location-detail">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+        <div>
+          <strong>Getting Here</strong>
+          <p>Tram 4 or 14 — Frederiksplein stop<br>5 min walk from Rembrandtplein</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <h3>Il Boccalino</h3>
+        <p>Authentic Italian cuisine on the Utrechtsestraat since 1995. A place where every meal feels like coming home — wherever home may be.</p>
+        <div class="social-links">
+          <a href="#" class="social-link" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+          </a>
+          <a href="#" class="social-link" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+          </a>
+          <a href="#" class="social-link" aria-label="TripAdvisor">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Navigate</h4>
+        <ul>
+          <li><a href="#intro">Our Story</a></li>
+          <li><a href="#menu">The Menu</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#wine">Wine Cellar</a></li>
+          <li><a href="#reviews">Reviews</a></li>
+          <li><a href="#reservation">Reservations</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Visit</h4>
+        <ul>
+          <li><a href="tel:+31628079879">+31 6 28079879</a></li>
+          <li><a href="#">Utrechtsestraat 133</a></li>
+          <li><a href="#">1017 VM Amsterdam</a></li>
+          <li><a href="#">Mon–Fri: 17:00–00:00</a></li>
+          <li><a href="#">Sat–Sun: 12:00–00:00</a></li>
+          <li><a href="https://ilboccalino.com" target="_blank" rel="noopener">ilboccalino.com</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2024 Il Boccalino · Utrechtsestraat 133 · Amsterdam · All rights reserved</p>
+      <p>Vegan options available · Wi-Fi · Reservations required · €20–30 per person</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ── NAV SCROLL ─────────────────────────────────────────── */
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 60);
+});
+
+/* ── MOBILE MENU ────────────────────────────────────────── */
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+const mobileClose = document.getElementById('mobileClose');
+hamburger.addEventListener('click', () => mobileMenu.classList.add('open'));
+mobileClose.addEventListener('click', () => mobileMenu.classList.remove('open'));
+document.querySelectorAll('.mobile-link').forEach(l => l.addEventListener('click', () => mobileMenu.classList.remove('open')));
+
+/* ── MENU TABS ──────────────────────────────────────────── */
+document.querySelectorAll('.menu-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.menu-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.menu-panel').forEach(p => p.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById('tab-' + tab.dataset.tab).classList.add('active');
+  });
+});
+
+/* ── FADE IN ON SCROLL ──────────────────────────────────── */
+const fadeEls = document.querySelectorAll('.fade-up');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.12 });
+fadeEls.forEach(el => observer.observe(el));
+
+/* ── RESERVATION FORM ───────────────────────────────────── */
+function handleReservation(e) {
+  e.preventDefault();
+  document.getElementById('reserveForm').style.display = 'none';
+  document.getElementById('formSuccess').style.display = 'block';
+}
+
+/* ── SET MIN DATE ───────────────────────────────────────── */
+const dateInput = document.getElementById('date');
+if (dateInput) {
+  const today = new Date().toISOString().split('T')[0];
+  dateInput.setAttribute('min', today);
+}
+</script>
+</body>
+</html>
