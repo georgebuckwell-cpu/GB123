@@ -1,0 +1,1211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zeus Market – Ζευς Αγορά</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --marble: #F5F5F0;
+      --blue: #1B3A6B;
+      --blue-dark: #122848;
+      --blue-light: #2a5299;
+      --gold: #B8860B;
+      --gold-light: #D4A017;
+      --gold-pale: #f0e0a0;
+      --text-dark: #1a1a1a;
+      --text-mid: #3d3d3d;
+      --text-light: #6b6b6b;
+      --white: #ffffff;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--marble);
+      color: var(--text-dark);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Playfair Display', serif;
+    }
+
+    /* ===== LANGUAGE ELEMENTS ===== */
+    .el { display: none; }
+    .en { display: inline; }
+    .el-block { display: none; }
+    .en-block { display: block; }
+
+    /* ===== NAV ===== */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      background: rgba(27, 58, 107, 0.97);
+      backdrop-filter: blur(8px);
+      border-bottom: 2px solid var(--gold);
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 70px;
+      transition: background 0.3s;
+    }
+
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--marble);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .nav-logo span {
+      color: var(--gold-light);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: rgba(245, 245, 240, 0.85);
+      text-decoration: none;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 1.5px;
+      background: var(--gold);
+      transition: width 0.25s ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--gold-light);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .lang-toggle {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--blue);
+      background: var(--gold-light);
+      border: none;
+      border-radius: 4px;
+      padding: 0.4rem 1rem;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s, transform 0.15s;
+    }
+
+    .lang-toggle:hover {
+      background: var(--gold);
+      color: var(--white);
+      transform: translateY(-1px);
+    }
+
+    /* ===== HERO ===== */
+    #hero {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      min-height: 600px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1920&q=80');
+      background-size: cover;
+      background-position: center;
+      transform: scale(1.04);
+      transition: transform 8s ease-out;
+    }
+
+    .hero-bg.loaded {
+      transform: scale(1);
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        160deg,
+        rgba(18, 40, 72, 0.82) 0%,
+        rgba(27, 58, 107, 0.70) 40%,
+        rgba(10, 25, 50, 0.88) 100%
+      );
+    }
+
+    .hero-vignette {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(
+        ellipse at center,
+        transparent 35%,
+        rgba(184, 134, 11, 0.12) 70%,
+        rgba(10, 20, 45, 0.5) 100%
+      );
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 820px;
+      padding: 2rem;
+    }
+
+    .hero-eyebrow {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+      margin-bottom: 1.2rem;
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      font-weight: 900;
+      color: var(--white);
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+      text-shadow: 0 2px 20px rgba(0,0,0,0.4);
+    }
+
+    .hero-title .gold-word {
+      color: var(--gold-light);
+    }
+
+    .hero-tagline {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.1rem, 2.2vw, 1.5rem);
+      font-style: italic;
+      color: rgba(245, 245, 240, 0.88);
+      margin-bottom: 2.4rem;
+      letter-spacing: 0.02em;
+    }
+
+    .hero-divider {
+      width: 80px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+      margin: 0 auto 2.4rem;
+    }
+
+    .hero-cta {
+      display: inline-block;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--blue-dark);
+      background: linear-gradient(135deg, var(--gold-light), var(--gold));
+      padding: 0.95rem 2.6rem;
+      border-radius: 3px;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 24px rgba(184, 134, 11, 0.35);
+    }
+
+    .hero-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(184, 134, 11, 0.5);
+    }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 2.5rem;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      color: rgba(245, 245, 240, 0.6);
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      z-index: 2;
+    }
+
+    .scroll-arrow {
+      width: 24px;
+      height: 24px;
+      border-right: 1.5px solid var(--gold);
+      border-bottom: 1.5px solid var(--gold);
+      transform: rotate(45deg);
+      animation: scrollBounce 1.8s infinite;
+    }
+
+    @keyframes scrollBounce {
+      0%, 100% { transform: rotate(45deg) translateY(0); opacity: 0.7; }
+      50% { transform: rotate(45deg) translateY(5px); opacity: 1; }
+    }
+
+    /* ===== SECTION COMMON ===== */
+    section {
+      padding: 6rem 2rem;
+    }
+
+    .section-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.8rem;
+      display: block;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 3.5vw, 2.9rem);
+      font-weight: 700;
+      color: var(--blue);
+      line-height: 1.2;
+      margin-bottom: 1.4rem;
+    }
+
+    .gold-divider {
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--gold), var(--gold-light));
+      border-radius: 2px;
+      margin: 0 0 2.5rem;
+    }
+
+    .gold-divider.center {
+      margin: 0 auto 2.5rem;
+    }
+
+    /* ===== SECTION SEPARATOR ===== */
+    .separator {
+      width: 100%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold), var(--gold-light), var(--gold), transparent);
+      opacity: 0.5;
+      margin: 0;
+    }
+
+    /* ===== ABOUT ===== */
+    #about {
+      background: var(--white);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .about-image-wrap {
+      position: relative;
+    }
+
+    .about-image-wrap img {
+      width: 100%;
+      height: 420px;
+      object-fit: cover;
+      border-radius: 2px;
+      display: block;
+    }
+
+    .about-image-frame {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      right: -16px;
+      bottom: -16px;
+      border: 2px solid var(--gold);
+      border-radius: 2px;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .about-image-wrap img {
+      position: relative;
+      z-index: 1;
+    }
+
+    .about-text p {
+      font-size: 1rem;
+      color: var(--text-mid);
+      margin-bottom: 1.2rem;
+      line-height: 1.85;
+    }
+
+    .about-text p:last-of-type {
+      margin-bottom: 2rem;
+    }
+
+    .about-qualities {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .quality-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--blue);
+      letter-spacing: 0.05em;
+    }
+
+    .quality-item::before {
+      content: '';
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      background: var(--gold);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* ===== PRODUCTS ===== */
+    #products {
+      background: var(--marble);
+    }
+
+    #products .section-inner {
+      text-align: center;
+    }
+
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-top: 1rem;
+    }
+
+    .product-card {
+      background: var(--white);
+      border-top: 4px solid var(--gold);
+      border-radius: 2px;
+      padding: 2.5rem 2rem 2rem;
+      text-align: left;
+      position: relative;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+      box-shadow: 0 2px 16px rgba(27, 58, 107, 0.06);
+      overflow: hidden;
+    }
+
+    .product-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border: 2px solid transparent;
+      border-radius: 2px;
+      transition: border-color 0.3s ease;
+      pointer-events: none;
+    }
+
+    .product-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 12px 40px rgba(184, 134, 11, 0.2), 0 4px 16px rgba(27, 58, 107, 0.1);
+    }
+
+    .product-card:hover::after {
+      border-color: var(--gold);
+    }
+
+    .product-icon {
+      font-size: 2.4rem;
+      margin-bottom: 1.2rem;
+      display: block;
+    }
+
+    .product-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--blue);
+      margin-bottom: 0.8rem;
+      line-height: 1.3;
+    }
+
+    .product-card p {
+      font-size: 0.92rem;
+      color: var(--text-light);
+      line-height: 1.75;
+    }
+
+    .card-tag {
+      display: inline-block;
+      margin-top: 1.4rem;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border-bottom: 1px solid var(--gold);
+      padding-bottom: 1px;
+    }
+
+    /* ===== HOURS ===== */
+    #hours {
+      background: var(--blue);
+      color: var(--marble);
+    }
+
+    #hours .section-title {
+      color: var(--marble);
+    }
+
+    #hours .section-label {
+      color: var(--gold-light);
+    }
+
+    .hours-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .hours-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .hours-table tr {
+      border-bottom: 1px solid rgba(245, 245, 240, 0.12);
+    }
+
+    .hours-table tr:last-child {
+      border-bottom: none;
+    }
+
+    .hours-table td {
+      padding: 0.9rem 0;
+      font-size: 0.95rem;
+    }
+
+    .hours-table td:first-child {
+      color: rgba(245, 245, 240, 0.7);
+      font-weight: 400;
+    }
+
+    .hours-table td:last-child {
+      text-align: right;
+      color: var(--gold-light);
+      font-weight: 600;
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+    }
+
+    .hours-note {
+      background: rgba(255, 255, 255, 0.06);
+      border-left: 3px solid var(--gold);
+      padding: 1.2rem 1.5rem;
+      border-radius: 0 2px 2px 0;
+      font-size: 0.9rem;
+      color: rgba(245, 245, 240, 0.8);
+      line-height: 1.7;
+      margin-top: 2rem;
+    }
+
+    .hours-quote {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.4rem, 2.5vw, 2rem);
+      font-style: italic;
+      font-weight: 400;
+      color: rgba(245, 245, 240, 0.9);
+      line-height: 1.5;
+      margin-bottom: 2rem;
+    }
+
+    .hours-quote::before {
+      content: '"';
+      color: var(--gold-light);
+      font-size: 3rem;
+      line-height: 0;
+      vertical-align: -0.6rem;
+      margin-right: 0.2rem;
+    }
+
+    .hours-quote::after {
+      content: '"';
+      color: var(--gold-light);
+      font-size: 3rem;
+      line-height: 0;
+      vertical-align: -0.6rem;
+      margin-left: 0.2rem;
+    }
+
+    /* ===== CONTACT ===== */
+    #contact {
+      background: var(--white);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+    }
+
+    .contact-info h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      color: var(--blue);
+      margin-bottom: 1.8rem;
+    }
+
+    .contact-item {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      align-items: flex-start;
+    }
+
+    .contact-icon {
+      width: 38px;
+      height: 38px;
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 1rem;
+    }
+
+    .contact-detail {
+      padding-top: 0.2rem;
+    }
+
+    .contact-detail strong {
+      display: block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.2rem;
+    }
+
+    .contact-detail span {
+      font-size: 0.95rem;
+      color: var(--text-mid);
+      line-height: 1.6;
+    }
+
+    .map-placeholder {
+      background: var(--marble);
+      border: 2px solid rgba(184, 134, 11, 0.3);
+      border-radius: 2px;
+      height: 320px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      color: var(--text-light);
+      font-size: 0.9rem;
+    }
+
+    .map-placeholder span {
+      font-size: 3rem;
+    }
+
+    .map-placeholder p {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      color: var(--blue);
+      font-style: italic;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: var(--blue-dark);
+      color: rgba(245, 245, 240, 0.6);
+      text-align: center;
+      padding: 2.5rem 2rem;
+      border-top: 2px solid var(--gold);
+    }
+
+    .footer-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--marble);
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-logo span {
+      color: var(--gold-light);
+    }
+
+    footer p {
+      font-size: 0.8rem;
+      letter-spacing: 0.06em;
+      margin-top: 0.5rem;
+    }
+
+    footer .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin: 1rem 0;
+      list-style: none;
+    }
+
+    footer .footer-links a {
+      font-size: 0.78rem;
+      color: rgba(245, 245, 240, 0.5);
+      text-decoration: none;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    footer .footer-links a:hover {
+      color: var(--gold-light);
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 900px) {
+      .about-grid,
+      .hours-wrap,
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+
+      .products-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .about-image-frame {
+        display: none;
+      }
+    }
+
+    @media (max-width: 600px) {
+      section {
+        padding: 4rem 1.2rem;
+      }
+
+      .hero-content {
+        padding: 1.2rem;
+      }
+    }
+
+    /* ===== FADE-IN ANIMATION ===== */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#hero" class="nav-logo">
+      <span>Ζ</span>eus Market
+    </a>
+    <ul class="nav-links">
+      <li><a href="#hero">
+        <span class="en">Home</span>
+        <span class="el">Αρχική</span>
+      </a></li>
+      <li><a href="#about">
+        <span class="en">About</span>
+        <span class="el">Σχετικά</span>
+      </a></li>
+      <li><a href="#products">
+        <span class="en">Products</span>
+        <span class="el">Προϊόντα</span>
+      </a></li>
+      <li><a href="#hours">
+        <span class="en">Hours</span>
+        <span class="el">Ωράριο</span>
+      </a></li>
+      <li><a href="#contact">
+        <span class="en">Contact</span>
+        <span class="el">Επικοινωνία</span>
+      </a></li>
+    </ul>
+    <div class="nav-right">
+      <button class="lang-toggle" id="langBtn" onclick="toggleLang()">ΕΛ</button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-bg" id="heroBg"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-vignette"></div>
+    <div class="hero-content">
+      <p class="hero-eyebrow">
+        <span class="en">Est. Athens · Since 1987</span>
+        <span class="el">Αθήνα · Από το 1987</span>
+      </p>
+      <h1 class="hero-title">
+        <span class="en"><span class="gold-word">Zeus</span> Market</span>
+        <span class="el">Αγορά <span class="gold-word">Ζευς</span></span>
+      </h1>
+      <div class="hero-divider"></div>
+      <p class="hero-tagline">
+        <span class="en">Taste the Spirit of Greece</span>
+        <span class="el">Γεύσου το Πνεύμα της Ελλάδας</span>
+      </p>
+      <a href="#about" class="hero-cta">
+        <span class="en">Discover Our Story</span>
+        <span class="el">Ανακαλύψτε την Ιστορία Μας</span>
+      </a>
+    </div>
+    <div class="hero-scroll">
+      <span class="en">Scroll</span>
+      <span class="el">Κύλιση</span>
+      <div class="scroll-arrow"></div>
+    </div>
+  </section>
+
+  <div class="separator"></div>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-inner">
+      <div class="about-grid fade-in">
+        <div class="about-image-wrap">
+          <img
+            src="https://images.unsplash.com/photo-1551218372-a8789b81b253?auto=format&fit=crop&w=800&q=80"
+            alt="Artisan Greek market produce"
+            loading="lazy"
+          />
+          <div class="about-image-frame"></div>
+        </div>
+        <div class="about-text">
+          <span class="section-label">
+            <span class="en">Our Heritage</span>
+            <span class="el">Η Κληρονομιά Μας</span>
+          </span>
+          <h2 class="section-title">
+            <span class="en">Where Tradition Meets the Table</span>
+            <span class="el">Εκεί που η Παράδοση Συναντά το Τραπέζι</span>
+          </h2>
+          <div class="gold-divider"></div>
+
+          <!-- English copy -->
+          <div class="en-block">
+            <p>Born in the heart of Athens in 1987, Zeus Market began as a modest family stall in the shadow of the Acropolis. Over four decades, it has grown into one of the city's most beloved artisan destinations — a sanctuary where the ancient rhythms of Greek agriculture live on in every jar, bottle, and basket.</p>
+            <p>We source exclusively from small-scale Greek producers: families whose olive groves have flourished for generations, beekeepers tending hives on mountain slopes, and vintners who still harvest by hand under the Attic sun. Every product carries a story, a landscape, a name.</p>
+            <p>At Zeus Market, shopping is an act of memory. We invite you to slow down, taste deeply, and carry a piece of Greece home with you.</p>
+          </div>
+
+          <!-- Greek copy -->
+          <div class="el-block">
+            <p>Γεννημένος στην καρδιά της Αθήνας το 1987, ο Ζευς ξεκίνησε ως ένα скромό οικογενειακό παντοπωλείο στη σκιά της Ακρόπολης. Μέσα σε τέσσερις δεκαετίες, εξελίχθηκε σε έναν από τους πιο αγαπημένους προορισμούς χειροτεχνίας της πόλης — ένα καταφύγιο όπου οι αρχαίοι ρυθμοί της ελληνικής γεωργίας ζουν σε κάθε βάζο, μπουκάλι και καλάθι.</p>
+            <p>Προμηθευόμαστε αποκλειστικά από μικρούς Έλληνες παραγωγούς: οικογένειες με ελαιώνες που ανθίζουν εδώ και γενιές, μελισσοκόμους που φροντίζουν τις κυψέλες τους στα βουνά, και οινοποιούς που τρυγούν ακόμα με το χέρι κάτω από τον αττικό ήλιο.</p>
+            <p>Στην Αγορά Ζευς, η αγορά είναι μια πράξη μνήμης. Σας καλούμε να επιβραδύνετε, να γευτείτε βαθιά και να πάρετε μαζί σας ένα κομμάτι Ελλάδας.</p>
+          </div>
+
+          <div class="about-qualities">
+            <div class="quality-item">
+              <span class="en">100% Greek Origin</span>
+              <span class="el">100% Ελληνική Προέλευση</span>
+            </div>
+            <div class="quality-item">
+              <span class="en">Artisan Producers</span>
+              <span class="el">Βιοτέχνες Παραγωγοί</span>
+            </div>
+            <div class="quality-item">
+              <span class="en">Family Heritage</span>
+              <span class="el">Οικογενειακή Κληρονομιά</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="separator"></div>
+
+  <!-- PRODUCTS -->
+  <section id="products">
+    <div class="section-inner">
+      <span class="section-label fade-in">
+        <span class="en">What We Offer</span>
+        <span class="el">Τι Προσφέρουμε</span>
+      </span>
+      <h2 class="section-title fade-in">
+        <span class="en">Curated Artisan Selections</span>
+        <span class="el">Επιλεγμένα Χειροτεχνικά Προϊόντα</span>
+      </h2>
+      <div class="gold-divider center fade-in"></div>
+
+      <div class="products-grid">
+
+        <!-- Card 1 -->
+        <div class="product-card fade-in">
+          <span class="product-icon">🫒</span>
+          <h3>
+            <span class="en">Traditional Greek Delicacies</span>
+            <span class="el">Παραδοσιακές Ελληνικές Λιχουδιές</span>
+          </h3>
+          <!-- EN -->
+          <p class="en-block">From hand-rolled grape leaves and sun-ripened feta aged in oak barrels, to loukoumades drizzled with Hymettus honey — our delicacies are the undisturbed recipes of grandmothers, preserved with reverence and pride.</p>
+          <!-- EL -->
+          <p class="el-block">Από χειροποίητα ντολμαδάκια και φέτα ωριμασμένη σε βαρέλια δρυός, μέχρι λουκουμάδες με μέλι Υμηττού — οι λιχουδιές μας είναι αδιατάρακτες συνταγές γιαγιάδων, διατηρημένες με ευλάβεια και περηφάνεια.</p>
+          <span class="card-tag">
+            <span class="en">Explore →</span>
+            <span class="el">Εξερευνήστε →</span>
+          </span>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="product-card fade-in">
+          <span class="product-icon">🍾</span>
+          <h3>
+            <span class="en">Artisan Olive Oils &amp; Wines</span>
+            <span class="el">Χειροτεχνικά Ελαιόλαδα &amp; Κρασιά</span>
+          </h3>
+          <!-- EN -->
+          <p class="en-block">Cold-pressed extra virgin oils from Peloponnese groves and single-vineyard wines from Santorini, Naoussa and Nemea. Each bottle is a portrait of its terroir — chosen for character, not commerce.</p>
+          <!-- EL -->
+          <p class="el-block">Ελαιόλαδα κρύας έκθλιψης από αμπελώνες της Πελοποννήσου και κρασιά ενός αμπελώνα από Σαντορίνη, Νάουσα και Νεμέα. Κάθε μπουκάλι είναι πορτρέτο του εδάφους του — επιλεγμένο για χαρακτήρα, όχι για εμπόριο.</p>
+          <span class="card-tag">
+            <span class="en">Explore →</span>
+            <span class="el">Εξερευνήστε →</span>
+          </span>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="product-card fade-in">
+          <span class="product-icon">🌿</span>
+          <h3>
+            <span class="en">Local Honey &amp; Wild Herbs</span>
+            <span class="el">Τοπικό Μέλι &amp; Αρωματικά Βότανα</span>
+          </h3>
+          <!-- EN -->
+          <p class="en-block">Thyme honey from Cretan plateaus, pine honey from Mount Athos, and hand-gathered oregano, sage, and chamomile from Macedonian hillsides. Nature's pharmacy, bottled with care and centuries of wisdom.</p>
+          <!-- EL -->
+          <p class="el-block">Θυμαρίσιο μέλι από κρητικά οροπέδια, πευκόμελο από τον Άθω, και χειροσυλλεγμένη ρίγανη, φασκόμηλο και χαμομήλι από μακεδονικές πλαγιές. Το φαρμακείο της φύσης, σε μπουκάλι, με αιώνες σοφίας.</p>
+          <span class="card-tag">
+            <span class="en">Explore →</span>
+            <span class="el">Εξερευνήστε →</span>
+          </span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <div class="separator"></div>
+
+  <!-- HOURS -->
+  <section id="hours">
+    <div class="section-inner">
+      <div class="hours-wrap">
+        <div class="fade-in">
+          <span class="section-label">
+            <span class="en">Visit Us</span>
+            <span class="el">Επισκεφθείτε Μας</span>
+          </span>
+          <h2 class="section-title">
+            <span class="en">Opening Hours</span>
+            <span class="el">Ωράριο Λειτουργίας</span>
+          </h2>
+          <div class="gold-divider"></div>
+          <table class="hours-table">
+            <tbody>
+              <tr>
+                <td>
+                  <span class="en">Monday – Friday</span>
+                  <span class="el">Δευτέρα – Παρασκευή</span>
+                </td>
+                <td>08:00 – 20:00</td>
+              </tr>
+              <tr>
+                <td>
+                  <span class="en">Saturday</span>
+                  <span class="el">Σάββατο</span>
+                </td>
+                <td>08:00 – 20:00</td>
+              </tr>
+              <tr>
+                <td>
+                  <span class="en">Sunday</span>
+                  <span class="el">Κυριακή</span>
+                </td>
+                <td>09:00 – 17:00</td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="hours-note">
+            <span class="en">We close on major Greek national holidays. Special extended hours during the Athens Food Festival each October.</span>
+            <span class="el">Κλείνουμε τις μεγάλες ελληνικές εθνικές εορτές. Ειδικές εκτεταμένες ώρες κατά τη διάρκεια του Φεστιβάλ Τροφίμων Αθηνών κάθε Οκτώβριο.</span>
+          </div>
+        </div>
+        <div class="fade-in">
+          <blockquote class="hours-quote">
+            <span class="en">The market is not merely a place to buy — it is a place to remember who we are.</span>
+            <span class="el">Η αγορά δεν είναι απλώς τόπος αγοράς — είναι τόπος που θυμόμαστε ποιοι είμαστε.</span>
+          </blockquote>
+          <p style="font-size: 0.85rem; color: rgba(245,245,240,0.55); font-style: italic;">
+            <span class="en">— Kostas Papadimitriou, Founder</span>
+            <span class="el">— Κώστας Παπαδημητρίου, Ιδρυτής</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="separator"></div>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="section-inner">
+      <span class="section-label fade-in">
+        <span class="en">Find Us</span>
+        <span class="el">Βρείτε Μας</span>
+      </span>
+      <h2 class="section-title fade-in">
+        <span class="en">Contact &amp; Location</span>
+        <span class="el">Επικοινωνία &amp; Τοποθεσία</span>
+      </h2>
+      <div class="gold-divider fade-in"></div>
+
+      <div class="contact-grid fade-in">
+        <div class="contact-info">
+          <h3>
+            <span class="en">Come Visit Us in Athens</span>
+            <span class="el">Ελάτε να μας επισκεφθείτε στην Αθήνα</span>
+          </h3>
+
+          <div class="contact-item">
+            <div class="contact-icon">📍</div>
+            <div class="contact-detail">
+              <strong>
+                <span class="en">Address</span>
+                <span class="el">Διεύθυνση</span>
+              </strong>
+              <span>3 Acropolis Road, Athens 11742, Greece</span>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-icon">📞</div>
+            <div class="contact-detail">
+              <strong>
+                <span class="en">Telephone</span>
+                <span class="el">Τηλέφωνο</span>
+              </strong>
+              <span>+30 210 345 6789</span>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-icon">✉️</div>
+            <div class="contact-detail">
+              <strong>Email</strong>
+              <span>info@zeusmarket.gr</span>
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <div class="contact-icon">🚇</div>
+            <div class="contact-detail">
+              <strong>
+                <span class="en">Getting Here</span>
+                <span class="el">Πώς να Έρθετε</span>
+              </strong>
+              <span>
+                <span class="en">Metro Line 2 – Acropolis Station (5 min walk). Bus lines 230, 057.</span>
+                <span class="el">Μετρό Γραμμή 2 – Σταθμός Ακρόπολη (5 λεπτά με τα πόδια). Λεωφορεία 230, 057.</span>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div class="map-placeholder fade-in">
+          <span>🏛️</span>
+          <p>
+            <span class="en">Athens, Greece</span>
+            <span class="el">Αθήνα, Ελλάδα</span>
+          </p>
+          <small style="color: var(--text-light); font-size: 0.8rem;">
+            <span class="en">3 Acropolis Road · Near the Acropolis Museum</span>
+            <span class="el">Οδός Ακροπόλεως 3 · Κοντά στο Μουσείο Ακρόπολης</span>
+          </small>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo"><span>Ζ</span>eus Market</div>
+    <ul class="footer-links">
+      <li><a href="#hero">
+        <span class="en">Home</span>
+        <span class="el">Αρχική</span>
+      </a></li>
+      <li><a href="#about">
+        <span class="en">About</span>
+        <span class="el">Σχετικά</span>
+      </a></li>
+      <li><a href="#products">
+        <span class="en">Products</span>
+        <span class="el">Προϊόντα</span>
+      </a></li>
+      <li><a href="#contact">
+        <span class="en">Contact</span>
+        <span class="el">Επικοινωνία</span>
+      </a></li>
+    </ul>
+    <p>
+      <span class="en">&copy; 2026 Zeus Market · Athens, Greece · All rights reserved.</span>
+      <span class="el">&copy; 2026 Αγορά Ζευς · Αθήνα, Ελλάδα · Όλα τα δικαιώματα διατηρούνται.</span>
+    </p>
+    <p style="margin-top: 0.4rem; font-size: 0.72rem; opacity: 0.5; letter-spacing: 0.06em;">
+      <span class="en">Crafted with care · Authentic Greek provenance since 1987</span>
+      <span class="el">Φτιαγμένο με μεράκι · Αυθεντική ελληνική προέλευση από το 1987</span>
+    </p>
+  </footer>
+
+  <script>
+    // ===== LANGUAGE TOGGLE =====
+    let currentLang = 'en';
+
+    function toggleLang() {
+      const btn = document.getElementById('langBtn');
+      if (currentLang === 'en') {
+        currentLang = 'el';
+        btn.textContent = 'EN';
+        document.documentElement.lang = 'el';
+      } else {
+        currentLang = 'en';
+        btn.textContent = 'ΕΛ';
+        document.documentElement.lang = 'en';
+      }
+      applyLang();
+    }
+
+    function applyLang() {
+      const enInline = document.querySelectorAll('.en');
+      const elInline = document.querySelectorAll('.el');
+      const enBlock = document.querySelectorAll('.en-block');
+      const elBlock = document.querySelectorAll('.el-block');
+
+      if (currentLang === 'en') {
+        enInline.forEach(el => el.style.display = 'inline');
+        elInline.forEach(el => el.style.display = 'none');
+        enBlock.forEach(el => el.style.display = 'block');
+        elBlock.forEach(el => el.style.display = 'none');
+      } else {
+        enInline.forEach(el => el.style.display = 'none');
+        elInline.forEach(el => el.style.display = 'inline');
+        enBlock.forEach(el => el.style.display = 'none');
+        elBlock.forEach(el => el.style.display = 'block');
+      }
+    }
+
+    // ===== HERO BG ANIMATION =====
+    window.addEventListener('load', () => {
+      const bg = document.getElementById('heroBg');
+      if (bg) {
+        setTimeout(() => bg.classList.add('loaded'), 100);
+      }
+    });
+
+    // ===== SCROLL FADE-IN =====
+    const fadeEls = document.querySelectorAll('.fade-in');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    fadeEls.forEach(el => observer.observe(el));
+
+    // ===== NAV SCROLL SHADOW =====
+    const nav = document.querySelector('nav');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 60) {
+        nav.style.boxShadow = '0 4px 24px rgba(10, 20, 50, 0.25)';
+      } else {
+        nav.style.boxShadow = 'none';
+      }
+    });
+  </script>
+</body>
+</html>

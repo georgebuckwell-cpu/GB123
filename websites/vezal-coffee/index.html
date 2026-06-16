@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Super Market Vezal & Coffee Corner</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --espresso: #3E1F00;
+      --espresso-mid: #5C2E00;
+      --espresso-light: #7A4010;
+      --latte: #F5E6D3;
+      --latte-dark: #EAD0B0;
+      --latte-deeper: #D9B896;
+      --cream: #FDFAF6;
+      --text-dark: #1A0E00;
+      --text-mid: #4A2800;
+      --gold: #C89B5A;
+      --gold-light: #E0BC82;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--cream);
+      color: var(--text-dark);
+      line-height: 1.7;
+      font-size: 16px;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Playfair Display', serif;
+    }
+
+    /* ─── LANGUAGE TOGGLE LOGIC ─── */
+    [data-lang="el"] { display: none; }
+    body.lang-el [data-lang="en"] { display: none; }
+    body.lang-el [data-lang="el"] { display: revert; }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      background: rgba(62, 31, 0, 0.96);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 5%;
+      height: 72px;
+      border-bottom: 1px solid rgba(200, 155, 90, 0.3);
+      box-shadow: 0 2px 24px rgba(0,0,0,0.35);
+    }
+
+    .nav-logo {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.15;
+      text-decoration: none;
+    }
+
+    .nav-logo .logo-main {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: var(--gold-light);
+      letter-spacing: 0.02em;
+    }
+
+    .nav-logo .logo-sub {
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--latte-dark);
+      opacity: 0.85;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--latte);
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      transition: color 0.25s;
+      position: relative;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -3px; left: 0; right: 0;
+      height: 1px;
+      background: var(--gold);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s ease;
+    }
+
+    .nav-links a:hover { color: var(--gold-light); }
+    .nav-links a:hover::after { transform: scaleX(1); }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+    }
+
+    .lang-toggle {
+      background: transparent;
+      border: 1.5px solid var(--gold);
+      color: var(--gold-light);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: background 0.25s, color 0.25s;
+    }
+
+    .lang-toggle:hover {
+      background: var(--gold);
+      color: var(--espresso);
+    }
+
+    /* ─── HERO ─── */
+    .hero {
+      position: relative;
+      height: 100vh;
+      min-height: 620px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=1920&q=80');
+      background-size: cover;
+      background-position: center 35%;
+      transform: scale(1.04);
+      transition: transform 8s ease;
+    }
+
+    .hero:hover .hero-bg { transform: scale(1); }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        160deg,
+        rgba(30, 10, 0, 0.78) 0%,
+        rgba(62, 31, 0, 0.65) 50%,
+        rgba(15, 5, 0, 0.82) 100%
+      );
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 820px;
+      padding: 0 24px;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      border: 1px solid var(--gold);
+      color: var(--gold-light);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      padding: 6px 20px;
+      border-radius: 30px;
+      margin-bottom: 1.6rem;
+      backdrop-filter: blur(4px);
+    }
+
+    .hero h1 {
+      font-size: clamp(2.4rem, 5.5vw, 4.2rem);
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.15;
+      margin-bottom: 1.2rem;
+      text-shadow: 0 2px 20px rgba(0,0,0,0.5);
+    }
+
+    .hero h1 span { color: var(--gold-light); }
+
+    .hero-tagline {
+      font-size: clamp(1rem, 2.2vw, 1.25rem);
+      color: var(--latte);
+      font-weight: 300;
+      letter-spacing: 0.04em;
+      margin-bottom: 2.4rem;
+      opacity: 0.92;
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--gold);
+      color: var(--espresso);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.85rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 14px 36px;
+      border-radius: 40px;
+      transition: background 0.28s, transform 0.22s, box-shadow 0.28s;
+      box-shadow: 0 6px 24px rgba(200,155,90,0.35);
+    }
+
+    .hero-cta:hover {
+      background: var(--gold-light);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(200,155,90,0.45);
+    }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 36px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      color: var(--latte);
+      opacity: 0.65;
+      font-size: 0.68rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .hero-scroll .scroll-line {
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, transparent, var(--latte));
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 0.4; transform: scaleY(1); }
+      50% { opacity: 1; transform: scaleY(1.15); }
+    }
+
+    /* ─── SECTION WRAPPER ─── */
+    section { padding: 100px 5%; }
+
+    .section-inner { max-width: 1140px; margin: 0 auto; }
+
+    .section-label {
+      display: inline-block;
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.9rem;
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 4vw, 3rem);
+      color: var(--espresso);
+      line-height: 1.2;
+      margin-bottom: 1.1rem;
+    }
+
+    .section-divider {
+      width: 56px;
+      height: 2px;
+      background: linear-gradient(to right, var(--gold), var(--latte-dark));
+      margin-bottom: 2rem;
+      border-radius: 2px;
+    }
+
+    .section-body {
+      font-size: 1.05rem;
+      color: var(--text-mid);
+      max-width: 680px;
+      line-height: 1.85;
+    }
+
+    /* ─── ABOUT ─── */
+    #about { background: var(--latte); }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: center;
+    }
+
+    .about-image-wrap {
+      position: relative;
+    }
+
+    .about-image-wrap img {
+      width: 100%;
+      height: 480px;
+      object-fit: cover;
+      border-radius: 4px;
+      display: block;
+    }
+
+    .about-image-badge {
+      position: absolute;
+      bottom: -24px;
+      right: -24px;
+      background: var(--espresso);
+      color: var(--gold-light);
+      font-family: 'Playfair Display', serif;
+      padding: 22px 28px;
+      border-radius: 4px;
+      text-align: center;
+      box-shadow: 0 8px 30px rgba(62,31,0,0.4);
+    }
+
+    .about-image-badge .badge-num {
+      display: block;
+      font-size: 2.4rem;
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    .about-image-badge .badge-text {
+      font-size: 0.72rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+      opacity: 0.85;
+      margin-top: 4px;
+    }
+
+    .about-pillars {
+      display: flex;
+      flex-direction: column;
+      gap: 1.4rem;
+      margin-top: 2.5rem;
+    }
+
+    .pillar {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+
+    .pillar-icon {
+      width: 44px;
+      height: 44px;
+      min-width: 44px;
+      border-radius: 50%;
+      background: var(--espresso);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      margin-top: 2px;
+    }
+
+    .pillar-text strong {
+      display: block;
+      font-weight: 600;
+      color: var(--espresso);
+      font-size: 0.92rem;
+      margin-bottom: 2px;
+    }
+
+    .pillar-text span {
+      font-size: 0.88rem;
+      color: var(--text-mid);
+      line-height: 1.6;
+    }
+
+    /* ─── SERVICES / CARDS ─── */
+    #services { background: var(--cream); }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      margin-top: 3.5rem;
+    }
+
+    .card {
+      background: var(--latte);
+      border: 1px solid var(--latte-dark);
+      border-radius: 8px;
+      overflow: hidden;
+      transition: transform 0.32s cubic-bezier(.22,.68,0,1.2), box-shadow 0.32s ease;
+      cursor: default;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 50px rgba(62,31,0,0.18);
+    }
+
+    .card-img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+
+    .card:hover .card-img { transform: scale(1.05); }
+
+    .card-img-wrap { overflow: hidden; }
+
+    .card-body { padding: 2rem 1.8rem 2.2rem; }
+
+    .card-icon {
+      font-size: 1.8rem;
+      margin-bottom: 0.8rem;
+      display: block;
+    }
+
+    .card-title {
+      font-size: 1.4rem;
+      color: var(--espresso);
+      margin-bottom: 0.7rem;
+    }
+
+    .card-text {
+      font-size: 0.9rem;
+      color: var(--text-mid);
+      line-height: 1.75;
+    }
+
+    .card-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 1.3rem;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.2s, gap 0.2s;
+    }
+
+    .card-link:hover { border-color: var(--gold); gap: 10px; }
+
+    /* ─── HOURS ─── */
+    #hours { background: var(--espresso); }
+
+    #hours .section-title { color: var(--gold-light); }
+    #hours .section-label { color: var(--latte-dark); }
+    #hours .section-divider { background: linear-gradient(to right, var(--gold), transparent); }
+
+    .hours-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+      max-width: 600px;
+    }
+
+    .hours-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(200,155,90,0.25);
+      border-radius: 8px;
+      padding: 1.8rem 2rem;
+      transition: background 0.25s;
+    }
+
+    .hours-card:hover { background: rgba(255,255,255,0.1); }
+
+    .hours-card .day {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      color: var(--gold-light);
+      margin-bottom: 0.35rem;
+    }
+
+    .hours-card .time {
+      font-size: 1.5rem;
+      font-weight: 300;
+      color: var(--latte);
+      letter-spacing: 0.04em;
+    }
+
+    .hours-note {
+      margin-top: 2rem;
+      font-size: 0.88rem;
+      color: var(--latte-dark);
+      opacity: 0.75;
+    }
+
+    /* ─── CONTACT ─── */
+    #contact { background: var(--latte); }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+
+    .contact-info { display: flex; flex-direction: column; gap: 1.6rem; }
+
+    .contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 1.1rem;
+    }
+
+    .contact-item-icon {
+      width: 46px;
+      height: 46px;
+      min-width: 46px;
+      background: var(--espresso);
+      color: var(--gold-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      border-radius: 50%;
+      margin-top: 2px;
+    }
+
+    .contact-item-body strong {
+      display: block;
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--espresso-light);
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .contact-item-body span {
+      font-size: 1rem;
+      color: var(--text-mid);
+      line-height: 1.6;
+    }
+
+    .contact-item-body a {
+      color: var(--espresso);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .contact-item-body a:hover { color: var(--gold); }
+
+    .map-placeholder {
+      border-radius: 8px;
+      overflow: hidden;
+      height: 340px;
+      background: var(--latte-dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 2px solid var(--latte-deeper);
+      position: relative;
+    }
+
+    .map-placeholder iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--text-dark);
+      color: var(--latte-dark);
+      text-align: center;
+      padding: 3rem 5%;
+      border-top: 1px solid rgba(200,155,90,0.2);
+    }
+
+    .footer-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      color: var(--gold-light);
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-tagline {
+      font-size: 0.8rem;
+      opacity: 0.55;
+      letter-spacing: 0.08em;
+      margin-bottom: 1.5rem;
+    }
+
+    .footer-copy {
+      font-size: 0.78rem;
+      opacity: 0.45;
+      letter-spacing: 0.05em;
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+
+      .about-grid,
+      .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+
+      .about-image-badge { bottom: -16px; right: 16px; }
+
+      .cards-grid { grid-template-columns: 1fr; max-width: 460px; margin-left: auto; margin-right: auto; }
+
+      .hours-grid { grid-template-columns: 1fr; max-width: 320px; }
+
+      section { padding: 70px 6%; }
+    }
+  </style>
+</head>
+<body id="top">
+
+<!-- ─── NAVIGATION ─── -->
+<nav>
+  <a href="#top" class="nav-logo">
+    <span class="logo-main">Vezal &amp; Coffee</span>
+    <span class="logo-sub" data-lang="en">Super Market &amp; Coffee Corner</span>
+    <span class="logo-sub" data-lang="el">Super Market &amp; Coffee Corner</span>
+  </a>
+
+  <ul class="nav-links">
+    <li><a href="#top" data-lang="en">Home</a><a href="#top" data-lang="el">Αρχική</a></li>
+    <li><a href="#about" data-lang="en">About</a><a href="#about" data-lang="el">Σχετικά</a></li>
+    <li><a href="#services" data-lang="en">Services</a><a href="#services" data-lang="el">Υπηρεσίες</a></li>
+    <li><a href="#hours" data-lang="en">Hours</a><a href="#hours" data-lang="el">Ωράριο</a></li>
+    <li><a href="#contact" data-lang="en">Contact</a><a href="#contact" data-lang="el">Επικοινωνία</a></li>
+  </ul>
+
+  <div class="nav-right">
+    <button class="lang-toggle" id="langBtn" aria-label="Toggle language">ΕΛ</button>
+  </div>
+</nav>
+
+<!-- ─── HERO ─── -->
+<section class="hero" id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-badge" data-lang="en">Athens, Greece &nbsp;·&nbsp; Est. 2010</div>
+    <div class="hero-badge" data-lang="el">Αθήνα, Ελλάδα &nbsp;·&nbsp; Ίδρ. 2010</div>
+
+    <h1 data-lang="en">Vezal &amp; <span>Coffee Corner</span></h1>
+    <h1 data-lang="el">Vezal &amp; <span>Coffee Corner</span></h1>
+
+    <p class="hero-tagline" data-lang="en">Shop, Sip, Savour</p>
+    <p class="hero-tagline" data-lang="el">Ψώνισε, Απόλαυσε τον Καφέ σου, Γεύσου</p>
+
+    <a href="#about" class="hero-cta" data-lang="en">Discover Our Story &nbsp;→</a>
+    <a href="#about" class="hero-cta" data-lang="el">Ανακαλύψτε την Ιστορία μας &nbsp;→</a>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    <span data-lang="en">Scroll</span>
+    <span data-lang="el">Κάτω</span>
+  </div>
+</section>
+
+<!-- ─── ABOUT ─── -->
+<section id="about">
+  <div class="section-inner">
+    <div class="about-grid">
+      <div class="about-image-wrap">
+        <img
+          src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?auto=format&fit=crop&w=900&q=80"
+          alt="Inside Vezal — warm grocery aisles and coffee counter"
+          loading="lazy"
+        />
+        <div class="about-image-badge">
+          <span class="badge-num">15+</span>
+          <span class="badge-text" data-lang="en">Years of Trust</span>
+          <span class="badge-text" data-lang="el">Χρόνια Εμπιστοσύνης</span>
+        </div>
+      </div>
+
+      <div class="about-copy">
+        <span class="section-label" data-lang="en">Our Story</span>
+        <span class="section-label" data-lang="el">Η Ιστορία μας</span>
+
+        <h2 class="section-title" data-lang="en">Where Your Daily Shop Becomes a Pleasure</h2>
+        <h2 class="section-title" data-lang="el">Όπου η Καθημερινή Αγορά Γίνεται Απόλαυση</h2>
+
+        <div class="section-divider"></div>
+
+        <p class="section-body" data-lang="en">
+          Nestled in the heart of Athens, Super Market Vezal was born from a simple yet bold idea: why should grocery shopping feel like a chore? We reimagined the neighbourhood market as a warm, welcoming destination — one where you can fill your basket with the finest local and imported produce, then settle into our Coffee Corner for a perfectly pulled espresso or a velvety flat white.
+        </p>
+        <p class="section-body" data-lang="el">
+          Στην καρδιά της Αθήνας, το Super Market Vezal γεννήθηκε από μια απλή αλλά τολμηρή ιδέα: γιατί να είναι η αγορά παντοπωλείου μια υποχρέωση; Επαναφύγαμε τη γειτονιά ως ζεστό, φιλόξενο προορισμό — όπου μπορείτε να γεμίσετε το καλάθι σας με τα καλύτερα τοπικά και εισαγόμενα προϊόντα, και στη συνέχεια να απολαύσετε έναν τέλεια παρασκευασμένο espresso ή ένα βελούδινο flat white στο Coffee Corner μας.
+        </p>
+        <br/>
+        <p class="section-body" data-lang="en">
+          More than a supermarket — Vezal is a ritual. Morning regulars grab their coffee and fresh bread before the city wakes up. Families browse our curated shelves of premium olive oils, artisan cheeses, and seasonal vegetables. And evenings find friends pausing over a cappuccino before heading home. This is how we believe a neighbourhood store should feel.
+        </p>
+        <p class="section-body" data-lang="el">
+          Περισσότερο από ένα σούπερ μάρκετ — το Vezal είναι μια τελετουργία. Οι τακτικοί πελάτες το πρωί παίρνουν τον καφέ και το φρέσκο ψωμί τους πριν ξυπνήσει η πόλη. Οικογένειες ψωνίζουν από τα επιλεγμένα ράφια μας με premium ελαιόλαδα, artisan τυριά και εποχιακά λαχανικά. Και τα βράδια, φίλοι σταματούν για έναν cappuccino πριν επιστρέψουν σπίτι. Έτσι πιστεύουμε ότι πρέπει να αισθάνεσαι σε ένα κατάστημα γειτονιάς.
+        </p>
+
+        <div class="about-pillars">
+          <div class="pillar">
+            <div class="pillar-icon">🛒</div>
+            <div class="pillar-text">
+              <strong data-lang="en">Curated Grocery Selection</strong>
+              <strong data-lang="el">Επιλεγμένα Παντοπωλεία</strong>
+              <span data-lang="en">Local producers, premium imports, and everyday essentials — all under one roof.</span>
+              <span data-lang="el">Τοπικοί παραγωγοί, premium εισαγωγές και καθημερινά απαραίτητα — όλα κάτω από μία στέγη.</span>
+            </div>
+          </div>
+          <div class="pillar">
+            <div class="pillar-icon">☕</div>
+            <div class="pillar-text">
+              <strong data-lang="en">Specialty Coffee Corner</strong>
+              <strong data-lang="el">Specialty Coffee Corner</strong>
+              <span data-lang="en">Barista-crafted drinks using single-origin beans, served with care and warmth.</span>
+              <span data-lang="el">Ποτά φτιαγμένα από barista με single-origin κόκκους, σερβιρισμένα με φροντίδα και ζεστασιά.</span>
+            </div>
+          </div>
+          <div class="pillar">
+            <div class="pillar-icon">🥐</div>
+            <div class="pillar-text">
+              <strong data-lang="en">Fresh Daily Bakery</strong>
+              <strong data-lang="el">Φρέσκο Ημερήσιο Αρτοποιείο</strong>
+              <span data-lang="en">Warm pastries, crusty loaves, and sweet treats baked fresh every morning.</span>
+              <span data-lang="el">Ζεστά pastries, τριζάτα ψωμιά και γλυκά αρτοσκευάσματα ψημένα φρέσκα κάθε πρωί.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── SERVICES ─── -->
+<section id="services">
+  <div class="section-inner">
+    <div style="text-align:center; max-width:600px; margin:0 auto;">
+      <span class="section-label" data-lang="en">What We Offer</span>
+      <span class="section-label" data-lang="el">Τι Προσφέρουμε</span>
+      <h2 class="section-title" data-lang="en">A Taste of Everything You Need</h2>
+      <h2 class="section-title" data-lang="el">Μια Γεύση από Όλα Όσα Χρειάζεστε</h2>
+      <div class="section-divider" style="margin:0 auto 1rem;"></div>
+      <p class="section-body" style="margin:0 auto;" data-lang="en">Three pillars that define the Vezal experience — quality, warmth, and convenience, beautifully combined.</p>
+      <p class="section-body" style="margin:0 auto;" data-lang="el">Τρεις πυλώνες που ορίζουν την εμπειρία Vezal — ποιότητα, ζεστασιά και ευκολία, όμορφα συνδυασμένα.</p>
+    </div>
+
+    <div class="cards-grid">
+
+      <!-- Card 1: Artisan Coffee -->
+      <div class="card">
+        <div class="card-img-wrap">
+          <img
+            class="card-img"
+            src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&w=800&q=80"
+            alt="Artisan Coffee"
+            loading="lazy"
+          />
+        </div>
+        <div class="card-body">
+          <span class="card-icon">☕</span>
+          <h3 class="card-title" data-lang="en">Artisan Coffee</h3>
+          <h3 class="card-title" data-lang="el">Artisan Καφές</h3>
+          <p class="card-text" data-lang="en">
+            Our in-store Coffee Corner is a haven for coffee lovers. From rich espresso and silky cappuccinos to cold brew and seasonal specials — every cup is crafted with precision and passion by our trained baristas using ethically sourced, single-origin beans.
+          </p>
+          <p class="card-text" data-lang="el">
+            Το Coffee Corner μας είναι ένας παράδεισος για τους λάτρεις του καφέ. Από πλούσιο espresso και βελούδινα cappuccinos μέχρι cold brew και εποχιακές ειδικότητες — κάθε φλιτζάνι παρασκευάζεται με ακρίβεια και πάθος από τους εκπαιδευμένους baristas μας με ηθικά προμηθευμένους single-origin κόκκους.
+          </p>
+          <a href="#contact" class="card-link" data-lang="en">Discover Our Menu →</a>
+          <a href="#contact" class="card-link" data-lang="el">Ανακαλύψτε το Μενού →</a>
+        </div>
+      </div>
+
+      <!-- Card 2: Grocery Essentials -->
+      <div class="card">
+        <div class="card-img-wrap">
+          <img
+            class="card-img"
+            src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=800&q=80"
+            alt="Grocery Essentials"
+            loading="lazy"
+          />
+        </div>
+        <div class="card-body">
+          <span class="card-icon">🛒</span>
+          <h3 class="card-title" data-lang="en">Grocery Essentials</h3>
+          <h3 class="card-title" data-lang="el">Βασικά Παντοπωλείου</h3>
+          <p class="card-text" data-lang="en">
+            From the finest Greek extra-virgin olive oils and aged cheeses to international pantry staples and organic produce — our shelves are thoughtfully curated. We partner with trusted local suppliers and renowned importers to bring you quality you can taste.
+          </p>
+          <p class="card-text" data-lang="el">
+            Από τα καλύτερα ελληνικά extra-virgin ελαιόλαδα και ωριμασμένα τυριά μέχρι διεθνή βασικά τρόφιμα και βιολογικά προϊόντα — τα ράφια μας είναι προσεκτικά επιλεγμένα. Συνεργαζόμαστε με αξιόπιστους τοπικούς προμηθευτές και γνωστούς εισαγωγείς για να σας φέρνουμε ποιότητα που μπορείτε να γευτείτε.
+          </p>
+          <a href="#contact" class="card-link" data-lang="en">Explore Our Range →</a>
+          <a href="#contact" class="card-link" data-lang="el">Εξερευνήστε τη Σειρά →</a>
+        </div>
+      </div>
+
+      <!-- Card 3: Freshly Baked -->
+      <div class="card">
+        <div class="card-img-wrap">
+          <img
+            class="card-img"
+            src="https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=800&q=80"
+            alt="Freshly Baked Goods"
+            loading="lazy"
+          />
+        </div>
+        <div class="card-body">
+          <span class="card-icon">🥐</span>
+          <h3 class="card-title" data-lang="en">Freshly Baked</h3>
+          <h3 class="card-title" data-lang="el">Φρεσκοψημένα</h3>
+          <p class="card-text" data-lang="en">
+            Wake up to the scent of freshly baked bread and golden pastries. Our in-house bakery produces an ever-changing selection of sourdough loaves, flaky tiropitas, buttery croissants, and traditional Greek sweets — baked fresh each morning to start your day just right.
+          </p>
+          <p class="card-text" data-lang="el">
+            Ξυπνήστε με την ευωδιά φρεσκοψημένου ψωμιού και χρυσαφένιων pastries. Το εσωτερικό μας αρτοποιείο παράγει μια διαρκώς εναλλασσόμενη επιλογή από ψωμιά sourdough, τριφτερές τυρόπιτες, βουτυράτα croissants και παραδοσιακά ελληνικά γλυκά — ψημένα φρέσκα κάθε πρωί για να ξεκινάτε τη μέρα σας σωστά.
+          </p>
+          <a href="#contact" class="card-link" data-lang="en">Today's Bakes →</a>
+          <a href="#contact" class="card-link" data-lang="el">Σημερινά Αρτοσκευάσματα →</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ─── HOURS ─── -->
+<section id="hours">
+  <div class="section-inner">
+    <span class="section-label" data-lang="en">When to Find Us</span>
+    <span class="section-label" data-lang="el">Πότε να μας Βρείτε</span>
+    <h2 class="section-title" data-lang="en">Opening Hours</h2>
+    <h2 class="section-title" data-lang="el">Ωράριο Λειτουργίας</h2>
+    <div class="section-divider"></div>
+
+    <div class="hours-grid">
+      <div class="hours-card">
+        <div class="day" data-lang="en">Monday – Saturday</div>
+        <div class="day" data-lang="el">Δευτέρα – Σάββατο</div>
+        <div class="time">07:30 – 22:00</div>
+      </div>
+      <div class="hours-card">
+        <div class="day" data-lang="en">Sunday</div>
+        <div class="day" data-lang="el">Κυριακή</div>
+        <div class="time">08:00 – 20:00</div>
+      </div>
+    </div>
+
+    <p class="hours-note" data-lang="en">* The Coffee Corner operates during all store hours. Last coffee orders 15 minutes before closing.</p>
+    <p class="hours-note" data-lang="el">* Το Coffee Corner λειτουργεί κατά τις ώρες λειτουργίας του καταστήματος. Τελευταίες παραγγελίες καφέ 15 λεπτά πριν το κλείσιμο.</p>
+  </div>
+</section>
+
+<!-- ─── CONTACT ─── -->
+<section id="contact">
+  <div class="section-inner">
+    <span class="section-label" data-lang="en">Find Us</span>
+    <span class="section-label" data-lang="el">Βρείτε μας</span>
+    <h2 class="section-title" data-lang="en">Visit Us in Athens</h2>
+    <h2 class="section-title" data-lang="el">Επισκεφθείτε μας στην Αθήνα</h2>
+    <div class="section-divider"></div>
+
+    <div class="contact-grid">
+      <div class="contact-info">
+
+        <div class="contact-item">
+          <div class="contact-item-icon">📍</div>
+          <div class="contact-item-body">
+            <strong data-lang="en">Address</strong>
+            <strong data-lang="el">Διεύθυνση</strong>
+            <span>8 Syntagma Square<br/>Athens 10557, Greece</span>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-item-icon">📞</div>
+          <div class="contact-item-body">
+            <strong data-lang="en">Telephone</strong>
+            <strong data-lang="el">Τηλέφωνο</strong>
+            <span><a href="tel:+302109876543">+30 210 987 6543</a></span>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-item-icon">✉️</div>
+          <div class="contact-item-body">
+            <strong data-lang="en">Email</strong>
+            <strong data-lang="el">Email</strong>
+            <span><a href="mailto:hello@vezalcoffee.gr">hello@vezalcoffee.gr</a></span>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-item-icon">🚇</div>
+          <div class="contact-item-body">
+            <strong data-lang="en">Getting Here</strong>
+            <strong data-lang="el">Πώς να Φτάσετε</strong>
+            <span data-lang="en">Metro Line 2 & 3 — Syntagma Station, 2 min walk. Bus lines 2, 11, 200, 400 stop directly outside.</span>
+            <span data-lang="el">Μετρό Γραμμές 2 & 3 — Σταθμός Συντάγματος, 2 λεπτά με τα πόδια. Λεωφορεία 2, 11, 200, 400 σταματούν ακριβώς έξω.</span>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="map-placeholder">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3145.0!2d23.7346!3d37.9754!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14a1bd26b3b4a5b%3A0x0!2sSyntagma+Square%2C+Athens!5e0!3m2!1sen!2sgr!4v1700000000000"
+          allowfullscreen
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Vezal location map"
+        ></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="footer-logo">Vezal &amp; Coffee Corner</div>
+  <p class="footer-tagline" data-lang="en">Super Market &amp; Coffee Corner · Athens, Greece</p>
+  <p class="footer-tagline" data-lang="el">Super Market &amp; Coffee Corner · Αθήνα, Ελλάδα</p>
+  <p class="footer-copy" data-lang="en">&copy; 2025 Super Market Vezal. All rights reserved.</p>
+  <p class="footer-copy" data-lang="el">&copy; 2025 Super Market Vezal. Όλα τα δικαιώματα διατηρούνται.</p>
+</footer>
+
+<!-- ─── LANGUAGE TOGGLE SCRIPT ─── -->
+<script>
+  (function () {
+    const btn = document.getElementById('langBtn');
+    const body = document.body;
+    let currentLang = 'en';
+
+    btn.addEventListener('click', function () {
+      if (currentLang === 'en') {
+        currentLang = 'el';
+        body.classList.add('lang-el');
+        btn.textContent = 'EN';
+        document.documentElement.lang = 'el';
+      } else {
+        currentLang = 'en';
+        body.classList.remove('lang-el');
+        btn.textContent = 'ΕΛ';
+        document.documentElement.lang = 'en';
+      }
+    });
+  })();
+</script>
+
+</body>
+</html>

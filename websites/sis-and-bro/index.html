@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sis & Bro Super Market</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --rose: #E8A598;
+      --rose-light: #f5cfc7;
+      --teal: #1B4F72;
+      --teal-dark: #123452;
+      --teal-light: #2980b9;
+      --white: #fff;
+      --off-white: #FDF9F8;
+      --text-dark: #1a1a1a;
+      --text-mid: #444;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; color: var(--text-dark); background: var(--off-white); }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 5%; height: 72px;
+      background: rgba(27,79,114,0.96); backdrop-filter: blur(10px);
+      box-shadow: 0 2px 20px rgba(0,0,0,0.15);
+      transition: background 0.3s;
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem; font-weight: 700;
+      color: var(--rose-light); letter-spacing: 0.5px;
+      text-decoration: none;
+    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      color: rgba(255,255,255,0.85); text-decoration: none;
+      font-size: 0.875rem; font-weight: 500; letter-spacing: 0.3px;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--rose-light); }
+    .lang-toggle {
+      background: var(--rose); color: var(--teal-dark);
+      border: none; padding: 0.45rem 1.1rem; border-radius: 50px;
+      font-family: 'Inter', sans-serif; font-size: 0.8rem; font-weight: 600;
+      cursor: pointer; letter-spacing: 0.5px; transition: background 0.2s, transform 0.15s;
+    }
+    .lang-toggle:hover { background: var(--rose-light); transform: scale(1.04); }
+
+    /* HERO */
+    .hero {
+      height: 100vh; min-height: 600px; position: relative;
+      display: flex; align-items: center; justify-content: center; text-align: center;
+      background: url('https://images.unsplash.com/photo-1578916171728-46686eac8d58?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+    }
+    .hero::before {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(160deg, rgba(27,79,114,0.72) 0%, rgba(232,165,152,0.45) 100%);
+    }
+    .hero-content { position: relative; z-index: 1; padding: 0 1.5rem; max-width: 860px; }
+    .hero-eyebrow {
+      display: inline-block; background: var(--rose); color: var(--teal-dark);
+      font-size: 0.75rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase;
+      padding: 0.4rem 1.2rem; border-radius: 50px; margin-bottom: 1.5rem;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.4rem, 6vw, 4.2rem); font-weight: 700;
+      color: #fff; line-height: 1.15; margin-bottom: 1.2rem;
+      text-shadow: 0 2px 30px rgba(0,0,0,0.3);
+    }
+    .hero p {
+      font-size: clamp(1rem, 2vw, 1.2rem); color: rgba(255,255,255,0.88);
+      max-width: 560px; margin: 0 auto 2.2rem; line-height: 1.7;
+    }
+    .btn-primary {
+      display: inline-block; background: var(--rose);
+      color: var(--teal-dark); padding: 0.85rem 2.4rem;
+      border-radius: 50px; font-weight: 600; font-size: 0.95rem;
+      text-decoration: none; letter-spacing: 0.3px;
+      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 20px rgba(232,165,152,0.4);
+    }
+    .btn-primary:hover { background: var(--rose-light); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(232,165,152,0.5); }
+
+    /* SECTIONS */
+    section { padding: 100px 5%; }
+    .section-label {
+      font-size: 0.75rem; font-weight: 600; letter-spacing: 3px;
+      text-transform: uppercase; color: var(--rose);
+      margin-bottom: 0.8rem; display: block;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.9rem, 4vw, 3rem); font-weight: 700;
+      color: var(--teal); line-height: 1.2; margin-bottom: 1.2rem;
+    }
+    .section-body {
+      font-size: 1.05rem; color: var(--text-mid);
+      line-height: 1.8; max-width: 640px;
+    }
+
+    /* ABOUT */
+    .about { background: #fff; }
+    .about-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; max-width: 1200px; margin: 0 auto; }
+    .about-image { border-radius: 16px; overflow: hidden; box-shadow: 0 20px 60px rgba(27,79,114,0.15); }
+    .about-image img { width: 100%; height: 420px; object-fit: cover; display: block; transition: transform 0.5s; }
+    .about-image:hover img { transform: scale(1.04); }
+    .about-stat { display: flex; gap: 2.5rem; margin-top: 2.5rem; }
+    .stat { text-align: center; }
+    .stat-num { font-family: 'Playfair Display', serif; font-size: 2.2rem; font-weight: 700; color: var(--teal); }
+    .stat-lbl { font-size: 0.8rem; color: var(--text-mid); letter-spacing: 1px; text-transform: uppercase; margin-top: 0.2rem; }
+
+    /* PRODUCTS */
+    .products { background: var(--off-white); }
+    .products-header { max-width: 1200px; margin: 0 auto 4rem; }
+    .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; max-width: 1200px; margin: 0 auto; }
+    .card {
+      background: #fff; border-radius: 16px; overflow: hidden;
+      box-shadow: 0 4px 24px rgba(27,79,114,0.07);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .card:hover { transform: translateY(-8px); box-shadow: 0 16px 48px rgba(27,79,114,0.14); }
+    .card-img { height: 200px; overflow: hidden; }
+    .card-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+    .card:hover .card-img img { transform: scale(1.06); }
+    .card-body { padding: 1.8rem; }
+    .card-icon { font-size: 1.8rem; margin-bottom: 0.8rem; }
+    .card-title { font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 600; color: var(--teal); margin-bottom: 0.7rem; }
+    .card-text { font-size: 0.93rem; color: var(--text-mid); line-height: 1.7; }
+
+    /* HOURS */
+    .hours { background: var(--teal); }
+    .hours .section-title { color: var(--rose-light); }
+    .hours .section-label { color: var(--rose); }
+    .hours-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; max-width: 1200px; margin: 0 auto; align-items: start; }
+    .hours-table { width: 100%; border-collapse: collapse; margin-top: 1.5rem; }
+    .hours-table tr { border-bottom: 1px solid rgba(255,255,255,0.1); }
+    .hours-table tr:last-child { border-bottom: none; }
+    .hours-table td { padding: 0.85rem 0; color: rgba(255,255,255,0.85); font-size: 0.95rem; }
+    .hours-table td:last-child { text-align: right; font-weight: 500; color: var(--rose-light); }
+    .hours-note { margin-top: 1.5rem; font-size: 0.85rem; color: rgba(255,255,255,0.6); font-style: italic; }
+    .hours-visual { border-radius: 16px; overflow: hidden; box-shadow: 0 12px 40px rgba(0,0,0,0.3); }
+    .hours-visual img { width: 100%; height: 380px; object-fit: cover; display: block; filter: brightness(0.85); }
+
+    /* CONTACT */
+    .contact { background: #fff; }
+    .contact-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; max-width: 1200px; margin: 0 auto; align-items: start; }
+    .contact-info { margin-top: 2rem; }
+    .contact-item { display: flex; gap: 1.2rem; align-items: flex-start; margin-bottom: 1.8rem; }
+    .contact-icon { width: 46px; height: 46px; background: var(--rose-light); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0; }
+    .contact-detail h4 { font-weight: 600; color: var(--teal); margin-bottom: 0.2rem; font-size: 0.95rem; }
+    .contact-detail p { font-size: 0.9rem; color: var(--text-mid); line-height: 1.5; }
+    .map-placeholder { height: 380px; border-radius: 16px; overflow: hidden; background: #e0e7ef; position: relative; }
+    .map-placeholder iframe { width: 100%; height: 100%; border: none; border-radius: 16px; }
+
+    /* FOOTER */
+    footer {
+      background: var(--teal-dark); color: rgba(255,255,255,0.7);
+      text-align: center; padding: 3rem 5%;
+    }
+    .footer-logo { font-family: 'Playfair Display', serif; font-size: 1.6rem; color: var(--rose-light); font-weight: 700; margin-bottom: 0.6rem; }
+    .footer-tagline { font-size: 0.88rem; margin-bottom: 1.5rem; }
+    .footer-divider { width: 60px; height: 2px; background: var(--rose); margin: 1.2rem auto; border-radius: 2px; }
+    .footer-copy { font-size: 0.8rem; color: rgba(255,255,255,0.45); }
+
+    /* HIDDEN LANG */
+    .el { display: none; }
+    body.lang-el .en { display: none; }
+    body.lang-el .el { display: block; }
+    span.el, span.en { display: inline; }
+    body.lang-el span.en { display: none; }
+    body.lang-el span.el { display: inline; }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+      .about-inner, .hours-grid, .contact-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+      .cards { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo">Sis &amp; Bro</a>
+  <ul class="nav-links">
+    <li><a href="#about"><span class="en">About</span><span class="el">Σχετικά</span></a></li>
+    <li><a href="#products"><span class="en">Products</span><span class="el">Προϊόντα</span></a></li>
+    <li><a href="#hours"><span class="en">Hours</span><span class="el">Ώρες</span></a></li>
+    <li><a href="#contact"><span class="en">Contact</span><span class="el">Επικοινωνία</span></a></li>
+  </ul>
+  <button class="lang-toggle" id="langBtn" onclick="toggleLang()">ΕΛ</button>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-content">
+    <span class="hero-eyebrow en">Family Supermarket · Since 2003</span>
+    <span class="hero-eyebrow el" style="display:none;">Οικογενειακό Σούπερ Μάρκετ · Από το 2003</span>
+    <h1>
+      <span class="en">Sis &amp; Bro –<br>Family Values, Every Aisle</span>
+      <span class="el">Sis &amp; Bro –<br>Οικογενειακές Αξίες,<br>σε Κάθε Διάδρομο</span>
+    </h1>
+    <p>
+      <span class="en">Where every visit feels like coming home. Quality products, warm service, and the best local flavours — all under one roof.</span>
+      <span class="el">Κάθε επίσκεψη μοιάζει με επιστροφή στο σπίτι. Ποιοτικά προϊόντα, ζεστή εξυπηρέτηση και οι καλύτερες τοπικές γεύσεις — όλα κάτω από μία στέγη.</span>
+    </p>
+    <a href="#about" class="btn-primary">
+      <span class="en">Discover Our Store</span>
+      <span class="el">Ανακαλύψτε το Κατάστημά μας</span>
+    </a>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-inner">
+    <div class="about-image">
+      <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=800&q=80" alt="Fresh produce" />
+    </div>
+    <div>
+      <span class="section-label en">Our Story</span>
+      <span class="section-label el">Η Ιστορία μας</span>
+      <h2 class="section-title">
+        <span class="en">A Family Business Built on Trust</span>
+        <span class="el">Μια Οικογενειακή Επιχείρηση Χτισμένη στην Εμπιστοσύνη</span>
+      </h2>
+      <p class="section-body">
+        <span class="en">Sis & Bro was founded by siblings Maria and Nikos with a single dream: to bring the warmth of family to everyday shopping. For over two decades, our store has been a pillar of the community — stocking fresh local produce, beloved Greek brands, and everything your household needs.</span>
+        <span class="el">Η Sis & Bro ιδρύθηκε από τα αδέρφια Μαρία και Νίκο με ένα μόνο όνειρο: να φέρουν τη ζεστασιά της οικογένειας στις καθημερινές αγορές. Για πάνω από δύο δεκαετίες, το κατάστημά μας αποτελεί στήριγμα της κοινότητας — με φρέσκα τοπικά προϊόντα, αγαπημένες ελληνικές μάρκες και ό,τι χρειάζεται το νοικοκυριό σας.</span>
+      </p>
+      <div class="about-stat">
+        <div class="stat">
+          <div class="stat-num">20+</div>
+          <div class="stat-lbl en">Years Open</div>
+          <div class="stat-lbl el">Χρόνια Λειτουργίας</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">3,500+</div>
+          <div class="stat-lbl en">Products</div>
+          <div class="stat-lbl el">Προϊόντα</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">1,200+</div>
+          <div class="stat-lbl en">Happy Families</div>
+          <div class="stat-lbl el">Ευχαριστημένες Οικογένειες</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section class="products" id="products">
+  <div class="products-header">
+    <span class="section-label en">What We Offer</span>
+    <span class="section-label el">Τι Προσφέρουμε</span>
+    <h2 class="section-title">
+      <span class="en">Fresh, Local & Affordable</span>
+      <span class="el">Φρέσκο, Τοπικό & Προσιτό</span>
+    </h2>
+  </div>
+  <div class="cards">
+    <div class="card">
+      <div class="card-img">
+        <img src="https://images.unsplash.com/photo-1518977676405-7571e7891c8d?auto=format&fit=crop&w=600&q=80" alt="Fresh produce" />
+      </div>
+      <div class="card-body">
+        <div class="card-icon">🥦</div>
+        <h3 class="card-title">
+          <span class="en">Fresh Produce</span>
+          <span class="el">Φρέσκα Προϊόντα</span>
+        </h3>
+        <p class="card-text">
+          <span class="en">Seasonal fruits and vegetables sourced daily from trusted local farms. Crisp, colourful, and full of flavour.</span>
+          <span class="el">Εποχιακά φρούτα και λαχανικά από αξιόπιστες τοπικές φάρμες. Φρέσκα, πολύχρωμα και γεμάτα γεύση.</span>
+        </p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-img">
+        <img src="https://images.unsplash.com/photo-1574484284002-952d92a03a05?auto=format&fit=crop&w=600&q=80" alt="Bakery" />
+      </div>
+      <div class="card-body">
+        <div class="card-icon">🥐</div>
+        <h3 class="card-title">
+          <span class="en">In-Store Bakery</span>
+          <span class="el">Αρτοποιείο Καταστήματος</span>
+        </h3>
+        <p class="card-text">
+          <span class="en">Baked fresh every morning — from crusty loaves and traditional Greek bread to pastries and sweet treats.</span>
+          <span class="el">Ψημένο φρέσκο κάθε πρωί — από τραγανά καρβέλια και παραδοσιακό ελληνικό ψωμί έως αρτοσκευάσματα και γλυκά.</span>
+        </p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-img">
+        <img src="https://images.unsplash.com/photo-1543168256-418811576931?auto=format&fit=crop&w=600&q=80" alt="Dairy" />
+      </div>
+      <div class="card-body">
+        <div class="card-icon">🧀</div>
+        <h3 class="card-title">
+          <span class="en">Deli & Dairy</span>
+          <span class="el">Αλλαντικά & Γαλακτοκομικά</span>
+        </h3>
+        <p class="card-text">
+          <span class="en">A curated selection of local cheeses, cold cuts, yogurts, and dairy essentials for every Greek table.</span>
+          <span class="el">Επιλεγμένη γκάμα τοπικών τυριών, αλλαντικών, γιαουρτιών και γαλακτοκομικών για κάθε ελληνικό τραπέζι.</span>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOURS -->
+<section class="hours" id="hours">
+  <div class="hours-grid">
+    <div>
+      <span class="section-label en">Opening Hours</span>
+      <span class="section-label el">Ώρες Λειτουργίας</span>
+      <h2 class="section-title">
+        <span class="en">Always Here When You Need Us</span>
+        <span class="el">Πάντα Εδώ Όταν μας Χρειάζεστε</span>
+      </h2>
+      <table class="hours-table">
+        <tr>
+          <td><span class="en">Monday – Friday</span><span class="el">Δευτέρα – Παρασκευή</span></td>
+          <td>08:00 – 21:00</td>
+        </tr>
+        <tr>
+          <td><span class="en">Saturday</span><span class="el">Σάββατο</span></td>
+          <td>08:00 – 20:00</td>
+        </tr>
+        <tr>
+          <td><span class="en">Sunday</span><span class="el">Κυριακή</span></td>
+          <td>09:00 – 18:00</td>
+        </tr>
+        <tr>
+          <td><span class="en">Public Holidays</span><span class="el">Αργίες</span></td>
+          <td>10:00 – 16:00</td>
+        </tr>
+      </table>
+      <p class="hours-note">
+        <span class="en">* Hours may vary on national holidays. Call ahead to confirm.</span>
+        <span class="el">* Οι ώρες ενδέχεται να διαφέρουν σε εθνικές αργίες. Καλέστε για επιβεβαίωση.</span>
+      </p>
+    </div>
+    <div class="hours-visual">
+      <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=800&q=80" alt="Store" />
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-inner">
+    <div>
+      <span class="section-label en">Find Us</span>
+      <span class="section-label el">Βρείτε μας</span>
+      <h2 class="section-title">
+        <span class="en">Visit Our Store</span>
+        <span class="el">Επισκεφθείτε το Κατάστημά μας</span>
+      </h2>
+      <div class="contact-info">
+        <div class="contact-item">
+          <div class="contact-icon">📍</div>
+          <div class="contact-detail">
+            <h4><span class="en">Address</span><span class="el">Διεύθυνση</span></h4>
+            <p>Λεωφόρος Βασιλίσσης Σοφίας 48, Αθήνα 11521</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📞</div>
+          <div class="contact-detail">
+            <h4><span class="en">Phone</span><span class="el">Τηλέφωνο</span></h4>
+            <p>+30 210 123 4567</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">✉️</div>
+          <div class="contact-detail">
+            <h4>Email</h4>
+            <p>hello@sisandbro.gr</p>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">🅿️</div>
+          <div class="contact-detail">
+            <h4><span class="en">Parking</span><span class="el">Πάρκινγκ</span></h4>
+            <p><span class="en">Free parking for customers (up to 2 hours)</span><span class="el">Δωρεάν πάρκινγκ για πελάτες (έως 2 ώρες)</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="map-placeholder">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3145.0!2d23.74!3d37.98!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzfCsDU4JzQ4LjAiTiAyM8KwNDQnMjQuMCJF!5e0!3m2!1sen!2sgr!4v1700000000000"
+        allowfullscreen="" loading="lazy"></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Sis &amp; Bro</div>
+  <p class="footer-tagline">
+    <span class="en">Family Values, Every Aisle</span>
+    <span class="el">Οικογενειακές Αξίες, σε Κάθε Διάδρομο</span>
+  </p>
+  <div class="footer-divider"></div>
+  <p class="footer-copy">
+    <span class="en">&copy; 2024 Sis &amp; Bro Super Market. All rights reserved.</span>
+    <span class="el">&copy; 2024 Sis &amp; Bro Super Market. Με επιφύλαξη παντός δικαιώματος.</span>
+  </p>
+</footer>
+
+<script>
+  function toggleLang() {
+    const body = document.body;
+    const btn = document.getElementById('langBtn');
+    if (body.classList.contains('lang-el')) {
+      body.classList.remove('lang-el');
+      btn.textContent = 'ΕΛ';
+    } else {
+      body.classList.add('lang-el');
+      btn.textContent = 'EN';
+    }
+  }
+</script>
+</body>
+</html>

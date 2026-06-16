@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mini Market Tourist Shop – Mykonos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --blue:   #0D5EAF;
+      --blue-d: #094d94;
+      --blue-l: #1a72c7;
+      --sand:   #E8D5B0;
+      --sand-d: #d8c090;
+      --white:  #FFFFFF;
+      --text:   #1a1a2e;
+      --text-m: #4a4a6a;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--text);
+      background: var(--white);
+      overflow-x: hidden;
+    }
+
+    /* ─── NAV ─────────────────────────────────────────── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(13, 94, 175, 0.97);
+      backdrop-filter: blur(8px);
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 68px;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.25);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      text-decoration: none;
+    }
+
+    .nav-logo-icon {
+      width: 38px;
+      height: 38px;
+      background: var(--sand);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+
+    .nav-logo-text {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.2;
+    }
+
+    .nav-logo-text span {
+      display: block;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 400;
+      color: var(--sand);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: rgba(255,255,255,0.88);
+      text-decoration: none;
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      padding: 0.4rem 0.75rem;
+      border-radius: 4px;
+      transition: color 0.2s, background 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--white);
+      background: rgba(255,255,255,0.12);
+    }
+
+    .lang-toggle {
+      margin-left: 1rem;
+      background: var(--sand);
+      color: var(--blue);
+      border: none;
+      border-radius: 20px;
+      padding: 0.35rem 1rem;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+      white-space: nowrap;
+    }
+
+    .lang-toggle:hover {
+      background: var(--sand-d);
+      transform: scale(1.04);
+    }
+
+    /* ─── HERO ────────────────────────────────────────── */
+    .hero {
+      position: relative;
+      height: 100vh;
+      min-height: 600px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1555400038-63f5ba517a47?auto=format&fit=crop&w=1920&q=80');
+      background-size: cover;
+      background-position: center;
+      transform: scale(1.04);
+      transition: transform 8s ease-out;
+    }
+
+    .hero:hover .hero-bg { transform: scale(1.0); }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        160deg,
+        rgba(13, 94, 175, 0.72) 0%,
+        rgba(6, 40, 80, 0.78) 100%
+      );
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      padding: 0 1.5rem;
+      max-width: 820px;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: var(--sand);
+      color: var(--blue);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      padding: 0.4rem 1.1rem;
+      border-radius: 20px;
+      margin-bottom: 1.4rem;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.2rem, 5.5vw, 4rem);
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.18;
+      margin-bottom: 1.1rem;
+      text-shadow: 0 2px 20px rgba(0,0,0,0.35);
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--sand);
+    }
+
+    .hero p {
+      font-size: clamp(1rem, 2.2vw, 1.2rem);
+      color: rgba(255,255,255,0.88);
+      font-weight: 300;
+      letter-spacing: 0.02em;
+      margin-bottom: 2.2rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .hero-cta {
+      display: inline-block;
+      background: var(--sand);
+      color: var(--blue);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.9rem;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      padding: 0.9rem 2.2rem;
+      border-radius: 40px;
+      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    }
+
+    .hero-cta:hover {
+      background: #f0dfc0;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(0,0,0,0.28);
+    }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 2.2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+      color: rgba(255,255,255,0.6);
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .hero-scroll-line {
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, rgba(255,255,255,0.6), transparent);
+      animation: scrollpulse 2s ease-in-out infinite;
+    }
+
+    @keyframes scrollpulse {
+      0%, 100% { opacity: 0.5; transform: scaleY(1); }
+      50% { opacity: 1; transform: scaleY(1.15); }
+    }
+
+    /* ─── SECTIONS ────────────────────────────────────── */
+    section { padding: 6rem 1.5rem; }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      display: inline-block;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 0.7rem;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.7rem);
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 1.2rem;
+      color: var(--text);
+    }
+
+    .section-title em {
+      font-style: italic;
+      color: var(--blue);
+    }
+
+    .section-divider {
+      width: 52px;
+      height: 3px;
+      background: var(--sand-d);
+      border-radius: 2px;
+      margin-bottom: 2rem;
+    }
+
+    /* ─── ABOUT ───────────────────────────────────────── */
+    #about { background: var(--white); }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .about-image-wrap {
+      position: relative;
+    }
+
+    .about-image-wrap img {
+      width: 100%;
+      border-radius: 12px;
+      display: block;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      box-shadow: 0 12px 40px rgba(13,94,175,0.18);
+    }
+
+    .about-accent-box {
+      position: absolute;
+      bottom: -1.4rem;
+      right: -1.4rem;
+      background: var(--blue);
+      color: var(--white);
+      border-radius: 10px;
+      padding: 1.2rem 1.5rem;
+      text-align: center;
+      box-shadow: 0 6px 24px rgba(13,94,175,0.3);
+    }
+
+    .about-accent-box .big { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 700; }
+    .about-accent-box .small { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--sand); margin-top: 0.1rem; }
+
+    .about-text p {
+      color: var(--text-m);
+      font-size: 1rem;
+      line-height: 1.8;
+      margin-bottom: 1.1rem;
+    }
+
+    .about-features {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-top: 1.6rem;
+    }
+
+    .about-feature-tag {
+      background: #eef4fb;
+      color: var(--blue);
+      border: 1px solid #c5d9f0;
+      border-radius: 20px;
+      padding: 0.35rem 0.9rem;
+      font-size: 0.78rem;
+      font-weight: 500;
+    }
+
+    /* ─── PRODUCTS ────────────────────────────────────── */
+    #products { background: #f7f9fc; }
+
+    .products-intro {
+      text-align: center;
+      max-width: 600px;
+      margin: 0 auto 3.5rem;
+    }
+
+    .products-intro p {
+      color: var(--text-m);
+      font-size: 1rem;
+      line-height: 1.75;
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.8rem;
+    }
+
+    .card {
+      background: var(--white);
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border-bottom: 4px solid var(--sand-d);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 16px 40px rgba(13,94,175,0.16);
+    }
+
+    .card-icon-wrap {
+      background: linear-gradient(135deg, var(--blue) 0%, var(--blue-l) 100%);
+      padding: 2.4rem 1.5rem 2rem;
+      text-align: center;
+    }
+
+    .card-icon {
+      font-size: 2.8rem;
+      display: block;
+    }
+
+    .card-body {
+      padding: 1.6rem 1.5rem 2rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card-body h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.75rem;
+    }
+
+    .card-body p {
+      color: var(--text-m);
+      font-size: 0.9rem;
+      line-height: 1.7;
+      flex: 1;
+    }
+
+    .card-tag {
+      display: inline-block;
+      margin-top: 1.2rem;
+      background: #eef4fb;
+      color: var(--blue);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.75rem;
+      border-radius: 10px;
+      align-self: flex-start;
+    }
+
+    /* ─── HOURS ───────────────────────────────────────── */
+    #hours {
+      background: linear-gradient(135deg, var(--sand) 0%, #f0dfc0 100%);
+    }
+
+    .hours-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3.5rem;
+      align-items: center;
+    }
+
+    .hours-text .section-title { color: var(--text); }
+    .hours-text .section-label { color: var(--blue-d); }
+    .hours-text .section-divider { background: var(--blue); opacity: 0.35; }
+
+    .hours-text p {
+      color: #5a4a30;
+      font-size: 1rem;
+      line-height: 1.8;
+    }
+
+    .hours-table {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 2rem 2.2rem;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+    }
+
+    .hours-table h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      color: var(--blue);
+      margin-bottom: 1.4rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 2px solid var(--sand);
+    }
+
+    .hours-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.65rem 0;
+      border-bottom: 1px solid #f0ece4;
+      font-size: 0.9rem;
+    }
+
+    .hours-row:last-child { border-bottom: none; }
+
+    .hours-row .day {
+      font-weight: 500;
+      color: var(--text);
+    }
+
+    .hours-row .time {
+      font-weight: 600;
+      color: var(--blue);
+      background: #eef4fb;
+      padding: 0.2rem 0.7rem;
+      border-radius: 20px;
+      font-size: 0.82rem;
+    }
+
+    .hours-highlight {
+      margin-top: 1.2rem;
+      background: linear-gradient(135deg, var(--blue) 0%, var(--blue-l) 100%);
+      color: var(--white);
+      border-radius: 10px;
+      padding: 1rem 1.2rem;
+      font-size: 0.85rem;
+      text-align: center;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+    }
+
+    /* ─── CONTACT ─────────────────────────────────────── */
+    #contact { background: var(--white); }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .contact-info-list {
+      list-style: none;
+      margin-top: 1.5rem;
+    }
+
+    .contact-info-list li {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      margin-bottom: 1.4rem;
+    }
+
+    .contact-icon {
+      width: 42px;
+      height: 42px;
+      background: #eef4fb;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+
+    .contact-detail strong {
+      display: block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--blue);
+      margin-bottom: 0.2rem;
+    }
+
+    .contact-detail span {
+      font-size: 0.95rem;
+      color: var(--text-m);
+      line-height: 1.55;
+    }
+
+    .map-placeholder {
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+      background: #dde8f4;
+      aspect-ratio: 4/3;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.8rem;
+      color: var(--blue);
+      font-size: 0.9rem;
+      font-weight: 500;
+      text-align: center;
+      padding: 2rem;
+      border: 2px dashed #b0c8e8;
+    }
+
+    .map-placeholder .map-pin { font-size: 3rem; }
+
+    /* ─── FOOTER ──────────────────────────────────────── */
+    footer {
+      background: var(--text);
+      color: rgba(255,255,255,0.6);
+      text-align: center;
+      padding: 2.4rem 1.5rem;
+    }
+
+    footer .footer-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      color: var(--white);
+      margin-bottom: 0.5rem;
+    }
+
+    footer p { font-size: 0.82rem; line-height: 1.7; }
+
+    footer a {
+      color: var(--sand);
+      text-decoration: none;
+    }
+
+    footer a:hover { text-decoration: underline; }
+
+    /* ─── RESPONSIVE ──────────────────────────────────── */
+    @media (max-width: 900px) {
+      .about-grid,
+      .hours-inner,
+      .contact-grid { grid-template-columns: 1fr; }
+      .cards-grid { grid-template-columns: 1fr; }
+      .about-accent-box { right: 0; bottom: -1rem; }
+      .nav-links { display: none; }
+    }
+
+    @media (max-width: 640px) {
+      section { padding: 4rem 1.2rem; }
+    }
+
+    /* ─── LANGUAGE HELPERS ────────────────────────────── */
+    [lang-el] { display: none; }
+    body.lang-el [lang-en] { display: none; }
+    body.lang-el [lang-el] { display: revert; }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════ NAV ═══════════════ -->
+<nav>
+  <a href="#home" class="nav-logo">
+    <div class="nav-logo-icon">🏪</div>
+    <div class="nav-logo-text">
+      Mini Market
+      <span>Tourist Shop · Mykonos</span>
+    </div>
+  </a>
+
+  <ul class="nav-links">
+    <li><a href="#home"     lang-en>Home</a>     <a href="#home"     lang-el>Αρχική</a></li>
+    <li><a href="#about"    lang-en>About</a>    <a href="#about"    lang-el>Σχετικά</a></li>
+    <li><a href="#products" lang-en>Products</a> <a href="#products" lang-el>Προϊόντα</a></li>
+    <li><a href="#hours"    lang-en>Hours</a>    <a href="#hours"    lang-el>Ωράριο</a></li>
+    <li><a href="#contact"  lang-en>Contact</a>  <a href="#contact"  lang-el>Επικοινωνία</a></li>
+  </ul>
+
+  <button class="lang-toggle" id="langBtn" onclick="toggleLang()">ΕΛ</button>
+</nav>
+
+<!-- ═══════════════ HERO ═══════════════ -->
+<section id="home" class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+
+  <div class="hero-content">
+    <div class="hero-badge" lang-en>✦ Welcome to Mykonos ✦</div>
+    <div class="hero-badge" lang-el>✦ Καλώς ήλθατε στη Μύκονο ✦</div>
+
+    <h1 lang-en>
+      Mini Market <em>Tourist Shop</em><br>
+      Your Greek Holiday Essentials
+    </h1>
+    <h1 lang-el>
+      Mini Market <em>Tourist Shop</em><br>
+      Τα Αναγκαία της Ελληνικής σας Διακοπής
+    </h1>
+
+    <p lang-en>Locally loved, tourist approved — everything you need for the perfect Aegean escape, right in the heart of Mykonos harbour.</p>
+    <p lang-el>Αγαπημένο από τους ντόπιους, εγκεκριμένο από τους τουρίστες — όλα όσα χρειάζεστε για την τέλεια απόδραση στο Αιγαίο, στην καρδιά του λιμανιού της Μυκόνου.</p>
+
+    <a href="#about" class="hero-cta" lang-en>Discover Our Shop</a>
+    <a href="#about" class="hero-cta" lang-el>Ανακαλύψτε το Κατάστημά Μας</a>
+  </div>
+
+  <div class="hero-scroll">
+    <div class="hero-scroll-line"></div>
+    <span lang-en>Scroll</span>
+    <span lang-el>Κάτω</span>
+  </div>
+</section>
+
+<!-- ═══════════════ ABOUT ═══════════════ -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+
+      <div class="about-image-wrap">
+        <img
+          src="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?auto=format&fit=crop&w=800&q=80"
+          alt="Fresh local produce and Greek products"
+          loading="lazy"
+        />
+        <div class="about-accent-box">
+          <div class="big">30+</div>
+          <div class="small" lang-en>Years of Service</div>
+          <div class="small" lang-el>Χρόνια Υπηρεσιών</div>
+        </div>
+      </div>
+
+      <div class="about-text">
+        <span class="section-label" lang-en>Our Story</span>
+        <span class="section-label" lang-el>Η Ιστορία Μας</span>
+
+        <h2 class="section-title" lang-en>
+          A Little Shop with a<br><em>Big Greek Heart</em>
+        </h2>
+        <h2 class="section-title" lang-el>
+          Ένα Μικρό Κατάστημα με<br><em>Μεγάλη Ελληνική Καρδιά</em>
+        </h2>
+        <div class="section-divider"></div>
+
+        <p lang-en>
+          Nestled just steps from the iconic Mykonos waterfront, our Mini Market Tourist Shop has been a trusted companion for visitors and islanders alike for over three decades. We know what travellers need — from a cold bottle of water on a blazing summer afternoon to a beautifully wrapped bottle of local olive oil to carry home.
+        </p>
+        <p lang-el>
+          Ακριβώς δίπλα στο εμβληματικό λιμάνι της Μυκόνου, το Mini Market Tourist Shop αποτελεί αξιόπιστο σύντροφο για επισκέπτες και κατοίκους εδώ και πάνω από τρεις δεκαετίες. Γνωρίζουμε τι χρειάζονται οι ταξιδιώτες — από ένα κρύο μπουκάλι νερό το καλοκαίρι έως ένα όμορφα τυλιγμένο μπουκάλι ντόπιο ελαιόλαδο για το σπίτι.
+        </p>
+
+        <p lang-en>
+          Every shelf tells a story of the Aegean — hand-picked honey from Mykonian beekeepers, ceramics fired in local kilns, and wines sourced from family-run vineyards across the Cyclades. We are more than a shop; we are your gateway to authentic Greek culture.
+        </p>
+        <p lang-el>
+          Κάθε ράφι αφηγείται μια ιστορία του Αιγαίου — μέλι από μυκονιάτικους μελισσοκόμους, κεραμικά από τοπικά εργαστήρια και κρασιά από οικογενειακούς αμπελώνες στις Κυκλάδες. Είμαστε κάτι παραπάνω από κατάστημα· είμαστε η πύλη σας για τον αυθεντικό ελληνικό πολιτισμό.
+        </p>
+
+        <div class="about-features">
+          <span class="about-feature-tag" lang-en>🫒 Local Producers</span>
+          <span class="about-feature-tag" lang-el>🫒 Τοπικοί Παραγωγοί</span>
+          <span class="about-feature-tag" lang-en>🌊 Beachside Location</span>
+          <span class="about-feature-tag" lang-el>🌊 Παραθαλάσσια Τοποθεσία</span>
+          <span class="about-feature-tag" lang-en>🧺 Gift Wrapping</span>
+          <span class="about-feature-tag" lang-el>🧺 Περιτύλιγμα Δώρου</span>
+          <span class="about-feature-tag" lang-en>💳 Cards Accepted</span>
+          <span class="about-feature-tag" lang-el>💳 Αποδοχή Καρτών</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ PRODUCTS ═══════════════ -->
+<section id="products">
+  <div class="container">
+    <div class="products-intro">
+      <span class="section-label" lang-en>What We Offer</span>
+      <span class="section-label" lang-el>Τι Προσφέρουμε</span>
+
+      <h2 class="section-title" lang-en>Curated Finds for<br><em>Every Traveller</em></h2>
+      <h2 class="section-title" lang-el>Επιλεγμένα Προϊόντα για<br><em>Κάθε Ταξιδιώτη</em></h2>
+      <div class="section-divider" style="margin:0 auto 1.5rem;"></div>
+
+      <p lang-en>From artisan Greek delicacies to sun-drenched beach essentials, every item in our shop is chosen with care and love for this beautiful island.</p>
+      <p lang-el>Από αρτισανικές ελληνικές λιχουδιές έως παραλιακά είδη γεμάτα ήλιο, κάθε προϊόν στο κατάστημά μας επιλέγεται με φροντίδα και αγάπη για αυτό το υπέροχο νησί.</p>
+    </div>
+
+    <div class="cards-grid">
+
+      <!-- Card 1 -->
+      <div class="card">
+        <div class="card-icon-wrap">
+          <span class="card-icon">🫒</span>
+        </div>
+        <div class="card-body">
+          <h3 lang-en>Local Delicacies</h3>
+          <h3 lang-el>Τοπικές Λιχουδιές</h3>
+          <p lang-en>Discover the rich flavours of the Cyclades — extra-virgin olive oils pressed on nearby islands, wild Mykonian thyme honey, aged cheeses, handmade loukoumades mix, and a carefully curated selection of Aegean wines and spirits.</p>
+          <p lang-el>Ανακαλύψτε τις πλούσιες γεύσεις των Κυκλάδων — έξτρα παρθένο ελαιόλαδο, μέλι θυμαριού από τη Μύκονο, παλαιωμένα τυριά, χειροποίητο μείγμα για λουκουμάδες, και μια προσεκτικά επιλεγμένη σειρά κρασιών και αποσταγμάτων του Αιγαίου.</p>
+          <span class="card-tag" lang-en>Taste of Greece</span>
+          <span class="card-tag" lang-el>Γεύση Ελλάδας</span>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="card">
+        <div class="card-icon-wrap">
+          <span class="card-icon">🏺</span>
+        </div>
+        <div class="card-body">
+          <h3 lang-en>Souvenirs &amp; Gifts</h3>
+          <h3 lang-el>Σουβενίρ &amp; Δώρα</h3>
+          <p lang-en>Take a piece of Mykonos home. Browse hand-painted ceramics, evil-eye (mati) jewellery, linen scarves in Aegean blues and whites, postcards, and exclusive local artisan crafts — perfect for family, friends, or yourself.</p>
+          <p lang-el>Πάρτε ένα κομμάτι της Μυκόνου στο σπίτι. Χειροποίητα κεραμικά, κοσμήματα ματιού, λινά κασκόλ σε αιγαιοπελαγίτικα μπλε και λευκά, καρτ ποστάλ και αποκλειστικά τοπικά χειροτεχνήματα — ιδανικά για οικογένεια, φίλους ή για εσάς.</p>
+          <span class="card-tag" lang-en>Made in Greece</span>
+          <span class="card-tag" lang-el>Φτιαγμένο στην Ελλάδα</span>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="card">
+        <div class="card-icon-wrap">
+          <span class="card-icon">🏖️</span>
+        </div>
+        <div class="card-body">
+          <h3 lang-en>Beach Essentials</h3>
+          <h3 lang-el>Είδη Παραλίας</h3>
+          <p lang-en>Everything you need for a perfect day under the Mykonian sun — high-SPF sunscreen, beach towels, snorkelling sets, refreshing cold beverages, ice creams, light snacks, and all the little extras that turn a good beach day into a great one.</p>
+          <p lang-el>Όλα όσα χρειάζεστε για μια τέλεια μέρα στον μυκονιάτικο ήλιο — αντηλιακά υψηλής προστασίας, πετσέτες παραλίας, εξοπλισμός κατάδυσης, δροσιστικά ποτά, παγωτά, ελαφριά σνακ και τα μικρά extras που κάνουν μια καλή μέρα παραλίας εξαιρετική.</p>
+          <span class="card-tag" lang-en>Sun &amp; Sea Ready</span>
+          <span class="card-tag" lang-el>Έτοιμοι για Ήλιο &amp; Θάλασσα</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ HOURS ═══════════════ -->
+<section id="hours">
+  <div class="container">
+    <div class="hours-inner">
+
+      <div class="hours-text">
+        <span class="section-label" lang-en>When We're Open</span>
+        <span class="section-label" lang-el>Πότε Είμαστε Ανοιχτοί</span>
+
+        <h2 class="section-title" lang-en>Open Every Day,<br><em>From Dawn to Night</em></h2>
+        <h2 class="section-title" lang-el>Ανοιχτά Κάθε Μέρα,<br><em>Από Τα Χαράματα Έως Τη Νύχτα</em></h2>
+        <div class="section-divider"></div>
+
+        <p lang-en>We know that holidays run on their own schedule. Whether you're heading to the beach at sunrise or stocking up after a late dinner, we're here for you every single day throughout the peak season — and beyond.</p>
+        <p lang-el>Γνωρίζουμε ότι οι διακοπές έχουν το δικό τους πρόγραμμα. Είτε κατευθύνεστε στην παραλία στην ανατολή του ηλίου είτε κάνετε τελευταία αγορά μετά από αργό δείπνο, είμαστε εδώ για εσάς κάθε μέρα καθ' όλη τη διάρκεια της τουριστικής περιόδου.</p>
+      </div>
+
+      <div class="hours-table">
+        <h3 lang-en>🕖 Opening Hours</h3>
+        <h3 lang-el>🕖 Ωράριο Λειτουργίας</h3>
+
+        <div class="hours-row">
+          <span class="day" lang-en>Monday</span><span class="day" lang-el>Δευτέρα</span>
+          <span class="time">07:00 – 23:00</span>
+        </div>
+        <div class="hours-row">
+          <span class="day" lang-en>Tuesday</span><span class="day" lang-el>Τρίτη</span>
+          <span class="time">07:00 – 23:00</span>
+        </div>
+        <div class="hours-row">
+          <span class="day" lang-en>Wednesday</span><span class="day" lang-el>Τετάρτη</span>
+          <span class="time">07:00 – 23:00</span>
+        </div>
+        <div class="hours-row">
+          <span class="day" lang-en>Thursday</span><span class="day" lang-el>Πέμπτη</span>
+          <span class="time">07:00 – 23:00</span>
+        </div>
+        <div class="hours-row">
+          <span class="day" lang-en>Friday</span><span class="day" lang-el>Παρασκευή</span>
+          <span class="time">07:00 – 23:00</span>
+        </div>
+        <div class="hours-row">
+          <span class="day" lang-en>Saturday</span><span class="day" lang-el>Σάββατο</span>
+          <span class="time">07:00 – 23:00</span>
+        </div>
+        <div class="hours-row">
+          <span class="day" lang-en>Sunday</span><span class="day" lang-el>Κυριακή</span>
+          <span class="time">07:00 – 23:00</span>
+        </div>
+
+        <div class="hours-highlight">
+          <span lang-en>🌞 Open 365 Days — Peak Season Hours Apply May–October</span>
+          <span lang-el>🌞 Ανοιχτά 365 Ημέρες — Ωράριο Αιχμής Μαΐου–Οκτωβρίου</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ CONTACT ═══════════════ -->
+<section id="contact">
+  <div class="container">
+    <div style="margin-bottom:3rem;">
+      <span class="section-label" lang-en>Find Us</span>
+      <span class="section-label" lang-el>Βρείτε Μας</span>
+
+      <h2 class="section-title" lang-en>Visit Us in the<br><em>Heart of Mykonos</em></h2>
+      <h2 class="section-title" lang-el>Επισκεφθείτε Μας στην<br><em>Καρδιά της Μυκόνου</em></h2>
+      <div class="section-divider"></div>
+    </div>
+
+    <div class="contact-grid">
+      <div>
+        <ul class="contact-info-list">
+          <li>
+            <div class="contact-icon">📍</div>
+            <div class="contact-detail">
+              <strong lang-en>Address</strong>
+              <strong lang-el>Διεύθυνση</strong>
+              <span>12 Harbour Street,<br>Mykonos 84600, Greece</span>
+            </div>
+          </li>
+          <li>
+            <div class="contact-icon">📞</div>
+            <div class="contact-detail">
+              <strong lang-en>Telephone</strong>
+              <strong lang-el>Τηλέφωνο</strong>
+              <span><a href="tel:+302289012345" style="color:var(--blue);text-decoration:none;font-weight:500;">+30 22890 12345</a></span>
+            </div>
+          </li>
+          <li>
+            <div class="contact-icon">🕖</div>
+            <div class="contact-detail">
+              <strong lang-en>Opening Hours</strong>
+              <strong lang-el>Ωράριο Λειτουργίας</strong>
+              <span lang-en>Daily 07:00 – 23:00<br>Open all year round</span>
+              <span lang-el>Καθημερινά 07:00 – 23:00<br>Ανοιχτά όλο το χρόνο</span>
+            </div>
+          </li>
+          <li>
+            <div class="contact-icon">✈️</div>
+            <div class="contact-detail">
+              <strong lang-en>Getting Here</strong>
+              <strong lang-el>Πώς να Φτάσετε</strong>
+              <span lang-en>A 2-minute walk from the Old Port ferry terminal, adjacent to the Mykonos Town bus stop.</span>
+              <span lang-el>2 λεπτά με τα πόδια από το λιμάνι της Παλιάς Πόλης, δίπλα στη στάση λεωφορείου Χώρας Μυκόνου.</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <div class="map-placeholder">
+        <span class="map-pin">📍</span>
+        <strong style="color:var(--blue);font-family:'Playfair Display',serif;font-size:1.1rem;">Mini Market Tourist Shop</strong>
+        <span style="color:var(--text-m);font-size:0.88rem;" lang-en>12 Harbour Street, Mykonos 84600</span>
+        <span style="color:var(--text-m);font-size:0.88rem;" lang-el>Οδός Λιμανιού 12, Μύκονος 84600</span>
+        <span style="color:#8aabcc;font-size:0.75rem;margin-top:0.4rem;" lang-en>Map integration available on request</span>
+        <span style="color:#8aabcc;font-size:0.75rem;margin-top:0.4rem;" lang-el>Ενσωμάτωση χάρτη διαθέσιμη κατόπιν αιτήματος</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ FOOTER ═══════════════ -->
+<footer>
+  <div class="footer-logo">Mini Market Tourist Shop</div>
+  <p lang-en>12 Harbour Street · Mykonos 84600 · Greece · <a href="tel:+302289012345">+30 22890 12345</a></p>
+  <p lang-el>Οδός Λιμανιού 12 · Μύκονος 84600 · Ελλάδα · <a href="tel:+302289012345">+30 22890 12345</a></p>
+  <p style="margin-top:0.8rem;">
+    <span lang-en>&copy; 2026 Mini Market Tourist Shop. All rights reserved.</span>
+    <span lang-el>&copy; 2026 Mini Market Tourist Shop. Όλα τα δικαιώματα διατηρούνται.</span>
+  </p>
+</footer>
+
+<script>
+  let currentLang = 'en';
+
+  function toggleLang() {
+    currentLang = currentLang === 'en' ? 'el' : 'en';
+    const btn = document.getElementById('langBtn');
+
+    if (currentLang === 'el') {
+      document.body.classList.add('lang-el');
+      btn.textContent = 'EN';
+      document.documentElement.lang = 'el';
+    } else {
+      document.body.classList.remove('lang-el');
+      btn.textContent = 'ΕΛ';
+      document.documentElement.lang = 'en';
+    }
+  }
+</script>
+
+</body>
+</html>

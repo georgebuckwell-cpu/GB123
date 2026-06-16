@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>4You – Convenience Store</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #fff;
+      color: #222;
+      overflow-x: hidden;
+    }
+
+    /* ── LANGUAGE VISIBILITY ── */
+    body .lang-el { display: none; }
+    body.lang-el .lang-el { display: revert; }
+    body.lang-el .lang-en { display: none; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      background: #222;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2rem;
+      height: 64px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.4);
+    }
+
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      font-weight: 900;
+      color: #FF6B00;
+      letter-spacing: 2px;
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: #FF6B00; }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .lang-btn {
+      background: #FF6B00;
+      color: #fff;
+      border: none;
+      padding: 0.4rem 1rem;
+      border-radius: 4px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+      letter-spacing: 1px;
+      transition: background 0.2s;
+    }
+
+    .lang-btn:hover { background: #cc5500; }
+
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+
+    .nav-hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: #fff;
+      border-radius: 2px;
+    }
+
+    /* ── HERO ── */
+    #hero {
+      position: relative;
+      height: 100vh;
+      min-height: 560px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background: url('https://images.unsplash.com/photo-1604719312566-8912e9227c6a?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(34,34,34,0.65);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 820px;
+      padding: 0 1.5rem;
+    }
+
+    .hero-content h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.2rem, 5vw, 4rem);
+      font-weight: 900;
+      color: #fff;
+      line-height: 1.15;
+      margin-bottom: 1rem;
+    }
+
+    .hero-content h1 span { color: #FF6B00; }
+
+    .hero-subtitle {
+      font-size: clamp(1rem, 2.2vw, 1.25rem);
+      color: rgba(255,255,255,0.88);
+      margin-bottom: 2rem;
+      font-weight: 400;
+      line-height: 1.6;
+    }
+
+    .hero-cta {
+      display: inline-block;
+      background: #FF6B00;
+      color: #fff;
+      text-decoration: none;
+      padding: 0.85rem 2.4rem;
+      border-radius: 4px;
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .hero-cta:hover {
+      background: #cc5500;
+      transform: translateY(-2px);
+    }
+
+    /* ── SECTION BASE ── */
+    section { padding: 90px 0; }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    .section-heading {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      font-weight: 900;
+      color: #222;
+      margin-bottom: 1.5rem;
+      padding-left: 1.1rem;
+      border-left: 5px solid #FF6B00;
+      line-height: 1.2;
+    }
+
+    /* ── ABOUT ── */
+    #about { background: #fff; }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+
+    .about-text p {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: #444;
+    }
+
+    .about-stats {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      justify-content: center;
+    }
+
+    .stat-item {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      background: #f9f9f9;
+      border-left: 4px solid #FF6B00;
+      padding: 1rem 1.4rem;
+      border-radius: 0 6px 6px 0;
+    }
+
+    .stat-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      font-weight: 900;
+      color: #FF6B00;
+      white-space: nowrap;
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #333;
+    }
+
+    /* ── SERVICES ── */
+    #services { background: #f5f5f5; }
+
+    #services .section-heading { color: #222; }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.8rem;
+      margin-top: 2.5rem;
+    }
+
+    .service-card {
+      background: #fff;
+      border-left: 4px solid #FF6B00;
+      border-radius: 0 8px 8px 0;
+      padding: 2rem 1.6rem;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+      transition: transform 0.25s, box-shadow 0.25s;
+      cursor: default;
+    }
+
+    .service-card:hover {
+      transform: scale(1.03);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.13);
+    }
+
+    .service-icon {
+      font-size: 2.4rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+
+    .service-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #222;
+      margin-bottom: 0.7rem;
+    }
+
+    .service-card p {
+      font-size: 0.95rem;
+      color: #555;
+      line-height: 1.7;
+    }
+
+    /* ── HOURS ── */
+    #hours {
+      background: #FF6B00;
+      padding: 90px 0;
+    }
+
+    #hours .section-heading {
+      color: #fff;
+      border-left-color: #fff;
+    }
+
+    .hours-sub {
+      color: rgba(255,255,255,0.88);
+      font-size: 1.05rem;
+      margin-bottom: 2.5rem;
+      margin-top: -0.5rem;
+    }
+
+    .hours-table {
+      width: 100%;
+      max-width: 560px;
+      border-collapse: collapse;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.2);
+    }
+
+    .hours-table tr:nth-child(odd) td {
+      background: rgba(34,34,34,0.88);
+    }
+
+    .hours-table tr:nth-child(even) td {
+      background: rgba(34,34,34,0.72);
+    }
+
+    .hours-table td {
+      color: #fff;
+      padding: 0.9rem 1.4rem;
+      font-size: 1rem;
+      font-weight: 500;
+    }
+
+    .hours-table td:first-child { font-weight: 700; }
+
+    .hours-table td:last-child {
+      text-align: right;
+      color: #FFB366;
+      font-weight: 700;
+      font-size: 1.05rem;
+    }
+
+    /* ── CONTACT ── */
+    #contact {
+      background: #222;
+      padding: 90px 0;
+    }
+
+    #contact .section-heading { color: #fff; border-left-color: #FF6B00; }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.8rem;
+      margin-top: 2.5rem;
+    }
+
+    .contact-box {
+      display: flex;
+      align-items: flex-start;
+      gap: 1.2rem;
+    }
+
+    .contact-icon-circle {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: #FF6B00;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      flex-shrink: 0;
+    }
+
+    .contact-info h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      color: #FF6B00;
+      margin-bottom: 0.3rem;
+    }
+
+    .contact-info p, .contact-info a {
+      color: rgba(255,255,255,0.8);
+      font-size: 0.95rem;
+      line-height: 1.6;
+      text-decoration: none;
+    }
+
+    .contact-info a:hover { color: #FF6B00; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #1a1a1a;
+      border-top: 3px solid #FF6B00;
+      padding: 1.8rem 1.5rem;
+      text-align: center;
+    }
+
+    footer p {
+      color: rgba(255,255,255,0.6);
+      font-size: 0.88rem;
+    }
+
+    footer span { color: #FF6B00; font-weight: 700; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 860px) {
+      .about-grid { grid-template-columns: 1fr; }
+      .services-grid { grid-template-columns: 1fr 1fr; }
+      .contact-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .nav-links.open {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 64px; left: 0; right: 0;
+        background: #222;
+        padding: 1rem 2rem 1.5rem;
+        gap: 1rem;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+      }
+      .nav-hamburger { display: flex; }
+      .services-grid { grid-template-columns: 1fr; }
+      .about-stats { gap: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── NAV ── -->
+  <nav>
+    <a href="#hero" class="nav-logo">4YOU</a>
+
+    <ul class="nav-links" id="navLinks">
+      <li>
+        <a href="#about" class="lang-en">About</a>
+        <a href="#about" class="lang-el">Σχετικά</a>
+      </li>
+      <li>
+        <a href="#services" class="lang-en">Services</a>
+        <a href="#services" class="lang-el">Υπηρεσίες</a>
+      </li>
+      <li>
+        <a href="#hours" class="lang-en">Hours</a>
+        <a href="#hours" class="lang-el">Ώρες</a>
+      </li>
+      <li>
+        <a href="#contact" class="lang-en">Contact</a>
+        <a href="#contact" class="lang-el">Επικοινωνία</a>
+      </li>
+    </ul>
+
+    <div class="nav-right">
+      <button class="lang-btn" id="langToggle" onclick="toggleLang()">ΕΛ</button>
+      <button class="nav-hamburger" id="hamburger" aria-label="Menu" onclick="toggleMenu()">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ── HERO ── -->
+  <section id="hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <h1 class="lang-en"><span>4You</span> – Everything You Need, Right Here</h1>
+      <h1 class="lang-el"><span>4You</span> – Όλα όσα χρειάζεσαι, εδώ</h1>
+
+      <p class="hero-subtitle lang-en">Your neighbourhood convenience store — open early, close late.</p>
+      <p class="hero-subtitle lang-el">Το κατάστημα της γειτονιάς σας — ανοιχτά νωρίς, κλείνει αργά.</p>
+
+      <a href="#contact" class="hero-cta lang-en">Find Us</a>
+      <a href="#contact" class="hero-cta lang-el">Βρείτε μας</a>
+    </div>
+  </section>
+
+  <!-- ── ABOUT ── -->
+  <section id="about">
+    <div class="container">
+      <h2 class="section-heading lang-en">About 4You</h2>
+      <h2 class="section-heading lang-el">Σχετικά με το 4You</h2>
+
+      <div class="about-grid">
+        <div class="about-text">
+          <p class="lang-en">4You is your go-to neighbourhood convenience store. Whether you need a quick snack, household essentials, or a cold drink on the go — we've got you covered with a smart selection and fast, friendly service.</p>
+          <p class="lang-el">Το 4You είναι το αγαπημένο σας κατάστημα γειτονιάς. Είτε χρειάζεστε ένα γρήγορο σνακ, είδη σπιτιού ή ένα δροσιστικό ποτό — σας καλύπτουμε με έξυπνη επιλογή και γρήγορη, φιλική εξυπηρέτηση.</p>
+        </div>
+
+        <div class="about-stats">
+          <div class="stat-item">
+            <div class="stat-number">500+</div>
+            <div>
+              <div class="stat-label lang-en">Products</div>
+              <div class="stat-label lang-el">Προϊόντα</div>
+            </div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">7</div>
+            <div>
+              <div class="stat-label lang-en">Days a Week</div>
+              <div class="stat-label lang-el">Ημέρες</div>
+            </div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">18</div>
+            <div>
+              <div class="stat-label lang-en">Hours Open</div>
+              <div class="stat-label lang-el">Ώρες Ανοιχτά</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── SERVICES ── -->
+  <section id="services">
+    <div class="container">
+      <h2 class="section-heading lang-en">What We Offer</h2>
+      <h2 class="section-heading lang-el">Τι Προσφέρουμε</h2>
+
+      <div class="services-grid">
+        <div class="service-card">
+          <span class="service-icon">🥤</span>
+          <h3 class="lang-en">Snacks &amp; Drinks</h3>
+          <h3 class="lang-el">Σνακ &amp; Ροφήματα</h3>
+          <p class="lang-en">A wide range of snacks, cold drinks, juices, and energy drinks always in stock.</p>
+          <p class="lang-el">Μεγάλη γκάμα σνακ, κρύα ροφήματα, χυμοί και ενεργειακά ποτά πάντα σε απόθεμα.</p>
+        </div>
+
+        <div class="service-card">
+          <span class="service-icon">🍱</span>
+          <h3 class="lang-en">Ready Meals</h3>
+          <h3 class="lang-el">Έτοιμα Γεύματα</h3>
+          <p class="lang-en">Hot and fresh ready meals — perfect for lunch, dinner or a quick bite.</p>
+          <p class="lang-el">Ζεστά και φρέσκα έτοιμα γεύματα — ιδανικά για μεσημεριανό, βραδινό ή γρήγορο μεζέ.</p>
+        </div>
+
+        <div class="service-card">
+          <span class="service-icon">🏠</span>
+          <h3 class="lang-en">Daily Essentials</h3>
+          <h3 class="lang-el">Καθημερινές Ανάγκες</h3>
+          <p class="lang-en">Cleaning supplies, personal care, and all the household items you need every day.</p>
+          <p class="lang-el">Προϊόντα καθαρισμού, προσωπική φροντίδα και όλα τα οικιακά που χρειάζεστε κάθε μέρα.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── HOURS ── -->
+  <section id="hours">
+    <div class="container">
+      <h2 class="section-heading lang-en">Open Every Day</h2>
+      <h2 class="section-heading lang-el">Ανοιχτά Κάθε Μέρα</h2>
+
+      <p class="hours-sub lang-en">From early morning to midnight, 7 days a week.</p>
+      <p class="hours-sub lang-el">Από νωρίς το πρωί μέχρι τα μεσάνυχτα, 7 ημέρες την εβδομάδα.</p>
+
+      <table class="hours-table">
+        <tbody>
+          <tr>
+            <td class="lang-en">Monday</td>
+            <td class="lang-el">Δευτέρα</td>
+            <td>06:00 – 24:00</td>
+          </tr>
+          <tr>
+            <td class="lang-en">Tuesday</td>
+            <td class="lang-el">Τρίτη</td>
+            <td>06:00 – 24:00</td>
+          </tr>
+          <tr>
+            <td class="lang-en">Wednesday</td>
+            <td class="lang-el">Τετάρτη</td>
+            <td>06:00 – 24:00</td>
+          </tr>
+          <tr>
+            <td class="lang-en">Thursday</td>
+            <td class="lang-el">Πέμπτη</td>
+            <td>06:00 – 24:00</td>
+          </tr>
+          <tr>
+            <td class="lang-en">Friday</td>
+            <td class="lang-el">Παρασκευή</td>
+            <td>06:00 – 24:00</td>
+          </tr>
+          <tr>
+            <td class="lang-en">Saturday</td>
+            <td class="lang-el">Σάββατο</td>
+            <td>06:00 – 24:00</td>
+          </tr>
+          <tr>
+            <td class="lang-en">Sunday</td>
+            <td class="lang-el">Κυριακή</td>
+            <td>06:00 – 24:00</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ── CONTACT ── -->
+  <section id="contact">
+    <div class="container">
+      <h2 class="section-heading lang-en">Find Us</h2>
+      <h2 class="section-heading lang-el">Βρείτε μας</h2>
+
+      <div class="contact-grid">
+        <div class="contact-box">
+          <div class="contact-icon-circle">📍</div>
+          <div class="contact-info">
+            <h4 class="lang-en">Address</h4>
+            <h4 class="lang-el">Διεύθυνση</h4>
+            <p>Ερμού 45<br>Αθήνα 105 63</p>
+          </div>
+        </div>
+
+        <div class="contact-box">
+          <div class="contact-icon-circle">📞</div>
+          <div class="contact-info">
+            <h4 class="lang-en">Phone</h4>
+            <h4 class="lang-el">Τηλέφωνο</h4>
+            <p><a href="tel:+302103456789">+30 210 345 6789</a></p>
+          </div>
+        </div>
+
+        <div class="contact-box">
+          <div class="contact-icon-circle">✉️</div>
+          <div class="contact-info">
+            <h4 class="lang-en">Email</h4>
+            <h4 class="lang-el">Email</h4>
+            <p><a href="mailto:hello@4you-store.gr">hello@4you-store.gr</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer>
+    <p class="lang-en">© 2025 <span>4You</span> Convenience Store. All rights reserved.</p>
+    <p class="lang-el">© 2025 <span>4You</span> Κατάστημα Γειτονιάς. Όλα τα δικαιώματα κατοχυρωμένα.</p>
+  </footer>
+
+  <script>
+    function toggleLang() {
+      const body = document.body;
+      const btn = document.getElementById('langToggle');
+      if (body.classList.contains('lang-el')) {
+        body.classList.remove('lang-el');
+        btn.textContent = 'ΕΛ';
+        document.documentElement.lang = 'en';
+      } else {
+        body.classList.add('lang-el');
+        btn.textContent = 'EN';
+        document.documentElement.lang = 'el';
+      }
+    }
+
+    function toggleMenu() {
+      const nav = document.getElementById('navLinks');
+      nav.classList.toggle('open');
+    }
+
+    // Close mobile menu on link click
+    document.querySelectorAll('.nav-links a').forEach(function(link) {
+      link.addEventListener('click', function() {
+        document.getElementById('navLinks').classList.remove('open');
+      });
+    });
+  </script>
+</body>
+</html>

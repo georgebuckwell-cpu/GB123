@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SPAR Athens – Fresh, Fast & Friendly</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: #1a1a1a;
+      background: #fff;
+      overflow-x: hidden;
+    }
+
+    /* ── Language toggle ── */
+    body .lang-el { display: none; }
+    body .lang-en { display: block; }
+    body.lang-el .lang-el { display: block; }
+    body.lang-el .lang-en { display: none; }
+
+    /* Inline-level overrides */
+    span.lang-el, a.lang-el, button.lang-el { display: none; }
+    span.lang-en, a.lang-en, button.lang-en { display: inline; }
+    body.lang-el span.lang-el,
+    body.lang-el a.lang-el,
+    body.lang-el button.lang-el { display: inline; }
+    body.lang-el span.lang-en,
+    body.lang-el a.lang-en,
+    body.lang-el button.lang-en { display: none; }
+
+    /* ── Variables ── */
+    :root {
+      --green: #007A33;
+      --green-dark: #005c26;
+      --green-light: #e6f4ec;
+      --shadow: 0 4px 24px rgba(0,0,0,0.08);
+      --shadow-hover: 0 12px 40px rgba(0,0,0,0.14);
+      --radius: 12px;
+    }
+
+    /* ══════════════════════════════════════
+       NAV
+    ══════════════════════════════════════ */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      background: #fff;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+      height: 68px;
+      display: flex;
+      align-items: center;
+      padding: 0 5%;
+      gap: 2rem;
+    }
+
+    .nav-logo {
+      background: var(--green);
+      color: #fff;
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 1.4rem;
+      letter-spacing: 2px;
+      padding: 8px 22px;
+      border-radius: 999px;
+      text-decoration: none;
+      flex-shrink: 0;
+      transition: background 0.2s;
+    }
+    .nav-logo:hover { background: var(--green-dark); }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+      flex: 1;
+      justify-content: center;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #1a1a1a;
+      font-size: 0.9rem;
+      font-weight: 500;
+      position: relative;
+      padding-bottom: 4px;
+      transition: color 0.2s;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 0; height: 2px;
+      background: var(--green);
+      transition: width 0.25s ease;
+    }
+    .nav-links a:hover { color: var(--green); }
+    .nav-links a:hover::after { width: 100%; }
+
+    .nav-right { flex-shrink: 0; }
+
+    #lang-toggle {
+      background: var(--green);
+      color: #fff;
+      border: none;
+      border-radius: 999px;
+      padding: 8px 18px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+      letter-spacing: 0.5px;
+    }
+    #lang-toggle:hover {
+      background: var(--green-dark);
+      transform: scale(1.04);
+    }
+
+    /* ── Hamburger ── */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+      margin-left: auto;
+    }
+    .hamburger span {
+      display: block;
+      width: 24px; height: 2px;
+      background: #1a1a1a;
+      border-radius: 2px;
+      transition: all 0.25s;
+    }
+
+    /* ══════════════════════════════════════
+       HERO
+    ══════════════════════════════════════ */
+    .hero {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      min-height: 600px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=1920&q=80');
+      background-size: cover;
+      background-position: center;
+      transform: scale(1.05);
+      transition: transform 8s ease-out;
+    }
+    .hero-bg.loaded { transform: scale(1); }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(0,0,0,0.55) 0%, rgba(0,80,30,0.45) 100%);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 860px;
+      padding: 0 2rem;
+      animation: fadeUp 0.9s ease both;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: var(--green);
+      color: #fff;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 6px 18px;
+      border-radius: 999px;
+      margin-bottom: 1.5rem;
+      animation: fadeUp 0.9s 0.1s ease both;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.2rem, 5vw, 4rem);
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.2;
+      margin-bottom: 1.25rem;
+      animation: fadeUp 0.9s 0.2s ease both;
+    }
+
+    .hero p {
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      color: rgba(255,255,255,0.88);
+      line-height: 1.7;
+      margin-bottom: 2.5rem;
+      animation: fadeUp 0.9s 0.35s ease both;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      background: var(--green);
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 16px 40px;
+      border-radius: 999px;
+      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 20px rgba(0,122,51,0.5);
+      animation: fadeUp 0.9s 0.5s ease both;
+      border: none;
+      cursor: pointer;
+    }
+    .btn-primary:hover {
+      background: var(--green-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(0,122,51,0.55);
+    }
+
+    .hero-scroll {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      color: rgba(255,255,255,0.7);
+      font-size: 0.78rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      animation: fadeUp 1s 0.8s ease both;
+    }
+    .scroll-arrow {
+      width: 24px; height: 24px;
+      border-right: 2px solid rgba(255,255,255,0.7);
+      border-bottom: 2px solid rgba(255,255,255,0.7);
+      transform: rotate(45deg);
+      animation: bounce 1.6s infinite;
+    }
+    @keyframes bounce {
+      0%, 100% { transform: rotate(45deg) translateY(0); }
+      50%       { transform: rotate(45deg) translateY(5px); }
+    }
+
+    /* ══════════════════════════════════════
+       SHARED SECTION STYLES
+    ══════════════════════════════════════ */
+    section {
+      padding: 90px 5%;
+    }
+
+    .section-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-tag {
+      display: inline-block;
+      color: var(--green);
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      margin-bottom: 0.6rem;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      font-weight: 700;
+      color: #1a1a1a;
+      line-height: 1.25;
+      position: relative;
+      padding-left: 20px;
+    }
+    .section-title::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 6px;
+      width: 4px;
+      height: calc(100% - 12px);
+      background: var(--green);
+      border-radius: 2px;
+    }
+
+    /* ══════════════════════════════════════
+       ABOUT
+    ══════════════════════════════════════ */
+    #about {
+      background: #fafafa;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 420px;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .about-text .section-title { margin-bottom: 1.5rem; }
+
+    .about-text p {
+      font-size: 1.05rem;
+      line-height: 1.85;
+      color: #444;
+      margin-bottom: 1.5rem;
+    }
+
+    .about-stats {
+      display: flex;
+      gap: 2.5rem;
+      margin-top: 2rem;
+    }
+    .stat {
+      text-align: center;
+    }
+    .stat-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.4rem;
+      font-weight: 700;
+      color: var(--green);
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: 0.8rem;
+      color: #888;
+      margin-top: 4px;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+    }
+
+    .about-visual {
+      background: var(--green);
+      border-radius: var(--radius);
+      height: 400px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow-hover);
+    }
+    .about-visual::before {
+      content: '';
+      position: absolute;
+      width: 280px; height: 280px;
+      border-radius: 50%;
+      border: 2px solid rgba(255,255,255,0.15);
+      top: -60px; right: -60px;
+    }
+    .about-visual::after {
+      content: '';
+      position: absolute;
+      width: 180px; height: 180px;
+      border-radius: 50%;
+      border: 2px solid rgba(255,255,255,0.1);
+      bottom: -40px; left: -40px;
+    }
+    .about-logo-text {
+      font-family: 'Playfair Display', serif;
+      font-size: 4rem;
+      font-weight: 700;
+      letter-spacing: 6px;
+      position: relative;
+      z-index: 1;
+    }
+    .about-logo-sub {
+      font-size: 0.85rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      opacity: 0.8;
+      margin-top: 8px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ══════════════════════════════════════
+       SERVICES
+    ══════════════════════════════════════ */
+    #services { background: #fff; }
+
+    .services-header {
+      text-align: center;
+      margin-bottom: 3.5rem;
+    }
+    .services-header .section-title {
+      padding-left: 0;
+      display: inline-block;
+    }
+    .services-header .section-title::before { display: none; }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: var(--radius);
+      border-top: 4px solid var(--green);
+      box-shadow: var(--shadow);
+      padding: 2.5rem 2rem;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .card::before {
+      content: '';
+      position: absolute;
+      bottom: -60px; right: -60px;
+      width: 140px; height: 140px;
+      border-radius: 50%;
+      background: var(--green-light);
+      transition: transform 0.4s ease;
+    }
+    .card:hover { transform: translateY(-8px); box-shadow: var(--shadow-hover); }
+    .card:hover::before { transform: scale(1.4); }
+
+    .card-icon {
+      font-size: 2.8rem;
+      margin-bottom: 1.2rem;
+      display: block;
+      position: relative;
+      z-index: 1;
+    }
+    .card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #1a1a1a;
+      margin-bottom: 0.75rem;
+      position: relative;
+      z-index: 1;
+    }
+    .card p {
+      font-size: 0.93rem;
+      color: #666;
+      line-height: 1.7;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ══════════════════════════════════════
+       HOURS
+    ══════════════════════════════════════ */
+    #hours { background: var(--green-light); }
+
+    .hours-inner {
+      max-width: 700px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .hours-inner .section-title {
+      padding-left: 0;
+      display: inline-block;
+      margin-bottom: 2rem;
+    }
+    .hours-inner .section-title::before { display: none; }
+
+    .hours-table {
+      width: 100%;
+      border-collapse: collapse;
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+    .hours-table thead tr {
+      background: var(--green);
+      color: #fff;
+    }
+    .hours-table thead th {
+      padding: 16px 24px;
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      font-weight: 600;
+      text-align: left;
+    }
+    .hours-table tbody tr {
+      background: #fff;
+      transition: background 0.2s;
+    }
+    .hours-table tbody tr:nth-child(even) { background: #f7faf8; }
+    .hours-table tbody tr:hover { background: #e6f4ec; }
+    .hours-table td {
+      padding: 16px 24px;
+      font-size: 0.95rem;
+      color: #333;
+      border-bottom: 1px solid #eee;
+    }
+    .hours-table td:last-child {
+      font-weight: 600;
+      color: var(--green);
+      text-align: right;
+    }
+
+    /* ══════════════════════════════════════
+       CONTACT
+    ══════════════════════════════════════ */
+    #contact { background: #fff; }
+
+    .contact-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+    .contact-header .section-title {
+      padding-left: 0;
+      display: inline-block;
+    }
+    .contact-header .section-title::before { display: none; }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .contact-card {
+      background: #fff;
+      border-radius: var(--radius);
+      border-top: 4px solid var(--green);
+      box-shadow: var(--shadow);
+      padding: 2rem 1.5rem;
+      text-align: center;
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+    .contact-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-hover);
+    }
+    .contact-icon {
+      font-size: 2.2rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+    .contact-card h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--green);
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .contact-card p, .contact-card a {
+      font-size: 0.93rem;
+      color: #555;
+      line-height: 1.6;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .contact-card a:hover { color: var(--green); }
+
+    /* ══════════════════════════════════════
+       FOOTER
+    ══════════════════════════════════════ */
+    footer {
+      background: var(--green);
+      color: #fff;
+      text-align: center;
+      padding: 2.5rem 5%;
+    }
+    footer p {
+      font-size: 0.9rem;
+      opacity: 0.9;
+      line-height: 1.7;
+    }
+    footer .footer-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      margin-bottom: 0.75rem;
+      display: block;
+    }
+
+    /* ══════════════════════════════════════
+       RESPONSIVE
+    ══════════════════════════════════════ */
+    @media (max-width: 960px) {
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+      .about-visual { height: 280px; }
+
+      .cards-grid { grid-template-columns: repeat(2, 1fr); }
+      .contact-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 700px) {
+      nav { gap: 1rem; }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 68px; left: 0; right: 0;
+        background: #fff;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 1rem 5% 1.5rem;
+        gap: 0;
+        box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+        border-top: 1px solid #eee;
+      }
+      .nav-links.open { display: flex; }
+      .nav-links li { width: 100%; }
+      .nav-links a {
+        display: block;
+        padding: 12px 0;
+        border-bottom: 1px solid #f0f0f0;
+        font-size: 1rem;
+      }
+
+      .hamburger { display: flex; }
+
+      .nav-right { margin-left: 0; }
+
+      .cards-grid { grid-template-columns: 1fr; }
+      .contact-grid { grid-template-columns: 1fr; }
+
+      .about-stats { flex-wrap: wrap; gap: 1.5rem; }
+
+      section { padding: 60px 5%; }
+    }
+
+    /* ══════════════════════════════════════
+       SCROLL REVEAL
+    ══════════════════════════════════════ */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+  </style>
+</head>
+<body>
+
+  <!-- ══════════════════════════════════════
+       STICKY NAV
+  ══════════════════════════════════════ -->
+  <nav id="main-nav">
+    <a href="#" class="nav-logo">SPAR</a>
+
+    <ul class="nav-links" id="nav-links">
+      <li>
+        <a href="#about">
+          <span class="lang-en">About</span>
+          <span class="lang-el">Σχετικά</span>
+        </a>
+      </li>
+      <li>
+        <a href="#services">
+          <span class="lang-en">Services</span>
+          <span class="lang-el">Υπηρεσίες</span>
+        </a>
+      </li>
+      <li>
+        <a href="#hours">
+          <span class="lang-en">Hours</span>
+          <span class="lang-el">Ώρες</span>
+        </a>
+      </li>
+      <li>
+        <a href="#contact">
+          <span class="lang-en">Contact</span>
+          <span class="lang-el">Επικοινωνία</span>
+        </a>
+      </li>
+    </ul>
+
+    <div class="nav-right">
+      <button id="lang-toggle" aria-label="Switch language">ΕΛ</button>
+    </div>
+
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- ══════════════════════════════════════
+       HERO
+  ══════════════════════════════════════ -->
+  <section class="hero" aria-label="Hero">
+    <div class="hero-bg" id="hero-bg"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="hero-badge">SPAR Athens</div>
+
+      <h1>
+        <span class="lang-en">Your Local SPAR –<br>Fresh, Fast &amp; Friendly</span>
+        <span class="lang-el">Το Τοπικό σας SPAR –<br>Φρέσκο, Γρήγορο &amp; Φιλικό</span>
+      </h1>
+
+      <p>
+        <span class="lang-en">Quality groceries and fresh produce, right in your neighbourhood.</span>
+        <span class="lang-el">Ποιοτικά τρόφιμα και φρέσκα προϊόντα, ακριβώς στη γειτονιά σας.</span>
+      </p>
+
+      <a href="#services" class="btn-primary">
+        <span class="lang-en">Shop Now</span>
+        <span class="lang-el">Αγοράστε Τώρα</span>
+      </a>
+    </div>
+
+    <div class="hero-scroll" aria-hidden="true">
+      <div class="scroll-arrow"></div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       ABOUT
+  ══════════════════════════════════════ -->
+  <section id="about">
+    <div class="section-inner">
+      <div class="about-grid">
+        <div class="about-text reveal">
+          <span class="section-tag">
+            <span class="lang-en">About Us</span>
+            <span class="lang-el">Σχετικά με εμάς</span>
+          </span>
+          <h2 class="section-title">
+            <span class="lang-en">Serving Greece with Pride</span>
+            <span class="lang-el">Εξυπηρετούμε με Υπερηφάνεια</span>
+          </h2>
+          <p>
+            <span class="lang-en">SPAR has been serving communities across Greece with the freshest produce, quality groceries, and unbeatable convenience. Our friendly team is here to make your shopping experience effortless and enjoyable every day.</span>
+            <span class="lang-el">Η SPAR εξυπηρετεί κοινότητες σε όλη την Ελλάδα με τα πιο φρέσκα προϊόντα, ποιοτικά τρόφιμα και απαράμιλλη εξυπηρέτηση. Η φιλική μας ομάδα είναι εδώ για να κάνει την εμπειρία των αγορών σας εύκολη και ευχάριστη κάθε μέρα.</span>
+          </p>
+          <div class="about-stats">
+            <div class="stat">
+              <div class="stat-number">50+</div>
+              <div class="stat-label lang-en">Stores in Greece</div>
+              <div class="stat-label lang-el">Καταστήματα</div>
+            </div>
+            <div class="stat">
+              <div class="stat-number">5K+</div>
+              <div class="stat-label lang-en">Products</div>
+              <div class="stat-label lang-el">Προϊόντα</div>
+            </div>
+            <div class="stat">
+              <div class="stat-number">15+</div>
+              <div class="stat-label lang-en">Years of Trust</div>
+              <div class="stat-label lang-el">Χρόνια Εμπιστοσύνης</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="about-visual reveal reveal-delay-2">
+          <span class="about-logo-text">SPAR</span>
+          <span class="about-logo-sub">Athens · Greece</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       SERVICES
+  ══════════════════════════════════════ -->
+  <section id="services">
+    <div class="section-inner">
+      <div class="services-header reveal">
+        <span class="section-tag">
+          <span class="lang-en">What We Offer</span>
+          <span class="lang-el">Τι Προσφέρουμε</span>
+        </span>
+        <h2 class="section-title">
+          <span class="lang-en">Our Services</span>
+          <span class="lang-el">Οι Υπηρεσίες μας</span>
+        </h2>
+      </div>
+
+      <div class="cards-grid">
+        <!-- Card 1 -->
+        <div class="card reveal reveal-delay-1">
+          <span class="card-icon">🥦</span>
+          <h3>
+            <span class="lang-en">Fresh Produce</span>
+            <span class="lang-el">Φρέσκα Προϊόντα</span>
+          </h3>
+          <p>
+            <span class="lang-en">Hand-picked fruits and vegetables delivered daily for peak freshness.</span>
+            <span class="lang-el">Χειροποίητα φρούτα και λαχανικά που παραδίδονται καθημερινά για μέγιστη φρεσκάδα.</span>
+          </p>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="card reveal reveal-delay-2">
+          <span class="card-icon">🍞</span>
+          <h3>
+            <span class="lang-en">Daily Bakery</span>
+            <span class="lang-el">Αρτοποιείο</span>
+          </h3>
+          <p>
+            <span class="lang-en">Freshly baked breads, pastries and treats every single morning.</span>
+            <span class="lang-el">Φρεσκοψημένα ψωμιά, αρτοσκευάσματα και γλυκά κάθε πρωί.</span>
+          </p>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="card reveal reveal-delay-3">
+          <span class="card-icon">🧴</span>
+          <h3>
+            <span class="lang-en">Home Essentials</span>
+            <span class="lang-el">Είδη Σπιτιού</span>
+          </h3>
+          <p>
+            <span class="lang-en">Everything for your home — cleaning, personal care and more.</span>
+            <span class="lang-el">Όλα για το σπίτι σας — καθαρισμός, προσωπική φροντίδα και άλλα.</span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       HOURS
+  ══════════════════════════════════════ -->
+  <section id="hours">
+    <div class="section-inner hours-inner">
+      <div class="reveal">
+        <span class="section-tag">
+          <span class="lang-en">We're Open</span>
+          <span class="lang-el">Είμαστε Ανοιχτά</span>
+        </span>
+        <h2 class="section-title">
+          <span class="lang-en">Opening Hours</span>
+          <span class="lang-el">Ώρες Λειτουργίας</span>
+        </h2>
+      </div>
+
+      <div class="reveal reveal-delay-1" style="margin-top:2rem;">
+        <table class="hours-table">
+          <thead>
+            <tr>
+              <th>
+                <span class="lang-en">Day</span>
+                <span class="lang-el">Ημέρα</span>
+              </th>
+              <th style="text-align:right;">
+                <span class="lang-en">Hours</span>
+                <span class="lang-el">Ώρες</span>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <span class="lang-en">Monday – Saturday</span>
+                <span class="lang-el">Δευτέρα – Σάββατο</span>
+              </td>
+              <td>07:00 – 22:00</td>
+            </tr>
+            <tr>
+              <td>
+                <span class="lang-en">Sunday</span>
+                <span class="lang-el">Κυριακή</span>
+              </td>
+              <td>08:00 – 21:00</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       CONTACT
+  ══════════════════════════════════════ -->
+  <section id="contact">
+    <div class="section-inner">
+      <div class="contact-header reveal">
+        <span class="section-tag">
+          <span class="lang-en">Get In Touch</span>
+          <span class="lang-el">Επικοινωνήστε</span>
+        </span>
+        <h2 class="section-title">
+          <span class="lang-en">Contact Us</span>
+          <span class="lang-el">Επικοινωνία</span>
+        </h2>
+      </div>
+
+      <div class="contact-grid">
+        <!-- Address -->
+        <div class="contact-card reveal reveal-delay-1">
+          <span class="contact-icon">📍</span>
+          <h4>
+            <span class="lang-en">Address</span>
+            <span class="lang-el">Διεύθυνση</span>
+          </h4>
+          <p>Λεωφόρος Βασιλίσσης Σοφίας 12,<br>Αθήνα 115 28</p>
+        </div>
+
+        <!-- Phone -->
+        <div class="contact-card reveal reveal-delay-2">
+          <span class="contact-icon">📞</span>
+          <h4>
+            <span class="lang-en">Phone</span>
+            <span class="lang-el">Τηλέφωνο</span>
+          </h4>
+          <a href="tel:+302101234567">+30 210 123 4567</a>
+        </div>
+
+        <!-- Email -->
+        <div class="contact-card reveal reveal-delay-3">
+          <span class="contact-icon">✉️</span>
+          <h4>
+            <span class="lang-en">Email</span>
+            <span class="lang-el">Email</span>
+          </h4>
+          <a href="mailto:info@spar-athens.gr">info@spar-athens.gr</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════
+       FOOTER
+  ══════════════════════════════════════ -->
+  <footer>
+    <span class="footer-logo">SPAR</span>
+    <p>
+      <span class="lang-en">© 2025 SPAR Athens. All rights reserved.</span>
+      <span class="lang-el">© 2025 SPAR Αθήνα. Όλα τα δικαιώματα κατοχυρωμένα.</span>
+    </p>
+  </footer>
+
+  <!-- ══════════════════════════════════════
+       JAVASCRIPT
+  ══════════════════════════════════════ -->
+  <script>
+    /* ── Language toggle ── */
+    const langToggle = document.getElementById('lang-toggle');
+    let isGreek = false;
+
+    langToggle.addEventListener('click', function () {
+      isGreek = !isGreek;
+      if (isGreek) {
+        document.body.classList.add('lang-el');
+        langToggle.textContent = 'EN';
+        document.documentElement.lang = 'el';
+      } else {
+        document.body.classList.remove('lang-el');
+        langToggle.textContent = 'ΕΛ';
+        document.documentElement.lang = 'en';
+      }
+    });
+
+    /* ── Hamburger menu ── */
+    const hamburger = document.getElementById('hamburger');
+    const navLinks  = document.getElementById('nav-links');
+
+    hamburger.addEventListener('click', function () {
+      navLinks.classList.toggle('open');
+      const isOpen = navLinks.classList.contains('open');
+      hamburger.setAttribute('aria-expanded', isOpen);
+      // Animate hamburger to X
+      const spans = hamburger.querySelectorAll('span');
+      if (isOpen) {
+        spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+        spans[1].style.opacity   = '0';
+        spans[2].style.transform = 'rotate(-45deg) translate(5px, -5px)';
+      } else {
+        spans[0].style.transform = '';
+        spans[1].style.opacity   = '';
+        spans[2].style.transform = '';
+      }
+    });
+
+    // Close menu on nav link click
+    navLinks.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', function () {
+        navLinks.classList.remove('open');
+        const spans = hamburger.querySelectorAll('span');
+        spans[0].style.transform = '';
+        spans[1].style.opacity   = '';
+        spans[2].style.transform = '';
+      });
+    });
+
+    /* ── Hero background Ken Burns ── */
+    window.addEventListener('load', function () {
+      document.getElementById('hero-bg').classList.add('loaded');
+    });
+
+    /* ── Scroll reveal ── */
+    const reveals = document.querySelectorAll('.reveal');
+
+    function checkReveal() {
+      const windowHeight = window.innerHeight;
+      reveals.forEach(function (el) {
+        const top = el.getBoundingClientRect().top;
+        if (top < windowHeight - 80) {
+          el.classList.add('visible');
+        }
+      });
+    }
+
+    window.addEventListener('scroll', checkReveal, { passive: true });
+    checkReveal(); // Run on load
+
+    /* ── Nav shadow on scroll ── */
+    var nav = document.getElementById('main-nav');
+    window.addEventListener('scroll', function () {
+      if (window.scrollY > 10) {
+        nav.style.boxShadow = '0 4px 24px rgba(0,0,0,0.12)';
+      } else {
+        nav.style.boxShadow = '0 2px 16px rgba(0,0,0,0.08)';
+      }
+    }, { passive: true });
+  </script>
+</body>
+</html>

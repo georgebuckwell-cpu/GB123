@@ -1,0 +1,1108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Safeway Supermarket | Thessaloniki</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green:      #2D6A4F;
+      --green-dark: #1B4332;
+      --green-mid:  #40916C;
+      --green-light:#74C69D;
+      --cream:      #FFFBF0;
+      --cream-dark: #F5F0E0;
+      --text:       #1A1A1A;
+      --text-light: #555;
+      --white:      #FFFFFF;
+      --gold:       #C9A84C;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    h1, h2, h3, h4 { font-family: 'Playfair Display', serif; }
+
+    /* ─── NAV ──────────────────────────────────────────── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: var(--green-dark);
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 70px;
+      box-shadow: 0 2px 20px rgba(0,0,0,0.25);
+    }
+
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.55rem;
+      font-weight: 700;
+      color: var(--cream);
+      letter-spacing: 0.03em;
+      text-decoration: none;
+    }
+
+    .nav-logo span { color: var(--green-light); }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: rgba(255,251,240,0.85);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--green-light); }
+
+    .lang-toggle {
+      background: transparent;
+      border: 1.5px solid var(--green-light);
+      color: var(--green-light);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      padding: 6px 16px;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .lang-toggle:hover {
+      background: var(--green-light);
+      color: var(--green-dark);
+    }
+
+    /* ─── HERO ─────────────────────────────────────────── */
+    #home {
+      position: relative;
+      height: 100vh;
+      min-height: 600px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1578916171728-46686eac8d58?auto=format&fit=crop&w=1920&q=80');
+      background-size: cover;
+      background-position: center;
+      transform: scale(1.04);
+      transition: transform 8s ease-out;
+    }
+
+    #home:hover .hero-bg { transform: scale(1); }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        160deg,
+        rgba(27,67,50,0.78) 0%,
+        rgba(45,106,79,0.62) 50%,
+        rgba(27,67,50,0.80) 100%
+      );
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 800px;
+      padding: 2rem;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: rgba(201,168,76,0.2);
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 6px 20px;
+      border-radius: 30px;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-content h1 {
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      font-weight: 700;
+      color: var(--cream);
+      line-height: 1.1;
+      margin-bottom: 1.2rem;
+      text-shadow: 0 2px 20px rgba(0,0,0,0.3);
+    }
+
+    .hero-content h1 span { color: var(--green-light); }
+
+    .hero-tagline {
+      font-size: clamp(1.05rem, 2.2vw, 1.35rem);
+      color: rgba(255,251,240,0.9);
+      font-weight: 300;
+      letter-spacing: 0.02em;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-cta {
+      display: inline-block;
+      background: var(--green-light);
+      color: var(--green-dark);
+      font-weight: 700;
+      font-size: 0.95rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 14px 38px;
+      border-radius: 40px;
+      text-decoration: none;
+      transition: background 0.25s, transform 0.2s, box-shadow 0.25s;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    }
+
+    .hero-cta:hover {
+      background: var(--cream);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.25);
+    }
+
+    /* ─── SECTION COMMON ───────────────────────────────── */
+    section { padding: 90px 2rem; }
+
+    .section-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      display: inline-block;
+      color: var(--green-mid);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+    }
+
+    .section-title {
+      font-size: clamp(1.9rem, 3.5vw, 2.8rem);
+      color: var(--green-dark);
+      margin-bottom: 1.2rem;
+      line-height: 1.2;
+    }
+
+    .section-subtitle {
+      font-size: 1.05rem;
+      color: var(--text-light);
+      max-width: 620px;
+      margin-bottom: 3rem;
+    }
+
+    .divider {
+      width: 56px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--green), var(--green-light));
+      border-radius: 2px;
+      margin-bottom: 2.5rem;
+    }
+
+    /* ─── ABOUT ────────────────────────────────────────── */
+    #about { background: var(--white); }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .about-image-wrap {
+      position: relative;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 20px 60px rgba(45,106,79,0.18);
+    }
+
+    .about-image-wrap img {
+      width: 100%;
+      height: 420px;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.5s ease;
+    }
+
+    .about-image-wrap:hover img { transform: scale(1.04); }
+
+    .about-image-wrap::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border: 3px solid var(--green-light);
+      border-radius: 12px;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .about-text p {
+      color: var(--text-light);
+      margin-bottom: 1.2rem;
+      font-size: 1rem;
+    }
+
+    .about-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .stat-box {
+      background: var(--cream);
+      border: 1px solid var(--cream-dark);
+      border-top: 3px solid var(--green);
+      border-radius: 8px;
+      padding: 1.2rem 1rem;
+      text-align: center;
+    }
+
+    .stat-box .num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--green);
+      display: block;
+    }
+
+    .stat-box .label {
+      font-size: 0.78rem;
+      color: var(--text-light);
+      font-weight: 500;
+      letter-spacing: 0.04em;
+    }
+
+    /* ─── PRODUCTS ─────────────────────────────────────── */
+    #products { background: var(--cream); }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+
+    .card {
+      background: var(--white);
+      border-radius: 12px;
+      overflow: hidden;
+      border-top: 4px solid var(--green);
+      box-shadow: 0 4px 24px rgba(45,106,79,0.08);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 16px 48px rgba(45,106,79,0.18);
+    }
+
+    .card-icon {
+      background: linear-gradient(135deg, var(--green-dark), var(--green-mid));
+      height: 160px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4rem;
+    }
+
+    .card-body { padding: 1.8rem; }
+
+    .card-body h3 {
+      font-size: 1.3rem;
+      color: var(--green-dark);
+      margin-bottom: 0.7rem;
+    }
+
+    .card-body p {
+      color: var(--text-light);
+      font-size: 0.95rem;
+      line-height: 1.65;
+    }
+
+    .card-tag {
+      display: inline-block;
+      background: rgba(45,106,79,0.08);
+      color: var(--green);
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-top: 1.1rem;
+    }
+
+    /* ─── HOURS ────────────────────────────────────────── */
+    #hours { background: var(--white); }
+
+    .hours-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    .hours-table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    .hours-table tr {
+      border-bottom: 1px solid var(--cream-dark);
+      transition: background 0.2s;
+    }
+
+    .hours-table tr:hover { background: var(--cream); }
+
+    .hours-table td {
+      padding: 14px 0;
+      font-size: 0.97rem;
+    }
+
+    .hours-table td:first-child {
+      color: var(--text-light);
+      font-weight: 500;
+    }
+
+    .hours-table td:last-child {
+      text-align: right;
+      font-weight: 600;
+      color: var(--green-dark);
+      font-family: 'Playfair Display', serif;
+    }
+
+    .hours-note {
+      margin-top: 1.5rem;
+      padding: 1rem 1.2rem;
+      background: rgba(45,106,79,0.07);
+      border-left: 3px solid var(--green);
+      border-radius: 0 6px 6px 0;
+      font-size: 0.88rem;
+      color: var(--text-light);
+    }
+
+    .open-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(45,106,79,0.1);
+      color: var(--green-dark);
+      font-weight: 600;
+      font-size: 0.9rem;
+      padding: 8px 18px;
+      border-radius: 30px;
+      margin-bottom: 2rem;
+    }
+
+    .open-dot {
+      width: 10px;
+      height: 10px;
+      background: #52c41a;
+      border-radius: 50%;
+      animation: pulse 1.8s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.3); }
+    }
+
+    /* ─── CONTACT ──────────────────────────────────────── */
+    #contact { background: var(--cream); }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+    }
+
+    .contact-info { display: flex; flex-direction: column; gap: 1.5rem; }
+
+    .contact-item {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+
+    .contact-icon {
+      width: 44px;
+      height: 44px;
+      min-width: 44px;
+      background: var(--green);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      color: var(--cream);
+      box-shadow: 0 4px 12px rgba(45,106,79,0.25);
+    }
+
+    .contact-item-text strong {
+      display: block;
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--green);
+      font-weight: 600;
+      margin-bottom: 3px;
+    }
+
+    .contact-item-text span, .contact-item-text a {
+      font-size: 0.97rem;
+      color: var(--text);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .contact-item-text a:hover { color: var(--green); }
+
+    .map-placeholder {
+      background: linear-gradient(135deg, var(--green-dark), var(--green-mid));
+      border-radius: 12px;
+      height: 100%;
+      min-height: 280px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 1rem;
+      color: var(--cream);
+      box-shadow: 0 10px 40px rgba(45,106,79,0.2);
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .map-placeholder .map-pin { font-size: 3rem; }
+
+    .map-placeholder h3 {
+      font-size: 1.2rem;
+      color: var(--cream);
+    }
+
+    .map-placeholder p {
+      font-size: 0.9rem;
+      color: rgba(255,251,240,0.75);
+      max-width: 220px;
+      line-height: 1.5;
+    }
+
+    .map-link {
+      display: inline-block;
+      margin-top: 0.5rem;
+      background: var(--green-light);
+      color: var(--green-dark);
+      font-weight: 700;
+      font-size: 0.82rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 10px 24px;
+      border-radius: 30px;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .map-link:hover {
+      background: var(--cream);
+      transform: translateY(-2px);
+    }
+
+    /* ─── FOOTER ───────────────────────────────────────── */
+    footer {
+      background: var(--green-dark);
+      color: rgba(255,251,240,0.7);
+      text-align: center;
+      padding: 2.5rem 2rem;
+    }
+
+    footer .footer-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--cream);
+      margin-bottom: 0.5rem;
+    }
+
+    footer .footer-logo span { color: var(--green-light); }
+
+    footer p { font-size: 0.85rem; margin-top: 0.5rem; }
+
+    footer .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-top: 1.2rem;
+      list-style: none;
+    }
+
+    footer .footer-links a {
+      color: rgba(255,251,240,0.6);
+      text-decoration: none;
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      transition: color 0.2s;
+    }
+
+    footer .footer-links a:hover { color: var(--green-light); }
+
+    /* ─── LANGUAGE VISIBILITY ──────────────────────────── */
+    [data-lang="el"] { display: none; }
+    body.lang-el [data-lang="en"] { display: none; }
+    body.lang-el [data-lang="el"] { display: revert; }
+
+    /* inline elements that are spans */
+    span[data-lang] { display: inline; }
+    body.lang-el span[data-lang="en"] { display: none; }
+    body.lang-el span[data-lang="el"] { display: inline; }
+
+    /* ─── RESPONSIVE ───────────────────────────────────── */
+    @media (max-width: 900px) {
+      .about-grid, .hours-layout, .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .cards-grid { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto; }
+      .nav-links { display: none; }
+    }
+
+    @media (max-width: 600px) {
+      section { padding: 60px 1.2rem; }
+      nav { padding: 0 1.2rem; }
+      .about-stats { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════
+     NAVIGATION
+════════════════════════════════════════════ -->
+<nav>
+  <a href="#home" class="nav-logo">Safe<span>way</span></a>
+
+  <ul class="nav-links">
+    <li><a href="#home">
+      <span data-lang="en">Home</span>
+      <span data-lang="el">Αρχική</span>
+    </a></li>
+    <li><a href="#about">
+      <span data-lang="en">About</span>
+      <span data-lang="el">Σχετικά</span>
+    </a></li>
+    <li><a href="#products">
+      <span data-lang="en">Products</span>
+      <span data-lang="el">Προϊόντα</span>
+    </a></li>
+    <li><a href="#hours">
+      <span data-lang="en">Hours</span>
+      <span data-lang="el">Ωράριο</span>
+    </a></li>
+    <li><a href="#contact">
+      <span data-lang="en">Contact</span>
+      <span data-lang="el">Επικοινωνία</span>
+    </a></li>
+  </ul>
+
+  <button class="lang-toggle" id="langBtn" aria-label="Toggle language">ΕΛ</button>
+</nav>
+
+
+<!-- ═══════════════════════════════════════════
+     HERO
+════════════════════════════════════════════ -->
+<section id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-badge">
+      <span data-lang="en">Thessaloniki's Trusted Neighbourhood Market</span>
+      <span data-lang="el">Η Αγαπημένη Αγορά της Γειτονιάς στη Θεσσαλονίκη</span>
+    </div>
+    <h1>Safe<span>way</span></h1>
+    <p class="hero-tagline">
+      <span data-lang="en">Safe Choices, Great Prices</span>
+      <span data-lang="el">Σωστές Επιλογές, Υπέροχες Τιμές</span>
+    </p>
+    <a href="#products" class="hero-cta">
+      <span data-lang="en">Explore Our Products</span>
+      <span data-lang="el">Δείτε τα Προϊόντα μας</span>
+    </a>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     ABOUT
+════════════════════════════════════════════ -->
+<section id="about">
+  <div class="section-inner">
+    <div class="about-grid">
+
+      <div class="about-image-wrap">
+        <img
+          src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=900&q=80"
+          alt="Inside Safeway Supermarket"
+          loading="lazy"
+        />
+      </div>
+
+      <div class="about-text">
+        <span class="section-label">
+          <span data-lang="en">Our Story</span>
+          <span data-lang="el">Η Ιστορία μας</span>
+        </span>
+        <h2 class="section-title">
+          <span data-lang="en">A Cornerstone of the Community Since 1998</span>
+          <span data-lang="el">Ο Πυλώνας της Κοινότητας από το 1998</span>
+        </h2>
+        <div class="divider"></div>
+
+        <p data-lang="en">
+          Safeway was born from a simple belief: every family deserves access to
+          fresh, high-quality food at honest prices. What started as a small
+          neighbourhood shop on Kifissias Avenue has grown into one of
+          Thessaloniki's most beloved supermarkets — without ever losing its
+          warm, family feel.
+        </p>
+        <p data-lang="el">
+          Το Safeway γεννήθηκε από μια απλή πεποίθηση: κάθε οικογένεια
+          αξίζει πρόσβαση σε φρέσκα, υψηλής ποιότητας τρόφιμα σε δίκαιες
+          τιμές. Ό,τι ξεκίνησε ως ένα μικρό μαγαζί γειτονιάς στη Λεωφόρο
+          Κηφισίας εξελίχθηκε σε ένα από τα πιο αγαπημένα σούπερ μάρκετ της
+          Θεσσαλονίκης — χωρίς να χάσει ποτέ τη ζεστή, οικογενειακή του
+          ατμόσφαιρα.
+        </p>
+
+        <p data-lang="en">
+          We source our produce daily from trusted local farmers and artisan
+          suppliers across Greece, ensuring every item on our shelves meets the
+          standards we would set for our own table. Our team of passionate staff
+          greets every customer by name — because here, you are never just a
+          number.
+        </p>
+        <p data-lang="el">
+          Προμηθευόμαστε τα προϊόντα μας καθημερινά από αξιόπιστους τοπικούς
+          αγρότες και παραγωγούς σε όλη την Ελλάδα, διασφαλίζοντας ότι κάθε
+          προϊόν στα ράφια μας πληροί τα πρότυπα που θα θέταμε στο δικό μας
+          τραπέζι. Η ομάδα μας χαιρετά κάθε πελάτη με το όνομά του — γιατί
+          εδώ δεν είστε ποτέ απλώς ένας αριθμός.
+        </p>
+
+        <div class="about-stats">
+          <div class="stat-box">
+            <span class="num">25+</span>
+            <span class="label">
+              <span data-lang="en">Years in Business</span>
+              <span data-lang="el">Χρόνια Λειτουργίας</span>
+            </span>
+          </div>
+          <div class="stat-box">
+            <span class="num">4,000+</span>
+            <span class="label">
+              <span data-lang="en">Products</span>
+              <span data-lang="el">Προϊόντα</span>
+            </span>
+          </div>
+          <div class="stat-box">
+            <span class="num">500+</span>
+            <span class="label">
+              <span data-lang="en">Daily Customers</span>
+              <span data-lang="el">Πελάτες Ημερησίως</span>
+            </span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     PRODUCTS / SERVICES
+════════════════════════════════════════════ -->
+<section id="products">
+  <div class="section-inner">
+    <span class="section-label">
+      <span data-lang="en">What We Offer</span>
+      <span data-lang="el">Τι Προσφέρουμε</span>
+    </span>
+    <h2 class="section-title">
+      <span data-lang="en">Freshness in Every Aisle</span>
+      <span data-lang="el">Φρεσκάδα σε Κάθε Ράφι</span>
+    </h2>
+    <p class="section-subtitle">
+      <span data-lang="en">From sunrise-baked loaves to hand-picked seasonal vegetables and expertly butchered meats, Safeway brings the market to your doorstep.</span>
+      <span data-lang="el">Από αρτοσκευάσματα που ψήνονται με την ανατολή ως χειροδιαλεχτά εποχιακά λαχανικά και κρέατα υψηλής επιλογής, το Safeway φέρνει την αγορά στην πόρτα σας.</span>
+    </p>
+
+    <div class="cards-grid">
+
+      <!-- Card 1: Bakery -->
+      <div class="card">
+        <div class="card-icon">🍞</div>
+        <div class="card-body">
+          <h3>
+            <span data-lang="en">Fresh Bakery</span>
+            <span data-lang="el">Φρέσκος Αρτοποιός</span>
+          </h3>
+          <p data-lang="en">
+            Our in-house bakery crafts traditional Greek breads, crispy
+            tiropites, honey-drizzled pastries and rustic sourdough loaves
+            every single morning. The aroma alone is worth the visit.
+          </p>
+          <p data-lang="el">
+            Ο εσωτερικός μας αρτοποιός φτιάχνει κάθε πρωί παραδοσιακά
+            ελληνικά ψωμιά, τραγανές τυρόπιτες, γλυκά με μέλι και
+            χωριάτικα ψωμιά με προζύμι. Μόνο η μυρωδιά αξίζει την επίσκεψη.
+          </p>
+          <span class="card-tag">
+            <span data-lang="en">Baked Daily</span>
+            <span data-lang="el">Φρεσκοψημένα Καθημερινά</span>
+          </span>
+        </div>
+      </div>
+
+      <!-- Card 2: Organic Produce -->
+      <div class="card">
+        <div class="card-icon">🥦</div>
+        <div class="card-body">
+          <h3>
+            <span data-lang="en">Organic Produce</span>
+            <span data-lang="el">Βιολογικά Προϊόντα</span>
+          </h3>
+          <p data-lang="en">
+            Sourced directly from certified Greek farms, our fruit and
+            vegetable selection changes with the seasons. Expect sun-ripened
+            tomatoes, fragrant herbs, and produce that tastes like it should.
+          </p>
+          <p data-lang="el">
+            Απευθείας από πιστοποιημένες ελληνικές φάρμες, η επιλογή φρούτων
+            και λαχανικών μας αλλάζει με τις εποχές. Περιμένετε ντομάτες
+            ώριμες στον ήλιο, αρωματικά βότανα και προϊόντα που έχουν
+            πραγματική γεύση.
+          </p>
+          <span class="card-tag">
+            <span data-lang="en">Locally Grown</span>
+            <span data-lang="el">Τοπικής Παραγωγής</span>
+          </span>
+        </div>
+      </div>
+
+      <!-- Card 3: Quality Meats -->
+      <div class="card">
+        <div class="card-icon">🥩</div>
+        <div class="card-body">
+          <h3>
+            <span data-lang="en">Quality Meats</span>
+            <span data-lang="el">Κρεοπωλείο Ποιότητας</span>
+          </h3>
+          <p data-lang="en">
+            Our butcher counter is stocked daily with prime cuts of beef,
+            free-range chicken, and succulent lamb from trusted northern
+            Greek suppliers. Custom cuts are always available on request.
+          </p>
+          <p data-lang="el">
+            Ο πάγκος κρεοπωλείου μας εφοδιάζεται καθημερινά με εκλεκτές
+            μοσχαρίσιες μερίδες, ελεύθερης βοσκής κοτόπουλο και αρνάκι
+            από αξιόπιστους προμηθευτές της βόρειας Ελλάδας. Τεμαχισμός
+            κατά παραγγελία πάντα διαθέσιμος.
+          </p>
+          <span class="card-tag">
+            <span data-lang="en">Daily Fresh</span>
+            <span data-lang="el">Φρέσκο Καθημερινά</span>
+          </span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     OPENING HOURS
+════════════════════════════════════════════ -->
+<section id="hours">
+  <div class="section-inner">
+    <div class="hours-layout">
+
+      <div>
+        <span class="section-label">
+          <span data-lang="en">Visit Us</span>
+          <span data-lang="el">Επισκεφθείτε μας</span>
+        </span>
+        <h2 class="section-title">
+          <span data-lang="en">Opening Hours</span>
+          <span data-lang="el">Ωράριο Λειτουργίας</span>
+        </h2>
+        <div class="divider"></div>
+
+        <div class="open-badge">
+          <span class="open-dot"></span>
+          <span data-lang="en">Open Today</span>
+          <span data-lang="el">Ανοιχτά Σήμερα</span>
+        </div>
+
+        <table class="hours-table">
+          <tr>
+            <td>
+              <span data-lang="en">Monday – Friday</span>
+              <span data-lang="el">Δευτέρα – Παρασκευή</span>
+            </td>
+            <td>08:00 – 21:00</td>
+          </tr>
+          <tr>
+            <td>
+              <span data-lang="en">Saturday</span>
+              <span data-lang="el">Σάββατο</span>
+            </td>
+            <td>08:00 – 20:00</td>
+          </tr>
+          <tr>
+            <td>
+              <span data-lang="en">Sunday</span>
+              <span data-lang="el">Κυριακή</span>
+            </td>
+            <td>09:00 – 18:00</td>
+          </tr>
+        </table>
+
+        <div class="hours-note">
+          <span data-lang="en">
+            ℹ️ Hours may vary on national holidays. Follow us on social media
+            or call ahead to confirm during festive periods.
+          </span>
+          <span data-lang="el">
+            ℹ️ Το ωράριο ενδέχεται να διαφέρει κατά τις εθνικές αργίες.
+            Ακολουθήστε μας στα social media ή τηλεφωνήστε για επιβεβαίωση
+            κατά τις γιορτινές περιόδους.
+          </span>
+        </div>
+      </div>
+
+      <div style="display:flex; flex-direction:column; justify-content:center; gap:1.5rem;">
+        <div style="background:var(--cream); border:1px solid var(--cream-dark); border-left:4px solid var(--green); border-radius:8px; padding:1.5rem;">
+          <h4 style="font-family:'Playfair Display',serif; color:var(--green-dark); margin-bottom:0.6rem;">
+            <span data-lang="en">We're Always Stocked</span>
+            <span data-lang="el">Πάντα Ενημερωμένα Ράφια</span>
+          </h4>
+          <p style="font-size:0.93rem; color:var(--text-light);">
+            <span data-lang="en">
+              Our shelves are restocked every morning before opening so you
+              always find the freshest selection waiting for you.
+            </span>
+            <span data-lang="el">
+              Τα ράφια μας ανανεώνονται κάθε πρωί πριν ανοίξουμε, ώστε να
+              βρίσκετε πάντα την πιο φρέσκια επιλογή να σας περιμένει.
+            </span>
+          </p>
+        </div>
+        <div style="background:var(--cream); border:1px solid var(--cream-dark); border-left:4px solid var(--gold); border-radius:8px; padding:1.5rem;">
+          <h4 style="font-family:'Playfair Display',serif; color:var(--green-dark); margin-bottom:0.6rem;">
+            <span data-lang="en">Loyalty Card</span>
+            <span data-lang="el">Κάρτα Πιστότητας</span>
+          </h4>
+          <p style="font-size:0.93rem; color:var(--text-light);">
+            <span data-lang="en">
+              Join the Safeway family loyalty programme and earn points on
+              every purchase, redeemable for exclusive discounts and gifts.
+            </span>
+            <span data-lang="el">
+              Γίνετε μέλος του προγράμματος πιστότητας Safeway και μαζέψτε
+              πόντους σε κάθε αγορά για αποκλειστικές εκπτώσεις και δώρα.
+            </span>
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     CONTACT
+════════════════════════════════════════════ -->
+<section id="contact">
+  <div class="section-inner">
+    <span class="section-label">
+      <span data-lang="en">Find Us</span>
+      <span data-lang="el">Βρείτε μας</span>
+    </span>
+    <h2 class="section-title">
+      <span data-lang="en">Get in Touch</span>
+      <span data-lang="el">Επικοινωνήστε μαζί μας</span>
+    </h2>
+    <div class="divider"></div>
+
+    <div class="contact-grid">
+
+      <div class="contact-info">
+        <div class="contact-item">
+          <div class="contact-icon">📍</div>
+          <div class="contact-item-text">
+            <strong>
+              <span data-lang="en">Address</span>
+              <span data-lang="el">Διεύθυνση</span>
+            </strong>
+            <span>47 Kifissias Avenue, Thessaloniki 54622, Greece</span>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-icon">📞</div>
+          <div class="contact-item-text">
+            <strong>
+              <span data-lang="en">Telephone</span>
+              <span data-lang="el">Τηλέφωνο</span>
+            </strong>
+            <a href="tel:+302310234567">+30 2310 234 567</a>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-icon">✉️</div>
+          <div class="contact-item-text">
+            <strong>Email</strong>
+            <a href="mailto:info@safeway.gr">info@safeway.gr</a>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-icon">🚌</div>
+          <div class="contact-item-text">
+            <strong>
+              <span data-lang="en">Getting Here</span>
+              <span data-lang="el">Πώς να Έρθετε</span>
+            </strong>
+            <span>
+              <span data-lang="en">Bus lines 5, 12 &amp; 31 stop directly outside. Free parking available behind the store.</span>
+              <span data-lang="el">Οι γραμμές λεωφορείου 5, 12 &amp; 31 σταματούν ακριβώς έξω. Δωρεάν πάρκινγκ πίσω από το κατάστημα.</span>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="map-placeholder">
+        <div class="map-pin">🗺️</div>
+        <h3>
+          <span data-lang="en">Find Us on the Map</span>
+          <span data-lang="el">Βρείτε μας στον Χάρτη</span>
+        </h3>
+        <p>
+          <span data-lang="en">47 Kifissias Avenue<br>Thessaloniki 54622<br>Greece</span>
+          <span data-lang="el">Λεωφόρος Κηφισίας 47<br>Θεσσαλονίκη 54622<br>Ελλάδα</span>
+        </p>
+        <a
+          href="https://maps.google.com/?q=47+Kifissias+Avenue+Thessaloniki"
+          target="_blank"
+          rel="noopener"
+          class="map-link"
+        >
+          <span data-lang="en">Open in Google Maps</span>
+          <span data-lang="el">Άνοιγμα στο Google Maps</span>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════
+     FOOTER
+════════════════════════════════════════════ -->
+<footer>
+  <div class="footer-logo">Safe<span>way</span></div>
+  <p>
+    <span data-lang="en">47 Kifissias Avenue, Thessaloniki 54622, Greece &nbsp;|&nbsp; +30 2310 234 567</span>
+    <span data-lang="el">Λεωφόρος Κηφισίας 47, Θεσσαλονίκη 54622, Ελλάδα &nbsp;|&nbsp; +30 2310 234 567</span>
+  </p>
+  <ul class="footer-links">
+    <li><a href="#home">
+      <span data-lang="en">Home</span><span data-lang="el">Αρχική</span>
+    </a></li>
+    <li><a href="#about">
+      <span data-lang="en">About</span><span data-lang="el">Σχετικά</span>
+    </a></li>
+    <li><a href="#products">
+      <span data-lang="en">Products</span><span data-lang="el">Προϊόντα</span>
+    </a></li>
+    <li><a href="#hours">
+      <span data-lang="en">Hours</span><span data-lang="el">Ωράριο</span>
+    </a></li>
+    <li><a href="#contact">
+      <span data-lang="en">Contact</span><span data-lang="el">Επικοινωνία</span>
+    </a></li>
+  </ul>
+  <p style="margin-top:1.5rem; font-size:0.78rem; color:rgba(255,251,240,0.4);">
+    &copy; 2025 Safeway Supermarket.
+    <span data-lang="en">All rights reserved.</span>
+    <span data-lang="el">Όλα τα δικαιώματα διατηρούνται.</span>
+  </p>
+</footer>
+
+
+<!-- ═══════════════════════════════════════════
+     JAVASCRIPT — Language Toggle
+════════════════════════════════════════════ -->
+<script>
+  (function () {
+    const btn  = document.getElementById('langBtn');
+    const body = document.body;
+    let   lang = 'en'; // default
+
+    btn.addEventListener('click', function () {
+      if (lang === 'en') {
+        lang = 'el';
+        body.classList.add('lang-el');
+        btn.textContent = 'EN';
+        btn.setAttribute('aria-label', 'Switch to English');
+        document.documentElement.lang = 'el';
+      } else {
+        lang = 'en';
+        body.classList.remove('lang-el');
+        btn.textContent = 'ΕΛ';
+        btn.setAttribute('aria-label', 'Εναλλαγή στα Ελληνικά');
+        document.documentElement.lang = 'en';
+      }
+    });
+  })();
+</script>
+
+</body>
+</html>

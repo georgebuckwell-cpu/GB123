@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Zeus All Day – Supermarket</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --navy: #1a1a2e;
+      --navy-dark: #0f0f1e;
+      --navy-light: #22223a;
+      --gold: #c9a84c;
+      --gold-light: #e0c06a;
+      --gold-dim: rgba(201, 168, 76, 0.3);
+      --white: #ffffff;
+      --cream: #f5f0e8;
+      --text-light: #ccc;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--navy);
+      color: var(--white);
+      overflow-x: hidden;
+    }
+
+    /* =====================
+       LANGUAGE TOGGLE LOGIC
+    ===================== */
+    .lang-en { display: block; }
+    .lang-el { display: none; }
+    span.lang-en { display: inline; }
+    span.lang-el { display: none; }
+
+    body.lang-el .lang-en { display: none; }
+    body.lang-el .lang-el { display: block; }
+    body.lang-el span.lang-en { display: none; }
+    body.lang-el span.lang-el { display: inline; }
+
+    /* =====================
+       NAVIGATION
+    ===================== */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      background-color: var(--navy);
+      border-bottom: 1px solid var(--gold-dim);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 40px;
+      height: 70px;
+      transition: box-shadow 0.3s ease;
+    }
+
+    nav.scrolled {
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 4px;
+      text-decoration: none;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 36px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--gold);
+      text-decoration: none;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      position: relative;
+      padding-bottom: 4px;
+      transition: color 0.3s ease;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background-color: var(--gold);
+      transition: width 0.3s ease;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .lang-toggle {
+      background: transparent;
+      border: 1.5px solid var(--gold);
+      color: var(--gold);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      padding: 7px 16px;
+      cursor: pointer;
+      transition: background 0.3s ease, color 0.3s ease;
+    }
+
+    .lang-toggle:hover {
+      background: var(--gold);
+      color: var(--navy);
+    }
+
+    /* Hamburger */
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background-color: var(--gold);
+      transition: all 0.3s ease;
+    }
+
+    .mobile-menu {
+      display: none;
+      flex-direction: column;
+      background-color: var(--navy);
+      position: fixed;
+      top: 70px;
+      left: 0;
+      width: 100%;
+      border-bottom: 1px solid var(--gold-dim);
+      padding: 20px 40px;
+      gap: 16px;
+      z-index: 999;
+    }
+
+    .mobile-menu.open {
+      display: flex;
+    }
+
+    .mobile-menu a {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--gold);
+      text-decoration: none;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 8px 0;
+      border-bottom: 1px solid var(--gold-dim);
+    }
+
+    /* =====================
+       HERO
+    ===================== */
+    .hero {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      min-height: 600px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1534723452862-4c874018d66d?auto=format&fit=crop&w=1920&q=80');
+      background-size: cover;
+      background-position: center;
+      z-index: 0;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background-color: rgba(26, 26, 46, 0.75);
+      z-index: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 860px;
+      padding: 0 24px;
+    }
+
+    .hero-eyebrow {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 20px;
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.2rem, 5vw, 4rem);
+      font-weight: 700;
+      line-height: 1.15;
+      color: var(--white);
+      margin-bottom: 12px;
+    }
+
+    .hero-title span {
+      color: var(--gold);
+    }
+
+    .hero-divider {
+      width: 80px;
+      height: 2px;
+      background: var(--gold);
+      margin: 28px auto;
+    }
+
+    .hero-subtitle {
+      font-family: 'Inter', sans-serif;
+      font-size: clamp(0.95rem, 1.8vw, 1.15rem);
+      font-weight: 300;
+      color: rgba(255, 255, 255, 0.82);
+      line-height: 1.75;
+      margin-bottom: 44px;
+      max-width: 620px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .hero-cta {
+      display: inline-block;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 1.5px solid var(--gold);
+      padding: 15px 42px;
+      text-decoration: none;
+      transition: background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .hero-cta:hover {
+      background: var(--gold);
+      color: var(--navy);
+      box-shadow: 0 0 30px rgba(201, 168, 76, 0.4);
+    }
+
+    .hero-scroll-indicator {
+      position: absolute;
+      bottom: 32px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      opacity: 0.6;
+    }
+
+    .hero-scroll-indicator span {
+      font-size: 0.7rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    .scroll-line {
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, var(--gold), transparent);
+      animation: scrollPulse 2s ease-in-out infinite;
+    }
+
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 0.4; transform: scaleY(1); }
+      50% { opacity: 1; transform: scaleY(1.2); }
+    }
+
+    /* =====================
+       SECTION BASE
+    ===================== */
+    section {
+      padding: 90px 0;
+    }
+
+    .container {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    .section-eyebrow {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: var(--gold);
+      text-align: center;
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+      font-weight: 700;
+      text-align: center;
+      color: var(--white);
+      margin-bottom: 24px;
+    }
+
+    .gold-divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      margin: 0 auto 52px;
+      max-width: 320px;
+    }
+
+    .gold-divider::before,
+    .gold-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--gold);
+    }
+
+    .gold-divider-icon {
+      color: var(--gold);
+      font-size: 1rem;
+    }
+
+    /* =====================
+       ABOUT SECTION
+    ===================== */
+    #about {
+      background-color: var(--navy);
+      text-align: center;
+    }
+
+    .about-text {
+      font-family: 'Inter', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 300;
+      line-height: 1.9;
+      color: rgba(255, 255, 255, 0.78);
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .about-stats {
+      display: flex;
+      justify-content: center;
+      gap: 60px;
+      margin-top: 60px;
+      flex-wrap: wrap;
+    }
+
+    .stat-item {
+      text-align: center;
+    }
+
+    .stat-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: var(--gold);
+      display: block;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .stat-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.78rem;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.55);
+    }
+
+    /* =====================
+       SERVICES SECTION
+    ===================== */
+    #services {
+      background-color: var(--navy-dark);
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+      margin-top: 0;
+    }
+
+    .service-card {
+      background-color: var(--navy);
+      border-top: 4px solid var(--gold);
+      padding: 44px 32px 40px;
+      transition: box-shadow 0.35s ease, transform 0.35s ease;
+    }
+
+    .service-card:hover {
+      box-shadow: 0 0 42px rgba(201, 168, 76, 0.22), 0 8px 40px rgba(0,0,0,0.4);
+      transform: translateY(-4px);
+    }
+
+    .service-icon {
+      font-size: 2.4rem;
+      margin-bottom: 24px;
+      display: block;
+    }
+
+    .service-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--gold);
+      margin-bottom: 16px;
+    }
+
+    .service-desc {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.92rem;
+      font-weight: 300;
+      line-height: 1.8;
+      color: rgba(255, 255, 255, 0.72);
+    }
+
+    /* =====================
+       HOURS SECTION
+    ===================== */
+    #hours {
+      background-color: var(--cream);
+      text-align: center;
+    }
+
+    #hours .section-eyebrow {
+      color: var(--gold);
+    }
+
+    #hours .section-title {
+      color: var(--navy);
+    }
+
+    #hours .gold-divider::before,
+    #hours .gold-divider::after {
+      background: var(--gold);
+    }
+
+    .hours-display {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(4rem, 12vw, 9rem);
+      font-weight: 900;
+      color: var(--gold);
+      line-height: 1;
+      margin: 16px 0 28px;
+      letter-spacing: 4px;
+    }
+
+    .hours-sub {
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      font-weight: 400;
+      color: rgba(26, 26, 46, 0.65);
+      letter-spacing: 1px;
+      margin-bottom: 48px;
+    }
+
+    .hours-badge {
+      display: inline-block;
+      border: 1.5px solid var(--gold);
+      color: var(--navy);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      padding: 10px 28px;
+    }
+
+    /* =====================
+       CONTACT SECTION
+    ===================== */
+    #contact {
+      background-color: var(--navy-light);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+
+    .contact-card {
+      background-color: var(--navy);
+      padding: 40px 28px;
+      text-align: center;
+      border: 1px solid var(--gold-dim);
+      transition: border-color 0.3s ease;
+    }
+
+    .contact-card:hover {
+      border-color: var(--gold);
+    }
+
+    .contact-icon {
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+      display: block;
+    }
+
+    .contact-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.72rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 10px;
+    }
+
+    .contact-value {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 300;
+      color: rgba(255, 255, 255, 0.8);
+      line-height: 1.6;
+    }
+
+    .contact-value a {
+      color: rgba(255, 255, 255, 0.8);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .contact-value a:hover {
+      color: var(--gold);
+    }
+
+    /* =====================
+       FOOTER
+    ===================== */
+    footer {
+      background-color: var(--navy-dark);
+      border-top: 1px solid var(--gold-dim);
+      padding: 36px 32px;
+      text-align: center;
+    }
+
+    .footer-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .footer-copy {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.82rem;
+      color: rgba(201, 168, 76, 0.6);
+      letter-spacing: 0.5px;
+    }
+
+    .footer-divider {
+      width: 60px;
+      height: 1px;
+      background: var(--gold-dim);
+      margin: 16px auto;
+    }
+
+    /* =====================
+       RESPONSIVE
+    ===================== */
+    @media (max-width: 900px) {
+      .services-grid,
+      .contact-grid {
+        grid-template-columns: 1fr;
+        max-width: 480px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .about-stats {
+        gap: 36px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        padding: 0 20px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .lang-toggle {
+        display: none;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+
+      .hero-content {
+        padding: 0 20px;
+      }
+
+      section {
+        padding: 70px 0;
+      }
+
+      .container {
+        padding: 0 20px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero-title {
+        font-size: 1.9rem;
+      }
+
+      .hours-display {
+        font-size: 5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===================== NAVIGATION ===================== -->
+  <nav id="main-nav">
+    <a href="#" class="nav-logo">Zeus</a>
+
+    <ul class="nav-links">
+      <li><a href="#about"><span class="lang-en">About</span><span class="lang-el">Σχετικά</span></a></li>
+      <li><a href="#services"><span class="lang-en">Services</span><span class="lang-el">Υπηρεσίες</span></a></li>
+      <li><a href="#hours"><span class="lang-en">Hours</span><span class="lang-el">Ώρες</span></a></li>
+      <li><a href="#contact"><span class="lang-en">Contact</span><span class="lang-el">Επικοινωνία</span></a></li>
+    </ul>
+
+    <button class="lang-toggle" id="langToggle" aria-label="Toggle language">ΕΛ</button>
+    <button class="hamburger" id="hamburgerBtn" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#about" class="mobile-link"><span class="lang-en">About</span><span class="lang-el">Σχετικά</span></a>
+    <a href="#services" class="mobile-link"><span class="lang-en">Services</span><span class="lang-el">Υπηρεσίες</span></a>
+    <a href="#hours" class="mobile-link"><span class="lang-en">Hours</span><span class="lang-el">Ώρες</span></a>
+    <a href="#contact" class="mobile-link"><span class="lang-en">Contact</span><span class="lang-el">Επικοινωνία</span></a>
+  </div>
+
+  <!-- ===================== HERO ===================== -->
+  <section class="hero" id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <p class="hero-eyebrow">Est. 2025 — Athens, Greece</p>
+
+      <h1 class="hero-title lang-en">Zeus All Day –<br /><span>Olympian Quality, Every Hour</span></h1>
+      <h1 class="hero-title lang-el">Zeus All Day –<br /><span>Ολυμπιακή Ποιότητα, Κάθε Ώρα</span></h1>
+
+      <div class="hero-divider"></div>
+
+      <p class="hero-subtitle lang-en">Premium products, curated with godlike precision — open all day, every day.</p>
+      <p class="hero-subtitle lang-el">Premium προϊόντα, επιλεγμένα με θεϊκή ακρίβεια — ανοιχτά όλη μέρα, κάθε μέρα.</p>
+
+      <a href="#about" class="hero-cta lang-en">Explore Now</a>
+      <a href="#about" class="hero-cta lang-el">Εξερευνήστε</a>
+    </div>
+
+    <div class="hero-scroll-indicator">
+      <div class="scroll-line"></div>
+      <span>Scroll</span>
+    </div>
+  </section>
+
+  <!-- ===================== ABOUT ===================== -->
+  <section id="about">
+    <div class="container">
+      <p class="section-eyebrow">Our Story</p>
+
+      <h2 class="section-title lang-en">About Zeus All Day</h2>
+      <h2 class="section-title lang-el">Σχετικά με το Zeus All Day</h2>
+
+      <div class="gold-divider"><span class="gold-divider-icon">✦</span></div>
+
+      <p class="about-text lang-en">Named after the king of the gods, Zeus All Day Supermarket brings Olympian standards to your everyday shopping. Open all day, every day, we offer a curated selection of premium Greek and international products.</p>
+      <p class="about-text lang-el">Δανειζόμενοι το όνομα από τον βασιλιά των θεών, το Zeus All Day Supermarket φέρνει ολυμπιακά πρότυπα στις καθημερινές σας αγορές. Ανοιχτά όλη μέρα, κάθε μέρα, προσφέρουμε μια επιλεγμένη γκάμα premium ελληνικών και διεθνών προϊόντων.</p>
+
+      <div class="about-stats">
+        <div class="stat-item">
+          <span class="stat-number">24/7</span>
+          <span class="stat-label lang-en">Always Open</span>
+          <span class="stat-label lang-el">Πάντα Ανοιχτά</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">500+</span>
+          <span class="stat-label lang-en">Premium Products</span>
+          <span class="stat-label lang-el">Premium Προϊόντα</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">100%</span>
+          <span class="stat-label lang-en">Greek &amp; Import</span>
+          <span class="stat-label lang-el">Ελληνικά &amp; Import</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== SERVICES ===================== -->
+  <section id="services">
+    <div class="container">
+      <p class="section-eyebrow">What We Offer</p>
+
+      <h2 class="section-title lang-en">Our Services</h2>
+      <h2 class="section-title lang-el">Οι Υπηρεσίες Μας</h2>
+
+      <div class="gold-divider"><span class="gold-divider-icon">✦</span></div>
+
+      <div class="services-grid">
+        <!-- Card 1 -->
+        <div class="service-card">
+          <span class="service-icon">🧀</span>
+          <h3 class="service-title lang-en">Premium Delicatessen</h3>
+          <h3 class="service-title lang-el">Premium Αλλαντικά</h3>
+          <p class="service-desc lang-en">An exquisite selection of imported and local charcuterie, cheeses and fine foods.</p>
+          <p class="service-desc lang-el">Εξαιρετική επιλογή εισαγόμενων και τοπικών αλλαντικών, τυριών και εκλεκτών τροφίμων.</p>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="service-card">
+          <span class="service-icon">🍷</span>
+          <h3 class="service-title lang-en">Fine Wines &amp; Spirits</h3>
+          <h3 class="service-title lang-el">Οίνοι &amp; Ποτά</h3>
+          <p class="service-desc lang-en">A curated cellar of Greek and international wines, spirits and champagnes.</p>
+          <p class="service-desc lang-el">Επιλεγμένη κάβα με ελληνικά και διεθνή κρασιά, ποτά και σαμπάνιες.</p>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="service-card">
+          <span class="service-icon">🫒</span>
+          <h3 class="service-title lang-en">Greek Specialties</h3>
+          <h3 class="service-title lang-el">Ελληνικές Λιχουδιές</h3>
+          <p class="service-desc lang-en">Authentic Greek olive oils, honey, herbs and traditional delicacies.</p>
+          <p class="service-desc lang-el">Αυθεντικά ελληνικά ελαιόλαδα, μέλι, βότανα και παραδοσιακές λιχουδιές.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== HOURS ===================== -->
+  <section id="hours">
+    <div class="container">
+      <p class="section-eyebrow">Opening Hours</p>
+
+      <h2 class="section-title lang-en">We Never Close</h2>
+      <h2 class="section-title lang-el">Δεν Κλείνουμε Ποτέ</h2>
+
+      <div class="gold-divider"><span class="gold-divider-icon">✦</span></div>
+
+      <div class="hours-display">24 / 7</div>
+
+      <p class="hours-sub lang-en">Open every day, all day, all night.</p>
+      <p class="hours-sub lang-el">Ανοιχτά κάθε μέρα, όλη μέρα, όλη νύχτα.</p>
+
+      <div class="hours-badge lang-en">Always at Your Service</div>
+      <div class="hours-badge lang-el">Πάντα στη Διάθεσή σας</div>
+    </div>
+  </section>
+
+  <!-- ===================== CONTACT ===================== -->
+  <section id="contact">
+    <div class="container">
+      <p class="section-eyebrow">Find Us</p>
+
+      <h2 class="section-title lang-en">Contact Us</h2>
+      <h2 class="section-title lang-el">Επικοινωνία</h2>
+
+      <div class="gold-divider"><span class="gold-divider-icon">✦</span></div>
+
+      <div class="contact-grid">
+        <div class="contact-card">
+          <span class="contact-icon">📍</span>
+          <p class="contact-label lang-en">Address</p>
+          <p class="contact-label lang-el">Διεύθυνση</p>
+          <p class="contact-value">Πλατεία Συντάγματος 5<br />Αθήνα 105 57</p>
+        </div>
+
+        <div class="contact-card">
+          <span class="contact-icon">📞</span>
+          <p class="contact-label lang-en">Phone</p>
+          <p class="contact-label lang-el">Τηλέφωνο</p>
+          <p class="contact-value"><a href="tel:+302102345678">+30 210 234 5678</a></p>
+        </div>
+
+        <div class="contact-card">
+          <span class="contact-icon">✉️</span>
+          <p class="contact-label lang-en">Email</p>
+          <p class="contact-label lang-el">Email</p>
+          <p class="contact-value"><a href="mailto:info@zeusallday.gr">info@zeusallday.gr</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer>
+    <p class="footer-logo">Zeus</p>
+    <div class="footer-divider"></div>
+    <p class="footer-copy lang-en">© 2025 Zeus All Day Supermarket. All rights reserved.</p>
+    <p class="footer-copy lang-el">© 2025 Zeus All Day Supermarket. Όλα τα δικαιώματα κατοχυρωμένα.</p>
+  </footer>
+
+  <!-- ===================== JAVASCRIPT ===================== -->
+  <script>
+    // ---- Language Toggle ----
+    const langToggleBtn = document.getElementById('langToggle');
+    let isGreek = false;
+
+    langToggleBtn.addEventListener('click', function () {
+      isGreek = !isGreek;
+      if (isGreek) {
+        document.body.classList.add('lang-el');
+        langToggleBtn.textContent = 'EN';
+        document.documentElement.lang = 'el';
+      } else {
+        document.body.classList.remove('lang-el');
+        langToggleBtn.textContent = 'ΕΛ';
+        document.documentElement.lang = 'en';
+      }
+    });
+
+    // ---- Sticky nav shadow ----
+    const nav = document.getElementById('main-nav');
+    window.addEventListener('scroll', function () {
+      if (window.scrollY > 40) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
+    });
+
+    // ---- Hamburger mobile menu ----
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    hamburgerBtn.addEventListener('click', function () {
+      mobileMenu.classList.toggle('open');
+    });
+
+    // Close mobile menu when a link is clicked
+    document.querySelectorAll('.mobile-link').forEach(function (link) {
+      link.addEventListener('click', function () {
+        mobileMenu.classList.remove('open');
+      });
+    });
+  </script>
+</body>
+</html>
