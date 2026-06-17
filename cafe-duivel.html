@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Café De Duivel — Legendarische kroeg in hartje Amsterdam</title>
+<meta name="description" content="Café De Duivel aan de Reguliersdwarsstraat 87 in Amsterdam. Een legendarische bruine kroeg met karakter — sinds de vroege jaren negentig. Dagelijks geopend vanaf 20:00.">
+<meta property="og:title" content="Café De Duivel — Amsterdam">
+<meta property="og:description" content="Een echte Amsterdamse kroeg met ziel. Goede muziek, koud bier, warme sfeer.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,500&family=Cormorant+Garamond:ital@0;1&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#140f0c;          /* dark espresso */
+  --bg-2:#1c1611;
+  --panel:#241b15;
+  --wood:#2b201a;
+  --cream:#f3e7d2;
+  --cream-2:#cdbfa8;
+  --paper:#efe3cc;
+  --sub:rgba(243,231,210,.62);
+  --dim:rgba(243,231,210,.4);
+  --gold:#c9a35b;
+  --gold-2:#e0bd77;
+  --red:#a2281f;         /* devil red */
+  --red-2:#c33a2c;
+  --line:rgba(201,163,91,.22);
+  --line-2:rgba(201,163,91,.4);
+  --disp:'Playfair Display',Georgia,serif;
+  --serif:'Cormorant Garamond',Georgia,serif;
+  --body:'Inter',system-ui,sans-serif;
+  --ease:cubic-bezier(.4,0,.2,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--body);background:var(--bg);color:var(--cream);line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer}
+::selection{background:var(--red);color:#fff}
+
+/* film-grain + vignette overlay for vintage feel */
+body::before{content:'';position:fixed;inset:0;z-index:1;pointer-events:none;
+  background:radial-gradient(ellipse at center,transparent 55%,rgba(0,0,0,.5) 100%);}
+body::after{content:'';position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.05;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+
+/* ── NAV ──────────────────────────────────────────────────────────────── */
+.nav{position:fixed;top:0;left:0;right:0;z-index:60;height:72px;display:flex;align-items:center;justify-content:space-between;padding:0 1.6rem;background:rgba(20,15,12,.55);backdrop-filter:blur(12px);border-bottom:1px solid transparent;transition:background .3s,border-color .3s}
+.nav.scrolled{background:rgba(20,15,12,.96);border-color:var(--line)}
+.brand{display:flex;align-items:center;gap:12px}
+.brand .seal{width:40px;height:40px;border-radius:50%;border:1.5px solid var(--gold);display:flex;align-items:center;justify-content:center;color:var(--gold);font-family:var(--disp);font-weight:700;font-size:1.15rem;flex-shrink:0}
+.brand b{font-family:var(--disp);font-weight:700;font-size:1.1rem;letter-spacing:.5px}
+.brand span{display:block;font-size:.56rem;font-weight:600;letter-spacing:3.5px;text-transform:uppercase;color:var(--gold);margin-top:1px}
+.menu{display:flex;align-items:center;gap:1.8rem}
+.menu a{font-size:.82rem;font-weight:500;letter-spacing:.5px;color:var(--sub);transition:color .15s;position:relative}
+.menu a:not(.book)::after{content:'';position:absolute;left:0;right:0;bottom:-5px;height:1px;background:var(--gold);transform:scaleX(0);transition:transform .2s var(--ease);transform-origin:left}
+.menu a:hover{color:var(--cream)}
+.menu a:hover:not(.book)::after{transform:scaleX(1)}
+.menu .book{border:1px solid var(--gold);color:var(--gold);padding:9px 20px;border-radius:2px;font-size:.74rem;letter-spacing:1.5px;text-transform:uppercase;transition:.18s}
+.menu .book:hover{background:var(--gold);color:var(--bg)}
+.burger{display:none;flex-direction:column;gap:5px;width:44px;height:44px;border:1px solid var(--line-2);border-radius:3px;background:none;align-items:center;justify-content:center}
+.burger span{width:18px;height:1.6px;background:var(--cream);transition:.25s}
+.burger.open span:nth-child(1){transform:translateY(6.6px) rotate(45deg)}
+.burger.open span:nth-child(2){opacity:0}
+.burger.open span:nth-child(3){transform:translateY(-6.6px) rotate(-45deg)}
+@media(max-width:820px){
+  .menu{position:fixed;inset:72px 0 auto 0;flex-direction:column;align-items:stretch;gap:0;background:rgba(20,15,12,.98);border-bottom:1px solid var(--line);padding:.5rem 1.6rem 1.4rem;transform:translateY(-12px);opacity:0;visibility:hidden;transition:.22s}
+  .menu.open{transform:none;opacity:1;visibility:visible}
+  .menu a{padding:1rem 0;border-bottom:1px solid var(--line);font-size:1rem}
+  .menu .book{margin-top:1rem;text-align:center}
+  .burger{display:flex}
+}
+
+/* ── HERO ─────────────────────────────────────────────────────────────── */
+.hero{position:relative;min-height:100svh;display:flex;align-items:center;justify-content:center;text-align:center;padding:120px 1.6rem 80px;overflow:hidden}
+.hero-bg{position:absolute;inset:0;z-index:0;background:#0b0807 center/cover no-repeat}
+.hero-bg::after{content:'';position:absolute;inset:0;z-index:2;background:linear-gradient(180deg,rgba(20,15,12,.62),rgba(20,15,12,.78) 60%,var(--bg) 100%)}
+.hero-slide{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;will-change:opacity,transform;animation:heroCycle 28s infinite}
+.hero-slide:nth-child(1){animation-delay:0s}
+.hero-slide:nth-child(2){animation-delay:7s}
+.hero-slide:nth-child(3){animation-delay:14s}
+.hero-slide:nth-child(4){animation-delay:21s}
+@keyframes heroCycle{0%{opacity:0;transform:scale(1.06)}4%{opacity:1}25%{opacity:1;transform:scale(1.15)}29%{opacity:0;transform:scale(1.15)}100%{opacity:0;transform:scale(1.06)}}
+.hero-in{position:relative;z-index:2;max-width:840px}
+.kicker{display:inline-flex;align-items:center;gap:14px;color:var(--gold);font-size:.72rem;font-weight:600;letter-spacing:4px;text-transform:uppercase;margin-bottom:1.6rem}
+.kicker::before,.kicker::after{content:'';width:34px;height:1px;background:var(--gold);opacity:.6}
+.hero h1{font-family:var(--disp);font-weight:800;font-size:clamp(3.2rem,11vw,7.5rem);line-height:.92;letter-spacing:-1px;margin-bottom:1.2rem;text-shadow:0 4px 40px rgba(0,0,0,.6)}
+.hero h1 .red{color:var(--red-2);font-style:italic}
+.hero .sub{font-family:var(--serif);font-size:clamp(1.3rem,3vw,1.9rem);font-style:italic;color:var(--paper);margin-bottom:2.4rem;font-weight:500}
+.hero-meta{display:flex;gap:2rem;justify-content:center;flex-wrap:wrap;margin-bottom:2.6rem}
+.hero-meta div{display:flex;align-items:center;gap:9px;font-size:.86rem;color:var(--sub);letter-spacing:.4px}
+.hero-meta svg{color:var(--gold)}
+.stars{color:var(--gold);letter-spacing:2px}
+.hero-cta{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:15px 30px;font-size:.78rem;font-weight:600;letter-spacing:1.8px;text-transform:uppercase;border-radius:2px;transition:.2s var(--ease);border:1px solid transparent}
+.btn-gold{background:var(--gold);color:var(--bg)}
+.btn-gold:hover{background:var(--gold-2);transform:translateY(-2px);box-shadow:0 12px 30px rgba(201,163,91,.25)}
+.btn-out{border-color:var(--line-2);color:var(--cream)}
+.btn-out:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-2px)}
+.scroll-hint{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);z-index:2;color:var(--dim);font-size:.66rem;letter-spacing:2px;text-transform:uppercase;display:flex;flex-direction:column;align-items:center;gap:8px}
+.scroll-hint .l{width:1px;height:34px;background:linear-gradient(var(--gold),transparent);animation:drop 1.8s infinite}
+@keyframes drop{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+
+/* ── LAYOUT ───────────────────────────────────────────────────────────── */
+.wrap{max-width:1080px;margin:0 auto;padding:0 1.6rem;position:relative;z-index:2}
+.sec{padding:96px 0;scroll-margin-top:72px}
+.label{display:inline-flex;align-items:center;gap:10px;color:var(--gold);font-size:.68rem;font-weight:600;letter-spacing:3px;text-transform:uppercase;margin-bottom:1.1rem}
+.label::before{content:'';width:22px;height:1px;background:var(--gold)}
+h2{font-family:var(--disp);font-weight:700;font-size:clamp(2rem,4.5vw,3.1rem);line-height:1.08;letter-spacing:-.5px}
+.lead{font-family:var(--serif);font-size:1.3rem;color:var(--paper);line-height:1.6}
+
+/* ── OVER ─────────────────────────────────────────────────────────────── */
+.over{background:var(--bg-2);position:relative}
+.over-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:3.5rem;align-items:center}
+@media(max-width:820px){.over-grid{grid-template-columns:1fr;gap:2.4rem}}
+.over p{color:var(--sub);margin-top:1.4rem;font-size:1rem}
+.over .drop::first-letter{font-family:var(--disp);font-size:3.4rem;float:left;line-height:.8;padding:6px 12px 0 0;color:var(--red-2)}
+.over-img{position:relative;border:1px solid var(--line);padding:10px;background:var(--wood)}
+.over-img .frame{position:relative;aspect-ratio:4/5;overflow:hidden;background:#0b0807}
+.over-img img{width:100%;height:100%;object-fit:cover;filter:sepia(.25) contrast(1.05)}
+.over-img .ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:3rem;background:var(--wood)}
+.over-img .tagstamp{position:absolute;bottom:-18px;right:-12px;background:var(--red);color:var(--paper);font-family:var(--disp);font-style:italic;padding:.5rem 1.3rem;font-size:1.05rem;box-shadow:0 8px 24px rgba(0,0,0,.4);transform:rotate(-3deg)}
+
+/* values strip */
+.values{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;margin-top:3rem}
+@media(max-width:700px){.values{grid-template-columns:1fr}}
+.value{border:1px solid var(--line);background:var(--panel);padding:1.7rem;text-align:center;transition:.25s}
+.value:hover{border-color:var(--line-2);transform:translateY(-4px)}
+.value .ic{font-size:1.7rem;margin-bottom:.6rem}
+.value h3{font-family:var(--disp);font-size:1.15rem;font-weight:600;margin-bottom:.3rem}
+.value p{font-size:.86rem;color:var(--sub)}
+
+/* ── KAART (menu) ─────────────────────────────────────────────────────── */
+.menu-grid{display:grid;grid-template-columns:1fr 1fr;gap:2.6rem 4rem;margin-top:1rem}
+@media(max-width:760px){.menu-grid{grid-template-columns:1fr;gap:2.2rem}}
+.menu-cat h3{font-family:var(--disp);font-size:1.4rem;font-weight:600;color:var(--gold-2);padding-bottom:.7rem;border-bottom:1px solid var(--line);margin-bottom:1rem;display:flex;align-items:center;gap:10px}
+.mi{display:flex;align-items:baseline;gap:.6rem;margin-bottom:.85rem}
+.mi .n{font-weight:500;color:var(--cream);white-space:nowrap}
+.mi .d{flex:1;border-bottom:1px dotted var(--line-2);transform:translateY(-4px)}
+.mi .p{font-family:var(--serif);font-size:1.15rem;color:var(--gold);font-weight:600}
+.mi small{display:block;color:var(--dim);font-size:.78rem;font-weight:400}
+.price-note{margin-top:2.4rem;text-align:center;font-family:var(--serif);font-style:italic;font-size:1.15rem;color:var(--sub)}
+
+/* ── SFEER / GALLERY ──────────────────────────────────────────────────── */
+.gallery{background:var(--bg-2)}
+.gal-grid{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:170px;gap:.8rem;margin-top:1rem}
+@media(max-width:820px){.gal-grid{grid-template-columns:repeat(2,1fr);grid-auto-rows:150px}}
+.gal-grid .g{position:relative;overflow:hidden;background:var(--wood)}
+.gal-grid .g.big{grid-column:span 2;grid-row:span 2}
+.gal-grid img{width:100%;height:100%;object-fit:cover;filter:sepia(.2) contrast(1.05) brightness(.92);transition:transform .6s var(--ease),filter .4s}
+.gal-grid .g:hover img{transform:scale(1.08);filter:sepia(0) contrast(1.05) brightness(1)}
+.gal-grid .ph{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:2rem;background:var(--wood)}
+
+/* ── INFO / HOURS + MAP ───────────────────────────────────────────────── */
+.info-grid{display:grid;grid-template-columns:1fr 1.15fr;gap:3rem;align-items:stretch}
+@media(max-width:820px){.info-grid{grid-template-columns:1fr;gap:2rem}}
+.hours{list-style:none}
+.hours li{display:flex;justify-content:space-between;align-items:center;padding:.85rem 0;border-bottom:1px solid var(--line);font-size:.95rem}
+.hours li.today{color:var(--gold-2)}
+.hours li .day{letter-spacing:.5px}
+.hours li .t{font-family:var(--serif);font-size:1.15rem;color:var(--paper)}
+.info-line{display:flex;gap:13px;align-items:flex-start;margin-top:1.6rem}
+.info-line svg{color:var(--gold);flex-shrink:0;margin-top:3px}
+.info-line b{display:block;font-size:.95rem}.info-line span{font-size:.88rem;color:var(--sub)}
+.map-frame{border:1px solid var(--line);padding:8px;background:var(--wood);height:100%;min-height:340px}
+.map-frame iframe{width:100%;height:100%;min-height:324px;border:0;filter:grayscale(.3) sepia(.25) contrast(.95)}
+
+/* ── RESERVEREN / CONTACT ─────────────────────────────────────────────── */
+.reserve{background:var(--bg-2)}
+.res-grid{display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:start}
+@media(max-width:820px){.res-grid{grid-template-columns:1fr;gap:2.2rem}}
+.form{background:var(--panel);border:1px solid var(--line);padding:2rem}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+@media(max-width:520px){.frow{grid-template-columns:1fr}}
+.field{margin-bottom:1.1rem}
+.field label{display:block;font-size:.7rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);margin-bottom:.5rem}
+.field input,.field textarea{width:100%;background:var(--bg);border:1px solid var(--line);color:var(--cream);font-family:inherit;font-size:.95rem;padding:.8rem 1rem;border-radius:2px;transition:.15s}
+.field input:focus,.field textarea:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,163,91,.14)}
+.field textarea{resize:vertical;min-height:110px}
+.form .btn-gold{width:100%}
+.ok{display:none;background:rgba(201,163,91,.1);border:1px solid var(--line-2);color:var(--gold-2);padding:1rem;margin-bottom:1rem;font-size:.9rem}
+.ok.show{display:block}
+.note{font-size:.74rem;color:var(--dim);text-align:center;margin-top:.9rem}
+
+/* ── FOOTER ───────────────────────────────────────────────────────────── */
+.footer{background:var(--bg);border-top:1px solid var(--line);padding:54px 1.6rem 34px;text-align:center;position:relative;z-index:2}
+.footer .seal{width:54px;height:54px;border-radius:50%;border:1.5px solid var(--gold);display:flex;align-items:center;justify-content:center;color:var(--gold);font-family:var(--disp);font-weight:700;font-size:1.5rem;margin:0 auto 1rem}
+.footer h3{font-family:var(--disp);font-size:1.5rem;font-weight:700;letter-spacing:.5px}
+.footer .where{font-family:var(--serif);font-style:italic;font-size:1.1rem;color:var(--sub);margin-top:.3rem}
+.foot-links{display:flex;gap:1.6rem;justify-content:center;flex-wrap:wrap;margin:1.6rem 0;font-size:.8rem;letter-spacing:.5px}
+.foot-links a{color:var(--sub);transition:color .15s}.foot-links a:hover{color:var(--gold)}
+.copy{font-size:.72rem;color:var(--dim);letter-spacing:.4px}
+.credit{font-size:.7rem;color:var(--dim);margin-top:.5rem;opacity:.8}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(26px);transition:.7s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+.reveal-l{opacity:0;transform:translateX(-44px);transition:.85s var(--ease)}
+.reveal-r{opacity:0;transform:translateX(44px);transition:.85s var(--ease)}
+.reveal-l.in,.reveal-r.in{opacity:1;transform:none}
+
+/* ── ENHANCEMENTS: imagery & animation ───────────────────────────────── */
+/* Ken Burns drifting hero */
+.hero-bg.kenburns{animation:kb 24s ease-in-out infinite alternate}
+@keyframes kb{from{transform:scale(1.08)}to{transform:scale(1.2) translate(-1.5%,-2%)}}
+
+/* neon flicker title */
+.hero h1.neon{text-shadow:0 0 7px rgba(195,58,44,.55),0 0 24px rgba(195,58,44,.4),0 0 60px rgba(162,40,31,.35);animation:flick 5s infinite}
+.hero h1.neon .red{text-shadow:0 0 10px rgba(195,58,44,.85),0 0 30px rgba(195,58,44,.6),0 0 70px rgba(195,58,44,.45)}
+@keyframes flick{0%,18%,22%,25%,53%,57%,100%{opacity:1}20%,24%,55%{opacity:.74}}
+
+/* scrolling marquee */
+.marquee{background:var(--red);overflow:hidden;white-space:nowrap;position:relative;z-index:2;border-top:1px solid rgba(0,0,0,.25);border-bottom:1px solid rgba(0,0,0,.25)}
+.marquee .track{display:inline-flex;align-items:center;gap:2.4rem;padding:13px 0;animation:scrollx 28s linear infinite;font-family:var(--disp);font-style:italic;font-size:1.1rem;color:var(--paper)}
+.marquee:hover .track{animation-play-state:paused}
+.marquee .star{color:var(--gold-2);font-style:normal}
+@keyframes scrollx{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* full-bleed parallax photo divider */
+.divider-img{position:relative;min-height:48vh;overflow:hidden;z-index:2;display:flex;align-items:center;justify-content:center;text-align:center}
+.divider-img .pbg{position:absolute;inset:-18% 0;background-size:cover;background-position:center;will-change:transform}
+.divider-img::after{content:'';position:absolute;inset:0;background:linear-gradient(var(--bg),rgba(20,15,12,.35) 45%,var(--bg))}
+.divider-img .q{position:relative;z-index:1;max-width:760px;padding:60px 1.6rem}
+.divider-img .q p{font-family:var(--serif);font-style:italic;font-size:clamp(1.6rem,4.2vw,2.7rem);color:#fff;line-height:1.3;text-shadow:0 2px 24px rgba(0,0,0,.6)}
+.divider-img .q cite{display:block;margin-top:1.1rem;color:var(--gold-2);font-style:normal;font-size:.72rem;letter-spacing:3px;text-transform:uppercase}
+
+/* gold button shine sweep */
+.btn-gold{position:relative;overflow:hidden}
+.btn-gold::after{content:'';position:absolute;top:0;left:-130%;width:55%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.55),transparent);transform:skewX(-18deg);transition:left .6s var(--ease)}
+.btn-gold:hover::after{left:150%}
+
+/* count-up numerals + glowing star */
+.counter{font-variant-numeric:tabular-nums}
+.stars{display:inline-block;animation:twinkle 3.5s ease-in-out infinite}
+@keyframes twinkle{0%,100%{text-shadow:0 0 0 transparent}50%{text-shadow:0 0 10px rgba(201,163,91,.7)}}
+
+/* gallery hover captions + subtle float-in */
+.gal-grid .g{cursor:pointer}
+.gal-grid .g::after{content:attr(data-cap);position:absolute;left:0;right:0;bottom:0;padding:.8rem .9rem;font-size:.68rem;letter-spacing:1.5px;text-transform:uppercase;color:#fff;background:linear-gradient(transparent,rgba(0,0,0,.75));opacity:0;transform:translateY(10px);transition:.3s var(--ease)}
+.gal-grid .g:hover::after{opacity:1;transform:none}
+
+/* value cards lift glow */
+.value:hover{box-shadow:0 16px 40px rgba(0,0,0,.45),0 0 0 1px var(--line-2)}
+
+/* image backdrop behind the logo seal (ember texture, devil theme) */
+.brand .seal,.footer .seal{position:relative;overflow:hidden;color:var(--gold-2);text-shadow:0 1px 5px rgba(0,0,0,.85);
+  background-image:radial-gradient(circle at 50% 125%,rgba(240,150,60,.95),transparent 60%),radial-gradient(circle at 50% 35%,rgba(195,58,44,.9),#2a0c08 72%);
+  background-size:cover;background-position:center}
+.brand .seal{box-shadow:0 0 14px rgba(195,58,44,.35)}
+.footer .seal{box-shadow:0 0 22px rgba(195,58,44,.3);animation:sealGlow 4s ease-in-out infinite}
+@keyframes sealGlow{0%,100%{box-shadow:0 0 16px rgba(195,58,44,.25)}50%{box-shadow:0 0 30px rgba(195,58,44,.5)}}
+
+/* ── Embedded ambient "imagery" — rich Amsterdam café atmospheres ─────── */
+
+/* Base: deep espresso darkness + shared Flemish-bond brick wall texture */
+.scene{background-color:#100806}
+.scene::before{
+  content:'';position:absolute;inset:0;pointer-events:none;z-index:0;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='40'%3E%3Crect width='80' height='40' fill='%23120805'/%3E%3Crect x='1' y='1' width='37' height='17' rx='1.5' fill='%231c0e07' opacity='.9'/%3E%3Crect x='40' y='1' width='38' height='17' rx='1.5' fill='%23180b06' opacity='.9'/%3E%3Crect x='1' y='22' width='18' height='16' rx='1.5' fill='%231a0d07' opacity='.9'/%3E%3Crect x='21' y='22' width='37' height='16' rx='1.5' fill='%23200f07' opacity='.9'/%3E%3Crect x='60' y='22' width='19' height='16' rx='1.5' fill='%231b0e07' opacity='.9'/%3E%3C/svg%3E");
+  background-size:80px 40px;
+  opacity:.22;
+  mix-blend-mode:screen;
+}
+
+/* sc1 — De toog: three amber pendant lights above a dark wood bar counter */
+.sc1{
+  background-image:
+    radial-gradient(ellipse 18px 80px  at 19% 0%,  rgba(255,215,120,.95), transparent 85%),
+    radial-gradient(ellipse 22px 110px at 50% 0%,  rgba(255,205,100,.9),  transparent 85%),
+    radial-gradient(ellipse 16px 70px  at 81% 0%,  rgba(255,210,110,.85), transparent 85%),
+    radial-gradient(ellipse 45% 55%    at 19% 0%,  rgba(210,130,30,.5),   transparent 72%),
+    radial-gradient(ellipse 50% 65%    at 50% -5%, rgba(205,125,25,.55),   transparent 72%),
+    radial-gradient(ellipse 40% 50%    at 81% 0%,  rgba(210,128,28,.48),   transparent 72%),
+    radial-gradient(ellipse 22% 12%    at 19% 92%, rgba(190,110,25,.6),    transparent 75%),
+    radial-gradient(ellipse 24% 13%    at 50% 95%, rgba(185,105,20,.55),   transparent 75%),
+    radial-gradient(ellipse 20% 11%    at 81% 92%, rgba(190,108,22,.5),    transparent 75%),
+    linear-gradient(180deg, #070503 0%, #150c06 30%, #1e1008 65%, #120903 100%);
+}
+
+/* sc2 — Avondsfeer: single warm Dutch overhead lamp, devil-red shadow corner */
+.sc2{
+  background-image:
+    radial-gradient(ellipse 25px 40px  at 38% 12%, rgba(255,220,140,.95), transparent 80%),
+    radial-gradient(ellipse 55% 70%    at 38% 8%,  rgba(215,140,35,.65),  transparent 70%),
+    radial-gradient(ellipse 70% 55%    at 20% 35%, rgba(195,120,25,.4),   transparent 70%),
+    radial-gradient(ellipse 50% 70%    at 95% 60%, rgba(160,35,20,.55),   transparent 65%),
+    radial-gradient(ellipse 60% 30%    at 38% 110%,rgba(180,90,20,.45),   transparent 65%),
+    linear-gradient(165deg, #0e0804 0%, #1a0d06 45%, #0e0605 100%);
+}
+
+/* sc3 — Kaarslicht: three candles on a bar table — flame tips, amber halos */
+.sc3{
+  background-image:
+    radial-gradient(ellipse 3px 6px   at 28% 62%, rgba(255,252,220,.98), transparent 85%),
+    radial-gradient(ellipse 3px 6px   at 52% 59%, rgba(255,248,210,.95), transparent 85%),
+    radial-gradient(ellipse 3px 6px   at 74% 63%, rgba(255,250,215,.95), transparent 85%),
+    radial-gradient(ellipse 10px 22px at 28% 62%, rgba(255,175,40,.9),   transparent 80%),
+    radial-gradient(ellipse 10px 22px at 52% 59%, rgba(255,165,35,.88),  transparent 80%),
+    radial-gradient(ellipse 10px 22px at 74% 63%, rgba(255,170,38,.88),  transparent 80%),
+    radial-gradient(ellipse 30% 45%   at 28% 62%, rgba(210,110,20,.5),   transparent 70%),
+    radial-gradient(ellipse 28% 42%   at 52% 59%, rgba(205,105,18,.48),  transparent 70%),
+    radial-gradient(ellipse 26% 40%   at 74% 63%, rgba(208,108,19,.47),  transparent 70%),
+    radial-gradient(ellipse 15% 8%    at 28% 82%, rgba(180,90,15,.5),    transparent 75%),
+    radial-gradient(ellipse 14% 7%    at 52% 84%, rgba(175,85,13,.45),   transparent 75%),
+    radial-gradient(ellipse 13% 7%    at 74% 83%, rgba(178,88,14,.45),   transparent 75%),
+    linear-gradient(180deg, #080504 0%, #120a05 50%, #0c0703 100%);
+  animation:candleFlicker 4.8s ease-in-out infinite;
+}
+
+/* sc4 — Raam & gracht: Amsterdam canal at night through the café window */
+.sc4{
+  background-image:
+    radial-gradient(ellipse 46% 52%   at 50% 40%, rgba(45,80,145,.62),   transparent 80%),
+    radial-gradient(ellipse 35% 40%   at 50% 37%, rgba(65,110,190,.4),   transparent 75%),
+    radial-gradient(ellipse 18% 6%    at 36% 54%, rgba(90,150,230,.28),  transparent 80%),
+    radial-gradient(ellipse 14% 5%    at 62% 52%, rgba(80,140,220,.24),  transparent 80%),
+    radial-gradient(ellipse 28% 75%   at 4%  50%, rgba(185,105,25,.5),   transparent 70%),
+    radial-gradient(ellipse 28% 75%   at 96% 50%, rgba(185,105,25,.5),   transparent 70%),
+    radial-gradient(ellipse 80% 30%   at 50% 105%,rgba(180,100,20,.55),  transparent 65%),
+    linear-gradient(180deg, #0a0810 0%, #12101e 25%, #18100a 60%, #100806 100%);
+}
+
+/* sc5 — Vintage amber: fifty-year pub patina, single central lamp */
+.sc5{
+  background-image:
+    radial-gradient(ellipse 20px 35px  at 52% 8%,  rgba(255,225,145,.98), transparent 82%),
+    radial-gradient(ellipse 60% 75%    at 52% 5%,  rgba(210,140,35,.6),   transparent 70%),
+    radial-gradient(ellipse 90% 60%    at 50% 110%,rgba(185,105,22,.5),   transparent 65%),
+    radial-gradient(ellipse 45% 65%    at 100% 40%,rgba(160,85,15,.45),   transparent 65%),
+    radial-gradient(ellipse 35% 55%    at 0%  70%, rgba(100,50,10,.35),   transparent 65%),
+    radial-gradient(ellipse 80% 40%    at 50% 55%, rgba(195,125,30,.18),  transparent 80%),
+    linear-gradient(175deg, #120c05 0%, #1d1108 40%, #150d06 75%, #0f0904 100%);
+}
+
+/* sc6 — De Duivel: hellfire from below, ember sparks rising in darkness */
+.sc6{
+  background-image:
+    radial-gradient(ellipse 85% 55%   at 50% 118%,rgba(205,45,15,.85),   transparent 65%),
+    radial-gradient(ellipse 55% 40%   at 30% 125%,rgba(230,80,20,.7),    transparent 60%),
+    radial-gradient(ellipse 40% 35%   at 72% 120%,rgba(195,35,12,.65),   transparent 60%),
+    radial-gradient(ellipse 45% 40%   at 5%  0%,  rgba(150,25,10,.5),    transparent 65%),
+    radial-gradient(ellipse 40% 38%   at 95% 0%,  rgba(140,20,8,.48),    transparent 65%),
+    radial-gradient(ellipse 3px 4px   at 22% 48%, rgba(255,180,60,.95),  transparent 80%),
+    radial-gradient(ellipse 2px 3px   at 58% 35%, rgba(255,160,45,.9),   transparent 80%),
+    radial-gradient(ellipse 2px 3px   at 40% 62%, rgba(255,190,70,.88),  transparent 80%),
+    radial-gradient(ellipse 2px 3px   at 76% 55%, rgba(255,170,50,.85),  transparent 80%),
+    radial-gradient(ellipse 18px 24px at 22% 48%, rgba(220,80,15,.5),    transparent 70%),
+    radial-gradient(ellipse 14px 18px at 58% 35%, rgba(210,70,12,.45),   transparent 70%),
+    radial-gradient(ellipse 12px 16px at 40% 62%, rgba(215,75,14,.42),   transparent 70%),
+    linear-gradient(185deg, #060303 0%, #0d0404 35%, #120505 65%, #0a0303 100%);
+  animation:emberDrift 6s ease-in-out infinite;
+}
+
+@keyframes candleFlicker{
+  0%,100%{opacity:1}8%{opacity:.88}22%{opacity:.82}48%{opacity:.78}70%{opacity:.85}
+}
+@keyframes emberDrift{
+  0%,100%{filter:brightness(1)}
+  30%{filter:brightness(1.08) saturate(1.1)}
+  60%{filter:brightness(.94) saturate(.95)}
+}
+
+.gal-grid .gi{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:2.3rem;z-index:1;transition:transform .5s var(--ease);filter:drop-shadow(0 4px 14px rgba(0,0,0,.6))}
+.gal-grid .g.big .gi{font-size:3.6rem}
+.gal-grid .g:hover .gi{transform:scale(1.14)}
+.over-img .frame .gi{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:3.2rem;z-index:1;filter:drop-shadow(0 4px 14px rgba(0,0,0,.6))}
+
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal,.reveal-l,.reveal-r{opacity:1;transform:none}.divider-img .pbg{transform:none!important}.hero-slide:first-child{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <a class="brand" href="#top">
+    <span class="seal">D</span>
+    <span><b>Café De Duivel</b><span>Amsterdam · sinds '92</span></span>
+  </a>
+  <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  <div class="menu" id="menu">
+    <a href="#over">Het café</a>
+    <a href="#kaart">De kaart</a>
+    <a href="#sfeer">Sfeer</a>
+    <a href="#bezoek">Openingstijden</a>
+    <a href="#contact" class="book">Reserveren</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero" id="top">
+  <div class="hero-bg">
+    <div class="hero-slide scene sc1"></div>
+    <div class="hero-slide scene sc4"></div>
+    <div class="hero-slide scene sc2"></div>
+    <div class="hero-slide scene sc5"></div>
+  </div>
+  <div class="hero-in">
+    <span class="kicker">Reguliersdwarsstraat · Amsterdam</span>
+    <h1 class="neon">Café <span class="red">De&nbsp;Duivel</span></h1>
+    <p class="sub">Een echte Amsterdamse kroeg met ziel — koud bier, goede muziek, warme sfeer.</p>
+    <div class="hero-meta">
+      <div><span class="stars">★★★★★</span> <span class="counter" data-count="4.5" data-dec="1">0</span> · <span class="counter" data-count="312">0</span> beoordelingen</div>
+      <div><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> Dagelijks vanaf 20:00</div>
+      <div><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg> Hartje centrum</div>
+    </div>
+    <div class="hero-cta">
+      <a class="btn btn-gold" href="#bezoek">Plan je bezoek</a>
+      <a class="btn btn-out" href="#kaart">Bekijk de kaart</a>
+    </div>
+  </div>
+  <div class="scroll-hint"><div class="l"></div>Scroll</div>
+</header>
+
+<!-- MARQUEE -->
+<div class="marquee" aria-hidden="true">
+  <div class="track">
+    <span>Koud bier</span><span class="star">✦</span><span>Goede muziek</span><span class="star">✦</span><span>Echte gezelligheid</span><span class="star">✦</span><span>Sinds 1992</span><span class="star">✦</span><span>Hartje Amsterdam</span><span class="star">✦</span><span>Iedereen welkom</span><span class="star">✦</span>
+    <span>Koud bier</span><span class="star">✦</span><span>Goede muziek</span><span class="star">✦</span><span>Echte gezelligheid</span><span class="star">✦</span><span>Sinds 1992</span><span class="star">✦</span><span>Hartje Amsterdam</span><span class="star">✦</span><span>Iedereen welkom</span><span class="star">✦</span>
+  </div>
+</div>
+
+<!-- OVER -->
+<section class="sec over" id="over">
+  <div class="wrap">
+    <div class="over-grid">
+      <div class="reveal-l">
+        <div class="label">Het café</div>
+        <h2>Een stukje oud<br>Amsterdam</h2>
+        <p class="drop">Verscholen in de Reguliersdwarsstraat schuilt een van de meest geliefde kroegen van de stad. Café De Duivel is al sinds de vroege jaren negentig een begrip — een plek waar de muziek door de muren trilt en iedereen welkom is.</p>
+        <p>Geen poespas, geen kapsones. Wél een koud glas, eerlijke prijzen en die onmiskenbare Amsterdamse gezelligheid die je nergens anders zo vindt. Bruin café in hart en nieren, met een duivels randje.</p>
+      </div>
+      <div class="over-img reveal-r">
+        <div class="frame scene sc5"><span class="gi">🍻</span></div>
+        <div class="tagstamp">sinds 1992</div>
+      </div>
+    </div>
+
+    <div class="values">
+      <div class="value reveal"><div class="ic">🍺</div><h3>Koud & eerlijk</h3><p>Een goed verzorgde tap en een ruime keuze speciaalbier, voor een nette prijs.</p></div>
+      <div class="value reveal"><div class="ic">🎶</div><h3>De juiste plaat</h3><p>Hiphop, klassiekers en alles ertussenin — de soundtrack van de avond.</p></div>
+      <div class="value reveal"><div class="ic">🤝</div><h3>Voor iedereen</h3><p>Locals, studenten en verdwaalde reizigers: bij De Duivel hoort iedereen erbij.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- PARALLAX DIVIDER -->
+<section class="divider-img">
+  <div class="pbg scene sc2" data-parallax="0.12"></div>
+  <div class="q reveal">
+    <p>“Waar de stad samenkomt zodra de zon ondergaat.”</p>
+    <cite>— Café De Duivel, Amsterdam</cite>
+  </div>
+</section>
+
+<!-- KAART -->
+<section class="sec" id="kaart">
+  <div class="wrap">
+    <div class="label reveal">De kaart</div>
+    <h2 class="reveal" style="margin-bottom:.6rem">Wat we schenken</h2>
+    <p class="lead reveal" style="max-width:46ch">Klassiekers van de tap tot stevige borrels — alles wat een goede avond nodig heeft.</p>
+    <div class="menu-grid reveal">
+      <div class="menu-cat">
+        <h3>🍺 Van de tap</h3>
+        <div class="mi"><span class="n">Pils — fluitje</span><span class="d"></span><span class="p">€3,2</span></div>
+        <div class="mi"><span class="n">Pils — vaasje</span><span class="d"></span><span class="p">€4,0</span></div>
+        <div class="mi"><span class="n">Wit / weizen</span><span class="d"></span><span class="p">€5,0</span></div>
+        <div class="mi"><span class="n">IPA van de tap</span><span class="d"></span><span class="p">€5,5</span></div>
+      </div>
+      <div class="menu-cat">
+        <h3>🍷 Speciaal & wijn</h3>
+        <div class="mi"><span class="n">Wisselend speciaalbier</span><span class="d"></span><span class="p">€5,5</span></div>
+        <div class="mi"><span class="n">Trappist</span><span class="d"></span><span class="p">€6,0</span></div>
+        <div class="mi"><span class="n">Huiswijn — rood / wit</span><span class="d"></span><span class="p">€4,8</span></div>
+        <div class="mi"><span class="n">Port / sherry</span><span class="d"></span><span class="p">€5,0</span></div>
+      </div>
+      <div class="menu-cat">
+        <h3>🥃 Borrels & sterk</h3>
+        <div class="mi"><span class="n">Jonge jenever</span><span class="d"></span><span class="p">€3,8</span></div>
+        <div class="mi"><span class="n">Oude jenever</span><span class="d"></span><span class="p">€4,2</span></div>
+        <div class="mi"><span class="n">Whisky — house</span><span class="d"></span><span class="p">€6,5</span></div>
+        <div class="mi"><span class="n">Kopstootje<small>pils + jenever</small></span><span class="d"></span><span class="p">€7,0</span></div>
+      </div>
+      <div class="menu-cat">
+        <h3>🥨 Bij de borrel</h3>
+        <div class="mi"><span class="n">Bittergarnituur (8)</span><span class="d"></span><span class="p">€7,5</span></div>
+        <div class="mi"><span class="n">Oude kaas met mosterd</span><span class="d"></span><span class="p">€6,0</span></div>
+        <div class="mi"><span class="n">Nootjes</span><span class="d"></span><span class="p">€3,0</span></div>
+        <div class="mi"><span class="n">Frisdrank / water</span><span class="d"></span><span class="p">€3,0</span></div>
+      </div>
+    </div>
+    <p class="price-note reveal">Gemiddeld besteed je hier zo’n €10–40 per persoon · alleen ter plekke, geen afhaal of bezorging</p>
+  </div>
+</section>
+
+<!-- SFEER -->
+<section class="sec gallery" id="sfeer">
+  <div class="wrap">
+    <div class="label reveal">Sfeer</div>
+    <h2 class="reveal">Proef de avond</h2>
+    <div class="gal-grid reveal">
+      <div class="g big scene sc1" data-cap="De toog"><span class="gi">🍺</span></div>
+      <div class="g scene sc3" data-cap="Van de tap"><span class="gi">🍺</span></div>
+      <div class="g scene sc4" data-cap="De platen"><span class="gi">🎶</span></div>
+      <div class="g scene sc2" data-cap="Een borrel"><span class="gi">🥃</span></div>
+      <div class="g scene sc6" data-cap="De buurt"><span class="gi">🌃</span></div>
+      <div class="g scene sc5" data-cap="Bij kaarslicht"><span class="gi">🕯️</span></div>
+      <div class="g scene sc1" data-cap="Op de hoek"><span class="gi">🚲</span></div>
+      <div class="g big scene sc2" data-cap="Tot diep in de nacht"><span class="gi">🎉</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- BEZOEK: hours + map -->
+<section class="sec" id="bezoek">
+  <div class="wrap">
+    <div class="label reveal">Openingstijden & route</div>
+    <h2 class="reveal" style="margin-bottom:2rem">Kom langs</h2>
+    <div class="info-grid">
+      <div class="reveal">
+        <ul class="hours">
+          <li><span class="day">Maandag</span><span class="t">20:00 – 03:00</span></li>
+          <li><span class="day">Dinsdag</span><span class="t">20:00 – 03:00</span></li>
+          <li><span class="day">Woensdag</span><span class="t">20:00 – 03:00</span></li>
+          <li><span class="day">Donderdag</span><span class="t">20:00 – 03:00</span></li>
+          <li><span class="day">Vrijdag</span><span class="t">20:00 – 04:00</span></li>
+          <li><span class="day">Zaterdag</span><span class="t">20:00 – 04:00</span></li>
+          <li><span class="day">Zondag</span><span class="t">20:00 – 03:00</span></li>
+        </ul>
+        <div class="info-line">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+          <div><b>Reguliersdwarsstraat 87</b><span>1017 BK Amsterdam</span></div>
+        </div>
+        <div class="info-line">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7Z" opacity="0"/><path d="m9 18 6-6-6-6"/></svg>
+          <div><b>Goed bereikbaar</b><span>Op loopafstand van het Rembrandtplein & Munt</span></div>
+        </div>
+        <a class="btn btn-gold" style="margin-top:1.6rem" href="https://www.google.com/maps/search/?api=1&query=Caf%C3%A9%20De%20Duivel%20Reguliersdwarsstraat%2087%20Amsterdam" target="_blank" rel="noopener">Route plannen →</a>
+        <p style="font-size:.74rem;color:var(--dim);margin-top:1rem">Openingstijden ter indicatie — controleer actuele tijden vóór je komt.</p>
+      </div>
+      <div class="map-frame reveal">
+        <iframe title="Kaart — Café De Duivel" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+          src="https://maps.google.com/maps?q=Reguliersdwarsstraat%2087,%201017%20BK%20Amsterdam&z=16&output=embed"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PARALLAX DIVIDER 2 -->
+<section class="divider-img">
+  <div class="pbg scene sc4" data-parallax="0.12"></div>
+  <div class="q reveal">
+    <p>“Geen kapsones. Wél de beste avond van je week.”</p>
+    <cite>— Vaste gasten</cite>
+  </div>
+</section>
+
+<!-- CONTACT / RESERVEREN -->
+<section class="sec reserve" id="contact">
+  <div class="wrap">
+    <div class="res-grid">
+      <div class="reveal">
+        <div class="label">Reserveren</div>
+        <h2>Een tafel of<br>een groep?</h2>
+        <p class="lead" style="margin-top:1.2rem;max-width:42ch">Plan je avond bij De Duivel. Laat een bericht achter voor groepen, vragen of speciale gelegenheden — we nemen snel contact met je op.</p>
+        <div class="info-line"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 5L2 7"/></svg><div><b>hallo@cafededuivel.nl</b><span>We reageren doorgaans binnen een dag</span></div></div>
+        <div class="info-line"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg><div><b>Reguliersdwarsstraat 87</b><span>1017 BK Amsterdam</span></div></div>
+      </div>
+      <div class="reveal">
+        <form class="form" id="cform" novalidate>
+          <div class="ok" id="ok">✓ Bedankt! Je bericht is verzonden — we nemen snel contact met je op.</div>
+          <div class="frow">
+            <div class="field"><label>Naam</label><input type="text" required placeholder="Je naam"></div>
+            <div class="field"><label>Aantal personen</label><input type="number" min="1" placeholder="bijv. 6"></div>
+          </div>
+          <div class="frow">
+            <div class="field"><label>E-mail</label><input type="email" required placeholder="naam@voorbeeld.nl"></div>
+            <div class="field"><label>Datum</label><input type="date"></div>
+          </div>
+          <div class="field"><label>Bericht</label><textarea placeholder="Waarvoor wil je reserveren?"></textarea></div>
+          <button type="submit" class="btn btn-gold">Verstuur aanvraag</button>
+          <p class="note">Reserveringen zijn een verzoek; je ontvangt een bevestiging per e-mail.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="seal">D</div>
+  <h3>Café De Duivel</h3>
+  <div class="where">Reguliersdwarsstraat 87 · Amsterdam</div>
+  <div class="foot-links">
+    <a href="#over">Het café</a><a href="#kaart">De kaart</a><a href="#sfeer">Sfeer</a><a href="#bezoek">Openingstijden</a><a href="#contact">Reserveren</a>
+  </div>
+  <div class="copy">© 2026 Café De Duivel · Dagelijks geopend vanaf 20:00</div>
+  <div class="credit">Voorbeeldwebsite — ontworpen door VelaSync</div>
+</footer>
+
+<script>
+var nav=document.getElementById('nav');
+addEventListener('scroll',function(){nav.classList.toggle('scrolled',scrollY>30)},{passive:true});
+var b=document.getElementById('burger'),m=document.getElementById('menu');
+b.addEventListener('click',function(){b.classList.toggle('open');m.classList.toggle('open')});
+m.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){b.classList.remove('open');m.classList.remove('open')})});
+var f=document.getElementById('cform');
+f.addEventListener('submit',function(e){e.preventDefault();document.getElementById('ok').classList.add('show');f.querySelectorAll('input,textarea').forEach(function(x){x.value=''});document.getElementById('ok').scrollIntoView({behavior:'smooth',block:'center'})});
+var o=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');o.unobserve(e.target)}})},{threshold:.12});
+document.querySelectorAll('.reveal,.reveal-l,.reveal-r').forEach(function(el){o.observe(el)});
+
+/* count-up numerals (nl notation) */
+function countUp(el){
+  var target=parseFloat(el.dataset.count),dec=parseInt(el.dataset.dec||'0',10),start=null,dur=1500;
+  var fmt=function(v){return v.toLocaleString('nl-NL',{minimumFractionDigits:dec,maximumFractionDigits:dec})};
+  function step(ts){if(!start)start=ts;var p=Math.min((ts-start)/dur,1),e=1-Math.pow(1-p,3);el.textContent=fmt(e*target);if(p<1)requestAnimationFrame(step);else el.textContent=fmt(target)}
+  requestAnimationFrame(step);
+}
+var co=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){countUp(e.target);co.unobserve(e.target)}})},{threshold:.6});
+document.querySelectorAll('.counter').forEach(function(el){co.observe(el)});
+
+/* lightweight parallax for photo dividers */
+var par=[].slice.call(document.querySelectorAll('[data-parallax]')),tick=false;
+function para(){par.forEach(function(el){var host=el.parentElement.getBoundingClientRect();var off=(host.top+host.height/2-innerHeight/2);el.style.transform='translate3d(0,'+(off*parseFloat(el.dataset.parallax))+'px,0)'});tick=false}
+if(par.length&&!matchMedia('(prefers-reduced-motion:reduce)').matches){
+  addEventListener('scroll',function(){if(!tick){requestAnimationFrame(para);tick=true}},{passive:true});
+  addEventListener('resize',para);para();
+}
+</script>
+</body>
+</html>
