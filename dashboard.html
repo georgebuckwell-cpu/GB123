@@ -192,12 +192,12 @@ td.num,th.num{text-align:right}
 
 <!-- UPLOAD -->
 <div class="upload-wrap" id="uploadWrap">
-  <label id="dropzone" for="fileInput">
+  <div id="dropzone">
     <div class="icon">⬆</div>
     <div class="big">Drop one or more .xlsx files here</div>
     <div class="small">or click to browse — each file is added to the combined dataset</div>
-  </label>
-  <input type="file" id="fileInput" accept=".xlsx,.xls" multiple style="display:none" />
+    <input type="file" id="fileInput" accept=".xlsx,.xls" multiple style="display:none" />
+  </div>
   <div class="upload-side">
     <button class="btn primary" id="demoBtn">Load Demo Data</button>
     <button class="btn" id="reuploadBtn">Add File</button>
@@ -490,8 +490,8 @@ function ingest(rows, filename){
   document.getElementById('dashboard').classList.add('show');
   document.getElementById('advisorCard').style.display = HAS_ADVISOR ? '' : 'none';
   renderDatasetList();
-  render();
-  toast(`Loaded "${filename}" — ${records.length} rows added. Total: ${RAW.length} rows.`);
+  try{ render(); }catch(re){ console.error('render error',re); toast('Dashboard rendered with errors — some charts may be missing.'); }
+  toast(`Loaded "${filename}" — ${records.length} rows added. Total: ${RAW.length} rows across ${DATASETS.length} file(s).`);
   window.scrollTo({top:document.getElementById('dashboard').offsetTop-20,behavior:'smooth'});
 }
 
@@ -941,23 +941,38 @@ function render(){
 
 /* ---------- File handling ---------- */
 function handleFile(file){
+  if(!file) return;
+  toast('Reading "' + file.name + '"…');
   const reader=new FileReader();
+  reader.onerror=()=>toast('Failed to read file — please try again.');
   reader.onload=(e)=>{
     try{
+      if(typeof XLSX==='undefined'){toast('SheetJS library not loaded — check your internet connection.');return;}
       const wb=XLSX.read(new Uint8Array(e.target.result),{type:'array'});
       const ws=wb.Sheets[wb.SheetNames[0]];
       const rows=XLSX.utils.sheet_to_json(ws,{defval:''});
-      ingest(rows, file.name);
-    }catch(err){console.error(err);toast('Could not read that file. Is it a valid .xlsx?');}
+      if(!rows.length){toast('File parsed but contains no rows.');return;}
+      try{
+        ingest(rows, file.name);
+      }catch(ie){
+        console.error('ingest error',ie);
+        toast('Error loading data: '+ie.message);
+      }
+    }catch(err){
+      console.error('XLSX parse error',err);
+      toast('Could not parse "'+file.name+'" — is it a valid .xlsx file?');
+    }
   };
   reader.readAsArrayBuffer(file);
 }
-const dz=document.getElementById('dropzone');const fi=document.getElementById('fileInput');
-fi.onchange=()=>{[...fi.files].forEach(f=>handleFile(f));};
-dz.addEventListener('dragover',e=>{e.preventDefault();e.stopPropagation();dz.classList.add('drag');});
-dz.addEventListener('dragleave',e=>{e.stopPropagation();dz.classList.remove('drag');});
-dz.addEventListener('drop',e=>{e.preventDefault();e.stopPropagation();dz.classList.remove('drag');[...e.dataTransfer.files].forEach(f=>handleFile(f));});
-document.getElementById('reuploadBtn').onclick=()=>fi.click();
+const dz=document.getElementById('dropzone');
+const fi=document.getElementById('fileInput');
+dz.onclick=(e)=>{if(e.target===fi)return;fi.click();};
+fi.onchange=()=>{const files=[...fi.files];if(!files.length)return;files.forEach(f=>handleFile(f));fi.value='';};
+dz.addEventListener('dragover',e=>{e.preventDefault();dz.classList.add('drag');});
+dz.addEventListener('dragleave',()=>dz.classList.remove('drag'));
+dz.addEventListener('drop',e=>{e.preventDefault();dz.classList.remove('drag');[...e.dataTransfer.files].forEach(f=>handleFile(f));});
+document.getElementById('reuploadBtn').onclick=(e)=>{e.stopPropagation();fi.click();};
 
 /* ---------- Demo data ---------- */
 function demoData(){
