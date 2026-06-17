@@ -192,12 +192,12 @@ td.num,th.num{text-align:right}
 
 <!-- UPLOAD -->
 <div class="upload-wrap" id="uploadWrap">
-  <div id="dropzone">
+  <label id="dropzone" for="fileInput">
     <div class="icon">⬆</div>
     <div class="big">Drop one or more .xlsx files here</div>
     <div class="small">or click to browse — each file is added to the combined dataset</div>
-    <input type="file" id="fileInput" accept=".xlsx,.xls" style="display:none" />
-  </div>
+  </label>
+  <input type="file" id="fileInput" accept=".xlsx,.xls" multiple style="display:none" />
   <div class="upload-side">
     <button class="btn primary" id="demoBtn">Load Demo Data</button>
     <button class="btn" id="reuploadBtn">Add File</button>
@@ -953,12 +953,10 @@ function handleFile(file){
   reader.readAsArrayBuffer(file);
 }
 const dz=document.getElementById('dropzone');const fi=document.getElementById('fileInput');
-fi.setAttribute('multiple','');
-dz.onclick=()=>fi.click();
-fi.onchange=()=>{[...fi.files].forEach(f=>handleFile(f));fi.value='';};
-dz.addEventListener('dragover',e=>{e.preventDefault();dz.classList.add('drag');});
-dz.addEventListener('dragleave',()=>dz.classList.remove('drag'));
-dz.addEventListener('drop',e=>{e.preventDefault();dz.classList.remove('drag');[...e.dataTransfer.files].forEach(f=>handleFile(f));});
+fi.onchange=()=>{[...fi.files].forEach(f=>handleFile(f));};
+dz.addEventListener('dragover',e=>{e.preventDefault();e.stopPropagation();dz.classList.add('drag');});
+dz.addEventListener('dragleave',e=>{e.stopPropagation();dz.classList.remove('drag');});
+dz.addEventListener('drop',e=>{e.preventDefault();e.stopPropagation();dz.classList.remove('drag');[...e.dataTransfer.files].forEach(f=>handleFile(f));});
 document.getElementById('reuploadBtn').onclick=()=>fi.click();
 
 /* ---------- Demo data ---------- */
