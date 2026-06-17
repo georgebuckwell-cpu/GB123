@@ -171,6 +171,10 @@ td.num,th.num{text-align:right}
 .conv-controls .seg button{padding:6px 11px;font-size:11.5px}
 .conv-controls input[type=range]{width:110px;margin-top:0}
 .placeholder-msg{display:flex;align-items:center;justify-content:center;height:100%;text-align:center;color:var(--muted);font-size:13px;padding:20px}
+.ds-chip{display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#0f1a1a,#0a1212);border:1px solid rgba(43,142,142,.3);border-radius:20px;padding:5px 12px;font-size:12px}
+.ds-name{font-weight:700;color:var(--teal-l);max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.ds-count{color:var(--muted);font-size:11px}
+.ds-remove{background:none;border:none;color:var(--muted);cursor:pointer;font-size:12px;padding:0 0 0 4px;line-height:1;transition:color .15s}.ds-remove:hover{color:#f87171}
 @media(max-width:1100px){.kpi-grid{grid-template-columns:repeat(3,1fr)}.chart-row{grid-template-columns:1fr}}
 @media(max-width:640px){.kpi-grid{grid-template-columns:repeat(2,1fr)}}
 </style>
@@ -190,16 +194,19 @@ td.num,th.num{text-align:right}
 <div class="upload-wrap" id="uploadWrap">
   <div id="dropzone">
     <div class="icon">⬆</div>
-    <div class="big">Drop your .xlsx file here</div>
-    <div class="small">or click to browse — expects the VelaSync call sheet format</div>
+    <div class="big">Drop one or more .xlsx files here</div>
+    <div class="small">or click to browse — each file is added to the combined dataset</div>
     <input type="file" id="fileInput" accept=".xlsx,.xls" style="display:none" />
   </div>
   <div class="upload-side">
     <button class="btn primary" id="demoBtn">Load Demo Data</button>
-    <button class="btn" id="reuploadBtn" style="display:none">Upload New File</button>
+    <button class="btn" id="reuploadBtn">Add File</button>
     <div class="small" style="color:var(--muted);font-size:11.5px">No data leaves your browser.</div>
   </div>
 </div>
+
+<!-- LOADED FILES -->
+<div id="datasetList" style="display:flex;flex-wrap:wrap;gap:8px;margin:0 0 10px;min-height:0"></div>
 
 <!-- DASHBOARD -->
 <div id="dashboard">
@@ -341,7 +348,8 @@ const COLD_WORDS = ['not interested','no answer','voicemail','busy'];
 const RESULT_CATEGORIES = ['Sale','Warm','Cold','Other'];
 
 /* ---------- State ---------- */
-let RAW = [];            // normalized records
+let DATASETS = [];       // [{name, records}]
+let RAW = [];            // flattened union of all datasets
 let HAS_ADVISOR = false;
 let HAS_CALL_TIME = false;
 let charts = {};
@@ -438,20 +446,52 @@ function normalize(rows){
   }).filter(r=>r.company || r.result || r.category!=='Uncategorized');
 }
 
-function ingest(rows){
-  RAW = normalize(rows);
+function rebuildRaw(){
+  RAW = DATASETS.flatMap(d=>d.records);
   HAS_ADVISOR = RAW.some(r=>r.advisor);
   HAS_CALL_TIME = RAW.some(r=>r.callDuration!=null);
-  if(!RAW.length){toast('No usable rows found in file.');return;}
+}
+
+function renderDatasetList(){
+  const el=document.getElementById('datasetList');
+  if(!el) return;
+  if(!DATASETS.length){el.innerHTML='';return;}
+  el.innerHTML=DATASETS.map((d,i)=>`
+    <div class="ds-chip">
+      <span class="ds-name">${d.name}</span>
+      <span class="ds-count">${d.records.length} rows</span>
+      <button class="ds-remove" onclick="removeDataset(${i})" title="Remove">✕</button>
+    </div>`).join('');
+}
+
+function removeDataset(i){
+  DATASETS.splice(i,1);
+  rebuildRaw();
+  if(!RAW.length){
+    document.getElementById('dashboard').classList.remove('show');
+    document.getElementById('datasetList').innerHTML='';
+    return;
+  }
+  buildAdvisorSeg(); buildFilters(); buildKpiPopover(); buildChartPopover();
+  renderDatasetList(); render();
+  toast('File removed.');
+}
+
+function ingest(rows, filename){
+  const records = normalize(rows);
+  if(!records.length){toast('No usable rows found in file.');return;}
+  DATASETS.push({name: filename||'Uploaded file', records});
+  rebuildRaw();
   buildAdvisorSeg();
   buildFilters();
   buildKpiPopover();
   buildChartPopover();
-  state.advisor = HAS_ADVISOR ? 'Both' : 'Both';
+  state.advisor = 'Both';
   document.getElementById('dashboard').classList.add('show');
-  document.getElementById('reuploadBtn').style.display='inline-block';
   document.getElementById('advisorCard').style.display = HAS_ADVISOR ? '' : 'none';
+  renderDatasetList();
   render();
+  toast(`Loaded "${filename}" — ${records.length} rows added. Total: ${RAW.length} rows.`);
   window.scrollTo({top:document.getElementById('dashboard').offsetTop-20,behavior:'smooth'});
 }
 
@@ -907,18 +947,18 @@ function handleFile(file){
       const wb=XLSX.read(new Uint8Array(e.target.result),{type:'array'});
       const ws=wb.Sheets[wb.SheetNames[0]];
       const rows=XLSX.utils.sheet_to_json(ws,{defval:''});
-      ingest(rows);
-      toast(`Loaded ${RAW.length} records.`);
+      ingest(rows, file.name);
     }catch(err){console.error(err);toast('Could not read that file. Is it a valid .xlsx?');}
   };
   reader.readAsArrayBuffer(file);
 }
 const dz=document.getElementById('dropzone');const fi=document.getElementById('fileInput');
+fi.setAttribute('multiple','');
 dz.onclick=()=>fi.click();
-fi.onchange=()=>{if(fi.files[0])handleFile(fi.files[0]);};
+fi.onchange=()=>{[...fi.files].forEach(f=>handleFile(f));fi.value='';};
 dz.addEventListener('dragover',e=>{e.preventDefault();dz.classList.add('drag');});
 dz.addEventListener('dragleave',()=>dz.classList.remove('drag'));
-dz.addEventListener('drop',e=>{e.preventDefault();dz.classList.remove('drag');if(e.dataTransfer.files[0])handleFile(e.dataTransfer.files[0]);});
+dz.addEventListener('drop',e=>{e.preventDefault();dz.classList.remove('drag');[...e.dataTransfer.files].forEach(f=>handleFile(f));});
 document.getElementById('reuploadBtn').onclick=()=>fi.click();
 
 /* ---------- Demo data ---------- */
@@ -951,7 +991,7 @@ function demoData(){
   }
   return rows;
 }
-document.getElementById('demoBtn').onclick=()=>{ingest(demoData());toast('Demo data loaded.');};
+document.getElementById('demoBtn').onclick=()=>{ingest(demoData(),'Demo Data');};
 </script>
 </body>
 </html>
