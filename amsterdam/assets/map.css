@@ -1,0 +1,83 @@
+/* ════════════════════════════════════════════════════════════════════════════
+   ONTDEK AMSTERDAM — Kaart (location map)
+   Layered on top of styles.css. Leaflet + clustered, category-coloured pins.
+   ════════════════════════════════════════════════════════════════════════════ */
+
+/* page shell -------------------------------------------------------------- */
+.map-page{padding-top:68px}
+
+.map-head{background:var(--bg-2);border-bottom:1px solid var(--line);padding:1.6rem 1.5rem 1.2rem}
+.map-head .wrap{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:1rem}
+.map-head .label{font-size:.72rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--accent);margin-bottom:.35rem}
+.map-head h1{font-family:var(--disp);font-size:clamp(1.7rem,3.4vw,2.4rem);font-weight:700;letter-spacing:-1px;line-height:1.05}
+.map-head p{color:var(--sub);font-size:.95rem;margin-top:.35rem;max-width:54ch}
+
+/* toolbar ----------------------------------------------------------------- */
+.map-toolbar{background:var(--paper);border-bottom:1px solid var(--line);position:sticky;top:68px;z-index:120}
+.map-toolbar .wrap{display:flex;flex-direction:column;gap:.75rem;padding:.85rem 1.5rem}
+.map-search{display:flex;align-items:center;gap:.55rem;background:var(--bg);border:1px solid var(--line-2);border-radius:100px;padding:.5rem 1rem;max-width:460px;width:100%}
+.map-search svg{color:var(--sub);flex-shrink:0}
+.map-search input{flex:1;border:none;outline:none;background:none;font-size:.95rem;color:var(--ink)}
+.map-chips{display:flex;gap:.5rem;flex-wrap:wrap}
+.map-chip{display:inline-flex;align-items:center;gap:.45rem;background:var(--bg);border:1px solid var(--line-2);border-radius:100px;padding:.4rem .85rem;font-size:.82rem;font-weight:600;color:var(--ink-2);transition:all .15s;line-height:1}
+.map-chip:hover{border-color:var(--accent);color:var(--accent)}
+.map-chip.active{background:var(--ink);color:#fff;border-color:var(--ink)}
+.map-chip .swatch{width:9px;height:9px;border-radius:50%;background:var(--c,#999)}
+.map-chip .n{font-size:.72rem;opacity:.7;font-weight:500}
+
+/* progress / status ------------------------------------------------------- */
+.geo-status{display:flex;align-items:center;gap:.7rem;font-size:.82rem;color:var(--sub)}
+.geo-bar{flex:1;max-width:220px;height:6px;border-radius:100px;background:var(--bg-2);overflow:hidden}
+.geo-bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--gold));transition:width .25s var(--ease)}
+.geo-status .done{color:var(--ok);font-weight:600}
+
+/* layout: map + list ------------------------------------------------------ */
+.map-layout{display:grid;grid-template-columns:340px 1fr;height:calc(100vh - 68px - 132px);min-height:480px}
+#map{height:100%;width:100%;background:#e8ecef;z-index:1}
+
+.map-list{border-right:1px solid var(--line);overflow-y:auto;background:var(--paper)}
+.map-list-head{position:sticky;top:0;background:var(--paper);border-bottom:1px solid var(--line);padding:.7rem 1rem;font-size:.82rem;color:var(--sub);z-index:2}
+.map-list-head b{color:var(--ink)}
+.mli{display:flex;gap:.7rem;padding:.7rem 1rem;border-bottom:1px solid var(--line);cursor:pointer;transition:background .12s}
+.mli:hover,.mli.active{background:var(--bg)}
+.mli .dot{width:30px;height:30px;border-radius:9px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:.95rem;background:var(--c,#999)}
+.mli .mli-b{min-width:0}
+.mli h4{font-size:.9rem;font-weight:600;line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mli .cat{font-size:.74rem;color:var(--accent);font-weight:600;text-transform:uppercase;letter-spacing:.4px}
+.mli .addr{font-size:.78rem;color:var(--sub);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.map-list .empty{padding:2rem 1rem;text-align:center;color:var(--sub);font-size:.9rem}
+
+@media(max-width:820px){
+  .map-layout{grid-template-columns:1fr;height:auto;min-height:0}
+  #map{height:62vh;order:1}
+  .map-list{order:2;border-right:none;border-top:1px solid var(--line);max-height:46vh}
+  .map-toolbar{position:static}
+}
+
+/* leaflet pins ------------------------------------------------------------ */
+.oa-pin{background:none;border:none}
+.oa-pin-dot{display:flex;align-items:center;justify-content:center;width:30px;height:30px;font-size:14px;
+  background:var(--c);color:#fff;border:2px solid #fff;border-radius:50% 50% 50% 0;transform:rotate(-45deg);
+  box-shadow:0 2px 6px rgba(0,0,0,.35);cursor:pointer}
+.oa-pin-dot>span{transform:rotate(45deg)}
+.oa-pin-dot:hover{filter:brightness(1.08)}
+
+/* cluster bubbles (override default) */
+.marker-cluster{background:rgba(225,86,47,.25)}
+.marker-cluster div{background:var(--accent);color:#fff;font-family:var(--disp);font-weight:700}
+.marker-cluster span{line-height:30px}
+
+/* popups */
+.leaflet-popup-content-wrapper{border-radius:12px;box-shadow:var(--shadow-m)}
+.leaflet-popup-content{margin:.85rem 1rem;font-family:var(--body)}
+.pop h3{font-family:var(--disp);font-size:1rem;font-weight:700;margin-bottom:.15rem;letter-spacing:-.2px}
+.pop .pop-cat{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--accent);margin-bottom:.5rem}
+.pop .pop-row{display:flex;align-items:flex-start;gap:.45rem;font-size:.82rem;color:var(--ink-2);margin:.2rem 0}
+.pop .pop-row svg{flex-shrink:0;margin-top:2px;color:var(--sub)}
+.pop .pop-actions{display:flex;gap:.4rem;margin-top:.7rem}
+.pop .pop-actions a{flex:1;text-align:center;font-size:.8rem;font-weight:600;padding:.45rem .6rem;border-radius:8px;text-decoration:none}
+.pop .pop-actions .gm{background:var(--ink);color:#fff}
+.pop .pop-actions .gm:hover{background:var(--accent)}
+.pop .pop-actions .tel{background:var(--bg-2);color:var(--ink)}
+
+.leaflet-control-attribution{font-size:.62rem}
