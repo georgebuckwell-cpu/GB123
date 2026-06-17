@@ -280,9 +280,9 @@ document.getElementById('logo').src = LOGO_DATA_URI;
 
 /* ---------- Constants ---------- */
 const TEAL_PALETTE = ['#2B8E8E','#3aaeae','#5fd0d0','#1f6f6f','#7fe0e0','#46b8b8','#2c9a9a','#66c9c9','#3f9d9d','#84d6d6','#1c6262','#58c4c4'];
-const SUCCESS_WORDS = ['interested','sale','meeting','callback','booked','yes'];
-const FAIL_WORDS = ['not interested','no answer','voicemail','busy','no'];
-const RESULT_CATEGORIES = ['Interested','Not Interested','No Answer','Voicemail','Other'];
+const WARM_WORDS = ['interested','meeting','callback','booked','yes','follow'];
+const COLD_WORDS = ['not interested','no answer','voicemail','busy'];
+const RESULT_CATEGORIES = ['Sale','Warm','Cold','Other'];
 
 /* ---------- State ---------- */
 let RAW = [];            // normalized records
@@ -299,27 +299,21 @@ let state = {
 
 /* ---------- Helpers ---------- */
 function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.style.display='block';setTimeout(()=>t.style.display='none',3200);}
-function isSuccess(r){const v=(r||'').toLowerCase().trim();if(!v)return false;
-  if(FAIL_WORDS.some(w=>v.includes(w)&&!(w==='no'&&v.includes('not'))))return SUCCESS_WORDS.some(w=>v.includes(w))&&!startsFail(v)?true:false;
-  return SUCCESS_WORDS.some(w=>v.includes(w));}
-function startsFail(v){return FAIL_WORDS.some(w=>v===w||v.startsWith(w));}
-// cleaner success/fail logic:
+// outcome: 'sale' | 'warm' | 'cold' | 'none'
 function outcome(r){
   const v=(r||'').toLowerCase().trim();
   if(!v) return 'none';
-  // check fail phrases first (longer / negation-aware)
-  if(v.includes('not interested')||v.includes('no answer')||v.includes('voicemail')||v.includes('busy')) return 'fail';
-  if(SUCCESS_WORDS.some(w=>v.includes(w))) return 'success';
-  if(v==='no'||v.startsWith('no ')) return 'fail';
+  if(v.includes('sale')) return 'sale';
+  if(v.includes('not interested')||v.includes('no answer')||v.includes('voicemail')||v.includes('busy')||v==='no'||v.startsWith('no ')) return 'cold';
+  if(WARM_WORDS.some(w=>v.includes(w))) return 'warm';
   return 'other';
 }
 function resultCategory(r){
   const v=(r||'').toLowerCase().trim();
   if(!v) return 'Other';
-  if(v.includes('not interested')) return 'Not Interested';
-  if(v.includes('interested')) return 'Interested';
-  if(v.includes('no answer')) return 'No Answer';
-  if(v.includes('voicemail')) return 'Voicemail';
+  if(v.includes('sale')) return 'Sale';
+  if(v.includes('not interested')||v.includes('no answer')||v.includes('voicemail')||v.includes('busy')||v==='no'||v.startsWith('no ')) return 'Cold';
+  if(WARM_WORDS.some(w=>v.includes(w))) return 'Warm';
   return 'Other';
 }
 function num(x){const n=parseFloat(x);return isNaN(n)?null:n;}
@@ -454,19 +448,22 @@ document.getElementById('resetBtn').onclick=()=>{
 /* ---------- KPIs ---------- */
 function renderKPIs(data){
   const total=data.length;
-  const success=data.filter(r=>outcome(r.result)==='success').length;
+  const sales=data.filter(r=>outcome(r.result)==='sale').length;
+  const warm=data.filter(r=>outcome(r.result)==='warm').length;
+  const cold=data.filter(r=>outcome(r.result)==='cold').length;
   const called=data.filter(r=>r.result&&r.result.trim()).length;
-  const conv = total? (success/total*100):0;
+  const conv = called? (sales/called*100):0;
+  const warmRate = called? (warm/called*100):0;
   const companies=new Set(data.map(r=>r.company.toLowerCase()).filter(Boolean)).size;
   const inds=new Set(data.map(r=>r.category)).size;
   const areas=new Set(data.map(r=>r.city)).size;
   const cards=[
     {label:'Total Calls Made',val:total,sub:`${called} with a logged result`,cls:''},
-    {label:'Successful Calls',val:success,sub:'converted outcomes',cls:'green'},
-    {label:'Conversion Rate',val:conv.toFixed(1)+'%',sub:`${success} of ${total}`,cls:'accent'},
-    {label:'Unique Companies',val:companies,sub:'distinct businesses',cls:''},
-    {label:'Industries Covered',val:inds,sub:'categories',cls:'gold'},
-    {label:'Areas Covered',val:areas,sub:'unique cities',cls:''},
+    {label:'Sales (Conversions)',val:sales,sub:'result = Sale only',cls:'green'},
+    {label:'Conversion Rate',val:conv.toFixed(1)+'%',sub:`${sales} sales from ${called} logged`,cls:'accent'},
+    {label:'Warm Leads',val:warm,sub:`${warmRate.toFixed(1)}% of logged calls`,cls:'gold'},
+    {label:'Cold Calls',val:cold,sub:'not interested / no answer / voicemail',cls:'red'},
+    {label:'Areas Covered',val:areas,sub:`across ${inds} industries`,cls:''},
   ];
   document.getElementById('kpis').innerHTML=cards.map(c=>`
     <div class="card kpi ${c.cls}">
@@ -488,7 +485,8 @@ function groupCount(data,keyFn){
   const m={};data.forEach(r=>{const k=keyFn(r);m[k]=(m[k]||0)+1;});return m;
 }
 function groupConv(data,keyFn){
-  const m={};data.forEach(r=>{const k=keyFn(r);if(!m[k])m[k]={t:0,s:0};m[k].t++;if(outcome(r.result)==='success')m[k].s++;});
+  const m={};data.forEach(r=>{const k=keyFn(r);if(!m[k])m[k]={t:0,sale:0,warm:0,cold:0};
+    m[k].t++;const oc=outcome(r.result);if(oc==='sale')m[k].sale++;else if(oc==='warm')m[k].warm++;else if(oc==='cold')m[k].cold++;});
   return m;
 }
 
@@ -502,15 +500,20 @@ function renderCharts(data){
       plugins:{legend:{display:false},tooltip:tooltipCfg},
       scales:{x:{grid:{color:gridColor},ticks:{font:chartFont}},y:{grid:{display:false},ticks:{font:chartFont}}}}});
 
-  // Conversion by industry
+  // Conversion by industry — stacked Sale / Warm / Cold %
   const ic=groupConv(data,r=>r.category);
-  const icArr=Object.entries(ic).map(([k,v])=>[k,v.t?v.s/v.t*100:0,v.t]).filter(e=>e[2]>=1)
-    .sort((a,b)=>b[1]-a[1]).slice(0,15);
-  mk('cIndustryConv',{type:'bar',data:{labels:icArr.map(e=>e[0]),
-    datasets:[{label:'Conversion %',data:icArr.map(e=>+e[1].toFixed(1)),backgroundColor:'#5fd0d0',borderRadius:4}]},
+  const icArr=Object.entries(ic).filter(([,v])=>v.t>=1)
+    .map(([k,v])=>({k,sale:v.t?v.sale/v.t*100:0,warm:v.t?v.warm/v.t*100:0,cold:v.t?v.cold/v.t*100:0,t:v.t}))
+    .sort((a,b)=>b.sale-a.sale).slice(0,15);
+  mk('cIndustryConv',{type:'bar',data:{labels:icArr.map(e=>e.k),
+    datasets:[
+      {label:'Sale %',data:icArr.map(e=>+e.sale.toFixed(1)),backgroundColor:'#34d399',borderRadius:2,stack:'s'},
+      {label:'Warm %',data:icArr.map(e=>+e.warm.toFixed(1)),backgroundColor:'#fbbf24',borderRadius:2,stack:'s'},
+      {label:'Cold %',data:icArr.map(e=>+e.cold.toFixed(1)),backgroundColor:'#f87171',borderRadius:2,stack:'s'},
+    ]},
     options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,
-      plugins:{legend:{display:false},tooltip:{...tooltipCfg,callbacks:{label:(c)=>` ${c.parsed.x}% (${icArr[c.dataIndex][2]} calls)`}}},
-      scales:{x:{grid:{color:gridColor},max:100,ticks:{font:chartFont,callback:v=>v+'%'}},y:{grid:{display:false},ticks:{font:chartFont}}}}});
+      plugins:{legend:{position:'bottom',labels:{font:chartFont,padding:12}},tooltip:{...tooltipCfg,callbacks:{label:(c)=>` ${c.dataset.label}: ${c.parsed.x.toFixed(1)}%`}}},
+      scales:{x:{grid:{color:gridColor},stacked:true,max:100,ticks:{font:chartFont,callback:v=>v+'%'}},y:{grid:{display:false},stacked:true,ticks:{font:chartFont}}}}});
 
   // City
   const city=groupCount(data,r=>r.city);
@@ -531,20 +534,20 @@ function renderCharts(data){
         plugins:{legend:{position:'bottom',labels:{font:chartFont,padding:14}},tooltip:tooltipCfg}}});
   } else destroy('cAdvisor');
 
-  // Result distribution
+  // Result distribution — Sale / Warm / Cold / Other
   const res=groupCount(data,r=>resultCategory(r.result));
-  const resOrder=['Interested','Not Interested','No Answer','Voicemail','Other'].filter(k=>res[k]);
-  const resColors={'Interested':'#34d399','Not Interested':'#f87171','No Answer':'#fbbf24','Voicemail':'#3aaeae','Other':'#5f7878'};
+  const resOrder=['Sale','Warm','Cold','Other'].filter(k=>res[k]);
+  const resColors={'Sale':'#34d399','Warm':'#fbbf24','Cold':'#f87171','Other':'#5f7878'};
   mk('cResult',{type:'doughnut',data:{labels:resOrder,
     datasets:[{data:resOrder.map(k=>res[k]),backgroundColor:resOrder.map(k=>resColors[k]),borderColor:'#0a1212',borderWidth:2}]},
     options:{responsive:true,maintainAspectRatio:false,cutout:'58%',
-      plugins:{legend:{position:'bottom',labels:{font:chartFont,padding:12}},tooltip:tooltipCfg}}});
+      plugins:{legend:{position:'bottom',labels:{font:chartFont,padding:12}},tooltip:{...tooltipCfg,callbacks:{label:(c)=>{const t=resOrder.reduce((a,k)=>a+(res[k]||0),0);return ` ${c.label}: ${c.parsed} (${t?+(c.parsed/t*100).toFixed(1):0}%)`;}}}}}}});
 
   // Reviews histogram + conversion overlay
   const buckets=[['0',r=>r.reviews===0],['1-5',r=>r.reviews>=1&&r.reviews<=5],['6-20',r=>r.reviews>=6&&r.reviews<=20],
     ['21-50',r=>r.reviews>=21&&r.reviews<=50],['51-100',r=>r.reviews>=51&&r.reviews<=100],['100+',r=>r.reviews>100]];
   const bCounts=buckets.map(b=>data.filter(b[1]).length);
-  const bConv=buckets.map(b=>{const s=data.filter(b[1]);const c=s.filter(r=>outcome(r.result)==='success').length;return s.length?+(c/s.length*100).toFixed(1):0;});
+  const bConv=buckets.map(b=>{const s=data.filter(b[1]);const c=s.filter(r=>outcome(r.result)==='sale').length;return s.length?+(c/s.length*100).toFixed(1):0;});
   mk('cReviews',{data:{labels:buckets.map(b=>b[0]),datasets:[
       {type:'bar',label:'Companies',data:bCounts,backgroundColor:'#2B8E8E',borderRadius:4,yAxisID:'y'},
       {type:'line',label:'Conversion %',data:bConv,borderColor:'#fbbf24',backgroundColor:'#fbbf24',tension:.3,yAxisID:'y1',pointRadius:4}
@@ -571,13 +574,15 @@ document.getElementById('pivotToggle').onclick=()=>{
 function renderPivot(data){
   const keyFn={industry:r=>r.category,city:r=>r.city,advisor:r=>r.advisor||'Unassigned',result:r=>resultCategory(r.result)}[state.pivotGroup];
   const m={};
-  data.forEach(r=>{const k=keyFn(r);if(!m[k])m[k]={total:0,success:0,rev:0,revN:0,rate:0,rateN:0};
-    const g=m[k];g.total++;if(outcome(r.result)==='success')g.success++;
+  data.forEach(r=>{const k=keyFn(r);if(!m[k])m[k]={total:0,sale:0,warm:0,cold:0,rev:0,revN:0,rate:0,rateN:0};
+    const g=m[k];g.total++;const oc=outcome(r.result);
+    if(oc==='sale')g.sale++;else if(oc==='warm')g.warm++;else if(oc==='cold')g.cold++;
     if(r.reviews!=null){g.rev+=r.reviews;g.revN++;}
     if(r.score!=null){g.rate+=r.score;g.rateN++;}});
   let rows=Object.entries(m).map(([k,g])=>({
-    key:k,total:g.total,success:g.success,
-    conv:g.total?g.success/g.total*100:0,
+    key:k,total:g.total,sale:g.sale,warm:g.warm,cold:g.cold,
+    conv:g.total?g.sale/g.total*100:0,
+    warmRate:g.total?g.warm/g.total*100:0,
     avgRev:g.revN?g.rev/g.revN:0,
     avgRate:g.rateN?g.rate/g.rateN:0
   }));
@@ -585,15 +590,19 @@ function renderPivot(data){
   rows.sort((a,b)=>{const x=a[col],y=b[col];return (typeof x==='string')?dir*x.localeCompare(y):dir*(x-y);});
   const maxTotal=Math.max(1,...rows.map(r=>r.total));
   const gLabel={industry:'Industry',city:'City',advisor:'Advisor',result:'Result'}[state.pivotGroup];
-  const cols=[['key',gLabel,false],['total','Total Calls',true],['success','Successful',true],['conv','Conversion %',true],['avgRev','Avg Reviews',true],['avgRate','Avg Rating',true]];
+  const cols=[['key',gLabel,false],['total','Total',true],['sale','Sales',true],['conv','Sale %',true],['warm','Warm',true],['warmRate','Warm %',true],['cold','Cold',true],['avgRev','Avg Reviews',true],['avgRate','Avg Rating',true]];
   const head='<thead><tr>'+cols.map(c=>`<th class="${c[2]?'num':''}" data-col="${c[0]}">${c[1]}${state.pivotSort.col===c[0]?(dir>0?' ▲':' ▼'):''}</th>`).join('')+'</tr></thead>';
   const body='<tbody>'+rows.map(r=>{
-    const pillCls=r.conv>=40?'ok':r.conv>=20?'mid':'bad';
+    const saleCls=r.conv>=10?'ok':r.conv>=3?'mid':'bad';
+    const warmCls=r.warmRate>=40?'ok':r.warmRate>=20?'mid':'bad';
     return `<tr>
       <td class="bar-cell"><div class="fill" style="width:${r.total/maxTotal*100}%"></div><span>${r.key}</span></td>
       <td class="num">${r.total}</td>
-      <td class="num">${r.success}</td>
-      <td class="num"><span class="pill ${pillCls}">${r.conv.toFixed(1)}%</span></td>
+      <td class="num">${r.sale}</td>
+      <td class="num"><span class="pill ${saleCls}">${r.conv.toFixed(1)}%</span></td>
+      <td class="num">${r.warm}</td>
+      <td class="num"><span class="pill ${warmCls}">${r.warmRate.toFixed(1)}%</span></td>
+      <td class="num">${r.cold}</td>
       <td class="num">${r.avgRev.toFixed(1)}</td>
       <td class="num">${r.avgRate?r.avgRate.toFixed(2):'—'}</td>
     </tr>`;}).join('')+'</tbody>';
@@ -627,7 +636,7 @@ function renderRaw(data){
   const cols=HAS_ADVISOR?RAW_COLS:RAW_COLS.filter(c=>c[0]!=='advisor');
   const head='<thead><tr>'+cols.map(c=>`<th data-col="${c[0]}">${c[1]}${state.rawSort.col===c[0]?(state.rawSort.dir>0?' ▲':' ▼'):''}</th>`).join('')+'</tr></thead>';
   const body='<tbody>'+(page.length?page.map(r=>{
-    const oc=outcome(r.result);const pc=oc==='success'?'ok':oc==='fail'?'bad':oc==='other'?'mid':'';
+    const oc=outcome(r.result);const pc=oc==='sale'?'ok':oc==='warm'?'mid':oc==='cold'?'bad':'';
     return '<tr>'+cols.map(c=>{
       let v=r[c[0]];
       if(c[0]==='result'&&v)return `<td><span class="pill ${pc}">${v}</span></td>`;
