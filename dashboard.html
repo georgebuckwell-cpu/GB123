@@ -197,6 +197,7 @@ td.num,th.num{text-align:right}
     <div class="big">Drop one or more .xlsx files here</div>
     <div class="small">or click to browse — each file is added to the combined dataset</div>
     <input type="file" id="fileInput" accept=".xlsx,.xls" multiple
+      onchange="handleFileInput(this)"
       style="position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;z-index:2" />
   </div>
   <div class="upload-side">
@@ -968,7 +969,12 @@ function handleFile(file){
 }
 const dz=document.getElementById('dropzone');
 const fi=document.getElementById('fileInput');
-fi.onchange=()=>{const files=[...fi.files];if(!files.length)return;files.forEach(f=>handleFile(f));fi.value='';};
+function handleFileInput(input){
+  const files=input.files?[...input.files]:[];
+  if(!files.length)return;
+  files.forEach(f=>handleFile(f));
+}
+fi.addEventListener('change',()=>handleFileInput(fi));
 dz.addEventListener('dragover',e=>{e.preventDefault();dz.classList.add('drag');});
 dz.addEventListener('dragleave',()=>dz.classList.remove('drag'));
 dz.addEventListener('drop',e=>{e.preventDefault();dz.classList.remove('drag');[...e.dataTransfer.files].forEach(f=>handleFile(f));});
