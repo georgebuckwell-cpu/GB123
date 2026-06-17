@@ -147,6 +147,30 @@ td.num,th.num{text-align:right}
 .hidden{display:none!important}
 .empty{color:var(--muted);text-align:center;padding:40px;font-size:13px}
 .toast{position:fixed;bottom:24px;right:24px;background:#0c1515;border:1px solid rgba(43,142,142,0.4);padding:14px 18px;border-radius:9px;box-shadow:0 12px 30px rgba(0,0,0,.5);z-index:200;font-size:13px;display:none}
+
+/* Popover panels (customise KPIs / charts) */
+.popwrap{position:relative;display:inline-block}
+.popover{
+  display:none;position:absolute;top:100%;right:0;z-index:100;background:#0f1a1a;
+  border:1px solid rgba(43,142,142,0.26);border-radius:9px;padding:14px 16px;min-width:220px;
+  box-shadow:0 8px 32px rgba(0,0,0,0.5);margin-top:6px;
+}
+.popover.open{display:block}
+.popover .pop-title{font-size:11.5px;font-weight:700;text-transform:uppercase;letter-spacing:.6px;color:var(--muted);margin-bottom:10px}
+.toggle-row{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:5px 0;font-size:13px}
+.tsw{position:relative;width:36px;height:20px;flex:none;cursor:pointer}
+.tsw input{opacity:0;width:0;height:0;position:absolute}
+.tsw .track{position:absolute;inset:0;background:#1c2e2e;border-radius:20px;transition:background .2s}
+.tsw .knob{position:absolute;top:2px;left:2px;width:16px;height:16px;background:#fff;border-radius:50%;transition:left .2s}
+.tsw input:checked + .track{background:var(--teal)}
+.tsw input:checked + .track + .knob{left:18px}
+
+/* Conversion control bar */
+.conv-controls{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:8px}
+.conv-controls .lbl{font-size:11.5px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--muted)}
+.conv-controls .seg button{padding:6px 11px;font-size:11.5px}
+.conv-controls input[type=range]{width:110px;margin-top:0}
+.placeholder-msg{display:flex;align-items:center;justify-content:center;height:100%;text-align:center;color:var(--muted);font-size:13px;padding:20px}
 @media(max-width:1100px){.kpi-grid{grid-template-columns:repeat(3,1fr)}.chart-row{grid-template-columns:1fr}}
 @media(max-width:640px){.kpi-grid{grid-template-columns:repeat(2,1fr)}}
 </style>
@@ -188,6 +212,14 @@ td.num,th.num{text-align:right}
     <div class="spacer" style="flex:1"></div>
     <button class="btn sm" id="pivotToggle">Show Pivot Table</button>
     <button class="btn sm" id="resetBtn">Reset Filters</button>
+    <div class="popwrap">
+      <button class="btn sm" id="kpiCustomBtn">Customise KPIs</button>
+      <div class="popover" id="kpiPopover"><div class="pop-title">Show KPIs</div></div>
+    </div>
+    <div class="popwrap">
+      <button class="btn sm" id="chartCustomBtn">Customise Charts</button>
+      <div class="popover" id="chartPopover"><div class="pop-title">Show Charts</div></div>
+    </div>
   </div>
 
   <div class="card filters" id="filters">
@@ -227,7 +259,24 @@ td.num,th.num{text-align:right}
   <div class="section-title">Insights</div>
   <div class="chart-row">
     <div class="card chart-card"><h3>Calls by Industry (Top 15)</h3><div class="chart-box tall"><canvas id="cIndustry"></canvas></div></div>
-    <div class="card chart-card"><h3>Conversion Rate by Industry</h3><div class="chart-box tall"><canvas id="cIndustryConv"></canvas></div></div>
+    <div class="card chart-card"><h3>Conversion Rate by Industry</h3>
+      <div class="conv-controls">
+        <span class="lbl">Sort</span>
+        <div class="seg" id="convSortSeg">
+          <button data-s="pct" class="active">%</button>
+          <button data-s="industry">Industry</button>
+          <button data-s="volume">Volume</button>
+        </div>
+        <span class="lbl">Show</span>
+        <div class="seg" id="convViewSeg">
+          <button data-v="sale">Sale %</button>
+          <button data-v="warm">Warm %</button>
+          <button data-v="both" class="active">Both</button>
+        </div>
+        <span class="lbl">Top N <span class="slider-val" id="convNVal">15</span></span>
+        <input type="range" id="convNSlider" min="5" max="30" value="15" />
+      </div>
+      <div class="chart-box tall"><canvas id="cIndustryConv"></canvas></div></div>
   </div>
   <div class="chart-row">
     <div class="card chart-card"><h3>Calls by City / Area</h3><div class="chart-box"><canvas id="cCity"></canvas></div></div>
@@ -236,6 +285,13 @@ td.num,th.num{text-align:right}
   <div class="chart-row">
     <div class="card chart-card"><h3>Result Distribution</h3><div class="chart-box"><canvas id="cResult"></canvas></div></div>
     <div class="card chart-card"><h3>Reviews Distribution &amp; Conversion</h3><div class="chart-box"><canvas id="cReviews"></canvas></div></div>
+  </div>
+
+  <div class="section-title">Advisor &amp; Industry Breakdown</div>
+  <div class="chart-row" style="grid-template-columns:1fr 1fr 1fr">
+    <div class="card chart-card"><h3>Call Time by Advisor</h3><div class="chart-box tall"><canvas id="cCallTime"></canvas></div></div>
+    <div class="card chart-card"><h3>Warm/Cold Split by Advisor</h3><div class="chart-box tall"><canvas id="cWarmAdvisor"></canvas></div></div>
+    <div class="card chart-card"><h3>Warm/Cold Split by Industry</h3><div class="chart-box tall"><canvas id="cWarmIndustry"></canvas></div></div>
   </div>
 
   <!-- PIVOT -->
@@ -287,15 +343,32 @@ const RESULT_CATEGORIES = ['Sale','Warm','Cold','Other'];
 /* ---------- State ---------- */
 let RAW = [];            // normalized records
 let HAS_ADVISOR = false;
+let HAS_CALL_TIME = false;
 let charts = {};
+const KPI_NAMES = ['Total Calls Made','Sales (Conversions)','Conversion Rate','Warm Leads','Cold Calls','Areas Covered'];
+const CHART_SECTIONS = [
+  {name:'Calls by Industry', canvas:'cIndustry'},
+  {name:'Conversion by Industry', canvas:'cIndustryConv'},
+  {name:'Calls by City', canvas:'cCity'},
+  {name:'Calls by Advisor', canvas:'cAdvisor', card:'advisorCard'},
+  {name:'Result Distribution', canvas:'cResult'},
+  {name:'Reviews Distribution', canvas:'cReviews'},
+  {name:'Call Time by Advisor', canvas:'cCallTime'},
+  {name:'Warm/Cold by Advisor', canvas:'cWarmAdvisor'},
+  {name:'Warm/Cold by Industry', canvas:'cWarmIndustry'},
+];
 let state = {
   advisor:'Both',
   industries:new Set(), cities:new Set(),
   minReviews:0, minRating:0,
   results:new Set(RESULT_CATEGORIES),
   pivotGroup:'industry', pivotSort:{col:'total',dir:-1},
-  rawSearch:'', rawPage:1, rawSort:{col:null,dir:1}
+  rawSearch:'', rawPage:1, rawSort:{col:null,dir:1},
+  kpiVisible:{}, chartVisible:{},
+  indConvSort:'pct', indConvView:'both', indConvN:15
 };
+KPI_NAMES.forEach((_,i)=>state.kpiVisible[i]=true);
+CHART_SECTIONS.forEach((_,i)=>state.chartVisible[i]=true);
 
 /* ---------- Helpers ---------- */
 function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.style.display='block';setTimeout(()=>t.style.display='none',3200);}
@@ -317,6 +390,27 @@ function resultCategory(r){
   return 'Other';
 }
 function num(x){const n=parseFloat(x);return isNaN(n)?null:n;}
+// Parse call duration into seconds. Accepts number(seconds), "mm:ss", "h:mm:ss". null if absent.
+function parseDuration(x){
+  if(x==null||x==='') return null;
+  if(typeof x==='number') return isNaN(x)?null:x;
+  const s=String(x).trim();
+  if(!s) return null;
+  if(s.includes(':')){
+    const parts=s.split(':').map(p=>parseInt(p,10));
+    if(parts.some(isNaN)) return null;
+    if(parts.length===2) return parts[0]*60+parts[1];
+    if(parts.length===3) return parts[0]*3600+parts[1]*60+parts[2];
+    return null;
+  }
+  const n=parseFloat(s);
+  return isNaN(n)?null:n;
+}
+function fmtMMSS(sec){
+  if(sec==null||isNaN(sec)) return '—';
+  sec=Math.round(sec);const m=Math.floor(sec/60),s=sec%60;
+  return m+':'+String(s).padStart(2,'0');
+}
 
 /* ---------- Parse / Normalize ---------- */
 function normalize(rows){
@@ -338,7 +432,8 @@ function normalize(rows){
       mapsUrl: String(get('url')||''),
       result: result,
       action: String(get('Action')||''),
-      advisor: String(get('Sales Advisor','salesAdvisor','Advisor')||'').trim()
+      advisor: String(get('Sales Advisor','salesAdvisor','Advisor')||'').trim(),
+      callDuration: parseDuration(get('Call Duration','Call Time','Duration'))
     };
   }).filter(r=>r.company || r.result || r.category!=='Uncategorized');
 }
@@ -346,9 +441,12 @@ function normalize(rows){
 function ingest(rows){
   RAW = normalize(rows);
   HAS_ADVISOR = RAW.some(r=>r.advisor);
+  HAS_CALL_TIME = RAW.some(r=>r.callDuration!=null);
   if(!RAW.length){toast('No usable rows found in file.');return;}
   buildAdvisorSeg();
   buildFilters();
+  buildKpiPopover();
+  buildChartPopover();
   state.advisor = HAS_ADVISOR ? 'Both' : 'Both';
   document.getElementById('dashboard').classList.add('show');
   document.getElementById('reuploadBtn').style.display='inline-block';
@@ -445,6 +543,75 @@ document.getElementById('resetBtn').onclick=()=>{
   render();
 };
 
+/* ---------- Customise popovers ---------- */
+function makeToggle(checked,onChange){
+  const lab=document.createElement('label');lab.className='tsw';
+  lab.innerHTML='<input type="checkbox"'+(checked?' checked':'')+'><span class="track"></span><span class="knob"></span>';
+  lab.querySelector('input').onchange=(e)=>onChange(e.target.checked);
+  return lab;
+}
+function applyKpiVisibility(){
+  const cards=document.querySelectorAll('#kpis .kpi');
+  cards.forEach((c,i)=>{c.style.display=state.kpiVisible[i]?'':'none';});
+}
+function applyChartVisibility(){
+  CHART_SECTIONS.forEach((sec,i)=>{
+    const cv=document.getElementById(sec.canvas);
+    const card=sec.card?document.getElementById(sec.card):(cv?cv.closest('.card.chart-card'):null);
+    if(!card) return;
+    let vis=state.chartVisible[i];
+    if(sec.canvas==='cAdvisor' && !HAS_ADVISOR) vis=false; // legacy: hide advisor card with no advisor data
+    card.style.display=vis?'':'none';
+  });
+}
+function buildKpiPopover(){
+  const pop=document.getElementById('kpiPopover');
+  pop.querySelectorAll('.toggle-row').forEach(n=>n.remove());
+  KPI_NAMES.forEach((name,i)=>{
+    const row=document.createElement('div');row.className='toggle-row';
+    const span=document.createElement('span');span.textContent=name;
+    row.appendChild(span);
+    row.appendChild(makeToggle(state.kpiVisible[i],(on)=>{state.kpiVisible[i]=on;applyKpiVisibility();}));
+    pop.appendChild(row);
+  });
+}
+function buildChartPopover(){
+  const pop=document.getElementById('chartPopover');
+  pop.querySelectorAll('.toggle-row').forEach(n=>n.remove());
+  CHART_SECTIONS.forEach((sec,i)=>{
+    const row=document.createElement('div');row.className='toggle-row';
+    const span=document.createElement('span');span.textContent=sec.name;
+    row.appendChild(span);
+    row.appendChild(makeToggle(state.chartVisible[i],(on)=>{state.chartVisible[i]=on;applyChartVisibility();}));
+    pop.appendChild(row);
+  });
+}
+function togglePop(popId,btn){
+  const pop=document.getElementById(popId);const open=pop.classList.contains('open');
+  document.querySelectorAll('.popover').forEach(p=>p.classList.remove('open'));
+  if(!open)pop.classList.add('open');
+}
+document.getElementById('kpiCustomBtn').onclick=(e)=>{e.stopPropagation();togglePop('kpiPopover');};
+document.getElementById('chartCustomBtn').onclick=(e)=>{e.stopPropagation();togglePop('chartPopover');};
+document.querySelectorAll('.popover').forEach(p=>p.addEventListener('click',e=>e.stopPropagation()));
+document.addEventListener('click',()=>document.querySelectorAll('.popover').forEach(p=>p.classList.remove('open')));
+
+/* ---------- Conversion-by-industry controls ---------- */
+document.getElementById('convSortSeg').addEventListener('click',e=>{
+  if(e.target.tagName!=='BUTTON')return;
+  [...e.currentTarget.children].forEach(c=>c.classList.toggle('active',c===e.target));
+  state.indConvSort=e.target.dataset.s;renderCharts(filtered());
+});
+document.getElementById('convViewSeg').addEventListener('click',e=>{
+  if(e.target.tagName!=='BUTTON')return;
+  [...e.currentTarget.children].forEach(c=>c.classList.toggle('active',c===e.target));
+  state.indConvView=e.target.dataset.v;renderCharts(filtered());
+});
+document.getElementById('convNSlider').oninput=(e)=>{
+  state.indConvN=+e.target.value;document.getElementById('convNVal').textContent=e.target.value;
+  renderCharts(filtered());
+};
+
 /* ---------- KPIs ---------- */
 function renderKPIs(data){
   const total=data.length;
@@ -471,6 +638,7 @@ function renderKPIs(data){
       <div class="val">${c.val}</div>
       <div class="sub">${c.sub}</div>
     </div>`).join('');
+  applyKpiVisibility();
 }
 
 /* ---------- Charts ---------- */
@@ -500,20 +668,25 @@ function renderCharts(data){
       plugins:{legend:{display:false},tooltip:tooltipCfg},
       scales:{x:{grid:{color:gridColor},ticks:{font:chartFont}},y:{grid:{display:false},ticks:{font:chartFont}}}}});
 
-  // Conversion by industry — stacked Sale / Warm / Cold %
+  // Conversion by industry — stacked Sale / Warm / Cold % with sort/view/N controls
   const ic=groupConv(data,r=>r.category);
-  const icArr=Object.entries(ic).filter(([,v])=>v.t>=1)
-    .map(([k,v])=>({k,sale:v.t?v.sale/v.t*100:0,warm:v.t?v.warm/v.t*100:0,cold:v.t?v.cold/v.t*100:0,t:v.t}))
-    .sort((a,b)=>b.sale-a.sale).slice(0,15);
-  mk('cIndustryConv',{type:'bar',data:{labels:icArr.map(e=>e.k),
-    datasets:[
-      {label:'Sale %',data:icArr.map(e=>+e.sale.toFixed(1)),backgroundColor:'#34d399',borderRadius:2,stack:'s'},
-      {label:'Warm %',data:icArr.map(e=>+e.warm.toFixed(1)),backgroundColor:'#fbbf24',borderRadius:2,stack:'s'},
-      {label:'Cold %',data:icArr.map(e=>+e.cold.toFixed(1)),backgroundColor:'#f87171',borderRadius:2,stack:'s'},
-    ]},
+  let icArr=Object.entries(ic).filter(([,v])=>v.t>=1)
+    .map(([k,v])=>({k,sale:v.t?v.sale/v.t*100:0,warm:v.t?v.warm/v.t*100:0,cold:v.t?v.cold/v.t*100:0,t:v.t}));
+  if(state.indConvSort==='industry') icArr.sort((a,b)=>a.k.localeCompare(b.k));
+  else if(state.indConvSort==='volume') icArr.sort((a,b)=>b.t-a.t);
+  else icArr.sort((a,b)=>b.sale-a.sale);
+  icArr=icArr.slice(0,state.indConvN);
+  const convDS=[];
+  if(state.indConvView==='sale'||state.indConvView==='both')
+    convDS.push({label:'Sale %',data:icArr.map(e=>+e.sale.toFixed(1)),backgroundColor:'#34d399',borderRadius:2,stack:'s'});
+  if(state.indConvView==='warm'||state.indConvView==='both')
+    convDS.push({label:'Warm %',data:icArr.map(e=>+e.warm.toFixed(1)),backgroundColor:'#fbbf24',borderRadius:2,stack:'s'});
+  if(state.indConvView==='both')
+    convDS.push({label:'Cold %',data:icArr.map(e=>+e.cold.toFixed(1)),backgroundColor:'#f87171',borderRadius:2,stack:'s'});
+  mk('cIndustryConv',{type:'bar',data:{labels:icArr.map(e=>e.k),datasets:convDS},
     options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,
       plugins:{legend:{position:'bottom',labels:{font:chartFont,padding:12}},tooltip:{...tooltipCfg,callbacks:{label:(c)=>` ${c.dataset.label}: ${c.parsed.x.toFixed(1)}%`}}},
-      scales:{x:{grid:{color:gridColor},stacked:true,max:100,ticks:{font:chartFont,callback:v=>v+'%'}},y:{grid:{display:false},stacked:true,ticks:{font:chartFont}}}}});
+      scales:{x:{grid:{color:gridColor},stacked:true,max:state.indConvView==='both'?100:undefined,ticks:{font:chartFont,callback:v=>v+'%'}},y:{grid:{display:false},stacked:true,ticks:{font:chartFont}}}}});
 
   // City
   const city=groupCount(data,r=>r.city);
@@ -557,6 +730,67 @@ function renderCharts(data){
       scales:{x:{grid:{display:false},ticks:{font:chartFont}},
         y:{position:'left',grid:{color:gridColor},ticks:{font:chartFont}},
         y1:{position:'right',max:100,grid:{display:false},ticks:{font:chartFont,callback:v=>v+'%'}}}}});
+
+  // --- New: Call Time by Advisor ---
+  const callTimeBox=document.getElementById('cCallTime').parentElement;
+  if(HAS_CALL_TIME && HAS_ADVISOR){
+    callTimeBox.querySelectorAll('.placeholder-msg').forEach(n=>n.remove());
+    document.getElementById('cCallTime').style.display='';
+    const acc={};
+    data.forEach(r=>{if(r.callDuration!=null){const a=r.advisor||'Unassigned';if(!acc[a])acc[a]={sum:0,n:0};acc[a].sum+=r.callDuration;acc[a].n++;}});
+    const ctArr=Object.entries(acc).map(([k,v])=>({k,avg:v.n?v.sum/v.n:0})).sort((a,b)=>b.avg-a.avg);
+    mk('cCallTime',{type:'bar',data:{labels:ctArr.map(e=>e.k),
+      datasets:[{label:'Avg Call Time',data:ctArr.map(e=>+e.avg.toFixed(0)),backgroundColor:'#3aaeae',borderRadius:4}]},
+      options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,
+        plugins:{legend:{display:false},tooltip:{...tooltipCfg,callbacks:{label:(c)=>' Avg: '+fmtMMSS(c.parsed.x)}}},
+        scales:{x:{grid:{color:gridColor},ticks:{font:chartFont,callback:v=>fmtMMSS(v)}},y:{grid:{display:false},ticks:{font:chartFont}}}}});
+  } else {
+    destroy('cCallTime');document.getElementById('cCallTime').style.display='none';
+    if(!callTimeBox.querySelector('.placeholder-msg')){
+      const d=document.createElement('div');d.className='placeholder-msg';
+      d.textContent="No call time data — add a 'Call Duration' column to your spreadsheet";
+      callTimeBox.appendChild(d);
+    }
+  }
+
+  // --- New: Warm/Cold Split by Advisor ---
+  const waBox=document.getElementById('cWarmAdvisor').parentElement;
+  if(HAS_ADVISOR){
+    waBox.querySelectorAll('.placeholder-msg').forEach(n=>n.remove());
+    document.getElementById('cWarmAdvisor').style.display='';
+    const wa=groupConv(data,r=>r.advisor||'Unassigned');
+    const waArr=Object.entries(wa).sort((a,b)=>b[1].t-a[1].t);
+    const wcTip=(c)=>{const i=c.dataIndex;const t=waArr[i][1].t;const v=c.parsed.y;return ` ${c.dataset.label}: ${v} (${t?Math.round(v/t*100):0}%)`;};
+    mk('cWarmAdvisor',{type:'bar',data:{labels:waArr.map(e=>e[0]),datasets:[
+      {label:'Sale',data:waArr.map(e=>e[1].sale),backgroundColor:'#34d399',stack:'s'},
+      {label:'Warm',data:waArr.map(e=>e[1].warm),backgroundColor:'#fbbf24',stack:'s'},
+      {label:'Cold',data:waArr.map(e=>e[1].cold),backgroundColor:'#f87171',stack:'s'},
+    ]},
+      options:{responsive:true,maintainAspectRatio:false,
+        plugins:{legend:{position:'bottom',labels:{font:chartFont,padding:12}},tooltip:{...tooltipCfg,callbacks:{label:wcTip}}},
+        scales:{x:{grid:{display:false},stacked:true,ticks:{font:chartFont}},y:{grid:{color:gridColor},stacked:true,ticks:{font:chartFont}}}}});
+  } else {
+    destroy('cWarmAdvisor');document.getElementById('cWarmAdvisor').style.display='none';
+    if(!waBox.querySelector('.placeholder-msg')){
+      const d=document.createElement('div');d.className='placeholder-msg';
+      d.textContent='No advisor data available';waBox.appendChild(d);
+    }
+  }
+
+  // --- New: Warm/Cold Split by Industry ---
+  const wi=groupConv(data,r=>r.category);
+  const wiArr=Object.entries(wi).sort((a,b)=>b[1].t-a[1].t).slice(0,12);
+  const wiTip=(c)=>{const i=c.dataIndex;const t=wiArr[i][1].t;const v=c.parsed.y;return ` ${c.dataset.label}: ${v} (${t?Math.round(v/t*100):0}%)`;};
+  mk('cWarmIndustry',{type:'bar',data:{labels:wiArr.map(e=>e[0]),datasets:[
+    {label:'Sale',data:wiArr.map(e=>e[1].sale),backgroundColor:'#34d399',stack:'s'},
+    {label:'Warm',data:wiArr.map(e=>e[1].warm),backgroundColor:'#fbbf24',stack:'s'},
+    {label:'Cold',data:wiArr.map(e=>e[1].cold),backgroundColor:'#f87171',stack:'s'},
+  ]},
+    options:{responsive:true,maintainAspectRatio:false,
+      plugins:{legend:{position:'bottom',labels:{font:chartFont,padding:12}},tooltip:{...tooltipCfg,callbacks:{label:wiTip}}},
+      scales:{x:{grid:{display:false},stacked:true,ticks:{font:chartFont}},y:{grid:{color:gridColor},stacked:true,ticks:{font:chartFont}}}}});
+
+  applyChartVisibility();
 }
 
 /* ---------- Pivot ---------- */
@@ -711,7 +945,8 @@ function demoData(){
       'categoryName':ind,
       'Result':res,
       'Action':res==='Callback'?'Call back Friday':res==='Meeting Booked'?'Demo 10am':'',
-      'Sales Advisor':adv
+      'Sales Advisor':adv,
+      'Call Duration':45+Math.floor(rnd()*375)
     });
   }
   return rows;
