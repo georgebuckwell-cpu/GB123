@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VelaSync — Line Guide Deal Strategy (Internal)</title>
+<meta name="description" content="Internal VelaSync strategy note: how to structure the Line Guide partnership for maximum risk-adjusted return, and how to exit. Not for distribution.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --teal:#2B8E8E; --teal-light:#3aaeae; --teal-bright:#5fd0d0;
+  --teal-glow:rgba(43,142,142,.20); --teal-wash:rgba(43,142,142,.09);
+  --green:#19CD6A; --green-deep:#0E9B4E; --gold:#fbbf24; --red:#f87171;
+  --font-disp:'Space Grotesk','Inter',system-ui,sans-serif;
+  --font-body:'Inter',system-ui,sans-serif;
+  --font-mono:'IBM Plex Mono',ui-monospace,monospace;
+  --maxw:920px; --r:14px; --r-lg:20px; --r-xl:26px;
+}
+:root[data-theme="dark"]{
+  --bg:#050a0a; --bg-1:#0a1212; --surf:#152222; --card:rgba(255,255,255,.02);
+  --text:#eef7f7; --head:#f4fbfb; --sub:rgba(238,247,247,.6); --dim:rgba(238,247,247,.34);
+  --bdr:rgba(43,142,142,.18); --bdr-m:rgba(43,142,142,.3); --shade:rgba(255,255,255,.04);
+  --sh:0 4px 22px rgba(0,0,0,.45); --sh-lg:0 18px 56px rgba(0,0,0,.55);
+  --sa:#19CD6A; --sb:#4fc4c4; --sc:#e0a422;
+}
+:root[data-theme="light"]{
+  --bg:#f4f8f8; --bg-1:#eaf1f1; --surf:#fff; --card:#fff;
+  --text:#16211f; --head:#08120f; --sub:rgba(22,33,31,.62); --dim:rgba(22,33,31,.4);
+  --bdr:rgba(31,110,110,.2); --bdr-m:rgba(31,110,110,.34); --shade:rgba(12,60,60,.04);
+  --teal:#1F6E6E; --teal-light:#2B8E8E; --green-deep:#0B7C42;
+  --sh:0 4px 18px rgba(20,50,50,.09); --sh-lg:0 18px 48px rgba(20,50,50,.13);
+  --sa:#0F9E52; --sb:#0C9494; --sc:#B0730A;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-body);background:var(--bg);color:var(--text);line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+svg{display:block}
+::selection{background:var(--teal-glow)}
+.bar{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.7rem clamp(1rem,4vw,2rem);background:color-mix(in srgb,var(--bg) 84%,transparent);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--bdr)}
+.bar-l{display:flex;align-items:center;gap:.7rem}
+.bar-tag{font-family:var(--font-mono);font-size:.6rem;letter-spacing:1.6px;text-transform:uppercase;color:var(--dim)}
+.btn{font-family:var(--font-body);font-size:.78rem;font-weight:600;display:inline-flex;align-items:center;gap:.45rem;padding:.5rem .9rem;border-radius:100px;border:1px solid var(--bdr-m);background:var(--surf);color:var(--text);cursor:pointer;transition:border-color .18s,transform .12s}
+.btn:hover{border-color:var(--teal);transform:translateY(-1px)}
+.btn svg{width:14px;height:14px}
+.icon-btn{width:36px;height:36px;padding:0;justify-content:center}.icon-btn svg{width:16px;height:16px}
+.vs-logo{display:flex;align-items:center;gap:9px}
+.vs-mark{width:30px;height:30px}
+.vs-word b{font-family:var(--font-disp);font-weight:700;font-size:.98rem;letter-spacing:.4px;color:var(--head);display:block;line-height:1}
+.vs-word em{font-family:var(--font-mono);font-style:normal;font-size:.5rem;letter-spacing:2px;text-transform:uppercase;color:var(--teal-light)}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 clamp(1.1rem,4vw,2rem)}
+.hero{padding:clamp(2.4rem,6vw,4rem) 0 1.5rem;border-bottom:1px solid var(--bdr)}
+.stamp{display:inline-flex;align-items:center;gap:.5rem;font-family:var(--font-mono);font-size:.62rem;letter-spacing:2px;text-transform:uppercase;color:var(--red);border:1px solid color-mix(in srgb,var(--red) 42%,transparent);border-radius:100px;padding:.35rem .8rem;margin-bottom:1.4rem}
+.stamp::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--red)}
+h1{font-family:var(--font-disp);font-weight:600;font-size:clamp(1.9rem,5vw,3rem);line-height:1.1;letter-spacing:-.01em;color:var(--head);text-wrap:balance;margin-bottom:1rem}
+h1 span{color:var(--teal-light)}
+.lede{font-size:clamp(1rem,1.8vw,1.15rem);color:var(--sub);max-width:62ch}
+section{padding:clamp(2rem,5vw,3rem) 0;border-bottom:1px solid var(--bdr)}
+section:last-of-type{border-bottom:none}
+.eyebrow{display:inline-flex;align-items:center;gap:.5rem;font-family:var(--font-mono);font-size:.66rem;letter-spacing:2.4px;text-transform:uppercase;color:var(--teal-light);margin-bottom:.9rem}
+.eyebrow::before{content:'';width:20px;height:1.5px;background:currentColor;opacity:.55}
+h2{font-family:var(--font-disp);font-weight:600;font-size:clamp(1.4rem,3.4vw,2rem);line-height:1.15;letter-spacing:-.01em;color:var(--head);text-wrap:balance;margin-bottom:.7rem}
+h3{font-family:var(--font-disp);font-weight:600;font-size:1.05rem;color:var(--head);margin-bottom:.4rem}
+p{max-width:68ch}p+p{margin-top:.8rem}
+strong{color:var(--head);font-weight:600}
+.tt{color:var(--teal-light)}.gt{color:var(--green)}
+.mt{margin-top:1.5rem}
+.card{background:var(--card);border:1px solid var(--bdr);border-radius:var(--r-lg);padding:1.3rem 1.4rem}
+.grid{display:grid;gap:1rem}
+.g2{grid-template-columns:repeat(2,1fr)}.g3{grid-template-columns:repeat(3,1fr)}
+@media(max-width:680px){.g2,.g3{grid-template-columns:1fr}}
+.thesis{background:var(--teal-wash);border:1px solid var(--bdr-m);border-radius:var(--r-lg);padding:1.4rem 1.5rem;position:relative;margin-top:1.4rem}
+.thesis::before{content:'';position:absolute;left:0;top:14px;bottom:14px;width:3px;border-radius:3px;background:var(--teal-light)}
+.thesis .h{font-family:var(--font-disp);font-weight:600;color:var(--teal-light);margin-bottom:.4rem;font-size:1rem}
+.thesis p{color:var(--sub);max-width:none}
+.table-scroll{overflow-x:auto;margin-top:1.4rem;border:1px solid var(--bdr);border-radius:var(--r-lg)}
+table{width:100%;border-collapse:collapse;min-width:520px;font-size:.9rem}
+th,td{text-align:left;padding:.8rem 1rem;border-bottom:1px solid var(--bdr)}
+thead th{font-family:var(--font-mono);font-size:.62rem;letter-spacing:1.3px;text-transform:uppercase;color:var(--dim);font-weight:500;background:var(--shade)}
+tbody tr:last-child td{border-bottom:none}
+td.num,th.num{text-align:right;font-family:var(--font-mono);font-variant-numeric:tabular-nums}
+td strong{color:var(--head)}
+.win{color:var(--green);font-weight:600}
+.chip{display:inline-block;font-family:var(--font-mono);font-size:.64rem;font-weight:500;padding:.2rem .55rem;border-radius:100px}
+.chip.g{background:rgba(25,205,106,.12);color:var(--green);border:1px solid rgba(25,205,106,.3)}
+.chip.t{background:var(--teal-wash);color:var(--teal-light);border:1px solid var(--bdr-m)}
+/* grouped bar chart */
+.chart{background:var(--card);border:1px solid var(--bdr);border-radius:var(--r-xl);padding:1.5rem 1.5rem 1.6rem;margin-top:1.5rem}
+.legend{display:flex;gap:1.1rem;flex-wrap:wrap;margin-bottom:.4rem}
+.legend span{display:inline-flex;align-items:center;gap:.4rem;font-size:.78rem;color:var(--sub)}
+.legend i{width:12px;height:12px;border-radius:3px;display:inline-block}
+.gplot{position:relative;height:280px;margin-top:1.2rem}
+.ggrid{position:absolute;inset:0 6px 46px 50px;pointer-events:none}
+.ggl{position:absolute;left:0;right:0;border-top:1px solid var(--bdr)}
+.ggl span{position:absolute;left:-50px;top:-.55rem;width:44px;text-align:right;font-family:var(--font-mono);font-size:.62rem;color:var(--dim)}
+.ggroups{position:absolute;inset:0 6px 46px 50px;display:flex;justify-content:space-around;align-items:flex-end}
+.ggroup{height:100%;display:flex;align-items:flex-end;gap:8px}
+.gbar{width:clamp(26px,6vw,40px);border-radius:5px 5px 0 0;position:relative;min-height:2px}
+.gbar span{position:absolute;top:-1.35rem;left:50%;transform:translateX(-50%);font-family:var(--font-mono);font-size:.62rem;font-weight:600;color:var(--head);white-space:nowrap}
+.gxlab{position:absolute;left:50px;right:6px;bottom:0;display:flex;justify-content:space-around}
+.gxlab div{text-align:center;font-family:var(--font-mono);font-size:.66rem;color:var(--sub);line-height:1.3}
+.gxlab div b{display:block;color:var(--dim);font-size:.58rem;font-weight:400}
+.dl{list-style:none;display:flex;flex-direction:column;gap:.7rem;margin-top:1.3rem}
+.dl li{position:relative;padding-left:1.6rem;font-size:.93rem;color:var(--sub)}
+.dl li b{color:var(--head);font-weight:600}
+.dl li::before{content:'';position:absolute;left:0;top:.5rem;width:9px;height:9px;border-radius:2px;background:var(--teal-light)}
+.rec{background:var(--teal-wash);border:1px solid var(--bdr-m);border-radius:var(--r-xl);padding:1.5rem 1.6rem;margin-top:1.5rem}
+.rec h3{color:var(--teal-light)}
+.foot{padding:2rem 0 3rem;text-align:center}
+.foot p{max-width:none;font-family:var(--font-mono);font-size:.72rem;color:var(--dim);letter-spacing:.4px}
+@media print{
+  :root[data-theme]{--bg:#fff;--surf:#fff;--card:#fff;--text:#16211f;--head:#000;--sub:#3a4a48;--bdr:#cdd8d8;--shade:#f2f6f6}
+  .bar{display:none}.chart,.card,.thesis,.rec{break-inside:avoid}
+}
+</style>
+</head>
+<body>
+<div class="bar">
+  <div class="bar-l">
+    <span class="vs-logo">
+      <svg class="vs-mark" viewBox="0 0 120 120" fill="none" aria-label="VelaSync">
+        <defs><linearGradient id="vt" x1="20" y1="14" x2="100" y2="106" gradientUnits="userSpaceOnUse"><stop stop-color="#3aaeae"/><stop offset="1" stop-color="#2B8E8E"/></linearGradient></defs>
+        <path d="M26 16 L52 16 L60 78 L48 90 Z" fill="url(#vt)"/><path d="M68 16 L94 16 L72 92 L60 78 Z" fill="url(#vt)" opacity="0.92"/>
+        <path d="M40 24 L58 70 L80 24" stroke="#eef7f7" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+        <path d="M30 58 L42 58 L36 80 Z" fill="#0f2a5e"/><path d="M30 98 C46 88, 74 108, 92 96" stroke="url(#vt)" stroke-width="9" stroke-linecap="round" fill="none"/>
+      </svg>
+      <span class="vs-word"><b>VelaSync</b><em>Deal Strategy</em></span>
+    </span>
+    <span class="bar-tag">Internal</span>
+  </div>
+  <div style="display:flex;gap:.5rem">
+    <button class="btn icon-btn" id="themeBtn" aria-label="Toggle theme"><svg id="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button>
+    <button class="btn" onclick="window.print()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2M6 14h12v8H6z"/></svg>PDF</button>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="stamp">Internal · Not for distribution to Line Guide</span>
+    <h1>How VelaSync should <span>structure — and exit —</span> the Line Guide deal</h1>
+    <p class="lede">A VelaSync-side view: which of the three structures maximises our risk-adjusted return, what to push for at the table, and how we get our money out if we ever need to.</p>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow">The core insight</div>
+    <h2>Recurring commission is an annuity. Equity is a lottery ticket.</h2>
+    <p>The recurring fee — <strong>a percentage of all the revenue we generate, with no end date</strong> — is an income stream that compounds every quarter and never switches off. Equity only pays out on an exit that may be years away, may be small, or may never happen. For a services firm, the annuity is almost always the higher-value, lower-risk asset. The equity is cheap optionality on top — worth having, not worth trading the annuity for.</p>
+    <div class="thesis">
+      <div class="h">The one-line strategy</div>
+      <p>Maximise the recurring percentage, take a modest equity slice for exit upside, and make sure the recurring stream is protected on a change of control — because that protection is also our exit.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow">The numbers</div>
+    <h2>Five-year total return to VelaSync, by structure &amp; scenario</h2>
+    <p>Modelled on ~<strong>£8.1m</strong> of cumulative platform revenue over five years (the plan's growth curve, continued and maturing). Equity valued at 10% / 15% of an exit at the end of year five.</p>
+    <div class="table-scroll">
+      <table>
+        <thead><tr><th>Scenario (5-year)</th><th class="num">A · 35% recurring</th><th class="num">B · 20% + 10% eq</th><th class="num">C · 10% + 15% eq</th><th>Best</th></tr></thead>
+        <tbody>
+          <tr><td><strong>No exit</strong> — company keeps trading</td><td class="num win">£2.85m</td><td class="num">£1.63m</td><td class="num">£0.81m</td><td class="win">A</td></tr>
+          <tr><td><strong>Modest exit</strong> — sold for £10m</td><td class="num win">£2.85m</td><td class="num">£2.63m</td><td class="num">£2.31m</td><td class="win">A</td></tr>
+          <tr><td><strong>Strong exit</strong> — sold for £20m</td><td class="num">£2.85m</td><td class="num">£3.63m</td><td class="num win">£3.81m</td><td class="win">C</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="mt" style="font-size:.88rem;color:var(--dim)">And note what the table can't show: Option A's £2.85m is still paying in year six and beyond — B and C have already cashed their equity and stopped. Over a long horizon A pulls further ahead.</p>
+
+    <div class="chart">
+      <div class="legend">
+        <span><i style="background:var(--sa)"></i> A · 35% recurring</span>
+        <span><i style="background:var(--sb)"></i> B · 20% + equity</span>
+        <span><i style="background:var(--sc)"></i> C · 10% + equity</span>
+      </div>
+      <div class="gplot">
+        <div class="ggrid">
+          <div class="ggl" style="bottom:100%"><span>£4m</span></div>
+          <div class="ggl" style="bottom:75%"><span>£3m</span></div>
+          <div class="ggl" style="bottom:50%"><span>£2m</span></div>
+          <div class="ggl" style="bottom:25%"><span>£1m</span></div>
+          <div class="ggl" style="bottom:0"><span>£0</span></div>
+        </div>
+        <div class="ggroups">
+          <div class="ggroup">
+            <div class="gbar" style="height:71.25%;background:var(--sa)"><span>2.85</span></div>
+            <div class="gbar" style="height:40.75%;background:var(--sb)"><span>1.63</span></div>
+            <div class="gbar" style="height:20.25%;background:var(--sc)"><span>0.81</span></div>
+          </div>
+          <div class="ggroup">
+            <div class="gbar" style="height:71.25%;background:var(--sa)"><span>2.85</span></div>
+            <div class="gbar" style="height:65.75%;background:var(--sb)"><span>2.63</span></div>
+            <div class="gbar" style="height:57.75%;background:var(--sc)"><span>2.31</span></div>
+          </div>
+          <div class="ggroup">
+            <div class="gbar" style="height:71.25%;background:var(--sa)"><span>2.85</span></div>
+            <div class="gbar" style="height:90.75%;background:var(--sb)"><span>3.63</span></div>
+            <div class="gbar" style="height:95.25%;background:var(--sc)"><span>3.81</span></div>
+          </div>
+        </div>
+        <div class="gxlab"><div>No exit<b>keeps trading</b></div><div>Modest exit<b>£10m</b></div><div>Strong exit<b>£20m</b></div></div>
+      </div>
+      <p style="font-size:.8rem;color:var(--dim);margin-top:1.2rem;font-family:var(--font-mono)">£m to VelaSync over 5 years. A only loses when the exit is large (&gt;~£18m) and reasonably near.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow">The recommendation</div>
+    <h2>Anchor on the annuity, take equity as a kicker</h2>
+    <div class="rec">
+      <h3>What to push for</h3>
+      <ul class="dl">
+        <li><b>Open on Option A (35%, recurring, no end date)</b> — it's our strongest position and the highest-EV outcome in every scenario short of a big, near exit. The “no end date” is the crown jewel; don't give it away cheaply.</li>
+        <li><b>Settle around a strong-recurring hybrid</b> — concede from 35% toward ~25–30% <em>only</em> in exchange for a <b>5–10% equity kicker</b>. That keeps most of the annuity and adds exit upside for very little given up.</li>
+        <li><b>Protect the stream on change of control</b> — if Line Guide is sold, the recurring commission must convert to a <b>buy-out multiple (3–4× annual run-rate)</b>. This is upside protection <em>and</em> our liquidity event.</li>
+        <li><b>Tie equity vesting to revenue we generate</b> — milestones we control, not vague company goals.</li>
+      </ul>
+    </div>
+    <div class="grid g3 mt">
+      <div class="card"><h3>Prefer A/hybrid if…</h3><p style="font-size:.88rem;color:var(--sub)">You expect the company to keep trading, or any exit to be years away or modest. This is the base case — bet on the annuity.</p></div>
+      <div class="card"><h3>Lean to C if…</h3><p style="font-size:.88rem;color:var(--sub)">You have strong conviction in a near, large exit (&gt;£18m) and are willing to trade guaranteed cash for that bet.</p></div>
+      <div class="card"><h3>Never…</h3><p style="font-size:.88rem;color:var(--sub)">Give up the recurring “no end date” without a buy-out multiple, or accept equity without tag-along and vesting you control.</p></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="eyebrow">Getting out</div>
+    <h2>How we exit if we need to</h2>
+    <div class="grid g3 mt">
+      <div class="card"><h3>Walk from the work</h3><p style="font-size:.88rem;color:var(--sub)">End the consultancy on 3 months' notice, keeping a <b>trailing commission tail</b> (~12 months) on customers already won — or trigger the buy-out.</p></div>
+      <div class="card"><h3>Sell the income</h3><p style="font-size:.88rem;color:var(--sub)">Have Line Guide <b>buy out the recurring commission</b> for a lump sum (3–4× annual run-rate) — a clean, pre-agreed cash exit that doesn't depend on a company sale.</p></div>
+      <div class="card"><h3>Realise the equity</h3><p style="font-size:.88rem;color:var(--sub)"><b>Tag-along</b> on a company sale, sell in a <b>secondary</b> to incoming investors, or a <b>buy-back at fair value</b> under an agreed valuation mechanism.</p></div>
+    </div>
+    <div class="thesis">
+      <div class="h">Make the exit un-blockable</div>
+      <p>Get all three routes written into the agreements up front — notice + tail, a commission buy-out formula, and equity tag-along + a valuation mechanism. The point is that <strong>we never need Line Guide's goodwill to get our money out</strong>; the mechanics are pre-agreed on day one.</p>
+    </div>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="wrap"><p>VelaSync internal · Line Guide deal strategy · Not for distribution · Illustrative figures</p></div>
+</footer>
+
+<script>
+(function(){
+  var root=document.documentElement, btn=document.getElementById('themeBtn'), ic=document.getElementById('ic');
+  function pref(){try{return window.matchMedia('(prefers-color-scheme: light)').matches?'light':'dark'}catch(e){return 'dark'}}
+  var sun='<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>';
+  var moon='<path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z"/>';
+  function apply(t){root.setAttribute('data-theme',t);ic.innerHTML=t==='dark'?sun:moon}
+  apply(pref());
+  btn.addEventListener('click',function(){apply(root.getAttribute('data-theme')==='dark'?'light':'dark')});
+})();
+</script>
+</body>
+</html>
