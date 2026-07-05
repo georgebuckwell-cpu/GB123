@@ -316,6 +316,43 @@ td strong{color:var(--head)}
 .fn .fn-m{font-family:var(--font-mono);font-size:.8rem;color:var(--green);font-weight:500;flex-shrink:0}
 @media(max-width:640px){.fn{flex-wrap:wrap}.fn .fn-d{flex-basis:100%;order:3}}
 
+/* ── CHIPS ROW ──────────────────────────────────────────────────────────── */
+.chips{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.85rem}
+.chip.n{background:var(--shade);color:var(--sub);border:1px solid var(--bdr)}
+
+/* ── FORECAST CHART (single axis, cumulative build) ─────────────────────── */
+:root[data-theme="dark"]{--ch-new:#4fc4c4;--ch-prior:rgba(79,196,196,.24)}
+:root[data-theme="light"]{--ch-new:#2B8E8E;--ch-prior:rgba(43,142,142,.20)}
+.chart-card{background:var(--card);border:1px solid var(--bdr);border-radius:var(--r-xl);padding:1.5rem clamp(1rem,3vw,1.8rem) 1.7rem;margin-top:1.6rem}
+.chart-head{display:flex;justify-content:space-between;align-items:flex-start;gap:1.2rem;flex-wrap:wrap}
+.chart-title{font-family:var(--font-display);font-weight:600;color:var(--head);font-size:1.08rem}
+.chart-sub{font-size:.83rem;color:var(--sub);margin-top:.15rem;max-width:52ch}
+.legend{display:flex;gap:1rem;flex-wrap:wrap}
+.legend span{display:inline-flex;align-items:center;gap:.45rem;font-size:.78rem;color:var(--sub)}
+.legend i{width:12px;height:12px;border-radius:3px;display:inline-block;flex-shrink:0}
+.plot{position:relative;height:300px;margin-top:1.6rem}
+.grid-lines,.cols{position:absolute;inset:0 4px 30px 54px}
+.grid-lines{pointer-events:none}
+.gl{position:absolute;left:0;right:0;border-top:1px solid var(--bdr)}
+.gl span{position:absolute;left:-54px;top:-.55rem;width:46px;text-align:right;font-family:var(--font-mono);font-size:.62rem;color:var(--dim);font-variant-numeric:tabular-nums}
+.cols{display:flex;align-items:flex-end;gap:clamp(3px,1.3vw,12px)}
+.col{flex:1;height:100%;position:relative}
+.col .cbar{position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:min(46px,72%);display:flex;flex-direction:column-reverse;border-radius:5px 5px 0 0;overflow:hidden;transition:filter .15s}
+.col:hover .cbar{filter:brightness(1.12)}
+.col .seg-prior{background:var(--ch-prior)}
+.col .seg-new{background:var(--ch-new)}
+.col:not(:first-child) .seg-new{border-bottom:2px solid var(--card)}
+.col .val{position:absolute;left:-6px;right:-6px;text-align:center;font-family:var(--font-mono);font-size:.6rem;font-weight:600;color:var(--head);white-space:nowrap;font-variant-numeric:tabular-nums}
+.xlabels{position:absolute;left:54px;right:4px;bottom:0;display:flex;gap:clamp(3px,1.3vw,12px)}
+.xlabels .xl{flex:1;text-align:center;font-family:var(--font-mono);font-size:.66rem;color:var(--sub);line-height:1.3}
+.xlabels .xl b{display:block;color:var(--dim);font-size:.56rem;font-weight:400}
+.chart-tip{position:fixed;z-index:300;pointer-events:none;opacity:0;transition:opacity .12s;background:var(--surf);border:1px solid var(--bdr-m);border-radius:11px;padding:.65rem .8rem;box-shadow:var(--sh-lg);font-size:.76rem;min-width:172px}
+.chart-tip.on{opacity:1}
+.chart-tip .tq{font-family:var(--font-display);font-weight:600;color:var(--head);margin-bottom:.4rem;font-size:.82rem}
+.chart-tip .tr{display:flex;justify-content:space-between;gap:1.2rem;color:var(--sub);padding:.1rem 0}
+.chart-tip .tr b{color:var(--head);font-family:var(--font-mono);font-variant-numeric:tabular-nums}
+.chart-tip .tr.hi b{color:var(--teal-light)}
+
 /* ── SIGN OFF ───────────────────────────────────────────────────────────── */
 .signoff{background:var(--card-2);border:1px solid var(--bdr);border-radius:var(--r-xl);padding:clamp(1.6rem,4vw,2.4rem);margin-top:1.8rem;display:grid;grid-template-columns:1.3fr 1fr;gap:2rem}
 @media(max-width:700px){.signoff{grid-template-columns:1fr;gap:1.4rem}}
@@ -659,50 +696,77 @@ td strong{color:var(--head)}
         <div class="tl-when">Phase 0<br>Weeks 0–4</div>
         <div class="tl-body">
           <h3>Foundations &amp; positioning</h3>
-          <p>Sharpen the Line Guide brand story, build the supplier &amp; buyer landing funnels, instrument analytics, and prepare outreach assets. Define the “hero” use cases to lead with (e.g. palletising, end-of-line).</p>
+          <p>Get the machine ready to fire before a pound is spent on acquisition.</p>
+          <ul>
+            <li><b>Category &amp; messaging:</b> define the category (“supplier discovery for food &amp; beverage automation”) and write separate value propositions for buyers and suppliers.</li>
+            <li><b>Conversion funnels:</b> a dedicated supplier sign-up page, plus one buyer landing page per hero use case — palletising, end-of-line, filling &amp; dosing, vision &amp; inspection.</li>
+            <li><b>Tracking:</b> GA4 + event tracking on the two events that matter — <em>brief submitted</em> and <em>supplier sign-up</em> — feeding a live KPI dashboard from day one.</li>
+            <li><b>Prospect data:</b> build the target supplier list from PPMA membership, Foodex / PPMA Show exhibitor lists, Companies House SIC codes and LinkedIn Sales Navigator.</li>
+            <li><b>Sales assets:</b> supplier one-pager, cold-email sequences, LinkedIn scripts and a 90-second demo video.</li>
+          </ul>
+          <div class="chips"><span class="chip n">Positioning</span><span class="chip n">Landing pages</span><span class="chip n">GA4 + events</span><span class="chip n">Prospect list</span></div>
         </div>
       </div>
       <div class="tl-row">
         <div class="tl-when">Phase 1<br>Months 1–3</div>
         <div class="tl-body">
           <h3>Seed the supply side</h3>
-          <p>Hand-recruit a founding cohort of suppliers with a free or heavily discounted launch tier in exchange for a complete profile. Target credible OEMs and integrators across the core use cases so buyer searches never return empty.</p>
+          <p>Solve the cold-start by hand-recruiting a credible founding cohort so a buyer's first search is never empty.</p>
           <ul>
-            <li>Direct outbound to a curated supplier list (LinkedIn + email).</li>
-            <li>“Founding supplier” offer — free months in return for early commitment &amp; testimonials.</li>
-            <li>Goal: a critical mass of profiles per hero use case before demand switches on.</li>
+            <li><b>Founding Supplier Programme:</b> first 30–50 suppliers get 3–6 months free plus a “Founding Partner” badge, in exchange for a complete profile and a testimonial.</li>
+            <li><b>Targeted outbound:</b> personalised LinkedIn + email to selected OEMs and system integrators — ~75–100 contacts/week — segmented by hero use case.</li>
+            <li><b>Concierge onboarding:</b> VelaSync builds each supplier's profile <em>for</em> them, removing all setup friction.</li>
+            <li><b>Trade-body leverage:</b> warm introductions via PPMA and the Food &amp; Drink Federation; exhibitor lists from Foodex / PPMA Show worked as a ready-made prospect database.</li>
+            <li><b>Coverage target:</b> a minimum number of live profiles per hero use case before demand is switched on.</li>
           </ul>
+          <div class="chips"><span class="chip n">Founding programme</span><span class="chip n">LinkedIn + email outbound</span><span class="chip n">Concierge onboarding</span><span class="chip n">PPMA / FDF</span></div>
         </div>
       </div>
       <div class="tl-row">
         <div class="tl-when">Phase 2<br>Months 2–6</div>
         <div class="tl-body">
           <h3>Ignite buyer demand</h3>
-          <p>Capture manufacturers at the moment of intent with search-led content and targeted outreach. Every use-case page is an SEO asset and a paid-ad landing page.</p>
+          <p>Capture manufacturers at the moment of intent. Every use-case page is both an SEO asset and a paid-ad landing page.</p>
           <ul>
-            <li>SEO content hub: “How to choose a palletiser”, “End-of-line automation buyer's guide”, etc.</li>
-            <li>Google Ads on high-intent terms; LinkedIn to plant &amp; operations managers.</li>
-            <li>Partnerships with trade bodies, industry media and consultants for referral demand.</li>
+            <li><b>SEO content hub:</b> a buyer's guide per use case — “How to choose a palletiser”, “End-of-line automation buyer's guide” — targeting high-intent, long-tail search.</li>
+            <li><b>Paid search:</b> Google Ads on bottom-funnel terms (“robotic palletiser supplier UK”, “case packing machine manufacturer”).</li>
+            <li><b>Account-based outreach:</b> LinkedIn ads + direct outreach to Operations Directors, Engineering and Continuous-Improvement Managers at F&amp;B manufacturers.</li>
+            <li><b>Lead magnets:</b> downloadable buyer's guides and a simple ROI / payback calculator to convert visitors into briefs.</li>
+            <li><b>PR &amp; trade media:</b> bylined articles and listings in <em>Food Manufacture</em>, <em>Machinery Update</em> and <em>New Food</em>.</li>
+            <li><b>Referral partnerships:</b> consultants, integrators and trade bodies that send buyers our way.</li>
           </ul>
+          <div class="chips"><span class="chip n">SEO content</span><span class="chip n">Google Ads</span><span class="chip n">LinkedIn ABM</span><span class="chip n">Lead magnets</span><span class="chip n">Trade PR</span></div>
         </div>
       </div>
       <div class="tl-row">
         <div class="tl-when">Phase 3<br>Months 4–9</div>
         <div class="tl-body">
           <h3>Convert &amp; monetise</h3>
-          <p>With demonstrable lead flow, migrate founding suppliers onto paid Basic / Plus / Premium tiers — selling on proof, not promise. Introduce Premium upsells and featured placements.</p>
+          <p>With demonstrable lead flow, migrate founding suppliers onto paid tiers — selling on proof, not promise.</p>
           <ul>
-            <li>Lead-flow dashboards that make the ROI of a paid tier obvious.</li>
-            <li>Tier-up campaigns; case studies from early wins.</li>
-            <li>Referral loop — suppliers and buyers invite others.</li>
+            <li><b>Proof-of-value dashboards:</b> show each supplier the qualified briefs and matches they've received — the ROI case for paying, in their own numbers.</li>
+            <li><b>Founding-tier expiry campaign:</b> a time-boxed conversion push from free to Basic / Plus / Premium as the founding period ends.</li>
+            <li><b>Tier-up plays:</b> use placement-performance data to upsell Plus → Premium (featured &amp; top-of-shortlist).</li>
+            <li><b>Social proof:</b> case studies and testimonials from the first closed equipment deals.</li>
+            <li><b>Two-sided referral loop:</b> incentivise suppliers and buyers to invite peers.</li>
+            <li><b>Annual billing incentive:</b> a discount for annual prepay to cut churn and pull cash forward.</li>
           </ul>
+          <div class="chips"><span class="chip n">ROI dashboards</span><span class="chip n">Free→paid conversion</span><span class="chip n">Upsell to Premium</span><span class="chip n">Case studies</span><span class="chip n">Referrals</span></div>
         </div>
       </div>
       <div class="tl-row">
         <div class="tl-when">Phase 4<br>Months 9–18</div>
         <div class="tl-body">
           <h3>Scale &amp; expand</h3>
-          <p>Deepen category coverage, expand geographically (UK → EU), and layer in new revenue lines. Systematise the acquisition engine so growth compounds.</p>
+          <p>Turn the engine into a system and widen the market so growth compounds.</p>
+          <ul>
+            <li><b>Systematise acquisition:</b> document the outbound + content engine into repeatable playbooks; add an SDR as volume justifies.</li>
+            <li><b>Category expansion:</b> extend the taxonomy — conveying, coding &amp; marking, mixing &amp; blending.</li>
+            <li><b>Geographic expansion:</b> UK → Ireland → EU food &amp; beverage hubs (Netherlands, Germany).</li>
+            <li><b>New revenue lines:</b> featured placements, pay-per-qualified-lead add-ons, and anonymised market-insight reports sold to suppliers.</li>
+            <li><b>Investment readiness:</b> a repeatable, data-backed growth engine that supports a future raise.</li>
+          </ul>
+          <div class="chips"><span class="chip n">Playbooks + SDR</span><span class="chip n">New categories</span><span class="chip n">EU expansion</span><span class="chip n">New revenue lines</span></div>
         </div>
       </div>
     </div>
@@ -803,6 +867,77 @@ td strong{color:var(--head)}
           <li>Aligns VelaSync with <b>long-term enterprise value</b>, not just this quarter</li>
         </ul>
       </div>
+    </div>
+
+    <div class="chart-card rv">
+      <div class="chart-head">
+        <div>
+          <div class="chart-title">VelaSync's cash benefit — quarterly forecast</div>
+          <div class="chart-sub">Commission of 25% on the subscription revenue VelaSync generates, tracked against the growth model. Each column is the running total; the bright cap is that quarter's new cash.</div>
+        </div>
+        <div class="legend">
+          <span><i style="background:var(--ch-new)"></i> Earned this quarter</span>
+          <span><i style="background:var(--ch-prior)"></i> Earned to date</span>
+        </div>
+      </div>
+
+      <div class="plot" id="plot">
+        <div class="grid-lines">
+          <div class="gl" style="bottom:100%"><span>£300k</span></div>
+          <div class="gl" style="bottom:75%"><span>£225k</span></div>
+          <div class="gl" style="bottom:50%"><span>£150k</span></div>
+          <div class="gl" style="bottom:25%"><span>£75k</span></div>
+          <div class="gl" style="bottom:0"><span>£0</span></div>
+        </div>
+        <div class="cols">
+          <div class="col" data-q="Q1 · Year 1" data-rev="£9,450" data-comm="£2,400" data-cum="£2,400">
+            <div class="val" style="bottom:calc(0.80% + 6px)">£2.4k</div>
+            <div class="cbar" style="height:0.80%"><div class="seg-prior" style="height:0%"></div><div class="seg-new" style="height:100%"></div></div>
+          </div>
+          <div class="col" data-q="Q2 · Year 1" data-rev="£35,850" data-comm="£9,000" data-cum="£11,400">
+            <div class="val" style="bottom:calc(3.80% + 6px)">£11.4k</div>
+            <div class="cbar" style="height:3.80%"><div class="seg-prior" style="height:21.1%"></div><div class="seg-new" style="height:78.9%"></div></div>
+          </div>
+          <div class="col" data-q="Q3 · Year 1" data-rev="£73,650" data-comm="£18,400" data-cum="£29,800">
+            <div class="val" style="bottom:calc(9.93% + 6px)">£29.8k</div>
+            <div class="cbar" style="height:9.93%"><div class="seg-prior" style="height:38.3%"></div><div class="seg-new" style="height:61.7%"></div></div>
+          </div>
+          <div class="col" data-q="Q4 · Year 1" data-rev="£116,250" data-comm="£29,100" data-cum="£58,900">
+            <div class="val" style="bottom:calc(19.63% + 6px)">£58.9k</div>
+            <div class="cbar" style="height:19.63%"><div class="seg-prior" style="height:50.6%"></div><div class="seg-new" style="height:49.4%"></div></div>
+          </div>
+          <div class="col" data-q="Q5 · Year 2" data-rev="£159,285" data-comm="£39,800" data-cum="£98,700">
+            <div class="val" style="bottom:calc(32.90% + 6px)">£98.7k</div>
+            <div class="cbar" style="height:32.90%"><div class="seg-prior" style="height:59.7%"></div><div class="seg-new" style="height:40.3%"></div></div>
+          </div>
+          <div class="col" data-q="Q6 · Year 2" data-rev="£202,125" data-comm="£50,500" data-cum="£149,200">
+            <div class="val" style="bottom:calc(49.73% + 6px)">£149.2k</div>
+            <div class="cbar" style="height:49.73%"><div class="seg-prior" style="height:66.2%"></div><div class="seg-new" style="height:33.8%"></div></div>
+          </div>
+          <div class="col" data-q="Q7 · Year 2" data-rev="£245,220" data-comm="£61,300" data-cum="£210,500">
+            <div class="val" style="bottom:calc(70.17% + 6px)">£210.5k</div>
+            <div class="cbar" style="height:70.17%"><div class="seg-prior" style="height:70.9%"></div><div class="seg-new" style="height:29.1%"></div></div>
+          </div>
+          <div class="col" data-q="Q8 · Year 2" data-rev="£288,480" data-comm="£72,100" data-cum="£282,600">
+            <div class="val" style="bottom:calc(94.20% + 6px)">£282.6k</div>
+            <div class="cbar" style="height:94.20%"><div class="seg-prior" style="height:74.5%"></div><div class="seg-new" style="height:25.5%"></div></div>
+          </div>
+        </div>
+        <div class="xlabels">
+          <div class="xl">Q1<b>Yr 1</b></div><div class="xl">Q2<b>Yr 1</b></div><div class="xl">Q3<b>Yr 1</b></div><div class="xl">Q4<b>Yr 1</b></div>
+          <div class="xl">Q5<b>Yr 2</b></div><div class="xl">Q6<b>Yr 2</b></div><div class="xl">Q7<b>Yr 2</b></div><div class="xl">Q8<b>Yr 2</b></div>
+        </div>
+      </div>
+
+      <div class="stats" style="margin-top:1.9rem">
+        <div class="stat"><div class="n"><sup>£</sup>282.6k</div><div class="l">Cumulative cash to VelaSync over 8 quarters</div></div>
+        <div class="stat"><div class="n"><sup>£</sup>72.1k</div><div class="l">Quarterly run-rate by end of Year 2 (~£24k/mo)</div></div>
+        <div class="stat"><div class="n">25%</div><div class="l">Assumed commission on generated revenue</div></div>
+      </div>
+    </div>
+    <div class="fill rv">
+      <div class="h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg> Assumptions behind the chart</div>
+      <p>Illustrative, driven by the Section&nbsp;09 model: quarterly platform revenue ≈ average MRR × 3, VelaSync commission at <strong>25%</strong>. Adjust the commission rate, and note that under Phase&nbsp;2 part of this cash line would convert into <strong>equity</strong> — trading near-term commission for a share of long-term enterprise value.</p>
     </div>
 
     <h3 class="rv mt" style="margin-top:2rem">Three ways to structure it — pick the risk/reward that fits</h3>
@@ -913,6 +1048,8 @@ td strong{color:var(--head)}
   </div>
 </footer>
 
+<div class="chart-tip" id="chartTip" role="status" aria-live="polite"></div>
+
 <script>
 (function(){
   // Theme toggle — respects OS default, remembers within session
@@ -923,6 +1060,25 @@ td strong{color:var(--head)}
   function apply(t){ root.setAttribute('data-theme',t); sun.innerHTML = t==='dark'? sunP : moon; }
   apply(preferred());
   btn.addEventListener('click',function(){ apply(root.getAttribute('data-theme')==='dark'?'light':'dark'); });
+
+  // Forecast chart tooltip
+  var tip=document.getElementById('chartTip');
+  document.querySelectorAll('.cols .col').forEach(function(col){
+    function show(e){
+      tip.innerHTML='<div class="tq">'+col.dataset.q+'</div>'+
+        '<div class="tr"><span>Platform revenue</span><b>'+col.dataset.rev+'</b></div>'+
+        '<div class="tr"><span>VelaSync (25%)</span><b>'+col.dataset.comm+'</b></div>'+
+        '<div class="tr hi"><span>Cumulative</span><b>'+col.dataset.cum+'</b></div>';
+      tip.classList.add('on');
+      var x=e.clientX, y=e.clientY, w=tip.offsetWidth, h=tip.offsetHeight;
+      var px=x+14; if(px+w>window.innerWidth-8) px=x-w-14;
+      var py=y-h-10; if(py<8) py=y+16;
+      tip.style.left=px+'px'; tip.style.top=py+'px';
+    }
+    col.addEventListener('mouseenter',show);
+    col.addEventListener('mousemove',show);
+    col.addEventListener('mouseleave',function(){ tip.classList.remove('on'); });
+  });
 
   // Scroll reveal
   var els=document.querySelectorAll('.rv');
