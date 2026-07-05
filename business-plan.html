@@ -369,6 +369,21 @@ td strong{color:var(--head)}
 .lc-la{fill:var(--sa)} .lc-lb{fill:var(--sb)} .lc-lc{fill:var(--sc)}
 .leg-mark{width:22px;height:0;border-top-width:3px;border-top-style:solid;display:inline-block}
 .leg-a{border-color:var(--sa)} .leg-b{border-color:var(--sb)} .leg-c{border-color:var(--sc);border-top-style:dashed}
+.lc-band{fill:var(--green-glow);stroke:none}
+.lc-bandlbl{fill:var(--dim);font-size:11.5px;font-weight:500}
+.note.g{background:var(--green-wash);border-color:var(--bdr-m)}
+.note.g::before{background:var(--green)}
+.note.g .h{color:var(--green)}
+.vector{background:var(--card);border:1px solid var(--bdr);border-radius:var(--r-lg);padding:1.3rem 1.4rem 1.4rem;transition:border-color .2s,transform .2s}
+.vector:hover{border-color:var(--bdr-m);transform:translateY(-2px)}
+.vector .vh{display:flex;align-items:center;gap:.7rem;margin-bottom:.9rem}
+.vector .vn{font-family:var(--font-mono);font-size:.7rem;font-weight:600;color:var(--green);border:1px solid var(--bdr);border-radius:7px;padding:.2rem .5rem;background:var(--green-wash)}
+.vector h3{font-size:1.02rem;margin:0}
+.vector ul{list-style:none;display:flex;flex-direction:column;gap:.6rem}
+.vector li{position:relative;padding-left:1rem;font-size:.88rem;line-height:1.5;color:var(--sub)}
+.vector li b{color:var(--head);font-weight:600}
+.vector li::before{content:'';position:absolute;left:0;top:.52rem;width:6px;height:6px;border-radius:50%;background:var(--green)}
+.vector .when{font-family:var(--font-mono);font-size:.6rem;letter-spacing:1.2px;text-transform:uppercase;color:var(--dim);margin-top:.9rem;display:block}
 
 .optbars{display:flex;flex-direction:column;gap:.9rem;margin-top:1.6rem}
 .optbar{display:grid;grid-template-columns:132px 1fr auto;gap:.9rem;align-items:center}
@@ -493,8 +508,9 @@ td strong{color:var(--head)}
       <a href="#financials"><span class="n">09</span><span class="t">Financial projections</span></a>
       <a href="#deal"><span class="n">10</span><span class="t">The VelaSync partnership</span></a>
       <a href="#roadmap"><span class="n">11</span><span class="t">Roadmap &amp; milestones</span></a>
-      <a href="#risks"><span class="n">12</span><span class="t">Risks &amp; mitigations</span></a>
-      <a href="#ask"><span class="n">13</span><span class="t">The ask &amp; next steps</span></a>
+      <a href="#scale"><span class="n">12</span><span class="t">Scaling beyond launch</span></a>
+      <a href="#risks"><span class="n">13</span><span class="t">Risks &amp; mitigations</span></a>
+      <a href="#ask"><span class="n">14</span><span class="t">The ask &amp; next steps</span></a>
     </div>
     <div class="note rv">
       <div class="h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></svg> How to use this template</div>
@@ -866,6 +882,88 @@ td strong{color:var(--head)}
       <div class="card"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-6.2-8.5"/><path d="M21 3v6h-6"/></svg></div><h3>Recurring &amp; sticky</h3><p>Once a supplier relies on Line Guide for qualified leads, churn is low and lifetime value compounds.</p></div>
       <div class="card"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3 6.5 7 .9-5 4.9 1.2 7-6.2-3.4L5.8 21 7 14.3 2 9.4l7-.9z"/></svg></div><h3>Expandable ARPU</h3><p>Featured placements, pay-per-lead and insight reports lift revenue per supplier over time.</p></div>
     </div>
+
+    <h3 class="rv mt" style="margin-top:2.4rem">Total business value — enterprise value forecast</h3>
+    <p class="rv" style="font-size:.92rem;color:var(--sub);margin-top:.5rem">Applying a marketplace-SaaS multiple to the ARR run-rate gives Line Guide's enterprise value. The band shows a <strong>3×–5×</strong> range; the line is the <strong>4× mid-case</strong>.</p>
+    <div class="chart-card rv" style="margin-top:1rem">
+      <div class="chart-head">
+        <div class="chart-title">Enterprise value (illustrative, 3×–5× ARR)</div>
+        <div class="legend">
+          <span><i class="leg-mark leg-a"></i> 4× mid-case</span>
+          <span><i style="width:12px;height:12px;border-radius:3px;background:var(--green-glow);display:inline-block"></i> 3×–5× range</span>
+        </div>
+      </div>
+      <svg class="linechart" viewBox="0 0 800 342" role="img" aria-label="Enterprise value forecast by quarter, 3x to 5x ARR band">
+        <g class="lc-grid">
+          <line x1="54" y1="308" x2="660" y2="308"/><line x1="54" y1="242.9" x2="660" y2="242.9"/><line x1="54" y1="177.85" x2="660" y2="177.85"/><line x1="54" y1="112.8" x2="660" y2="112.8"/><line x1="54" y1="47.7" x2="660" y2="47.7"/>
+        </g>
+        <g class="lc-axis" text-anchor="end">
+          <text x="48" y="311">£0</text><text x="48" y="246">£1.5m</text><text x="48" y="181">£3.0m</text><text x="48" y="116">£4.5m</text><text x="48" y="51">£6.0m</text>
+        </g>
+        <g class="lc-xlab" text-anchor="middle">
+          <text x="54" y="326">Q1</text><text x="140.6" y="326">Q2</text><text x="227.1" y="326">Q3</text><text x="313.7" y="326">Q4</text><text x="400.3" y="326">Q5</text><text x="486.9" y="326">Q6</text><text x="573.4" y="326">Q7</text><text x="660" y="326">Q8</text>
+        </g>
+        <polygon class="lc-band" points="54,291.6 140.6,262.2 227.1,226.0 313.7,188.3 400.3,151.3 486.9,113.9 573.4,76.5 660,38.8 660,146.5 573.4,169.1 486.9,191.6 400.3,214.0 313.7,236.2 227.1,258.8 140.6,280.5 54,298.2"/>
+        <polyline class="lc-line lc-a" points="54,294.9 140.6,271.4 227.1,242.4 313.7,212.2 400.3,182.7 486.9,152.7 573.4,122.8 660,92.7"/>
+        <g class="lc-dot lc-da">
+          <circle cx="54" cy="294.9" r="3"><title>Q1 · 4× · £0.3m</title></circle><circle cx="140.6" cy="271.4" r="3"><title>Q2 · 4× · £0.8m</title></circle><circle cx="227.1" cy="242.4" r="3"><title>Q3 · 4× · £1.5m</title></circle><circle cx="313.7" cy="212.2" r="3"><title>Q4 · 4× · £2.2m</title></circle><circle cx="400.3" cy="182.7" r="3"><title>Q5 · 4× · £2.9m</title></circle><circle cx="486.9" cy="152.7" r="3"><title>Q6 · 4× · £3.6m</title></circle><circle cx="573.4" cy="122.8" r="3"><title>Q7 · 4× · £4.3m</title></circle><circle cx="660" cy="92.7" r="4.5"><title>Q8 · 4× · £5.0m</title></circle>
+        </g>
+        <g text-anchor="start">
+          <text class="lc-bandlbl" x="668" y="41">£6.2m</text>
+          <text class="lc-lbl lc-la" x="668" y="96">£5.0m</text>
+          <text class="lc-bandlbl" x="668" y="150">£3.7m</text>
+        </g>
+      </svg>
+      <div class="stats" style="margin-top:1.7rem">
+        <div class="stat"><div class="n"><sup>£</sup>5.0m</div><div class="l">Enterprise value by end of Year 2 (4× ARR)</div></div>
+        <div class="stat"><div class="n"><sup>£</sup>3.7–6.2m</div><div class="l">Illustrative valuation range (3×–5×)</div></div>
+        <div class="stat"><div class="n">~16×</div><div class="l">Value growth from ~£0.3m at launch</div></div>
+      </div>
+    </div>
+
+    <h3 class="rv mt" style="margin-top:2.4rem">How the cash splits — what Line Guide receives</h3>
+    <p class="rv" style="font-size:.92rem;color:var(--sub);margin-top:.5rem">Under the recommended <strong>Option B</strong> (VelaSync on 20%), Line Guide keeps <strong>80% of every fee</strong> as cash — plus retains <strong>90% of the equity</strong>. Cumulative cash to each party:</p>
+    <div class="chart-card rv" style="margin-top:1rem">
+      <div class="chart-head">
+        <div class="chart-title">Cumulative cash — Line Guide vs VelaSync (Option B)</div>
+        <div class="legend">
+          <span><i class="leg-mark leg-a"></i> Line Guide (80%)</span>
+          <span><i class="leg-mark leg-b"></i> VelaSync (20%)</span>
+        </div>
+      </div>
+      <svg class="linechart" viewBox="0 0 800 342" role="img" aria-label="Cumulative cash to Line Guide versus VelaSync by quarter">
+        <g class="lc-grid">
+          <line x1="54" y1="308" x2="660" y2="308"/><line x1="54" y1="237.5" x2="660" y2="237.5"/><line x1="54" y1="167" x2="660" y2="167"/><line x1="54" y1="96.5" x2="660" y2="96.5"/><line x1="54" y1="26" x2="660" y2="26"/>
+        </g>
+        <g class="lc-axis" text-anchor="end">
+          <text x="48" y="311">£0</text><text x="48" y="240.5">£250k</text><text x="48" y="170">£500k</text><text x="48" y="99.5">£750k</text><text x="48" y="29">£1.0m</text>
+        </g>
+        <g class="lc-xlab" text-anchor="middle">
+          <text x="54" y="326">Q1</text><text x="140.6" y="326">Q2</text><text x="227.1" y="326">Q3</text><text x="313.7" y="326">Q4</text><text x="400.3" y="326">Q5</text><text x="486.9" y="326">Q6</text><text x="573.4" y="326">Q7</text><text x="660" y="326">Q8</text>
+        </g>
+        <polyline class="lc-line lc-b" points="54,307.5 140.6,305.4 227.1,301.3 313.7,294.7 400.3,285.8 486.9,274.4 573.4,260.5 660,244.3"/>
+        <polyline class="lc-line lc-a" points="54,305.9 140.6,297.8 227.1,281.2 313.7,254.9 400.3,219.0 486.9,173.4 573.4,118.1 660,53.0"/>
+        <g class="lc-dot lc-db">
+          <circle cx="54" cy="307.5" r="3"><title>VelaSync · Q1 · £2k</title></circle><circle cx="140.6" cy="305.4" r="3"><title>VelaSync · Q2 · £9k</title></circle><circle cx="227.1" cy="301.3" r="3"><title>VelaSync · Q3 · £24k</title></circle><circle cx="313.7" cy="294.7" r="3"><title>VelaSync · Q4 · £47k</title></circle><circle cx="400.3" cy="285.8" r="3"><title>VelaSync · Q5 · £79k</title></circle><circle cx="486.9" cy="274.4" r="3"><title>VelaSync · Q6 · £119k</title></circle><circle cx="573.4" cy="260.5" r="3"><title>VelaSync · Q7 · £168k</title></circle><circle cx="660" cy="244.3" r="4.5"><title>VelaSync · Q8 · £226k</title></circle>
+        </g>
+        <g class="lc-dot lc-da">
+          <circle cx="54" cy="305.9" r="3"><title>Line Guide · Q1 · £8k</title></circle><circle cx="140.6" cy="297.8" r="3"><title>Line Guide · Q2 · £36k</title></circle><circle cx="227.1" cy="281.2" r="3"><title>Line Guide · Q3 · £95k</title></circle><circle cx="313.7" cy="254.9" r="3"><title>Line Guide · Q4 · £188k</title></circle><circle cx="400.3" cy="219.0" r="3"><title>Line Guide · Q5 · £316k</title></circle><circle cx="486.9" cy="173.4" r="3"><title>Line Guide · Q6 · £477k</title></circle><circle cx="573.4" cy="118.1" r="3"><title>Line Guide · Q7 · £673k</title></circle><circle cx="660" cy="53.0" r="4.5"><title>Line Guide · Q8 · £904k</title></circle>
+        </g>
+        <g class="lc-lbl" text-anchor="start">
+          <text class="lc-la" x="668" y="56">£904k</text>
+          <text class="lc-lb" x="668" y="247">£226k</text>
+        </g>
+      </svg>
+      <div class="stats" style="margin-top:1.7rem">
+        <div class="stat"><div class="n"><sup>£</sup>904k</div><div class="l">Cumulative cash to Line Guide over 8 quarters</div></div>
+        <div class="stat"><div class="n">90%</div><div class="l">Equity retained by Line Guide (~£4.5m at 4×)</div></div>
+        <div class="stat"><div class="n"><sup>£</sup>226k</div><div class="l">Cash to VelaSync — its 20% share</div></div>
+      </div>
+    </div>
+    <div class="fill rv">
+      <div class="h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg> Valuation assumptions</div>
+      <p>Enterprise value = ARR run-rate × multiple. Software-marketplace businesses commonly trade at <strong>3×–8× ARR</strong> depending on growth and retention; this uses a conservative <strong>4× mid-case</strong>. Swap in a multiple you can defend with comparables. The cash split scales with whichever commission rate you agree.</p>
+    </div>
   </div>
 </section>
 
@@ -1097,10 +1195,105 @@ td strong{color:var(--head)}
   </div>
 </section>
 
-<!-- ══ 12 RISKS ══ -->
+<!-- ══ 12 SCALING BEYOND LAUNCH ══ -->
+<section id="scale">
+  <div class="doc">
+    <div class="eyebrow rv"><span class="num">12</span> Scaling beyond launch</div>
+    <h2 class="rv">The subscription is the beachhead — <span class="gt">not the ceiling.</span></h2>
+    <p class="lede rv">Once Line Guide owns supplier discovery in food &amp; beverage, the same audience and the same data unlock revenue streams many times larger than tier fees. Each new line lifts revenue per supplier, deepens the moat, and raises the valuation the equity is priced on — which is exactly why VelaSync is motivated to build them.</p>
+
+    <div class="note g rv">
+      <div class="h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg> The biggest cash lever: capture the transaction, not just the introduction</div>
+      <p>Subscriptions monetise <em>access</em>. The real money is in the <em>deal</em>. A success fee of even <strong>1% on a £250,000 line = £2,500</strong> — one closed transaction can outweigh a supplier's entire year of subscription. Layer in <strong>equipment-finance and leasing referral commissions</strong> (machinery is capital-heavy and almost always financed) and Line Guide earns on the full value of the trade, not just the lead.</p>
+    </div>
+
+    <div class="grid rv mt" style="grid-template-columns:repeat(auto-fit,minmax(268px,1fr));gap:1rem">
+      <div class="vector">
+        <div class="vh"><span class="vn">01</span><h3>Monetise the core deeper</h3></div>
+        <ul>
+          <li><b>Featured &amp; sponsored placement</b> auctions — visibility beyond the Premium tier</li>
+          <li><b>Pay-per-qualified-lead</b> add-ons on top of subscription</li>
+          <li><b>Verified &amp; audited</b> trust-badge tier</li>
+          <li><b>Annual / multi-year</b> prepay to lift cash &amp; cut churn</li>
+        </ul>
+        <span class="when">Near-term · 0–12 months</span>
+      </div>
+      <div class="vector">
+        <div class="vh"><span class="vn">02</span><h3>Capture the transaction</h3></div>
+        <ul>
+          <li><b>Success / finder's fee</b> on closed equipment deals</li>
+          <li><b>Equipment finance &amp; leasing</b> referral commission</li>
+          <li><b>Insurance, warranty &amp; service</b> contract referrals</li>
+          <li><b>Installation &amp; integration</b> marketplace cut</li>
+        </ul>
+        <span class="when">Mid-term · the big lever</span>
+      </div>
+      <div class="vector">
+        <div class="vh"><span class="vn">03</span><h3>New marketplaces &amp; aftermarket</h3></div>
+        <ul>
+          <li><b>Used &amp; refurbished machinery</b> marketplace — the true AutoTrader parallel</li>
+          <li><b>Spare parts &amp; consumables</b> — recurring aftermarket revenue</li>
+          <li><b>Engineer job board</b> &amp; recruitment for automation talent</li>
+        </ul>
+        <span class="when">Mid-term · 12–24 months</span>
+      </div>
+      <div class="vector">
+        <div class="vh"><span class="vn">04</span><h3>Data, SaaS &amp; platform</h3></div>
+        <ul>
+          <li><b>Market-insight &amp; pricing-benchmark</b> reports sold to suppliers</li>
+          <li><b>Demand-signal / lead-intelligence</b> subscriptions</li>
+          <li><b>SaaS tools for suppliers</b> — quote, RFQ &amp; pipeline management</li>
+          <li><b>White-label matching engine</b> + API partnerships</li>
+        </ul>
+        <span class="when">Mid–long term</span>
+      </div>
+      <div class="vector">
+        <div class="vh"><span class="vn">05</span><h3>Expand the market</h3></div>
+        <ul>
+          <li><b>Adjacent verticals</b> — pharma, cosmetics, general manufacturing</li>
+          <li><b>Geographic</b> — UK → Ireland → EU (NL, DE, FR) → North America</li>
+          <li><b>Category expansion</b> — processing, materials handling, robotics</li>
+        </ul>
+        <span class="when">Long term · the scale story</span>
+      </div>
+    </div>
+
+    <h3 class="rv mt" style="margin-top:2.4rem">What it does to revenue per supplier</h3>
+    <p class="rv" style="font-size:.92rem;color:var(--sub);margin-top:.5rem">Layering these streams onto the same supplier relationship can lift annual value roughly <strong>2.5×</strong> — without acquiring a single extra supplier. Illustrative annual value per active supplier:</p>
+    <div class="chart-card rv" style="margin-top:1rem">
+      <div class="chart-head">
+        <div class="chart-title" style="font-size:.98rem">Illustrative annual value per supplier — today vs expanded</div>
+        <div class="legend">
+          <span><i style="width:12px;height:12px;border-radius:3px;background:var(--teal);display:inline-block"></i> Today's subscription</span>
+          <span><i style="width:12px;height:12px;border-radius:3px;background:var(--green-deep);display:inline-block"></i> Expansion uplift</span>
+        </div>
+      </div>
+      <div class="optbars">
+        <div class="optbar">
+          <div class="ol"><b>Today</b><span>subscription only</span></div>
+          <div class="track"><div class="seg cash" style="width:39.1%"><span>£5.4k</span></div></div>
+          <div class="otot">£5.4k</div>
+        </div>
+        <div class="optbar">
+          <div class="ol"><b>Expanded</b><span>+ new revenue lines</span></div>
+          <div class="track"><div class="seg cash" style="width:39.1%"><span>£5.4k</span></div><div class="seg eq" style="width:60.9%"><span>+£8.4k</span></div></div>
+          <div class="otot">£13.8k</div>
+        </div>
+      </div>
+      <p style="font-size:.82rem;color:var(--dim);margin-top:1.1rem;max-width:none;font-family:var(--font-mono)">Uplift ≈ featured/placement £1.8k · pay-per-lead £2.4k · finance &amp; transaction share £3.0k · data/insights £1.2k — illustrative only.</p>
+    </div>
+
+    <div class="note rv">
+      <div class="h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 14l4-4 4 4 5-6"/></svg> Why this matters for the equity</div>
+      <p>Every stream above raises ARR, and enterprise value is a multiple of ARR. A business doing £1.2m ARR on subscriptions alone is worth ~£5m at 4×; the same business with transaction, finance and data revenue could carry both a higher ARR <em>and</em> a higher multiple. That compounding is where the equity upside — for Line Guide and for VelaSync — really lives.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══ 13 RISKS ══ -->
 <section id="risks">
   <div class="doc">
-    <div class="eyebrow rv"><span class="num">12</span> Risks &amp; mitigations</div>
+    <div class="eyebrow rv"><span class="num">13</span> Risks &amp; mitigations</div>
     <h2 class="rv">The honest risks — <span class="gt">and how we handle them.</span></h2>
     <div class="risk rv">
       <div><div class="rk"><span class="warn">▲</span> Cold-start / empty marketplace</div><p>Buyers won't return if early searches are thin.</p></div>
@@ -1117,10 +1310,10 @@ td strong{color:var(--head)}
   </div>
 </section>
 
-<!-- ══ 13 THE ASK ══ -->
+<!-- ══ 14 THE ASK ══ -->
 <section id="ask">
   <div class="doc">
-    <div class="eyebrow teal rv"><span class="num">13</span> The ask &amp; next steps</div>
+    <div class="eyebrow teal rv"><span class="num">14</span> The ask &amp; next steps</div>
     <h2 class="rv">Let's turn a built platform <span class="tt">into a growing business.</span></h2>
     <p class="lede rv">The proposal is simple: partner with VelaSync to build Line Guide's route to market, paid first on the revenue we generate, converting to equity as the model proves out. Low risk to you, fully aligned incentives, and a team that has done demand generation at serious scale.</p>
 
