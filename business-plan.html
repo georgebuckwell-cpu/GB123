@@ -353,6 +353,36 @@ td strong{color:var(--head)}
 .chart-tip .tr b{color:var(--head);font-family:var(--font-mono);font-variant-numeric:tabular-nums}
 .chart-tip .tr.hi b{color:var(--teal-light)}
 
+/* ── OPTION COMPARISON (line chart + value bars) ────────────────────────── */
+:root[data-theme="dark"]{--sa:#19CD6A;--sb:#4fc4c4;--sc:#e0a422}
+:root[data-theme="light"]{--sa:#0F9E52;--sb:#0C9494;--sc:#B0730A}
+.linechart{width:100%;height:auto;display:block;margin-top:1.5rem;overflow:visible}
+.linechart text{font-family:var(--font-mono)}
+.lc-grid{stroke:var(--bdr);stroke-width:1}
+.lc-axis{fill:var(--dim);font-size:12px}
+.lc-xlab{fill:var(--sub);font-size:12.5px}
+.lc-line{fill:none;stroke-width:2.5;stroke-linejoin:round;stroke-linecap:round}
+.lc-a{stroke:var(--sa)} .lc-b{stroke:var(--sb);stroke-width:3.4} .lc-c{stroke:var(--sc);stroke-dasharray:6 5}
+.lc-dot{stroke:var(--card);stroke-width:1.5}
+.lc-da{fill:var(--sa)} .lc-db{fill:var(--sb)} .lc-dc{fill:var(--sc)}
+.lc-lbl{font-weight:600;font-size:13.5px}
+.lc-la{fill:var(--sa)} .lc-lb{fill:var(--sb)} .lc-lc{fill:var(--sc)}
+.leg-mark{width:22px;height:0;border-top-width:3px;border-top-style:solid;display:inline-block}
+.leg-a{border-color:var(--sa)} .leg-b{border-color:var(--sb)} .leg-c{border-color:var(--sc);border-top-style:dashed}
+
+.optbars{display:flex;flex-direction:column;gap:.9rem;margin-top:1.6rem}
+.optbar{display:grid;grid-template-columns:132px 1fr auto;gap:.9rem;align-items:center}
+@media(max-width:620px){.optbar{grid-template-columns:1fr auto}.optbar .track{grid-column:1/-1;order:3}}
+.optbar .ol{display:flex;flex-direction:column;line-height:1.25}
+.optbar .ol b{font-family:var(--font-display);font-weight:600;color:var(--head);font-size:.95rem}
+.optbar .ol span{font-family:var(--font-mono);font-size:.64rem;color:var(--sub)}
+.optbar .track{display:flex;align-items:stretch;height:30px;border-radius:8px;overflow:hidden;background:var(--shade)}
+.optbar .seg{height:100%;display:flex;align-items:center;min-width:0}
+.optbar .seg.cash{background:var(--teal)}
+.optbar .seg.eq{background:var(--green-deep);border-left:2px solid var(--card)}
+.optbar .seg span{font-family:var(--font-mono);font-size:.68rem;font-weight:600;color:#fff;padding:0 .5rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.optbar .otot{font-family:var(--font-mono);font-size:.9rem;color:var(--head);font-weight:600;white-space:nowrap;font-variant-numeric:tabular-nums;text-align:right}
+
 /* ── SIGN OFF ───────────────────────────────────────────────────────────── */
 .signoff{background:var(--card-2);border:1px solid var(--bdr);border-radius:var(--r-xl);padding:clamp(1.6rem,4vw,2.4rem);margin-top:1.8rem;display:grid;grid-template-columns:1.3fr 1fr;gap:2rem}
 @media(max-width:700px){.signoff{grid-template-columns:1fr;gap:1.4rem}}
@@ -937,7 +967,7 @@ td strong{color:var(--head)}
     </div>
     <div class="fill rv">
       <div class="h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg> Assumptions behind the chart</div>
-      <p>Illustrative, driven by the Section&nbsp;09 model: quarterly platform revenue ≈ average MRR × 3, VelaSync commission at <strong>25%</strong>. Adjust the commission rate, and note that under Phase&nbsp;2 part of this cash line would convert into <strong>equity</strong> — trading near-term commission for a share of long-term enterprise value.</p>
+      <p>Illustrative, driven by the Section&nbsp;09 model: quarterly platform revenue ≈ average MRR × 3, VelaSync commission at <strong>25%</strong> as a mid-point example. The three concrete structures — Option A at 35%, B at 20% and C at 10% — are compared head-to-head in the next chart, and under Phase&nbsp;2 part of this cash line would convert into <strong>equity</strong>.</p>
     </div>
 
     <h3 class="rv mt" style="margin-top:2rem">Three ways to structure it — pick the risk/reward that fits</h3>
@@ -945,11 +975,99 @@ td strong{color:var(--head)}
       <table>
         <thead><tr><th>Model</th><th>Cash to VelaSync</th><th>Equity</th><th>Best when…</th></tr></thead>
         <tbody>
-          <tr><td><strong>A · Pure commission</strong> <span class="chip g">lowest risk to LG</span></td><td>Higher % of generated revenue</td><td>None</td><td>You want to preserve all equity and test the partnership first.</td></tr>
-          <tr><td><strong>B · Commission + equity kicker</strong> <span class="chip t">recommended</span></td><td>Moderate % of revenue</td><td>Milestone-vested minority stake</td><td>You want aligned upside without a big cash burn. The balanced default.</td></tr>
-          <tr><td><strong>C · Advisory equity + low commission</strong></td><td>Low % / retainer</td><td>Larger vested stake up front</td><td>You'd rather conserve cash and bring VelaSync in as a true partner early.</td></tr>
+          <tr><td><strong>A · Pure commission</strong> <span class="chip g">lowest risk to LG</span></td><td><strong>35%</strong> of every fee — recurring, <strong>no end date</strong></td><td>None</td><td>You want to preserve all equity and test the partnership first.</td></tr>
+          <tr><td><strong>B · Commission + equity kicker</strong> <span class="chip t">recommended</span></td><td><strong>20%</strong> of fees (recurring)</td><td><strong>10%</strong> milestone-vested</td><td>You want aligned upside without a big cash burn. The balanced default.</td></tr>
+          <tr><td><strong>C · Advisory equity + low commission</strong></td><td><strong>10%</strong> of fees (recurring)</td><td><strong>15%</strong> vested up front</td><td>You'd rather conserve cash and bring VelaSync in as a true partner early.</td></tr>
         </tbody>
       </table>
+    </div>
+
+    <div class="chart-card rv">
+      <div class="chart-head">
+        <div>
+          <div class="chart-title">Cumulative cash to VelaSync — the three options compared</div>
+          <div class="chart-sub">Cash commission only, tracked quarter by quarter against the same growth model. Option A's 35% is recurring with no end date, so its line keeps climbing indefinitely.</div>
+        </div>
+        <div class="legend">
+          <span><i class="leg-mark leg-a"></i> A · 35% recurring</span>
+          <span><i class="leg-mark leg-b"></i> B · 20% + equity</span>
+          <span><i class="leg-mark leg-c"></i> C · 10% + equity</span>
+        </div>
+      </div>
+
+      <svg class="linechart" viewBox="0 0 800 342" role="img" aria-label="Cumulative cash to VelaSync by quarter for options A, B and C">
+        <!-- gridlines -->
+        <g class="lc-grid">
+          <line x1="54" y1="308" x2="660" y2="308"/><line x1="54" y1="237.5" x2="660" y2="237.5"/><line x1="54" y1="167" x2="660" y2="167"/><line x1="54" y1="96.5" x2="660" y2="96.5"/><line x1="54" y1="26" x2="660" y2="26"/>
+        </g>
+        <g class="lc-axis" text-anchor="end">
+          <text x="48" y="311">£0</text><text x="48" y="240.5">£100k</text><text x="48" y="170">£200k</text><text x="48" y="99.5">£300k</text><text x="48" y="29">£400k</text>
+        </g>
+        <g class="lc-xlab" text-anchor="middle">
+          <text x="54" y="326">Q1</text><text x="140.6" y="326">Q2</text><text x="227.1" y="326">Q3</text><text x="313.7" y="326">Q4</text><text x="400.3" y="326">Q5</text><text x="486.9" y="326">Q6</text><text x="573.4" y="326">Q7</text><text x="660" y="326">Q8</text>
+        </g>
+        <!-- Option C (dashed, drawn first / behind) -->
+        <polyline class="lc-line lc-c" points="54,307.3 140.6,304.8 227.1,299.6 313.7,291.4 400.3,280.2 486.9,265.9 573.4,248.7 660,228.3"/>
+        <!-- Option B -->
+        <polyline class="lc-line lc-b" points="54,306.7 140.6,301.6 227.1,291.2 313.7,274.8 400.3,252.4 486.9,223.9 573.4,189.3 660,148.6"/>
+        <!-- Option A -->
+        <polyline class="lc-line lc-a" points="54,305.7 140.6,296.8 227.1,278.7 313.7,250.0 400.3,210.7 486.9,160.8 573.4,100.3 660,29.1"/>
+        <!-- vertex dots -->
+        <g class="lc-dot lc-dc">
+          <circle cx="54" cy="307.3" r="3"><title>Option C · Q1 · £1k</title></circle><circle cx="140.6" cy="304.8" r="3"><title>Option C · Q2 · £5k</title></circle><circle cx="227.1" cy="299.6" r="3"><title>Option C · Q3 · £12k</title></circle><circle cx="313.7" cy="291.4" r="3"><title>Option C · Q4 · £24k</title></circle><circle cx="400.3" cy="280.2" r="3"><title>Option C · Q5 · £39k</title></circle><circle cx="486.9" cy="265.9" r="3"><title>Option C · Q6 · £60k</title></circle><circle cx="573.4" cy="248.7" r="3"><title>Option C · Q7 · £84k</title></circle><circle cx="660" cy="228.3" r="4.5"><title>Option C · Q8 · £113k</title></circle>
+        </g>
+        <g class="lc-dot lc-db">
+          <circle cx="54" cy="306.7" r="3"><title>Option B · Q1 · £2k</title></circle><circle cx="140.6" cy="301.6" r="3"><title>Option B · Q2 · £9k</title></circle><circle cx="227.1" cy="291.2" r="3"><title>Option B · Q3 · £24k</title></circle><circle cx="313.7" cy="274.8" r="3"><title>Option B · Q4 · £47k</title></circle><circle cx="400.3" cy="252.4" r="3"><title>Option B · Q5 · £79k</title></circle><circle cx="486.9" cy="223.9" r="3"><title>Option B · Q6 · £119k</title></circle><circle cx="573.4" cy="189.3" r="3"><title>Option B · Q7 · £168k</title></circle><circle cx="660" cy="148.6" r="4.5"><title>Option B · Q8 · £226k</title></circle>
+        </g>
+        <g class="lc-dot lc-da">
+          <circle cx="54" cy="305.7" r="3"><title>Option A · Q1 · £3k</title></circle><circle cx="140.6" cy="296.8" r="3"><title>Option A · Q2 · £16k</title></circle><circle cx="227.1" cy="278.7" r="3"><title>Option A · Q3 · £42k</title></circle><circle cx="313.7" cy="250.0" r="3"><title>Option A · Q4 · £82k</title></circle><circle cx="400.3" cy="210.7" r="3"><title>Option A · Q5 · £138k</title></circle><circle cx="486.9" cy="160.8" r="3"><title>Option A · Q6 · £209k</title></circle><circle cx="573.4" cy="100.3" r="3"><title>Option A · Q7 · £295k</title></circle><circle cx="660" cy="29.1" r="4.5"><title>Option A · Q8 · £396k</title></circle>
+        </g>
+        <!-- end labels -->
+        <g class="lc-lbl" text-anchor="start">
+          <text class="lc-la" x="668" y="32">£396k</text>
+          <text class="lc-lb" x="668" y="152">£226k</text>
+          <text class="lc-lc" x="668" y="231">£113k</text>
+        </g>
+      </svg>
+
+      <div class="stats" style="margin-top:1.7rem">
+        <div class="stat"><div class="n"><sup>£</sup>396k</div><div class="l">Option A cash over 8 quarters — and still recurring</div></div>
+        <div class="stat"><div class="n"><sup>£</sup>226k</div><div class="l">Option B cash — plus a 10% equity stake</div></div>
+        <div class="stat"><div class="n"><sup>£</sup>113k</div><div class="l">Option C cash — plus a 15% equity stake</div></div>
+      </div>
+    </div>
+
+    <h4 class="rv mt" style="margin-top:1.9rem;font-size:1rem">Cash isn't the whole picture — the cash-vs-equity trade-off</h4>
+    <p class="rv" style="font-size:.92rem;color:var(--sub);margin-top:.5rem">Options B and C swap cash for ownership. Valuing that equity at an <strong>illustrative exit of ~£5.0m</strong> (≈ 4× the Year-2 ARR run-rate) shows how the total economic value to VelaSync flips as you move from cash to equity:</p>
+    <div class="chart-card rv" style="margin-top:1rem">
+      <div class="chart-head">
+        <div class="chart-title" style="font-size:.98rem">Total 2-year economic value to VelaSync</div>
+        <div class="legend">
+          <span><i style="width:12px;height:12px;border-radius:3px;background:var(--teal);display:inline-block"></i> Cumulative cash</span>
+          <span><i style="width:12px;height:12px;border-radius:3px;background:var(--green-deep);display:inline-block"></i> Equity value at exit</span>
+        </div>
+      </div>
+      <div class="optbars">
+        <div class="optbar">
+          <div class="ol"><b>Option A</b><span>35% · cash only</span></div>
+          <div class="track"><div class="seg cash" style="width:46.2%"><span>£396k</span></div></div>
+          <div class="otot">£396k</div>
+        </div>
+        <div class="optbar">
+          <div class="ol"><b>Option B</b><span>20% + 10% equity</span></div>
+          <div class="track"><div class="seg cash" style="width:26.3%"><span>£226k</span></div><div class="seg eq" style="width:58.3%"><span>£500k</span></div></div>
+          <div class="otot">£726k</div>
+        </div>
+        <div class="optbar">
+          <div class="ol"><b>Option C</b><span>10% + 15% equity</span></div>
+          <div class="track"><div class="seg cash" style="width:13.2%"><span>£113k</span></div><div class="seg eq" style="width:86.8%"><span>£745k</span></div></div>
+          <div class="otot">£858k</div>
+        </div>
+      </div>
+    </div>
+    <div class="fill rv">
+      <div class="h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg> Reading the two charts together</div>
+      <p>Cash rates (35% / 20% / 10%), the equity bands (0% / 10% / 15%) and the £5.0m exit are all <strong>illustrative levers</strong> — change them and both charts update in proportion. The headline: <strong>Option A</strong> pays the most guaranteed, never-ending cash; <strong>Option C</strong> wins <em>only if</em> there's a successful exit; <strong>Option B</strong> is the balanced middle — meaningful recurring cash plus real upside — which is why it's the recommendation.</p>
     </div>
 
     <div class="note rv">
