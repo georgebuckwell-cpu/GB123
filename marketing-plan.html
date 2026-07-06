@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Line Guide — Marketing Plan (AARRR) · Prepared by VelaSync</title>
+<meta name="description" content="A comprehensive AARRR-structured 12-month marketing plan for Line Guide, the food & beverage automation marketplace. Prepared by VelaSync as fractional CMO.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ═══ LINE GUIDE — MARKETING PLAN · AARRR · Line Guide green + VelaSync teal ═══ */
+:root{
+  --green:#19CD6A; --green-bright:#3DF086; --green-deep:#0E9B4E; --green-glow:rgba(25,205,106,.20); --green-wash:rgba(25,205,106,.07);
+  --teal:#2B8E8E; --teal-light:#3aaeae; --teal-bright:#5fd0d0; --teal-glow:rgba(43,142,142,.18); --teal-wash:rgba(43,142,142,.08);
+  --gold:#fbbf24;
+  /* AARRR stage accents */
+  --acq:#19CD6A; --act:#3aaeae; --ret:#fbbf24; --ref:#0E9B4E; --rev:#5fd0d0;
+  --font-disp:'Space Grotesk','Inter',system-ui,sans-serif;
+  --font-body:'Inter',system-ui,sans-serif;
+  --font-mono:'IBM Plex Mono',ui-monospace,monospace;
+  --maxw:1000px; --r:14px; --r-lg:20px; --r-xl:26px; --ease:cubic-bezier(.4,0,.2,1);
+}
+:root[data-theme="dark"]{
+  --bg:#070A08; --bg-1:#0A0E0C; --surf:#141A16; --card:rgba(255,255,255,.02); --card-2:rgba(255,255,255,.03);
+  --text:#E7EFE9; --head:#F3F8F4; --sub:rgba(231,239,233,.6); --dim:rgba(231,239,233,.34);
+  --bdr:rgba(25,205,106,.14); --bdr-m:rgba(25,205,106,.26); --shade:rgba(255,255,255,.04);
+  --sh:0 4px 22px rgba(0,0,0,.45); --sh-lg:0 18px 56px rgba(0,0,0,.55);
+}
+:root[data-theme="light"]{
+  --bg:#F6F9F6; --bg-1:#EFF4EF; --surf:#FFFFFF; --card:#FFFFFF; --card-2:#FBFDFB;
+  --text:#1C2620; --head:#0C130E; --sub:rgba(28,38,32,.62); --dim:rgba(28,38,32,.4);
+  --bdr:rgba(14,155,78,.18); --bdr-m:rgba(14,155,78,.32); --shade:rgba(12,60,35,.035);
+  --green:#12A857; --green-deep:#0B7C42; --teal:#1F6E6E; --teal-light:#2B8E8E; --acq:#12A857; --act:#1F6E6E; --ref:#0B7C42; --rev:#1F8A8A;
+  --sh:0 4px 18px rgba(20,50,35,.08); --sh-lg:0 18px 48px rgba(20,50,35,.12);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:var(--font-body);background:var(--bg);color:var(--text);line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+svg{display:block}a{color:inherit;text-decoration:none}
+::selection{background:var(--green-glow)}
+.bar{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;gap:.6rem;padding:.7rem clamp(1rem,4vw,2.2rem);background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--bdr)}
+.bar-l{display:flex;align-items:center;gap:.7rem}
+.bar-tag{font-family:var(--font-mono);font-size:.62rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--dim)}
+.sep{width:1px;height:16px;background:var(--bdr-m)}
+.btn{font-family:var(--font-body);font-size:.78rem;font-weight:600;display:inline-flex;align-items:center;gap:.45rem;padding:.5rem .95rem;border-radius:100px;border:1px solid var(--bdr-m);background:var(--surf);color:var(--text);cursor:pointer;transition:border-color .18s,transform .12s}
+.btn:hover{border-color:var(--green);transform:translateY(-1px)}
+.btn svg{width:14px;height:14px}
+.icon-btn{width:36px;height:36px;padding:0;justify-content:center}.icon-btn svg{width:16px;height:16px}
+.btn-solid{background:var(--green);color:#04160C;border-color:transparent}
+/* logos */
+.lg-frame{position:relative;width:34px;height:34px;flex-shrink:0}
+.lg-frame span{position:absolute;inset:6px;display:flex;align-items:center;justify-content:center;font-family:var(--font-disp);font-weight:700;font-size:.72rem;color:var(--head);background:var(--shade);border-radius:5px}
+.lg-frame::before,.lg-frame::after{content:'';position:absolute;width:14px;height:14px;border:2.5px solid var(--green)}
+.lg-frame::before{top:0;right:0;border-left:none;border-bottom:none}
+.lg-frame::after{bottom:0;left:0;border-right:none;border-top:none}
+.lg-logo{display:flex;align-items:center;gap:10px}
+.lg-word b{font-family:var(--font-disp);font-weight:700;font-size:1rem;letter-spacing:.4px;color:var(--head);display:block;line-height:1}
+.lg-word .dot{color:var(--green)}
+.lg-word em{font-family:var(--font-mono);font-style:normal;font-size:.5rem;letter-spacing:2px;text-transform:uppercase;color:var(--sub)}
+.vs-mark{width:30px;height:30px}
+.vs-word b{font-family:var(--font-disp);font-weight:700;font-size:.94rem;color:var(--head);display:block;line-height:1}
+.vs-word em{font-family:var(--font-mono);font-style:normal;font-size:.48rem;letter-spacing:2px;text-transform:uppercase;color:var(--teal-light)}
+.vs-logo{display:flex;align-items:center;gap:9px}
+/* layout */
+.doc{max-width:var(--maxw);margin:0 auto;padding:0 clamp(1.1rem,4vw,2rem)}
+section{padding:clamp(2.4rem,5vw,3.6rem) 0;border-bottom:1px solid var(--bdr)}
+section:last-of-type{border-bottom:none}
+.eyebrow{display:inline-flex;align-items:center;gap:.55rem;font-family:var(--font-mono);font-size:.68rem;font-weight:500;letter-spacing:2.5px;text-transform:uppercase;color:var(--green);margin-bottom:1rem}
+.eyebrow .num{color:var(--dim)}
+.eyebrow::before{content:'';width:22px;height:1.5px;background:currentColor;opacity:.5}
+.eyebrow.teal{color:var(--teal-light)}
+h1,h2,h3,h4{font-family:var(--font-disp);color:var(--head);line-height:1.13;text-wrap:balance;letter-spacing:-.01em}
+h2{font-size:clamp(1.5rem,3.4vw,2.2rem);font-weight:600;margin-bottom:.7rem}
+h3{font-size:1.1rem;font-weight:600;margin-bottom:.4rem}
+h4{font-size:.95rem;font-weight:600}
+.lede{font-size:clamp(1rem,1.7vw,1.13rem);color:var(--sub);max-width:68ch}
+p{max-width:72ch}p+p{margin-top:.8rem}
+strong{color:var(--head);font-weight:600}
+.mt{margin-top:1.5rem}.gt{color:var(--green)}.tt{color:var(--teal-light)}
+.muted{color:var(--sub)}
+/* cover */
+.cover{position:relative;padding:clamp(2.6rem,7vw,5rem) 0 clamp(2rem,5vw,3.4rem);overflow:hidden;border-bottom:1px solid var(--bdr)}
+.cover-glow{position:absolute;inset:0;z-index:0;background:radial-gradient(620px 400px at 80% -10%,var(--green-glow),transparent 60%),radial-gradient(520px 360px at 8% 110%,var(--teal-glow),transparent 60%)}
+.cover-inner{position:relative;z-index:1}
+.cobrand{display:flex;align-items:center;gap:1rem;flex-wrap:wrap;margin-bottom:clamp(1.8rem,5vw,2.8rem)}
+.cobrand .x{font-family:var(--font-mono);font-size:.68rem;color:var(--dim);letter-spacing:1.5px}
+.cover h1{font-size:clamp(2rem,5.4vw,3.4rem);font-weight:600;margin-bottom:1rem}
+.cover h1 span{color:var(--green)}
+.aarrr-word{color:var(--teal-light);font-family:var(--font-mono);font-weight:500}
+.meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1px;margin-top:clamp(1.8rem,5vw,2.8rem);border:1px solid var(--bdr);border-radius:var(--r-lg);overflow:hidden;background:var(--bdr)}
+.meta div{background:var(--bg);padding:1rem 1.1rem}
+.meta .k{font-family:var(--font-mono);font-size:.58rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--dim);margin-bottom:.3rem}
+.meta .v{font-family:var(--font-disp);font-weight:600;color:var(--head);font-size:.95rem}
+/* AARRR overview */
+.aarrr{display:grid;grid-template-columns:repeat(5,1fr);gap:.6rem;margin-top:1.8rem}
+@media(max-width:760px){.aarrr{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:420px){.aarrr{grid-template-columns:1fr}}
+.stage{background:var(--card);border:1px solid var(--bdr);border-radius:var(--r);padding:1rem 1rem 1.1rem;border-top:3px solid var(--sc)}
+.stage.a1{border-top-color:var(--acq)}.stage.a2{border-top-color:var(--act)}.stage.r1{border-top-color:var(--ret)}.stage.r2{border-top-color:var(--ref)}.stage.rv{border-top-color:var(--rev)}
+.stage .l{font-family:var(--font-mono);font-size:.6rem;letter-spacing:1.4px;text-transform:uppercase;color:var(--dim)}
+.stage b{font-family:var(--font-disp);font-size:1rem;color:var(--head);display:block;margin:.2rem 0 .35rem}
+.stage p{font-size:.8rem;color:var(--sub);max-width:none}
+/* contents */
+.toc{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:.5rem;margin-top:1.6rem}
+.toc a{display:flex;align-items:baseline;gap:.6rem;padding:.65rem .85rem;border:1px solid var(--bdr);border-radius:11px;background:var(--card);transition:border-color .18s,transform .12s}
+.toc a:hover{border-color:var(--green);transform:translateY(-1px)}
+.toc a .n{font-family:var(--font-mono);font-size:.72rem;color:var(--green);font-weight:600}
+.toc a .t{font-size:.85rem;color:var(--text)}
+/* stage badge on section headers */
+.sbadge{display:inline-flex;align-items:center;gap:.5rem;font-family:var(--font-mono);font-size:.64rem;letter-spacing:2px;text-transform:uppercase;padding:.28rem .7rem;border-radius:100px;margin-bottom:1rem;border:1px solid currentColor}
+.sbadge.acq{color:var(--acq)}.sbadge.act{color:var(--act)}.sbadge.ret{color:var(--ret)}.sbadge.ref{color:var(--ref)}.sbadge.rev{color:var(--rev)}
+.sbadge::before{content:'';width:7px;height:7px;border-radius:50%;background:currentColor}
+/* cards / grid */
+.grid{display:grid;gap:1rem}.g2{grid-template-columns:repeat(2,1fr)}.g3{grid-template-columns:repeat(3,1fr)}
+@media(max-width:780px){.g3{grid-template-columns:repeat(2,1fr)}}@media(max-width:560px){.g2,.g3{grid-template-columns:1fr}}
+.card{background:var(--card);border:1px solid var(--bdr);border-radius:var(--r-lg);padding:1.3rem 1.4rem}
+.card p{font-size:.9rem;color:var(--sub);max-width:none}
+.card.teal{border-color:color-mix(in srgb,var(--teal) 24%,transparent)}
+/* stat tiles */
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:1px;background:var(--bdr);border:1px solid var(--bdr);border-radius:var(--r-lg);overflow:hidden;margin-top:1.4rem}
+.stat{background:var(--bg);padding:1.2rem 1.2rem}
+.stat .n{font-family:var(--font-disp);font-weight:600;font-size:clamp(1.4rem,3vw,1.9rem);color:var(--head);letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.stat .n sup{font-size:.55em;color:var(--green);top:-.5em}
+.stat .l{font-size:.76rem;color:var(--sub);margin-top:.3rem}
+/* tables */
+.table-scroll{overflow-x:auto;margin-top:1.3rem;border:1px solid var(--bdr);border-radius:var(--r-lg)}
+table{width:100%;border-collapse:collapse;min-width:540px;font-size:.88rem}
+th,td{text-align:left;padding:.75rem 1rem;border-bottom:1px solid var(--bdr);vertical-align:top}
+thead th{font-family:var(--font-mono);font-size:.62rem;letter-spacing:1.3px;text-transform:uppercase;color:var(--dim);font-weight:500;background:var(--shade)}
+tbody tr:last-child td{border-bottom:none}
+td.num,th.num{text-align:right;font-family:var(--font-mono);font-variant-numeric:tabular-nums}
+td strong{color:var(--head)}
+.chip{display:inline-block;font-family:var(--font-mono);font-size:.62rem;font-weight:500;padding:.18rem .5rem;border-radius:100px;letter-spacing:.3px;white-space:nowrap}
+.chip.now{background:var(--green-wash);color:var(--green);border:1px solid var(--bdr)}
+.chip.q2{background:var(--teal-wash);color:var(--teal-light);border:1px solid color-mix(in srgb,var(--teal) 26%,transparent)}
+.chip.q3{background:var(--shade);color:var(--sub);border:1px solid var(--bdr)}
+.chip.skip{background:rgba(251,191,36,.1);color:var(--gold);border:1px solid rgba(251,191,36,.3)}
+.score{font-family:var(--font-mono);font-weight:600}
+.score.hi{color:var(--green)}.score.mid{color:var(--gold)}.score.lo{color:#f87171}
+/* notes */
+.note{position:relative;border-radius:var(--r-lg);padding:1.2rem 1.4rem 1.25rem 1.5rem;background:var(--teal-wash);border:1px solid color-mix(in srgb,var(--teal) 26%,transparent);margin-top:1.4rem}
+.note::before{content:'';position:absolute;left:0;top:14px;bottom:14px;width:3px;border-radius:3px;background:var(--teal-light)}
+.note.g{background:var(--green-wash);border-color:var(--bdr-m)}.note.g::before{background:var(--green)}
+.note .h{display:flex;align-items:center;gap:.5rem;font-family:var(--font-disp);font-weight:600;font-size:.92rem;color:var(--teal-light);margin-bottom:.4rem}
+.note.g .h{color:var(--green)}
+.note .h svg{width:16px;height:16px}
+.note p{font-size:.9rem;color:var(--sub);max-width:none}
+/* moves list */
+.moves{list-style:none;counter-reset:mv;display:flex;flex-direction:column;gap:.9rem;margin-top:1.3rem}
+.moves li{position:relative;padding-left:2.4rem;font-size:.93rem;color:var(--sub)}
+.moves li::before{counter-increment:mv;content:counter(mv);position:absolute;left:0;top:0;width:1.6rem;height:1.6rem;border-radius:8px;background:var(--green-wash);border:1px solid var(--bdr);color:var(--green);font-family:var(--font-mono);font-size:.72rem;font-weight:600;display:flex;align-items:center;justify-content:center}
+.moves li b{color:var(--head);font-weight:600}
+.moves li .sk{font-family:var(--font-mono);font-size:.7rem;color:var(--teal-light)}
+/* mini heading */
+.mh{font-family:var(--font-mono);font-size:.64rem;letter-spacing:1.6px;text-transform:uppercase;color:var(--dim);margin:1.4rem 0 .5rem}
+/* timeline */
+.tl{display:flex;flex-direction:column;margin-top:1.3rem}
+.tl-row{display:grid;grid-template-columns:120px 1fr;gap:1.3rem;padding:1rem 0;border-top:1px solid var(--bdr)}
+.tl-row:first-child{border-top:none}
+@media(max-width:600px){.tl-row{grid-template-columns:1fr;gap:.4rem}}
+.tl-when{font-family:var(--font-mono);font-size:.74rem;color:var(--green);font-weight:500}
+.tl-b p{font-size:.9rem;color:var(--sub);max-width:none}
+/* foot */
+.foot{padding:2rem 0 3rem;text-align:center}
+.foot p{max-width:none;font-family:var(--font-mono);font-size:.72rem;color:var(--dim);letter-spacing:.4px}
+@media print{
+  :root[data-theme]{--bg:#fff;--bg-1:#fff;--surf:#fff;--card:#fff;--card-2:#fff;--text:#1a2320;--head:#000;--sub:#3a453f;--bdr:#cdd8d1;--shade:#f4f7f5}
+  .bar{display:none}section{break-inside:avoid-page}.card,.note,.stage{break-inside:avoid}
+}
+</style>
+</head>
+<body>
+<div class="bar">
+  <div class="bar-l">
+    <span class="lg-logo"><span class="lg-frame"><span>LG</span></span></span>
+    <span class="sep"></span><span class="bar-tag">Marketing Plan · AARRR</span>
+  </div>
+  <div style="display:flex;gap:.5rem">
+    <button class="btn icon-btn" id="themeBtn" aria-label="Toggle theme"><svg id="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button>
+    <button class="btn btn-solid" onclick="window.print()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V2h12v7M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2M6 14h12v8H6z"/></svg>PDF</button>
+  </div>
+</div>
+
+<header class="cover">
+  <div class="cover-glow"></div>
+  <div class="doc cover-inner">
+    <div class="cobrand">
+      <span class="lg-logo"><span class="lg-frame" style="width:46px;height:46px"><span>LG</span></span><span class="lg-word"><b style="font-size:1.3rem">Line<span class="dot">·</span>Guide</b><em>Automation Marketplace</em></span></span>
+      <span class="x">marketing&nbsp;by</span>
+      <span class="vs-logo">
+        <svg class="vs-mark" style="width:38px;height:38px" viewBox="0 0 120 120" fill="none" aria-label="VelaSync"><defs><linearGradient id="vt" x1="20" y1="14" x2="100" y2="106" gradientUnits="userSpaceOnUse"><stop stop-color="#3aaeae"/><stop offset="1" stop-color="#2B8E8E"/></linearGradient></defs><path d="M26 16 L52 16 L60 78 L48 90 Z" fill="url(#vt)"/><path d="M68 16 L94 16 L72 92 L60 78 Z" fill="url(#vt)" opacity="0.92"/><path d="M40 24 L58 70 L80 24" stroke="#eef7f7" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M30 58 L42 58 L36 80 Z" fill="#0f2a5e"/><path d="M30 98 C46 88, 74 108, 92 96" stroke="url(#vt)" stroke-width="9" stroke-linecap="round" fill="none"/></svg>
+        <span class="vs-word"><b style="font-size:1.2rem">VelaSync</b><em>Fractional CMO</em></span>
+      </span>
+    </div>
+    <h1>Line Guide <span>Marketing Plan</span></h1>
+    <p class="lede">A 12-month growth plan structured by <span class="aarrr-word">AARRR</span> — Acquisition, Activation, Retention, Referral, Revenue — customised to Line Guide's budget, team and stage, and mapped to the marketing-skills operating stack VelaSync runs it on.</p>
+    <div class="meta">
+      <div><div class="k">Prepared for</div><div class="v">Line Guide Ltd</div></div>
+      <div><div class="k">Prepared by</div><div class="v">VelaSync (fCMO)</div></div>
+      <div><div class="k">Author</div><div class="v">Josh Brown</div></div>
+      <div><div class="k">Date</div><div class="v">July 2026</div></div>
+      <div><div class="k">Status</div><div class="v">Draft v1</div></div>
+    </div>
+
+    <div class="aarrr">
+      <div class="stage a1"><div class="l">A · Acquisition</div><b>Get found</b><p>Strangers → aware. SEO, outbound, ads, PR, partnerships.</p></div>
+      <div class="stage a2"><div class="l">A · Activation</div><b>First value</b><p>Buyer briefs &amp; matches; supplier's first lead.</p></div>
+      <div class="stage r1"><div class="l">R · Retention</div><b>Stay &amp; deepen</b><p>ROI proof, lifecycle, renewal, low churn.</p></div>
+      <div class="stage r2"><div class="l">R · Referral</div><b>Bring others</b><p>Two-sided referrals, advocacy, co-marketing.</p></div>
+      <div class="stage rv"><div class="l">R · Revenue</div><b>Monetise</b><p>Tiers, upsell, then transaction &amp; finance take.</p></div>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="doc">
+    <div class="eyebrow">Contents</div>
+    <h2>The 13-section plan</h2>
+    <div class="toc">
+      <a href="#s1"><span class="n">01</span><span class="t">Executive summary</span></a>
+      <a href="#s2"><span class="n">02</span><span class="t">Strategic frame</span></a>
+      <a href="#s3"><span class="n">03</span><span class="t">Current state &amp; audit</span></a>
+      <a href="#s4"><span class="n">04</span><span class="t">Acquisition</span></a>
+      <a href="#s5"><span class="n">05</span><span class="t">Activation</span></a>
+      <a href="#s6"><span class="n">06</span><span class="t">Retention</span></a>
+      <a href="#s7"><span class="n">07</span><span class="t">Referral</span></a>
+      <a href="#s8"><span class="n">08</span><span class="t">Revenue</span></a>
+      <a href="#s9"><span class="n">09</span><span class="t">90-day roadmap</span></a>
+      <a href="#s10"><span class="n">10</span><span class="t">12-month outlook</span></a>
+      <a href="#s11"><span class="n">11</span><span class="t">Marketing ops stack</span></a>
+      <a href="#s12"><span class="n">12</span><span class="t">Tactical idea bank</span></a>
+      <a href="#s13"><span class="n">13</span><span class="t">Measurement &amp; RACI</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- 1 -->
+<section id="s1">
+  <div class="doc">
+    <div class="eyebrow"><span class="num">01</span> Executive summary</div>
+    <h2>Win marketplace liquidity — <span class="gt">not vanity traffic.</span></h2>
+    <p class="lede">This plan optimises for one thing: getting enough qualified buyer briefs matched to paying suppliers that the flywheel becomes self-sustaining. Every move is tagged to an AARRR stage so it can be executed in priority order.</p>
+    <div class="mh">Three big bets, ranked by leverage</div>
+    <ul class="moves">
+      <li><b>Solve the cold-start, supply-first.</b> A marketplace with thin supply is worthless to buyers. Bet the first quarter on seeding credible founding suppliers per hero use case so a buyer's first search always returns a useful top-three. Demand generation only switches on once supply can absorb it.</li>
+      <li><b>Own the buyer's search moment with a use-case content engine.</b> The compounding acquisition channel is SEO — buyer's guides and programmatic use-case pages that rank for high-intent, low-competition terms. Paid search is the accelerant that buys speed while the content matures, not the foundation.</li>
+      <li><b>Monetise on proof, then expand the take.</b> Convert founding suppliers only once we can show them real lead flow (an ROI dashboard is the sales tool). Then layer the expansion revenue — transaction success fees and equipment-finance referrals — that dwarfs subscription.</li>
+    </ul>
+    <div class="mh">What twelve months looks like, plausibly</div>
+    <div class="stats">
+      <div class="stat"><div class="n">100</div><div class="l">Paying suppliers (160 listed)</div></div>
+      <div class="stat"><div class="n"><sup>£</sup>552k</div><div class="l">ARR run-rate (~£46k MRR)</div></div>
+      <div class="stat"><div class="n">~90</div><div class="l">Qualified briefs / month</div></div>
+      <div class="stat"><div class="n">~19:1</div><div class="l">LTV : CAC held</div></div>
+    </div>
+    <div class="mh">90-day priorities</div>
+    <ul class="moves">
+      <li>Instrument GA4 + brief/sign-up events and agree the north-star metric.</li>
+      <li>Ship the supplier sign-up page and four hero use-case buyer pages (palletising, end-of-line, filling &amp; dosing, vision).</li>
+      <li>Launch Founding Supplier outbound — 7-touch sequence at ~75–100 contacts/week.</li>
+      <li>Publish the first six SEO buyer's guides and an ROI/payback calculator.</li>
+      <li>Stand up the supplier ROI dashboard (the conversion proof).</li>
+      <li>Turn on Google Ads across the four hero use cases.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- 2 -->
+<section id="s2">
+  <div class="doc">
+    <div class="eyebrow"><span class="num">02</span> Strategic frame</div>
+    <h2>Positioning, ICP &amp; voice — <span class="gt">the one-page orientation.</span></h2>
+    <div class="mh">What Line Guide is, in one sentence</div>
+    <p>The neutral, search-first marketplace that matches food &amp; beverage manufacturers with the right automation suppliers — describe a line requirement, get a ranked top-three in minutes.</p>
+    <div class="mh">The category we're claiming</div>
+    <p>Category <strong>creation</strong>: “supplier discovery for food &amp; beverage automation.” The mental model is <strong>AutoTrader for factory machinery</strong> — but the wedge against a directory is that Line Guide is a <em>matching engine</em> (an active, ranked shortlist) not a passive listing. Owning the neutral-matchmaker position is the moat.</p>
+    <div class="mh">Who we're for (two-sided ICP)</div>
+    <div class="grid g2 mt">
+      <div class="card"><h3>Supply side</h3><p style="margin-top:.4rem">UK OEMs, integrators &amp; distributors in F&amp;B automation. Buyer: <b>Sales / BD Director</b>. Stated problem: “we need more leads.” Real problem: wasted spend on unqualified, wrong-fit leads. What they buy: <b>qualified, use-case-matched demand</b>.</p></div>
+      <div class="card teal"><h3>Demand side</h3><p style="margin-top:.4rem">F&amp;B manufacturers investing in a line. Buyer: <b>Operations / Engineering / CI Manager</b>. Stated problem: “find a supplier.” Real problem: sourcing is slow, opaque and career-risky. What they buy: <b>a defensible shortlist, fast</b> — free.</p></div>
+    </div>
+    <div class="mh">Business-model logic</div>
+    <p>Buyers free (fills demand with zero friction); suppliers subscribe at <strong>£300 / £450 / £600</strong>. The compounding channel is the SEO content + data flywheel: more briefs → smarter matching → more supplier value → more paying suppliers → more budget for content. Revenue expands beyond subscription into transaction and finance take (see §8).</p>
+    <div class="mh">Brand voice — the non-negotiable</div>
+    <div class="grid g2 mt">
+      <div class="card"><h3>Do</h3><p style="margin-top:.4rem">Technical, precise, evidence-led. Lead with <b>lead flow</b> (suppliers) or <b>buyer pain</b> (manufacturers). Use: <em>matched, verified, top three, use case, fit</em>. Show trust signals — verified suppliers, ratings.</p></div>
+      <div class="card"><h3>Don't</h3><p style="margin-top:.4rem">No hype or buzzwords. Avoid: <em>revolutionary, disrupt, game-changing, seamless</em>. Never oversell placement in a way that undermines the neutrality of the match.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 3 -->
+<section id="s3">
+  <div class="doc">
+    <div class="eyebrow"><span class="num">03</span> Current state &amp; audit</div>
+    <h2>Product built. <span class="gt">Distribution at zero.</span></h2>
+    <div class="mh">Team (marketing surface area)</div>
+    <div class="table-scroll">
+      <table>
+        <thead><tr><th>Person</th><th>Role</th><th>Marketing surface area</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Founder(s)</strong></td><td>Product &amp; platform</td><td>Product, supplier relationships, roadmap</td></tr>
+          <tr><td><strong>VelaSync</strong></td><td>Fractional CMO (commission)</td><td>Entire growth engine — strategy + execution</td></tr>
+          <tr><td><span class="muted">Gap → ~Month 9</span></td><td>Growth / content contractor</td><td>Content velocity + campaign ops as volume grows</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="mh">Budget (current) &amp; funding stage</div>
+    <p><strong>~£24k Line Guide cash over 6 months</strong> (platform £1.8k · tools £4.2k · content £4.6k · ads £9k · legal £4.5k), plus <strong>£0 fixed to VelaSync</strong> — funded by commission on revenue generated. Blended CAC <strong>~£500</strong> per paying supplier. Funding stage: <strong>bootstrapped / pre-seed equivalent</strong> — organic-heavy, minimal fixed spend, but with a full fCMO+skills team's leverage. Phase of growth: <strong>$0–10K ARR (cold-start)</strong>; the binding constraint is <strong>marketplace liquidity</strong> (supply density per use case).</p>
+    <div class="mh">What's done / in-flight / stuck</div>
+    <div class="grid g3 mt">
+      <div class="card"><h3 style="color:var(--green)">Done</h3><p style="margin-top:.4rem">Working platform (briefs, profiles, matching, tiers), pricing defined, use-case taxonomy. The hard, expensive part.</p></div>
+      <div class="card"><h3 style="color:var(--gold)">In-flight</h3><p style="margin-top:.4rem">Nothing live yet — this plan <em>is</em> the in-flight work. GTM assets to be built in the 90-day roadmap (§9).</p></div>
+      <div class="card"><h3 style="color:#f87171">Stuck</h3><p style="margin-top:.4rem">No route to market, no demand, no growth loop. The single reason this plan exists.</p></div>
+    </div>
+    <div class="mh">Audit rubric — 17 sections, scored from materials</div>
+    <div class="table-scroll">
+      <table>
+        <thead><tr><th>#</th><th>Section</th><th class="num">Score</th><th>Note</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>Positioning</td><td class="num"><span class="score hi">4</span></td><td>Clear category &amp; wedge</td></tr>
+          <tr><td>2</td><td>Customer research</td><td class="num"><span class="score mid">2</span></td><td>ICP defined, not yet validated with interviews</td></tr>
+          <tr><td>3</td><td>Brand &amp; messaging</td><td class="num"><span class="score mid">3</span></td><td>Voice clear; assets not built</td></tr>
+          <tr><td>4</td><td>Website &amp; conversion</td><td class="num"><span class="score mid">3</span></td><td>Platform strong; landing funnels missing</td></tr>
+          <tr><td>5</td><td>SEO &amp; content</td><td class="num"><span class="score lo">1</span></td><td>No content hub yet</td></tr>
+          <tr><td>6</td><td>Paid acquisition</td><td class="num"><span class="score lo">0</span></td><td>Not started</td></tr>
+          <tr><td>7</td><td>Social &amp; community</td><td class="num"><span class="score lo">1</span></td><td>Founder presence only</td></tr>
+          <tr><td>8</td><td>Email &amp; lifecycle</td><td class="num"><span class="score lo">0</span></td><td>No flows</td></tr>
+          <tr><td>9</td><td>Onboarding / activation</td><td class="num"><span class="score mid">2</span></td><td>Product flow exists; not instrumented</td></tr>
+          <tr><td>10</td><td>Retention / churn</td><td class="num"><span class="score lo">1</span></td><td>No lifecycle or dashboard</td></tr>
+          <tr><td>11</td><td>Referral</td><td class="num"><span class="score lo">0</span></td><td>Not started</td></tr>
+          <tr><td>12</td><td>Pricing &amp; packaging</td><td class="num"><span class="score mid">3</span></td><td>Tiers set; billing period to confirm</td></tr>
+          <tr><td>13</td><td>Partnerships</td><td class="num"><span class="score lo">1</span></td><td>Trade-body relationships to build</td></tr>
+          <tr><td>14</td><td>PR &amp; media</td><td class="num"><span class="score lo">1</span></td><td>No placements yet</td></tr>
+          <tr><td>15</td><td>Analytics &amp; measurement</td><td class="num"><span class="score lo">1</span></td><td>Not instrumented — first-week fix</td></tr>
+          <tr><td>16</td><td>Sales enablement</td><td class="num"><span class="score mid">2</span></td><td>Pitch clear; collateral to build</td></tr>
+          <tr><td>17</td><td>Internationalisation</td><td class="num"><span class="score lo">0</span></td><td>Out of scope this year (UK first)</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="note">
+      <div class="h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 14l4-4 4 4 5-6"/></svg> Total: 25 / 85 (29%)</div>
+      <p>The <strong>shape</strong> is the story: strong on product, positioning and pricing (the founder's work), near-zero on every distribution, lifecycle and measurement surface. That exact shape is the gap the rest of this plan closes — and it's why a growth partner, not a product hire, is the unlock.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 4 ACQUISITION -->
+<section id="s4">
+  <div class="doc">
+    <div class="sbadge acq">Acquisition · strangers → aware</div>
+    <div class="eyebrow"><span class="num">04</span> Acquisition</div>
+    <h2>How strangers find Line Guide</h2>
+    <p class="lede">Two audiences, two motions: <strong>outbound</strong> recruits suppliers (supply-first), then a <strong>content + paid</strong> engine pulls high-intent buyers onto that supply.</p>
+    <ul class="moves">
+      <li><b>SEO content hub.</b> Use-case buyer's guides, a glossary, and programmatic use-case × sector pages targeting high-intent, low-competition search; a proprietary “State of F&amp;B Automation” data report for links. <span class="sk">skills: seo-audit, programmatic-seo, ai-seo · ideas #1 #3 #4 #6</span></li>
+      <li><b>Supplier outbound.</b> A 7-touch, 3-week LinkedIn + email sequence to a curated list (PPMA, Foodex exhibitor lists, Sales Navigator), recruiting the Founding cohort. <span class="sk">skills: cold-email, prospecting</span></li>
+      <li><b>Paid search + LinkedIn ABM.</b> Google Ads on bottom-funnel “supplier / manufacturer” terms; ABM ads to Ops/Engineering managers. The accelerant once supply can absorb demand. <span class="sk">skills: ads, ad-creative · ideas #23–#34</span></li>
+      <li><b>Founder- &amp; partner-led LinkedIn.</b> Thought leadership on automation buying, posted consistently. <span class="sk">skills: social · idea #35</span></li>
+      <li><b>Free tool — ROI / payback calculator.</b> A lead magnet that ranks and captures briefs. <span class="sk">skills: free-tools · idea #18</span></li>
+      <li><b>PR &amp; trade media.</b> Bylines and features in Food Manufacture, Machinery Update, New Food. <span class="sk">skills: public-relations · idea #73</span></li>
+      <li><b>Partnerships &amp; referral demand.</b> Trade bodies (PPMA, FDF), consultants and integrators sending buyers. <span class="sk">skills: co-marketing · ideas #54–#64</span></li>
+    </ul>
+    <div class="grid g2 mt">
+      <div class="card"><div class="mh" style="margin-top:0">90-day moves</div><p>Supplier landing + 4 hero use-case pages · first 6 buyer's guides · ROI calculator · outbound live at 75–100/wk · Google Ads on 4 use cases.</p></div>
+      <div class="card"><div class="mh" style="margin-top:0">12-month outlook</div><p>Ranking for hero use-case terms · programmatic pages live · steady PR placements · partnership referrals flowing · paid scaled on proven CPA.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 5 ACTIVATION -->
+<section id="s5">
+  <div class="doc">
+    <div class="sbadge act">Activation · aware → first value</div>
+    <div class="eyebrow teal"><span class="num">05</span> Activation</div>
+    <h2>The two “aha” moments</h2>
+    <p class="lede">A two-sided marketplace has two activations, and both must fire for the flywheel to turn.</p>
+    <div class="grid g2 mt">
+      <div class="card teal"><h3>Supplier activation</h3><p style="margin-top:.4rem"><b>Complete profile → first qualified lead.</b> Remove all setup friction with <b>concierge onboarding</b> (VelaSync builds the profile), then get a real lead in front of them fast — the moment they believe.</p></div>
+      <div class="card teal"><h3>Buyer activation</h3><p style="margin-top:.4rem"><b>Submit brief → receive top-three match.</b> No account gate, minimal fields, instant ranked shortlist. Every point of friction on the brief form is a lost activation.</p></div>
+    </div>
+    <ul class="moves">
+      <li><b>Concierge supplier onboarding</b> + a “your first lead” email. <span class="sk">skills: onboarding, emails</span></li>
+      <li><b>Brief-form CRO</b> — cut fields, test flow, instrument every step. <span class="sk">skills: cro, ab-testing</span></li>
+      <li><b>“Your matches” buyer flow</b> — fast, clear, credible shortlist with next-step nudges. <span class="sk">skills: copywriting, signup</span></li>
+      <li><b>Tier prompts at value moments</b> — surface Plus/Premium when a supplier sees lead value. <span class="sk">skills: paywalls</span></li>
+    </ul>
+    <div class="card mt"><div class="mh" style="margin-top:0">90-day</div><p>Concierge-onboard the founding cohort · instrument the brief funnel end-to-end · ship supplier “first lead” and buyer “your matches” emails.</p></div>
+  </div>
+</section>
+
+<!-- 6 RETENTION -->
+<section id="s6">
+  <div class="doc">
+    <div class="sbadge ret">Retention · converted → stays</div>
+    <div class="eyebrow"><span class="num">06</span> Retention</div>
+    <h2>Keep suppliers paying, keep buyers coming back</h2>
+    <p class="lede">Supplier retention is driven by proven lead flow; buyer retention is lower-frequency (capital purchases are periodic), so it's really about staying top-of-mind for the next project — and becoming a referrer.</p>
+    <ul class="moves">
+      <li><b>Supplier ROI dashboard.</b> Show each supplier the briefs and matches they've received — the single best retention and upsell tool. <span class="sk">skills: revops · cross-refs §8</span></li>
+      <li><b>Lifecycle email flows.</b> Onboarding, monthly lead recap, and win-back for lapsed suppliers. <span class="sk">skills: emails, churn-prevention · idea #46</span></li>
+      <li><b>Buyer newsletter.</b> Use-case insights that keep Line Guide top-of-mind between projects and feed referral. <span class="sk">skills: emails, content-strategy</span></li>
+      <li><b>Annual billing default test</b> — pull cash forward and cut churn. <span class="sk">skills: pricing, ab-testing · cross-refs §8</span></li>
+    </ul>
+    <div class="card mt"><div class="mh" style="margin-top:0">90-day</div><p>Ship ROI dashboard v1 · supplier lifecycle emails live · define &amp; instrument churn (currently unknown — see §13 open decisions).</p></div>
+  </div>
+</section>
+
+<!-- 7 REFERRAL -->
+<section id="s7">
+  <div class="doc">
+    <div class="sbadge ref">Referral · users → more users</div>
+    <div class="eyebrow"><span class="num">07</span> Referral</div>
+    <h2>Turn both sides into a channel</h2>
+    <ul class="moves">
+      <li><b>Two-sided referral program.</b> Reward supplier-invites-supplier and buyer word-of-mouth. <span class="sk">skills: referrals · idea #137</span></li>
+      <li><b>Founding-Partner advocacy.</b> The founding badge + testimonials become social proof that recruits the next cohort. <span class="sk">skills: social, emails</span></li>
+      <li><b>Trade-body co-marketing.</b> PPMA / FDF and consultants as trusted referral partners. <span class="sk">skills: co-marketing · idea #56</span></li>
+      <li><b>Case studies</b> from the first closed equipment deals — referral fuel and sales collateral. <span class="sk">skills: sales-enablement, copywriting</span></li>
+    </ul>
+    <div class="card mt"><div class="mh" style="margin-top:0">90-day</div><p>Capture founding-partner testimonials · spec the two-sided referral mechanic (build in Q2).</p></div>
+  </div>
+</section>
+
+<!-- 8 REVENUE -->
+<section id="s8">
+  <div class="doc">
+    <div class="sbadge rev">Revenue · monetisation</div>
+    <div class="eyebrow teal"><span class="num">08</span> Revenue</div>
+    <h2>Subscription now, take-rate later</h2>
+    <ul class="moves">
+      <li><b>Convert founding cohort</b> to Basic / Plus / Premium on proven lead flow (the ROI dashboard is the close). <span class="sk">skills: pricing, sales-enablement</span></li>
+      <li><b>Annual billing default</b> + <b>tier-up to Premium</b> using placement-performance data. <span class="sk">skills: pricing, paywalls, ab-testing</span></li>
+      <li><b>Featured-placement auctions</b> — incremental high-margin revenue from the existing base. <span class="sk">skills: revops</span></li>
+      <li><b>Transaction &amp; finance take</b> — success fee on closed deals + equipment-finance referral commission (the big expansion lever; see the business plan's Expansion Playbook). <span class="sk">skills: revops, sales-enablement</span></li>
+    </ul>
+    <div class="mh">Unit economics</div>
+    <div class="table-scroll">
+      <table>
+        <thead><tr><th>Metric</th><th class="num">Value</th><th>Note</th></tr></thead>
+        <tbody>
+          <tr><td>ARPC (avg monthly / supplier)</td><td class="num">£450</td><td>Blended across three tiers</td></tr>
+          <tr><td>Blended CAC</td><td class="num">£500</td><td>Outbound + content + tools, not just ads</td></tr>
+          <tr><td>Annual retention (assumed)</td><td class="num">~85%</td><td>Churn unknown — see §13</td></tr>
+          <tr><td>LTV (conservative, 24-mo)</td><td class="num">£9.7k</td><td>ARPC × 24 × 90% margin</td></tr>
+          <tr><td>LTV : CAC</td><td class="num">~19:1</td><td>Health benchmark is &gt; 3</td></tr>
+          <tr><td>CAC payback</td><td class="num">&lt;2 mo</td><td>CAC ÷ monthly gross profit</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 9 ROADMAP -->
+<section id="s9">
+  <div class="doc">
+    <div class="eyebrow"><span class="num">09</span> 90-day roadmap</div>
+    <h2>Four sprints, every move owned &amp; AARRR-tagged</h2>
+    <div class="table-scroll">
+      <table>
+        <thead><tr><th>Move</th><th>Stage</th><th>Owner</th></tr></thead>
+        <tbody>
+          <tr style="background:var(--shade)"><td colspan="3"><strong>Weeks 1–2 · Unblock</strong></td></tr>
+          <tr><td>GA4 + brief/sign-up event tracking; agree north star</td><td><span class="chip now">Measure</span></td><td>VelaSync</td></tr>
+          <tr><td>Build the curated supplier target list</td><td><span class="chip now">Acquisition</span></td><td>VelaSync</td></tr>
+          <tr><td>Brand &amp; messaging one-pager; hero use-case pick</td><td><span class="chip now">Cross</span></td><td>VelaSync</td></tr>
+          <tr style="background:var(--shade)"><td colspan="3"><strong>Weeks 3–4 · Foundation</strong></td></tr>
+          <tr><td>Supplier sign-up page + 4 hero use-case buyer pages</td><td><span class="chip now">Acq/Act</span></td><td>VelaSync + Founder</td></tr>
+          <tr><td>First 3 buyer's guides; outbound sequence live</td><td><span class="chip now">Acquisition</span></td><td>VelaSync</td></tr>
+          <tr><td>Concierge onboarding process for founding suppliers</td><td><span class="chip now">Activation</span></td><td>Founder</td></tr>
+          <tr style="background:var(--shade)"><td colspan="3"><strong>Weeks 5–8 · Velocity</strong></td></tr>
+          <tr><td>Outbound at 75–100/wk; 6 guides total + ROI calculator</td><td><span class="chip now">Acquisition</span></td><td>VelaSync</td></tr>
+          <tr><td>Google Ads live on 4 use cases</td><td><span class="chip now">Acquisition</span></td><td>VelaSync</td></tr>
+          <tr><td>Supplier lifecycle emails; ROI dashboard v1</td><td><span class="chip now">Ret/Act</span></td><td>VelaSync + Founder</td></tr>
+          <tr style="background:var(--shade)"><td colspan="3"><strong>Weeks 9–12 · Compound</strong></td></tr>
+          <tr><td>Founding-cohort conversion campaign; referral spec</td><td><span class="chip now">Rev/Ref</span></td><td>VelaSync</td></tr>
+          <tr><td>PR outreach; case-study capture</td><td><span class="chip now">Acq/Ref</span></td><td>VelaSync</td></tr>
+          <tr><td>90-day review + Q2 plan</td><td><span class="chip now">Cross</span></td><td>Both</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 10 OUTLOOK -->
+<section id="s10">
+  <div class="doc">
+    <div class="eyebrow"><span class="num">10</span> 12-month outlook</div>
+    <h2>Quarterly milestones &amp; the growth shape</h2>
+    <p class="lede"><strong>Budget method:</strong> goal-based, deliberately cash-light — most growth cost is VelaSync's commission-funded time. <strong>Growth pattern:</strong> linear supplier additions with a step-function at monetisation (month 6), layering an outbound S-curve first, then a compounding content/SEO S-curve, then paid.</p>
+    <div class="table-scroll">
+      <table>
+        <thead><tr><th>Quarter</th><th>Focus</th><th class="num">Paying</th><th class="num">Briefs/mo</th><th>S-curve position</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Q1</strong> · M1–3</td><td>Seed supply + instrument</td><td class="num">15</td><td class="num">10</td><td>Outbound ramping</td></tr>
+          <tr><td><strong>Q2</strong> · M4–6</td><td>Ignite demand + convert cohort</td><td class="num">40</td><td class="num">30</td><td>Content S-curve begins; paid on</td></tr>
+          <tr><td><strong>Q3</strong> · M7–9</td><td>Repeatable engine + upsell</td><td class="num">70</td><td class="num">60</td><td>Content compounding; outbound systematised</td></tr>
+          <tr><td><strong>Q4</strong> · M10–12</td><td>Scale + raise-ready</td><td class="num">100</td><td class="num">90</td><td>Paid scaling on proven CPA; next S-curve staged</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="note">
+      <div class="h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M2 12h20"/></svg> Funding-stage unlocks</div>
+      <p>Q1–Q2 run on the bootstrapped/pre-seed budget (organic + small ad test). By Q4, ~£46k MRR and a repeatable engine make the business <strong>raise-ready</strong> — a seed close would unlock a £5–15k/mo paid budget and the first growth/content contractor, moving paid from accelerant to primary channel.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 11 OPS STACK -->
+<section id="s11">
+  <div class="doc">
+    <div class="eyebrow"><span class="num">11</span> Marketing operations stack</div>
+    <h2>A two-person team that ships like twenty</h2>
+    <p class="lede">The fCMO differentiator: founder + VelaSync + the marketing-skills library + MCP/API integrations produce the output of a 15–20-person marketing org at near-zero fixed cost. Here's the stack, mapped to AARRR.</p>
+    <div class="table-scroll">
+      <table>
+        <thead><tr><th>Stage</th><th>Primary skills</th><th>Supporting skills</th></tr></thead>
+        <tbody>
+          <tr><td><span class="chip now">Acquisition</span></td><td>seo-audit, programmatic-seo, ai-seo, ads, cold-email, social, public-relations, free-tools</td><td>competitors, content-strategy, copywriting</td></tr>
+          <tr><td><span class="chip q2">Activation</span></td><td>onboarding, signup, cro</td><td>ab-testing, copywriting, emails</td></tr>
+          <tr><td><span class="chip skip">Retention</span></td><td>emails, churn-prevention</td><td>revops, copywriting</td></tr>
+          <tr><td><span class="chip q3">Referral</span></td><td>referrals, co-marketing</td><td>social, emails</td></tr>
+          <tr><td><span class="chip q2">Revenue</span></td><td>pricing, paywalls, revops</td><td>sales-enablement, ab-testing</td></tr>
+          <tr><td><span class="chip now">Cross-cutting</span></td><td>product-marketing, marketing-plan, marketing-ideas</td><td>copy-editing, analytics, customer-research</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="mh">Tooling layer (MCP / APIs)</div>
+    <p>GA4 (measurement), Google Ads &amp; LinkedIn (paid), LinkedIn Sales Navigator + a cold-email platform (outbound), an SEO tool such as Ahrefs (content), Stripe (billing &amp; LTV maths), a lightweight CRM (pipeline). Each move in §4–§8 names the skill and tool that executes it without a hire.</p>
+    <div class="note g">
+      <div class="h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg> A concrete example</div>
+      <p>The ROI/payback calculator is spec'd by the <strong>free-tools</strong> skill, built once, and then serves three stages at once: an <strong>Acquisition</strong> SEO asset and lead magnet, an <strong>Activation</strong> aid inside the brief flow, and a <strong>Revenue</strong> proof point for suppliers. One artifact, three jobs — that's the leverage.</p>
+    </div>
+    <div class="mh">Team &amp; agency model (RACI)</div>
+    <div class="table-scroll">
+      <table>
+        <thead><tr><th>Function</th><th>Owned by</th><th>Executed by</th></tr></thead>
+        <tbody>
+          <tr><td>Growth (demand engine)</td><td>VelaSync</td><td>VelaSync + skills/MCP</td></tr>
+          <tr><td>Product marketing (story)</td><td>VelaSync + Founder</td><td>VelaSync</td></tr>
+          <tr><td>Content (trust engine)</td><td>VelaSync</td><td>VelaSync → +contractor ~M9</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 12 IDEA BANK -->
+<section id="s12">
+  <div class="doc">
+    <div class="eyebrow"><span class="num">12</span> Tactical idea bank</div>
+    <h2>The 139-idea library, filtered for Line Guide</h2>
+    <p class="lede">§4–§8 prescribe what we're <em>doing</em>. This maps what's <em>possible</em> — the most relevant ideas from the marketing-ideas library, tagged by AARRR and status. Legend: <span class="chip now">Now</span> in the 90-day plan · <span class="chip q2">Q2</span> · <span class="chip q3">Q3+</span> · <span class="chip skip">Skip</span>.</p>
+    <div class="table-scroll">
+      <table>
+        <thead><tr><th>#</th><th>Idea</th><th>Stage</th><th>Status</th><th>Line Guide note</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>Easy Keyword Ranking</td><td>Acq</td><td><span class="chip now">Now</span></td><td>Hero use-case terms are low-competition, high-intent</td></tr>
+          <tr><td>4</td><td>Programmatic SEO</td><td>Acq</td><td><span class="chip q2">Q2</span></td><td>Use-case × sector pages at scale</td></tr>
+          <tr><td>3</td><td>Glossary Marketing</td><td>Acq</td><td><span class="chip q2">Q2</span></td><td>“What is X” automation terms</td></tr>
+          <tr><td>6</td><td>Proprietary Data Content</td><td>Acq</td><td><span class="chip q3">Q3+</span></td><td>“State of F&amp;B Automation” report — links + PR</td></tr>
+          <tr><td>11</td><td>Competitor Comparison Pages</td><td>Acq</td><td><span class="chip q2">Q2</span></td><td>“Line Guide vs directories / vs trade shows”</td></tr>
+          <tr><td>18</td><td>Calculator Marketing</td><td>Acq/Act</td><td><span class="chip now">Now</span></td><td>ROI / payback calculator — lead magnet</td></tr>
+          <tr><td>15</td><td>Engineering as Marketing</td><td>Acq</td><td><span class="chip q3">Q3+</span></td><td>Line-spec / matching mini-tools</td></tr>
+          <tr><td>23</td><td>Podcast Advertising</td><td>Acq</td><td><span class="chip q3">Q3+</span></td><td>Sponsor F&amp;B manufacturing podcasts</td></tr>
+          <tr><td>35</td><td>Community Marketing</td><td>Acq</td><td><span class="chip q3">Q3+</span></td><td>Founder LinkedIn presence first</td></tr>
+          <tr><td>65</td><td>Live Webinars</td><td>Acq/Act</td><td><span class="chip q2">Q2</span></td><td>“How to choose a palletiser” with a supplier</td></tr>
+          <tr><td>73</td><td>Press / trade media</td><td>Acq</td><td><span class="chip q2">Q2</span></td><td>Food Manufacture, Machinery Update bylines</td></tr>
+          <tr><td>54–64</td><td>Partnerships &amp; reseller</td><td>Acq/Ref</td><td><span class="chip q2">Q2</span></td><td>PPMA / FDF, consultants, integrators</td></tr>
+          <tr><td>45/46</td><td>Founder &amp; win-back emails</td><td>Ret</td><td><span class="chip now">Now</span></td><td>Lifecycle + lapsed-supplier reactivation</td></tr>
+          <tr><td>137</td><td>Two-Sided Referrals</td><td>Ref</td><td><span class="chip q2">Q2</span></td><td>Reward both sides for invites</td></tr>
+          <tr><td>138</td><td>Podcast Tours</td><td>Acq/Ref</td><td><span class="chip q3">Q3+</span></td><td>Founder as guest on industry shows</td></tr>
+          <tr><td>78</td><td>Product Hunt Launch</td><td>Acq</td><td><span class="chip skip">Skip</span></td><td>Wrong audience — B2B industrial buyers aren't there</td></tr>
+          <tr><td>87</td><td>Powered-By Marketing</td><td>Acq</td><td><span class="chip skip">Skip</span></td><td>No embeddable surface for this model</td></tr>
+          <tr><td>124</td><td>App Store Optimization</td><td>Acq</td><td><span class="chip skip">Skip</span></td><td>No app; web-first</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="note">
+      <div class="h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg> What the shortlist proves</div>
+      <p>Acquisition-heavy, referral-second — exactly right for a cold-start marketplace. The skips (Product Hunt, ASO, powered-by) aren't oversights: they're consumer/dev-tool tactics that don't fit an industrial B2B buyer. Concentrating on ~12 high-fit ideas beats spreading thin across 139.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 13 MEASUREMENT -->
+<section id="s13">
+  <div class="doc">
+    <div class="eyebrow teal"><span class="num">13</span> Measurement, RACI &amp; open decisions</div>
+    <h2>How we'll know it's working</h2>
+    <div class="note g">
+      <div class="h"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.6 6.5L21 9l-5 4.5 1.5 6.5L12 16l-5.5 4 1.5-6.5L3 9l6.4-.5z"/></svg> North-star metric</div>
+      <p><strong>Qualified matches delivered per month</strong> — buyer briefs matched to at least one relevant, in-budget supplier. It's the truest measure of marketplace liquidity because it only moves when <em>both</em> sides are healthy. Financial guardrail: <strong>LTV : CAC ≥ 3</strong> (currently ~19).</p>
+    </div>
+    <div class="mh">Leading indicators by stage</div>
+    <div class="table-scroll">
+      <table>
+        <thead><tr><th>Stage</th><th>Leading indicators</th></tr></thead>
+        <tbody>
+          <tr><td><span class="chip now">Acquisition</span></td><td>Organic sessions, brief-page CTR, cost per brief, outbound reply rate</td></tr>
+          <tr><td><span class="chip q2">Activation</span></td><td>Brief-form completion %, supplier profile-completion %, time-to-first-lead</td></tr>
+          <tr><td><span class="chip skip">Retention</span></td><td>Supplier monthly churn, leads-per-supplier, renewal rate</td></tr>
+          <tr><td><span class="chip q3">Referral</span></td><td>Referred sign-ups, referral share rate, partner-sourced briefs</td></tr>
+          <tr><td><span class="chip q2">Revenue</span></td><td>Free→paid conversion, ARPU, tier mix, MRR growth</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="mh">Review cadence</div>
+    <p><strong>Weekly</strong> VelaSync ↔ founder ops sync · <strong>monthly</strong> KPI review against the shared dashboard · <strong>quarterly</strong> plan recalibration.</p>
+    <div class="mh">Open decisions — ranked by impact</div>
+    <ul class="moves">
+      <li><b>Pricing billing period.</b> Are tiers monthly or annual? Changes the entire revenue model. <span class="sk">highest impact</span></li>
+      <li><b>CAC validation.</b> Real cost per paying supplier is unknown until outbound runs — every projection depends on it.</li>
+      <li><b>Churn rate.</b> Unknown; assumed ~85% annual retention. Instrument in the first 90 days.</li>
+      <li><b>Lead-hero use cases.</b> Which 3–4 to concentrate on first (evidence: search volume × supply availability).</li>
+      <li><b>Ad budget ceiling.</b> How much monthly paid spend Line Guide will commit once CPA is proven.</li>
+      <li><b>Attribution for transaction/finance revenue</b> — needed before the expansion streams (§8) can be turned on.</li>
+    </ul>
+    <div class="mh">Appendix — deeper docs</div>
+    <p class="muted" style="font-size:.9rem">Business &amp; growth plan → <strong>business-plan.html</strong> (market, model, financials, deal structure, costs, expansion playbook). VelaSync deal strategy (internal) → <strong>velasync-deal-strategy.html</strong>. This plan draws its budget, unit-economics and user numbers directly from those.</p>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="doc"><p>Line Guide Marketing Plan v1 · AARRR · Prepared by VelaSync · July 2026 · For team review · Illustrative figures</p></div>
+</footer>
+
+<script>
+(function(){
+  var root=document.documentElement, btn=document.getElementById('themeBtn'), ic=document.getElementById('ic');
+  function pref(){try{return window.matchMedia('(prefers-color-scheme: light)').matches?'light':'dark'}catch(e){return 'dark'}}
+  var sun='<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>';
+  var moon='<path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z"/>';
+  function apply(t){root.setAttribute('data-theme',t);ic.innerHTML=t==='dark'?sun:moon}
+  apply(pref());
+  btn.addEventListener('click',function(){apply(root.getAttribute('data-theme')==='dark'?'light':'dark')});
+})();
+</script>
+</body>
+</html>
