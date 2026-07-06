@@ -20,6 +20,7 @@
   --font-body:'Inter',system-ui,sans-serif;
   --font-mono:'IBM Plex Mono',ui-monospace,monospace;
   --maxw:1000px; --r:14px; --r-lg:20px; --r-xl:26px; --ease:cubic-bezier(.4,0,.2,1);
+  --ease-out:cubic-bezier(.23,1,.32,1); --ease-in-out:cubic-bezier(.77,0,.175,1);
 }
 :root[data-theme="dark"]{
   --bg:#070A08; --bg-1:#0A0E0C; --surf:#141A16; --card:rgba(255,255,255,.02); --card-2:rgba(255,255,255,.03);
@@ -44,7 +45,7 @@ svg{display:block}a{color:inherit;text-decoration:none}
 .bar-tag{font-family:var(--font-mono);font-size:.62rem;letter-spacing:1.5px;text-transform:uppercase;color:var(--dim)}
 .sep{width:1px;height:16px;background:var(--bdr-m)}
 .btn{font-family:var(--font-body);font-size:.78rem;font-weight:600;display:inline-flex;align-items:center;gap:.45rem;padding:.5rem .95rem;border-radius:100px;border:1px solid var(--bdr-m);background:var(--surf);color:var(--text);cursor:pointer;transition:border-color .18s,transform .12s}
-.btn:hover{border-color:var(--green);transform:translateY(-1px)}
+.btn:hover{border-color:var(--green)}
 .btn svg{width:14px;height:14px}
 .icon-btn{width:36px;height:36px;padding:0;justify-content:center}.icon-btn svg{width:16px;height:16px}
 .btn-solid{background:var(--green);color:#04160C;border-color:transparent}
@@ -104,7 +105,7 @@ strong{color:var(--head);font-weight:600}
 /* contents */
 .toc{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:.5rem;margin-top:1.6rem}
 .toc a{display:flex;align-items:baseline;gap:.6rem;padding:.65rem .85rem;border:1px solid var(--bdr);border-radius:11px;background:var(--card);transition:border-color .18s,transform .12s}
-.toc a:hover{border-color:var(--green);transform:translateY(-1px)}
+.toc a:hover{border-color:var(--green)}
 .toc a .n{font-family:var(--font-mono);font-size:.72rem;color:var(--green);font-weight:600}
 .toc a .t{font-size:.85rem;color:var(--text)}
 /* stage badge on section headers */
@@ -164,6 +165,27 @@ td strong{color:var(--head)}
 /* foot */
 .foot{padding:2rem 0 3rem;text-align:center}
 .foot p{max-width:none;font-family:var(--font-mono);font-size:.72rem;color:var(--dim);letter-spacing:.4px}
+/* ── MOTION (Emil craft) ────────────────────────────────────────────────── */
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .5s var(--ease-out),transform .5s var(--ease-out);transition-delay:var(--d,0ms)}
+.reveal.in{opacity:1;transform:none}
+.btn,.toc a,.card,.stage{transition:transform .16s var(--ease-out),border-color .2s var(--ease-out),background .2s var(--ease-out)}
+/* press feedback — the UI heard the click */
+.toc a:active,.card:active{transform:scale(.985)}
+/* hover lifts gated so a tap never triggers them */
+@media(hover:hover) and (pointer:fine){
+  .btn:hover{transform:translateY(-1px)}
+  .toc a:hover{transform:translateY(-1px)}
+  .card:hover{transform:translateY(-2px);border-color:var(--bdr-m)}
+  .stage:hover{transform:translateY(-2px)}
+}
+/* ambient cover glow — decorative, slow */
+@keyframes coverDrift{0%{transform:translate3d(0,0,0) scale(1)}50%{transform:translate3d(1.5%,-1.5%,0) scale(1.04)}100%{transform:translate3d(0,0,0) scale(1)}}
+.cover-glow{animation:coverDrift 22s var(--ease-in-out) infinite}
+@media(prefers-reduced-motion:reduce){
+  .reveal{opacity:1;transform:none;transition:opacity .3s ease}
+  .cover-glow{animation:none}
+  .btn:hover,.toc a:hover,.card:hover,.stage:hover{transform:none}
+}
 @media print{
   :root[data-theme]{--bg:#fff;--bg-1:#fff;--surf:#fff;--card:#fff;--card-2:#fff;--text:#1a2320;--head:#000;--sub:#3a453f;--bdr:#cdd8d1;--shade:#f4f7f5}
   .bar{display:none}section{break-inside:avoid-page}.card,.note,.stage{break-inside:avoid}
@@ -635,6 +657,18 @@ td strong{color:var(--head)}
   function apply(t){root.setAttribute('data-theme',t);ic.innerHTML=t==='dark'?sun:moon}
   apply(pref());
   btn.addEventListener('click',function(){apply(root.getAttribute('data-theme')==='dark'?'light':'dark')});
+
+  // Staggered scroll reveal — apply to each .doc's block children, cascade per section
+  document.querySelectorAll('section, header.cover').forEach(function(sec){
+    var doc=sec.querySelector('.doc'); if(!doc) return;
+    var kids=doc.children;
+    for(var i=0;i<kids.length;i++){ kids[i].classList.add('reveal'); kids[i].style.setProperty('--d', Math.min(i*55,275)+'ms'); }
+  });
+  var rv=document.querySelectorAll('.reveal');
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(en){ en.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }); },{threshold:.1,rootMargin:'0px 0px -50px 0px'});
+    rv.forEach(function(el){ io.observe(el); });
+  } else { rv.forEach(function(el){ el.classList.add('in'); }); }
 })();
 </script>
 </body>
